@@ -1,0 +1,12 @@
+<IfModule mod_rewrite.c>
+#activar el rewrite
+RewriteEngine on
+ErrorDocument 404 http://localhost/CDR/Error/
+
+
+RewriteCond  %{SCRIPT_FILENAME} !-d
+RewriteCond  %{SCRIPT_FILENAME} !-f
+
+
+RewriteRule ^(.*)/(.*) index.php?controlador=$1&metodo=$2
+</IfModule>
