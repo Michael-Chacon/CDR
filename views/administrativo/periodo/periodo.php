@@ -7,7 +7,7 @@
                     </article>
                     <article class="col-xs-1 col-sm-1 col-md-1 col-lg-1 config icono-menu text-center">
                         <a aria-expanded="false" data-bs-toggle="dropdown" type="button">
-                            <i class="bi bi-menu-up efecto_hover" style="font-size: 2rem; color: white;">
+                            <i class="bi bi-plus-lg efecto_hover" style="font-size: 2rem; color: white;">
                             </i>
                         </a>
                         <ul class="dropdown-menu">
@@ -16,18 +16,6 @@
                                     <i class="bi bi-plus-circle" style="color: #7C368F;">
                                     </i>
                                     Crear periodo
-                                </a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="#">
-                                    <i class="bi bi-lock" style="color: #7C368F;">
-                                    </i>
-                                    Cambiar contraseña
-                                </a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="#">
-                                    Menu item
                                 </a>
                             </li>
                         </ul>

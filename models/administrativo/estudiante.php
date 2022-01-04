@@ -105,9 +105,10 @@ class Estudiante extends Usuarios
                 $registro = $this->db->prepare("INSERT INTO estudiante VALUES(null, :grado, :familia, :nombre, :apellidos, :fe_na, :edad, :sexo, :tipo_id, :numero, :lugar_ex, :fe_ex, :dir, :tel, :correo, :reli, :incapacidad, :grupo, :rh, :trasporte, :pae, :img)");
                 $registro->bindParam(":grado", $gra, PDO::PARAM_INT);
                 $registro->bindParam(':familia', $id_padres, PDO::PARAM_INT);
+                $registro->bindParam(":img", $imagen, PDO::PARAM_STR);
 
             } elseif ($accion == 'actualizar') {
-                $registro = $this->db->prepare("UPDATE estudiante SET nombre_e = :nombre, apellidos_e = :apellidos, fecha_nacimiento_e = :fe_na, edad_e = :edad, sexo_e = :sexo, tipo_identificacion_e = :tipo_id, numero_e = :numero, lugar_expedicion_e = :lugar_ex, fecha_expedicion_e = :fe_ex, direccion_e = :dir, telefono_e = :tel, correo_e = :correo, religion_e = :reli, incapacidad_medica_e = :incapacidad, grupo_sanguineo_e = :grupo, rh_e = :rh, transporte = :trasporte, pae = :pae, img = :img WHERE id = :id_estudiante");
+                $registro = $this->db->prepare("UPDATE estudiante SET nombre_e = :nombre, apellidos_e = :apellidos, fecha_nacimiento_e = :fe_na, edad_e = :edad, sexo_e = :sexo, tipo_identificacion_e = :tipo_id, numero_e = :numero, lugar_expedicion_e = :lugar_ex, fecha_expedicion_e = :fe_ex, direccion_e = :dir, telefono_e = :tel, correo_e = :correo, religion_e = :reli, incapacidad_medica_e = :incapacidad, grupo_sanguineo_e = :grupo, rh_e = :rh, transporte = :trasporte, pae = :pae WHERE id = :id_estudiante");
                 $registro->bindParam(":id_estudiante", $id_e, PDO::PARAM_INT);
             }
             $registro->bindParam(":nombre", $no, PDO::PARAM_STR);
@@ -128,7 +129,6 @@ class Estudiante extends Usuarios
             $registro->bindParam(':rh', $r_h, PDO::PARAM_STR);
             $registro->bindParam(':trasporte', $tr, PDO::PARAM_STR);
             $registro->bindParam(':pae', $pa, PDO::PARAM_STR);
-            $registro->bindParam(":img", $imagen, PDO::PARAM_STR);
 
             return $registro->execute();
 
@@ -186,6 +186,19 @@ class Estudiante extends Usuarios
         $estudiante->bindParam(":grado", $grade, PDO::PARAM_INT);
         $estudiante->execute();
         return $estudiante->fetchObject();
+    }
+
+    # cambiar la foto de perfil
+
+    public function imgPerfil()
+    {
+        $id_estudiante = $this->getId();
+        $foto = $this->getImg();
+
+        $newphoto = $this->db->prepare("UPDATE estudiante SET img = :foto WHERE id = :id");
+        $newphoto->bindParam(":foto", $foto, PDO::PARAM_STR);
+        $newphoto->bindParam(":id", $id_estudiante, PDO::PARAM_INT);
+        return $newphoto->execute();
     }
 
 } # fin de la clase

@@ -24,11 +24,11 @@
                     <!-- tabla -->
                     <section class="row justify-content-center mt-5">
                         <div class="col-md-10 shadow">
-                            <table class="table">
+                            <table class="table table-hover">
                                 <thead class="table-dark">
                                     <tr>
                                         <th scope="col">
-                                            Id
+                                            #
                                         </th>
                                            <th  scope="col">
                                                 Foto
@@ -49,21 +49,22 @@
                                 </thead>
                                 <tbody>
                                     <?php if (isset($lista)):
-    while ($docente_datos = $lista->fetchObject()): ?>
+                                        $c = 1;
+                                            while ($docente_datos = $lista->fetchObject()): ?>
 		                                                <tr>
 		                                                    <th class="" scope="row">
-		                                                        <?=$docente_datos->id?>
+		                                                        <?=$c++?>
 		                                                    </th>
 		                                                    <td>
 		                                                        <img alt="" class="avatar-tabla circulo" src="<?=base_url?>helpers/img/obito.png"></img>
 		                                                    </td>
 		                                                    <td class="texto_tabla_docente">
-		                                                        <a href=" <?=$docente_datos->id?>">
+		                                                        <a href=" <?=base_url?>Docente/perfilDocente&id=<?=$docente_datos->id?>">
 		                                                              <?=$docente_datos->nombre_d?>
 		                                                               <?=$docente_datos->apellidos_d?>
 		                                                            <br/>
 		                                                        </a>
-		                                                        <small><?=$docente_datos->nombre_pregrado_d?></small>
+		                                                        <small class="pregrado"><?=$docente_datos->nombre_pregrado_d?></small>
 		                                                    </td>
 		                                                    <td class="texto_tabla_docente">
 		                                                        <?=$docente_datos->correo_d?>
@@ -75,9 +76,9 @@
 		                                                        <?=$docente_datos->numero_d?>
 		                                                    </td>
 		                                                </tr>
-		                                <?php endwhile;
-endif;
-?>
+		                                  <?php endwhile;
+                                        endif;
+                                        ?>
                                 </tbody>
                             </table>
                         </div>

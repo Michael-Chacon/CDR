@@ -120,24 +120,6 @@ class EstudianteController
             $estudiantes->setTrasporte($trasporte);
             $estudiantes->setPae($pae);
 
-            if (isset($_FILES['foto'])) {
-                $file = $_FILES['foto'];
-                $filename = $file['name'];
-                $mimetype = $file['type'];
-                if ($mimetype == "image/jpg" || $mimetype == "image/jpeg" || $mimetype == "image/png" || $mimetype == "image/gif") {
-
-                    if (!is_dir('photos/estudiantes/')) {
-                        mkdir('photos/estudiantes/', 0777, true);
-                    }
-                    move_uploaded_file($file['tmp_name'], 'photos/estudiantes/' . $filename);
-                    $estudiantes->setImg($filename);
-                }
-                echo "si hay imagen";
-            } else {
-                echo "no hay imagen";
-                $estudiantes->setImg('');
-            }
-
             # validar si se va a actualizar  o  ha guardar
             if (isset($_POST['padres']) && isset($_POST['estudiante_id'])) {
                 # ACTUALIZAR
@@ -154,6 +136,21 @@ class EstudianteController
                 # validar si ya existe el estudiante antes de proceder a guardar
                 $validacion = Utils::validarExistenciaUsuario($_POST['numero'], 'estudiante', 'numero_e');
                 if ($validacion == 0) {
+                    if (isset($_FILES['foto'])) {
+                        $file = $_FILES['foto'];
+                        $filename = $file['name'];
+                        $mimetype = $file['type'];
+                        if ($mimetype == "image/jpg" || $mimetype == "image/jpeg" || $mimetype == "image/png" || $mimetype == "image/gif") {
+
+                            if (!is_dir('photos/estudiantes/')) {
+                                mkdir('photos/estudiantes/', 0777, true);
+                            }
+                            move_uploaded_file($file['tmp_name'], 'photos/estudiantes/' . $filename);
+                            $estudiantes->setImg($filename);
+                        }
+                    } else {
+                        $estudiantes->setImg('');
+                    }
                     # GUARDAR
                     # metodo para guardar la info de los padres
                     $padres->guardarPadres('guardar');
@@ -219,6 +216,45 @@ class EstudianteController
             $estudiantePadres = $datos_estudiante->datosEstudiante();
             require_once 'views/administrativo/estudiante/perfil_estudiante.php';
         }
+    }
+
+    # cambiar la contraseña
+    public function cambiarPassword()
+    {
+        $contra = $_POST['new_pass'];
+        # usuario es el campo en la tabla credenciales que contiene el id del usuario,  el vinculo con la tabla estudiante en este caso.
+        $usuario = 'id_estudiante';
+        $id = $_POST['id'];
+
+        $actualizacion = new Credencial();
+        $actualizacion->setId($id);
+        $actualizacion->setRol($usuario);
+        $actualizacion->setPassword($contra);
+        $estado = $actualizacion->updatePassword();
+        Utils::validarReturn($estado, 'cambiarPassword');
+        header("Location: " . base_url . 'Estudiante/estudiantes');
+    }
+
+    public function fotoPerfil()
+    {
+        $file = $_FILES['foto_perfil'];
+        $filename = $file['name'];
+        $mimetype = $file['type'];
+        if ($mimetype == "image/jpg" || $mimetype == "image/jpeg" || $mimetype == "image/png" || $mimetype == "image/gif") {
+
+            if (!is_dir('photos/estudiantes/')) {
+                mkdir('photos/estudiantes/', 0777, true);
+            }
+            move_uploaded_file($file['tmp_name'], 'photos/estudiantes/' . $filename);
+        }
+        $id = $_POST['x'];
+        $foto = $filename;
+        $new_photo = new Estudiante();
+        $new_photo->setId($id);
+        $new_photo->setImg($foto);
+        $resultadoF = $new_photo->imgPerfil();
+        Utils::validarReturn($resultadoF, 'cambiarPhoto');
+        header("Location: " . base_url . 'Estudiante/perfilEstudiante&x=' . $_POST['x'] . '&y=' . $_POST['y'] . '&z=' . $_POST['z']);
     }
 
 } # Fin de la clase

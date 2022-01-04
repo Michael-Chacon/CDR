@@ -288,6 +288,13 @@ CREATE TABLE viernes(
 	CONSTRAINT fK_materia_viernes FOREIGN KEY(id_materia_viernes) REFERENCES materia(id) ON DELETE CASCADE
 )ENGINE=InnoDb;
 
+CREATE TABLE documentos(
+	id INT(4) AUTO_INCREMENT NOT NULL,
+	nombre  VARCHAR(255) NOT NULL, 
+	descripcion VARCHAR(100) NOT NULL,
+	CONSTRAINT pk_documentos PRIMARY KEY(id)
+)ENGINE=InnoDb;
+
 --  seleccionar todos los grados
 SELECT gd.id_grado_d FROM gradodocente gd
 INNER JOIN docente d ON d.id = gd.id_docente_g
@@ -320,3 +327,11 @@ WHERE m.id_grado_mat = 1;
 SELECT e.*, p.* FROM estudiante e 
 INNER JOIN padres p ON p.id = e.id_familia_e
 WHERE e.id = 1 AND p.id = 1;
+
+# obtener el horario del docente para el dia lunes
+SELECT mar.inicio, mar.fin, m.nombre_mat, g.nombre_g FROM martes mar
+INNER JOIN materia m ON m.id = mar.id_materia_martes
+INNER JOIN grado g ON g.id = m.id_grado_mat
+INNER JOIN docentemateria dm ON dm.id_materia_doc = m.id
+INNER JOIN docente d ON d.id = dm.id_docente_mat
+WHERE d.id = 1;

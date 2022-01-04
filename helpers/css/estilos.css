@@ -1,6 +1,6 @@
 body {
     font-family: 'Montserrat', sans-serif;
-    background-color: #FAFBFE !important;
+    background-color: #F9FAFD !important;
 }
 div {
     background: white;
@@ -9,7 +9,11 @@ a {
     text-decoration: none !important;
 }
 hr {
-    border: 1px solid #3DFF16 !important;
+    border: 1px solid #7C368F !important;
+}
+.menu-items:hover {
+    font-weight: 600;
+    color: #7B368F !important;
 }
 /*
 =========================================
@@ -143,7 +147,7 @@ hr {
 }
 .circulo {
     border-radius: 50%;
-    border: 1px solid grey;
+    /*border: 1px solid grey;*/
 }
 .nombre {
     text-align: center;
@@ -170,8 +174,8 @@ hr {
     padding: 40px 0px;
 }
 .option:hover {
-    border: 1px solid #3DFF16;
-    color: #3DFF16;
+    border: 1px solid #7B368F;
+    color: #7B368F;
 }
 /*
 ================================================
@@ -182,6 +186,7 @@ hr {
 .texto_tabla_docente {
     font-size: 19px;
     font-weight: 400;
+    padding-top: 17px !important;
 }
 .avatar-perfil {
     height: 7rem;
@@ -199,7 +204,11 @@ hr {
     padding-left: 10px;
 }
 .titulo-perfil {
+    font-weight: 200;
+}
+.titulo-perfil-perfil {
     font-weight: 400;
+    font-size: 20px;
 }
 .titulo-tabla {
     color: #6c757d !important;
@@ -207,7 +216,11 @@ hr {
 }
 .posicion {
     font-weight: 400;
+    font-size: 17px;
     color: gray;
+}
+.item_perfil {
+    font-size: 19px;
 }
 .info-td {
     color: #6c757d;
@@ -239,6 +252,11 @@ hr {
     height: 150px;
     max-height: 160px;
 }
+.boton-acordeon {
+    border-radius: 20px !important;
+    background: blue !important;
+    color: white !important;
+}
 /*
 =====================================
 =========MATERIA ESTUDIANE==========
@@ -266,8 +284,21 @@ hr {
 .barra-docente {
     background: #E2E7F1;
 }
+.pregrado {
+    font-size: 13px;
+}
 .grado-info {
     width: 50%;
+}
+.item_info {
+    display: block;
+    font-size: 19px;
+    font-weight: 200;
+    color: grey;
+}
+.valor_item {
+    font-size: 25px;
+    font-weight: 200;
 }
 /*grados*/
 
@@ -294,10 +325,54 @@ hr {
 .carrera {
     color: #023666;
 }
-/*==================================
-=========HORARIOS=================
-====================================*/
+.nombreD {
+    margin-top: 5%;
+    font-size: 18px;
+}
+.avatar-docente {
+    height: 3.5rem;
+    width: 3.5rem;
+    border-radius: 50%;
+    border: 1px solid #AC23FF;
+}
+.seccionD {
+    border-radius: 22px !important;
+}
+.seccionD:hover {
+    border: 1px solid #AC23FF;
+}
+/*=================================
+==========GRADO==================
+===================================*/
 
 .delete-horario:hover {
     color: #FD0303 !important;
+}
+.dia {
+    font-size: 30px !important;
+    font-weight: 300;
+}
+.fila-estudiante:hover {
+    color: #AC23FF;
+    border: 1px solid #AC23FF;
+}
+.nombre-apellidos-numero {
+    font-size: 20px;
+    padding-top: 12px;
+}
+/*==================================
+=========DOCUMENTOS==============
+===================================*/
+
+.icono_docu:hover {
+    color: red;
+}
+.text-document {
+    font-size: 20px;
+    color: black;
+    font-weight: 400;
+}
+.th-documents {
+    font-size: 25px;
+    font-weight: 400;
 }

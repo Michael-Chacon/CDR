@@ -40,53 +40,33 @@
                             <?=$_SESSION['user']->apellidos_a;?>
                         </p>
                     </div>
-                    <!-- <hr class="hr-perfil">
-                    </hr> -->
-                    <!-- <div class="row text-center ">
-                        <div class="col-md-6 mt-1 ">
-                            <h6 class="titulo-menu">
-                                Administrador
-                            </h6>
-                            <p class="subtexto">
-                                Rol
-                            </p>
-                        </div>
-                        <div class="col-md-6 mt-1 ">
-                            <h6 class="titulo-menu">
-                                Rectora
-                            </h6>
-                            <p class="subtexto">
-                                Cargo
-                            </p>
-                        </div>
-                    </div> -->
                 </div>
                 <div class="list-group list-group-flush ">
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="<?=base_url?>Login/homeAdministrativo">
                        <i class="bi bi-house"></i> <span>Inicio</span>
                     </a>
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3 menu-items" href="#!">
                        <i class="bi bi-calendar-check"></i>  Calendario
                     </a>
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="<?=base_url?>Estudiante/estudiantes">
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3 menu-items" href="<?=base_url?>Estudiante/estudiantes">
                         <i class="bi bi-people"></i>  Estudiantes
                     </a>
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="<?=base_url?>Docente/vista_docente">
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3 menu-items" href="<?=base_url?>Docente/vista_docente">
                         <i class="bi bi-person"></i>  Docentes
                     </a>
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="<?=base_url?>Administrativo/vista_administrativo">
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3 menu-items" href="<?=base_url?>Administrativo/vista_administrativo">
                         <i class="bi bi-person-check"></i>  Administrativos
                     </a>
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="<?=base_url?>Personal/vista_personal">
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3 menu-items" href="<?=base_url?>Personal/vista_personal">
                         <i class="bi bi-shield"></i>  Personal
                     </a>
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="<?=base_url?>Grado/grado">
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3 menu-items" href="<?=base_url?>Grado/grado">
                         <i class="bi bi-grid-3x2-gap"></i>  Grados
                     </a>
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="<?=base_url?>Periodo/vista_config">
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3 menu-items" href="<?=base_url?>Periodo/vista_config">
                         <i class="bi bi-gear"></i>  Periodos
                     </a>
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="<?=base_url?>Asignaciones/vista_asignaciones">
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3 menu-items" href="<?=base_url?>Asignaciones/vista_asignaciones">
                         <i class="bi bi-ui-checks-grid"></i>  Asignaciones
                     </a>
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">

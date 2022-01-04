@@ -16,261 +16,272 @@
                     <?php echo Utils::general_alerts('administrativo', 'El usuario administrativo se ha registrado con éxito.', 'Algo salió mal al registrar el usuario administrativo, inténtelo de nuevo.'); ?>
                      <?php echo Utils::general_alerts('credencial_a', 'Se asignaron credenciales al usuario administrativo con éxito.', 'Algo salió mal al asignar credencale al usuario administartivo, inténtelo de nuevo.'); ?>
                      <?php echo Utils::general_alerts('validacion_a', '', 'Se encontró un usuario administrativo en la base de datos con el mismo número de documento, posiblemente este administrativo ya existe en la plataforma.') ?>
+                     <?php echo Utils::general_alerts('actualizarA', 'Información del usuario actualizada con éxito.', 'Algo salió mal al actualizar la información, inténtelo de nuevo.') ?>
+                     <?php echo Utils::general_alerts('cambiarPassA', 'Contraseña actualizada con éxito.', 'Algo salió mal al cambiar la contraseña, inténtelo de nuevo.'); ?>
                      <?php Utils::borrar_error('administrativo');
-                                Utils::borrar_error('credencial_a');
-                                Utils::borrar_error('validacion_a');
+                        Utils::borrar_error('credencial_a');
+                        Utils::borrar_error('validacion_a');
+                        Utils::borrar_error('actualizarA');
+                        Utils::borrar_error('cambiarPassA');
                     ?>
                     <!-- card -->
                     <section class="row mt-4">
-                        <?php if(isset($listado)):
-                            while($administrativo = $listado->fetchObject()): ?>
-                                    <div class="col-md-6 mt-3 mb-5">
-                                        <div class="card shadow">
-                                            <div class="card-body ">
-                                                <div class="row ">
-                                                    <div class="col-3 text-center">
-                                                        <img alt="" class="avatar circulo " src="<?=base_url?>helpers/img/obito.png">
-                                                        </img>
-                                                    </div>
-                                                    <div class="col-8">
-                                                        <h5 class="card-title nombre_personal">
-                                                           <?=$administrativo->nombre_a;?> <?=$administrativo->apellidos_a;?>
-                                                        </h5>
-                                                        <p class="card-text">
-                                                            <span class="badge insignia_cargo text-center">
-                                                                <i class="bi bi-person-check">
-                                                                </i>
-                                                                <?=$administrativo->cargo_a?>
-                                                            </span>
-                                                            <span class="badge insignia">
-                                                                <i class="bi bi-telephone">
-                                                                </i>
-                                                                <?=$administrativo->telefono_a?>
-                                                            </span>
-                                                            <span class="badge insignia">
-                                                                <i class="bi bi-file-earmark">
-                                                                </i>
-                                                                id: <?=$administrativo->numero_a?>
-                                                            </span>
-                                                            <span class="badge insignia">
-                                                                <i class="bi bi-envelope-open">
-                                                                </i>
-                                                               <?=$administrativo->correo_a?>
-                                                            </span>
-                                                        </p>
-                                                    </div>
-                                                    <div class="col-1">
-                                                        <a aria-expanded="false" data-bs-toggle="dropdown" type="button">
-                                                            <i class="bi bi-three-dots-vertical" style="font-size: 1.5rem;">
-                                                            </i>
-                                                        </a>
-                                                        <ul class="dropdown-menu">
-                                                            <li>
-                                                                <a class="dropdown-item" href="#">
-                                                                    <i class="bi bi-pen">
-                                                                    </i>
-                                                                    Editar
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a class="dropdown-item" href="#">
-                                                                    <i class="bi bi-trash">
-                                                                    </i>
-                                                                    Eliminar
-                                                                </a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <section class="row mt-3">
-                                                <article class="col-12">
-                                                    <div class="accordion" id="accordionExample2">
-                                                        <div class="accordion-item">
-                                                            <h2 class="accordion-header" id="heading3">
-                                                                <button aria-controls="collapse3" aria-expanded="false" class="accordion-button collapsed text-center" data-bs-target="#collapse<?=$administrativo->id?>" data-bs-toggle="collapse" type="button">
-                                                                    <i class="bi bi-info-circle-fill">
-                                                                    </i>
-                                                                    Información
-                                                                </button>
-                                                            </h2>
-                                                            <div aria-labelledby="heading3" class="accordion-collapse collapse" data-bs-parent="#accordionExample2" id="collapse<?=$administrativo->id?>">
-                                                                <div class="accordion-body">
-                                                                    <table class="table table-striped table-hover">
-                                                                        <tbody>
-                                                                            <tr>
-                                                                                <td>
-                                                                                    <p class="titulo_info">
-                                                                                        Dirección:
-                                                                                    </p>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <span class="detalle_info">
-                                                                                        <?=$administrativo->direccion_a?>
-                                                                                    </span>
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>
-                                                                                    <p class="titulo_info">
-                                                                                        Fecha de nacimiento:
-                                                                                    </p>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <span class="detalle_info">
-                                                                                       <?=$administrativo->fecha_nacimiento_a?>
-                                                                                    </span>
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>
-                                                                                    <p class="titulo_info">
-                                                                                        Edad:
-                                                                                    </p>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <span class="detalle_info">
-                                                                                        <?=$administrativo->edad_a?>
-                                                                                    </span>
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>
-                                                                                    <p class="titulo_info">
-                                                                                        Lugar expedición id:
-                                                                                    </p>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <span class="detalle_info">
-                                                                                        <?=$administrativo->lugar_expedicion_a?>
-                                                                                    </span>
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>
-                                                                                    <p class="titulo_info">
-                                                                                        Fecha de expedición id:
-                                                                                    </p>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <span class="detalle_info">
-                                                                                        <?=$administrativo->fecha_expedicion_a?>
-                                                                                    </span>
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>
-                                                                                    <p class="titulo_info">
-                                                                                        Religión:
-                                                                                    </p>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <span class="detalle_info">
-                                                                                        <?=$administrativo->religion_a?>
-                                                                                    </span>
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>
-                                                                                    <p class="titulo_info">
-                                                                                        Incapacidad medica:
-                                                                                    </p>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <span class="detalle_info">
-                                                                                        <?=$administrativo->incapacidad_medica_a?>
-                                                                                    </span>
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>
-                                                                                    <p class="titulo_info">
-                                                                                        Grupo sanguíneo + Rh:
-                                                                                    </p>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <span class="detalle_info">
-                                                                                        <?=$administrativo->grupo_sanguineo_a?> <?=$administrativo->rh_a?>
-                                                                                    </span>
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>
-                                                                                    <p class="titulo_info">
-                                                                                        Fecha posesión:
-                                                                                    </p>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <span class="detalle_info">
-                                                                                        <?=$administrativo->fecha_posesion_a?>
-                                                                                    </span>
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>
-                                                                                    <p class="titulo_info">
-                                                                                        Número acta posesión:
-                                                                                    </p>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <span class="detalle_info">
-                                                                                        <?=$administrativo->numero_acta_posesion_a?>
-                                                                                    </span>
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>
-                                                                                    <p class="titulo_info">
-                                                                                        Número resolución posesión:
-                                                                                    </p>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <span class="detalle_info">
-                                                                                        <?=$administrativo->numero_resolucion_posesion_a?>
-                                                                                    </span>
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>
-                                                                                    <p class="titulo_info">
-                                                                                        Pregrado:
-                                                                                    </p>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <span class="detalle_info">
-                                                                                        <?=$administrativo->nombre_pregrado_a?>
-                                                                                    </span>
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>
-                                                                                    <p class="titulo_info">
-                                                                                        Posgrado:
-                                                                                    </p>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <span class="detalle_info">
-                                                                                        <?=$administrativo->nombre_posgrado_a?>
-                                                                                    </span>
-                                                                                </td>
-                                                                            </tr>
-                                                                        </tbody>
-                                                                    </table>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </article>
-                                            </section>
-                                        </div>
-                                    </div>
-                    <?php endwhile;
-                    endif; ?>
+                        <?php if (isset($listado)):
+                            while ($administrativo = $listado->fetchObject()): ?>
+			                                    <div class="col-md-6 mt-3 mb-5">
+			                                        <div class="card shadow">
+			                                            <div class="card-body ">
+			                                                <div class="row ">
+			                                                    <div class="col-3 text-center">
+			                                                        <img alt="" class="avatar circulo " src="<?=base_url?>helpers/img/obito.png">
+			                                                        </img>
+			                                                    </div>
+			                                                    <div class="col-8">
+			                                                        <h5 class="card-title nombre_personal">
+			                                                           <?=$administrativo->nombre_a;?> <?=$administrativo->apellidos_a;?>
+			                                                        </h5>
+			                                                        <p class="card-text">
+			                                                            <span class="badge insignia_cargo text-center">
+			                                                                <i class="bi bi-person-check">
+			                                                                </i>
+			                                                                <?=$administrativo->cargo_a?>
+			                                                            </span>
+			                                                            <span class="badge insignia">
+			                                                                <i class="bi bi-telephone">
+			                                                                </i>
+			                                                                <?=$administrativo->telefono_a?>
+			                                                            </span>
+			                                                            <span class="badge insignia">
+			                                                                <i class="bi bi-file-earmark">
+			                                                                </i>
+			                                                                id: <?=$administrativo->numero_a?>
+			                                                            </span>
+			                                                            <span class="badge insignia">
+			                                                                <i class="bi bi-envelope-open">
+			                                                                </i>
+			                                                               <?=$administrativo->correo_a?>
+			                                                            </span>
+			                                                        </p>
+			                                                    </div>
+			                                                    <div class="col-1">
+			                                                        <a aria-expanded="false" data-bs-toggle="dropdown" type="button">
+			                                                            <i class="bi bi-three-dots-vertical" style="font-size: 1.5rem;">
+			                                                            </i>
+			                                                        </a>
+			                                                        <ul class="dropdown-menu">
+			                                                            <li>
+			                                                                <a class="dropdown-item" href="<?=base_url?>Administrativo/actualizar&id=<?=$administrativo->id?>">
+			                                                                    <i class="bi bi-pen">
+			                                                                    </i>
+			                                                                    Editar
+			                                                                </a>
+			                                                            </li>
+			                                                            <li>
+			                                                                <a class="dropdown-item" href="<?=base_url?>Administrativo/newPassword&id=<?=$administrativo->id?>">
+			                                                                    <i class="bi bi-key">
+			                                                                    </i>
+			                                                                    Cambiar contaseña
+			                                                                </a>
+			                                                            </li>
+			                                                            <li>
+			                                                                <a class="dropdown-item" href="#">
+			                                                                    <i class="bi bi-trash">
+			                                                                    </i>
+			                                                                    Eliminar
+			                                                                </a>
+			                                                            </li>
+			                                                        </ul>
+			                                                    </div>
+			                                                </div>
+			                                            </div>
+			                                            <section class="row mt-3">
+			                                                <article class="col-12">
+			                                                    <div class="accordion" id="accordionExample2">
+			                                                        <div class="accordion-item">
+			                                                            <h2 class="accordion-header" id="heading3">
+			                                                                <button aria-controls="collapse3" aria-expanded="false" class="accordion-button collapsed text-center" data-bs-target="#collapse<?=$administrativo->id?>" data-bs-toggle="collapse" type="button">
+			                                                                    <i class="bi bi-info-circle-fill">
+			                                                                    </i>
+			                                                                    Información
+			                                                                </button>
+			                                                            </h2>
+			                                                            <div aria-labelledby="heading3" class="accordion-collapse collapse" data-bs-parent="#accordionExample2" id="collapse<?=$administrativo->id?>">
+			                                                                <div class="accordion-body">
+			                                                                    <table class="table table-striped table-hover">
+			                                                                        <tbody>
+			                                                                            <tr>
+			                                                                                <td>
+			                                                                                    <p class="titulo_info">
+			                                                                                        Dirección:
+			                                                                                    </p>
+			                                                                                </td>
+			                                                                                <td>
+			                                                                                    <span class="detalle_info">
+			                                                                                        <?=$administrativo->direccion_a?>
+			                                                                                    </span>
+			                                                                                </td>
+			                                                                            </tr>
+			                                                                            <tr>
+			                                                                                <td>
+			                                                                                    <p class="titulo_info">
+			                                                                                        Fecha de nacimiento:
+			                                                                                    </p>
+			                                                                                </td>
+			                                                                                <td>
+			                                                                                    <span class="detalle_info">
+			                                                                                       <?=$administrativo->fecha_nacimiento_a?>
+			                                                                                    </span>
+			                                                                                </td>
+			                                                                            </tr>
+			                                                                            <tr>
+			                                                                                <td>
+			                                                                                    <p class="titulo_info">
+			                                                                                        Edad:
+			                                                                                    </p>
+			                                                                                </td>
+			                                                                                <td>
+			                                                                                    <span class="detalle_info">
+			                                                                                        <?=$administrativo->edad_a?>
+			                                                                                    </span>
+			                                                                                </td>
+			                                                                            </tr>
+			                                                                            <tr>
+			                                                                                <td>
+			                                                                                    <p class="titulo_info">
+			                                                                                        Lugar expedición id:
+			                                                                                    </p>
+			                                                                                </td>
+			                                                                                <td>
+			                                                                                    <span class="detalle_info">
+			                                                                                        <?=$administrativo->lugar_expedicion_a?>
+			                                                                                    </span>
+			                                                                                </td>
+			                                                                            </tr>
+			                                                                            <tr>
+			                                                                                <td>
+			                                                                                    <p class="titulo_info">
+			                                                                                        Fecha de expedición id:
+			                                                                                    </p>
+			                                                                                </td>
+			                                                                                <td>
+			                                                                                    <span class="detalle_info">
+			                                                                                        <?=$administrativo->fecha_expedicion_a?>
+			                                                                                    </span>
+			                                                                                </td>
+			                                                                            </tr>
+			                                                                            <tr>
+			                                                                                <td>
+			                                                                                    <p class="titulo_info">
+			                                                                                        Religión:
+			                                                                                    </p>
+			                                                                                </td>
+			                                                                                <td>
+			                                                                                    <span class="detalle_info">
+			                                                                                        <?=$administrativo->religion_a?>
+			                                                                                    </span>
+			                                                                                </td>
+			                                                                            </tr>
+			                                                                            <tr>
+			                                                                                <td>
+			                                                                                    <p class="titulo_info">
+			                                                                                        Incapacidad medica:
+			                                                                                    </p>
+			                                                                                </td>
+			                                                                                <td>
+			                                                                                    <span class="detalle_info">
+			                                                                                        <?=$administrativo->incapacidad_medica_a?>
+			                                                                                    </span>
+			                                                                                </td>
+			                                                                            </tr>
+			                                                                            <tr>
+			                                                                                <td>
+			                                                                                    <p class="titulo_info">
+			                                                                                        Grupo sanguíneo + Rh:
+			                                                                                    </p>
+			                                                                                </td>
+			                                                                                <td>
+			                                                                                    <span class="detalle_info">
+			                                                                                        <?=$administrativo->grupo_sanguineo_a?> <?=$administrativo->rh_a?>
+			                                                                                    </span>
+			                                                                                </td>
+			                                                                            </tr>
+			                                                                            <tr>
+			                                                                                <td>
+			                                                                                    <p class="titulo_info">
+			                                                                                        Fecha posesión:
+			                                                                                    </p>
+			                                                                                </td>
+			                                                                                <td>
+			                                                                                    <span class="detalle_info">
+			                                                                                        <?=$administrativo->fecha_posesion_a?>
+			                                                                                    </span>
+			                                                                                </td>
+			                                                                            </tr>
+			                                                                            <tr>
+			                                                                                <td>
+			                                                                                    <p class="titulo_info">
+			                                                                                        Número acta posesión:
+			                                                                                    </p>
+			                                                                                </td>
+			                                                                                <td>
+			                                                                                    <span class="detalle_info">
+			                                                                                        <?=$administrativo->numero_acta_posesion_a?>
+			                                                                                    </span>
+			                                                                                </td>
+			                                                                            </tr>
+			                                                                            <tr>
+			                                                                                <td>
+			                                                                                    <p class="titulo_info">
+			                                                                                        Número resolución posesión:
+			                                                                                    </p>
+			                                                                                </td>
+			                                                                                <td>
+			                                                                                    <span class="detalle_info">
+			                                                                                        <?=$administrativo->numero_resolucion_posesion_a?>
+			                                                                                    </span>
+			                                                                                </td>
+			                                                                            </tr>
+			                                                                            <tr>
+			                                                                                <td>
+			                                                                                    <p class="titulo_info">
+			                                                                                        Pregrado:
+			                                                                                    </p>
+			                                                                                </td>
+			                                                                                <td>
+			                                                                                    <span class="detalle_info">
+			                                                                                        <?=$administrativo->nombre_pregrado_a?>
+			                                                                                    </span>
+			                                                                                </td>
+			                                                                            </tr>
+			                                                                            <tr>
+			                                                                                <td>
+			                                                                                    <p class="titulo_info">
+			                                                                                        Posgrado:
+			                                                                                    </p>
+			                                                                                </td>
+			                                                                                <td>
+			                                                                                    <span class="detalle_info">
+			                                                                                        <?=$administrativo->nombre_posgrado_a?>
+			                                                                                    </span>
+			                                                                                </td>
+			                                                                            </tr>
+			                                                                        </tbody>
+			                                                                    </table>
+			                                                                </div>
+			                                                            </div>
+			                                                        </div>
+			                                                    </div>
+			                                                </article>
+			                                            </section>
+			                                        </div>
+			                                    </div>
+			                    <?php endwhile;
+                                endif;?>
                     </section>
                     <!-- fin del card -->
                     <!-- fin del container en la etiqueta de abajo -->
                 </section>
-                <!-- inicio del modal Registrar docente -->
+                <!-- inicio del modal registrar administrativo -->
                 <article aria-hidden="true" aria-labelledby="exampleModalLabel" class="modal fade" data-bs-backdrop="static" id="crearDocente" tabindex="-1">
                     <div class="modal-dialog modal-lg">
                         <div class="modal-content">

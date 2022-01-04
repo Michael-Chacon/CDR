@@ -212,4 +212,18 @@ class Credencial
         return $credenciales->execute();
 
     }
+
+    # metodo para cambiar la contraseña
+    public function updatePassword()
+    {
+        $rol_user = $this->getRol();
+        $id_user = $this->getId();
+        $pass = $this->getPassword();
+
+        $actualizar = $this->db->prepare("UPDATE credenciales SET password = :pass WHERE $rol_user = :id");
+        $actualizar->bindParam(":pass", $pass, PDO::PARAM_STR);
+        $actualizar->bindParam(":id", $id_user, PDO::PARAM_INT);
+        return $actualizar->execute();
+    }
+
 } # fin de la clase

@@ -6,3 +6,12 @@ function confirmar() {
         return false;
     }
 }
+
+function actualizar() {
+    const respuesta2 = confirm("¿Estás seguro de actualizar la información?");
+    if (respuesta2 == true) {
+        return true;
+    } else {
+        return false;
+    }
+}

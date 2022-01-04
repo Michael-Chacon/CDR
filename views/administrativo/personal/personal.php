@@ -15,8 +15,10 @@
                     </section>
                     <?php echo Utils::general_alerts('personal', 'El usuario del personal se ha registrado con éxito.', 'Algo salió mal al registrar el usuario del personal, inténtelo de nuevo.'); ?>
                     <?php echo Utils::general_alerts('validacion', '', 'Se encontró un usuario en la base de datos con el mismo número de documento, posiblemente este usuario ya existe en la plataforma.') ?>
+                    <?php echo Utils::general_alerts('actualizarPer', 'La información del usuario ha sido actualizada con éxito.', 'Algo salió mal al actualizar la información, inténtelo de nuevo.') ?>
                      <?php Utils::borrar_error('personal');
-                     Utils::borrar_error('validacion');?>
+                     Utils::borrar_error('validacion');
+                     Utils::borrar_error('actualizarPer');?>
                      <!-- card -->
                     <section class="row mt-4">
                         <?php if(isset($listado)):
@@ -63,7 +65,7 @@
                                                         </a>
                                                         <ul class="dropdown-menu">
                                                             <li>
-                                                                <a class="dropdown-item" href="#">
+                                                                <a class="dropdown-item" href="<?=base_url?>Personal/actualizar&id=<?=$personal->id?>">
                                                                     <i class="bi bi-pen">
                                                                     </i>
                                                                     Editar

@@ -19,8 +19,9 @@
                                 <input type="" hidden="" name="nombre" value="<?=$_GET['nombre']?>">
                                 <div class="card shadow">
                                         <h3 class="card-title text-center mt-2">
-                                             <?=$nombre?>
+                                             Grado <?=$nombre?>
                                         </h3>
+                                        <small class="text-center subtexto">Materias sin asignar</small>
                                         <hr>
                                     <div class="card-body">
                                         <ul class="list-group ">
@@ -39,7 +40,7 @@
                                                     </h5>
                                                 <?php endwhile;
                                             endif;?>
-                                            <button class="btn btn-success mt-3 btn-lg" type="submit">Guardar</button>
+                                            <button class="btn btn-success mt-3 btn-lg" type="submit">Asignar</button>
                                         </ul>
                                     </div>
                                 </div>
@@ -50,7 +51,7 @@
                         <?php Utils::borrar_error('DesasignarMateriaDocente');?>
                             <div class="card shadow">
                                     <h3 class="card-title text-center mt-2">
-                                        Materias asignadas al tal
+                                        Materias ya asignadas
                                     </h3>
                                     <hr>
                                 <div class="card-body">

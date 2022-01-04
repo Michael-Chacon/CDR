@@ -1,7 +1,9 @@
             <!-- contenido de  la pagina -->
                 <section class="container-fluid">
                     <?php echo Utils::general_alerts('actualizarE', 'La información del estudiante se actualizó con éxito.', 'Algo salió mal al actualizar la información del estudiante.') ?>
-                    <?php Utils::borrar_error('actualizarE')?>
+                    <?php echo Utils::general_alerts('cambiarPhoto', 'La foto ha sido actualizada con éxito.', 'La foto ha sido actualizada con éxito.'); ?>
+                    <?php Utils::borrar_error('actualizarE');
+                                Utils::borrar_error('cambiarPhoto');?>
                     <!-- inicon de la fila principal -->
                     <section class="row">
                         <article class="col-md-5">
@@ -11,12 +13,19 @@
                                         <div class="row">
                                             <article class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
                                                 <article class="flex-shrink-0 contenedor-img-perfil">
-                                                    <img alt="..." class="avatar-perfil" src="<?=base_url?>photos/estudiantes/<?=$estudiante->img?>">
-                                                    </img>
+                                                    <a href="#" data-bs-toggle="modal" data-bs-target="#fotoPerfil">
+                                                        <?php if ($estudiante->img == null): ?>
+                                                                <img alt="..." class="avatar-perfil" src="<?=base_url?>helpers/img/avatar.jpg">
+                                                                </img>
+                                                        <?php else: ?>
+                                                                <img alt="..." class="avatar-perfil" src="<?=base_url?>photos/estudiantes/<?=$estudiante->img?>">
+                                                                </img>
+                                                        <?php endif; ?>
+                                                    </a>
                                                 </article>
                                             </article>
                                             <article class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-                                                <span class="titulo-perfil">
+                                                <span class="titulo-perfil-perfil">
                                                     <?=$estudiante->nombre_e?> <?=$estudiante->apellidos_e?>
                                                 </span>
                                                 <span class="row">
@@ -34,8 +43,7 @@
                                                             <ul aria-labelledby="opcionesPerfil" class="dropdown-menu">
                                                                 <li>
                                                                     <a class="dropdown-item " data-bs-target="#updatePassword" data-bs-toggle="modal" href="#">
-                                                                        <i class="bi bi-pen">
-                                                                        </i>
+                                                                       <i class="bi bi-key"></i>
                                                                         Cambiar contraseña
                                                                     </a>
                                                                 </li>
@@ -44,15 +52,7 @@
                                                                 </li>
                                                                 <li>
                                                                     <a class="dropdown-item" href="#" data-bs-target="#actualizarDatos" data-bs-toggle="modal">
-                                                                        <i class="bi bi-arrow-repeat"></i>  Actualizar datos
-                                                                    </a>
-                                                                </li>
-                                                                <li>
-                                                                    <hr class="dropdown-divider"/>
-                                                                </li>
-                                                                <li>
-                                                                    <a class="dropdown-item" href="#">
-                                                                        Something else here
+                                                                        <i class="bi bi-pen"></i>  Actualizar datos
                                                                     </a>
                                                                 </li>
                                                             </ul>
@@ -69,9 +69,9 @@
                                                         Telefono
                                                     </span>
                                                     <br/>
-                                                    <small>
+                                                    <span   class="item_perfil">
                                                         <?=$estudiante->telefono_e?>
-                                                    </small>
+                                                    </span>
                                                 </p>
                                             </article>
                                             <article class="col-md-6">
@@ -80,9 +80,9 @@
                                                         Direccion
                                                     </span>
                                                     <br/>
-                                                    <small>
+                                                    <span   class="item_perfil">
                                                         <?=$estudiante->direccion_e?>
-                                                    </small>
+                                                    </span>
                                                 </p>
                                             </article>
                                             <article class="col-md-2">
@@ -91,9 +91,9 @@
                                                         Grado
                                                     </span>
                                                     <br/>
-                                                    <small>
+                                                    <span   class="item_perfil">
                                                         <?=$estudiante->nombre_g?>
-                                                    </small>
+                                                    </span>
                                                 </p>
                                             </article>
                                         </div>
@@ -163,7 +163,8 @@ endif;?>
                                             Horario de clase
                                         </h3>
                                         <article class="col-md-4">
-                                            <table class="table shadow text-center table-bordered table-hover table-striped">
+                                            <div>
+                                            <table class="table shadow text-center table-bordered table-hover">
                                                 <caption class="caption-top text-center">
                                                     Lunes
                                                 </caption>
@@ -182,7 +183,7 @@ endif;?>
                                                 </thead>
                                                 <tbody>
                                                     <?php if ($lista_lunes->rowCount() != 0):
-    while ($lunes = $lista_lunes->fetchObject()): ?>
+                                                        while ($lunes = $lista_lunes->fetchObject()): ?>
 	                                                            <tr>
 	                                                                <td>
 	                                                                    <?=$lunes->inicio?>
@@ -195,14 +196,16 @@ endif;?>
 	                                                                </td>
 	                                                            </tr>
 	                                                        <?php endwhile;
-else: ?>
+                                                    else: ?>
                                                     <p class="text-center mt-3"><span class="badge bg-warning text-dark">No hay materias asignadas.</span></p>
                                                 <?php endif;?>
                                                 </tbody>
                                             </table>
+                                            </div>
                                         </article>
                                         <article class="col-md-4">
-                                            <table class="table shadow text-center table-bordered table-hover table-striped">
+                                            <div>
+                                            <table class="table shadow text-center table-bordered table-hover">
                                                 <caption class="caption-top text-center">
                                                     Martes
                                                 </caption>
@@ -221,7 +224,7 @@ else: ?>
                                                 </thead>
                                                 <tbody>
                                                    <?php if ($lista_martes->rowCount() != 0):
-    while ($martes = $lista_martes->fetchObject()): ?>
+                                                            while ($martes = $lista_martes->fetchObject()): ?>
 	                                                                <tr>
 	                                                                    <td>
 	                                                                        <?=$martes->inicio?>
@@ -234,14 +237,16 @@ else: ?>
 	                                                                                                                                </td>
 	                                                                </tr>
 									                            <?php endwhile;
-else: ?>
+                                                    else: ?>
                                                     <p class="text-center mt-3"><span class="badge bg-warning text-dark">No hay materias asignadas.</span></p>
                                                 <?php endif;?>
                                                 </tbody>
                                             </table>
+                                            </div>
                                         </article>
                                         <article class="col-md-4">
-                                            <table class="table shadow text-center table-bordered table-hover table-striped">
+                                            <div>
+                                            <table class="table shadow text-center table-bordered table-hover">
                                                 <caption class="caption-top text-center">
                                                     Miércoles
                                                 </caption>
@@ -260,7 +265,7 @@ else: ?>
                                                 </thead>
                                                 <tbody>
                                                    <?php if ($lista_miercoles->rowCount() != 0):
-    while ($miercoles = $lista_miercoles->fetchObject()): ?>
+                                                            while ($miercoles = $lista_miercoles->fetchObject()): ?>
 									                                                    <tr>
 									                                                        <td>
 									                                                            <?=$miercoles->inicio?>
@@ -273,14 +278,16 @@ else: ?>
 									                                                        </td>
 									                                                    </tr>
 									                                <?php endwhile;
-else: ?>
+                                                    else: ?>
                                                     <p class="text-center mt-3"><span class="badge bg-warning text-dark">No hay materias asignadas.</span></p>
                                                 <?php endif;?>
                                                 </tbody>
                                             </table>
+                                            </div>
                                         </article>
                                         <article class="col-md-4">
-                                            <table class="table shadow text-center table-bordered table-hover table-striped">
+                                            <div>
+                                            <table class="table shadow text-center table-bordered table-hover ">
                                                 <caption class="caption-top text-center">
                                                     Jueves
                                                 </caption>
@@ -299,7 +306,7 @@ else: ?>
                                                 </thead>
                                                 <tbody>
                                                     <?php if ($lista_jueves->rowCount() != 0):
-    while ($jueves = $lista_jueves->fetchObject()): ?>
+                                                            while ($jueves = $lista_jueves->fetchObject()): ?>
 									                                                    <tr>
 									                                                        <td>
 									                                                            <?=$jueves->inicio?>
@@ -312,14 +319,16 @@ else: ?>
 									                                                        </td>
 									                                                    </tr>
 									                                <?php endwhile;
-else: ?>
+                                                    else: ?>
                                                     <p class="text-center mt-3"><span class="badge bg-warning text-dark">No hay materias asignadas.</span></p>
                                                 <?php endif;?>
                                                 </tbody>
                                             </table>
+                                            </div>
                                         </article>
                                         <article class="col-md-4">
-                                            <table class="table shadow text-center table-bordered table-hover table-striped">
+                                            <div>
+                                            <table class="table shadow text-center table-bordered table-hover ">
                                                 <caption class="caption-top text-center">
                                                     Viernes
                                                 </caption>
@@ -338,7 +347,7 @@ else: ?>
                                                 </thead>
                                                 <tbody>
                                                     <?php if ($lista_viernes->rowCount() != 0):
-    while ($viernes = $lista_viernes->fetchObject()): ?>
+                                                            while ($viernes = $lista_viernes->fetchObject()): ?>
 									                                    <tr>
 									                                        <td>
 									                                            <?=$viernes->inicio?>
@@ -351,426 +360,362 @@ else: ?>
 									                                        </td>
 									                                    </tr>
 									                            <?php endwhile;
-else: ?>
+                                                    else: ?>
                                                     <p class="text-center mt-3"><span class="badge bg-warning text-dark">No hay materias asignadas.</span></p>
                                                 <?php endif;?>
                                                 </tbody>
                                             </table>
+                                            </div>
                                         </article>
                                     </section>
                                         <!-- fin del horario -->
                                     </article>
-                                    <div aria-labelledby="pills-contact-tab" class="tab-pane fade" id="pills-contact" role="tabpanel">
+                                    <section aria-labelledby="pills-contact-tab" class="tab-pane fade" id="pills-contact" role="tabpanel">
                                         <!-- inicio informacion del estdiante -->
-                                        <div class="modal-body">
-                                            <h2 class="text-center titulo-perfil">
-                                                Información estudiante
-                                            </h2>
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="form-floating mb-3">
-                                                        <input class="form-control" disabled="" id="nombre" name="nombres" placeholder="Nombre" required="" type="text" value="<?=$estudiante->nombre_e?>">
-                                                            <label for="nombre">
-                                                                Nombres:
-                                                            </label>
-                                                        </input>
+                                        <article class="row justify-content-center">
+                                            <article class="col-md-10 text-center">
+                                                <h2 class="text-center titulo-perfil mb-5">
+                                                    Información del estudiante
+                                                </h2>
+                                                <section class="row shadow">
+                                                    <div class="col-md-6">
+                                                        <span class="item_info">
+                                                            Nombre:
+                                                        </span>
+                                                        <span class="valor_item">
+                                                            <?=$estudiante->nombre_e?>
+                                                        </span>
+                                                        <hr/>
+                                                        <span class="item_info">
+                                                            Apellidos:
+                                                        </span>
+                                                        <span class="valor_item">
+                                                            <?=$estudiante->apellidos_e?>
+                                                        </span>
+                                                        <hr/>
                                                     </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-floating mb-3">
-                                                        <input class="form-control" disabled="" id="apellidos" name="apellidos" placeholder="Apellidos"  type="text" value="<?=$estudiante->apellidos_e?>">
-                                                            <label for="apellidos">
-                                                                Apellidos:
-                                                            </label>
-                                                        </input>
+                                                    <div class="col-md-6">
+                                                        <span class="item_info">
+                                                            Fecha de nacimiento:
+                                                        </span>
+                                                        <span class="valor_item">
+                                                            <?=$estudiante->fecha_nacimiento_e?>
+                                                        </span>
+                                                        <hr/>
+                                                        <span class="item_info">
+                                                            Edad:
+                                                        </span>
+                                                        <span class="valor_item">
+                                                            <?=$estudiante->edad_e?>
+                                                        </span>
+                                                        <hr/>
                                                     </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="form-floating mb-3">
-                                                        <input class="form-control" id="nacimienito" name="nacimienito" disabled placeholder="nacimienito"  type="text" value="<?=$estudiante->fecha_nacimiento_e?>">
-                                                            <label for="nacimienito">
-                                                                Fecha de nacimiento:
-                                                            </label>
-                                                        </input>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-floating mb-3">
-                                                        <input class="form-control" disabled="" id="edad" name="edad" placeholder="edad" required="" type="number" value="<?=$estudiante->edad_e?>">
-                                                            <label for="edad">
-                                                                Edad:
-                                                            </label>
-                                                        </input>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <h5 class="text-center mt-3">
-                                                Identificación
-                                            </h5>
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="form-floating mb-3">
-                                                       <input class="form-control" disabled="" id="tipo" name="tipo" placeholder="tipo" required="" type="text" value="<?=$estudiante->tipo_identificacion_e?>">
-                                                        <label for="incapacidad">
+                                                </section>
+                                                <hr/>
+                                                <section class="row shadow">
+                                                    <div class="col-md-6">
+                                                        <span class="item_info">
                                                             Tipo:
-                                                        </label>
+                                                        </span>
+                                                        <span class="valor_item">
+                                                            <?=$estudiante->tipo_identificacion_e?>
+                                                        </span>
+                                                        <hr/>
+                                                        <span class="item_info">
+                                                            Número:
+                                                        </span>
+                                                        <span class="valor_item">
+                                                            <?=$estudiante->numero_e?>
+                                                        </span>
+                                                        <hr/>
                                                     </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-floating mb-3">
-                                                        <input class="form-control" disabled="" id="numero" name="numero" placeholder="Numero" required="" type="number" value="<?=$estudiante->numero_e?>">
-                                                            <label for="numero">
-                                                                Numero:
-                                                            </label>
-                                                        </input>
+                                                    <div class="col-md-6">
+                                                        <span class="item_info">
+                                                            Lugar de expedición:
+                                                        </span>
+                                                        <span class="valor_item">
+                                                            <?=$estudiante->lugar_expedicion_e?>
+                                                        </span>
+                                                        <hr/>
+                                                        <span class="item_info">
+                                                            Fecha de expedición:
+                                                        </span>
+                                                        <span class="valor_item">
+                                                            <?=$estudiante->fecha_expedicion_e?>
+                                                        </span>
+                                                        <hr/>
                                                     </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="form-floating mb-3">
-                                                        <input class="form-control" disabled="" id="expedicion" name="expedicion" placeholder="expedicion" required="" type="text" value="<?=$estudiante->lugar_expedicion_e?>">
-                                                            <label for="expedicion">
-                                                                Lugar de expedición:
-                                                            </label>
-                                                        </input>
+                                                </section>
+                                                <hr/>
+                                                <section class="row shadow">
+                                                    <div class="col-md-6">
+                                                        <span class="item_info">
+                                                            Dirección:
+                                                        </span>
+                                                        <span class="valor_item">
+                                                            <?=$estudiante->direccion_e?>
+                                                        </span>
+                                                        <hr/>
+                                                        <span class="item_info">
+                                                            Correo electrónico:
+                                                        </span>
+                                                        <span class="valor_item">
+                                                            <?=$estudiante->correo_e?>
+                                                        </span>
+                                                        <hr/>
                                                     </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-floating mb-3">
-                                                        <input class="form-control" disabled id="fecha" name="fecha" placeholder="fecha" required="" type="text" value="<?=$estudiante->fecha_expedicion_e?>">
-                                                            <label for="fecha">
-                                                                Fecha de expedición:
-                                                            </label>
-                                                        </input>
+                                                    <div class="col-md-6">
+                                                        <span class="item_info">
+                                                            Numero de celular:
+                                                        </span>
+                                                        <span class="valor_item">
+                                                            <?=$estudiante->telefono_e?>
+                                                        </span>
+                                                        <hr/>
                                                     </div>
-                                                </div>
-                                            </div>
-                                            <h5 class="text-center mt-3">
-                                                Ubicación
-                                            </h5>
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="form-floating mb-3">
-                                                        <input class="form-control" disabled="" id="direccion" name="direccion" placeholder="direccion" required="" type="text" value="<?=$estudiante->direccion_e?>">
-                                                            <label for="direccion">
-                                                                Dirección:
-                                                            </label>
-                                                        </input>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-floating mb-3">
-                                                        <input class="form-control" disabled="" id="telefono" name="telefono" placeholder="telefono" required="" type="number" value="<?=$estudiante->telefono_e?>">
-                                                            <label for="telefono">
-                                                                Número de celular:
-                                                            </label>
-                                                        </input>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="form-floating mb-3">
-                                                        <input class="form-control" disabled="" id="correo" name="correo" placeholder="correo" required="" type="email" value="<?=$estudiante->correo_e?>">
-                                                            <label for="correo">
-                                                                Correo electrónico:
-                                                            </label>
-                                                        </input>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <h5 class="text-center mt-3">
-                                                Otros
-                                            </h5>
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="form-floating mb-3">
-                                                        <input class="form-control" disabled="" id="religion" name="religion" placeholder="religion" required="" type="text" value="<?=$estudiante->religion_e?>">
-                                                            <label for="religion">
-                                                                Religión:
-                                                            </label>
-                                                        </input>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-floating mb-3">
-                                                        <input class="form-control" disabled="" id="incapacidad" name="incapacidad" placeholder="incapacidad" required="" type="text" value="<?=$estudiante->incapacidad_medica_e?>">
-                                                            <label for="incapacidad">
-                                                                Incapacidad médica:
-                                                            </label>
-                                                        </input>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="form-floating mb-3">
-                                                    	 <input class="form-control" disabled="" id="grupo" name="grupo" placeholder="grupo" required="" type="text" value="<?=$estudiante->grupo_sanguineo_e?>">
-                                                        <label for="grupo">
-                                                            Grupo sanguíneo:
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-floating mb-3">
-                                                        <input class="form-control" disabled="" id="rh" name="rh" placeholder="rh" required="" type="text" value="<?=$estudiante->rh_e?>">
-                                                        <label for="rh">
-                                                            RH:
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="form-floating mb-3">
-                                                        <input class="form-control" disabled="" id="trasporte" name="trasporte" placeholder="trasporte" required="" type="text" value="<?=$estudiante->transporte?>">
-                                                        <label for="trasporte">
+                                                </section>
+                                                <hr/>
+                                                <section class="row shadow">
+                                                    <div class="col-md-6">
+                                                        <span class="item_info">
+                                                            Religión:
+                                                        </span>
+                                                        <span class="valor_item">
+                                                           <?=$estudiante->religion_e?>
+                                                        </span>
+                                                        <hr/>
+                                                        <span class="item_info">
+                                                            Incapacidad médica:
+                                                        </span>
+                                                        <span class="valor_item">
+                                                            <?=$estudiante->incapacidad_medica_e?>
+                                                        </span>
+                                                        <hr/>
+                                                         <span class="item_info">
                                                             Trasporte:
-                                                        </label>
+                                                        </span>
+                                                        <span class="valor_item">
+                                                            <?=$estudiante->transporte?>
+                                                        </span>
+                                                        <hr/>
                                                     </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-floating mb-3">
-                                                       <input class="form-control" disabled="" id="pae" name="pae" placeholder="pae" required="" type="text" value="<?=$estudiante->pae?>">
-                                                        <label for="pae">
+                                                    <div class="col-md-6">
+                                                        <span class="item_info">
+                                                            Grupo sanguíneo:
+                                                        </span>
+                                                        <span class="valor_item">
+                                                            <?=$estudiante->grupo_sanguineo_e?>
+                                                        </span>
+                                                            <hr/>
+                                                        <span class="item_info">
+                                                            RH:
+                                                        </span>
+                                                        <span class="valor_item">
+                                                            <?=$estudiante->rh_e?>
+                                                        </span>
+                                                            <hr/>
+                                                            <span class="item_info">
                                                             PAE:
-                                                        </label>
+                                                        </span>
+                                                        <span class="valor_item">
+                                                            <?=$estudiante->pae?>
+                                                        </span>
+                                                            <hr/>
                                                     </div>
-                                                </div>
-                                            </div>
-                                            <!-- mamá -->
-                                            <h2 class="titulo-perfil text-center">
-                                                Informacion de la mamá
+                                                </section>
+                                                <hr/>
+                                                <h2 class="titulo-perfil text-center mb-5">
+                                                    Información de la mamá
+                                                </h2>
+                                                <section class="row shadow">
+                                                    <div class="col-md-6">
+                                                        <span class="item_info">
+                                                            Nombre:
+                                                        </span>
+                                                        <span class="valor_item">
+                                                            <?=$estudiante->nombre_m?>
+                                                        </span>
+                                                        <hr/>
+                                                        <span class="item_info">
+                                                            Apellidos:
+                                                        </span>
+                                                        <span class="valor_item">
+                                                            <?=$estudiante->apellidos_m?>
+                                                        </span>
+                                                        <hr/>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <span class="item_info">
+                                                            Fecha de nacimiento:
+                                                        </span>
+                                                        <span class="valor_item">
+                                                            <?=$estudiante->fecha_nacimiento_m?>
+                                                        </span>
+                                                        <hr/>
+                                                        <span class="item_info">
+                                                            Edad:
+                                                        </span>
+                                                        <span class="valor_item">
+                                                            <?=$estudiante->edad_m?>
+                                                        </span>
+                                                        <hr/>
+                                                    </div>
+                                                </section>
+                                                <hr/>
+                                                <section class="row shadow">
+                                                    <div class="col-md-6">
+                                                        <span class="item_info">
+                                                            Tipo de identificación:
+                                                        </span>
+                                                        <span class="valor_item">
+                                                            <?=$estudiante->tipo_identificacion_m?>
+                                                        </span>
+                                                        <hr/>
+                                                        <span class="item_info">
+                                                            Número:
+                                                        </span>
+                                                        <span class="valor_item">
+                                                            <?=$estudiante->numero_m?>
+                                                        </span>
+                                                        <hr/>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <span class="item_info">
+                                                            Lugar de expedición:
+                                                        </span>
+                                                        <span class="valor_item">
+                                                            <?=$estudiante->lugar_expedicion_m?>
+                                                        </span>
+                                                        <hr/>
+                                                        <span class="item_info">
+                                                            Fecha de expedición:
+                                                        </span>
+                                                        <span class="valor_item">
+                                                            <?=$estudiante->fecha_expedicion_m?>
+                                                        </span>
+                                                        <hr/>
+                                                    </div>
+                                                </section>
+                                                <hr/>
+                                                <section class="row shadow">
+                                                    <div class="col-md-6">
+                                                        <span class="item_info">
+                                                            Telefono:
+                                                        </span>
+                                                        <span class="valor_item">
+                                                            <?=$estudiante->telefono_m?>
+                                                        </span>
+                                                        <hr/>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <span class="item_info">
+                                                            Ocupación:
+                                                        </span>
+                                                        <span class="valor_item">
+                                                            <?=$estudiante->ocupacion_m?>
+                                                        </span>
+                                                        <hr/>
+                                                    </div>
+                                                </section>
+                                                <hr/>
+                                            <h2 class="titulo-perfil text-center mb-5">
+                                                Información del papá
                                             </h2>
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="form-floating mb-3">
-                                                        <input class="form-control" disabled="" id="nombre" name="nombresmama" placeholder="Nombre" required="" type="text" value="<?=$estudiante->nombre_m?>">
-                                                            <label for="nombre">
-                                                                Nombres:
-                                                            </label>
-                                                        </input>
+                                            <section class="row shadow">
+                                                    <div class="col-md-6">
+                                                        <span class="item_info">
+                                                            Nombre:
+                                                        </span>
+                                                        <span class="valor_item">
+                                                            <?=$estudiante->nombre_p?>
+                                                        </span>
+                                                        <hr/>
+                                                        <span class="item_info">
+                                                            Apellidos:
+                                                        </span>
+                                                        <span class="valor_item">
+                                                            <?=$estudiante->apellidos_p?>
+                                                        </span>
+                                                        <hr/>
                                                     </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-floating mb-3">
-                                                        <input class="form-control" disabled="" id="apellidos" name="apellidosmama" placeholder="Apellidos" required="" type="text" value="<?=$estudiante->apellidos_m?>">
-                                                            <label for="apellidos">
-                                                                Apellidos:
-                                                            </label>
-                                                        </input>
+                                                    <div class="col-md-6">
+                                                        <span class="item_info">
+                                                            Fecha de nacimiento:
+                                                        </span>
+                                                        <span class="valor_item">
+                                                            <?=$estudiante->fecha_nacimiento_p?>
+                                                        </span>
+                                                        <hr/>
+                                                        <span class="item_info">
+                                                            Edad:
+                                                        </span>
+                                                        <span class="valor_item">
+                                                            <?=$estudiante->edad_p?>
+                                                        </span>
+                                                        <hr/>
                                                     </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="form-floating mb-3">
-                                                        <input class="form-control" disabled id="nacimienito" name="nacimienitomama" placeholder="nacimienito" required="" type="text" value="<?=$estudiante->fecha_nacimiento_m?>">
-                                                            <label for="nacimienito">
-                                                                Fecha de nacimiento:
-                                                            </label>
-                                                        </input>
+                                                </section>
+                                                <hr/>
+                                                <section class="row shadow">
+                                                    <div class="col-md-6">
+                                                        <span class="item_info">
+                                                            Tipo de identificación:
+                                                        </span>
+                                                        <span class="valor_item">
+                                                            <?=$estudiante->tipo_identificacion_p?>
+                                                        </span>
+                                                        <hr/>
+                                                        <span class="item_info">
+                                                            Número:
+                                                        </span>
+                                                        <span class="valor_item">
+                                                            <?=$estudiante->numero_p?>
+                                                        </span>
+                                                        <hr/>
                                                     </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-floating mb-3">
-                                                        <input class="form-control" disabled="" id="edad" name="edadmama" placeholder="edad" required="" type="number" value="<?=$estudiante->edad_m?>">
-                                                            <label for="edad">
-                                                                Edad:
-                                                            </label>
-                                                        </input>
+                                                    <div class="col-md-6">
+                                                        <span class="item_info">
+                                                            Lugar de expedición:
+                                                        </span>
+                                                        <span class="valor_item">
+                                                            <?=$estudiante->lugar_expedicion_p?>
+                                                        </span>
+                                                        <hr/>
+                                                        <span class="item_info">
+                                                            Fecha de expedición:
+                                                        </span>
+                                                        <span class="valor_item">
+                                                            <?=$estudiante->fecha_expedicion_p?>
+                                                        </span>
+                                                        <hr/>
                                                     </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="form-floating mb-3">
-                                                         <input class="form-control" disabled="" id="tipo" name="tipo_m" placeholder="tipo" required="" type="number" value="<?=$estudiante->tipo_identificacion_m?>">
-                                                            <label for="incapacidad">
-                                                                Tipo:
-                                                            </label>
-                                                        </input>
+                                                </section>
+                                                <hr/>
+                                                <section class="row shadow">
+                                                    <div class="col-md-6">
+                                                        <span class="item_info">
+                                                            Telefono:
+                                                        </span>
+                                                        <span class="valor_item">
+                                                            <?=$estudiante->telefono_p?>
+                                                        </span>
+                                                        <hr/>
                                                     </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-floating mb-3">
-                                                        <input class="form-control" disabled="" id="numero" name="numeromama" placeholder="Numero" required="" type="number" value="<?=$estudiante->numero_m?>">
-                                                            <label for="numero">
-                                                                Numero:
-                                                            </label>
-                                                        </input>
+                                                    <div class="col-md-6">
+                                                        <span class="item_info">
+                                                            Ocupación:
+                                                        </span>
+                                                        <span class="valor_item">
+                                                            <?=$estudiante->ocupacion_p?>
+                                                        </span>
+                                                        <hr/>
                                                     </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="form-floating mb-3">
-                                                        <input class="form-control" disabled="" id="expedicion" name="expedicionmama" placeholder="expedicion" required="" type="text" value="<?=$estudiante->lugar_expedicion_m?>">
-                                                            <label for="expedicion">
-                                                                Lugar de expedición:
-                                                            </label>
-                                                        </input>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-floating mb-3">
-                                                        <input class="form-control" id="fecha" name="fechamama" placeholder="fecha" required="" disabled type="text" value="<?=$estudiante->fecha_expedicion_m?>">
-                                                            <label for="fecha">
-                                                                Fecha de expedición:
-                                                            </label>
-                                                        </input>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="form-floating mb-3">
-                                                        <input class="form-control" disabled="" id="ocupacion" name="ocupacionmama" placeholder="ocupacion" required="" type="text" value="<?=$estudiante->ocupacion_m?>">
-                                                            <label for="ocupacion">
-                                                                Ocupación
-                                                            </label>
-                                                        </input>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-floating mb-3">
-                                                        <input class="form-control" disabled="" id="telefono" name="telefonomama" placeholder="telefono" required="" type="number" value="<?=$estudiante->telefono_m?>">
-                                                            <label for="telefono">
-                                                                Número de celular:
-                                                            </label>
-                                                        </input>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- papá -->
-                                            <h2 class="titulo-perfil text-center">
-                                                Informacion del papá
-                                            </h2>
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="form-floating mb-3">
-                                                        <input class="form-control" disabled="" id="nombre" name="nombrespapa" placeholder="Nombre" required="" type="text" value="<?=$estudiante->nombre_p?>">
-                                                            <label for="nombre">
-                                                                Nombres:
-                                                            </label>
-                                                        </input>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-floating mb-3">
-                                                        <input class="form-control" disabled="" id="apellidos" name="apellidospapa" placeholder="Apellidos" required="" type="text" value="<?=$estudiante->apellidos_p?>">
-                                                            <label for="apellidos">
-                                                                Apellidos:
-                                                            </label>
-                                                        </input>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="form-floating mb-3">
-                                                        <input class="form-control" id="nacimienito" name="nacimienitopapa" placeholder="nacimienito" required="" disabled type="text" value="<?=$estudiante->fecha_nacimiento_m?>">
-                                                            <label for="nacimienito">
-                                                                Fecha de nacimiento:
-                                                            </label>
-                                                        </input>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-floating mb-3">
-                                                        <input class="form-control" disabled="" id="edad" name="edadpapa" placeholder="edad" required="" type="number" value="<?=$estudiante->edad_p?>">
-                                                            <label for="edad">
-                                                                Edad:
-                                                            </label>
-                                                        </input>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="form-floating mb-3">
-                                                        <input class="form-control" disabled="" id="edad" name="tipo_pa" placeholder="edad" required="" type="number" value="<?=$estudiante->tipo_identificacion_p?>">
-                                                        <label for="incapacidad">
-                                                            Tipo:
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-floating mb-3">
-                                                        <input class="form-control" disabled="" id="numero" name="numeropapa" placeholder="Numero" required="" type="number" value="<?=$estudiante->numero_p?>">
-                                                            <label for="numero">
-                                                                Numero:
-                                                            </label>
-                                                        </input>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="form-floating mb-3">
-                                                        <input class="form-control" disabled="" id="expedicion" name="expedicionpapa" placeholder="expedicion" required="" type="text" value="<?=$estudiante->lugar_expedicion_p?>">
-                                                            <label for="expedicion">
-                                                                Lugar de expedición:
-                                                            </label>
-                                                        </input>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-floating mb-3">
-                                                        <input class="form-control" id="fecha" name="fechapapa" placeholder="fecha" required="" disabled type="text" value="<?=$estudiante->fecha_expedicion_p?>">
-                                                            <label for="fecha">
-                                                                Fecha de expedición:
-                                                            </label>
-                                                        </input>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="form-floating mb-3">
-                                                        <input class="form-control" disabled="" id="ocupacion" name="ocupacionpapa" placeholder="ocupacion" required="" type="text" value="<?=$estudiante->ocupacion_p?>">
-                                                            <label for="ocupacion">
-                                                                Ocupación
-                                                            </label>
-                                                        </input>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-floating mb-3">
-                                                        <input class="form-control" disabled="" id="telefono" name="telefonopapa" placeholder="telefono" required="" type="number" value="<?=$estudiante->telefono_p?>">
-                                                            <label for="telefono">
-                                                                Número de celular:
-                                                            </label>
-                                                        </input>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="form-floating mb-3">
-                                                        <input class="form-control" disabled="" id="direccion" name="direccionpapa" placeholder="direccion" required="" type="text" value="<?=$estudiante->direccion?>">
-                                                            <label for="direccion">
-                                                                Dirección
-                                                            </label>
-                                                        </input>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-floating mb-3">
-                                                        <input class="form-control" disabled="" id="correo" name="correo" placeholder="correo" required="" type="text" value="<?=$estudiante->correo?>">
-                                                            <label for="correo">
-                                                                Correo:
-                                                            </label>
-                                                        </input>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                                </section>
+                                                <hr/>
+                                            </article>
+                                        </article>
                                         <!-- fin informacion del  estudiante -->
-                                    </div>
+                                    </section>
                                 </section>
                             </article>
                         </article>
@@ -793,37 +738,61 @@ else: ?>
                         <button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button">
                         </button>
                     </div>
-                    <form action="#">
+                    <form action="<?=base_url?>Estudiante/cambiarPassword" method="post">
                         <div class="modal-body">
+                            <input type="text" hidden name="id" value="<?=$estudiante->estudiante_id?>">
+
                             <div class="form-floating mb-3">
-                                <input class="form-control" id="new_pass" required="" type="text"/>
+                                <input class="form-control" id="new_pass" required="" type="text" name="new_pass" />
                                 <label for="new_pass">
                                     Contraseña nueva:
                                 </label>
                             </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">
-                                Cancelar
-                            </button>
-                            <button class="btn btn-primary" type="button">
-                                Guardar
-                            </button>
+                             <div class="d-grid gap-2">
+                              <button class="btn btn-outline-success" type="submit">Actualizar</button>
+                            </div>
                         </div>
                     </form>
                 </article>
             </section>
         </section>
               <!--  modal para actualizar datos -->
+      <!-- Modal para cambiar la foto de perfil -->
+            <!-- Modal -->
+            <section class="modal fade " id="fotoPerfil" tabindex="-1" aria-labelledby="exampleModalLabel" data-bs-backdrop="static" aria-hidden="true">
+              <section class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Cambiar la foto de perfil</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                        <form action="<?=base_url?>Estudiante/fotoPerfil" method="post" enctype="multipart/form-data">
+                            <div>
+                                <input type="text" hidden name="x" value="<?=$estudiantePadres->estudiante_id?>">
+                                <input type="text" hidden name="y" value="<?=$estudiantePadres->padres?>">
+                                <input type="text" hidden name="z" value="<?=$estudiantePadres->id_gradoE?>">
+                              <label for="perfil" class="form-label">Elija la nueva foto de perfil</label>
+                              <input class="form-control form-control-lg" id="perfil" name="foto_perfil" type="file" required>
+                            </div>
+                            <hr/>
+                            <div class="d-grid gap-2 mt-3">
+                              <button class="btn btn-outline-success" type="submit">Guardar</button>
+                              <button class="btn btn-outline-danger" type="button" data-bs-dismiss="modal">Cancelar</button>
+                            </div>
+                        </div>
+                        </form>
+                  </div>
+              </section>
+            </section>              
+      <!-- fin del modal para cambiar la foto de perfil -->
         <section aria-hidden="true" aria-labelledby="exampleModalLabel" class="modal fade" data-bs-backdrop="static" id="actualizarDatos" tabindex="-1">
             <section class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">
-                            Modal title
+                            Actualizar datos del estudiante
                         </h5>
-                        <button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button" enctype="multipart/form-data">
-                        </button>
                     </div>
                    <form action="<?=base_url?>Estudiante/registrarEstudiante" method="post" enctype="multipart/form-data">
                     <input type="text" hidden name="x" value="<?=$estudiantePadres->estudiante_id?>">
@@ -1275,7 +1244,7 @@ else: ?>
                                         Cancelar
                                     </button>
                                     <button class="btn btn-primary" type="submit">
-                                        Registrar
+                                        Actualizar
                                     </button>
                                 </div>
                             </form>

@@ -11,6 +11,7 @@
                                 <h1 class="card-title text-center mb-4">
                                     Inicio de sesion
                                 </h1>
+                                <?php  echo Utils::general_alerts('cambiarPassA', 'Cambiaste la contraseña con éxito.', 'Algo salió mal al actualizar la contraseña.'); ?>
                                 <?php if (isset($_SESSION['error_login'])): ?>
 	                                <div class="row justify-content-center">
 	                                    <div class="col-md-9">
@@ -21,7 +22,8 @@
 	                                    </div>
 	                                </div>
 	                            <?php endif;?>
-                            <?php Utils::borrar_error('error_login');?>
+                            <?php Utils::borrar_error('error_login');
+                                        Utils::borrar_error('cambiarPassA');?>
                                 <form action="<?=base_url?>Login/validar"  method="post" class="form-login">
                                     <div class="form-floating mb-3">
                                         <input class="form-control" id="usuario" name="usuario" placeholder="Usuario" required="" type="text">

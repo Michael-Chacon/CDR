@@ -67,23 +67,23 @@
                                             Materias
                                         </h3>
                                         <?php if (isset($datos)):
-    while ($materias = $datos->fetchObject()): ?>
-					                                        <article class="col-xs-12 col-sm-6 col-md-4 col-xl-4 mb-2">
-					                                            <div class="card text-center shadow option">
-					                                                <div class="card-body contenido-card materias">
-					                                                    <i class="<?=$materias->icono?>" style="font-size: 3rem;">
-					                                                    </i>
-					                                                    <hr class="hr-perfil"/>
-					                                                    <h5 class="mt-2">
-					                                                        <?=$materias->nombre_mat?>
-					                                                    </h5>
-					                                                    <a class="stretched-link" href="materiaEstudiante.html">
-					                                                    </a>
-					                                                </div>
-					                                            </div>
-					                                        </article>
-					                                    <?php endwhile;
-endif;?>
+                                            while ($materias = $datos->fetchObject()): ?>
+                                                <article class="col-xs-12 col-sm-6 col-md-4 col-xl-4 mb-2">
+                                                    <div class="card text-center shadow option">
+                                                        <div class="card-body contenido-card materias">
+                                                            <i class="<?=$materias->icono?>" style="font-size: 3rem;">
+                                                            </i>
+                                                            <hr class="hr-perfil"/>
+                                                            <h5 class="mt-2">
+                                                                <?=$materias->nombre_mat?>
+                                                            </h5>
+                                                                <a class="stretched-link" href="materiaEstudiante.html">
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </article>
+                                            <?php endwhile;
+                                        endif;?>
                                     </section>
                                     <!-- fin materias -->
                                 </section>
@@ -93,37 +93,47 @@ endif;?>
                                         <h3 class="text-center mb-2 mt-3 mb-3 titulo-perfil">
                                             Estudiantes matriculados
                                         </h3>
-                                        <div class="col-md-10 shadow">
-                                         <table class="table table-borderless">
-                                <thead class="text-center">
-                                    <tr>
-                                        <th>
-                                            Id
-                                        </th>
-                                        <th>
-                                            Nombre
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <tbody class="text-center">
-                                    <?php if (isset($estudi)):
-    while ($estudiantes = $estudi->fetchObject()): ?>
-					                                                        <tr>
-					                                                            <td>
-					                                                                <?=$estudiantes->id?>
-					                                                            </td>
-					                                                            <td>
-					                                                                <a href="<?=$estudiantes->id?>">
-					                                                                     <?=$estudiantes->nombre_e?>
-					                                                                    <?=$estudiantes->apellidos_e?>
-					                                                                </a>
-					                                                            </td>
-			                                                                </tr>
-					                                                    <?php endwhile;
-endif;?>
-                                </tbody>
-                            </table>
-                                        </div>
+                                        <article class="col-md-5 text-center">
+                                                 <ul class="list-group mb-4 padre">
+                                                <li class="list-group-item ">
+                                                    <div class="row">
+                                                        <div class="col-md-2">
+                                                            #
+                                                        </div>
+                                                        <div class="col-md-2">
+                                                            Foto
+                                                        </div>
+                                                        <div class="col-md-8">
+                                                            Nombre
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                                <?php if (isset($estudi)):
+                                                    $c = 1;
+                                                    while ($estudiantes = $estudi->fetchObject()): ?>
+                                                         <ul class="list-group mb-1 ">
+                                                            <li class="list-group-item fila-estudiante">
+                                                                <a class="stretched-link" href="<?=base_url?>Estudiante/perfilEstudiante&x=<?=$estudiantes->id?>&y=<?=$estudiantes->id_familia_e?>&z=<?=$estudiantes->id_grado?>">
+                                                                </a>
+                                                                <div class="row">
+                                                                    <div class="col-md-2 nombre-apellidos-numero">
+                                                                        <?=$c++?>
+                                                                    </div>
+                                                                    <div class="col-md-2">
+                                                                        <img alt="" class="avatar-tabla circulo" src="<?=base_url?>photos/estudiantes/<?=$estudiantes->img?>">
+                                                                        </img>
+                                                                    </div>
+                                                                    <div class="col-md-8 nombre-apellidos-numero">
+                                                                        <?=$estudiantes->nombre_e?>
+                                                                        <?=$estudiantes->apellidos_e?>
+                                                                    </div>
+                                                                </div>
+                                                            </li>
+                                                        </ul>
+                                                    <?php endwhile;
+                                                endif;?>
+                                        </article >
                                     </section>
                                     <!-- fin estudiantes -->
                                 </section>
@@ -133,11 +143,14 @@ endif;?>
                                         <h3 class="text-center mb-2 mt-3 titulo-perfil">
                                             Horario de clase
                                         </h3>
-                                        <article class="col-md-4">
-                                            <table class="table shadow text-center table-bordered table-hover table-striped">
-                                                <caption class="caption-top text-center">
-                                                    Lunes
-                                                </caption>
+                                        <article class="col-md-4 text-center">
+                                            <span class="dia">
+                                                Lunes
+                                            </span>
+                                            <hr/>
+                                            <?php if ($lista_lunes->rowCount() != 0): ?>
+                                                <div>
+                                            <table class="table shadow text-center table-bordered table-hover">
                                                 <thead>
                                                     <tr>
                                                         <th scope="col">
@@ -155,36 +168,40 @@ endif;?>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <?php if ($lista_lunes->rowCount() != 0):
-    while ($lunes = $lista_lunes->fetchObject()): ?>
-			                                                    <tr>
-			                                                        <td>
-			                                                            <?=$lunes->inicio?>
-			                                                        </td>
-			                                                        <td>
-			                                                            <?=$lunes->fin?>
-			                                                        </td>
-			                                                        <td>
-			                                                            <?=$lunes->nombre_mat?>
-			                                                        </td>
-			                                                        <td>
-			                                                            <a href="<?=base_url?>Horario/eliminarHora&id_horario=<?=$lunes->dia?>&dia=lunes&grado=<?=$_GET['id_grado']?>">
-			                                                            <i class="bi bi-trash delete-horario" style="color: #B90000;"></i>
-			                                                            </a>
-			                                                        </td>
-			                                                    </tr>
-			                                                <?php endwhile;
-else: ?>
-                                                    <p class="text-center mt-3"><span class="badge bg-warning text-dark">No hay materias asignadas.</span></p>
-                                                <?php endif;?>
+                                                        <?php while ($lunes = $lista_lunes->fetchObject()): ?>
+                                                                <tr>
+                                                                    <td>
+                                                                        <?=$lunes->inicio?>
+                                                                    </td>
+                                                                    <td>
+                                                                        <?=$lunes->fin?>
+                                                                    </td>
+                                                                    <td>
+                                                                        <?=$lunes->nombre_mat?>
+                                                                    </td>
+                                                                    <td>
+                                                                        <a href="<?=base_url?>Horario/eliminarHora&id_horario=<?=$lunes->dia?>&dia=lunes&grado=<?=$_GET['id_grado']?>" onclick="return confirmar()">
+                                                                        <i class="bi bi-trash delete-horario" style="color: #7C368F;"></i>
+                                                                        </a>
+                                                                    </td>
+                                                                </tr>
+                                                        <?php endwhile;?>
                                                 </tbody>
                                             </table>
+                                            </div>
+                                            <?php else: ?>
+                                                <p class="text-center mt-3"><span class="badge bg-warning text-dark">No hay materias asignadas.</span></p>
+                                            <?php endif;?>
+                                            <hr/>
                                         </article>
-                                        <article class="col-md-4">
-                                            <table class="table shadow text-center table-bordered table-hover table-striped">
-                                                <caption class="caption-top text-center">
-                                                    Martes
-                                                </caption>
+                                        <article class="col-md-4 text-center">
+                                            <span class="dia">
+                                                Martes
+                                            </span>
+                                            <hr/>
+                                           <?php if ($lista_martes->rowCount() != 0):?>
+                                            <div>
+                                            <table class="table shadow text-center table-bordered table-hover">
                                                 <thead>
                                                     <tr>
                                                         <th scope="col">
@@ -202,36 +219,40 @@ else: ?>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                   <?php if ($lista_martes->rowCount() != 0):
-    while ($martes = $lista_martes->fetchObject()): ?>
-			                                                    <tr>
-			                                                        <td>
-			                                                            <?=$martes->inicio?>
-			                                                        </td>
-			                                                        <td>
-			                                                            <?=$martes->fin?>
-			                                                        </td>
-			                                                        <td>
-			                                                            <?=$martes->nombre_mat?>
-			                                                        </td>
-			                                                        <td>
-			                                                            <a href="<?=base_url?>Horario/eliminarHora&id_horario=<?=$martes->dia?>&dia=martes&grado=<?=$_GET['id_grado']?>">
-			                                                            <i class="bi bi-trash delete-horario" style="color: #B90000;"></i>
-			                                                            </a>
-			                                                        </td>
-			                                                    </tr>
-			                                                <?php endwhile;
-else: ?>
-                                                    <p class="text-center mt-3"><span class="badge bg-warning text-dark">No hay materias asignadas.</span></p>
-                                                <?php endif;?>
+                                                       <?php while ($martes = $lista_martes->fetchObject()): ?>
+                                                            <tr>
+                                                                <td>
+                                                                    <?=$martes->inicio?>
+                                                                </td>
+                                                                <td>
+                                                                    <?=$martes->fin?>
+                                                                </td>
+                                                                <td>
+                                                                    <?=$martes->nombre_mat?>
+                                                                </td>
+                                                                <td>
+                                                                    <a href="<?=base_url?>Horario/eliminarHora&id_horario=<?=$martes->dia?>&dia=martes&grado=<?=$_GET['id_grado']?>" onclick="return confirmar()">
+                                                                    <i class="bi bi-trash delete-horario" style="color: #7C368F;"></i>
+                                                                    </a>
+                                                                </td>
+                                                            </tr>
+                                                        <?php endwhile;?>
                                                 </tbody>
                                             </table>
+                                            </div>
+                                             <?php else: ?>
+                                                    <p class="text-center mt-3"><span class="badge bg-warning text-dark">No hay materias asignadas.</span></p>
+                                                <?php endif;?>
+                                        <hr/>
                                         </article>
-                                        <article class="col-md-4">
-                                            <table class="table shadow text-center table-bordered table-hover table-striped">
-                                                <caption class="caption-top text-center">
-                                                    Miércoles
-                                                </caption>
+                                        <article class="col-md-4 text-center">
+                                            <span class="dia">
+                                                Miércoles
+                                            </span>
+                                            <hr/>
+                                           <?php if ($lista_miercoles->rowCount() != 0):?>
+                                            <div>
+                                            <table class="table shadow text-center table-bordered table-hover">
                                                 <thead>
                                                     <tr>
                                                         <th scope="col">
@@ -249,36 +270,40 @@ else: ?>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                   <?php if ($lista_miercoles->rowCount() != 0):
-    while ($miercoles = $lista_miercoles->fetchObject()): ?>
-			                                                    <tr>
-			                                                        <td>
-			                                                            <?=$miercoles->inicio?>
-			                                                        </td>
-			                                                        <td>
-			                                                            <?=$miercoles->fin?>
-			                                                        </td>
-			                                                        <td>
-			                                                            <?=$miercoles->nombre_mat?>
-			                                                        </td>
-			                                                        <td>
-			                                                            <a href="<?=base_url?>Horario/eliminarHora&id_horario=<?=$miercoles->dia?>&dia=miercoles&grado=<?=$_GET['id_grado']?>">
-			                                                            <i class="bi bi-trash delete-horario" style="color: #B90000;"></i>
-			                                                            </a>
-			                                                        </td>
-			                                                    </tr>
-			                                                <?php endwhile;
-else: ?>
-                                                    <p class="text-center mt-3"><span class="badge bg-warning text-dark">No hay materias asignadas.</span></p>
-                                                <?php endif;?>
+                                                        <?php while ($miercoles = $lista_miercoles->fetchObject()): ?>
+                                                            <tr>
+                                                                <td>
+                                                                    <?=$miercoles->inicio?>
+                                                                </td>
+                                                                <td>
+                                                                    <?=$miercoles->fin?>
+                                                                </td>
+                                                                <td>
+                                                                    <?=$miercoles->nombre_mat?>
+                                                                </td>
+                                                                <td>
+                                                                    <a href="<?=base_url?>Horario/eliminarHora&id_horario=<?=$miercoles->dia?>&dia=miercoles&grado=<?=$_GET['id_grado']?>" onclick="return confirmar()">
+                                                                    <i class="bi bi-trash delete-horario" style="color: #7C368F;"></i>
+                                                                    </a>
+                                                                </td>
+                                                            </tr>
+                                                    <?php endwhile;?>
                                                 </tbody>
                                             </table>
+                                            </div>
+                                        <?php else: ?>
+                                            <p class="text-center mt-3"><span class="badge bg-warning text-dark">No hay materias asignadas.</span></p>
+                                        <?php endif;?>
+                                        <hr/>
                                         </article>
-                                        <article class="col-md-4">
-                                            <table class="table shadow text-center table-bordered table-hover table-striped">
-                                                <caption class="caption-top text-center">
-                                                    Jueves
-                                                </caption>
+                                        <article class="col-md-4 text-center">
+                                            <span class="dia">
+                                                Jueves
+                                            </span>
+                                            <hr/>
+                                            <?php if ($lista_jueves->rowCount() != 0):?>
+                                                <div>
+                                            <table class="table shadow text-center table-bordered table-hover">
                                                 <thead>
                                                     <tr>
                                                         <th scope="col">
@@ -296,36 +321,40 @@ else: ?>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <?php if ($lista_jueves->rowCount() != 0):
-    while ($jueves = $lista_jueves->fetchObject()): ?>
-			                                                    <tr>
-			                                                        <td>
-			                                                            <?=$jueves->inicio?>
-			                                                        </td>
-			                                                        <td>
-			                                                            <?=$jueves->fin?>
-			                                                        </td>
-			                                                        <td>
-			                                                            <?=$jueves->nombre_mat?>
-			                                                        </td>
-			                                                        <td>
-			                                                            <a href="<?=base_url?>Horario/eliminarHora&id_horario=<?=$jueves->dia?>&dia=jueves&grado=<?=$_GET['id_grado']?>">
-			                                                            <i class="bi bi-trash delete-horario" style="color: #B90000;"></i>
-			                                                            </a>
-			                                                        </td>
-			                                                    </tr>
-			                                                <?php endwhile;
-else: ?>
-                                                    <p class="text-center mt-3"><span class="badge bg-warning text-dark">No hay materias asignadas.</span></p>
-                                                <?php endif;?>
+                                                        <?php while ($jueves = $lista_jueves->fetchObject()): ?>
+                                                             <tr>
+                                                                <td>
+                                                                    <?=$jueves->inicio?>
+                                                                </td>
+                                                                <td>
+                                                                    <?=$jueves->fin?>
+                                                                </td>
+                                                                <td>
+                                                                    <?=$jueves->nombre_mat?>
+                                                                </td>
+                                                                <td>
+                                                                    <a href="<?=base_url?>Horario/eliminarHora&id_horario=<?=$jueves->dia?>&dia=jueves&grado=<?=$_GET['id_grado']?>" onclick="return confirmar()">
+                                                                    <i class="bi bi-trash delete-horario" style="color: #7C368F;"></i>
+                                                                    </a>
+                                                                </td>
+                                                            </tr>
+                                                        <?php endwhile;?>
                                                 </tbody>
                                             </table>
+                                            </div>
+                                            <?php else: ?>
+                                                <p class="text-center mt-3"><span class="badge bg-warning text-dark">No hay materias asignadas.</span></p>
+                                            <?php endif;?>
+                                            <hr/>
                                         </article>
-                                        <article class="col-md-4">
-                                            <table class="table shadow text-center table-bordered table-hover table-striped">
-                                                <caption class="caption-top text-center">
-                                                    Viernes
-                                                </caption>
+                                        <article class="col-md-4 text-center ">
+                                        <span class="dia">
+                                                Viernes
+                                        </span>
+                                        <hr/>
+                                            <?php if ($lista_viernes->rowCount() != 0):?>
+                                                <div>
+                                            <table class="table shadow text-center table-bordered table-hover ">
                                                 <thead>
                                                     <tr>
                                                         <th scope="col">
@@ -343,30 +372,31 @@ else: ?>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <?php if ($lista_viernes->rowCount() != 0):
-    while ($viernes = $lista_viernes->fetchObject()): ?>
-			                                                    <tr>
-			                                                        <td>
-			                                                            <?=$viernes->inicio?>
-			                                                        </td>
-			                                                        <td>
-			                                                            <?=$viernes->fin?>
-			                                                        </td>
-			                                                        <td>
-			                                                            <?=$viernes->nombre_mat?>
-			                                                        </td>
-			                                                        <td>
-			                                                            <a href="<?=base_url?>Horario/eliminarHora&id_horario=<?=$viernes->dia?>&dia=viernes&grado=<?=$_GET['id_grado']?>">
-			                                                            <i class="bi bi-trash delete-horario" style="color: #B90000;"></i>
-			                                                            </a>
-			                                                        </td>
-			                                                    </tr>
-			                                                <?php endwhile;
-else: ?>
-                                                    <p class="text-center mt-3"><span class="badge bg-warning text-dark">No hay materias asignadas.</span></p>
-                                                <?php endif;?>
+                                                       <?php while ($viernes = $lista_viernes->fetchObject()): ?>
+                                                             <tr>
+                                                                <td>
+                                                                    <?=$viernes->inicio?>
+                                                                </td>
+                                                                <td>
+                                                                    <?=$viernes->fin?>
+                                                                </td>
+                                                                <td>
+                                                                    <?=$viernes->nombre_mat?>
+                                                                </td>
+                                                                <td>
+                                                                    <a href="<?=base_url?>Horario/eliminarHora&id_horario=<?=$viernes->dia?>&dia=viernes&grado=<?=$_GET['id_grado']?>" onclick="return confirmar()">
+                                                                    <i class="bi bi-trash delete-horario" style="color: #7C368F;"></i>
+                                                                    </a>
+                                                                </td>
+                                                            </tr>
+                                                        <?php endwhile;?>
                                                 </tbody>
                                             </table>
+                                            </div>
+                                            <?php else: ?>
+                                                 <p class="text-center mt-3"><span class="badge bg-warning text-dark">No hay materias asignadas.</span></p>
+                                            <?php endif;?>
+                                            <hr/>   
                                         </article>
                                     </section>
                                     <!-- fin del horario -->
