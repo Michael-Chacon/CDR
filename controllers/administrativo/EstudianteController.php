@@ -23,53 +23,53 @@ class EstudianteController
     {
         if (isset($_POST) && !empty($_POST)) {
             # datos del estudiante
-            $nombre_e = $_POST['nombres'];
-            $apellidos_e = $_POST['apellidos'];
-            $fecha_nacimiento_e = $_POST['nacimienito'];
-            $edad_e = $_POST['edad'];
-            $genero = $_POST['genero'];
-            $tipo = $_POST['tipo_e'];
-            $numero = $_POST['numero'];
-            $lugar_expedi = $_POST['expedicion'];
-            $fecha_expedi = $_POST['fecha'];
-            $direccion_e = $_POST['direccion'];
-            $telefono_e = $_POST['telefono'];
-            $correo_e = $_POST['correo'];
-            $religion_e = $_POST['religion'];
-            $incapacidad_e = $_POST['incapacidad'];
-            $grupo = $_POST['grupo'];
-            $rh = $_POST['rh'];
-            $trasporte = $_POST['trasporte'];
-            $pae = $_POST['pae'];
-            $usuario = $_POST['numero'];
-            $pass = $_POST['numero'];
+            $nombre_e = trim($_POST['nombres']);
+            $apellidos_e = trim($_POST['apellidos']);
+            $fecha_nacimiento_e = trim($_POST['nacimienito']);
+            $edad_e = trim($_POST['edad']);
+            $genero = trim($_POST['genero']);
+            $tipo = trim($_POST['tipo_e']);
+            $numero = trim($_POST['numero']);
+            $lugar_expedi = trim($_POST['expedicion']);
+            $fecha_expedi = trim($_POST['fecha']);
+            $direccion_e = trim($_POST['direccion']);
+            $telefono_e = trim($_POST['telefono']);
+            $correo_e = trim($_POST['correo']);
+            $religion_e = trim($_POST['religion']);
+            $incapacidad_e = trim($_POST['incapacidad']);
+            $grupo = trim($_POST['grupo']);
+            $rh = trim($_POST['rh']);
+            $trasporte = trim($_POST['trasporte']);
+            $pae = trim($_POST['pae']);
+            $usuario = trim($_POST['numero']);
+            $pass = trim($_POST['numero']);
 
             # datos de la madre
-            $nombre_m = $_POST['nombres_m'];
-            $apellidos_m = $_POST['apellidos_m'];
-            $nacimiento_m = $_POST['nacimiento_m'];
-            $edad_m = $_POST['edad_m'];
-            $tipo_m = $_POST['tipo_m'];
-            $numero_m = $_POST['numero_m'];
-            $lugar_expedi_m = $_POST['lugar_expedicion_m'];
-            $fecha_expedi_m = $_POST['fecha_expedicion_m'];
-            $telefono_m = $_POST['telefono_m'];
-            $ocupacion_m = $_POST['ocupacion_m'];
+            $nombre_m = trim($_POST['nombres_m']);
+            $apellidos_m = trim($_POST['apellidos_m']);
+            $nacimiento_m = trim($_POST['nacimiento_m']);
+            $edad_m = trim($_POST['edad_m']);
+            $tipo_m = trim($_POST['tipo_m']);
+            $numero_m = trim($_POST['numero_m']);
+            $lugar_expedi_m = trim($_POST['lugar_expedicion_m']);
+            $fecha_expedi_m = trim($_POST['fecha_expedicion_m']);
+            $telefono_m = trim($_POST['telefono_m']);
+            $ocupacion_m = trim($_POST['ocupacion_m']);
 
             # datos del padre
-            $nombre_pa = $_POST['nombres_pa'];
-            $apellidos_pa = $_POST['apellidos_pa'];
-            $nacimiento_pa = $_POST['nacimiento_pa'];
-            $edad_pa = $_POST['edad_pa'];
-            $tipo_pa = $_POST['tipo_pa'];
-            $numero_pa = $_POST['numero_pa'];
-            $lugar_expedi_pa = $_POST['lugar_expedicion_pa'];
-            $fecha_expedi_pa = $_POST['fecha_expedicion_pa'];
-            $telefono_pa = $_POST['telefono_pa'];
-            $ocupacion_pa = $_POST['ocupacion_pa'];
+            $nombre_pa = trim($_POST['nombres_pa']);
+            $apellidos_pa = trim($_POST['apellidos_pa']);
+            $nacimiento_pa = trim($_POST['nacimiento_pa']);
+            $edad_pa = trim($_POST['edad_pa']);
+            $tipo_pa = trim($_POST['tipo_pa']);
+            $numero_pa = trim($_POST['numero_pa']);
+            $lugar_expedi_pa = trim($_POST['lugar_expedicion_pa']);
+            $fecha_expedi_pa = trim($_POST['fecha_expedicion_pa']);
+            $telefono_pa = trim($_POST['telefono_pa']);
+            $ocupacion_pa = trim($_POST['ocupacion_pa']);
 
-            $direccion_mp = $_POST['direccion_mp'];
-            $correo_mp = $_POST['correo_mp'];
+            $direccion_mp = trim($_POST['direccion_mp']);
+            $correo_mp = trim($_POST['correo_mp']);
 
             # set padres
             $padres = new Padres();
@@ -152,9 +152,15 @@ class EstudianteController
                         $estudiantes->setImg('');
                     }
                     # GUARDAR
-                    # metodo para guardar la info de los padres
-                    $padres->guardarPadres('guardar');
-                    $id_padres = $padres->idPadres();
+                    if (isset($_POST['existePadres']) && $_POST['existePadres'] == 'no') {
+                        # metodo para guardar la info de los padres
+                        $padres->guardarPadres('guardar');
+                        $id_padres = $padres->idPadres();
+                    } elseif (isset($_POST['existePadres']) && $_POST['existePadres'] == 'si') {
+                        $celuda_padres = $_POST['siExistePadre'];
+                        $padres->setNumeroM($celuda_padres);
+                        $id_padres = $padres->padresExistentes();
+                    }
                     # metodo para guardar la info  del estudiante
                     $grado = $_POST['grado'];
                     $estudiantes->setGradoE($grado);

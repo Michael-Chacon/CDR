@@ -14,7 +14,7 @@
                                         <div class="row">
                                             <article class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
                                                 <article class="flex-shrink-0 contenedor-img-perfil">
-                                                    <img alt="..." class="avatar-perfil" src="<?=base_url?>helpers/img/perfilman.jpg">
+                                                    <img alt="..." class="avatar-perfil" src="<?=base_url?>photos/docentes/<?=$docente->img?>">
                                                     </img>
                                                 </article>
                                             </article>
@@ -119,20 +119,24 @@
                                     <section aria-labelledby="pills-home-tab" class="tab-pane fade show active" id="pills-home" role="tabpanel">
                                         <!-- inicio grados -->
                                         <section class="row">
-                                        <?php while($grado = $lista_grados->fetchObject()): ?>
-                                            <article class="col-xs-12 col-sm-6 col-md-3 col-xl-3 mb-2">
-                                                <article class="card text-center shadow option">
-                                                    <div class="card-body contenido-card">
-                                                        <h2 class="mt-2 grados">
-                                                            <?=$grado->nombre_g?>°
-                                                        </h2>
-                                                        <hr class="hr-perfil"/>
-                                                        <a class="stretched-link" href="<?=$grado->id?>">
-                                                        </a>
-                                                    </div>
-                                                </article>
-                                            </article>
-                                        <?php endwhile; ?>
+                                            <?php if($lista_grados->rowCount() != 0): ?>
+                                                <?php while($grado = $lista_grados->fetchObject()): ?>
+                                                    <article class="col-xs-12 col-sm-6 col-md-3 col-xl-3 mb-2">
+                                                        <article class="card text-center shadow option">
+                                                            <div class="card-body contenido-card">
+                                                                <h2 class="mt-2 grados">
+                                                                    <?=$grado->nombre_g?>°
+                                                                </h2>
+                                                                <hr class="hr-perfil"/>
+                                                                <a class="stretched-link" href="<?=$grado->id?>">
+                                                                </a>
+                                                            </div>
+                                                        </article>
+                                                    </article>
+                                                <?php endwhile; ?>
+                                            <?php else: ?>
+                                                 <p class="text-center mt-2"><span class="badge bg-warning text-dark">No hay grados asignadas</span></p>
+                                            <?php endif; ?>
                                         </section>
                                         <!-- fin materias -->
                                     </section>

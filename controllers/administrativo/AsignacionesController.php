@@ -12,16 +12,23 @@ class AsignacionesController
         require_once 'views/administrativo/asignaciones/Adocentes.php';
     }
 
+    # listado de todos los grado disponibles para registrar a los docente en ellos
     public function vista_Agrados()
     {
+        # listar los grados asignados
+        $id_docente = $_GET['id_docente'];
+        $grados_ya_asignados = new Asignaciones();
+        $grados_ya_asignados->setIdDocente($id_docente);
+        $asignados = $grados_ya_asignados->docenteGrados();
+        #lostar todos los grados
         $listar_grados = new Grados();
         $listado = $listar_grados->allGrados();
         require_once 'views/administrativo/asignaciones/Agrados.php';
     }
 
+    # grados que en los que va a dictar alguna materia el docente
     public function vista_docenteGrados()
     {
-        # grados que en los que va a dictar alguna materia el docente
         $id_docente = $_GET['id_docente'];
         $grados_asignados = new Asignaciones();
         $grados_asignados->setIdDocente($id_docente);
@@ -29,9 +36,9 @@ class AsignacionesController
         require_once 'views/administrativo/asignaciones/docenteGrados.php';
     }
 
+    # listado de materias sin asginar de un grado especifico
     public function vista_Amaterias()
     {
-        # listado de materias sin asginar de un grado especifico
         $id_grado = $_GET['id_grado'];
         $nombre = $_GET['nombre'];
         $id_docente = $_GET['docente'];
@@ -62,6 +69,19 @@ class AsignacionesController
         header("Location: " . base_url . 'Asignaciones/vista_asignaciones');
     }
 
+    # des asignar grados al docente
+    public function desasignarGrados()
+    {
+        $id_docente = $_POST['id_docente'];
+        $grados = $_POST['grados'];
+        $eliminar = new Asignaciones();
+        $eliminar->setIdDocente($id_docente);
+        $eliminar->setGrados($grados);
+        $resultado = $eliminar->EliminiarAsignacionDGrado();
+        Utils::validarReturn($resultado, 'eliminar_asignacion_grado');
+        header("Location: " . base_url . 'Asignaciones/vista_Agrados&id_docente=' . $id_docente);
+    }
+
     # asignale materias de un determinado grado a un docente
     public function registrarMateriasADocente()
     {
@@ -82,8 +102,8 @@ class AsignacionesController
     # metodo para desasignar materias a docentes en caso de que se halla cometido un error
     public function desasignarMateriaHaDocentes()
     {
-        $grado = $_POST['grado'];
-        $docente = $_POST['docente'];
+        $grado = trim($_POST['grado']);
+        $docente = trim($_POST['docente']);
         $materias = $_POST['asignadas'];
         $eliminar = new Asignaciones();
         $eliminar->setMateria($materias);

@@ -26,7 +26,7 @@
                                         Utils::borrar_error('cambiarPassA');?>
                                 <form action="<?=base_url?>Login/validar"  method="post" class="form-login">
                                     <div class="form-floating mb-3">
-                                        <input class="form-control" id="usuario" name="usuario" placeholder="Usuario" required="" type="text">
+                                        <input class="form-control" id="usuario" name="usuario" placeholder="Usuario" required="" type="text" autofocus>
                                             <label for="usuario">
                                                 Usuario:
                                             </label>

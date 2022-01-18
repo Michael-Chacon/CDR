@@ -121,6 +121,20 @@ class Asignaciones
         return $grados;
     }
 
+    # Eliminar grados que ya fueron asignados al docente
+    public function EliminiarAsignacionDGrado()
+    {
+        $grados = $this->getGrados();
+        $teacher = $this->getIdDocente();
+        foreach ($grados as $grado) {
+            $eliminar = $this->db->prepare("DELETE FROM gradodocente WHERE id_grado_d = :grado AND id_docente_g = :docente");
+            $eliminar->bindParam(":grado", $grados, PDO::PARAM_INT);
+            $eliminar->bindParam(":docente", $teacher, PDO::PARAM_INT);
+            $eliminar->execute();
+        }
+        return $eliminar;
+    }
+
     # obtener las mateiras de un grado determinado que previamente se le asigno al docente
     public function gradoMaterias()
     {
@@ -156,50 +170,67 @@ class Asignaciones
     # obtener las materias que le asignaron ha un docente en determindado grado
     public function materiasAsignadas()
     {
-        $docente = $this->getIdDocente();
-        $grado = $this->getGrados();
-        $materias = $this->db->prepare("
+        try {
+
+            $docente = $this->getIdDocente();
+            $grado = $this->getGrados();
+            $materias = $this->db->prepare("
                                                                 SELECT m.id AS 'id_materia', m. icono, m.nombre_mat, g.* FROM docentemateria dm
                                                                 INNER JOIN docente d ON d.id = id_docente_mat
                                                                 INNER JOIN materia m ON m.id = dm.id_materia_doc
                                                                 INNER JOIN grado g ON g.id = m.id_grado_mat
                                                                 WHERE d.id = :docente AND g.id = :grado;
                                                             ");
-        $materias->bindParam(':docente', $docente, PDO::PARAM_INT);
-        $materias->bindParam(':grado', $grado, PDO::PARAM_INT);
-        $materias->execute();
-        return $materias;
+            $materias->bindParam(':docente', $docente, PDO::PARAM_INT);
+            $materias->bindParam(':grado', $grado, PDO::PARAM_INT);
+            $materias->execute();
+            return $materias;
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
     }
 
     public function cambiarEstadoAsignacion($estado)
     {
-        $materias_seleccionadas = $this->getMateria();
-        if ($estado) {
-            $estado = 'si';
-        } else {
-            $estado = 'no';
+        try {
+
+            $materias_seleccionadas = $this->getMateria();
+            if ($estado) {
+                $estado = 'si';
+            } else {
+                $estado = 'no';
+            }
+            foreach ($materias_seleccionadas as $id) {
+                $asignacion = $this->db->prepare("UPDATE materia SET asignada = :estado WHERE id = :id_materia");
+                $asignacion->bindParam(':estado', $estado, PDO::PARAM_STR);
+                $asignacion->bindParam(':id_materia', $id, PDO::PARAM_INT);
+                $asignacion->execute();
+            }
+            return $asignacion;
+
+        } catch (PDOException $e) {
+            echo $e->getMessage();
         }
-        foreach ($materias_seleccionadas as $id) {
-            $asignacion = $this->db->prepare("UPDATE materia SET asignada = :estado WHERE id = :id_materia");
-            $asignacion->bindParam(':estado', $estado, PDO::PARAM_STR);
-            $asignacion->bindParam(':id_materia', $id, PDO::PARAM_INT);
-            $asignacion->execute();
-        }
-        return $asignacion;
     }
 
     # eliminar las asignaciones de materias a docentes
     public function eliminarAsignacionMaterias()
     {
-        $mate = $this->getMateria();
-        $docente = $this->getIdDocente();
-        foreach ($mate as $materia_id) {
-            $eliminar = $this->db->prepare("DELETE FROM docentemateria WHERE id_docente_mat = :docente AND id_materia_doc = :materia");
-            $eliminar->bindParam(":docente", $docente, PDO::PARAM_INT);
-            $eliminar->bindParam(":materia", $materia_id, PDO::PARAM_INT);
-            $eliminar->execute();
+        try {
+
+            $mate = $this->getMateria();
+            $docente = $this->getIdDocente();
+            foreach ($mate as $materia_id) {
+                $eliminar = $this->db->prepare("DELETE FROM docentemateria WHERE id_docente_mat = :docente AND id_materia_doc = :materia");
+                $eliminar->bindParam(":docente", $docente, PDO::PARAM_INT);
+                $eliminar->bindParam(":materia", $materia_id, PDO::PARAM_INT);
+                $eliminar->execute();
+            }
+            return $eliminar;
+
+        } catch (PDOException $e) {
+            echo $e->getMessage();
         }
-        return $eliminar;
     }
 
 } # fin de la clase

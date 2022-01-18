@@ -18,9 +18,9 @@
                      <?php echo Utils::general_alerts('credencial_d', 'Se asignaron credenciales al docente con éxito.', 'Algo salió mal al asignar credencale al docente, inténtelo de nuevo.'); ?>
                      <?php echo Utils::general_alerts('validacion_d', '', 'Se encontró un docente en la base de datos con el mismo número de documento, posiblemente este docente ya existe en la plataforma.') ?>
                      <?php Utils::borrar_error('docente');
-                        Utils::borrar_error('credencial_d');
-                        Utils::borrar_error('validacion_d');
-                        ?>
+Utils::borrar_error('credencial_d');
+Utils::borrar_error('validacion_d');
+?>
                     <!-- tabla -->
                     <section class="row justify-content-center mt-5">
                         <div class="col-md-10 shadow">
@@ -49,36 +49,36 @@
                                 </thead>
                                 <tbody>
                                     <?php if (isset($lista)):
-                                        $c = 1;
-                                            while ($docente_datos = $lista->fetchObject()): ?>
-		                                                <tr>
-		                                                    <th class="" scope="row">
-		                                                        <?=$c++?>
-		                                                    </th>
-		                                                    <td>
-		                                                        <img alt="" class="avatar-tabla circulo" src="<?=base_url?>helpers/img/obito.png"></img>
-		                                                    </td>
-		                                                    <td class="texto_tabla_docente">
-		                                                        <a href=" <?=base_url?>Docente/perfilDocente&id=<?=$docente_datos->id?>">
-		                                                              <?=$docente_datos->nombre_d?>
-		                                                               <?=$docente_datos->apellidos_d?>
-		                                                            <br/>
-		                                                        </a>
-		                                                        <small class="pregrado"><?=$docente_datos->nombre_pregrado_d?></small>
-		                                                    </td>
-		                                                    <td class="texto_tabla_docente">
-		                                                        <?=$docente_datos->correo_d?>
-		                                                    </td>
-		                                                    <td class="texto_tabla_docente">
-		                                                        <?=$docente_datos->telefono_d?>
-		                                                    </td>
-		                                                    <td class="texto_tabla_docente">
-		                                                        <?=$docente_datos->numero_d?>
-		                                                    </td>
-		                                                </tr>
-		                                  <?php endwhile;
-                                        endif;
-                                        ?>
+                                                $c = 1;
+                                                while ($docente_datos = $lista->fetchObject()): ?>
+						                                                <tr>
+						                                                    <th class="" scope="row">
+						                                                        <?=$c++?>
+						                                                    </th>
+						                                                    <td>
+						                                                        <img alt="" class="avatar-tabla circulo" src="<?=base_url?>photos/docentes/<?=$docente_datos->img?>"></img>
+						                                                    </td>
+						                                                    <td class="texto_tabla_docente">
+						                                                        <a href=" <?=base_url?>Docente/perfilDocente&id=<?=$docente_datos->id?>">
+						                                                              <?=$docente_datos->nombre_d?>
+						                                                               <?=$docente_datos->apellidos_d?>
+						                                                            <br/>
+						                                                        </a>
+						                                                        <small class="pregrado"><?=$docente_datos->nombre_pregrado_d?></small>
+						                                                    </td>
+						                                                    <td class="texto_tabla_docente">
+						                                                        <?=$docente_datos->correo_d?>
+						                                                    </td>
+						                                                    <td class="texto_tabla_docente">
+						                                                        <?=$docente_datos->telefono_d?>
+						                                                    </td>
+						                                                    <td class="texto_tabla_docente">
+						                                                        <?=$docente_datos->numero_d?>
+						                                                    </td>
+						                                                </tr>
+						                      <?php endwhile;
+                                    endif;
+                                    ?>
                                 </tbody>
                             </table>
                         </div>
@@ -99,7 +99,7 @@
                                 </button>
                             </div>
                             <h5 class="text-center mt-4">Docente</h5>
-                            <form action="<?=base_url?>Docente/registrarDocente" method="post">
+                            <form action="<?=base_url?>Docente/registrarDocente" method="post" enctype="multipart/form-data">
                                 <div class="modal-body">
                                     <div class="row">
                                         <div class="col-md-6">
@@ -251,7 +251,12 @@
                                                 </input>
                                             </div>
                                         </div>
-
+                                    </div>
+                                    <div class="row">
+                                        <div>
+                                          <label for="fotoD" class="form-label">Foto del docente:</label>
+                                          <input class="form-control" id="fotoD" type="file" name="fotoDocente">
+                                        </div>
                                     </div>
                                     <h5 class="text-center mt-5">
                                       <i class="bi bi-pen"></i> Otros

@@ -38,9 +38,9 @@
                                                             </input>
                                                         </li>
                                                     </h5>
-                                                <?php endwhile;
-                                            endif;?>
+                                                <?php endwhile?>
                                             <button class="btn btn-success mt-3 btn-lg" type="submit">Asignar</button>
+                                            <?php endif;?>
                                         </ul>
                                     </div>
                                 </div>
@@ -71,9 +71,9 @@
                                                         <?=$materias_asignadas->nombre_mat;?>
                                                 </li>
                                             </h5>
-                                       <?php endwhile;
-                                        endif;?>
+                                       <?php endwhile?>
                                        <button class="btn btn-danger mt-3 btn-lg" type="submit">Desasignar</button>
+                                        <?php endif;?>
                                     </ul>
                                 </div>
                             </div>

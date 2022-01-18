@@ -34,7 +34,7 @@ class MateriasController
             $partes = explode('/', $materia_inoco);
             $materia = $partes[0];
             $icono = $partes[1];
-            $indicador = $_POST['indicadores'];
+            $indicador = trim($_POST['indicadores']);
             $grado = $_POST['id_grado'];
 
             $guardar = new Materias();

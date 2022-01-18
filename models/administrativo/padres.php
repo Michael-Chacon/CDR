@@ -571,4 +571,15 @@ class Padres
     {
         return $this->db->lastInsertId();
     }
+
+    # seleccionar el id del padre cuando ya esta registrado en la db y se va a matricular ha un segundo hijo
+    public function padresExistentes()
+    {
+        $cedula = $this->getNumeroM();
+        $seleccion = $this->db->prepare("SELECT id FROM padres WHERE numero_m = :cedula OR numero_p = :cedula");
+        $seleccion->bindParam(":cedula", $cedula, PDO::PARAM_INT);
+        $seleccion->execute();
+        return $seleccion->fetchObject()->id;
+
+    }
 } # Fin de la clase

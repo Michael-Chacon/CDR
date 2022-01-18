@@ -11,9 +11,9 @@ class PeriodoController
     public function registrarPeriodo()
     {
         if (isset($_POST) && !empty($_POST)) {
-            $numero = $_POST['numero'];
-            $inicio = $_POST['inicio'];
-            $fin = $_POST['fin'];
+            $numero = trim($_POST['numero']);
+            $inicio = trim($_POST['inicio']);
+            $fin = trim($_POST['fin']);
 
             if (empty($_POST['estado'])) {
                 $estado = 'Inactivo';

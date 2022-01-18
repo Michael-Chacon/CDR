@@ -12,7 +12,7 @@ class DocumentoController
     # guardar el documento
     public function guardar()
     {
-        $descripcion = $_POST['descripcion'];
+        $descripcion = trim($_POST['descripcion']);
         $file = $_FILES['documento'];
         $name = $file['name'];
         if (!is_dir('documentos/')) {

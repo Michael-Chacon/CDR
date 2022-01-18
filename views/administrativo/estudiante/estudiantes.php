@@ -19,12 +19,19 @@
                     <?php echo Utils::general_alerts('validacion_e', '', 'Se encontró un estudiante en la base de datos con el mismo número de documento, posiblemente este estudiante ya existe en la plataforma.') ?>
                     <?php echo Utils::general_alerts('cambiarPassword', 'Contraseña actualizada con éxito.', 'Algo salió mal al actualizar la contraseña, inténtelo de nuevo.'); ?>
                     <?php Utils::borrar_error('estudiante');
-                        Utils::borrar_error('credencial');
-                        Utils::borrar_error('materias');
-                        Utils::borrar_error('validacion_e');
-                        Utils::borrar_error('cambiarPassword');
+                            Utils::borrar_error('credencial');
+                            Utils::borrar_error('materias');
+                                                                            Utils::borrar_error('validacion_e');
+                            Utils::borrar_error('cambiarPassword');
                     ?>
-                    <section class="row justify-content-center mt-5 mb-5">
+                    <section class="row justify-content-center mt-3 mb-5">
+                        <article class="col-md-6 justify-content-end mb-4 ">
+                             <form class="d-flex ">
+                                <input class="form-control me-2" type="search" placeholder="Buscar estudiante " aria-label="Search" autofocus>
+                                <button class="btn btn-outline-success" type="submit">Buscar</button>
+                            </form>
+                            <article id="emailHelp" class="form-text">Puedes buscar por nombres o por número de documento.</article>
+                        </article>
                         <div class="col-md-10 shadow">
                             <table class="table table-hover">
                                 <thead class="table-dark text-center">
@@ -51,18 +58,18 @@
                                 </thead>
                                 <tbody>
                                     <?php if (isset($todos_estudiantes)):
-                                        $c = 1;
-                                                while ($estudiantes = $todos_estudiantes->fetchObject()): ?>
-		                                                	 <tr>
-		                                                    <th class="texto_tabla_docente text-center" scope="row">
-		                                                        <?=$c++?>
-		                                                    </th>
-		                                                    <td>
-                                                                <?php if ($estudiantes->img == null): ?>
-                                                                     <img alt="" class="avatar-tabla circulo" src="<?=base_url?>helpers/img/avatar.jpg"></img>
-                                                                <?php else: ?>
+                                                    $c = 1;
+                                                    while ($estudiantes = $todos_estudiantes->fetchObject()): ?>
+				                                                	 <tr>
+				                                                    <th class="texto_tabla_docente text-center" scope="row">
+				                                                        <?=$c++?>
+				                                                    </th>
+				                                                    <td>
+		                                                                <?php if ($estudiantes->img == null): ?>
+		                                                                     <img alt="" class="avatar-tabla circulo" src="<?=base_url?>helpers/img/avatar.jpg"></img>
+		                                                                <?php else: ?>
 		                                                        <img alt="" class="avatar-tabla circulo" src="<?=base_url?>photos/estudiantes/<?=$estudiantes->img?>"></img>
-                                                            <?php endif; ?>
+                                                            <?php endif;?>
 		                                                    </td>
 		                                                    <td class="texto_tabla_docente">
 		                                                        <a href="<?=base_url?>Estudiante/perfilEstudiante&x=<?=$estudiantes->id?>&y=<?=$estudiantes->id_familia_e?>&z=<?=$estudiantes->id_grado?>">
@@ -153,9 +160,9 @@
                                             <div class="form-floating mb-3">
                                                 <select aria-label=".form-select-lg example" class="form-select form-select-md mb-3" name="grado" required="">
                                                 <?php if (isset($todos)):
-                                                        while ($grado = $todos->fetchObject()): ?>
-                                                                <option value="<?=$grado->id?>"><?=$grado->nombre_g?></option>
-		                                              <?php endwhile;
+                                                            while ($grado = $todos->fetchObject()): ?>
+		                                                                <option value="<?=$grado->id?>"><?=$grado->nombre_g?></option>
+				                                              <?php endwhile;
                                                 endif;?>
                                                 </select>
                                                 <label for="incapacidad">
@@ -379,7 +386,7 @@
                                           <label for="formFileLg" class="form-label">Foto del estudiante:</label>
                                           <input class="form-control" id="formFileLg" type="file" name="foto">
                                         </div>
-                                    </div> 
+                                    </div>
                                  <h5 class="text-center mt-3 mb-3">
                                         Padres
                                     </h5>
@@ -387,7 +394,7 @@
                                     <div class="row mt-3 mb-3">
                                         <div class="col-md-6">
                                             <div class="form-check">
-                                                <input class="form-check-input" id="si" name="padres" type="radio" value="si">
+                                                <input class="form-check-input" id="si" name="existePadres" type="radio" value="si">
                                                     <label class="form-check-label" for="si">
                                                         Los padres YA estan registrados
                                                     </label>
@@ -396,7 +403,7 @@
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-floating mb-3">
-                                                <input class="form-control" id="floatingInput" type="number" name="siPadres">
+                                                <input class="form-control" id="floatingInput" type="number" name="siExistePadre">
                                                     <label for="floatingInput">
                                                         Número de cédula del padre o de la madre
                                                     </label>
@@ -408,7 +415,7 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-check">
-                                                <input class="form-check-input" id="no" name="padres" type="radio" value="no">
+                                                <input class="form-check-input" id="no" name="existePadres" type="radio" value="no">
                                                     <label class="form-check-label" for="no">
                                                         Los padres aun NO estan registrados
                                                     </label>
@@ -663,7 +670,7 @@
                                                     <div class="row">
                                                         <div class="col-md-6">
                                                             <div class="form-floating mb-3">
-                                                                <input class="form-control" id="direccion_mp" name="direccion_mp" placeholder="Dirección"  type="number">
+                                                                <input class="form-control" id="direccion_mp" name="direccion_mp" placeholder="Dirección"  type="text">
                                                                     <label for="direccion_mp">
                                                                         Dirección:
                                                                     </label>

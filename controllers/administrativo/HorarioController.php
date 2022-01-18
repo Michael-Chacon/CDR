@@ -6,10 +6,10 @@ class HorarioController
     public function registrarHorario()
     {
         if (!empty($_POST)) {
-            $materia = $_POST['id_materia'];
-            $dia = $_POST['dia'];
-            $inicio = $_POST['inicio'];
-            $fin = $_POST['fin'];
+            $materia = trim($_POST['id_materia']);
+            $dia = trim($_POST['dia']);
+            $inicio = trim($_POST['inicio']);
+            $fin = trim($_POST['fin']);
             $horario = new Horario();
             $horario->setMateria($materia);
             $horario->setDia($dia);
@@ -34,6 +34,6 @@ class HorarioController
         $resultado = $delete->deleteDay();
         Utils::validarReturn($resultado, 'eliminarHora');
 
-        header("Location: ".base_url. 'Materias/vista&id_grado='. $grado);
+        header("Location: " . base_url . 'Materias/vista&id_grado=' . $grado);
     }
 } # fin de la clase
