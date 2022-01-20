@@ -295,6 +295,29 @@ CREATE TABLE documentos(
 	CONSTRAINT pk_documentos PRIMARY KEY(id)
 )ENGINE=InnoDb;
 
+# tablas nuevas
+CREATE TABLE documentosClase(
+ id INT(4) AUTO_INCREMENT NOT NULL,
+ id_materia_d INT(4) NOT NULL,
+ titulo VARCHAR(200)  NOT NULL, 
+ fecha DATE NOT NULL,
+ formato VARCHAR(7) NOT NULL,
+ documento VARCHAR(255) NOT NULL,
+ descripcion TEXT NOT NULL,
+ CONSTRAINT pk_documentos_clase PRIMARY KEY(id),
+ CONSTRAINT fk_documentos_clase_materia FOREIGN KEY(id_materia_d) REFERENCES materia(id) ON DELETE CASCADE
+)ENGINE=InnoDb;
+
+CREATE TABLE actividadesMateria(
+	id INT(4) AUTO_INCREMENT NOT NULL, 
+	id_materia_a INT(4) NOT NULL,
+	titulo_actividad VARCHAR(100) NOT NULL, 
+	fecha DATE NOT NULL, 
+	descripcion TEXT NOT NULL, 
+	CONSTRAINT pk_actividad_materia PRIMARY KEY(id), 
+	CONSTRAINT fk_actividad_materia FOREIGN KEY(id_materia_a) REFERENCES materia(id) ON DELETE CASCADE
+)ENGINE=InnoDb;
+
 --  seleccionar todos los grados
 SELECT gd.id_grado_d FROM gradodocente gd
 INNER JOIN docente d ON d.id = gd.id_docente_g
