@@ -1,5 +1,5 @@
 <?php
-require_once 'models/administrativo/documentos.php';
+require_once 'models/documentos.php';
 class DocumentoController
 {
     public function vista_documentos()

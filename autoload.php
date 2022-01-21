@@ -8,7 +8,7 @@ function autocarga_raiz($controlador)
 }
 spl_autoload_register('autocarga_raiz');
 
-// auto carga de los controladores del mosulo administrador
+// auto carga de los controladores del modulo administrador
 function autocarga_admin($administrativos)
 {
     if (file_exists('controllers/administrativo/' . $administrativos . '.php')) {
@@ -16,3 +16,12 @@ function autocarga_admin($administrativos)
     }
 }
 spl_autoload_register('autocarga_admin');
+
+// auto carga de los controladores del modulo de docentes
+function autocarga_docentes($docentes)
+{
+    if (file_exists('controllers/docentes/' . $docentes . '.php')) {
+        include 'controllers/docentes/' . $docentes . '.php';
+    }
+}
+spl_autoload_register('autocarga_docentes');

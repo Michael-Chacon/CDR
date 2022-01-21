@@ -1,8 +1,8 @@
 <?php
-require_once 'models/administrativo/docente.php';
-require_once 'models/administrativo/credencial.php';
-require_once 'models/administrativo/asignaciones.php';
-require_once 'models/administrativo/horario.php';
+require_once 'models/docente.php';
+require_once 'models/credencial.php';
+require_once 'models/asignaciones.php';
+require_once 'models/horario.php';
 
 class DocenteController
 {

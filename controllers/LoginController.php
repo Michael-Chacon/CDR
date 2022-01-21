@@ -60,11 +60,10 @@ class LoginController
                     $id_user = $respuesta->id_docente;
                     $informacion->setIdUsuario($id_user);
                     $info = $informacion->obtenerDatos($rol);
-                    $_SESSION['user'] = $info;
-                    header('Location: ' . base_url . 'Login/homeEstudiante');
+                    $_SESSION['teacher'] = $info;
+                    header('Location: ' . base_url . 'Teacher/homeDocente');
                     break;
                 default:
-                    // code...
                     break;
             }
         }

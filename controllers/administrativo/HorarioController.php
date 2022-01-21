@@ -1,5 +1,5 @@
 <?php
-require_once 'models/administrativo/horario.php';
+require_once 'models/horario.php';
 
 class HorarioController
 {

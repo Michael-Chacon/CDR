@@ -1,7 +1,7 @@
 <?php
-require_once 'models/administrativo/docente.php';
-require_once 'models/administrativo/grados.php';
-require_once 'models/administrativo/asignaciones.php';
+require_once 'models/docente.php';
+require_once 'models/grados.php';
+require_once 'models/asignaciones.php';
 
 class AsignacionesController
 {

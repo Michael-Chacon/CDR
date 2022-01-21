@@ -1,6 +1,6 @@
 <?php
-require_once 'models/administrativo/administrativo.php';
-require_once 'models/administrativo/credencial.php';
+require_once 'models/administrativo.php';
+require_once 'models/credencial.php';
 require_once 'controllers/LoginController.php';
 
 class AdministrativoController

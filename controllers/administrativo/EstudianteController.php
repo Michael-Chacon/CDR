@@ -1,10 +1,10 @@
 <?php
-require_once 'models/administrativo/grados.php';
-require_once 'models/administrativo/estudiante.php';
-require_once 'models/administrativo/padres.php';
-require_once 'models/administrativo/credencial.php';
-require_once 'models/administrativo/horario.php';
-require_once 'models/administrativo/materias.php';
+require_once 'models/grados.php';
+require_once 'models/estudiante.php';
+require_once 'models/padres.php';
+require_once 'models/credencial.php';
+require_once 'models/horario.php';
+require_once 'models/materias.php';
 
 class EstudianteController
 {

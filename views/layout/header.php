@@ -74,6 +74,33 @@
                     </a>
                 </div>
             </div>
+            <?php elseif (isset($_SESSION['teacher'])): ?>
+                <!-- Sidebar-->
+            <div class="border-end " id="sidebar-wrapper">
+                <div class="sidebar-heading border-bottom ">
+                    <div class="row justify-content-center bg-light ">
+                        <div class="col-6 text-center bg-light">
+                            <img alt="" class="avatar circulo" src="<?=base_url?>photos/docentes/<?=$_SESSION['teacher']->img?>">
+                            </img>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <p class="nombre">
+                            <?=$_SESSION['teacher']->nombre_d;?>
+                            <?=$_SESSION['teacher']->apellidos_d;?>
+                        </p>
+                    </div>
+                </div>
+                <div class="list-group list-group-flush ">
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="<?=base_url?>Login/homeDocente">
+                       <i class="bi bi-house"></i> <span>Inicio</span>
+                    </a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3 menu-items" href="#!">
+                       <i class="bi bi-calendar-check"></i>  Calendario
+                    </a>
+                </div>
+            </div>
+            <?php endif;?>
             <!-- Page content wrapper-->
             <section id="page-content-wrapper">
                 <!-- Top navigation-->
@@ -125,5 +152,5 @@
                         </div>
                     </div>
                 </nav>
-            <?php endif; ?>
+
                 <!-- contenido de  la pagina -->

@@ -1,7 +1,7 @@
 <?php
-require_once 'models/administrativo/materias.php';
-require_once 'models/administrativo/grados.php';
-require_once 'models/administrativo/horario.php';
+require_once 'models/materias.php';
+require_once 'models/grados.php';
+require_once 'models/horario.php';
 class MateriasController
 {
     public function vista()

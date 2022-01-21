@@ -1,5 +1,5 @@
 <?php
-require_once 'models/administrativo/periodos.php';
+require_once 'models/periodos.php';
 class PeriodoController
 {
     public function vista_config()

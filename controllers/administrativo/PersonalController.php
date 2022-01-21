@@ -1,5 +1,5 @@
 <?php
-require_once 'models/administrativo/personal.php';
+require_once 'models/personal.php';
 
 class PersonalController
 {
