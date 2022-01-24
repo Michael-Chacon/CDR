@@ -249,7 +249,7 @@ hr {
     width: 100%;
 }
 .materias {
-    height: 150px;
+    height: 100px;
     max-height: 160px;
 }
 .boton-acordeon {
@@ -375,4 +375,42 @@ hr {
 .th-documents {
     font-size: 25px;
     font-weight: 400;
+}
+.fila-estudiante:hover {
+    color: #AC23FF;
+    border: 1px solid #AC23FF;
+}
+.text-actividad {
+    font-size: 15px;
+    font-weight: 200;
+    color: #EBE8EC;
+}
+.texto-documento {
+    font-size: 15px;
+    font-weight: 200;
+    .color: black;
+}
+.texto-body {
+    font-size: 20px;
+    font-weight: 400;
+}
+.icono-actividades {
+    color: #09B080;
+}
+.icono-actividades:hover {
+    color: red !important;
+}
+.punto-actividades {
+    color: #FA00C2;
+    font-size: 15px;
+}
+.punto-documentos {
+    color: #00FAE0;
+    font-size: 15px;
+}
+.titulo-seccion {
+    font-weight: 400;
+}
+.nombre_estudiante {
+    font-size: 20px;
 }

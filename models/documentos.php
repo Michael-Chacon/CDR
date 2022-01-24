@@ -3,8 +3,11 @@
 class Documentos
 {
     private $id;
+    private $titulo;
     private $nombre;
     private $descripcion;
+    private $fecha;
+    private $formato;
     public $db;
 
     public function __construct()
@@ -72,6 +75,66 @@ class Documentos
         return $this;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getFecha()
+    {
+        return $this->fecha;
+    }
+
+    /**
+     * @param mixed $fecha
+     *
+     * @return self
+     */
+    public function setFecha($fecha)
+    {
+        $this->fecha = $fecha;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getFormato()
+    {
+        return $this->formato;
+    }
+
+    /**
+     * @param mixed $formato
+     *
+     * @return self
+     */
+    public function setFormato($formato)
+    {
+        $this->formato = $formato;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTitulo()
+    {
+        return $this->titulo;
+    }
+
+    /**
+     * @param mixed $titulo
+     *
+     * @return self
+     */
+    public function setTitulo($titulo)
+    {
+        $this->titulo = $titulo;
+
+        return $this;
+    }
+
     public function save()
     {
         try {
@@ -101,4 +164,42 @@ class Documentos
         $eliminar->bindParam(":id", $id_docu, PDO::PARAM_INT);
         return $eliminar->execute();
     }
-}
+
+    # modulo docente: guardar documentos de actividades en  x materia
+    public function saveClassDocument()
+    {
+        $subject = $this->getId();
+        $tittle = $this->getTitulo();
+        $date = $this->getFecha();
+        $format = $this->getFormato();
+        $document = $this->getNombre();
+        $description = $this->getDescripcion();
+        $register = $this->db->prepare("INSERT INTO documentosclase VALUES(null, :materia, :titulo, :fecha, :formato, :documento, :descripcion)");
+        $register->bindParam(":materia", $subject, PDO::PARAM_INT);
+        $register->bindParam(":titulo", $tittle, PDO::PARAM_STR);
+        $register->bindParam(":fecha", $date, PDO::PARAM_STR);
+        $register->bindParam(":formato", $format, PDO::PARAM_STR);
+        $register->bindParam("documento", $document, PDO::PARAM_STR);
+        $register->bindParam("descripcion", $description, PDO::PARAM_STR);
+        return $register->execute();
+    }
+
+    # obtener la lista de los documentos guardados en x materia
+    public function listClassDocuments()
+    {
+        $subject = $this->getId();
+        $listar = $this->db->prepare("SELECT * FROM documentosclase WHERE id_materia_d = :materia ORDER BY id DESC");
+        $listar->bindParam(":materia", $subject, PDO::PARAM_INT);
+        $listar->execute();
+        return $listar;
+    }
+    # eliminar un documento de x materia
+    public function deleteClassDocument()
+    {
+        $id_document = $this->getId();
+        $delete = $this->db->prepare("DELETE FROM documentosclase WHERE id = :id");
+        $delete->bindParam(":id", $id_document, PDO::PARAM_INT);
+        return $delete->execute();
+    }
+
+} # fin de la clase

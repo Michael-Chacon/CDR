@@ -1,0 +1,17 @@
+<?php
+require_once 'models/asignaciones.php';
+class MisMateriasController
+{
+    public function misMaterias()
+    {
+        $id_grado = $_GET['grado'];
+        $nombre_grado = $_GET['nombre'];
+        $docente = $_SESSION['teacher']->id;
+
+        $materias = new Asignaciones();
+        $materias->setGrados($id_grado);
+        $materias->setIdDocente($docente);
+        $allMaterias = $materias->materiasAsignadas();
+        require_once 'views/docente/misMaterias.php';
+    }
+}

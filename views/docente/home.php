@@ -13,7 +13,7 @@
                                 </i>
                             </a>
                             <ul class="dropdown-menu">
-                                <li>
+                              <!--   <li>
                                     <a class="dropdown-item" data-bs-target="#CreatGrado" data-bs-toggle="modal" href="#">
                                         <i class="bi bi-book-half">
                                         </i>
@@ -29,7 +29,7 @@
                                         </i>
                                         Asignar horario
                                     </a>
-                                </li>
+                                </li> -->
                                 <!-- <li><a class="dropdown-item" href="#">Menu item</a></li> -->
                             </ul>
                         </acticle>
@@ -41,28 +41,33 @@
                     <h3 class="text-center">
                         Grados
                     </h3>
+                    <?php if ($mis_grados->rowCount() != 0): ?>
+                        <?php while ($grado = $mis_grados->fetchObject()): ?>
                     <article class="col-xs-12 col-sm-4 col-md-2 col-xl-2 mb-2">
                         <article class="card text-center shadow option">
                             <div class="card-body contenido-card">
                                 <h2 class="mt-2 grados">
-                                    6°
+                                    <?=$grado->nombre_g?>
                                 </h2>
                                 <hr class="hr-perfil"/>
-                                <a class="stretched-link" href="materias.html">
+                                <a class="stretched-link" href="<?=base_url?>MisMaterias/misMaterias&grado=<?=$grado->id?>&nombre=<?=$grado->nombre_g?>">
                                 </a>
                             </div>
                         </article>
                     </article>
+                <?php endwhile;?>
+                <?php else: ?>
+                   <p class="text-center mt-3"><span class="badge bg-warning text-dark">No hay grados asignadas.</span></p>
+                <?php endif;?>
                 </section>
                 <hr/>
+                <!-- horario -->
                 <section class="row">
-                    <h3 class="text-center">
-                        Horario
-                    </h3>
                     <article class="col-md-4 text-center">
                         <span class="dia">
                             Lunes
                         </span>
+                        <?php if ($dia_lunes->rowCount() > 0): ?>
                         <div>
                             <table class="table shadow text-center table-bordered table-hover">
                                 <thead>
@@ -82,52 +87,238 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    <?php while ($lunes = $dia_lunes->fetchObject()): ?>
                                     <tr>
                                         <td>
-                                            7:00
+                                            <?=$lunes->inicio?>
                                         </td>
                                         <td>
-                                            8:00
+                                            <?=$lunes->fin?>
                                         </td>
                                         <td>
-                                            Informática
+                                            <?=$lunes->nombre_mat?>
                                         </td>
                                         <td>
-                                            6
+                                            <?=$lunes->nombre_g?>
                                         </td>
                                     </tr>
+                                    <?php endwhile;?>
+                                </tbody>
+                            </table>
+                            <?php else: ?>
+                            <p class="text-center mt-3">
+                                <span class="badge bg-warning text-dark">
+                                    No tienes clases.
+                                </span>
+                            </p>
+                            <?php endif;?>
+                        </div>
+                    </article>
+                    <article class="col-md-4 text-center">
+                        <span class="dia">
+                            Martes
+                        </span>
+                        <?php if ($dia_martes->rowCount() > 0): ?>
+                        <div>
+                            <table class="table shadow text-center table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">
+                                            Inicio
+                                        </th>
+                                        <th>
+                                            Fin
+                                        </th>
+                                        <th scope="col">
+                                            Materia
+                                        </th>
+                                        <th>
+                                            Grado
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php while ($martes = $dia_martes->fetchObject()): ?>
                                     <tr>
                                         <td>
-                                            8:00
+                                            <?=$martes->inicio?>
                                         </td>
                                         <td>
-                                            9:00
+                                            <?=$martes->fin?>
                                         </td>
                                         <td>
-                                            Estadistica
+                                            <?=$martes->nombre_mat?>
                                         </td>
                                         <td>
-                                            8
+                                            <?=$martes->nombre_g?>
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <td>
-                                            9:00
-                                        </td>
-                                        <td>
-                                            10:00
-                                        </td>
-                                        <td>
-                                            Filosofia
-                                        </td>
-                                        <td>
-                                            11
-                                        </td>
-                                    </tr>
+                                    <?php endwhile;?>
                                 </tbody>
                             </table>
                         </div>
+                        <?php else: ?>
+                        <p class="text-center mt-3">
+                            <span class="badge bg-warning text-dark">
+                                No tienes clases.
+                            </span>
+                        </p>
+                        <?php endif;?>
+                    </article>
+                    <article class="col-md-4 text-center">
+                        <span class="dia">
+                            Miercoles
+                        </span>
+                        <?php if ($dia_miercoles->rowCount() > 0): ?>
+                        <div>
+                            <table class="table shadow text-center table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">
+                                            Inicio
+                                        </th>
+                                        <th>
+                                            Fin
+                                        </th>
+                                        <th scope="col">
+                                            Materia
+                                        </th>
+                                        <th>
+                                            Grado
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php while ($miercoles = $dia_miercoles->fetchObject()): ?>
+                                    <tr>
+                                        <td>
+                                            <?=$miercoles->inicio?>
+                                        </td>
+                                        <td>
+                                            <?=$miercoles->fin?>
+                                        </td>
+                                        <td>
+                                            <?=$miercoles->nombre_mat?>
+                                        </td>
+                                        <td>
+                                            <?=$miercoles->nombre_g?>
+                                        </td>
+                                    </tr>
+                                    <?php endwhile;?>
+                                </tbody>
+                            </table>
+                        </div>
+                        <?php else: ?>
+                        <p class="text-center mt-3">
+                            <span class="badge bg-warning text-dark">
+                                No tienes clases.
+                            </span>
+                        </p>
+                        <?php endif;?>
+                    </article>
+                    <article class="col-md-4 text-center">
+                        <span class="dia">
+                            Jueves
+                        </span>
+                        <?php if ($dia_jueves->rowCount() > 0): ?>
+                        <div>
+                            <table class="table shadow text-center table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">
+                                            Inicio
+                                        </th>
+                                        <th>
+                                            Fin
+                                        </th>
+                                        <th scope="col">
+                                            Materia
+                                        </th>
+                                        <th>
+                                            Grado
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php while ($jueves = $dia_jueves->fetchObject()): ?>
+                                    <tr>
+                                        <td>
+                                            <?=$jueves->inicio?>
+                                        </td>
+                                        <td>
+                                            <?=$jueves->fin?>
+                                        </td>
+                                        <td>
+                                            <?=$jueves->nombre_mat?>
+                                        </td>
+                                        <td>
+                                            <?=$jueves->nombre_g?>
+                                        </td>
+                                    </tr>
+                                    <?php endwhile;?>
+                                </tbody>
+                            </table>
+                        </div>
+                        <?php else: ?>
+                        <p class="text-center mt-3">
+                            <span class="badge bg-warning text-dark">
+                                No tienes clases.
+                            </span>
+                        </p>
+                        <?php endif;?>
+                    </article>
+                    <article class="col-md-4 text-center">
+                        <span class="dia">
+                            Viernes
+                        </span>
+                        <?php if ($dia_viernes->rowCount() > 0): ?>
+                        <div>
+                            <table class="table shadow text-center table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">
+                                            Inicio
+                                        </th>
+                                        <th>
+                                            Fin
+                                        </th>
+                                        <th scope="col">
+                                            Materia
+                                        </th>
+                                        <th>
+                                            Grado
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php while ($viernes = $dia_viernes->fetchObject()): ?>
+                                    <tr>
+                                        <td>
+                                            <?=$viernes->inicio?>
+                                        </td>
+                                        <td>
+                                            <?=$viernes->fin?>
+                                        </td>
+                                        <td>
+                                            <?=$viernes->nombre_mat?>
+                                        </td>
+                                        <td>
+                                            <?=$viernes->nombre_g?>
+                                        </td>
+                                    </tr>
+                                    <?php endwhile;?>
+                                </tbody>
+                            </table>
+                        </div>
+                        <?php else: ?>
+                        <p class="text-center mt-3">
+                            <span class="badge bg-warning text-dark">
+                                No tienes clases.
+                            </span>
+                        </p>
+                        <?php endif;?>
                     </article>
                 </section>
+                <!-- fin del horario -->
                 <hr/>
             </section>

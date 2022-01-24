@@ -92,7 +92,7 @@
                     </div>
                 </div>
                 <div class="list-group list-group-flush ">
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="<?=base_url?>Login/homeDocente">
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="<?=base_url?>Teacher/homeDocente">
                        <i class="bi bi-house"></i> <span>Inicio</span>
                     </a>
                     <a class="list-group-item list-group-item-action list-group-item-light p-3 menu-items" href="#!">
@@ -106,7 +106,7 @@
                 <!-- Top navigation-->
                 <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
                     <div class="container-fluid">
-                        <button class="btn btn-success" id="sidebarToggle">
+                        <button class="btn btn-success" id="sidebarToggle" accesskey="h">
                             <i class="bi bi-list"></i>Menu
                         </button>
                         <button aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-bs-target="#navbarSupportedContent" data-bs-toggle="collapse" type="button">

@@ -153,7 +153,7 @@ class Asignaciones
         return $materias;
     } # metodo
 
-    # guardar las materias que se le accignaron al docente
+    # guardar las materias que se le asignaron al docente
     public function docenteMateria()
     {
         $materias = $this->getMateria();
