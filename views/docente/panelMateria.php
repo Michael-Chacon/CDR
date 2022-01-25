@@ -1,19 +1,24 @@
  <!-- inicio del contenido de la pagina -->
             <section class="container-fluid">
-                <?php echo Utils::general_alerts('GuardarDocumentosDClase', 'Documento registrado con éxito.', 'Error al intentar registrar el documento, inténtelo de nuevo.')?>
+                <?php echo Utils::general_alerts('GuardarDocumentosDClase', 'Documento registrado con éxito.', 'Error al intentar registrar el documento, inténtelo de nuevo.') ?>
                 <?php echo Utils::general_alerts('eliminarDocumentoDClase', 'Documento eliminado con éxito.', 'Error al intentar borrar el documento, inténtelo de nuevo.') ?>
                  <?php echo Utils::general_alerts('tituloRepetido', '', 'El título de este documento ya está registrado en esta materia, cámbialo.') ?>
                  <?php echo Utils::general_alerts('documentoRepetido', '', 'El nombre del documento ya está registrado en esta materia, cámbialo.') ?>
+                 <?php echo Utils::general_alerts('GuardarActividadesDClase', 'Actividad registrada con éxito.', 'Error al intentar registrar la actividad, inténtelo de nuevo.') ?>
+                 <?php echo Utils::general_alerts('estadoA', '', 'El título de esta actividad ya está registrado en esta materia, cámbialo.') ?>
 
                 <?php Utils::borrar_error('GuardarDocumentosDClase');
-                            Utils::borrar_error('eliminarDocumentoDClase'); 
-                            Utils::borrar_error('tituloRepetido');
-                            Utils::borrar_error('documentoRepetido');?>
+Utils::borrar_error('eliminarDocumentoDClase');
+Utils::borrar_error('tituloRepetido');
+Utils::borrar_error('documentoRepetido');
+Utils::borrar_error('GuardarActividadesDClase');
+Utils::borrar_error('estadoA');
+?>
 
                 <section class="row shadow titulo mb-3">
                     <article class="col-xs-11 col-sm-11 col-md-11 col-lg-11">
                         <h1 class="text-center config">
-                            <?=$nombre_ma?> <?=$nombre_gra?>° 
+                            <?=$nombre_ma?> <?=$nombre_gra?>°
                         </h1>
                     </article>
                     <article class="col-xs-1 col-sm-1 col-md-1 col-lg-1 config icono-menu text-center">
@@ -71,13 +76,13 @@
                                     </thead>
                                     <tbody class="text-center texto-body">
                                         <?php $c = 1;
-                                            while ($estudiantes = $listado_estudiantes->fetchObject()): ?>
+while ($estudiantes = $listado_estudiantes->fetchObject()): ?>
                                             <tr>
                                                 <td>
                                                     <?=$c++?>
                                                 </td>
                                                 <td>
-                                                    <a href="#">
+                                                    <a href="<?=base_url?>Notas/homeNotas&student=<?=$estudiantes->id?>&materia=<?=$materia?>&nGrado=<?=$nombre_gra?>">
                                                         <?=$estudiantes->nombre_e;?> <?=$estudiantes->apellidos_e?>
                                                     </a>
                                                 </td>
@@ -99,44 +104,44 @@
                             </span>
                         </h3>
                         <hr/>
-                        <?php if($listado_documentos->rowCount() != 0): ?>
-                            <?php while($datos_documetos = $listado_documentos->fetchObject()): ?>
-                            <section class="card mb-3 shadow">
-                                <article class="card-header">
-                                    <section class="row">
-                                        <span class="col-xs-10 col-sm-10 col-md-10 text-center">
-                                            <?=$datos_documetos->titulo?>
-                                            <span class="badge bg-success">
-                                                <?=$datos_documetos->fecha?>
+                        <?php if ($listado_documentos->rowCount() != 0): ?>
+                            <?php while ($datos_documetos = $listado_documentos->fetchObject()): ?>
+                                <section class="card mb-3 shadow">
+                                    <article class="card-header">
+                                        <section class="row">
+                                            <span class="col-xs-10 col-sm-10 col-md-10 text-center">
+                                                <?=$datos_documetos->titulo?>
+                                                <span class="badge bg-success">
+                                                    <?=$datos_documetos->fecha?>
+                                                </span>
                                             </span>
+                                            <span class="col-xs-1 col-sm-1 col-md-1 col-lg-1 text-center">
+                                                <a class="icono-actividades" download="<?=$datos_documetos->documento?>" href="<?=base_url?>documentos/materias/<?=$datos_documetos->documento?>">
+                                                    <i class="bi bi-download" style="font-size: 1.2rem;">
+                                                    </i>
+                                                </a>
+                                            </span>
+                                            <span class="col-xs-1 col-sm-1 col-md-1 col-lg-1 text-center">
+                                                <a class="icono-actividades " onclick="confirmar()" href="<?=base_url?>panelMateria/eliminarDocumentoDClase&id_docu=<?=$datos_documetos->id?>&degree=<?=$grado?>&ide=<?=$materia?>&name=<?=$nombre_ma?>&nombreg=<?=$nombre_gra?>">
+                                                    <i class="bi bi-trash" style="font-size: 1.2rem;">
+                                                    </i>
+                                                </a>
+                                            </span>
+                                        </section>
+                                    </article>
+                                    <article class="card-body">
+                                        <span class="badge rounded-pill bg-info text-dark">
+                                            <?=$datos_documetos->formato?>
                                         </span>
-                                        <span class="col-xs-1 col-sm-1 col-md-1 col-lg-1 text-center">
-                                            <a class="icono-actividades" download="<?=$datos_documetos->documento?>" href="<?=base_url?>documentos/materias/<?=$datos_documetos->documento?>">
-                                                <i class="bi bi-download" style="font-size: 1.2rem;">
-                                                </i>
-                                            </a>
-                                        </span>
-                                        <span class="col-xs-1 col-sm-1 col-md-1 col-lg-1 text-center">
-                                            <a class="icono-actividades " onclick="confirmar()" href="<?=base_url?>panelMateria/eliminarDocumentoDClase&id_docu=<?=$datos_documetos->id?>&degree=<?=$grado?>&ide=<?=$materia?>&name=<?=$nombre_ma?>&nombreg=<?=$nombre_gra?>">
-                                                <i class="bi bi-trash" style="font-size: 1.2rem;">
-                                                </i>
-                                            </a>
-                                        </span>
-                                    </section>
-                                </article>
-                                <article class="card-body">
-                                    <span class="badge rounded-pill bg-info text-dark">
-                                        <?=$datos_documetos->formato?>
-                                    </span>
-                                    <p class="card-text text-documento">
-                                        <?=$datos_documetos->descripcion?>
-                                    </p>
-                                </article>
-                            </section>
-                        <?php endwhile; ?>
-                     <?php else: ?>
-                        <p class="text-center mt-3"><span class="badge bg-warning text-dark">No hay documentos.</span></p>
-                    <?php endif; ?>
+                                        <p class="card-text text-documento">
+                                            <?=$datos_documetos->descripcion?>
+                                        </p>
+                                    </article>
+                                </section>
+                            <?php endwhile;?>
+                        <?php else: ?>
+                            <p class="text-center mt-3"><span class="badge bg-warning text-dark">No hay documentos.</span></p>
+                        <?php endif;?>
                     </article>
                     <!-- inicio de los recordatorioscol-xs-12 col-sm-12  -->
                     <article class="col-xs-12 col-sm-12 col-md-3 ">
@@ -147,31 +152,25 @@
                             </span>
                         </h3>
                         <hr/>
-                        <section class="card text-black mb-3 shadow">
-                            <article class="card-body">
-                                <h6 class="card-title">
-                                    Quiz de filosofia bla bla bla
-                                    <span class="badge bg-success">
-                                    </span>
-                                </h6>
-                                <p class="card-text text-actividad text-black">
-                                    Some quick example text to build on the card title and make up the bulk of the card's content.
-                                </p>
-                            </article>
-                        </section>
-                        <section class="card text-black mb-3 shadow">
-                            <article class="card-body">
-                                <h6 class="card-title">
-                                    Quiz de filosofia
-                                    <span class="badge bg-success">
-                                        26/02/1998
-                                    </span>
-                                </h6>
-                                <p class="card-text text-actividad text-black">
-                                    Some quick example text to build on the card title and make up the bulk of the card's content.
-                                </p>
-                            </article>
-                        </section>
+                        <?php if ($listado_actividades->rowCount() != 0): ?>
+                            <?php while ($actividad = $listado_actividades->fetchObject()): ?>
+                                <section class="card text-black mb-3 shadow">
+                                    <article class="card-body">
+                                        <h6 class="card-title">
+                                            <?=$actividad->titulo_actividad?>
+                                            <span class="badge bg-success">
+                                            <?=$actividad->fecha?>
+                                            </span>
+                                        </h6>
+                                        <p class="card-text text-actividad text-black">
+                                            <?=$actividad->descripcion?>
+                                        </p>
+                                    </article>
+                                </section>
+                            <?php endwhile;?>
+                        <?php else: ?>
+                            <p class="text-center mt-3"><span class="badge bg-warning text-dark">No hay actividades.</span></p>
+                        <?php endif;?>
                     </article>
                 </section>
             </section>
@@ -261,7 +260,11 @@
                             <button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button">
                             </button>
                         </div>
-                        <form action="#" method="post">
+                        <form action="<?=base_url?>panelMateria/GuardarActividadesDClase" method="post">
+                            <input type="text" hidden="true" name="id_materia" value="<?=$materia?>">
+                            <input type="text" hidden="true" name="degree" value="<?=$grado?>">
+                            <input type="text" hidden="true" name="name" value="<?=$nombre_ma?>">
+                            <input type="text" hidden="true" name="nombreg" value="<?=$nombre_gra?>">
                             <div class="modal-body">
                                 <div class="row">
                                     <div class="col-md-6">
@@ -269,7 +272,7 @@
                                             <label class="form-label" for="exampleFormControlInput1">
                                                 Título de la actividad:
                                             </label>
-                                            <input class="form-control" id="exampleFormControlInput1" placeholder="Actividad" required="" type="text">
+                                            <input class="form-control" id="exampleFormControlInput1" placeholder="Actividad" required="" type="text" name="tituloA" autocomplete="off">
                                             </input>
                                         </div>
                                     </div>
@@ -278,7 +281,7 @@
                                             <label class="form-label" for="exampleFormControlInput1">
                                                 Fecha de la actividad:
                                             </label>
-                                            <input class="form-control" id="exampleFormControlInput1" type="date">
+                                            <input class="form-control" id="exampleFormControlInput1" type="date" name="fechaA">
                                             </input>
                                         </div>
                                     </div>
@@ -287,7 +290,7 @@
                                     <label class="form-label" for="exampleFormControlTextarea1">
                                         Descripción:
                                     </label>
-                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3">
+                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="descripcionA">
                                     </textarea>
                                 </div>
                             </div>
@@ -295,7 +298,7 @@
                                 <button class="btn btn-outline-danger" data-bs-dismiss="modal" type="button">
                                     Cerrar
                                 </button>
-                                <button class="btn btn-outline-success" type="button">
+                                <button class="btn btn-outline-success" type="submit">
                                     Registrar
                                 </button>
                             </div>

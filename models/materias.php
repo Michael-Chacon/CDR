@@ -188,4 +188,13 @@ class Materias
         return $materias;
     }
 
+    # seleccionar informacion de una sola materia (se utilizara en el controlador de notas)
+    public function selectOneSubject()
+    {
+        $id_subject = $this->getMateria();
+        $information = $this->db->prepare("SELECT * FROM materia WHERE id = :materia_id");
+        $information->bindParam(":materia_id", $id_subject, PDO::PARAM_INT);
+        $information->execute();
+        return $information->fetchObject();
+    }
 } # fin de la clase

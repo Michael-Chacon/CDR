@@ -1,6 +1,7 @@
 <?php
 require_once 'models/grados.php';
 require_once 'models/documentos.php';
+require_once 'models/actividades.php';
 
 class panelMateriaController
 {
@@ -14,6 +15,10 @@ class panelMateriaController
         $documentos = new Documentos();
         $documentos->setId($materia);
         $listado_documentos = $documentos->listClassDocuments();
+        # obtener el listado de actividades de la clase
+        $actividades = new Actividades();
+        $actividades->setMateria($materia);
+        $listado_actividades = $actividades->listClassActivitys();
         # listado de los estudiante que estan matriuculados en la materia
         $estudiante = new Grados();
         $estudiante->setGrado($grado);
@@ -38,9 +43,9 @@ class panelMateriaController
             }
             move_uploaded_file($file['tmp_name'], 'documentos/materias/' . $name);
 
-            $validar_nombre = Utils::validarExisenciaDocumentos('documentosclase', 'titulo', $titulo, $materia);
+            $validar_nombre = Utils::validarExisenciaDocumentos('documentosclase', 'titulo', $titulo, 'id_materia_d',$materia);
             if ($validar_nombre) {
-                $validar_documento = Utils::validarExisenciaDocumentos('documentosclase', 'documento', $name, $materia);
+                $validar_documento = Utils::validarExisenciaDocumentos('documentosclase', 'documento', $name, 'id_materia_d', $materia);
                 if ($validar_documento) {
                     $registrar = new Documentos();
                     $registrar->setId($materia);
@@ -63,7 +68,7 @@ class panelMateriaController
         header("Location: " . base_url . 'panelMateria/homeMateria&degree=' . $_POST['degree'] . '&ide=' . $_POST['id_materia'] . '&name=' . $_POST['name'] . '&nombreg=' . $_POST['nombreg']);
     }
 
-    # eliminar documentod de la clase
+    # eliminar documentod de la materia
     public function eliminarDocumentoDClase()
     {
         $id = $_GET['id_docu'];
@@ -72,6 +77,33 @@ class panelMateriaController
         $respuestaD = $borrador->deleteClassDocument();
         Utils::validarReturn($respuestaD, 'eliminarDocumentoDClase');
         header("Location: " . base_url . 'panelMateria/homeMateria&degree=' . $_GET['degree'] . '&ide=' . $_GET['ide'] . '&name=' . $_GET['name'] . '&nombreg=' . $_GET['nombreg']);
+    }
+
+    # guardar actividades de  x materia
+
+    public function GuardarActividadesDClase()
+    {
+        if (isset($_POST) && !empty($_POST)) {
+            $materia = $_POST['id_materia'];
+            $titulo = $_POST['tituloA'];
+            $fecha = $_POST['fechaA'];
+            $descripcion = $_POST['descripcionA'];
+
+            $validar_titulo = Utils::validarExisenciaDocumentos('actividadesmateria', 'titulo_actividad', $titulo, 'id_materia_a', $materia);
+            if ($validar_titulo) {
+                $agenda = new Actividades();
+                $agenda->setMateria($materia);
+                $agenda->setTitulo($titulo);
+                $agenda->setFecha($fecha);
+                $agenda->setDescripcion($descripcion);
+                $respuestaA = $agenda->saveClassActivity();
+                Utils::validarReturn($respuestaA, 'GuardarActividadesDClase');
+            } else {
+                $estadoA = false;
+                Utils::validarReturn($estadoA, 'estadoA');
+            }
+        }
+        header("Location: " . base_url . 'panelMateria/homeMateria&degree=' . $_POST['degree'] . '&ide=' . $_POST['id_materia'] . '&name=' . $_POST['name'] . '&nombreg=' . $_POST['nombreg']);
     }
 
 } # fin de la clase
