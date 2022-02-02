@@ -249,6 +249,10 @@ hr {
     width: 100%;
 }
 .materias {
+    height: 150px;
+    max-height: 160px;
+}
+.mis_materias {
     height: 100px;
     max-height: 160px;
 }
@@ -413,4 +417,7 @@ hr {
 }
 .nombre_estudiante {
     font-size: 20px;
+}
+.editar:hover {
+    color: #FA00C2 !important;
 }

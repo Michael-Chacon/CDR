@@ -42,7 +42,7 @@
                     <?php while ($materia = $allMaterias->fetchObject()): ?>
                 <article class="col-xs-12 col-sm-6 col-md-3 col-xl-3 mb-2">
                     <div class="card text-center shadow option">
-                        <div class="card-body contenido-card materias">
+                        <div class="card-body contenido-card mis_materias">
                             <i class="bi bi-calculator-fill" style="font-size: 1.5rem;">
                             </i>
                             <hr class="hr-perfil"/>

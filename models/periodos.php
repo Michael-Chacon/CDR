@@ -113,61 +113,38 @@ class Periodos
         return $this;
     }
 
-    # validar que el numero del periodo no esta repetido
-    public function validarNumero()
-    {
-        $number = $this->getNumero();
-        $numero = $this->db->prepare("SELECT COUNT(id) AS 'ids' FROM periodo WHERE nombre_periodo = :numero");
-        $numero->bindParam(':numero', $number, PDO::PARAM_INT);
-        $numero->execute();
-        $num = $numero->fetchObject();
-
-        if ($num->ids == 0) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
     # validar que las fechas de los  nuevos periodos no se crucen con las fechas de periodos que ya existen.
-    public function ValidarFechas()
-    {
-        # validar el numero de periodos ya registrados en la base de datos
-        $base = $this->db->prepare("SELECT COUNT(id) AS 'total' FROM periodo");
-        $base->execute();
+    // public function ValidarFechas()
+    // {
+    //     $fin = $this->getFechaFin();
+    //     $inicio = $this->getFechaInicio();
 
-        if ($base->fetchObject()->total != 0) {
-            $fin = $this->getFechaFin();
-            $inicio = $this->getFechaInicio();
+    //     #obtener la fecha final del ultimo periodo registrado
+    //     $ultimo = $this->db->prepare("SELECT fecha_fin FROM periodo ORDER BY id DESC LIMIT 1");
+    //     $ultimo->execute();
+    //     $fecha = $ultimo->fetchObject()->fecha_fin;
+    //     $fecha_final = date("Y-m-d", strtotime($fecha));
 
-            #obtener la fecha final del ultimo periodo registrado
-            $ultimo = $this->db->prepare("SELECT fecha_fin FROM periodo ORDER BY id DESC LIMIT 1");
-            $ultimo->execute();
-            $fecha = $ultimo->fetchObject()->fecha_fin;
-            $fecha_final = date("Y-m-d", strtotime($fecha));
+    //     # verificar que la fecha de inicio y fin del nuevo periodo son mayores quel la fecha final del ultimo periodo registrado.
+    //     $fin_f = date("Y-m-d", strtotime($fin));
+    //     $inicio_f = date("Y-m-d", strtotime($inicio));
+    //     if ($inicio_f <= $fecha_final || $fin_f <= $fecha_final) {
+    //         return false;
+    //     } else {
+    //         return true;
+    //     }
 
-            # verificar que la fecha de inicio y fin del nuevo periodo son mayores quel la fecha final del ultimo periodo registrado.
-            $fin_f = date("Y-m-d", strtotime($fin));
-            $inicio_f = date("Y-m-d", strtotime($inicio));
-            if ($inicio_f <= $fecha_final || $fin_f <= $fecha_final) {
-                return false;
-            } else {
-                return true;
-            }
-        } else {
-            return true;
-        }
-    }
+    // }
 
     # registrar los periodos academicos
     public function guardarPeriodo()
     {
-        $num = $this->getNumero();
+        $id = $this->getNumero();
         $inicio = $this->getFechaInicio();
         $fin = $this->getFechaFin();
         $est = $this->getEstado();
-        $registro = $this->db->prepare("INSERT INTO periodo VALUES(null, :numero, :inicio, :fin, :estado)");
-        $registro->bindParam(':numero', $num, PDO::PARAM_INT);
+        $registro = $this->db->prepare("UPDATE periodo SET fecha_inicio = :inicio, fecha_fin = :fin, estado = :estado WHERE id = :id");
+        $registro->bindParam(':id', $id, PDO::PARAM_INT);
         $registro->bindParam(':inicio', $inicio, PDO::PARAM_STR);
         $registro->bindParam(':fin', $fin, PDO::PARAM_STR);
         $registro->bindParam(':estado', $est, PDO::PARAM_STR);
@@ -183,13 +160,13 @@ class Periodos
     }
 
     # eliminar periodo academico
-    public function deletePeriodo()
+    public function onePeriodo()
     {
         $id_periodo = $this->getId();
-        $eliminar = $this->db->prepare("DELETE FROM periodo WHERE id = :id");
-        $eliminar->bindParam(":id", $id_periodo, PDO::PARAM_INT);
-        $eliminar->execute();
-        return $eliminar;
+        $info = $this->db->prepare("SELECT * FROM periodo WHERE id = :id");
+        $info->bindParam(":id", $id_periodo, PDO::PARAM_INT);
+        $info->execute();
+        return $info->fetchObject();
     }
 
 } # fin de la clase
