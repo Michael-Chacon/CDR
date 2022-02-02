@@ -169,4 +169,29 @@ class Periodos
         return $info->fetchObject();
     }
 
+    public function periodoUno()
+    {
+        $uno = $this->db->prepare("SELECT * FROM periodo WHERE id = 1");
+        $uno->execute();
+        return $uno->fetchObject();
+    }
+
+    public function periodoDos()
+    {
+        $dos = $this->db->prepare("SELECT * FROM periodo WHERE id = 2");
+        $dos->execute();
+        return $dos->fetchObject();
+    }
+    public function periodoTres()
+    {
+        $tres = $this->db->prepare("SELECT * FROM periodo WHERE id = 3");
+        $tres->execute();
+        return $tres->fetchObject();
+    }
+    public function periodoCuatro()
+    {
+        $cuatro = $this->db->prepare("SELECT * FROM periodo WHERE id = 4");
+        $cuatro->execute();
+        return $cuatro->fetchObject();
+    }
 } # fin de la clase

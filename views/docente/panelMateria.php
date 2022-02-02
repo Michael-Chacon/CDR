@@ -6,14 +6,16 @@
                  <?php echo Utils::general_alerts('documentoRepetido', '', 'El nombre del documento ya está registrado en esta materia, cámbialo.') ?>
                  <?php echo Utils::general_alerts('GuardarActividadesDClase', 'Actividad registrada con éxito.', 'Error al intentar registrar la actividad, inténtelo de nuevo.') ?>
                  <?php echo Utils::general_alerts('estadoA', '', 'El título de esta actividad ya está registrado en esta materia, cámbialo.') ?>
+                 <?php echo Utils::general_alerts('registrarFallas', 'Asistencia registrada con éxito.', 'Algo salió mal al intentar registrar la asistencia, inténtalo de nuevo.') ?>
 
                 <?php Utils::borrar_error('GuardarDocumentosDClase');
-Utils::borrar_error('eliminarDocumentoDClase');
-Utils::borrar_error('tituloRepetido');
-Utils::borrar_error('documentoRepetido');
-Utils::borrar_error('GuardarActividadesDClase');
-Utils::borrar_error('estadoA');
-?>
+                    Utils::borrar_error('eliminarDocumentoDClase');
+                    Utils::borrar_error('tituloRepetido');
+                    Utils::borrar_error('documentoRepetido');
+                    Utils::borrar_error('GuardarActividadesDClase');
+                    Utils::borrar_error('estadoA');
+                    Utils::borrar_error('registrarFallas');
+                ?>
 
                 <section class="row shadow titulo mb-3">
                     <article class="col-xs-11 col-sm-11 col-md-11 col-lg-11">
@@ -76,7 +78,7 @@ Utils::borrar_error('estadoA');
                                     </thead>
                                     <tbody class="text-center texto-body">
                                         <?php $c = 1;
-while ($estudiantes = $listado_estudiantes->fetchObject()): ?>
+                                            while ($estudiantes = $listado_estudiantes->fetchObject()): ?>
                                             <tr>
                                                 <td>
                                                     <?=$c++?>
@@ -186,63 +188,61 @@ while ($estudiantes = $listado_estudiantes->fetchObject()): ?>
                             <button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button">
                             </button>
                         </div>
+                        <form action="<?=base_url?>PanelMateria/registrarFallas" method="post">
+                            <input type="text" hidden="true" name="id_materia" value="<?=$materia?>">
+                            <input type="text" hidden="true" name="degree" value="<?=$grado?>">
+                            <input type="text" hidden="true" name="name" value="<?=$nombre_ma?>">
+                            <input type="text" hidden="true" name="nombreg" value="<?=$nombre_gra?>">
                         <div class="modal-body">
-                            <table class="table table-hover">
-                                <thead class="text-center">
-                                    <tr>
-                                        <th>
-                                            #
-                                        </th>
-                                        <th>
-                                            Estudiante
-                                        </th>
-                                        <th>
-                                            Falla
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <tbody class="text-center ">
-                                    <tr>
-                                        <td>
-                                            1
-                                        </td>
-                                        <td>
-                                            <a href="">
-                                                Michael Alexis Chacón Marin
-                                            </a>
-                                        </td>
-                                        <td>
-                                            <span class="form-check">
-                                                <input class="form-check-input" id="flexCheckDefault" type="checkbox" value="">
-                                                </input>
-                                            </span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            2
-                                        </td>
-                                        <td>
-                                            Briand Jhoann Porras Vargas
-                                        </td>
-                                        <td>
-                                            <span class="form-check">
-                                                <input class="form-check-input" id="flexCheckDefault" type="checkbox" value="">
-                                                </input>
-                                            </span>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="modal-footer">
-                            <button class="btn btn-outline-danger" data-bs-dismiss="modal" type="button">
-                                Cerrar
-                            </button>
-                            <button class="btn btn-outline-success" type="button">
-                                Registrar
-                            </button>
-                        </div>
+                                <table class="table table-hover">
+                                    <thead class="text-center">
+                                        <tr>
+                                            <th>
+                                                #
+                                            </th>
+                                            <th>
+                                                Estudiante
+                                            </th>
+                                            <th>
+                                                Falla
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="text-center">
+                                        <?php 
+                                         $c = 0;
+                                        while($listado_e = $colocar_falla->fetchObject()):
+                                            $c++;
+                                         ?>
+                                            <tr>
+                                                <td>
+                                                    <?=$c?>
+                                                </td>
+                                                <td>
+                                                    <a href="">
+                                                        <?=$listado_e->nombre_e?> <?=$listado_e->apellidos_e?>
+                                                    </a>
+                                                </td>
+                                                <td>
+                                                    <span class="form-check">
+                                                        <input class="form-check-input" id="flexCheckDefault" type="checkbox" name="ids[]" value="<?=$listado_e->id?>">
+                                                        </input>
+                                                    </span>
+                                                </td>
+                                            </tr>
+                                        <?php endwhile; ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-outline-danger" data-bs-dismiss="modal" type="button">
+                                    Cerrar
+                                </button>
+                                <button class="btn btn-outline-success" type="submit">
+                                    Registrar falla
+                                </button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </article>
