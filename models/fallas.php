@@ -132,4 +132,28 @@ class Fallas
 
     }
 
+    # obtener el total de fallas de un estudiante
+
+    public function totalFailsAStudent()
+    {
+        $student = $this->getEstudiante();
+        $subject = $this->getMateria();
+        $total_fallas = $this->db->prepare("SELECT COUNT(id) AS 'total' FROM falla WHERE id_materia_f = :materia AND id_estudiante_f = :estudiante;");
+        $total_fallas->bindParam(":materia", $subject, PDO::PARAM_INT);
+        $total_fallas->bindParam(":estudiante", $student, PDO::PARAM_INT);
+        $total_fallas->execute();
+        return $total_fallas->fetchObject();
+    }
+    # obtener las fechas de las fallas
+    public function dateFailsAStudent()
+    {
+        $student = $this->getEstudiante();
+        $subject = $this->getMateria();
+        $fallas = $this->db->prepare("SELECT fecha_falla, id_periodo_f FROM falla WHERE id_materia_f = :materia AND id_estudiante_f = :estudiante;");
+        $fallas->bindParam(":materia", $subject, PDO::PARAM_INT);
+        $fallas->bindParam(":estudiante", $student, PDO::PARAM_INT);
+        $fallas->execute();
+        return $fallas;
+    }
+
 } # fin  de la clase

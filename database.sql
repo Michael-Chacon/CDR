@@ -358,3 +358,6 @@ INNER JOIN grado g ON g.id = m.id_grado_mat
 INNER JOIN docentemateria dm ON dm.id_materia_doc = m.id
 INNER JOIN docente d ON d.id = dm.id_docente_mat
 WHERE d.id = 1;
+
+# consulta para obterner el total de fallas 
+SELECT COUNT(id) FROM fallas WHERE id_materia_f = 6 AND id_estudiante_f = 2;

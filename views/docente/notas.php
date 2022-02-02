@@ -33,7 +33,7 @@
                             <span class="nombre_estudiante">
                                 <?=$estudiante->nombre_e?> <?=$estudiante->apellidos_e?>
                                 <span class="badge rounded-pill bg-danger">
-                                    4 fallas
+                                    <?=$fallas->total?> fallas
                                 </span>
                             </span>
                         </li>
@@ -51,38 +51,46 @@
                     <h6 class="text-center">
                         Fallas
                     </h6>
-                    <div>
-                        <table class="table text-center shadow">
-                            <thead>
-                                <tr>
-                                    <th>
-                                        #
-                                    </th>
-                                    <th>
-                                        Fecha
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        1
-                                    </td>
-                                    <td>
-                                        02/02/2020
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        2
-                                    </td>
-                                    <td>
-                                        12/08/2022
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+                        <?php $f = 0;
+                        if($fechas_fallas->rowCount() != 0): 
+                        ?>
+                            <div>
+                                <table class="table text-center shadow">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                #
+                                            </th>
+                                            <th>
+                                                Fecha
+                                            </th>
+                                             <th>
+                                                Periodo
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                                <?php while($fechas = $fechas_fallas->fetchObject()): 
+                                                    $f++;
+                                                ?>
+                                                    <tr>
+                                                        <td>
+                                                            <?=$f?>
+                                                        </td>
+                                                        <td>
+                                                            <?=$fechas->fecha_falla?>
+                                                        </td>
+                                                        <td>
+                                                            <?=$fechas->id_periodo_f?>
+                                                        </td>
+                                                    </tr>
+                                                <?php endwhile; ?>    
+                                    </tbody>
+                                </table>
+                            </div>
+                    <?php else: ?>
+                        <p class="text-center mt-3"><span class="badge bg-warning text-dark">Este estudiante no tiene fallas.</span></p>
+                    <?php endif;?>
                 </article>
             </section>
             <!-- fin indicador y contenido -->

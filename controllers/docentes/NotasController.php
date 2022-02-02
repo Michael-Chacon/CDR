@@ -1,6 +1,7 @@
 <?php
 require_once 'models/materias.php';
 require_once 'models/estudiante.php';
+require_once 'models/fallas.php';
 class NotasController
 {
     public function homeNotas()
@@ -16,6 +17,12 @@ class NotasController
         $datos_materia = new Materias();
         $datos_materia->setMateria($id_materia);
         $materia = $datos_materia->selectOneSubject();
+        # total fallas
+        $asistencia = new Fallas();
+        $asistencia->setEstudiante($id_estudiante);
+        $asistencia->setMateria($id_materia);
+        $fallas = $asistencia->totalFailsAStudent();
+        $fechas_fallas = $asistencia->dateFailsAStudent();
         require_once 'views/docente/notas.php';
     }
 }
