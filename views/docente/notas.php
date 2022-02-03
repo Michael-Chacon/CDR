@@ -27,6 +27,8 @@
             </section>
             <!-- fin del header -->
             <section class="row justify-content-center">
+                <?php echo Utils::general_alerts('registrarNota', 'Nota registrada con éxito.', ' El porcentaje de esta nota sobrepasa el límite del 100%') ?>
+                <?php Utils::borrar_error('registrarNota'); ?>
                 <article class="col-md-5 mt-5">
                     <ul class="list-group list-group-flush shadow">
                         <li class="list-group-item">
@@ -115,14 +117,19 @@
                 <h5 class="text-center">
                     Notas
                 </h5>
-                <article class="col-md-5 mt-3 mb-3 ">
+                <article class="col-md-6 mt-3 mb-3 ">
                     <div>
                         <table class="table text-center caption-top shadow">
                             <caption class="text-center">
                                 Primer periodo
                             </caption>
+                            <?php if($periodo1->rowCount() != 0): 
+                                $n = 1;?>
                             <thead>
                                 <tr>
+                                    <th>
+                                        #
+                                    </th>
                                     <th>
                                         Nombre
                                     </th>
@@ -141,15 +148,19 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                <?php while($uno = $periodo1->fetchObject()): ?>
                                 <tr>
                                     <td>
-                                        Cognitiva
+                                        <?=$n++;?>
                                     </td>
                                     <td>
-                                        40
+                                        <?=$uno->area?>
                                     </td>
                                     <td>
-                                        15%
+                                        <?=$uno->nota?>
+                                    </td>
+                                    <td>
+                                        <?=$uno->porcentaje?>%
                                     </td>
                                     <td>
                                         <a class="icono-actividades" download="" href="#">
@@ -164,30 +175,11 @@
                                         </a>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td>
-                                        Ludica
-                                    </td>
-                                    <td>
-                                        45
-                                    </td>
-                                    <td>
-                                        10%
-                                    </td>
-                                    <td>
-                                        <i class="bi bi-pen">
-                                        </i>
-                                    </td>
-                                    <td>
-                                        <a class="icono-actividades" download="" href="#">
-                                            <i class="bi bi-trash" style="font-size: 1.2rem;">
-                                            </i>
-                                        </a>
-                                    </td>
-                                </tr>
+                            <?php endwhile; ?>
                             </tbody>
                             <tfoot>
                                 <tr>
+                                    <th></th>
                                     <th>
                                         Total
                                     </th>
@@ -199,10 +191,11 @@
                                     </th>
                                 </tr>
                             </tfoot>
+                        <?php endif; ?>
                         </table>
                     </div>
                 </article>
-                <article class="col-md-5 mt-3 mb-3">
+                <article class="col-md-6 mt-3 mb-3">
                     <div>
                         <table class="table text-center caption-top shadow">
                             <caption class="text-center">
@@ -210,6 +203,9 @@
                             </caption>
                             <thead>
                                 <tr>
+                                    <th>
+                                        #
+                                    </th>
                                     <th>
                                         Nombre
                                     </th>
@@ -229,6 +225,9 @@
                             </thead>
                             <tbody>
                                 <tr>
+                                    <td>
+                                        
+                                    </td>
                                     <td>
                                         Cognitiva
                                     </td>
@@ -251,28 +250,12 @@
                                         </a>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td>
-                                        Ludica
-                                    </td>
-                                    <td>
-                                        45
-                                    </td>
-                                    <td>
-                                        10%
-                                    </td>
-                                    <td>
-                                        <i class="bi bi-pen">
-                                        </i>
-                                    </td>
-                                    <td>
-                                        <i class="bi bi-trash">
-                                        </i>
-                                    </td>
-                                </tr>
                             </tbody>
                             <tfoot>
                                 <tr>
+                                    <th>
+                                        
+                                    </th>
                                     <th>
                                         Total
                                     </th>
@@ -296,6 +279,9 @@
                             <thead>
                                 <tr>
                                     <th>
+                                        #
+                                    </th>
+                                    <th>
                                         Nombre
                                     </th>
                                     <th>
@@ -314,6 +300,9 @@
                             </thead>
                             <tbody>
                                 <tr>
+                                    <td>
+                                        
+                                    </td>
                                     <td>
                                         Cognitiva
                                     </td>
@@ -335,29 +324,11 @@
                                             </i>
                                         </a>
                                     </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        Ludica
-                                    </td>
-                                    <td>
-                                        45
-                                    </td>
-                                    <td>
-                                        10%
-                                    </td>
-                                    <td>
-                                        <i class="bi bi-pen">
-                                        </i>
-                                    </td>
-                                    <td>
-                                        <i class="bi bi-trash">
-                                        </i>
-                                    </td>
-                                </tr>
                             </tbody>
                             <tfoot>
                                 <tr>
+                                    <th>
+                                    </th>
                                     <th>
                                         Total
                                     </th>
@@ -381,6 +352,9 @@
                             <thead>
                                 <tr>
                                     <th>
+                                        #
+                                    </th>
+                                    <th>
                                         Nombre
                                     </th>
                                     <th>
@@ -399,6 +373,9 @@
                             </thead>
                             <tbody>
                                 <tr>
+                                    <td>
+                                        
+                                    </td>
                                     <td>
                                         Cognitiva
                                     </td>
@@ -420,29 +397,10 @@
                                             </i>
                                         </a>
                                     </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        Ludica
-                                    </td>
-                                    <td>
-                                        45
-                                    </td>
-                                    <td>
-                                        10%
-                                    </td>
-                                    <td>
-                                        <i class="bi bi-pen">
-                                        </i>
-                                    </td>
-                                    <td>
-                                        <i class="bi bi-trash">
-                                        </i>
-                                    </td>
-                                </tr>
                             </tbody>
                             <tfoot>
                                 <tr>
+                                    <th></th>
                                     <th>
                                         Total
                                     </th>
@@ -470,43 +428,48 @@
                         <button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button">
                         </button>
                     </div>
-                    <div class="modal-body">
-                        <div class="mb-3">
-                            <label class="form-label" for="exampleFormControlInput1">
-                                ¿Qué se evalúa?
-                            </label>
-                            <input class="form-control" id="exampleFormControlInput1" placeholder="Taller, Tarea, Evaluación, etc" type="text">
-                            </input>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="mb-3">
-                                    <label class="form-label" for="exampleFormControlInput1">
-                                        Nota:
-                                    </label>
-                                    <input class="form-control" id="exampleFormControlInput1" placeholder="45" type="number">
-                                    </input>
+                    <form action="<?=base_url?>Notas/registrarNota" method="post">
+                        <input type="number" hidden name="estudiante"  value="<?=$estudiante->id?>">
+                        <input type="text" hidden name="materia" value="<?=$materia->id?>">
+                        <input type="number" hidden name="grado" value="<?=$grado?>">
+                        <div class="modal-body">
+                            <div class="mb-3">
+                                <label class="form-label" for="item">
+                                    ¿Qué se evalúa?
+                                </label>
+                                <input class="form-control" id="item" placeholder="Taller, Tarea, Evaluación, etc" type="text" name="item" required>
+                                </input>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="nota">
+                                            Nota:
+                                        </label>
+                                        <input class="form-control" id="nota" placeholder="45" type="number" name="nota" required>
+                                        </input>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="porcentaje">
+                                            Porcentaje:
+                                        </label>
+                                        <input class="form-control" id="porcentaje" placeholder="20" type="number" name="porcentaje" required>
+                                        </input>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-md-6">
-                                <div class="mb-3">
-                                    <label class="form-label" for="exampleFormControlInput1">
-                                        Porcentaje:
-                                    </label>
-                                    <input class="form-control" id="exampleFormControlInput1" placeholder="20" type="number">
-                                    </input>
-                                </div>
-                            </div>
                         </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button class="btn btn-outline-danger" data-bs-dismiss="modal" type="button">
-                            Cancelar
-                        </button>
-                        <button class="btn btn-outline-success" type="button">
-                            Registrar nota
-                        </button>
-                    </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-outline-danger" data-bs-dismiss="modal" type="button">
+                                Cancelar
+                            </button>
+                            <button class="btn btn-outline-success" type="submit">
+                                Registrar nota
+                            </button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </section>
