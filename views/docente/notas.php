@@ -30,12 +30,18 @@
                 <article class="col-md-5 mt-5">
                     <ul class="list-group list-group-flush shadow">
                         <li class="list-group-item">
+                            <article class="row">
+                                <article class="col-md-10">
                             <span class="nombre_estudiante">
                                 <?=$estudiante->nombre_e?> <?=$estudiante->apellidos_e?>
+                            </span>
+                                </article>
+                                <article class="col-md-2">
                                 <span class="badge rounded-pill bg-danger">
                                     <?=$fallas->total?> fallas
                                 </span>
-                            </span>
+                                </article>
+                            </article>
                         </li>
                         <li class="list-group-item">
                             <h6>
@@ -47,50 +53,61 @@
                         </li>
                     </ul>
                 </article>
-                <article class="col-md-5 mt-4 ">
-                    <h6 class="text-center">
-                        Fallas
-                    </h6>
-                        <?php $f = 0;
-                        if($fechas_fallas->rowCount() != 0): 
-                        ?>
-                            <div>
-                                <table class="table text-center shadow">
-                                    <thead>
-                                        <tr>
-                                            <th>
-                                                #
-                                            </th>
-                                            <th>
-                                                Fecha
-                                            </th>
-                                             <th>
-                                                Periodo
-                                            </th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                                <?php while($fechas = $fechas_fallas->fetchObject()): 
-                                                    $f++;
-                                                ?>
-                                                    <tr>
-                                                        <td>
-                                                            <?=$f?>
-                                                        </td>
-                                                        <td>
-                                                            <?=$fechas->fecha_falla?>
-                                                        </td>
-                                                        <td>
-                                                            <?=$fechas->id_periodo_f?>
-                                                        </td>
-                                                    </tr>
-                                                <?php endwhile; ?>    
-                                    </tbody>
-                                </table>
+                <article class="col-md-5 mt-5 ">
+                    <!-- inicio acordeon -->
+                    <div class="accordion accordion-flush shadow" id="accordionFlushExample">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="flush-headingOne">
+                                <button aria-controls="flush-collapseOne" aria-expanded="false" class="accordion-button collapsed text-center" data-bs-target="#flush-collapseOne" data-bs-toggle="collapse" type="button">
+                                    <span class="registro-fallas">Registro de inasistencias</span>
+                                </button>
+                            </h2>
+                            <div aria-labelledby="flush-headingOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample" id="flush-collapseOne">
+                                <article class="accordion-body">
+                                    <?php $f = 0;
+                                        if($fechas_fallas->rowCount() != 0): 
+                                        ?>
+                                                <table class="table text-center">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>
+                                                                #
+                                                            </th>
+                                                            <th>
+                                                                Fecha
+                                                            </th>
+                                                             <th>
+                                                                Periodo
+                                                            </th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                                <?php while($fechas = $fechas_fallas->fetchObject()): 
+                                                                    $f++;
+                                                                ?>
+                                                                    <tr>
+                                                                        <td>
+                                                                            <?=$f?>
+                                                                        </td>
+                                                                        <td>
+                                                                            <?=$fechas->fecha_falla?>
+                                                                        </td>
+                                                                        <td>
+                                                                            <?=$fechas->id_periodo_f?>
+                                                                        </td>
+                                                                    </tr>
+                                                                <?php endwhile; ?>    
+                                                    </tbody>
+                                                </table>
+                                    <?php else: ?>
+                                        <p class="text-center mt-3"><span class="badge bg-warning text-dark">Este estudiante no tiene fallas.</span></p>
+                                    <?php endif;?>
+                                    </table>
+                                </article>
                             </div>
-                    <?php else: ?>
-                        <p class="text-center mt-3"><span class="badge bg-warning text-dark">Este estudiante no tiene fallas.</span></p>
-                    <?php endif;?>
+                        </div>
+                    </div>
+                    <!-- fin del acordeon -->
                 </article>
             </section>
             <!-- fin indicador y contenido -->

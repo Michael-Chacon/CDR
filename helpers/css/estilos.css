@@ -421,3 +421,11 @@ hr {
 .editar:hover {
     color: #FA00C2 !important;
 }
+/*===============================
+=============NOTAS =============
+================================*/
+
+.registro-fallas {
+    font-size: 17px;
+    font-weight: 600;
+}

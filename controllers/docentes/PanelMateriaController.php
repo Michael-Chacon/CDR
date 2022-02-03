@@ -109,41 +109,20 @@ class panelMateriaController
         header("Location: " . base_url . 'panelMateria/homeMateria&degree=' . $_POST['degree'] . '&ide=' . $_POST['id_materia'] . '&name=' . $_POST['name'] . '&nombreg=' . $_POST['nombreg']);
     }
 
+    # registrar la inasistencia
     public function registrarFallas()
     {
         $id_alumnos = $_POST['ids'];
         $hoy = date("Y-m-d");
         $materia = $_POST['id_materia'];
-
-        $veliadar_periodo = new Periodos();
-        $uno = $veliadar_periodo->periodoUno();
-        $periodo1 = Utils::formatearFecha($uno->fecha_inicio, $uno->fecha_fin);
-
-        $dos = $veliadar_periodo->periodoDos();
-        $periodo2 = Utils::formatearFecha($dos->fecha_inicio, $dos->fecha_fin);
-
-        $tres = $veliadar_periodo->periodoTres();
-        $periodo3 = Utils::formatearFecha($tres->fecha_inicio, $tres->fecha_fin);
-
-        $cuatro = $veliadar_periodo->periodoCuatro();
-        $periodo4 = Utils::formatearFecha($cuatro->fecha_inicio, $cuatro->fecha_fin);
-
-        if ($hoy >= $periodo1[0] && $hoy <= $periodo1[1]) {
-            $periodo = $uno->id;
-        } elseif ($hoy >= $periodo2[0] && $hoy <= $periodo2[1]) {
-            $periodo = $dos->id;
-        } elseif ($hoy >= $periodo3[0] && $hoy <= $periodo3[1]) {
-            $periodo = $tres->id;
-        } elseif ($hoy >= $periodo4[0] && $hoy <= $periodo4[1]) {
-            $periodo = $cuatro->id;
-        }
-
+        $periodo_actual = Utils::validarPeriodoAcademico($hoy);
         $asistencia = new Fallas();
         $asistencia->setEstudiante($id_alumnos);
         $asistencia->setFecha($hoy);
         $asistencia->setMateria($materia);
-        $asistencia->setPeriodo($periodo);
+        $asistencia->setPeriodo($periodo_actual);
         $resultado = $asistencia->registerFails();
+
         Utils::validarReturn($resultado, 'registrarFallas');
         header("Location: " . base_url . 'panelMateria/homeMateria&degree=' . $_POST['degree'] . '&ide=' . $_POST['id_materia'] . '&name=' . $_POST['name'] . '&nombreg=' . $_POST['nombreg']);
     }

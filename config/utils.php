@@ -1,5 +1,5 @@
 <?php
-
+require_once 'models/periodos.php';
 class Utils
 {
 
@@ -75,6 +75,35 @@ class Utils
         $fechaInicio = date('Y-m-d', strtotime($inicio));
         $fechaFin = date('Y-m-d', strtotime($fin));
         return $fechas = array($fechaInicio, $fechaFin);
+    }
+
+    # validar el periodo academico
+    public static function validarPeriodoAcademico($hoy)
+    {
+        $veliadar_periodo = new Periodos();
+        $uno = $veliadar_periodo->periodoUno();
+        $periodo1 = Utils::formatearFecha($uno->fecha_inicio, $uno->fecha_fin);
+
+        $dos = $veliadar_periodo->periodoDos();
+        $periodo2 = Utils::formatearFecha($dos->fecha_inicio, $dos->fecha_fin);
+
+        $tres = $veliadar_periodo->periodoTres();
+        $periodo3 = Utils::formatearFecha($tres->fecha_inicio, $tres->fecha_fin);
+
+        $cuatro = $veliadar_periodo->periodoCuatro();
+        $periodo4 = Utils::formatearFecha($cuatro->fecha_inicio, $cuatro->fecha_fin);
+
+        if ($hoy >= $periodo1[0] && $hoy <= $periodo1[1]) {
+            $periodo = $uno->id;
+        } elseif ($hoy >= $periodo2[0] && $hoy <= $periodo2[1]) {
+            $periodo = $dos->id;
+        } elseif ($hoy >= $periodo3[0] && $hoy <= $periodo3[1]) {
+            $periodo = $tres->id;
+        } elseif ($hoy >= $periodo4[0] && $hoy <= $periodo4[1]) {
+            $periodo = $cuatro->id;
+        }
+
+        return $periodo;
     }
 
 } #fin de la clase
