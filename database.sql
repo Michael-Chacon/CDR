@@ -1,6 +1,12 @@
 CREATE DATABASE cdr_beta;
 USE cdr_beta;
 
+CREATE TABLE grado(
+		id INT(4) AUTO_INCREMENT NOT NULL,
+		nombre_g VARCHAR(3) NOT NULL,
+		CONSTRAINT pk_grado PRIMARY KEY(id)
+)ENGINE=InnoDb;
+
 CREATE TABLE materia(
 		id INT(4) AUTO_INCREMENT NOT NULL,
 		id_grado_mat INT(4) NOT NULL,
@@ -9,12 +15,6 @@ CREATE TABLE materia(
 		icono VARCHAR(30)  NOT NULL,
 		CONSTRAINT pk_materias PRIMARY KEY(id),
 		CONSTRAINT fk_grado_materia FOREIGN KEY(id_grado_mat) REFERENCES grado(id) ON DELETE CASCADE
-)ENGINE=InnoDb;
-
-CREATE TABLE grado(
-		id INT(4) AUTO_INCREMENT NOT NULL,
-		nombre_g VARCHAR(3) NOT NULL,
-		CONSTRAINT pk_grado PRIMARY KEY(id)
 )ENGINE=InnoDb;
 
 CREATE TABLE periodo(

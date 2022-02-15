@@ -68,39 +68,39 @@
                                 <article class="accordion-body">
                                     <?php $f = 0;
                                         if($fechas_fallas->rowCount() != 0): 
-                                        ?>
-                                                <table class="table text-center">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>
-                                                                #
-                                                            </th>
-                                                            <th>
-                                                                Fecha
-                                                            </th>
-                                                             <th>
-                                                                Periodo
-                                                            </th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                                <?php while($fechas = $fechas_fallas->fetchObject()): 
-                                                                    $f++;
-                                                                ?>
-                                                                    <tr>
-                                                                        <td>
-                                                                            <?=$f?>
-                                                                        </td>
-                                                                        <td>
-                                                                            <?=$fechas->fecha_falla?>
-                                                                        </td>
-                                                                        <td>
-                                                                            <?=$fechas->id_periodo_f?>
-                                                                        </td>
-                                                                    </tr>
-                                                                <?php endwhile; ?>    
-                                                    </tbody>
-                                                </table>
+                                    ?>
+                                        <table class="table text-center">
+                                            <thead>
+                                                <tr>
+                                                    <th>
+                                                        #
+                                                    </th>
+                                                    <th>
+                                                        Fecha
+                                                    </th>
+                                                    <th>
+                                                        Periodo
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php while($fechas = $fechas_fallas->fetchObject()): 
+                                                    $f++;
+                                                ?>
+                                                    <tr>
+                                                        <td>
+                                                            <?=$f?>
+                                                        </td>
+                                                        <td>
+                                                            <?=$fechas->fecha_falla?>
+                                                        </td>
+                                                        <td>
+                                                            <?=$fechas->id_periodo_f?>
+                                                        </td>
+                                                    </tr>
+                                                <?php endwhile; ?>    
+                                            </tbody>
+                                            </table>
                                     <?php else: ?>
                                         <p class="text-center mt-3"><span class="badge bg-warning text-dark">Este estudiante no tiene fallas.</span></p>
                                     <?php endif;?>
@@ -124,74 +124,77 @@
                                 Primer periodo
                             </caption>
                             <?php if($periodo1->rowCount() != 0): 
-                                $n = 1;?>
-                            <thead>
-                                <tr>
-                                    <th>
-                                        #
-                                    </th>
-                                    <th>
-                                        Nombre
-                                    </th>
-                                    <th>
-                                        Nota
-                                    </th>
-                                    <th>
-                                        Porcentaje
-                                    </th>
-                                    <th>
-                                        Editar
-                                    </th>
-                                    <th>
-                                        Eliminar
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody>
+                                $n = 1;
+                            ?>
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            #
+                                        </th>
+                                        <th>
+                                            Nombre
+                                        </th>
+                                        <th>
+                                            Nota
+                                        </th>
+                                        <th>
+                                            Porcentaje
+                                        </th>
+                                        <th>
+                                            Editar
+                                        </th>
+                                        <th>
+                                            Eliminar
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
                                 <?php while($uno = $periodo1->fetchObject()): ?>
-                                <tr>
-                                    <td>
-                                        <?=$n++;?>
-                                    </td>
-                                    <td>
-                                        <?=$uno->area?>
-                                    </td>
-                                    <td>
-                                        <?=$uno->nota?>
-                                    </td>
-                                    <td>
-                                        <?=$uno->porcentaje?>%
-                                    </td>
-                                    <td>
-                                        <a class="icono-actividades" download="" href="#">
-                                            <i class="bi bi-pen">
-                                            </i>
-                                        </a>
-                                    </td>
-                                    <td>
-                                        <a class="icono-actividades" download="" href="#">
-                                            <i class="bi bi-trash" style="font-size: 1.2rem;">
-                                            </i>
-                                        </a>
-                                    </td>
-                                </tr>
-                            <?php endwhile; ?>
-                            </tbody>
-                            <tfoot>
-                                <tr>
-                                    <th></th>
-                                    <th>
-                                        Total
-                                    </th>
-                                    <th>
-                                        50
-                                    </th>
-                                    <th>
-                                        100%
-                                    </th>
-                                </tr>
-                            </tfoot>
-                        <?php endif; ?>
+                                    <tr>
+                                        <td>
+                                            <?=$n++;?>
+                                        </td>
+                                        <td>
+                                            <?=$uno->area?>
+                                        </td>
+                                        <td>
+                                            <?=$uno->nota?>
+                                        </td>
+                                        <td>
+                                            <?=$uno->porcentaje?>%
+                                        </td>
+                                        <td>
+                                            <a class="icono-actividades" download="" href="#">
+                                                <i class="bi bi-pen">
+                                                </i>
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a class="icono-actividades" download="" href="#">
+                                                <i class="bi bi-trash" style="font-size: 1.2rem;">
+                                                </i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                <?php endwhile; ?>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <th></th>
+                                        <th>
+                                            Total
+                                        </th>
+                                        <th>
+                                            50
+                                        </th>
+                                        <th>
+                                            100%
+                                        </th>
+                                    </tr>
+                                </tfoot>
+                            <?php else: ?>
+                                <p class="text-center mt-3"><span class="badge bg-warning text-dark">No hay notas registradas.</span></p>
+                            <?php endif; ?>
                         </table>
                     </div>
                 </article>

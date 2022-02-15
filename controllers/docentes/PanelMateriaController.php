@@ -40,7 +40,8 @@ class panelMateriaController
             $descripcion = trim($_POST['descripcion']);
 
             $file = $_FILES['documento'];
-            $name = $file['name'];
+            $nombre = $file['name'];
+            $name = date('Ymdhis') . $nombre;
             if (!is_dir('documentos/materias/')) {
                 mkdir('documentos/materias/', 0777, true);
             }
@@ -75,6 +76,8 @@ class panelMateriaController
     public function eliminarDocumentoDClase()
     {
         $id = $_GET['id_docu'];
+        $nombre = $_GET['nameDocu'];
+        echo unlink('documentos/materias/'.$nombre);
         $borrador = new Documentos();
         $borrador->setId($id);
         $respuestaD = $borrador->deleteClassDocument();
@@ -107,6 +110,15 @@ class panelMateriaController
             }
         }
         header("Location: " . base_url . 'panelMateria/homeMateria&degree=' . $_POST['degree'] . '&ide=' . $_POST['id_materia'] . '&name=' . $_POST['name'] . '&nombreg=' . $_POST['nombreg']);
+    }
+    public function eliminarActividad()
+    {
+        $id = $_GET['id'];
+        $borrador = new Actividades();
+        $borrador->setId($id);
+        $resultado = $borrador->deleteActivity();
+        Utils::validarReturn($resultado, 'eliminarActividad');
+        header("Location: " . base_url . 'panelMateria/homeMateria&degree=' . $_GET['degree'] . '&ide=' . $_GET['ide'] . '&name=' . $_GET['name'] . '&nombreg=' . $_GET['nombreg']);
     }
 
     # registrar la inasistencia

@@ -7,6 +7,7 @@
                  <?php echo Utils::general_alerts('GuardarActividadesDClase', 'Actividad registrada con éxito.', 'Error al intentar registrar la actividad, inténtelo de nuevo.') ?>
                  <?php echo Utils::general_alerts('estadoA', '', 'El título de esta actividad ya está registrado en esta materia, cámbialo.') ?>
                  <?php echo Utils::general_alerts('registrarFallas', 'Asistencia registrada con éxito.', 'Algo salió mal al intentar registrar la asistencia, inténtalo de nuevo.') ?>
+                 <?php echo Utils::general_alerts('eliminarActividad', 'Activada eliminada con éxito.', 'Algo salió mal al intentar eliminar la actividad, inténtelo de nuevo.') ?>
 
                 <?php Utils::borrar_error('GuardarDocumentosDClase');
                     Utils::borrar_error('eliminarDocumentoDClase');
@@ -15,6 +16,7 @@
                     Utils::borrar_error('GuardarActividadesDClase');
                     Utils::borrar_error('estadoA');
                     Utils::borrar_error('registrarFallas');
+                    Utils::borrar_error('eliminarActividad');
                 ?>
 
                 <section class="row shadow titulo mb-3">
@@ -124,7 +126,7 @@
                                                 </a>
                                             </span>
                                             <span class="col-xs-1 col-sm-1 col-md-1 col-lg-1 text-center">
-                                                <a class="icono-actividades " onclick="confirmar()" href="<?=base_url?>panelMateria/eliminarDocumentoDClase&id_docu=<?=$datos_documetos->id?>&degree=<?=$grado?>&ide=<?=$materia?>&name=<?=$nombre_ma?>&nombreg=<?=$nombre_gra?>">
+                                                <a class="icono-actividades " onclick="return confirmar()" href="<?=base_url?>panelMateria/eliminarDocumentoDClase&nameDocu=<?=$datos_documetos->documento?>&id_docu=<?=$datos_documetos->id?>&degree=<?=$grado?>&ide=<?=$materia?>&name=<?=$nombre_ma?>&nombreg=<?=$nombre_gra?>">
                                                     <i class="bi bi-trash" style="font-size: 1.2rem;">
                                                     </i>
                                                 </a>
@@ -158,13 +160,22 @@
                             <?php while ($actividad = $listado_actividades->fetchObject()): ?>
                                 <section class="card text-black mb-3 shadow">
                                     <article class="card-body">
-                                        <h6 class="card-title">
-                                            <?=$actividad->titulo_actividad?>
-                                            <span class="badge bg-success">
-                                            <?=$actividad->fecha?>
-                                            </span>
-                                        </h6>
-                                        <p class="card-text text-actividad text-black">
+                                        <div class="row">
+                                            <div class="col-md-10">
+                                                <h6 class="card-title tituloActividad">
+                                                    <?=$actividad->titulo_actividad?>
+                                                    <span class="badge bg-success">
+                                                    <?=$actividad->fecha?>
+                                                    </span>
+                                                </h6>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <a onclick="return confirmar()" href="<?=base_url?>PanelMateria/eliminarActividad&id=<?=$actividad->id?>&degree=<?=$grado?>&ide=<?=$materia?>&name=<?=$nombre_ma?>&nombreg=<?=$nombre_gra?>" class="icono-actividades">
+                                                    <i class="bi bi-trash" style="font-size: 1.2rem;"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <p class="card-text text-actividad text-black ">
                                             <?=$actividad->descripcion?>
                                         </p>
                                     </article>

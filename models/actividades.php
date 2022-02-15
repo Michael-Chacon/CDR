@@ -136,4 +136,11 @@ class Actividades
         return $listado;
     }
 
+    public function deleteActivity()
+    {
+        $id_actividad = $this->getId();
+        $eliminar = $this->db->prepare("DELETE FROM actividadesmateria WHERE id = :actividad");
+        $eliminar->bindParam(":actividad", $id_actividad, PDO::PARAM_INT);
+        return $eliminar->execute();
+    }
 } # end of class

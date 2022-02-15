@@ -429,3 +429,10 @@ hr {
     font-size: 17px;
     font-weight: 600;
 }
+/*===================================
+=====ACTIVIDADES VIEW DOCENTE======
+====================================*/
+
+.tituloActividad {
+    text-align: justify;
+}
