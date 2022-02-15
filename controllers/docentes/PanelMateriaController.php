@@ -34,7 +34,7 @@ class panelMateriaController
     {
         if (isset($_POST) && !empty($_POST)) {
             $materia = $_POST['id_materia'];
-            $titulo = trim($_POST['titulo']);
+            $titulo = strip_tags(trim($_POST['titulo']));
             $fecha = trim($_POST['fecha_entrega']);
             $formato = trim($_POST['formato']);
             $descripcion = trim($_POST['descripcion']);
@@ -46,28 +46,34 @@ class panelMateriaController
                 mkdir('documentos/materias/', 0777, true);
             }
             move_uploaded_file($file['tmp_name'], 'documentos/materias/' . $name);
-
-            $validar_nombre = Utils::validarExisenciaDocumentos('documentosclase', 'titulo', $titulo, 'id_materia_d', $materia);
-            if ($validar_nombre) {
-                $validar_documento = Utils::validarExisenciaDocumentos('documentosclase', 'documento', $name, 'id_materia_d', $materia);
-                if ($validar_documento) {
-                    $registrar = new Documentos();
-                    $registrar->setId($materia);
-                    $registrar->setTitulo($titulo);
-                    $registrar->setFecha($fecha);
-                    $registrar->setFormato($formato);
-                    $registrar->setNombre($name);
-                    $registrar->setDescripcion($descripcion);
-                    $respuestaS = $registrar->saveClassDocument();
-                    Utils::validarReturn($respuestaS, 'GuardarDocumentosDClase');
+            $registrar = new Documentos();
+            $registrar->setId($materia);
+            $validar_total_archivos = $registrar->validarNumeroDArchivos();
+            if ($validar_total_archivos) {
+                $validar_nombre = Utils::validarExisenciaDocumentos('documentosclase', 'titulo', $titulo, 'id_materia_d', $materia);
+                if ($validar_nombre) {
+                    $validar_documento = Utils::validarExisenciaDocumentos('documentosclase', 'documento', $name, 'id_materia_d', $materia);
+                    if ($validar_documento) {
+                        $registrar->setId($materia);
+                        $registrar->setTitulo($titulo);
+                        $registrar->setFecha($fecha);
+                        $registrar->setFormato($formato);
+                        $registrar->setNombre($name);
+                        $registrar->setDescripcion($descripcion);
+                        $respuestaS = $registrar->saveClassDocument();
+                        Utils::validarReturn($respuestaS, 'GuardarDocumentosDClase');
+                    } else {
+                        $documentoRepetido = false;
+                        Utils::validarReturn($documentoRepetido, 'documentoRepetido');
+                    }
                 } else {
-                    $documentoRepetido = false;
-                    Utils::validarReturn($documentoRepetido, 'documentoRepetido');
+                    $tituloRepetido = false;
+                    Utils::validarReturn($tituloRepetido, 'tituloRepetido');
                 }
             } else {
-                $tituloRepetido = false;
-                Utils::validarReturn($tituloRepetido, 'tituloRepetido');
+                Utils::validarReturn($validar_total_archivos, 'validarNumeroDArchivos');
             }
+            // here
         }
         header("Location: " . base_url . 'panelMateria/homeMateria&degree=' . $_POST['degree'] . '&ide=' . $_POST['id_materia'] . '&name=' . $_POST['name'] . '&nombreg=' . $_POST['nombreg']);
     }
@@ -77,7 +83,7 @@ class panelMateriaController
     {
         $id = $_GET['id_docu'];
         $nombre = $_GET['nameDocu'];
-        echo unlink('documentos/materias/'.$nombre);
+        echo unlink('documentos/materias/' . $nombre);
         $borrador = new Documentos();
         $borrador->setId($id);
         $respuestaD = $borrador->deleteClassDocument();

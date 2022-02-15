@@ -1,25 +1,6 @@
  <!-- inicio del contenido de la pagina -->
             <section class="container-fluid">
-                <?php echo Utils::general_alerts('GuardarDocumentosDClase', 'Documento registrado con éxito.', 'Error al intentar registrar el documento, inténtelo de nuevo.') ?>
-                <?php echo Utils::general_alerts('eliminarDocumentoDClase', 'Documento eliminado con éxito.', 'Error al intentar borrar el documento, inténtelo de nuevo.') ?>
-                 <?php echo Utils::general_alerts('tituloRepetido', '', 'El título de este documento ya está registrado en esta materia, cámbialo.') ?>
-                 <?php echo Utils::general_alerts('documentoRepetido', '', 'El nombre del documento ya está registrado en esta materia, cámbialo.') ?>
-                 <?php echo Utils::general_alerts('GuardarActividadesDClase', 'Actividad registrada con éxito.', 'Error al intentar registrar la actividad, inténtelo de nuevo.') ?>
-                 <?php echo Utils::general_alerts('estadoA', '', 'El título de esta actividad ya está registrado en esta materia, cámbialo.') ?>
-                 <?php echo Utils::general_alerts('registrarFallas', 'Asistencia registrada con éxito.', 'Algo salió mal al intentar registrar la asistencia, inténtalo de nuevo.') ?>
-                 <?php echo Utils::general_alerts('eliminarActividad', 'Activada eliminada con éxito.', 'Algo salió mal al intentar eliminar la actividad, inténtelo de nuevo.') ?>
-
-                <?php Utils::borrar_error('GuardarDocumentosDClase');
-                    Utils::borrar_error('eliminarDocumentoDClase');
-                    Utils::borrar_error('tituloRepetido');
-                    Utils::borrar_error('documentoRepetido');
-                    Utils::borrar_error('GuardarActividadesDClase');
-                    Utils::borrar_error('estadoA');
-                    Utils::borrar_error('registrarFallas');
-                    Utils::borrar_error('eliminarActividad');
-                ?>
-
-                <section class="row shadow titulo mb-3">
+                      <section class="row shadow titulo mb-3">
                     <article class="col-xs-11 col-sm-11 col-md-11 col-lg-11">
                         <h1 class="text-center config">
                             <?=$nombre_ma?> <?=$nombre_gra?>°
@@ -57,6 +38,26 @@
                         </acticle>
                     </article>
                 </section>
+                <?php echo Utils::general_alerts('GuardarDocumentosDClase', 'Documento registrado con éxito.', 'Error al intentar registrar el documento, inténtelo de nuevo.') ?>
+                <?php echo Utils::general_alerts('eliminarDocumentoDClase', 'Documento eliminado con éxito.', 'Error al intentar borrar el documento, inténtelo de nuevo.') ?>
+                 <?php echo Utils::general_alerts('tituloRepetido', '', 'El título de este documento ya está registrado en esta materia, cámbialo.') ?>
+                 <?php echo Utils::general_alerts('documentoRepetido', '', 'El nombre del documento ya está registrado en esta materia, cámbialo.') ?>
+                 <?php echo Utils::general_alerts('GuardarActividadesDClase', 'Actividad registrada con éxito.', 'Error al intentar registrar la actividad, inténtelo de nuevo.') ?>
+                 <?php echo Utils::general_alerts('estadoA', '', 'El título de esta actividad ya está registrado en esta materia, cámbialo.') ?>
+                 <?php echo Utils::general_alerts('registrarFallas', 'Asistencia registrada con éxito.', 'Algo salió mal al intentar registrar la asistencia, inténtalo de nuevo.') ?>
+                 <?php echo Utils::general_alerts('eliminarActividad', 'Activada eliminada con éxito.', 'Algo salió mal al intentar eliminar la actividad, inténtelo de nuevo.') ?>
+                 <?php echo Utils::general_alerts('validarNumeroDArchivos', '', 'No es posible subir este archivo, recuerda que el número de archivos por materia no debe ser mayor de 10, elimina un archivo para poder subir este.') ?>
+
+                <?php Utils::borrar_error('GuardarDocumentosDClase');
+                    Utils::borrar_error('eliminarDocumentoDClase');
+                    Utils::borrar_error('tituloRepetido');
+                    Utils::borrar_error('documentoRepetido');
+                    Utils::borrar_error('GuardarActividadesDClase');
+                    Utils::borrar_error('estadoA');
+                    Utils::borrar_error('registrarFallas');
+                    Utils::borrar_error('eliminarActividad');
+                    Utils::borrar_error('validarNumeroDArchivos');
+                ?>
                 <section class="row">
                     <article class="col-md-4">
                         <h3 class="text-center mb-3 titulo-seccion">
@@ -318,7 +319,7 @@
                 </div>
             </article>
             <!-- Modal para adjuntar documentos -->
-            <article aria-hidden="true" aria-labelledby="exampleModalLabel" class="modal fade" id="subirDocumentos" tabindex="-1">
+            <article aria-hidden="true" aria-labelledby="exampleModalLabel" class="modal fade" id="subirDocumentos" tabindex="-1" data-bs-backdrop="static">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">

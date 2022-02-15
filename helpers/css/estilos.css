@@ -317,6 +317,12 @@ hr {
     font-weight: 300;
     font-size: 20px;
 }
+.alerta-bad {
+    background: #C71209 !important;
+    color: white;
+    font-weight: 300;
+    font-size: 18px;
+}
 /*
 ====================================
 ==========ASIGNACIONES=============

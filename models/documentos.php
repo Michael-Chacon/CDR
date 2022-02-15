@@ -116,7 +116,7 @@ class Documentos
     }
 
     /**
-     * @return mixed
+     * @return itutlo
      */
     public function getTitulo()
     {
@@ -193,6 +193,7 @@ class Documentos
         $listar->execute();
         return $listar;
     }
+
     # eliminar un documento de x materia
     public function deleteClassDocument()
     {
@@ -200,6 +201,21 @@ class Documentos
         $delete = $this->db->prepare("DELETE FROM documentosclase WHERE id = :id");
         $delete->bindParam(":id", $id_document, PDO::PARAM_INT);
         return $delete->execute();
+    }
+
+    # validar que el numero de archivos por materia no sea mayor que 10
+    public function validarNumeroDArchivos()
+    {
+        $id_materia = $this->getId();
+        $conteo = $this->db->prepare("SELECT COUNT(id) AS 'resultado' FROM documentosclase WHERE id_materia_d = :materia");
+        $conteo->bindParam(":materia", $id_materia, PDO::PARAM_INT);
+        $conteo->execute();
+        $total = $conteo->fetchObject();
+        if ($total->resultado >= 10) {
+            return false;
+        } else {
+            return true;
+        }
     }
 
 } # fin de la clase

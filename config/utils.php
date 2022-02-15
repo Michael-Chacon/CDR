@@ -37,9 +37,9 @@ class Utils
             $alerta = "<div class='alert alert-dismissible fade show text-center alerta-ok mt-2' role='alert'><strong><i class='bi bi-check2' style='font-size:1.5rem; color:white;'></i> </strong>" . $bien .
                 "<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button></div>";
         } elseif (isset($_SESSION[$alert]) && $_SESSION[$alert] == 'fallo') {
-            $alerta = "<div class='alert alert-danger alert-dismissible fade show text-center mt-2' role='alert'>
+            $alerta = "<div class='alert alerta-bad alert-dismissible fade show text-center mt-2' role='alert'>
                             <svg class='bi flex-shrink-0 me-2' width='24' height='24' role='img' aria-label='Danger:'><use xlink:href='exclamation-triangle-fill'/></svg>
-                                    <i class='bi bi-x-octagon' style='font-size:1.4rem; color:red;'></i> <strong>Error!</strong> " . $mal .
+                                    <i class='bi bi-x-octagon' style='font-size:1.4rem; color:white;'></i> <strong>Error!</strong> " . $mal .
                 "<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
                             </div>";
         }
