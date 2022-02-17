@@ -1,44 +1,26 @@
 <!-- contenido de  la pagina -->
             <section class="container-fluid">
                 <section class="row shadow titulo">
-                    <article class="col-xs-11 col-sm-11 col-md-11 col-lg-11">
+                    <article class="col-xs-11 col-sm-11 col-md-12 col-lg-11">
                         <h1 class="text-center config">
                             Opciones principales
                         </h1>
                     </article>
-                    <article class="col-xs-1 col-sm-1 col-md-1 col-lg-1 config icono-menu text-center">
+                    <!-- <article class="col-xs-1 col-sm-1 col-md-1 col-lg-1 config icono-menu text-center">
                         <acticle class="btn-group dropstart">
                             <a aria-expanded="false" class="" data-bs-toggle="dropdown" type="button">
                                 <i class="bi bi-list efecto_hover" style="font-size: 2rem; color: white;">
                                 </i>
                             </a>
                             <ul class="dropdown-menu">
-                              <!--   <li>
-                                    <a class="dropdown-item" data-bs-target="#CreatGrado" data-bs-toggle="modal" href="#">
-                                        <i class="bi bi-book-half">
-                                        </i>
-                                        Crear materia
-                                    </a>
-                                </li>
-                                <li>
-                                    <hr class="dropdown-divider"/>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" data-bs-target="#CreatHorario" data-bs-toggle="modal" href="#">
-                                        <i class="bi bi-calendar-week">
-                                        </i>
-                                        Asignar horario
-                                    </a>
-                                </li> -->
-                                <!-- <li><a class="dropdown-item" href="#">Menu item</a></li> -->
                             </ul>
                         </acticle>
-                    </article>
+                    </article> -->
                 </section>
             </section>
             <section class="container-fluit">
-                <section class="row justify-content-center mt-3">
-                    <h3 class="text-center">
+                <section class="row justify-content-center">
+                    <h3 class="text-center mb-5">
                         Grados
                     </h3>
                     <?php if ($mis_grados->rowCount() != 0): ?>
@@ -63,6 +45,7 @@
                 <hr/>
                 <!-- horario -->
                 <section class="row">
+                    <h3 class="text-center mb-5">Horario</h3>
                     <article class="col-md-4 text-center">
                         <span class="dia">
                             Lunes
@@ -321,4 +304,18 @@
                 </section>
                 <!-- fin del horario -->
                 <hr/>
+                <section class="row mb-5">
+                    <article class="col-xs-12 col-sm-12 col-md-4 col-xl-4 mb-2">
+                        <div class="card text-center shadow option">
+                            <div class="card-body contenido-card">
+                                   <i class="bi bi-file-earmark-arrow-down" style="font-size: 3rem;"></i>
+                                <h5>
+                                    Documentos
+                                </h5>
+                                <a class="stretched-link" href="<?=base_url?>Teacher/documentos">
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+                </section>
             </section>

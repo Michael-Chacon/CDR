@@ -40,8 +40,10 @@
 	    						<td class="text-document " style="border-right: 5px solid #8F09EB;"><?=$c++?></td>
 	    						<td class="text-document"><?=$documento->nombre?></td>
 	    						<td class="text-document"><?=$documento->descripcion?></td>
-	    						<td class="text-center"><a download="<?=$documento->nombre?>" href="<?=base_url?>documentos/<?=$documento->nombre?>"><i class="bi bi-download icono_docu" style="font-size: 1.5rem;"></i></a></td>
-	    						<td class="text-center"><a href="<?=base_url?>Documento/eliminar&id=<?=$documento->id?>" onclick="return confirm('Esta seguro de eliminar el archivo?');"><i class="bi bi-trash icono_docu" style="font-size: 1.5rem;"></i></a></td>
+	    						<td class="text-center"><a download="<?=$documento->nombre?>" href="<?=base_url?>documentos/<?=$documento->nombre?>"><i class="bi bi-download icono_docu" style="font-size: 1.5rem;"></i></a>
+	    						</td>
+	    						<td class="text-center"><a href="<?=base_url?>Documento/eliminar&id=<?=$documento->id?>&nombre=<?=$documento->nombre?>" onclick="return confirm('Esta seguro de eliminar el archivo?');"><i class="bi bi-trash icono_docu" style="font-size: 1.5rem;"></i></a>
+	    						</td>
 	    					</tr>
 	    				<?php endwhile; ?>
 	    			</tbody>

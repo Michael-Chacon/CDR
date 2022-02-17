@@ -98,6 +98,9 @@
                     <a class="list-group-item list-group-item-action list-group-item-light p-3 menu-items" href="#!">
                        <i class="bi bi-calendar-check"></i>  Calendario
                     </a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3 menu-items" href="<?=base_url?>Teacher/documentos">
+                       <i class="bi bi-file-earmark-arrow-down"></i>  Documentos institucionales
+                    </a>
                 </div>
             </div>
             <?php endif;?>

@@ -30,6 +30,8 @@ class DocumentoController
     public function eliminar()
     {
         $id = $_GET['id'];
+        $nombre = $_GET['nombre'];
+        unlink('documentos/'. $nombre);
         $documento = new Documentos();
         $documento->setId($id);
         $respuesta = $documento->delete();

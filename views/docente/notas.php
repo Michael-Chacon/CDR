@@ -204,6 +204,9 @@
                             <caption class="text-center">
                                 Segundo periodo
                             </caption>
+                            <?php if($periodo2->rowCount() != 0):
+                                $n = 1;
+                            ?>
                             <thead>
                                 <tr>
                                     <th>
@@ -227,32 +230,34 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>
-                                        
-                                    </td>
-                                    <td>
-                                        Cognitiva
-                                    </td>
-                                    <td>
-                                        40
-                                    </td>
-                                    <td>
-                                        15%
-                                    </td>
-                                    <td>
-                                        <a class="icono-actividades" download="" href="#">
-                                            <i class="bi bi-pen">
-                                            </i>
-                                        </a>
-                                    </td>
-                                    <td>
-                                        <a class="icono-actividades" download="" href="#">
-                                            <i class="bi bi-trash" style="font-size: 1.2rem;">
-                                            </i>
-                                        </a>
-                                    </td>
-                                </tr>
+                                <?php while($dos = $periodo2->fetchObject()): ?>
+                                    <tr>
+                                        <td>
+                                            <?=$n++;?>
+                                        </td>
+                                        <td>
+                                            <?=$dos->area?>
+                                        </td>
+                                        <td>
+                                            <?=$dos->nota?>
+                                        </td>
+                                        <td>
+                                            <?=$dos->porcentaje?>%
+                                        </td>
+                                        <td>
+                                            <a class="icono-actividades" download="" href="#">
+                                                <i class="bi bi-pen">
+                                                </i>
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a class="icono-actividades" download="" href="#">
+                                                <i class="bi bi-trash" style="font-size: 1.2rem;">
+                                                </i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                <?php endwhile; ?>
                             </tbody>
                             <tfoot>
                                 <tr>
@@ -270,6 +275,9 @@
                                     </th>
                                 </tr>
                             </tfoot>
+                            <?php else: ?>
+                                <p class="text-center mt-3"><span class="badge bg-warning text-dark">No hay notas registradas.</span></p>
+                            <?php endif; ?>
                         </table>
                     </div>
                 </article>
@@ -279,6 +287,9 @@
                             <caption class="text-center">
                                 Tercer periodo
                             </caption>
+                          <?php if($periodo3->rowCount() != 0):
+                                $n = 1;
+                            ?>
                             <thead>
                                 <tr>
                                     <th>
@@ -302,31 +313,34 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>
-                                        
-                                    </td>
-                                    <td>
-                                        Cognitiva
-                                    </td>
-                                    <td>
-                                        40
-                                    </td>
-                                    <td>
-                                        15%
-                                    </td>
-                                    <td>
-                                        <a class="icono-actividades" download="" href="#">
-                                            <i class="bi bi-pen">
-                                            </i>
-                                        </a>
-                                    </td>
-                                    <td>
-                                        <a class="icono-actividades" download="" href="#">
-                                            <i class="bi bi-trash" style="font-size: 1.2rem;">
-                                            </i>
-                                        </a>
-                                    </td>
+                                <?php while($tres = $periodo3->fetchObject()): ?>
+                                    <tr>
+                                        <td>
+                                            <?=$n++;?>
+                                        </td>
+                                        <td>
+                                            <?=$tres->area?>
+                                        </td>
+                                        <td>
+                                            <?=$tres->nota?>
+                                        </td>
+                                        <td>
+                                            <?=$tres->porcentaje?>%
+                                        </td>
+                                        <td>
+                                            <a class="icono-actividades" download="" href="#">
+                                                <i class="bi bi-pen">
+                                                </i>
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a class="icono-actividades" download="" href="#">
+                                                <i class="bi bi-trash" style="font-size: 1.2rem;">
+                                                </i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                <?php endwhile; ?>
                             </tbody>
                             <tfoot>
                                 <tr>
@@ -343,6 +357,9 @@
                                     </th>
                                 </tr>
                             </tfoot>
+                            <?php else: ?>
+                                <p class="text-center mt-3"><span class="badge bg-warning text-dark">No hay notas registradas.</span></p>
+                            <?php endif; ?>
                         </table>
                     </div>
                 </article>
@@ -352,6 +369,9 @@
                             <caption class="text-center">
                                 Cuarto periodo
                             </caption>
+                            <?php if($periodo4->rowCount() != 0):
+                                $n = 1;
+                            ?>
                             <thead>
                                 <tr>
                                     <th>
@@ -375,35 +395,39 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>
-                                        
-                                    </td>
-                                    <td>
-                                        Cognitiva
-                                    </td>
-                                    <td>
-                                        40
-                                    </td>
-                                    <td>
-                                        15%
-                                    </td>
-                                    <td>
-                                        <a class="icono-actividades" download="" href="#">
-                                            <i class="bi bi-pen">
-                                            </i>
-                                        </a>
-                                    </td>
-                                    <td>
-                                        <a class="icono-actividades" download="" href="#">
-                                            <i class="bi bi-trash" style="font-size: 1.2rem;">
-                                            </i>
-                                        </a>
-                                    </td>
+                                <?php while($cuatro = $periodo4->fetchObject()): ?>
+                                    <tr>
+                                        <td>
+                                            <?=$n++;?>
+                                        </td>
+                                        <td>
+                                            <?=$cuatro->area?>
+                                        </td>
+                                        <td>
+                                            <?=$cuatro->nota?>
+                                        </td>
+                                        <td>
+                                            <?=$cuatro->porcentaje?>%
+                                        </td>
+                                        <td>
+                                            <a class="icono-actividades" download="" href="#">
+                                                <i class="bi bi-pen">
+                                                </i>
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a class="icono-actividades" download="" href="#">
+                                                <i class="bi bi-trash" style="font-size: 1.2rem;">
+                                                </i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                <?php endwhile;?>
                             </tbody>
                             <tfoot>
                                 <tr>
-                                    <th></th>
+                                    <th>
+                                    </th>
                                     <th>
                                         Total
                                     </th>
@@ -415,6 +439,9 @@
                                     </th>
                                 </tr>
                             </tfoot>
+                            <?php else: ?>
+                                <p class="text-center mt-3"><span class="badge bg-warning text-dark">No hay notas registradas.</span></p>
+                            <?php endif; ?>
                         </table>
                     </div>
                 </article>
