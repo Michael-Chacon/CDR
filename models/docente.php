@@ -103,4 +103,15 @@ class Docente extends Usuarios
         return $datos->fetchObject();
     }
 
+    public function uptdateImgPerfil()
+    {
+        $docente = $this->getId();
+        $foto = $this->getImg();
+
+        $newphoto = $this->db->prepare("UPDATE docente SET img = :foto WHERE id = :id");
+        $newphoto->bindParam(":foto", $foto, PDO::PARAM_STR);
+        $newphoto->bindParam(":id", $docente, PDO::PARAM_INT);
+        return $newphoto->execute();
+    }
+
 } #FIN DE LA CLASE

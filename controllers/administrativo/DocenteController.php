@@ -161,4 +161,30 @@ class DocenteController
         header("Location:" . base_url . 'Docente/perfilDocente&id=' . $id);
     }
 
+    public function actualizarFotoPerfil()
+    {
+        $file = $_FILES['foto_perfil'];
+        $filename = $file['name'];
+        $mimetype = $file['type'];
+        if ($mimetype == "image/jpg" || $mimetype == "image/jpeg" || $mimetype == "image/png" || $mimetype == "image/gif") {
+
+            if (!is_dir('photos/docentes/')) {
+                mkdir('photos/docentes/', 0777, true);
+            }
+            move_uploaded_file($file['tmp_name'], 'photos/docentes/' . $filename);
+        }
+        $id = $_POST['docente'];
+        $foto = $filename;
+        $foto_actual = $_POST['foto_actual'];
+        $new_photo = new Docente();
+        $new_photo->setId($id);
+        $new_photo->setImg($foto);
+        $resultadoF = $new_photo->uptdateImgPerfil();
+        if ($resultadoF) {
+            unlink('photos/docentes/'. $foto_actual);
+        }
+        Utils::validarReturn($resultadoF, 'cambiarPhotoD');
+        header("Location: " . base_url . 'Docente/perfilDocente&id=' . $_POST['docente']);
+    }
+
 } # fin de la clase

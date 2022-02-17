@@ -138,12 +138,14 @@ hr {
     height: 5rem;
     width: 5rem;
     max-width: 150px;
+    object-fit: cover;
 }
 .avatar-tabla {
+    width: 100%;
     height: 3rem;
-    widows: 3rem;
     max-width: 3rem;
     max-width: 3rem;
+    object-fit: cover;
 }
 .circulo {
     border-radius: 50%;
@@ -193,6 +195,7 @@ hr {
     width: 7rem;
     border-radius: 50%;
     border: 3px solid white;
+    object-fit: cover !important;
 }
 .contenedor-img {
     padding-left: 20px;

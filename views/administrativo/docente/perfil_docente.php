@@ -14,8 +14,13 @@
                                         <div class="row">
                                             <article class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
                                                 <article class="flex-shrink-0 contenedor-img-perfil">
-                                                    <img alt="..." class="avatar-perfil" src="<?=base_url?>photos/docentes/<?=$docente->img?>">
-                                                    </img>
+                                                    <a href="#" data-bs-toggle="modal" data-bs-target="#fotoPerfil">
+                                                        <?php if ($docente->img == null): ?>
+                                                            <img alt="" class="avatar-perfil" src="<?=base_url?>helpers/img/avatar.jpg"></img>
+                                                        <?php else: ?>
+                                                            <img alt="" class="avatar-perfil" src="<?=base_url?>photos/docentes/<?=$docente->img?>"></img>
+                                                        <?php endif;?>
+                                                    </a>
                                                 </article>
                                             </article>
                                             <article class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
@@ -594,6 +599,33 @@
         <!-- ================================================
     ================MODALES=========================
     ================================================= -->
+    <!-- Modal para cambiar la foto de perfil -->
+            <!-- Modal -->
+            <section class="modal fade " id="fotoPerfil" tabindex="-1" aria-labelledby="exampleModalLabel" data-bs-backdrop="static" aria-hidden="true">
+              <section class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Cambiar la foto de perfil</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                        <form action="<?=base_url?>Docente/actualizarFotoPerfil" method="post" enctype="multipart/form-data">
+                            <input type="text " hidden name="docente" value="<?=$docente->id?>">
+                            <input type="text" hidden name="foto_actual" value="<?=$docente->img?>">
+                            <div>
+                              <label for="perfil" class="form-label">Elija la nueva foto de perfil</label>
+                              <input class="form-control form-control-lg" id="perfil" name="foto_perfil" type="file" required>
+                            </div>
+                            <hr/>
+                            <div class="d-grid gap-2 mt-3">
+                              <button class="btn btn-outline-success" type="submit">Guardar</button>
+                              <button class="btn btn-outline-danger" type="button" data-bs-dismiss="modal">Cancelar</button>
+                            </div>
+                        </div>
+                        </form>
+                  </div>
+              </section>
+            </section>
         <!-- Modal  de camabio de contraseña-->
         <section aria-hidden="true" aria-labelledby="exampleModalLabel" class="modal fade" data-bs-backdrop="static" id="updatePassword" tabindex="-1">
             <section class="modal-dialog">

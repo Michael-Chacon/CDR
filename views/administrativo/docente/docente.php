@@ -17,10 +17,11 @@
                      <?php echo Utils::general_alerts('docente', 'El docente se ha registrado con éxito.', 'Algo salió mal al registrar el docente, inténtelo de nuevo.'); ?>
                      <?php echo Utils::general_alerts('credencial_d', 'Se asignaron credenciales al docente con éxito.', 'Algo salió mal al asignar credencale al docente, inténtelo de nuevo.'); ?>
                      <?php echo Utils::general_alerts('validacion_d', '', 'Se encontró un docente en la base de datos con el mismo número de documento, posiblemente este docente ya existe en la plataforma.') ?>
-                     <?php Utils::borrar_error('docente');
-Utils::borrar_error('credencial_d');
-Utils::borrar_error('validacion_d');
-?>
+                     <?php
+                            Utils::borrar_error('docente');
+                            Utils::borrar_error('credencial_d');
+                            Utils::borrar_error('validacion_d');
+                    ?>
                     <!-- tabla -->
                     <section class="row justify-content-center mt-5">
                         <div class="col-md-10 shadow">
@@ -49,34 +50,38 @@ Utils::borrar_error('validacion_d');
                                 </thead>
                                 <tbody>
                                     <?php if (isset($lista)):
-                                                $c = 1;
-                                                while ($docente_datos = $lista->fetchObject()): ?>
-						                                                <tr>
-						                                                    <th class="" scope="row">
-						                                                        <?=$c++?>
-						                                                    </th>
-						                                                    <td>
-						                                                        <img alt="" class="avatar-tabla circulo" src="<?=base_url?>photos/docentes/<?=$docente_datos->img?>"></img>
-						                                                    </td>
-						                                                    <td class="texto_tabla_docente">
-						                                                        <a href=" <?=base_url?>Docente/perfilDocente&id=<?=$docente_datos->id?>">
-						                                                              <?=$docente_datos->nombre_d?>
-						                                                               <?=$docente_datos->apellidos_d?>
-						                                                            <br/>
-						                                                        </a>
-						                                                        <small class="pregrado"><?=$docente_datos->nombre_pregrado_d?></small>
-						                                                    </td>
-						                                                    <td class="texto_tabla_docente">
-						                                                        <?=$docente_datos->correo_d?>
-						                                                    </td>
-						                                                    <td class="texto_tabla_docente">
-						                                                        <?=$docente_datos->telefono_d?>
-						                                                    </td>
-						                                                    <td class="texto_tabla_docente">
-						                                                        <?=$docente_datos->numero_d?>
-						                                                    </td>
-						                                                </tr>
-						                      <?php endwhile;
+                                            $c = 1;
+                                            while ($docente_datos = $lista->fetchObject()): ?>
+                                                <tr>
+                                                    <th class="" scope="row">
+                                                        <?=$c++?>
+                                                    </th>
+                                                    <td>
+                                                        <?php if ($docente_datos->img == null): ?>
+                                                            <img alt="" class="avatar-tabla circulo" src="<?=base_url?>helpers/img/avatar.jpg"></img>
+                                                        <?php else: ?>
+                                                            <img alt="" class="avatar-tabla circulo" src="<?=base_url?>photos/docentes/<?=$docente_datos->img?>"></img>
+                                                        <?php endif;?>
+                                                    </td>
+                                                    <td class="texto_tabla_docente">
+                                                        <a href="<?=base_url?>Docente/perfilDocente&id=<?=$docente_datos->id?>">
+                                                            <?=$docente_datos->nombre_d?>
+                                                            <?=$docente_datos->apellidos_d?>
+                                                            <br/>
+                                                        </a>
+                                                        <small class="pregrado"><?=$docente_datos->nombre_pregrado_d?></small>
+                                                    </td>
+                                                    <td class="texto_tabla_docente">
+                                                        <?=$docente_datos->correo_d?>
+                                                    </td>
+                                                    <td class="texto_tabla_docente">
+                                                        <?=$docente_datos->telefono_d?>
+                                                    </td>
+                                                    <td class="texto_tabla_docente">
+                                                        <?=$docente_datos->numero_d?>
+                                                    </td>
+                                                </tr>
+                                            <?php endwhile;
                                     endif;
                                     ?>
                                 </tbody>
