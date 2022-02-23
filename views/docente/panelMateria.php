@@ -6,6 +6,7 @@
                             <?=$nombre_ma?> <?=$nombre_gra?>°
                         </h1>
                     </article>
+
                     <?php if (isset($_SESSION['teacher'])): ?>
                     <article class="col-xs-1 col-sm-1 col-md-1 col-lg-1 config icono-menu text-center">
                         <acticle class="btn-group dropstart">
@@ -38,7 +39,8 @@
                             </ul>
                         </acticle>
                     </article>
-                <?php endif ?>
+                <?php else: ?>
+                <?php endif?>
                 </section>
                 <?php echo Utils::general_alerts('GuardarDocumentosDClase', 'Documento registrado con éxito.', 'Error al intentar registrar el documento, inténtelo de nuevo.') ?>
                 <?php echo Utils::general_alerts('eliminarDocumentoDClase', 'Documento eliminado con éxito.', 'Error al intentar borrar el documento, inténtelo de nuevo.') ?>
@@ -66,8 +68,8 @@
                             Listado de estudiantes
                         </h3>
                         <hr/>
+                        <?php if ($listado_estudiantes->rowCount() != 0): ?>
                         <div class="shadow">
-                            <?php if ($listado_estudiantes->rowCount() != 0): ?>
                                 <table class="table table-hover">
                                     <thead class="text-center">
                                         <tr>
@@ -97,10 +99,10 @@
                                         <?php endwhile;?>
                                     </tbody>
                                 </table>
+                        </div>
                                 <?php else: ?>
                                     <p class="text-center mt-3"><span class="badge bg-warning text-dark">No hay estudiantes matriculados.</span></p>
                             <?php endif;?>
-                        </div>
                     </article>
                     <!-- inicio de las  actividades -->
                     <article class="col-xs-12 col-sm-12 col-md-5">
@@ -223,6 +225,7 @@
                                         </tr>
                                     </thead>
                                     <tbody class="text-center">
+                                        <?php if($colocar_falla->rowCount() != 0): ?>
                                         <?php 
                                          $c = 0;
                                         while($listado_e = $colocar_falla->fetchObject()):
@@ -245,6 +248,9 @@
                                                 </td>
                                             </tr>
                                         <?php endwhile; ?>
+                                    <?php else: ?>
+                                        <p class="text-center mt-3"><span class="badge bg-warning text-dark">No hay estudiantes matriculados.</span></p>
+                                    <?php endif; ?>
                                     </tbody>
                                 </table>
                             </div>

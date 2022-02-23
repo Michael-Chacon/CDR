@@ -157,20 +157,23 @@ class Notas
 
     public function validatePercent()
     {
-        $subject = $this->getMateria();
-        $student = $this->getEstudiante();
-        $porcent = $this->getPorcentaje();
-        $validacion = $this->db->prepare("SELECT SUM(porcentaje) AS 'total' FROM notas WHERE id_materia_n = :materia AND id_estudiante_n = :estudiante");
-        $validacion->bindParam(":materia", $subject, PDO::PARAM_INT);
-        $validacion->bindParam(":estudiante", $student, PDO::PARAM_INT);
-        $validacion->execute();
-        $total = $validacion->fetchObject();
-        $neto = $total->total + $porcent;
-        echo $neto;
-        if ($neto <= 100) {
-            return true;
-        } else {
-            return false;
+        try {
+            $subject = $this->getMateria();
+            $student = $this->getEstudiante();
+            $porcent = $this->getPorcentaje();
+            $validacion = $this->db->prepare("SELECT SUM(porcentaje) AS 'total' FROM notas WHERE id_materia_n = :materia AND id_estudiante_n = :estudiante");
+            $validacion->bindParam(":materia", $subject, PDO::PARAM_INT);
+            $validacion->bindParam(":estudiante", $student, PDO::PARAM_INT);
+            $validacion->execute();
+            $total = $validacion->fetchObject();
+            $neto = $total->total + $porcent;
+            if ($neto <= 100) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (PDOException $e) {
+            echo $e->getMessage();
         }
     }
 

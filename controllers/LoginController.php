@@ -52,7 +52,7 @@ class LoginController
                     $id_user = $respuesta->id_estudiante;
                     $informacion->setIdUsuario($id_user);
                     $info = $informacion->obtenerDatos($rol);
-                    $_SESSION['user'] = $info;
+                    $_SESSION['student'] = $info;
                     header('Location: ' . base_url . 'Login/homeEstudiante');
                     break;
                 #usuario Docente
@@ -72,8 +72,10 @@ class LoginController
     #cerrar sesion
     public function logout()
     {
-        if (isset($_SESSION['user'])) {
+        if (isset($_SESSION['user']) || isset($_SESSION['teacher']) || isset($_SESSION['student'])) {
             unset($_SESSION['user']);
+            unset($_SESSION['teacher']);
+            unset($_SESSION['student']);
         }
         header('Location:' . base_url);
     }

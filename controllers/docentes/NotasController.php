@@ -54,6 +54,7 @@ class NotasController
         $calificar->setNota($nota);
         $calificar->setPorcentaje($porcentaje);
         $validacion = $calificar->validatePercent();
+
         if ($validacion) {
             $resultado = $calificar->registerNote();
             var_dump($resultado);

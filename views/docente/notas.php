@@ -7,6 +7,7 @@
                         <?=$materia->nombre_mat?> <?=$grado?>°
                     </h1>
                 </article>
+                <?php if(isset($_SESSION['teacher'])): ?>
                 <article class="col-xs-1 col-sm-1 col-md-1 col-lg-1 config icono-menu text-center">
                     <acticle class="btn-group dropstart">
                         <a aria-expanded="false" class="" data-bs-toggle="dropdown" type="button">
@@ -24,6 +25,8 @@
                         </ul>
                     </acticle>
                 </article>
+            <?php else: ?>
+            <?php endif; ?>
             </section>
             <!-- fin del header -->
             <section class="row justify-content-center">
@@ -140,12 +143,14 @@
                                         <th>
                                             Porcentaje
                                         </th>
-                                        <th>
-                                            Editar
-                                        </th>
-                                        <th>
-                                            Eliminar
-                                        </th>
+                                        <?php if(isset($_SESSION['teacher'])): ?>
+                                    <th>
+                                        Editar
+                                    </th>
+                                    <th>
+                                        Eliminar
+                                    </th>
+                                <?php endif; ?>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -163,18 +168,20 @@
                                         <td>
                                             <?=$uno->porcentaje?>%
                                         </td>
+                                       <?php if(isset($_SESSION['teacher'])): ?>
                                         <td>
-                                            <a class="icono-actividades" download="" href="#">
+                                            <a class="icono-actividades"  href="#">
                                                 <i class="bi bi-pen">
                                                 </i>
                                             </a>
                                         </td>
                                         <td>
-                                            <a class="icono-actividades" download="" href="#">
+                                            <a class="icono-actividades"  href="#">
                                                 <i class="bi bi-trash" style="font-size: 1.2rem;">
                                                 </i>
                                             </a>
                                         </td>
+                                    <?php endif; ?>
                                     </tr>
                                 <?php endwhile; ?>
                                 </tbody>
@@ -221,12 +228,14 @@
                                     <th>
                                         Porcentaje
                                     </th>
+                                    <?php if(isset($_SESSION['teacher'])): ?>
                                     <th>
                                         Editar
                                     </th>
                                     <th>
                                         Eliminar
                                     </th>
+                                <?php endif; ?>
                                 </tr>
                             </thead>
                             <tbody>
@@ -244,18 +253,20 @@
                                         <td>
                                             <?=$dos->porcentaje?>%
                                         </td>
+                                        <?php if(isset($_SESSION['teacher'])): ?>
                                         <td>
-                                            <a class="icono-actividades" download="" href="#">
+                                            <a class="icono-actividades"  href="#">
                                                 <i class="bi bi-pen">
                                                 </i>
                                             </a>
                                         </td>
                                         <td>
-                                            <a class="icono-actividades" download="" href="#">
+                                            <a class="icono-actividades"  href="#">
                                                 <i class="bi bi-trash" style="font-size: 1.2rem;">
                                                 </i>
                                             </a>
                                         </td>
+                                    <?php endif; ?>
                                     </tr>
                                 <?php endwhile; ?>
                             </tbody>
@@ -304,12 +315,14 @@
                                     <th>
                                         Porcentaje
                                     </th>
+                                <?php if(isset($_SESSION['teacher'])): ?>
                                     <th>
                                         Editar
                                     </th>
                                     <th>
                                         Eliminar
                                     </th>
+                                <?php endif; ?>
                                 </tr>
                             </thead>
                             <tbody>
@@ -327,18 +340,20 @@
                                         <td>
                                             <?=$tres->porcentaje?>%
                                         </td>
+                                        <?php if(isset($_SESSION['teacher'])): ?>
                                         <td>
-                                            <a class="icono-actividades" download="" href="#">
+                                            <a class="icono-actividades"  href="#">
                                                 <i class="bi bi-pen">
                                                 </i>
                                             </a>
                                         </td>
                                         <td>
-                                            <a class="icono-actividades" download="" href="#">
+                                            <a class="icono-actividades"  href="#">
                                                 <i class="bi bi-trash" style="font-size: 1.2rem;">
                                                 </i>
                                             </a>
                                         </td>
+                                    <?php endif; ?>
                                     </tr>
                                 <?php endwhile; ?>
                             </tbody>
@@ -386,12 +401,14 @@
                                     <th>
                                         Porcentaje
                                     </th>
+                                    <?php if(isset($_SESSION['teacher'])): ?>
                                     <th>
                                         Editar
                                     </th>
                                     <th>
                                         Eliminar
                                     </th>
+                                <?php endif; ?>
                                 </tr>
                             </thead>
                             <tbody>
@@ -409,18 +426,20 @@
                                         <td>
                                             <?=$cuatro->porcentaje?>%
                                         </td>
+                                        <?php if(isset($_SESSION['teacher'])): ?>
                                         <td>
-                                            <a class="icono-actividades" download="" href="#">
+                                            <a class="icono-actividades"  href="#">
                                                 <i class="bi bi-pen">
                                                 </i>
                                             </a>
                                         </td>
                                         <td>
-                                            <a class="icono-actividades" download="" href="#">
+                                            <a class="icono-actividades"  href="#">
                                                 <i class="bi bi-trash" style="font-size: 1.2rem;">
                                                 </i>
                                             </a>
                                         </td>
+                                    <?php endif; ?>
                                     </tr>
                                 <?php endwhile;?>
                             </tbody>
