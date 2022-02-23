@@ -6,6 +6,7 @@
                             <?=$nombre_ma?> <?=$nombre_gra?>°
                         </h1>
                     </article>
+                    <?php if (isset($_SESSION['teacher'])): ?>
                     <article class="col-xs-1 col-sm-1 col-md-1 col-lg-1 config icono-menu text-center">
                         <acticle class="btn-group dropstart">
                             <a aria-expanded="false" class="" data-bs-toggle="dropdown" type="button">
@@ -37,6 +38,7 @@
                             </ul>
                         </acticle>
                     </article>
+                <?php endif ?>
                 </section>
                 <?php echo Utils::general_alerts('GuardarDocumentosDClase', 'Documento registrado con éxito.', 'Error al intentar registrar el documento, inténtelo de nuevo.') ?>
                 <?php echo Utils::general_alerts('eliminarDocumentoDClase', 'Documento eliminado con éxito.', 'Error al intentar borrar el documento, inténtelo de nuevo.') ?>

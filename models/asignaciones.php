@@ -145,7 +145,7 @@ class Asignaciones
                                                             INNER JOIN docente d ON d.id = gd.id_docente_g
                                                             INNER JOIN grado g ON g.id = gd.id_grado_d
                                                             INNER JOIN materia m ON m.id_grado_mat =  gd.id_grado_d
-                                                            WHERE g.id = :grado AND d.id = :docente AND m.asignada = 'no';
+                                                            WHERE g.id = :grado AND d.id = :docente AND m.asignacion = 'no';
                                                             ");
         $materias->bindParam(':grado', $grado, PDO::PARAM_INT);
         $materias->bindParam(':docente', $docente, PDO::PARAM_INT);
@@ -171,12 +171,12 @@ class Asignaciones
     public function materiasAsignadas()
     {
         try {
-
             $docente = $this->getIdDocente();
             $grado = $this->getGrados();
+
             $materias = $this->db->prepare("
-                                                                SELECT m.id AS 'id_materia', m. icono, m.nombre_mat, g.* FROM docentemateria dm
-                                                                INNER JOIN docente d ON d.id = id_docente_mat
+                                                                SELECT m.id AS 'id_materia', m.icono, m.nombre_mat, g.* FROM docentemateria dm
+                                                                INNER JOIN docente d ON d.id = dm.id_docente_mat
                                                                 INNER JOIN materia m ON m.id = dm.id_materia_doc
                                                                 INNER JOIN grado g ON g.id = m.id_grado_mat
                                                                 WHERE d.id = :docente AND g.id = :grado;
@@ -201,7 +201,7 @@ class Asignaciones
                 $estado = 'no';
             }
             foreach ($materias_seleccionadas as $id) {
-                $asignacion = $this->db->prepare("UPDATE materia SET asignada = :estado WHERE id = :id_materia");
+                $asignacion = $this->db->prepare("UPDATE materia SET asignacion= :estado WHERE id = :id_materia");
                 $asignacion->bindParam(':estado', $estado, PDO::PARAM_STR);
                 $asignacion->bindParam(':id_materia', $id, PDO::PARAM_INT);
                 $asignacion->execute();

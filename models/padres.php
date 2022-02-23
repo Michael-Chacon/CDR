@@ -500,7 +500,6 @@ class Padres
     public function guardarPadres($accion)
     {
         try {
-
             # madre
             $n_m = $this->getNombreM();
             $a_m = $this->getApellidosM();
@@ -523,7 +522,6 @@ class Padres
             $fec_p = $this->getFechaExpediP();
             $te_p = $this->getTelefonoP();
             $o_p = $this->getOcupacionP();
-
             $dir = $this->getDireccion();
             $co = $this->getCorreo();
             $id_padres = $this->getId();

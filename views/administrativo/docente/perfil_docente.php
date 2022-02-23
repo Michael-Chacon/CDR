@@ -133,7 +133,7 @@
                                                                     <?=$grado->nombre_g?>°
                                                                 </h2>
                                                                 <hr class="hr-perfil"/>
-                                                                <a class="stretched-link" href="<?=$grado->id?>">
+                                                                <a class="stretched-link" href="<?=base_url?>MisMaterias/misMaterias&idd=<?=$docente->id?>&grado=<?=$grado->id?>&nombre=<?=$grado->nombre_g?>">
                                                                 </a>
                                                             </div>
                                                         </article>

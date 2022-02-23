@@ -70,7 +70,6 @@ class EstudianteController
 
             $direccion_mp = trim($_POST['direccion_mp']);
             $correo_mp = trim($_POST['correo_mp']);
-
             # set padres
             $padres = new Padres();
             # madre

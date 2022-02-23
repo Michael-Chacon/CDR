@@ -74,6 +74,7 @@ CREATE TABLE estudiante(
 	rh_e VARCHAR(1) NOT NULL,
 	transporte VARCHAR(2) NOT NULL,
 	pae VARCHAR(2) NOT NULL,
+	img 	VARCHAR(255) NULL,
 	CONSTRAINT pk_estudiante PRIMARY KEY(id),
 	CONSTRAINT fk_grado_estudiante FOREIGN KEY(id_gradoE) REFERENCES grado(id) ON DELETE CASCADE, 
 	CONSTRAINT fk_padres_estudiante FOREIGN KEY(id_familia_e) REFERENCES padres(id) ON DELETE CASCADE
@@ -104,6 +105,7 @@ CREATE TABLE docente(
 	nombre_pregrado_d VARCHAR(30) NOT NULL,
 	posgrado_d VARCHAR(2) NOT NULL,
 	nombre_posgrado_d VARCHAR(30) NOT NULL,
+	img 	VARCHAR(255) NULL,
 	CONSTRAINT pk_docente PRIMARY KEY(id)
 )ENGINE=InnoDb;
 
@@ -336,10 +338,10 @@ WHERE gd.id_grado_d = 1 AND gd.id_docente_g = 4;
 
 # consulta para obtener las materias matriculadas en un cierto grado
 SELECT dm.*,  m.nombre_mat , g.nombre_g FROM docentemateria dm
-INNER JOIN docente d ON d.id = id_docente_mat
+INNER JOIN docente d ON d.id = dm.id_docente_mat
 INNER JOIN materia m ON m.id = dm.id_materia_doc
 INNER JOIN grado g ON g.id = m.id_grado_mat
-WHERE d.id = 1 AND g.id = 1;
+WHERE d.id = 2 AND g.id = 1;
 
 # seleccionar el horario de las materias de detenminado dia 
 SELECT m.*, l.* FROM materia m

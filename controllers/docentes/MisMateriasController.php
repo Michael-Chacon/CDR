@@ -6,7 +6,11 @@ class MisMateriasController
     {
         $id_grado = $_GET['grado'];
         $nombre_grado = $_GET['nombre'];
-        $docente = $_SESSION['teacher']->id;
+        if (isset($_GET['idd'])) {
+            $docente = $_GET['idd'];
+        } else {
+            $docente = $_SESSION['teacher']->id;
+        }
 
         $materias = new Asignaciones();
         $materias->setGrados($id_grado);
