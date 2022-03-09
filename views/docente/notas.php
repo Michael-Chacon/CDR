@@ -7,7 +7,7 @@
                         <?=$materia->nombre_mat?> <?=$grado?>°
                     </h1>
                 </article>
-                <?php if(isset($_SESSION['teacher'])): ?>
+                <?php if (isset($_SESSION['teacher'])): ?>
                 <article class="col-xs-1 col-sm-1 col-md-1 col-lg-1 config icono-menu text-center">
                     <acticle class="btn-group dropstart">
                         <a aria-expanded="false" class="" data-bs-toggle="dropdown" type="button">
@@ -26,17 +26,17 @@
                     </acticle>
                 </article>
             <?php else: ?>
-            <?php endif; ?>
+            <?php endif;?>
             </section>
             <!-- fin del header -->
             <section class="row justify-content-center">
                 <?php echo Utils::general_alerts('registrarNota', 'Nota registrada con éxito.', ' El porcentaje de esta nota sobrepasa el límite del 100%') ?>
-                <?php Utils::borrar_error('registrarNota'); ?>
+                <?php Utils::borrar_error('registrarNota');?>
                 <article class="col-md-5 mt-5">
                     <ul class="list-group list-group-flush shadow">
                         <li class="list-group-item">
                             <article class="row">
-                                <article class="col-md-10">
+                                <article class="col-md-7">
                             <span class="nombre_estudiante">
                                 <?=$estudiante->nombre_e?> <?=$estudiante->apellidos_e?>
                             </span>
@@ -45,6 +45,13 @@
                                 <span class="badge rounded-pill bg-danger">
                                     <?=$fallas->total?> fallas
                                 </span>
+                                </article>
+                                <article class="col-md-3">
+                                    <a href="<?=base_url?>Observador/vista_observador&id=<?=$estudiante->id?>&name=<?=$estudiante->nombre_e?> <?=$estudiante->apellidos_e?>&g=<?=$grado?>">
+                                        <small class="badge rounded-pill bg-primary">
+                                            <?=$fallas->total?> Observaciones
+                                        </small>
+                                    </a>
                                 </article>
                             </article>
                         </li>
@@ -70,8 +77,8 @@
                             <div aria-labelledby="flush-headingOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample" id="flush-collapseOne">
                                 <article class="accordion-body">
                                     <?php $f = 0;
-                                        if($fechas_fallas->rowCount() != 0): 
-                                    ?>
+if ($fechas_fallas->rowCount() != 0):
+?>
                                         <table class="table text-center">
                                             <thead>
                                                 <tr>
@@ -87,21 +94,21 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <?php while($fechas = $fechas_fallas->fetchObject()): 
-                                                    $f++;
-                                                ?>
-                                                    <tr>
-                                                        <td>
-                                                            <?=$f?>
-                                                        </td>
-                                                        <td>
-                                                            <?=$fechas->fecha_falla?>
-                                                        </td>
-                                                        <td>
-                                                            <?=$fechas->id_periodo_f?>
-                                                        </td>
-                                                    </tr>
-                                                <?php endwhile; ?>    
+                                                <?php while ($fechas = $fechas_fallas->fetchObject()):
+    $f++;
+    ?>
+	                                                    <tr>
+	                                                        <td>
+	                                                            <?=$f?>
+	                                                        </td>
+	                                                        <td>
+	                                                            <?=$fechas->fecha_falla?>
+	                                                        </td>
+	                                                        <td>
+	                                                            <?=$fechas->id_periodo_f?>
+	                                                        </td>
+	                                                    </tr>
+	                                                <?php endwhile;?>
                                             </tbody>
                                             </table>
                                     <?php else: ?>
@@ -126,35 +133,35 @@
                             <caption class="text-center">
                                 Primer periodo
                             </caption>
-                            <?php if($periodo1->rowCount() != 0): 
-                                $n = 1;
-                            ?>
-                                <thead>
-                                    <tr>
-                                        <th>
-                                            #
-                                        </th>
-                                        <th>
-                                            Nombre
-                                        </th>
-                                        <th>
-                                            Nota
-                                        </th>
-                                        <th>
-                                            Porcentaje
-                                        </th>
-                                        <?php if(isset($_SESSION['teacher'])): ?>
-                                    <th>
-                                        Editar
-                                    </th>
-                                    <th>
-                                        Eliminar
-                                    </th>
-                                <?php endif; ?>
+                            <?php if ($periodo1->rowCount() != 0):
+    $n = 1;
+    ?>
+	                                <thead>
+	                                    <tr>
+	                                        <th>
+	                                            #
+	                                        </th>
+	                                        <th>
+	                                            Nombre
+	                                        </th>
+	                                        <th>
+	                                            Nota
+	                                        </th>
+	                                        <th>
+	                                            Porcentaje
+	                                        </th>
+	                                        <?php if (isset($_SESSION['teacher'])): ?>
+	                                    <th>
+	                                        Editar
+	                                    </th>
+	                                    <th>
+	                                        Eliminar
+	                                    </th>
+	                                <?php endif;?>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                <?php while($uno = $periodo1->fetchObject()): ?>
+                                <?php while ($uno = $periodo1->fetchObject()): ?>
                                     <tr>
                                         <td>
                                             <?=$n++;?>
@@ -168,7 +175,7 @@
                                         <td>
                                             <?=$uno->porcentaje?>%
                                         </td>
-                                       <?php if(isset($_SESSION['teacher'])): ?>
+                                       <?php if (isset($_SESSION['teacher'])): ?>
                                         <td>
                                             <a class="icono-actividades"  href="#">
                                                 <i class="bi bi-pen">
@@ -181,9 +188,9 @@
                                                 </i>
                                             </a>
                                         </td>
-                                    <?php endif; ?>
+                                    <?php endif;?>
                                     </tr>
-                                <?php endwhile; ?>
+                                <?php endwhile;?>
                                 </tbody>
                                 <tfoot>
                                     <tr>
@@ -201,7 +208,7 @@
                                 </tfoot>
                             <?php else: ?>
                                 <p class="text-center mt-3"><span class="badge bg-warning text-dark">No hay notas registradas.</span></p>
-                            <?php endif; ?>
+                            <?php endif;?>
                         </table>
                     </div>
                 </article>
@@ -211,35 +218,35 @@
                             <caption class="text-center">
                                 Segundo periodo
                             </caption>
-                            <?php if($periodo2->rowCount() != 0):
-                                $n = 1;
-                            ?>
-                            <thead>
-                                <tr>
-                                    <th>
-                                        #
-                                    </th>
-                                    <th>
-                                        Nombre
-                                    </th>
-                                    <th>
-                                        Nota
-                                    </th>
-                                    <th>
-                                        Porcentaje
-                                    </th>
-                                    <?php if(isset($_SESSION['teacher'])): ?>
-                                    <th>
-                                        Editar
-                                    </th>
-                                    <th>
-                                        Eliminar
-                                    </th>
-                                <?php endif; ?>
+                            <?php if ($periodo2->rowCount() != 0):
+    $n = 1;
+    ?>
+	                            <thead>
+	                                <tr>
+	                                    <th>
+	                                        #
+	                                    </th>
+	                                    <th>
+	                                        Nombre
+	                                    </th>
+	                                    <th>
+	                                        Nota
+	                                    </th>
+	                                    <th>
+	                                        Porcentaje
+	                                    </th>
+	                                    <?php if (isset($_SESSION['teacher'])): ?>
+	                                    <th>
+	                                        Editar
+	                                    </th>
+	                                    <th>
+	                                        Eliminar
+	                                    </th>
+	                                <?php endif;?>
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php while($dos = $periodo2->fetchObject()): ?>
+                                <?php while ($dos = $periodo2->fetchObject()): ?>
                                     <tr>
                                         <td>
                                             <?=$n++;?>
@@ -253,7 +260,7 @@
                                         <td>
                                             <?=$dos->porcentaje?>%
                                         </td>
-                                        <?php if(isset($_SESSION['teacher'])): ?>
+                                        <?php if (isset($_SESSION['teacher'])): ?>
                                         <td>
                                             <a class="icono-actividades"  href="#">
                                                 <i class="bi bi-pen">
@@ -266,14 +273,14 @@
                                                 </i>
                                             </a>
                                         </td>
-                                    <?php endif; ?>
+                                    <?php endif;?>
                                     </tr>
-                                <?php endwhile; ?>
+                                <?php endwhile;?>
                             </tbody>
                             <tfoot>
                                 <tr>
                                     <th>
-                                        
+
                                     </th>
                                     <th>
                                         Total
@@ -288,7 +295,7 @@
                             </tfoot>
                             <?php else: ?>
                                 <p class="text-center mt-3"><span class="badge bg-warning text-dark">No hay notas registradas.</span></p>
-                            <?php endif; ?>
+                            <?php endif;?>
                         </table>
                     </div>
                 </article>
@@ -298,35 +305,35 @@
                             <caption class="text-center">
                                 Tercer periodo
                             </caption>
-                          <?php if($periodo3->rowCount() != 0):
-                                $n = 1;
-                            ?>
-                            <thead>
-                                <tr>
-                                    <th>
-                                        #
-                                    </th>
-                                    <th>
-                                        Nombre
-                                    </th>
-                                    <th>
-                                        Nota
-                                    </th>
-                                    <th>
-                                        Porcentaje
-                                    </th>
-                                <?php if(isset($_SESSION['teacher'])): ?>
-                                    <th>
-                                        Editar
-                                    </th>
-                                    <th>
-                                        Eliminar
-                                    </th>
-                                <?php endif; ?>
+                          <?php if ($periodo3->rowCount() != 0):
+    $n = 1;
+    ?>
+	                            <thead>
+	                                <tr>
+	                                    <th>
+	                                        #
+	                                    </th>
+	                                    <th>
+	                                        Nombre
+	                                    </th>
+	                                    <th>
+	                                        Nota
+	                                    </th>
+	                                    <th>
+	                                        Porcentaje
+	                                    </th>
+	                                <?php if (isset($_SESSION['teacher'])): ?>
+	                                    <th>
+	                                        Editar
+	                                    </th>
+	                                    <th>
+	                                        Eliminar
+	                                    </th>
+	                                <?php endif;?>
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php while($tres = $periodo3->fetchObject()): ?>
+                                <?php while ($tres = $periodo3->fetchObject()): ?>
                                     <tr>
                                         <td>
                                             <?=$n++;?>
@@ -340,7 +347,7 @@
                                         <td>
                                             <?=$tres->porcentaje?>%
                                         </td>
-                                        <?php if(isset($_SESSION['teacher'])): ?>
+                                        <?php if (isset($_SESSION['teacher'])): ?>
                                         <td>
                                             <a class="icono-actividades"  href="#">
                                                 <i class="bi bi-pen">
@@ -353,93 +360,7 @@
                                                 </i>
                                             </a>
                                         </td>
-                                    <?php endif; ?>
-                                    </tr>
-                                <?php endwhile; ?>
-                            </tbody>
-                            <tfoot>
-                                <tr>
-                                    <th>
-                                    </th>
-                                    <th>
-                                        Total
-                                    </th>
-                                    <th>
-                                        50
-                                    </th>
-                                    <th>
-                                        100%
-                                    </th>
-                                </tr>
-                            </tfoot>
-                            <?php else: ?>
-                                <p class="text-center mt-3"><span class="badge bg-warning text-dark">No hay notas registradas.</span></p>
-                            <?php endif; ?>
-                        </table>
-                    </div>
-                </article>
-                <article class="col-md-5 mt-3 mb-3">
-                    <div>
-                        <table class="table text-center caption-top shadow">
-                            <caption class="text-center">
-                                Cuarto periodo
-                            </caption>
-                            <?php if($periodo4->rowCount() != 0):
-                                $n = 1;
-                            ?>
-                            <thead>
-                                <tr>
-                                    <th>
-                                        #
-                                    </th>
-                                    <th>
-                                        Nombre
-                                    </th>
-                                    <th>
-                                        Nota
-                                    </th>
-                                    <th>
-                                        Porcentaje
-                                    </th>
-                                    <?php if(isset($_SESSION['teacher'])): ?>
-                                    <th>
-                                        Editar
-                                    </th>
-                                    <th>
-                                        Eliminar
-                                    </th>
-                                <?php endif; ?>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php while($cuatro = $periodo4->fetchObject()): ?>
-                                    <tr>
-                                        <td>
-                                            <?=$n++;?>
-                                        </td>
-                                        <td>
-                                            <?=$cuatro->area?>
-                                        </td>
-                                        <td>
-                                            <?=$cuatro->nota?>
-                                        </td>
-                                        <td>
-                                            <?=$cuatro->porcentaje?>%
-                                        </td>
-                                        <?php if(isset($_SESSION['teacher'])): ?>
-                                        <td>
-                                            <a class="icono-actividades"  href="#">
-                                                <i class="bi bi-pen">
-                                                </i>
-                                            </a>
-                                        </td>
-                                        <td>
-                                            <a class="icono-actividades"  href="#">
-                                                <i class="bi bi-trash" style="font-size: 1.2rem;">
-                                                </i>
-                                            </a>
-                                        </td>
-                                    <?php endif; ?>
+                                    <?php endif;?>
                                     </tr>
                                 <?php endwhile;?>
                             </tbody>
@@ -460,7 +381,93 @@
                             </tfoot>
                             <?php else: ?>
                                 <p class="text-center mt-3"><span class="badge bg-warning text-dark">No hay notas registradas.</span></p>
-                            <?php endif; ?>
+                            <?php endif;?>
+                        </table>
+                    </div>
+                </article>
+                <article class="col-md-5 mt-3 mb-3">
+                    <div>
+                        <table class="table text-center caption-top shadow">
+                            <caption class="text-center">
+                                Cuarto periodo
+                            </caption>
+                            <?php if ($periodo4->rowCount() != 0):
+    $n = 1;
+    ?>
+	                            <thead>
+	                                <tr>
+	                                    <th>
+	                                        #
+	                                    </th>
+	                                    <th>
+	                                        Nombre
+	                                    </th>
+	                                    <th>
+	                                        Nota
+	                                    </th>
+	                                    <th>
+	                                        Porcentaje
+	                                    </th>
+	                                    <?php if (isset($_SESSION['teacher'])): ?>
+	                                    <th>
+	                                        Editar
+	                                    </th>
+	                                    <th>
+	                                        Eliminar
+	                                    </th>
+	                                <?php endif;?>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php while ($cuatro = $periodo4->fetchObject()): ?>
+                                    <tr>
+                                        <td>
+                                            <?=$n++;?>
+                                        </td>
+                                        <td>
+                                            <?=$cuatro->area?>
+                                        </td>
+                                        <td>
+                                            <?=$cuatro->nota?>
+                                        </td>
+                                        <td>
+                                            <?=$cuatro->porcentaje?>%
+                                        </td>
+                                        <?php if (isset($_SESSION['teacher'])): ?>
+                                        <td>
+                                            <a class="icono-actividades"  href="#">
+                                                <i class="bi bi-pen">
+                                                </i>
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a class="icono-actividades"  href="#">
+                                                <i class="bi bi-trash" style="font-size: 1.2rem;">
+                                                </i>
+                                            </a>
+                                        </td>
+                                    <?php endif;?>
+                                    </tr>
+                                <?php endwhile;?>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th>
+                                    </th>
+                                    <th>
+                                        Total
+                                    </th>
+                                    <th>
+                                        50
+                                    </th>
+                                    <th>
+                                        100%
+                                    </th>
+                                </tr>
+                            </tfoot>
+                            <?php else: ?>
+                                <p class="text-center mt-3"><span class="badge bg-warning text-dark">No hay notas registradas.</span></p>
+                            <?php endif;?>
                         </table>
                     </div>
                 </article>

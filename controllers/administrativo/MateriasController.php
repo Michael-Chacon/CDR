@@ -2,6 +2,8 @@
 require_once 'models/materias.php';
 require_once 'models/grados.php';
 require_once 'models/horario.php';
+require_once 'models/docente.php';
+
 class MateriasController
 {
     public function vista()
@@ -24,6 +26,12 @@ class MateriasController
         $lista_miercoles = $dia->listarMiercoles($grado);
         $lista_jueves = $dia->listarJueves($grado);
         $lista_viernes = $dia->listarViernes($grado);
+
+        #listado de docentes Y seleccionar el docente que esta asignado como director en este grado
+        $listado_docentes = new Docente();
+        $listado_docentes->setGrupo($grado);
+        $dir = $listado_docentes->seleccionarDirector();
+        $docentes = $listado_docentes->allDocentes();
         require_once 'views/administrativo/materia/materias.php';
     }
 

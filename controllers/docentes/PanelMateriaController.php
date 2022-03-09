@@ -134,6 +134,7 @@ class panelMateriaController
         $hoy = date("Y-m-d");
         $materia = $_POST['id_materia'];
         $periodo_actual = Utils::validarPeriodoAcademico($hoy);
+
         $asistencia = new Fallas();
         $asistencia->setEstudiante($id_alumnos);
         $asistencia->setFecha($hoy);

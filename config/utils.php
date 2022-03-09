@@ -81,6 +81,7 @@ class Utils
     public static function validarPeriodoAcademico($hoy)
     {
         $veliadar_periodo = new Periodos();
+
         $uno = $veliadar_periodo->periodoUno();
         $periodo1 = Utils::formatearFecha($uno->fecha_inicio, $uno->fecha_fin);
 
@@ -102,7 +103,6 @@ class Utils
         } elseif ($hoy >= $periodo4[0] && $hoy <= $periodo4[1]) {
             $periodo = $cuatro->id;
         }
-
         return $periodo;
     }
 

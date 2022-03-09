@@ -103,7 +103,7 @@
                         </article>
                         <div class="col-md-7">
                             <div>
-                                 <h2>GRAFICA</h2>
+                                 <h2 class="text-center">Gráfica o informes.</h2>
                             </div>
                         </div>
                     </section>

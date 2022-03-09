@@ -93,8 +93,8 @@
                         </article>
                         <div class="col-md-7">
                             <div>
-                                <h2>
-                                    Grafica
+                                <h2 class="text-center">
+                                    Gráfica o informes.
                                 </h2>
                             </div>
                         </div>

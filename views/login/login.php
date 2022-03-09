@@ -8,8 +8,8 @@
                                 <!-- <div class="centrado">INSTITUTO EDUCATIVO CONCENTRACIÓN DE DESARROLLO RURAL CDR </div> -->
                             </div>
                             <div class="card-body">
-                                <h1 class="card-title text-center mb-4">
-                                    Inicio de sesion
+                                <h1 class="card-title text-center mb-4 inicio-sesion">
+                                    Inicio de sesión
                                 </h1>
                                 <?php  echo Utils::general_alerts('cambiarPassA', 'Cambiaste la contraseña con éxito.', 'Algo salió mal al actualizar la contraseña.'); ?>
                                 <?php if (isset($_SESSION['error_login'])): ?>

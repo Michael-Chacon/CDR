@@ -76,7 +76,7 @@ CREATE TABLE estudiante(
 	pae VARCHAR(2) NOT NULL,
 	img 	VARCHAR(255) NULL,
 	CONSTRAINT pk_estudiante PRIMARY KEY(id),
-	CONSTRAINT fk_grado_estudiante FOREIGN KEY(id_gradoE) REFERENCES grado(id) ON DELETE CASCADE, 
+	CONSTRAINT fk_grado_estudiante FOREIGN KEY(id_gradoE) REFERENCES grado(id),
 	CONSTRAINT fk_padres_estudiante FOREIGN KEY(id_familia_e) REFERENCES padres(id) ON DELETE CASCADE
 )ENGINE=InnoDb;
 
@@ -320,6 +320,32 @@ CREATE TABLE actividadesMateria(
 	CONSTRAINT fk_actividad_materia FOREIGN KEY(id_materia_a) REFERENCES materia(id) ON DELETE CASCADE
 )ENGINE=InnoDb;
 
+CREATE TABLE aulas(
+	id_aula INT(3) AUTO_INCREMENT NOT NULL,
+	nombre VARCHAR(5) NOT NULL,
+	CONSTRAINT pk_aulas PRIMARY KEY(id_aula);
+)ENGINE=InnoDb;
+
+CREATE TABLE observaciones(
+	id_observacion INT(3) AUTO_INCREMENT NOT NULL,
+	id_estudiante_ob INT(3) NOT NULL,
+	fecha_ob DATE NOT NULL,
+	docente VARCHAR(30) NOT NULL,
+	observacion VARCHAR(200) NOT NULL,
+	acciones VARCHAR(500) NOT NULL,
+	CONSTRAINT pK_observador PRIMARY KEY(id_observacion),
+	CONSTRAINT fk_observador_estudiante FOREIGN KEY(id_estudiante_ob) REFERENCES estudiante(id) ON DELETE CASCADE
+)ENGINE=InnoDb;
+
+CREATE TABLE director(
+	id_dir INT(3) AUTO_INCREMENT NOT NULL,
+	id_docente_dir INT(3) NOT NULL,
+	id_grado_dir INT(3) NOT NULL,
+	CONSTRAINT pk_director PRIMARY KEY(id_dir),
+	CONSTRAINT fk_docente_dir_grado FOREIGN KEY(id_docente_dir) REFERENCES docente(id),
+	CONSTRAINT fk_grado_dir_docente FOREIGN KEY(id_grado_dir) REFERENCES grado(id)
+)ENGINE=InnoDb;
+
 --  seleccionar todos los grados
 SELECT gd.id_grado_d FROM gradodocente gd
 INNER JOIN docente d ON d.id = gd.id_docente_g
@@ -363,3 +389,8 @@ WHERE d.id = 1;
 
 # consulta para obterner el total de fallas 
 SELECT COUNT(id) FROM fallas WHERE id_materia_f = 6 AND id_estudiante_f = 2;
+
+# seleccinar el docente que es director en un grado
+SELECT d.nombre_d, d.apellidos_d FROM docente d
+INNER JOIN director dir ON dir.id_docente_dir = d.id
+WHERE dir.id_grado_dir = 4

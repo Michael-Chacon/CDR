@@ -1,26 +1,16 @@
 <!-- contenido de  la pagina -->
             <section class="container-fluid">
-                <section class="row shadow titulo">
+                <section class="row shadow titulo mb-3">
                     <article class="col-xs-11 col-sm-11 col-md-12 col-lg-11">
                         <h1 class="text-center config">
-                            Opciones principales
+                            Panel principal
                         </h1>
                     </article>
-                    <!-- <article class="col-xs-1 col-sm-1 col-md-1 col-lg-1 config icono-menu text-center">
-                        <acticle class="btn-group dropstart">
-                            <a aria-expanded="false" class="" data-bs-toggle="dropdown" type="button">
-                                <i class="bi bi-list efecto_hover" style="font-size: 2rem; color: white;">
-                                </i>
-                            </a>
-                            <ul class="dropdown-menu">
-                            </ul>
-                        </acticle>
-                    </article> -->
                 </section>
             </section>
             <section class="container-fluit">
                 <section class="row justify-content-center">
-                    <h3 class="text-center mb-5">
+                    <h3 class="text-center mt-2 mb-5">
                         Grados
                     </h3>
                     <?php if ($mis_grados->rowCount() != 0): ?>
@@ -29,7 +19,7 @@
                         <article class="card text-center shadow option">
                             <div class="card-body contenido-card">
                                 <h2 class="mt-2 grados">
-                                    <?=$grado->nombre_g?>
+                                    <?=$grado->nombre_g?>°
                                 </h2>
                                 <hr class="hr-perfil"/>
                                 <a class="stretched-link" href="<?=base_url?>MisMaterias/misMaterias&grado=<?=$grado->id?>&nombre=<?=$grado->nombre_g?>">
@@ -304,7 +294,8 @@
                 </section>
                 <!-- fin del horario -->
                 <hr/>
-                <section class="row mb-5">
+                <section class="row mt-3 mb-5">
+                    <h3 class="text-center mb-5">Menu</h3>
                     <article class="col-xs-12 col-sm-12 col-md-4 col-xl-4 mb-2">
                         <div class="card text-center shadow option">
                             <div class="card-body contenido-card">
@@ -313,6 +304,18 @@
                                     Documentos
                                 </h5>
                                 <a class="stretched-link" href="<?=base_url?>Teacher/documentos">
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="col-xs-12 col-sm-12 col-md-4 col-xl-4 mb-2">
+                        <div class="card text-center shadow option">
+                            <div class="card-body contenido-card">
+                                   <i class="bi bi-calendar-range" style="font-size: 3rem;"></i>
+                                <h5>
+                                    Periodos
+                                </h5>
+                                <a class="stretched-link" href="<?=base_url?>Periodo/vista_config">
                                 </a>
                             </div>
                         </div>

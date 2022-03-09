@@ -128,6 +128,9 @@ hr {
     background-color: #D50931;
     color: white;
 }
+.inicio-sesion {
+    font-weight: 400;
+}
 /*
 =====================================================
 ======================HOME=========================
@@ -175,8 +178,13 @@ hr {
 .contenido-card {
     padding: 40px 0px;
 }
+.option {
+    border-top: 4px solid black !important;
+    margin-bottom: 30px;
+}
 .option:hover {
-    border: 1px solid #7B368F;
+    border-top: 4px solid #7B368F !important;
+    border: 2px solid #7B368F;
     color: #7B368F;
 }
 /*
@@ -444,4 +452,49 @@ hr {
 
 .tituloActividad {
     text-align: justify;
+}
+/*==========================
+=======OBSERVADOE ========
+============================*/
+
+.items {
+    /*color: red;*/
+    color: #8D8B8B;
+    font-size: 16px;
+}
+.datos-items {
+    font-weight: 400;
+    font-size: 19px;
+}
+.borde-items {
+    border-left: dotted 1px black;
+    border-right: dotted 1px black;
+}
+.callout {
+    padding: 15px;
+    border-radius: 5px;
+    border: 2px solid #E7E3E3;
+}
+.callout-success {
+    border-left: 4px solid green;
+}
+.callout-info {
+    border-left: 4px solid #0EC4B4;
+}
+.callout-warning {
+    border-left: 4px solid #FDFD00;
+}
+.callout-danger {
+    border-left: 4px solid #CE1806;
+}
+.callout-primary {
+    border-left: 4px solid #3D73EF;
+}
+.director {
+    font-size: 12px;
+    font-weight: 400;
+}
+.nombre-director {
+    font-size: 18px;
+    font-weight: 400;
 }

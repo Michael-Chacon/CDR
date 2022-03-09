@@ -114,4 +114,27 @@ class Docente extends Usuarios
         return $newphoto->execute();
     }
 
+    public function asignarDirector()
+    {
+        $docente = $this->getId();
+        $grado = $this->getGrupo();
+
+        $asignar = $this->db->prepare("INSERT INTO director VALUES(null, :docente, :grado)");
+        $asignar->bindParam(":docente", $docente, PDO::PARAM_INT);
+        $asignar->bindParam(":grado", $grado, PDO::PARAM_INT);
+        return $asignar->execute();
+    }
+
+    #seleccionar el director
+    public function seleccionarDirector()
+    {
+        $grado = $this->getGrupo();
+        $director = $this->db->prepare("SELECT d.id, d.nombre_d, d.apellidos_d FROM docente d
+            INNER JOIN director dir ON dir.id_docente_dir = d.id
+            WHERE dir.id_grado_dir = :grado");
+        $director->bindParam(":grado", $grado, PDO::PARAM_INT);
+        $director->execute();
+        return $director;
+    }
+
 } #FIN DE LA CLASE

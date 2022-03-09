@@ -181,10 +181,25 @@ class DocenteController
         $new_photo->setImg($foto);
         $resultadoF = $new_photo->uptdateImgPerfil();
         if ($resultadoF) {
-            unlink('photos/docentes/'. $foto_actual);
+            unlink('photos/docentes/' . $foto_actual);
         }
         Utils::validarReturn($resultadoF, 'cambiarPhotoD');
         header("Location: " . base_url . 'Docente/perfilDocente&id=' . $_POST['docente']);
+    }
+
+    # asignar director de grado
+    public function directorGrado()
+    {
+        if (!empty($_POST['director'])) {
+            $docente = $_POST['director'];
+            $grado = $_POST['grado'];
+            $asignador = new Docente();
+            $asignador->setId($docente);
+            $asignador->setGrupo($grado);
+            $resultado = $asignador->asignarDirector();
+            Utils::validarReturn($resultado, 'directorGrado');
+        }
+        header("Location:" . base_url . 'Materias/vista&id_grado=' . $grado);
     }
 
 } # fin de la clase

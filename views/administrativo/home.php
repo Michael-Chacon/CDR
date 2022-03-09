@@ -1,7 +1,7 @@
 <!-- contenido de  la pagina -->
                 <section class="container-fluid">
                     <section class="row">
-                        <article class="col-xs-12 col-sm-12 col-md-4 col-xl-4 mb-2">
+                        <article class="col-xs-12 col-sm-12 col-md-4 col-xl-4">
                             <div class="card text-center shadow option">
                                 <div class="card-body contenido-card">
                                     <i class="bi bi-people" style="font-size: 3rem;"></i>
@@ -13,7 +13,7 @@
                                 </div>
                             </div>
                         </article>
-                        <article class="col-xs-12 col-sm-12 col-md-4 col-xl-4 mb-2">
+                        <article class="col-xs-12 col-sm-12 col-md-4 col-xl-4">
                             <div class="card text-center shadow option">
                                 <div class="card-body contenido-card">
                                     <i class="bi bi-person" style="font-size: 3rem;"></i>
@@ -25,7 +25,7 @@
                                 </div>
                             </div>
                         </article>
-                        <article class="col-xs-12 col-sm-12 col-md-4 col-xl-4 mb-2">
+                        <article class="col-xs-12 col-sm-12 col-md-4 col-xl-4">
                             <div class="card text-center shadow option">
                                 <div class="card-body contenido-card">
                                     <i class="bi bi-person-check" style="font-size: 3rem;"></i>
@@ -37,7 +37,7 @@
                                 </div>
                             </div>
                         </article>
-                        <article class="col-xs-12 col-sm-12 col-md-4 col-xl-4 mb-2">
+                        <article class="col-xs-12 col-sm-12 col-md-4 col-xl-4">
                             <div class="card text-center shadow option">
                                 <div class="card-body contenido-card">
                                     <i class="bi bi-shield" style="font-size: 3rem;"></i>
@@ -49,7 +49,7 @@
                                 </div>
                             </div>
                         </article>
-                        <article class="col-xs-12 col-sm-12 col-md-4 col-xl-4 mb-2">
+                        <article class="col-xs-12 col-sm-12 col-md-4 col-xl-4">
                             <div class="card text-center shadow option">
                                 <div class="card-body contenido-card">
                                    <i class="bi bi-grid-3x2-gap" style="font-size: 3rem;"></i>
@@ -61,7 +61,7 @@
                                 </div>
                             </div>
                         </article>
-                        <article class="col-xs-12 col-sm-12 col-md-4 col-xl-4 mb-2">
+                        <article class="col-xs-12 col-sm-12 col-md-4 col-xl-4">
                             <div class="card text-center shadow option">
                                 <div class="card-body contenido-card">
                                    <i class="bi bi-calendar-range" style="font-size: 3rem;"></i>
@@ -73,7 +73,7 @@
                                 </div>
                             </div>
                         </article>
-                        <article class="col-xs-12 col-sm-12 col-md-4 col-xl-4 mb-2">
+                        <article class="col-xs-12 col-sm-12 col-md-4 col-xl-4">
                             <div class="card text-center shadow option">
                                 <div class="card-body contenido-card">
                                    <i class="bi bi-ui-checks-grid" style="font-size: 3rem;"></i>
@@ -85,7 +85,7 @@
                                 </div>
                             </div>
                         </article>
-                        <article class="col-xs-12 col-sm-12 col-md-4 col-xl-4 mb-2">
+                        <article class="col-xs-12 col-sm-12 col-md-4 col-xl-4">
                             <div class="card text-center shadow option">
                                 <div class="card-body contenido-card">
                                    <i class="bi bi-file-earmark" style="font-size: 3rem;"></i>

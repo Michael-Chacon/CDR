@@ -45,9 +45,6 @@
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="<?=base_url?>Login/homeAdministrativo">
                        <i class="bi bi-house"></i> <span>Inicio</span>
                     </a>
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3 menu-items" href="#!">
-                       <i class="bi bi-calendar-check"></i>  Calendario
-                    </a>
                     <a class="list-group-item list-group-item-action list-group-item-light p-3 menu-items" href="<?=base_url?>Estudiante/estudiantes">
                         <i class="bi bi-people"></i>  Estudiantes
                     </a>
@@ -69,11 +66,9 @@
                     <a class="list-group-item list-group-item-action list-group-item-light p-3 menu-items" href="<?=base_url?>Asignaciones/vista_asignaciones">
                         <i class="bi bi-ui-checks-grid"></i>  Asignaciones
                     </a>
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">
-                        Personal
-                    </a>
                 </div>
             </div>
+            <!-- menu para el modulo de docentes -->
             <?php elseif (isset($_SESSION['teacher'])): ?>
                 <!-- Sidebar-->
             <div class="border-end " id="sidebar-wrapper">
@@ -95,11 +90,11 @@
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="<?=base_url?>Teacher/homeDocente">
                        <i class="bi bi-house"></i> <span>Inicio</span>
                     </a>
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3 menu-items" href="#!">
-                       <i class="bi bi-calendar-check"></i>  Calendario
-                    </a>
                     <a class="list-group-item list-group-item-action list-group-item-light p-3 menu-items" href="<?=base_url?>Teacher/documentos">
                        <i class="bi bi-file-earmark-arrow-down"></i>  Documentos institucionales
+                    </a>
+                     <a class="list-group-item list-group-item-action list-group-item-light p-3 menu-items" href="<?=base_url?>Periodo/vista_config">
+                       <i class="bi bi-calendar-range"></i> Periodos académicos
                     </a>
                 </div>
             </div>

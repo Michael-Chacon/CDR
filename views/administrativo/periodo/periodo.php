@@ -1,8 +1,9 @@
 <div class="container-fluid">
-	<section class="row  titulo">
+	<section class="row  titulo mb-5">
                     <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                         <h1 class="text-center config">
-                            Configuracion
+							<i class="bi bi-calendar2-range"></i>
+							Periodos académicos
                         </h1>
                     </article>
                 </section>
@@ -14,11 +15,7 @@
                 <?php Utils::borrar_error('validacion_numero');?>
                 <?php echo Utils::general_alerts('eliminarPeriodo', 'El periodo fue eliminado con éxito.', 'Algo salió mal al eliminar el periodo.'); ?>
                 <?php Utils::borrar_error('eliminarPeriodo');?>
-                <h2 class="text-center mt-5 mb-3 espezor">
-                    <i class="bi bi-calendar2-range">
-                    </i>
-                    Periodos académicos
-                </h2>
+
                 <section class="row">
                     <?php if ($listado->rowCount() != 0):
     					while ($periodo = $listado->fetchObject()): ?>
@@ -31,11 +28,13 @@
 		                                                    	<?=$periodo->nombre_periodo;?>
 		                                                    </h5>
 		                                                    </article>
-		                                                    <article class="col-2">
-		                                                        <a href="<?=base_url?>Periodo/vista_actualizar&id_periodo=<?=$periodo->id?>&name=<?=$periodo->nombre_periodo?>" id="menu_periodo"  type="button" aria-expanded="false">
-		                                                            <i class="bi bi-pen editar" style="color: #09B080;"></i>
-		                                                        </a>
-		                                                    </article>
+		                                                    <?php if(isset($_SESSION['user'])): ?>
+			                                                    <article class="col-2">
+			                                                        <a href="<?=base_url?>Periodo/vista_actualizar&id_periodo=<?=$periodo->id?>&name=<?=$periodo->nombre_periodo?>" id="menu_periodo"  type="button" aria-expanded="false">
+			                                                            <i class="bi bi-pen editar" style="color: #09B080;"></i>
+			                                                        </a>
+			                                                    </article>
+		                                                    <?php endif; ?>
 		                                                </article>
 		                                            </div>
 		                                            <div class="card-body bg-dark">
