@@ -7,6 +7,7 @@
              Grado <?=$actual->nombre_g?>
          </h1>
      </article>
+     <?php if (!isset($_SESSION['teacher'])): ?>
      <article class="col-xs-1 col-sm-1 col-md-1 col-lg-1 config icono-menu text-center">
         <acticle class="btn-group dropstart">
             <a class="" data-bs-toggle="dropdown" aria-expanded="false" type="button">
@@ -24,23 +25,26 @@
             </ul>
         </acticle>
     </article>
+<?php endif;?>
 </section>
     <?php echo Utils::general_alerts('registrarHorario', 'Horario registrado con éxito.', 'Algo salió mal al intentar registrar el horario.'); ?>
     <?php echo Utils::general_alerts('directorGrado', 'El director se ha asignado con éxito', 'Algo salió mal al intentar asignar el director, intenta de nuevo.'); ?>
     <?php echo Utils::general_alerts('eliminarHora', 'Horario eliminado con éxito.', 'Algo salió mal al intentar eliminar el horario.'); ?>
+     <?php if (!isset($_SESSION['teacher'])): ?>
     <section class="mt-3 mb-3 callout callout-primary ">
-        <?php if($dir->rowCount() != 0): ?>
+        <?php if ($dir->rowCount() != 0): ?>
             <span class="nombre-director">
-                <?php $director = $dir->fetchObject() ?>
+                <?php $director = $dir->fetchObject()?>
                 <?=$director->nombre_d?> <?=$director->apellidos_d?>
             </span>
         <?php else: ?>
             <span class="badge bg-danger">No hay</span>
-         <?php endif; ?>
+         <?php endif;?>
          <span class="director">
             (Director)
         </span>
     </section>
+<?php endif;?>
 </section>
 <!-- fin del menu -->
 <!-- inicio del contenedor principal -->
@@ -49,8 +53,8 @@
  <article class="col-md-12 mt-3">
     <article class="row">
         <?php Utils::borrar_error('eliminarHora');
-        Utils::borrar_error('registrarHorario');
-        Utils::borrar_error("directorGrado");?>
+Utils::borrar_error('registrarHorario');
+Utils::borrar_error("directorGrado");?>
         <ul class="nav nav-pills mb-3 titulos-pills " id="pills-tab" role="tablist">
             <li class="nav-item opciones" role="presentation">
                 <button aria-controls="pills-home" aria-selected="true" class="nav-link active boton-opciones" data-bs-target="#pills-materias" data-bs-toggle="pill" id="pills-home-tab" role="tab" type="button">
@@ -83,23 +87,28 @@
                     Materias
                 </h3>
                 <?php if (isset($datos)):
-                    while ($materias = $datos->fetchObject()): ?>
-                        <article class="col-xs-12 col-sm-6 col-md-4 col-xl-4 mb-2">
-                            <div class="card text-center shadow option">
-                                <div class="card-body contenido-card materias">
-                                    <i class="<?=$materias->icono?>" style="font-size: 3rem;">
-                                    </i>
-                                    <hr class="hr-perfil"/>
-                                    <h5 class="mt-2">
-                                        <?=$materias->nombre_mat?>
-                                    </h5>
-                                    <a class="stretched-link" href="materiaEstudiante.html">
+    while ($materias = $datos->fetchObject()): ?>
+	                        <article class="col-xs-12 col-sm-6 col-md-4 col-xl-4 mb-2">
+	                            <div class="card text-center shadow option">
+	                                <div class="card-body contenido-card materias">
+	                                    <i class="<?=$materias->icono?>" style="font-size: 3rem;">
+	                                    </i>
+	                                    <hr class="hr-perfil"/>
+	                                    <h5 class="mt-2">
+	                                        <?=$materias->nombre_mat?>
+	                                    </h5>
+	                                    <?php if (isset($_SESSION['teacher'])): ?>
+	                                    <a class="stretched-link" href="<?=base_url?>Director/vista_director&subject=<?=$materias->id?>&degree=<?=$actual->id?>&name=<?=$materias->nombre_mat?>&namede=<?=$actual->nombre_g?>">
+	                                    </a>
+	                                    <?php else: ?>
+                                    <a class="stretched-link" href="<?=base_url?>PanelMateria/homeMateria&ide=<?=$materias->id?>&name=<?=$materias->nombre_mat?>&degree=<?=$actual->id?>&nombreg=<?=$actual->nombre_g?>">
                                     </a>
+                                <?php endif;?>
                                 </div>
                             </div>
                         </article>
                     <?php endwhile;
-                endif;?>
+endif;?>
             </section>
             <!-- fin materias -->
         </section>
@@ -126,12 +135,14 @@
                     </li>
                 </ul>
                 <?php if (isset($estudi)):
-                    $c = 1;
-                    while ($estudiantes = $estudi->fetchObject()): ?>
-                     <ul class="list-group mb-1 ">
-                        <li class="list-group-item fila-estudiante">
-                            <a class="stretched-link" href="<?=base_url?>Estudiante/perfilEstudiante&x=<?=$estudiantes->id?>&y=<?=$estudiantes->id_familia_e?>&z=<?=$estudiantes->id_grado?>">
-                            </a>
+    $c = 1;
+    while ($estudiantes = $estudi->fetchObject()): ?>
+	                     <ul class="list-group mb-1 ">
+	                        <li class="list-group-item fila-estudiante">
+	                            <?php if (!isset($_SESSION['teacher'])): ?>
+	                            <a class="stretched-link" href="<?=base_url?>Estudiante/perfilEstudiante&x=<?=$estudiantes->id?>&y=<?=$estudiantes->id_familia_e?>&z=<?=$estudiantes->id_grado?>">
+	                            </a>
+	                        <?php endif?>
                             <div class="row">
                                 <div class="col-md-2 nombre-apellidos-numero">
                                     <?=$c++?>
@@ -148,7 +159,7 @@
                     </li>
                 </ul>
             <?php endwhile;
-        endif;?>
+endif;?>
     </article >
 </section>
 <!-- fin estudiantes -->
@@ -178,9 +189,11 @@
                                 <th scope="col">
                                     Materia
                                 </th>
+                                <?php if (isset($_SESSION['user'])): ?>
                                 <th scope="col">
                                     <i class="bi bi-trash"></i>
                                 </th>
+                            <?php endif;?>
                             </tr>
                         </thead>
                         <tbody>
@@ -195,11 +208,13 @@
                                     <td>
                                         <?=$lunes->nombre_mat?>
                                     </td>
+                                    <?php if (isset($_SESSION['user'])): ?>
                                     <td>
                                         <a href="<?=base_url?>Horario/eliminarHora&id_horario=<?=$lunes->dia?>&dia=lunes&grado=<?=$_GET['id_grado']?>" onclick="return confirmar()">
                                             <i class="bi bi-trash delete-horario" style="color: #7C368F;"></i>
                                         </a>
                                     </td>
+                                <?php endif;?>
                                 </tr>
                             <?php endwhile;?>
                         </tbody>
@@ -215,7 +230,7 @@
                 Martes
             </span>
             <hr/>
-            <?php if ($lista_martes->rowCount() != 0):?>
+            <?php if ($lista_martes->rowCount() != 0): ?>
                 <div>
                     <table class="table shadow text-center table-bordered table-hover">
                         <thead>
@@ -229,9 +244,11 @@
                                 <th scope="col">
                                     Materia
                                 </th>
+                                <?php if (isset($_SESSION['user'])): ?>
                                 <th scope="col">
                                     <i class="bi bi-trash"></i>
                                 </th>
+                            <?php endif;?>
                             </tr>
                         </thead>
                         <tbody>
@@ -246,11 +263,13 @@
                                 <td>
                                     <?=$martes->nombre_mat?>
                                 </td>
+                                <?php if (isset($_SESSION['user'])): ?>
                                 <td>
                                     <a href="<?=base_url?>Horario/eliminarHora&id_horario=<?=$martes->dia?>&dia=martes&grado=<?=$_GET['id_grado']?>" onclick="return confirmar()">
                                         <i class="bi bi-trash delete-horario" style="color: #7C368F;"></i>
                                     </a>
                                 </td>
+                            <?php endif;?>
                             </tr>
                         <?php endwhile;?>
                     </tbody>
@@ -266,7 +285,7 @@
             Miércoles
         </span>
         <hr/>
-        <?php if ($lista_miercoles->rowCount() != 0):?>
+        <?php if ($lista_miercoles->rowCount() != 0): ?>
             <div>
                 <table class="table shadow text-center table-bordered table-hover">
                     <thead>
@@ -280,9 +299,11 @@
                             <th scope="col">
                                 Materia
                             </th>
+                            <?php if (isset($_SESSION['user'])): ?>
                             <th scope="col">
                                 <i class="bi bi-trash"></i>
                             </th>
+                        <?php endif;?>
                         </tr>
                     </thead>
                     <tbody>
@@ -297,11 +318,13 @@
                                 <td>
                                     <?=$miercoles->nombre_mat?>
                                 </td>
+                                <?php if (isset($_SESSION['user'])): ?>
                                 <td>
                                     <a href="<?=base_url?>Horario/eliminarHora&id_horario=<?=$miercoles->dia?>&dia=miercoles&grado=<?=$_GET['id_grado']?>" onclick="return confirmar()">
                                         <i class="bi bi-trash delete-horario" style="color: #7C368F;"></i>
                                     </a>
                                 </td>
+                            <?php endif;?>
                             </tr>
                         <?php endwhile;?>
                     </tbody>
@@ -317,7 +340,7 @@
             Jueves
         </span>
         <hr/>
-        <?php if ($lista_jueves->rowCount() != 0):?>
+        <?php if ($lista_jueves->rowCount() != 0): ?>
             <div>
                 <table class="table shadow text-center table-bordered table-hover">
                     <thead>
@@ -331,9 +354,11 @@
                             <th scope="col">
                                 Materia
                             </th>
+                            <?php if (isset($_SESSION['user'])): ?>
                             <th scope="col">
                                 <i class="bi bi-trash"></i>
                             </th>
+                        <?php endif;?>
                         </tr>
                     </thead>
                     <tbody>
@@ -348,11 +373,13 @@
                             <td>
                                 <?=$jueves->nombre_mat?>
                             </td>
+                            <?php if (isset($_SESSION['user'])): ?>
                             <td>
                                 <a href="<?=base_url?>Horario/eliminarHora&id_horario=<?=$jueves->dia?>&dia=jueves&grado=<?=$_GET['id_grado']?>" onclick="return confirmar()">
                                     <i class="bi bi-trash delete-horario" style="color: #7C368F;"></i>
                                 </a>
                             </td>
+                        <?php endif;?>
                         </tr>
                     <?php endwhile;?>
                 </tbody>
@@ -368,7 +395,7 @@
         Viernes
     </span>
     <hr/>
-    <?php if ($lista_viernes->rowCount() != 0):?>
+    <?php if ($lista_viernes->rowCount() != 0): ?>
         <div>
             <table class="table shadow text-center table-bordered table-hover ">
                 <thead>
@@ -382,9 +409,11 @@
                         <th scope="col">
                             Materia
                         </th>
+                        <?php if (isset($_SESSION['user'])): ?>
                         <th scope="col">
                             <i class="bi bi-trash"></i>
                         </th>
+                    <?php endif;?>
                     </tr>
                 </thead>
                 <tbody>
@@ -399,11 +428,13 @@
                         <td>
                             <?=$viernes->nombre_mat?>
                         </td>
+                        <?php if (isset($_SESSION['user'])): ?>
                         <td>
                             <a href="<?=base_url?>Horario/eliminarHora&id_horario=<?=$viernes->dia?>&dia=viernes&grado=<?=$_GET['id_grado']?>" onclick="return confirmar()">
                                 <i class="bi bi-trash delete-horario" style="color: #7C368F;"></i>
                             </a>
                         </td>
+                    <?php endif;?>
                     </tr>
                 <?php endwhile;?>
             </tbody>
@@ -443,8 +474,8 @@
                         <div class="modal-body">
                             <form action="<?=base_url?>Docente/directorGrado" method="post">
                                 <input type="text" name="grado" value="<?=$actual->id?>" hidden>
-                                <?php if($docentes->rowCount() != 0): ?>
-                                    <?php while($docente = $docentes->fetchObject()): ?>
+                                <?php if ($docentes->rowCount() != 0): ?>
+                                    <?php while ($docente = $docentes->fetchObject()): ?>
                                         <div class="form-check">
                                             <input class="form-check-input" id="radio<?=$docente->id?>" name="director" value="<?=$docente->id?>" type="radio">
                                             <label class="form-check-label" for="radio<?=$docente->id?>">
@@ -452,9 +483,9 @@
                                             </label>
                                         </input>
                                     </div>
-                                <?php endwhile; ?>
+                                <?php endwhile;?>
                             <?php else: ?>
-                            <?php endif; ?>
+                            <?php endif;?>
                         </div>
                         <div class="modal-footer">
                             <button class="btn btn-danger" data-bs-dismiss="modal" type="button">

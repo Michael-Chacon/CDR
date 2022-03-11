@@ -2,6 +2,7 @@
 require_once 'models/asignaciones.php';
 require_once 'models/horario.php';
 require_once 'models/documentos.php';
+require_once 'models/docente.php';
 
 class TeacherController
 {
@@ -19,6 +20,11 @@ class TeacherController
         $dia_miercoles = $dia->horarioMiercoles();
         $dia_jueves = $dia->horarioJueves();
         $dia_viernes = $dia->horarioViernes();
+
+        #grado don de es el director
+        $dir = new Docente();
+        $dir->setId($id_docente);
+        $mi_grado = $dir->seleccionarGradoDirector();
         require_once 'views/docente/home.php';
     }
 

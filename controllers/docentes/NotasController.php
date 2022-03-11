@@ -33,7 +33,11 @@ class NotasController
         $periodo2 = $notas->notasPeriodo2();
         $periodo3 = $notas->notasPeriodo3();
         $periodo4 = $notas->notasPeriodo4();
-        require_once 'views/docente/notas.php';
+        if (isset($_GET['dir']) && $_GET['dir'] == 'ok') {
+            require_once 'views/docente/notasDirector.php';
+        } else {
+            require_once 'views/docente/notas.php';
+        }
     }
 
     public function registrarNota()
@@ -63,4 +67,5 @@ class NotasController
 
         header('Location: ' . base_url . 'Notas/homeNotas&student=' . $estudiante . '&materia=' . $materia . '&nGrado=' . $_POST['grado']);
     }
+
 }

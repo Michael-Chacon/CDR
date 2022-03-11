@@ -393,4 +393,9 @@ SELECT COUNT(id) FROM fallas WHERE id_materia_f = 6 AND id_estudiante_f = 2;
 # seleccinar el docente que es director en un grado
 SELECT d.nombre_d, d.apellidos_d FROM docente d
 INNER JOIN director dir ON dir.id_docente_dir = d.id
-WHERE dir.id_grado_dir = 4
+WHERE dir.id_grado_dir = 4;
+
+# seleccionar el grado donde es docente es director
+SELECT g.* FROM grado g
+INNER JOIN director d ON d.id_grado_dir = g.id
+WHERE d.id_docente_dir = 2;

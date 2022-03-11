@@ -296,7 +296,7 @@
                 <hr/>
                 <section class="row mt-3 mb-5">
                     <h3 class="text-center mb-5">Menu</h3>
-                    <article class="col-xs-12 col-sm-12 col-md-4 col-xl-4 mb-2">
+                    <!-- <article class="col-xs-12 col-sm-12 col-md-4 col-xl-4 mb-2">
                         <div class="card text-center shadow option">
                             <div class="card-body contenido-card">
                                    <i class="bi bi-file-earmark-arrow-down" style="font-size: 3rem;"></i>
@@ -316,6 +316,18 @@
                                     Periodos
                                 </h5>
                                 <a class="stretched-link" href="<?=base_url?>Periodo/vista_config">
+                                </a>
+                            </div>
+                        </div>
+                    </article> -->
+                     <article class="col-xs-12 col-sm-12 col-md-4 col-xl-4 mb-2">
+                        <div class="card text-center shadow option">
+                            <div class="card-body contenido-card">
+                                   <span class="" style="font-size: 3rem;"><?=$mi_grado->nombre_g?>°</span>
+                                <h5>
+                                    Grado a mi cargo
+                                </h5>
+                                <a class="stretched-link" href="<?=base_url?>Materias/vista&id_grado=<?=$mi_grado->id?>">
                                 </a>
                             </div>
                         </div>

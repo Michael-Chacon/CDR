@@ -114,7 +114,7 @@ class Asignaciones
                                                             SELECT g.* FROM grado g
                                                             INNER JOIN gradodocente gd ON g.id = gd.id_grado_d
                                                             INNER JOIN docente d ON d.id = gd.id_docente_g
-                                                            WHERE d.id = :docente;
+                                                            WHERE d.id = :docente ORDER BY g.id ASC;
                                                         ");
         $grados->bindParam(':docente', $docente, PDO::PARAM_INT);
         $grados->execute();
@@ -124,15 +124,20 @@ class Asignaciones
     # Eliminar grados que ya fueron asignados al docente
     public function EliminiarAsignacionDGrado()
     {
-        $grados = $this->getGrados();
-        $teacher = $this->getIdDocente();
-        foreach ($grados as $grado) {
-            $eliminar = $this->db->prepare("DELETE FROM gradodocente WHERE id_grado_d = :grado AND id_docente_g = :docente");
-            $eliminar->bindParam(":grado", $grados, PDO::PARAM_INT);
-            $eliminar->bindParam(":docente", $teacher, PDO::PARAM_INT);
-            $eliminar->execute();
+        try {
+
+            $grados = $this->getGrados();
+            $teacher = $this->getIdDocente();
+            foreach ($grados as $grado) {
+                $eliminar = $this->db->prepare("DELETE FROM gradodocente WHERE id_grado_d = :grado AND id_docente_g = :docente");
+                $eliminar->bindParam(":grado", $grado, PDO::PARAM_INT);
+                $eliminar->bindParam(":docente", $teacher, PDO::PARAM_INT);
+                $eliminar->execute();
+            }
+            return $eliminar;
+        } catch (PDOException $e) {
+            echo $e->getMessage();
         }
-        return $eliminar;
     }
 
     # obtener las mateiras de un grado determinado que previamente se le asigno al docente

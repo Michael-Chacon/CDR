@@ -76,7 +76,6 @@ class DocenteController
                 $resultado_actualizacion = $docente->guardarDocentes('actualizar');
                 Utils::validarReturn($resultado_actualizacion, 'actualizarD');
                 header("Location:" . base_url . 'Docente/perfilDocente&id=' . $_POST['actualizarDocente']);
-                exit;
             } else {
                 # GUARDAR
                 $validacion = Utils::validarExistenciaUsuario($_POST['numero'], 'docente', 'numero_d');
