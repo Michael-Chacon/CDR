@@ -5,6 +5,7 @@ class Grados
 
     protected $id;
     protected $grado;
+    protected $aula;
     public $db;
 
     public function __construct()
@@ -51,7 +52,25 @@ class Grados
 
         return $this;
     }
+/**
+ * @return mixed
+ */
+    public function getAula()
+    {
+        return $this->aula;
+    }
 
+    /**
+     * @param mixed $aula
+     *
+     * @return self
+     */
+    public function setAula($aula)
+    {
+        $this->aula = $aula;
+
+        return $this;
+    }
     # validar sí el nombre del grado y existe
     public function validar()
     {
@@ -111,4 +130,73 @@ class Grados
         exit;
     }
 
+    # guardar el alula
+    public function saveClassroom()
+    {
+        $nombre = $this->getAula();
+        $estado = 'no';
+        $crear = $this->db->prepare("INSERT INTO aulas VALUES(null, :nombre, :estado)");
+        $crear->bindParam(":nombre", $nombre, PDO::PARAM_STR);
+        $crear->bindParam(":estado", $estado, PDO::PARAM_STR);
+        return $crear->execute();
+    }
+
+    # seleccionar todas la aulas
+    public function selectAllClassroom()
+    {
+        $select = $this->db->prepare("SELECT * FROM aulas");
+        $select->execute();
+        return $select;
+    }
+
+    # seleccionar grados sin asignar
+    public function selectAllClassroomNotAssigned()
+    {
+        $select = $this->db->prepare("SELECT * FROM aulas WHERE asignada = 'no'");
+        $select->execute();
+        return $select;
+    }
+
+    # Elimina aula
+    public function deleteClassroom()
+    {
+        $id_aula = $this->getId();
+        $delete = $this->db->prepare("DELETE FROM aulas WHERE id_aula = :aula");
+        $delete->bindParam(":aula", $id_aula, PDO::PARAM_INT);
+        return $delete->execute();
+        // 3014252
+    }
+
+    # asignar aulas a los grados
+    public function assignedClassroomToDeegre()
+    {
+        $id_aula = $this->getAula();
+        $id_grado = $this->getGrado();
+        $asignar = $this->db->prepare("INSERT INTO aulaGrado VALUES (null, :aula, :grado)");
+        $asignar->bindParam(":aula", $id_aula, PDO::PARAM_INT);
+        $asignar->bindParam(":grado", $id_grado, PDO::PARAM_INT);
+        return $asignar->execute();
+    }
+
+    # cambiar el estado del aula para que aparesca ya asignada
+    public function updateStateOfClassroom()
+    {
+        $aula = $this->getAula();
+        $nuevo_estado = 'si';
+        $estado = $this->db->prepare("UPDATE aulas SET asignada = :cambio WHERE id_aula = :id;");
+        $estado->bindParam(":cambio", $nuevo_estado, PDO::PARAM_STR);
+        $estado->bindParam(":id", $aula, PDO::PARAM_INT);
+        $estado->execute();
+    }
+
+    # seleccionar el aula que le asignaron a una grado
+    public function selectClassroomOfDeegre($id_grado)
+    {
+        $select = $this->db->prepare("SELECT a.nombre, a.id_aula FROM aulas a
+            INNER JOIN aulaGrado au ON au.id_aula_grado = a.id_aula
+            WHERE au.id_grado_aula = :grado;");
+        $select->bindParam(":grado", $id_grado, PDO::PARAM_INT);
+        $select->execute();
+        return $select;
+    }
 }

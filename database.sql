@@ -323,7 +323,8 @@ CREATE TABLE actividadesMateria(
 CREATE TABLE aulas(
 	id_aula INT(3) AUTO_INCREMENT NOT NULL,
 	nombre VARCHAR(5) NOT NULL,
-	CONSTRAINT pk_aulas PRIMARY KEY(id_aula);
+	asignada VARCHAR (2) NOT NULL,
+	CONSTRAINT pk_aulas PRIMARY KEY(id_aula)
 )ENGINE=InnoDb;
 
 CREATE TABLE observaciones(
@@ -344,6 +345,21 @@ CREATE TABLE director(
 	CONSTRAINT pk_director PRIMARY KEY(id_dir),
 	CONSTRAINT fk_docente_dir_grado FOREIGN KEY(id_docente_dir) REFERENCES docente(id),
 	CONSTRAINT fk_grado_dir_docente FOREIGN KEY(id_grado_dir) REFERENCES grado(id)
+)ENGINE=InnoDb;
+
+CREATE TABLE areas(
+	id_area INT(3) AUTO_INCREMENT NOT NULL,
+	nombre_area VARCHAR (60) NOT NULL,
+	CONSTRAINT pk_area PRIMARY KEY(id_area)
+)ENGINE=InnoDb;
+
+CREATE TABLE aulaGrado(
+aula_grado INT(3) AUTO_INCREMENT NOT NULL,
+id_aula_grado INT(3) NOT NULL,
+id_grado_aula INT(3) NOT NULL,
+CONSTRAINT pk_aula_grado PRIMARY KEY(aula_grado),
+CONSTRAINT fk_aula_grado FOREIGN KEY (id_aula_grado) REFERENCES aulas(id_aula) ON DELETE CASCADE,
+CONSTRAINT fk_grado_aula FOREIGN KEY (id_grado_aula) REFERENCES grado(id) ON DELETE CASCADE
 )ENGINE=InnoDb;
 
 --  seleccionar todos los grados
@@ -385,7 +401,7 @@ INNER JOIN materia m ON m.id = mar.id_materia_martes
 INNER JOIN grado g ON g.id = m.id_grado_mat
 INNER JOIN docentemateria dm ON dm.id_materia_doc = m.id
 INNER JOIN docente d ON d.id = dm.id_docente_mat
-WHERE d.id = 1;
+WHERE d.id = 2;
 
 # consulta para obterner el total de fallas 
 SELECT COUNT(id) FROM fallas WHERE id_materia_f = 6 AND id_estudiante_f = 2;
@@ -399,3 +415,9 @@ WHERE dir.id_grado_dir = 4;
 SELECT g.* FROM grado g
 INNER JOIN director d ON d.id_grado_dir = g.id
 WHERE d.id_docente_dir = 2;
+
+# seleccionar el aula de un grado
+
+SELECT a.nombre, a.id_aula FROM aulas a
+INNER JOIN aulaGrado au ON au.id_aula_grado = a.id_aula
+WHERE au.id_grado_aula = 1;

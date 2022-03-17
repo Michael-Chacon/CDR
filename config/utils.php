@@ -55,6 +55,15 @@ class Utils
         return $numero_resultados = $sql->rowCount();
     }
 
+    public static function validarExistenciaDUnCampo($documento, $tabla, $campo)
+    {
+        $db = Database::conectar();
+        $sql = $db->prepare("SELECT $campo FROM $tabla WHERE $campo = :documento ");
+        $sql->bindParam(':documento', $documento, PDO::PARAM_STR);
+        $resultado = $sql->execute();
+        return $numero_resultados = $sql->rowCount();
+    }
+
     public static function validarExisenciaDocumentos($tabla, $campo, $variable, $campo2, $materia)
     {
         $db = Database::conectar();

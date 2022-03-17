@@ -97,6 +97,18 @@
                                 </div>
                             </div>
                         </article>
+                        <article class="col-xs-12 col-sm-12 col-md-4 col-xl-4">
+                            <div class="card text-center shadow option">
+                                <div class="card-body contenido-card">
+                                   <i class="bi bi-gear" style="font-size: 3rem;"></i>
+                                    <h5>
+                                        Configuraciones
+                                    </h5>
+                                    <a class="stretched-link" href="<?=base_url?>Configuracion/vista_configuracion">
+                                    </a>
+                                </div>
+                            </div>
+                        </article>
                     </section>
                 </section>
                 <!--fin del container -->

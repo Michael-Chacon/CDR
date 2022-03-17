@@ -32,6 +32,11 @@ class MateriasController
         $listado_docentes->setGrupo($grado);
         $dir = $listado_docentes->seleccionarDirector();
         $docentes = $listado_docentes->allDocentes();
+        # seleccionar todas las aulas
+        $aulas = new Grados();
+        $listado_aulas = $aulas->selectAllClassroomNotAssigned();
+        $aula_grado = $aulas->selectClassroomOfDeegre($grado);
+
         require_once 'views/administrativo/materia/materias.php';
     }
 
