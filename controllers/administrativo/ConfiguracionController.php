@@ -2,6 +2,7 @@
 
 require_once 'models/area.php';
 require_once 'models/grados.php';
+require_once 'models/materias.php';
 class ConfiguracionController
 {
     public function vista_configuracion()
@@ -13,6 +14,12 @@ class ConfiguracionController
     {
         $listado = new Area();
         $areas = $listado->getAreas();
+        $areas_materia = $listado->getAreas();
+
+        # listado de materias
+        $materias = new Materias();
+        $listado_materias = $materias->getAllBaseSubjectes();
+
         require_once 'views/administrativo/configuracion/areas.php';
     }
 
@@ -26,10 +33,12 @@ class ConfiguracionController
     public function guardar_area()
     {
         $nombre = strtoupper($_POST['area']);
+        $color = $_POST['color'];
         $duplicado = Utils::validarExistenciaDUnCampo($nombre, 'areas', 'nombre_area');
         if ($duplicado == 0) {
             $guardar = new Area();
             $guardar->setNombre($nombre);
+            $guardar->setColor($color);
             $respuesta = $guardar->saveArea();
             Utils::validarReturn($respuesta, 'guardar_area');
         } else {
@@ -75,4 +84,28 @@ class ConfiguracionController
         header('Location:' . base_url . 'Configuracion/vista_aula');
     }
 
+    // guardar las materias base
+    public function guardar_materia_base()
+    {
+        $materia = trim($_POST['materia']);
+        $icono = trim($_POST['icono']);
+        $area = $_POST['area'];
+        $registrador = new Materias();
+        $registrador->setMateria($materia);
+        $registrador->setIcono($icono);
+        $registrador->setArea($area);
+        $respuesta = $registrador->saveBaseSubject();
+        Utils::validarReturn($respuesta, 'guardar_materia_base');
+        header("Location:" . base_url . 'Configuracion/vista_areas');
+    }
+
+    public function eliminar_materia_base()
+    {
+        $id_materia = $_GET['id'];
+        $eliminar = new Materias();
+        $eliminar->setArea($id_materia);
+        $resultado = $eliminar->deleteBaseSubject();
+        Utils::validarReturn($resultado, 'eliminar_base');
+        header('Location:' . base_url . 'Configuracion/vista_areas');
+    }
 }

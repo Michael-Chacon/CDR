@@ -8,6 +8,7 @@ class Materias
     protected $indicadores;
     protected $icono;
     protected $asignada;
+    protected $area;
 
     public $db;
     public function __construct()
@@ -155,6 +156,26 @@ class Materias
         return $this;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getArea()
+    {
+        return $this->area;
+    }
+
+    /**
+     * @param mixed $area
+     *
+     * @return self
+     */
+    public function setArea($area)
+    {
+        $this->area = $area;
+
+        return $this;
+    }
+
     #mis metodos
     public function RegistrarMateria()
     {
@@ -165,15 +186,16 @@ class Materias
             $iconoM = $this->getIcono();
             $gradoM = $this->getIdGradoM();
             $asignacion = 'no';
+            $areaS = $this->getArea();
 
-            $registro = $this->db->prepare("INSERT INTO materia VALUES(null, :grado, :nombre, :indicadores, :icono, :asignada)");
+            $registro = $this->db->prepare("INSERT INTO materia VALUES(null, :grado, :area, :nombre, :indicadores, :icono, :asignada)");
             $registro->bindParam(":grado", $gradoM, PDO::PARAM_INT);
+            $registro->bindParam(":area", $areaS, PDO::PARAM_INT);
             $registro->bindParam(":nombre", $materiaM, PDO::PARAM_STR);
             $registro->bindParam(":indicadores", $indicadorM, PDO::PARAM_STR);
             $registro->bindParam(":icono", $iconoM, PDO::PARAM_STR);
             $registro->bindParam(':asignada', $asignacion, PDO::PARAM_STR);
-            $registro->execute();
-            return $registro;
+            return $registro->execute();
         } catch (PDOException $e) {
             echo $e->getMessage();
         }
@@ -197,4 +219,34 @@ class Materias
         $information->execute();
         return $information->fetchObject();
     }
+
+    public function saveBaseSubject()
+    {
+        $subject = $this->getMateria();
+        $iconoS = $this->getIcono();
+        $areaS = $this->getArea();
+        $base = $this->db->prepare("INSERT INTO materias_base VALUES(null, :area, :nombre, :icono)");
+        $base->bindParam(":area", $areaS, PDO::PARAM_INT);
+        $base->bindParam(":nombre", $subject, PDO::PARAM_STR);
+        $base->bindParam(":icono", $iconoS, PDO::PARAM_STR);
+        return $base->execute();
+    }
+
+    public function getAllBaseSubjectes()
+    {
+        $materia_area = $this->db->prepare("SELECT mb.*, a.color FROM materias_base mb
+            INNER JOIN areas a ON a.id_area = mb.id_area_m
+            ORDER BY a.id_area;");
+        $materia_area->execute();
+        return $materia_area;
+    }
+
+    public function deleteBaseSubject()
+    {
+        $id_base = $this->getArea();
+        $delete = $this->db->prepare("DELETE FROM materias_base WHERE id_base = :id");
+        $delete->bindParam(":id", $id_base, PDO::PARAM_INT);
+        return $delete->execute();
+    }
+
 } # fin de la clase

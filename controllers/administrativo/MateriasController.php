@@ -3,6 +3,7 @@ require_once 'models/materias.php';
 require_once 'models/grados.php';
 require_once 'models/horario.php';
 require_once 'models/docente.php';
+require_once 'models/area.php';
 
 class MateriasController
 {
@@ -14,6 +15,7 @@ class MateriasController
         $materias->setIdGradoM($grado);
         $datos = $materias->allMaterias();
         $matter = $materias->allMaterias();
+        $listado_materias = $materias->getAllBaseSubjectes();
         # obtener los estudiantes y el grado actual
         $estudiantes = new Grados();
         $estudiantes->setGrado($grado);
@@ -43,10 +45,11 @@ class MateriasController
     public function guardarMateria()
     {
         if (isset($_POST)) {
-            $materia_inoco = $_POST['materia_icono'];
-            $partes = explode('/', $materia_inoco);
+            $materia_area_icono = $_POST['materia_area_icono'];
+            $partes = explode('/', $materia_area_icono);
             $materia = $partes[0];
-            $icono = $partes[1];
+            $area = $partes[1];
+            $icono = $partes[2];
             $indicador = trim($_POST['indicadores']);
             $grado = $_POST['id_grado'];
 
@@ -55,6 +58,7 @@ class MateriasController
             $guardar->setMateria($materia);
             $guardar->setIndicadores($indicador);
             $guardar->setIcono($icono);
+            $guardar->setArea($area);
             $resultado = $guardar->RegistrarMateria();
 
             if ($resultado) {

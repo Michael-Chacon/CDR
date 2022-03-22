@@ -15,7 +15,7 @@
                     </i>
                 </a>
                 <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" data-bs-target="#CreatGrado" data-bs-toggle="modal" href="#"><i class="bi bi-book-half"></i>  Crear materia</a></li>
+                    <li><a class="dropdown-item" data-bs-target="#CrearMateria" data-bs-toggle="modal" href="#"><i class="bi bi-book-half"></i>  Crear materia</a></li>
                     <li><hr class="dropdown-divider"></li>
                     <li><a class="dropdown-item" data-bs-target="#CreatHorario" data-bs-toggle="modal"  href="#"><i class="bi bi-calendar-week"></i>Asignar horario</a></li>
                     <li><hr class="dropdown-divider"></li>
@@ -514,6 +514,7 @@
                                     </div>
                                 <?php endwhile;?>
                             <?php else: ?>
+                                <p class="text-center mt-3"><span class="badge bg-warning text-dark">No hay docentes disponibles.</span></p>
                             <?php endif;?>
                         </div>
                         <div class="modal-footer">
@@ -557,6 +558,7 @@
                                 </div>
                             <?php endwhile;?>
                         <?php else: ?>
+                            <p class="text-center mt-3"><span class="badge bg-warning text-dark">No hay aulas.</span></p>
                         <?php endif;?>
                     </div>
                     <div class="modal-footer">
@@ -573,12 +575,12 @@
     </section>
     <!-- fin de asignar aula -->
     <!-- Modal crear grado-->
-    <section aria-hidden="true" aria-labelledby="exampleModalLabel" class="modal fade" data-bs-backdrop="static" id="CreatGrado" tabindex="-1">
+    <section aria-hidden="true" aria-labelledby="exampleModalLabel" class="modal fade" data-bs-backdrop="static" id="CrearMateria" tabindex="-1">
         <section class="modal-dialog ">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">
-                        Crea una nueva matera
+                        Asignar materias al grado
                     </h5>
                     <button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button">
                     </button>
@@ -587,21 +589,17 @@
                     <div class="modal-body">
                      <input type="hidden" name="id_grado" id="" value="<?=$_GET['id_grado']?>">
                      <div class="form-floating mb-3">
-                      <select class="form-select" aria-label="Default select example" name="materia_icono" required="">
-                       <option value="Matemáticas/bi bi-calculator">Matemáticas</option>
-                       <option value="Tecnología e informática/bi bi-display">Tecnología e informática</option>
-                       <option value="Educacion fisica/bi bi-activity">Educacion fisica</option>
-                       <option value="Física/bi bi-lightning">Física</option>
-                       <option value="Química/bi bi-eyedropper">Química</option>
-                       <option value="Ciencias Sociales/bi bi-globe">Ciencias Sociales</option>
-                       <option value="Inglés/bi bi-translate">Inglés</option>
-                       <option value="Nada/bi bi-flag">Prueba</option>
-
+                      <select class="form-select" aria-label="Default select example" name="materia_area_icono" required="">
+                        <option></option>
+                        <?php while($subjects = $listado_materias->fetchObject()): ?>
+                       <option value="<?=$subjects->nombre_materia?>/<?=$subjects->id_area_m?>/<?=$subjects->icono?>"><?=$subjects->nombre_materia?></option>
+                        <?php endwhile; ?>
                    </select>
                    <label for="materia">
-                    Nombre:
+                    Seleccione la materia:
                 </label>
             </div>
+            <i class="bi bi-activity"></i>
             <div class="form-floating mb-3">
                 <div class="form-floating">
                     <textarea class="form-control" id="indicadores" name="indicadores" placeholder="Leave a comment here" style="height:100px;" required="">

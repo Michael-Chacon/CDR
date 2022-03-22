@@ -66,6 +66,9 @@
                     <a class="list-group-item list-group-item-action list-group-item-light p-3 menu-items" href="<?=base_url?>Asignaciones/vista_asignaciones">
                         <i class="bi bi-ui-checks-grid"></i>  Asignaciones
                     </a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3 menu-items" href="<?=base_url?>Configuracion/vista_configuracion">
+                        <i class="bi bi-gear"></i>  Más opciones
+                    </a>
                 </div>
             </div>
             <!-- menu para el modulo de docentes -->

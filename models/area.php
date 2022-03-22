@@ -3,6 +3,7 @@ class Area
 {
     private $id;
     private $nombre;
+    private $color;
     public $db;
 
     public function __construct()
@@ -50,11 +51,33 @@ class Area
         return $this;
     }
 
+        /**
+     * @return mixed
+     */
+    public function getColor()
+    {
+        return $this->color;
+    }
+
+    /**
+     * @param mixed $color
+     *
+     * @return self
+     */
+    public function setColor($color)
+    {
+        $this->color = $color;
+
+        return $this;
+    }
+
     public function saveArea()
     {
         $area = $this->getNombre();
-        $crear = $this->db->prepare("INSERT INTO areas VALUES(null, :nombre)");
+        $colorA = $this->getColor();
+        $crear = $this->db->prepare("INSERT INTO areas VALUES(null, :nombre, :color)");
         $crear->bindParam(":nombre", $area, PDO::PARAM_STR);
+        $crear->bindParam(":color", $colorA, PDO::PARAM_STR);
         return $crear->execute();
     }
 
@@ -71,4 +94,6 @@ class Area
     	$delete->bindParam(":id", $id_area, PDO::PARAM_INT);
     	return $delete->execute();
     }
+
+
 }

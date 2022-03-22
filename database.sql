@@ -7,14 +7,25 @@ CREATE TABLE grado(
 		CONSTRAINT pk_grado PRIMARY KEY(id)
 )ENGINE=InnoDb;
 
+CREATE TABLE materias_base(
+	id_base INT(4) AUTO_INCREMENT NOT NULL,
+	id_area_m INT(4) NOT NULL,
+	nombre_materia VARCHAR(50) NOT NULL,
+	icono VARCHAR(60) NOT NULL,
+	CONSTRAINT pk_materias_base PRIMARY KEY (id_base),
+	CONSTRAINT fk_base_area FOREIGN KEY (id_area_m) REFERENCES areas(id_area) ON DELETE CASCADE
+)ENGINE=InnoDb;
+
 CREATE TABLE materia(
 		id INT(4) AUTO_INCREMENT NOT NULL,
 		id_grado_mat INT(4) NOT NULL,
+		id_materia_area INT(4) NOT NULL,
 		nombre_mat VARCHAR(30) NOT NULL,
 		indicadores_mat TEXT NOT NULL,
 		icono VARCHAR(30)  NOT NULL,
 		CONSTRAINT pk_materias PRIMARY KEY(id),
-		CONSTRAINT fk_grado_materia FOREIGN KEY(id_grado_mat) REFERENCES grado(id) ON DELETE CASCADE
+		CONSTRAINT fk_grado_materia FOREIGN KEY(id_grado_mat) REFERENCES grado(id) ON DELETE CASCADE,
+		CONSTRAINT fk_materia_area FOREIGN KEY (id_materia_area) REFERENCES areas (id_area) ON DELETE CASCADE
 )ENGINE=InnoDb;
 
 CREATE TABLE periodo(
@@ -362,6 +373,117 @@ CONSTRAINT fk_aula_grado FOREIGN KEY (id_aula_grado) REFERENCES aulas(id_aula) O
 CONSTRAINT fk_grado_aula FOREIGN KEY (id_grado_aula) REFERENCES grado(id) ON DELETE CASCADE
 )ENGINE=InnoDb;
 
+-- ----------------COGNITIVO---------------------------------------------
+CREATE TABLE cognitivo(
+id_cognitivo INT(3) AUTO_INCREMENT NOT NULL,
+porcenteje_cognitvo INT(3) NOT NULL,
+porcentaje_evaluacion INT(3) NOT NULL,
+porcentaje_trimestral INT(3) NOT NULL,
+CONSTRAINT pk_cognitivo PRIMARY KEY (id_cognitivo)
+)ENGINE=InnoDb;
+
+CREATE TABLE evaluacion(
+id_evaluacion INT(3) AUTO_INCREMENT NOT NULL,
+id_estudiante_e INT(3) NOT NULL,
+id_materia_e INT(3) NOT NULL,
+id_periodo_e INT(3) NOT NULL,
+id_cognitivo_e INT(3) NOT NULL,
+nota_evaliacion INT(2) NOT NULL,
+CONSTRAINT pk_evaluaciones PRIMARY KEY (id_evaluacion),
+CONSTRAINT fk_estudiante_evaluacion FOREIGN KEY (id_estudiante_e) REFERENCES estudiante(id),
+CONSTRAINT	 fk_mateia_evaluacion FOREIGN KEY (id_materia_e) REFERENCES materia (id),
+CONSTRAINT fk_periodo_evaluacion FOREIGN KEY (id_periodo_e) REFERENCES periodo (id),
+CONSTRAINT fk_cognitivo_evaluacion FOREIGN KEY (id_cognitivo_e) REFERENCES cognitivo (id_cognitivo)
+)ENGINE=InnoDb;
+
+CREATE TABLE trimestral(
+id_trimestral INT(3) AUTO_INCREMENT NOT NULL,
+id_estudiante_t INT(3) NOT NULL,
+id_materia_t INT(3) NOT NULL,
+id_periodo_t INT(3) NOT NULL,
+id_cognitivo_t INT(3) NOT NULL,
+nota_trimestral INT(2) NOT NULL,
+CONSTRAINT pk_trimestral PRIMARY KEY (id_trimestral),
+CONSTRAINT fk_estudiante_trimestal FOREIGN KEY (id_estudiante_t) REFERENCES estudiante(id),
+CONSTRAINT	 fk_mateia_trimestral FOREIGN KEY (id_materia_t) REFERENCES materia (id),
+CONSTRAINT fk_periodo_trimestral FOREIGN KEY (id_periodo_t) REFERENCES periodo (id),
+CONSTRAINT fk_cognitivo_trimestral FOREIGN KEY (id_cognitivo_t) REFERENCES cognitivo (id_cognitivo)
+)ENGINE=InnoDb;
+
+-------------------------PROCEDIMENTAL-------------------------
+CREATE TABLE procedimental(
+id_procedimental INT(3) AUTO_INCREMENT NOT NULL,
+porcenteje_procedimental INT(3) NOT NULL,
+porcentaje_Tindividual INT(3) NOT NULL,
+porcentaje_Tcolaborativo INT(3) NOT NULL,
+CONSTRAINT pk_procedimental PRIMARY KEY (id_procedimental)
+)ENGINE=InnoDb;
+
+CREATE TABLE Tindividual(
+id_Tindividual INT(3) AUTO_INCREMENT NOT NULL,
+id_estudiante_Tindividual INT(3) NOT NULL,
+id_materia_Tindividual INT(3) NOT NULL,
+id_periodo_Tindividual INT(3) NOT NULL,
+id_procedimental_Tindividual INT(3) NOT NULL,
+nota_Tindividual INT(2) NOT NULL,
+CONSTRAINT pk_trabajo_individual PRIMARY KEY (id_Tindividual),
+CONSTRAINT fk_estudiante_Tindividual FOREIGN KEY (id_estudiante_Tindividual) REFERENCES estudiante(id),
+CONSTRAINT	 fk_mateia_Tindividual FOREIGN KEY (id_materia_Tindividual) REFERENCES materia (id),
+CONSTRAINT fk_periodo_Tindividual FOREIGN KEY (id_periodo_Tindividual) REFERENCES periodo (id),
+CONSTRAINT fk_cognitivo_Tindividual FOREIGN KEY (id_procedimental_Tindividual) REFERENCES procedimental (id_procedimental)
+)ENGINE=InnoDb;
+
+CREATE TABLE Tcolaborativo(
+id_Tcolaborativo INT(3) AUTO_INCREMENT NOT NULL,
+id_estudiante_Tcolaborativo INT(3) NOT NULL,
+id_materia_Tcolaborativo INT(3) NOT NULL,
+id_periodo_Tcolaborativo INT(3) NOT NULL,
+id_procedimental_Tcolaborativo INT(3) NOT NULL,
+nota_Tcolaborativo INT(2) NOT NULL,
+CONSTRAINT pk_trabajo_colaborativo PRIMARY KEY (id_Tcolaborativo),
+CONSTRAINT fk_estudiante_Tcolaborativo FOREIGN KEY (id_estudiante_Tcolaborativo) REFERENCES estudiante(id),
+CONSTRAINT	 fk_mateia_Tcolaborativo FOREIGN KEY (id_materia_Tcolaborativo) REFERENCES materia (id),
+CONSTRAINT fk_periodo_Tcolaborativo FOREIGN KEY (id_periodo_Tcolaborativo) REFERENCES periodo (id),
+CONSTRAINT fk_cognitivo_Tcolaborativo FOREIGN KEY (id_procedimental_Tcolaborativo) REFERENCES procedimental (id_procedimental)
+)ENGINE=InnoDb;
+
+-- ----------------ACTITUDINAL---------------------------------------------
+CREATE TABLE actitudinal(
+id_actitudinal INT(3) AUTO_INCREMENT NOT NULL,
+porcenteje_actitudinal INT(3) NOT NULL,
+porcentaje_apreciativa INT(3) NOT NULL,
+porcentaje_autoevaluacion INT(3) NOT NULL,
+CONSTRAINT pk_actitudinal PRIMARY KEY (id_actitudinal)
+)ENGINE=InnoDb;
+
+CREATE TABLE apreciativa(
+id_apreciativa INT(3) AUTO_INCREMENT NOT NULL,
+id_estudiante_apreciativa INT(3) NOT NULL,
+id_materia_apreciativa INT(3) NOT NULL,
+id_periodo_apreciativa INT(3) NOT NULL,
+id_actitudinal_apreciativa INT(3) NOT NULL,
+nota_apreciativa INT(2) NOT NULL,
+CONSTRAINT pk_apreciativa PRIMARY KEY (id_apreciativa),
+CONSTRAINT fk_estudiante_apreciativa FOREIGN KEY (id_estudiante_apreciativa) REFERENCES estudiante(id),
+CONSTRAINT	 fk_mateia_apreciativa FOREIGN KEY (id_materia_apreciativa) REFERENCES materia (id),
+CONSTRAINT fk_periodo_apreciativa FOREIGN KEY (id_periodo_apreciativa) REFERENCES periodo (id),
+CONSTRAINT fk_cognitivo_apreciativa FOREIGN KEY (id_actitudinal_apreciativa) REFERENCES actitudinal (id_actitudinal)
+)ENGINE=InnoDb;
+
+CREATE TABLE autoevaluacion(
+id_autoevaluacion INT(3) AUTO_INCREMENT NOT NULL,
+id_estudiante_autoevaluacion INT(3) NOT NULL,
+id_materia_autoevaluacion INT(3) NOT NULL,
+id_periodo_autoevaluacion INT(3) NOT NULL,
+id_actitudinal_autoevaluacion INT(3) NOT NULL,
+nota_trimestral INT(2) NOT NULL,
+CONSTRAINT pk_autoevaluacion PRIMARY KEY (id_autoevaluacion),
+CONSTRAINT fk_estudianteautoevaluacion FOREIGN KEY (id_estudiante_autoevaluacion) REFERENCES estudiante(id),
+CONSTRAINT	 fk_mateia_autoevaluacion FOREIGN KEY (id_materia_autoevaluacion) REFERENCES materia (id),
+CONSTRAINT fk_periodo_autoevaluacion FOREIGN KEY (id_periodo_autoevaluacion) REFERENCES periodo (id),
+CONSTRAINT fk_actitudinal_autoevaluacion FOREIGN KEY (id_actitudinal_autoevaluacion) REFERENCES actitudinal (id_actitudinal)
+)ENGINE=InnoDb;
+
 --  seleccionar todos los grados
 SELECT gd.id_grado_d FROM gradodocente gd
 INNER JOIN docente d ON d.id = gd.id_docente_g
@@ -421,3 +543,18 @@ WHERE d.id_docente_dir = 2;
 SELECT a.nombre, a.id_aula FROM aulas a
 INNER JOIN aulaGrado au ON au.id_aula_grado = a.id_aula
 WHERE au.id_grado_aula = 1;
+
+# seleccionar las notas del criterio cognitivo
+SELECT m.nombre_mat, t.nota_trimestral, e.nota_evaliacion, c.porcentaje_evaluacion, c.porcentaje_trimestral FROM cognitivo c
+INNER JOIN evaluacion e ON e.id_cognitivo_e = c.id_cognitivo
+INNER JOIN trimestral t ON t.id_cognitivo_t = c.id_cognitivo
+INNER JOIN estudiante es ON es.id =e.id_estudiante_e = es.id
+INNER JOIN materia m ON m.id = m.id = e.id_materia_e
+WHERE es.id = 1 AND   t.id_periodo_t =  1 AND e.id_periodo_e  = 1;
+
+
+# consulta para listar las materias y señalar el area a la que pertenecen
+
+SELECT mb.nombre_materia, a.color FROM materias_base mb
+INNER JOIN areas a ON a.id_area = mb.id_area_m
+ORDER BY a.id_area;

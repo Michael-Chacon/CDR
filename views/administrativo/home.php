@@ -102,7 +102,7 @@
                                 <div class="card-body contenido-card">
                                    <i class="bi bi-gear" style="font-size: 3rem;"></i>
                                     <h5>
-                                        Configuraciones
+                                        Más opciones
                                     </h5>
                                     <a class="stretched-link" href="<?=base_url?>Configuracion/vista_configuracion">
                                     </a>
