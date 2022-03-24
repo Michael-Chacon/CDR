@@ -76,7 +76,7 @@
                     <div aria-labelledby="flush-headingOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample" id="flush-collapseOne">
                         <article class="accordion-body">
                             <?php $f = 0;
-                            if ($fechas_fallas->rowCount() != 0): ?>
+if ($fechas_fallas->rowCount() != 0): ?>
                                 <table class="table text-center">
                                     <thead>
                                         <tr>
@@ -93,20 +93,20 @@
                                     </thead>
                                     <tbody>
                                         <?php while ($fechas = $fechas_fallas->fetchObject()):
-                                            $f++;
-                                            ?>
-                                            <tr>
-                                              <td>
-                                                  <?=$f?>
-                                              </td>
-                                              <td>
-                                                  <?=$fechas->fecha_falla?>
-                                              </td>
-                                              <td>
-                                                  <?=$fechas->id_periodo_f?>
-                                              </td>
-                                          </tr>
-                                      <?php endwhile;?>
+    $f++;
+    ?>
+						                                            <tr>
+						                                              <td>
+						                                                  <?=$f?>
+						                                              </td>
+						                                              <td>
+						                                                  <?=$fechas->fecha_falla?>
+						                                              </td>
+						                                              <td>
+						                                                  <?=$fechas->id_periodo_f?>
+						                                              </td>
+						                                          </tr>
+						                                      <?php endwhile;?>
                                   </tbody>
                               </table>
                           <?php else: ?>
@@ -121,270 +121,12 @@
 </article>
 </section>
 <!-- fin indicador y contenido -->
-<section class="row justify-content-center mt-5">
+<section class="row justify-content-center mt-5 mb-5">
     <h5 class="text-center">
         Notas
     </h5>
-    <article class="col-md-6 mt-3 mb-3 ">
-        <div>
-            <table class="table text-center caption-top shadow">
-                <caption class="text-center">
-                    Primer periodo
-                </caption>
-                <?php if ($periodo1->rowCount() != 0):
-                    $n = 1;
-                    ?>
-                    <thead>
-                      <tr>
-                          <th>
-                              #
-                          </th>
-                          <th>
-                              Nombre
-                          </th>
-                          <th>
-                              Nota
-                          </th>
-                          <th>
-                              Porcentaje
-                          </th>
-                          <?php if (isset($_SESSION['teacher'])): ?>
-                              <th>
-                                  Editar
-                              </th>
-                              <th>
-                                  Eliminar
-                              </th>
-                          <?php endif;?>
-                      </tr>
-                  </thead>
-                  <tbody>
-                    <?php while ($uno = $periodo1->fetchObject()): ?>
-                        <tr>
-                            <td>
-                                <?=$n++;?>
-                            </td>
-                            <td>
-                                <?=$uno->area?>
-                            </td>
-                            <td>
-                                <?=$uno->nota?>
-                            </td>
-                            <td>
-                                <?=$uno->porcentaje?>%
-                            </td>
-                            <?php if (isset($_SESSION['teacher'])): ?>
-                                <td>
-                                    <a class="icono-actividades"  href="#">
-                                        <i class="bi bi-pen">
-                                        </i>
-                                    </a>
-                                </td>
-                                <td>
-                                    <a class="icono-actividades"  href="#">
-                                        <i class="bi bi-trash" style="font-size: 1.2rem;">
-                                        </i>
-                                    </a>
-                                </td>
-                            <?php endif;?>
-                        </tr>
-                    <?php endwhile;?>
-                </tbody>
-                <tfoot>
-                    <tr>
-                        <th></th>
-                        <th>
-                            Total
-                        </th>
-                        <th>
-                            50
-                        </th>
-                        <th>
-                            100%
-                        </th>
-                    </tr>
-                </tfoot>
-            <?php else: ?>
-                <p class="text-center mt-3"><span class="badge bg-warning text-dark">No hay notas registradas.</span></p>
-            <?php endif;?>
-        </table>
-    </div>
-</article>
-<article class="col-md-6 mt-3 mb-3">
-    <div>
-        <table class="table text-center caption-top shadow">
-            <caption class="text-center">
-                Segundo periodo
-            </caption>
-            <?php if ($periodo2->rowCount() != 0):
-                $n = 1;
-                ?>
-                <thead>
-                  <tr>
-                      <th>
-                          #
-                      </th>
-                      <th>
-                          Nombre
-                      </th>
-                      <th>
-                          Nota
-                      </th>
-                      <th>
-                          Porcentaje
-                      </th>
-                      <?php if (isset($_SESSION['teacher'])): ?>
-                          <th>
-                              Editar
-                          </th>
-                          <th>
-                              Eliminar
-                          </th>
-                      <?php endif;?>
-                  </tr>
-              </thead>
-              <tbody>
-                <?php while ($dos = $periodo2->fetchObject()): ?>
-                    <tr>
-                        <td>
-                            <?=$n++;?>
-                        </td>
-                        <td>
-                            <?=$dos->area?>
-                        </td>
-                        <td>
-                            <?=$dos->nota?>
-                        </td>
-                        <td>
-                            <?=$dos->porcentaje?>%
-                        </td>
-                        <?php if (isset($_SESSION['teacher'])): ?>
-                            <td>
-                                <a class="icono-actividades"  href="#">
-                                    <i class="bi bi-pen">
-                                    </i>
-                                </a>
-                            </td>
-                            <td>
-                                <a class="icono-actividades"  href="#">
-                                    <i class="bi bi-trash" style="font-size: 1.2rem;">
-                                    </i>
-                                </a>
-                            </td>
-                        <?php endif;?>
-                    </tr>
-                <?php endwhile;?>
-            </tbody>
-            <tfoot>
-                <tr>
-                    <th>
-
-                    </th>
-                    <th>
-                        Total
-                    </th>
-                    <th>
-                        50
-                    </th>
-                    <th>
-                        100%
-                    </th>
-                </tr>
-            </tfoot>
-        <?php else: ?>
-            <p class="text-center mt-3"><span class="badge bg-warning text-dark">No hay notas registradas.</span></p>
-        <?php endif;?>
-    </table>
-</div>
-</article>
-<article class="col-md-5 mt-3 mb-3 ">
-    <div>
-        <table class="table text-center caption-top shadow">
-            <caption class="text-center">
-                Tercer periodo
-            </caption>
-            <?php if ($periodo3->rowCount() != 0):
-                $n = 1;
-                ?>
-                <thead>
-                  <tr>
-                      <th>
-                          #
-                      </th>
-                      <th>
-                          Nombre
-                      </th>
-                      <th>
-                          Nota
-                      </th>
-                      <th>
-                          Porcentaje
-                      </th>
-                      <?php if (isset($_SESSION['teacher'])): ?>
-                          <th>
-                              Editar
-                          </th>
-                          <th>
-                              Eliminar
-                          </th>
-                      <?php endif;?>
-                  </tr>
-              </thead>
-              <tbody>
-                <?php while ($tres = $periodo3->fetchObject()): ?>
-                    <tr>
-                        <td>
-                            <?=$n++;?>
-                        </td>
-                        <td>
-                            <?=$tres->area?>
-                        </td>
-                        <td>
-                            <?=$tres->nota?>
-                        </td>
-                        <td>
-                            <?=$tres->porcentaje?>%
-                        </td>
-                        <?php if (isset($_SESSION['teacher'])): ?>
-                            <td>
-                                <a class="icono-actividades"  href="#">
-                                    <i class="bi bi-pen">
-                                    </i>
-                                </a>
-                            </td>
-                            <td>
-                                <a class="icono-actividades"  href="#">
-                                    <i class="bi bi-trash" style="font-size: 1.2rem;">
-                                    </i>
-                                </a>
-                            </td>
-                        <?php endif;?>
-                    </tr>
-                <?php endwhile;?>
-            </tbody>
-            <tfoot>
-                <tr>
-                    <th>
-                    </th>
-                    <th>
-                        Total
-                    </th>
-                    <th>
-                        50
-                    </th>
-                    <th>
-                        100%
-                    </th>
-                </tr>
-            </tfoot>
-        <?php else: ?>
-            <p class="text-center mt-3"><span class="badge bg-warning text-dark">No hay notas registradas.</span></p>
-        <?php endif;?>
-    </table>
-</div>
-</article>
 </section>
-<!-- inicio periodos -->
+<!-- inicio de notas por periodos -->
 <section class="accordion shadow mb-5" id="accordionPanelsStayOpenExample">
   <section class="accordion-item">
     <h2 class="accordion-header" id="1periodo">
@@ -396,14 +138,14 @@
   <article class="accordion-body">
     <article class="row justify-content-center">
         <article class="col-md-8 shadow">
-            <table class="table text-center">
+            <table class="table ">
               <thead>
                 <tr>
                     <th scope="col">Criterio</th>
                     <th scope="col">actividad</th>
                     <th scope="col">nota</th>
-                    <th scope="col">Editar</th>
-                    <th scope="col">Eliminar</th>
+                    <th scope="col" class="text-center">Editar</th>
+                    <th scope="col" class="text-center">Eliminar</th>
                 </tr>
             </thead>
             <tbody>
@@ -411,17 +153,17 @@
                   <td scope="row" class="titulo-criterio cognitivo">Cognitivo (50%)</td>
                   <td class="cognitivo">Evaluación (30%)</td>
                   <td class="cognitivo">35</td>
-                  <td><i class="bi bi-pen"></i></td>
-                  <td><i class="bi bi-trash"></i></td>
+                  <td class="text-center"><i class="bi bi-pen"></i></td>
+                  <td class="text-center"><i class="bi bi-trash"></i></td>
               </tr>
               <tr>
                   <td scope="row"></td>
                   <td class="cognitivo">Trimestral (20%)</td>
                   <td class="cognitivo">38</td>
-                  <td><i class="bi bi-pen"></i></td>
-                  <td><i class="bi bi-trash"></i></td>
+                  <td class="text-center"><i class="bi bi-pen"></i></td>
+                  <td class="text-center"><i class="bi bi-trash"></i></td>
               </tr>
-               <tr>
+              <tr>
                   <td scope="row"></td>
                   <td class="total-nota"><strong>Total</strong></td>
                   <td class="total-nota"><strong>?</strong></td>
@@ -435,19 +177,19 @@
                   <td></td>
                   <td></td>
               </tr>
-               <tr>
+              <tr>
                   <td scope="row" class="titulo-criterio procedimental">Procedimental (30%)</td>
                   <td class="procedimental">Trabajo individual (15%)</td>
                   <td class="procedimental">40</td>
-                  <td><i class="bi bi-pen"></i></td>
-                  <td><i class="bi bi-trash"></i></td>
+                  <td class="text-center"><i class="bi bi-pen"></i></td>
+                  <td class="text-center"><i class="bi bi-trash"></i></td>
               </tr>
-               <tr>
+              <tr>
                   <td scope="row" ></td>
                   <td class="procedimental">Trabajo colaborativo (15%)</td>
                   <td class="procedimental">37</td>
-                  <td><i class="bi bi-pen"></i></td>
-                  <td><i class="bi bi-trash"></i></td>
+                  <td class="text-center"><i class="bi bi-pen"></i></td>
+                  <td class="text-center"><i class="bi bi-trash"></i></td>
               </tr>
               <tr>
                   <td scope="row"></td>
@@ -467,15 +209,15 @@
                   <td scope="row" class="titulo-criterio actitudinal">Actitudinal (20%)</td>
                   <td class="actitudinal">Apreciativa (15%)</td>
                   <td class="actitudinal">35</td>
-                  <td><i class="bi bi-pen"></i></td>
-                  <td><i class="bi bi-trash"></i></td>
+                  <td class="text-center"><i class="bi bi-pen"></i></td>
+                  <td class="text-center"><i class="bi bi-trash"></i></td>
               </tr>
-               <tr>
+              <tr>
                   <td scope="row" ></td>
                   <td class="actitudinal">Autoevaliación (5%)</td>
                   <td class="actitudinal">45</td>
-                  <td><i class="bi bi-pen"></i></td>
-                  <td><i class="bi bi-trash"></i></td>
+                  <td class="text-center"><i class="bi bi-pen"></i></td>
+                  <td class="text-center"><i class="bi bi-trash"></i></td>
               </tr>
               <tr>
                   <td scope="row"></td>
@@ -485,9 +227,9 @@
                   <td></td>
               </tr>
           </tbody>
-        </table>
-        </article>
-    </article>
+      </table>
+  </article>
+</article>
 </article>
 </article>
 </section>
@@ -501,14 +243,14 @@
   <div class="accordion-body">
     <article class="row justify-content-center">
         <article class="col-md-8 shadow">
-            <table class="table text-center">
+            <table class="table">
               <thead>
                 <tr>
                     <th scope="col">Criterio</th>
                     <th scope="col">actividad</th>
                     <th scope="col">nota</th>
-                    <th scope="col">Editar</th>
-                    <th scope="col">Eliminar</th>
+                    <th class="text-center" scope="col">Editar</th>
+                    <th class="text-center" scope="col">Eliminar</th>
                 </tr>
             </thead>
             <tbody>
@@ -516,17 +258,17 @@
                   <td scope="row" class="titulo-criterio cognitivo">Cognitivo (50%)</td>
                   <td class="cognitivo">Evaluación (30%)</td>
                   <td class="cognitivo">35</td>
-                  <td><i class="bi bi-pen"></i></td>
-                  <td><i class="bi bi-trash"></i></td>
+                  <td class="text-center"><i class="bi bi-pen"></i></td>
+                  <td class="text-center"><i class="bi bi-trash"></i></td>
               </tr>
               <tr>
                   <td scope="row"></td>
                   <td class="cognitivo">Trimestral (20%)</td>
                   <td class="cognitivo">38</td>
-                  <td><i class="bi bi-pen"></i></td>
-                  <td><i class="bi bi-trash"></i></td>
+                  <td class="text-center"><i class="bi bi-pen"></i></td>
+                  <td class="text-center"><i class="bi bi-trash"></i></td>
               </tr>
-               <tr>
+              <tr>
                   <td scope="row"></td>
                   <td class="total-nota"><strong>Total</strong></td>
                   <td class="total-nota"><strong>?</strong></td>
@@ -540,19 +282,19 @@
                   <td></td>
                   <td></td>
               </tr>
-               <tr>
+              <tr>
                   <td scope="row" class="titulo-criterio procedimental">Procedimental (30%)</td>
                   <td class="procedimental">Trabajo individual (15%)</td>
                   <td class="procedimental">40</td>
-                  <td><i class="bi bi-pen"></i></td>
-                  <td><i class="bi bi-trash"></i></td>
+                  <td class="text-center"><i class="bi bi-pen"></i></td>
+                  <td class="text-center"><i class="bi bi-trash"></i></td>
               </tr>
-               <tr>
+              <tr>
                   <td scope="row" ></td>
                   <td class="procedimental">Trabajo colaborativo (15%)</td>
                   <td class="procedimental">37</td>
-                  <td><i class="bi bi-pen"></i></td>
-                  <td><i class="bi bi-trash"></i></td>
+                  <td class="text-center"><i class="bi bi-pen"></i></td>
+                  <td class="text-center"><i class="bi bi-trash"></i></td>
               </tr>
               <tr>
                   <td scope="row"></td>
@@ -572,15 +314,15 @@
                   <td scope="row" class="titulo-criterio actitudinal">Actitudinal (20%)</td>
                   <td class="actitudinal">Apreciativa (15%)</td>
                   <td class="actitudinal">35</td>
-                  <td><i class="bi bi-pen"></i></td>
-                  <td><i class="bi bi-trash"></i></td>
+                  <td class="text-center"><i class="bi bi-pen"></i></td>
+                  <td class="text-center"><i class="bi bi-trash"></i></td>
               </tr>
-               <tr>
+              <tr>
                   <td scope="row" ></td>
                   <td class="actitudinal">Autoevaliación (5%)</td>
                   <td class="actitudinal">45</td>
-                  <td><i class="bi bi-pen"></i></td>
-                  <td><i class="bi bi-trash"></i></td>
+                  <td class="text-center"><i class="bi bi-pen"></i></td>
+                  <td class="text-center"><i class="bi bi-trash"></i></td>
               </tr>
               <tr>
                   <td scope="row"></td>
@@ -590,9 +332,9 @@
                   <td></td>
               </tr>
           </tbody>
-        </table>
-        </article>
-    </article>
+      </table>
+  </article>
+</article>
 </div>
 </div>
 </div>
@@ -606,14 +348,14 @@
   <div class="accordion-body">
     <article class="row justify-content-center">
         <article class="col-md-8 shadow">
-            <table class="table text-center">
+            <table class="table">
               <thead>
                 <tr>
                     <th scope="col">Criterio</th>
                     <th scope="col">actividad</th>
                     <th scope="col">nota</th>
-                    <th scope="col">Editar</th>
-                    <th scope="col">Eliminar</th>
+                    <th class="text-center" scope="col">Editar</th>
+                    <th class="text-center" scope="col">Eliminar</th>
                 </tr>
             </thead>
             <tbody>
@@ -621,17 +363,17 @@
                   <td scope="row" class="titulo-criterio cognitivo">Cognitivo (50%)</td>
                   <td class="cognitivo">Evaluación (30%)</td>
                   <td class="cognitivo">35</td>
-                  <td><i class="bi bi-pen"></i></td>
-                  <td><i class="bi bi-trash"></i></td>
+                  <td class="text-center"><i class="bi bi-pen"></i></td>
+                  <td class="text-center"><i class="bi bi-trash"></i></td>
               </tr>
               <tr>
                   <td scope="row"></td>
                   <td class="cognitivo">Trimestral (20%)</td>
                   <td class="cognitivo">38</td>
-                  <td><i class="bi bi-pen"></i></td>
-                  <td><i class="bi bi-trash"></i></td>
+                  <td class="text-center"><i class="bi bi-pen"></i></td>
+                  <td class="text-center"><i class="bi bi-trash"></i></td>
               </tr>
-               <tr>
+              <tr>
                   <td scope="row"></td>
                   <td class="total-nota"><strong>Total</strong></td>
                   <td class="total-nota"><strong>?</strong></td>
@@ -645,19 +387,19 @@
                   <td></td>
                   <td></td>
               </tr>
-               <tr>
+              <tr>
                   <td scope="row" class="titulo-criterio procedimental">Procedimental (30%)</td>
                   <td class="procedimental">Trabajo individual (15%)</td>
                   <td class="procedimental">40</td>
-                  <td><i class="bi bi-pen"></i></td>
-                  <td><i class="bi bi-trash"></i></td>
+                  <td class="text-center"><i class="bi bi-pen"></i></td>
+                  <td class="text-center"><i class="bi bi-trash"></i></td>
               </tr>
-               <tr>
+              <tr>
                   <td scope="row" ></td>
                   <td class="procedimental">Trabajo colaborativo (15%)</td>
                   <td class="procedimental">37</td>
-                  <td><i class="bi bi-pen"></i></td>
-                  <td><i class="bi bi-trash"></i></td>
+                  <td class="text-center"><i class="bi bi-pen"></i></td>
+                  <td class="text-center"><i class="bi bi-trash"></i></td>
               </tr>
               <tr>
                   <td scope="row"></td>
@@ -677,15 +419,15 @@
                   <td scope="row" class="titulo-criterio actitudinal">Actitudinal (20%)</td>
                   <td class="actitudinal">Apreciativa (15%)</td>
                   <td class="actitudinal">35</td>
-                  <td><i class="bi bi-pen"></i></td>
-                  <td><i class="bi bi-trash"></i></td>
+                  <td class="text-center"><i class="bi bi-pen"></i></td>
+                  <td class="text-center"><i class="bi bi-trash"></i></td>
               </tr>
-               <tr>
+              <tr>
                   <td scope="row" ></td>
                   <td class="actitudinal">Autoevaliación (5%)</td>
                   <td class="actitudinal">45</td>
-                  <td><i class="bi bi-pen"></i></td>
-                  <td><i class="bi bi-trash"></i></td>
+                  <td class="text-center"><i class="bi bi-pen"></i></td>
+                  <td class="text-center"><i class="bi bi-trash"></i></td>
               </tr>
               <tr>
                   <td scope="row"></td>
@@ -695,9 +437,9 @@
                   <td></td>
               </tr>
           </tbody>
-        </table>
-        </article>
-    </article>
+      </table>
+  </article>
+</article>
 </div>
 </div>
 </div>
@@ -715,34 +457,32 @@
                 <button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button">
                 </button>
             </div>
-            <form action="<?=base_url?>Notas/registrarNota" method="post">
+            <form action="<?=base_url?>Notas/guardarNota" method="post">
                 <input type="number" hidden name="estudiante"  value="<?=$estudiante->id?>">
                 <input type="text" hidden name="materia" value="<?=$materia->id?>">
                 <input type="number" hidden name="grado" value="<?=$grado?>">
                 <div class="modal-body">
                     <div class="mb-3">
                         <label class="form-label" for="item">
-                            ¿Qué se evalúa?
+                            ¿Qué actividad vas a calificar?
                         </label>
-                        <input class="form-control" id="item" placeholder="Taller, Tarea, Evaluación, etc" type="text" name="item" required>
-                    </input>
-                </div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="mb-3">
-                            <label class="form-label" for="nota">
-                                Nota:
-                            </label>
-                            <input class="form-control" id="nota" placeholder="45" type="number" name="nota" required>
-                        </input>
-                    </div>
-                </div>
+                        <select class="form-select" aria-label="actividad" name="actividad" required>
+                          <option ></option>
+                          <option value="evaluacion">Evaluacion</option>
+                          <option value="trimestral">Trimestral</option>
+                          <option value="tindividual">Trabajo individual</option>
+                          <option value="tcolaborativo">Trabajo_colaborativo</option>
+                          <option value="apreciativa">Apreciativo</option>
+                          <option value="autoevaluacion">Autoevaliación</option>
+                      </select>
+              </div>
+              <div class="row">
                 <div class="col-md-6">
                     <div class="mb-3">
-                        <label class="form-label" for="porcentaje">
-                            Porcentaje:
+                        <label class="form-label" for="nota">
+                            Nota:
                         </label>
-                        <input class="form-control" id="porcentaje" placeholder="20" type="number" name="porcentaje" required>
+                        <input class="form-control" id="nota" placeholder="Nota" type="number" name="nota" required>
                     </input>
                 </div>
             </div>

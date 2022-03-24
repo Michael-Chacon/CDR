@@ -344,47 +344,6 @@ class Notas
         return $this;
     }
 
-    public function validatePercent()
-    {
-        try {
-            $subject = $this->getMateria();
-            $student = $this->getEstudiante();
-            $porcent = $this->getPorcentaje();
-            $validacion = $this->db->prepare("SELECT SUM(porcentaje) AS 'total' FROM notas WHERE id_materia_n = :materia AND id_estudiante_n = :estudiante");
-            $validacion->bindParam(":materia", $subject, PDO::PARAM_INT);
-            $validacion->bindParam(":estudiante", $student, PDO::PARAM_INT);
-            $validacion->execute();
-            $total = $validacion->fetchObject();
-            $neto = $total->total + $porcent;
-            if ($neto <= 100) {
-                return true;
-            } else {
-                return false;
-            }
-        } catch (PDOException $e) {
-            echo $e->getMessage();
-        }
-    }
-
-    public function registerNote()
-    {
-        $subject = $this->getMateria();
-        $student = $this->getEstudiante();
-        $period = $this->getPeriodo();
-        $itemN = $this->getItem();
-        $note = $this->getNota();
-        $percent = $this->getPorcentaje();
-
-        $register = $this->db->prepare("INSERT INTO notas VALUES(null, :materia, :estudiante, :periodo, :item, :nota, :percent)");
-        $register->bindParam(":materia", $subject, PDO::PARAM_INT);
-        $register->bindParam(":estudiante", $student, PDO::PARAM_INT);
-        $register->bindParam(":periodo", $period, PDO::PARAM_INT);
-        $register->bindParam(":item", $itemN, PDO::PARAM_STR);
-        $register->bindParam(":nota", $note, PDO::PARAM_INT);
-        $register->bindParam(":percent", $percent, PDO::PARAM_INT);
-        return $register->execute();
-    }
-
     # obtener todas los notas de un estudiante en el periodo uno
     public function notasPeriodo1()
     {
@@ -479,4 +438,39 @@ class Notas
         return $actualizacion->execute();
     }
 
+    # metodo para registrar las notas en su respectivo criterio y actividad
+    public function saveAllNotes($estudiante, $materia, $periodo, $criterio, $notas, $tabla)
+    {
+        $nota = $this->db->prepare("INSERT INTO $tabla VALUES(null, :estudiante, :materia, :periodo, :criterio, :nota)");
+        $nota->bindParam(":estudiante", $estudiante, PDO::PARAM_INT);
+        $nota->bindParam(":materia", $materia, PDO::PARAM_INT);
+        $nota->bindParam(":periodo", $periodo, PDO::PARAM_INT);
+        $nota->bindParam(":criterio", $criterio, PDO::PARAM_INT);
+        $nota->bindParam(":nota", $notas, PDO::PARAM_INT);
+        return $nota->execute();
+    }
+
+    # listar los datos de los criterios
+    public function dataCognitivo()
+    {
+        $cognitivo = $this->db->prepare("SELECT * FROM cognitivo");
+        $cognitivo->execute();
+        return $cognitivo->fetchObject();
+    }
+
+    public function dataProcedimental()
+    {
+        $procedimental = $this->db->prepare("SELECT * FROM procedimental");
+        $procedimental->execute();
+        return $procedimental->fetchObject();
+    }
+
+    public function dataActitudinal()
+    {
+        $actitudinal = $this->db->prepare("SELECT * FROM actitudinal");
+        $actitudinal->execute();
+        return $actitudinal->fetchObject();
+    }
+
+#fin de la clase
 }

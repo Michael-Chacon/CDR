@@ -39,31 +39,32 @@ class NotasController
         }
     }
 
-    public function registrarNota()
+    #registrar notas en los diferentes criterios evaluativos
+    public function guardarNota()
     {
+        $actividad = $_POST['actividad'];
+        $nota = $_POST['nota'];
         $materia = $_POST['materia'];
         $estudiante = $_POST['estudiante'];
-        $item = $_POST['item'];
-        $nota = $_POST['nota'];
-        $porcentaje = $_POST['porcentaje'];
         $hoy = date("Y-m-d");
-        $fecha_hoy = Utils::validarPeriodoAcademico($hoy);
+        $periodo = Utils::validarPeriodoAcademico($hoy);
 
-        $calificar = new Notas();
-        $calificar->setMateria($materia);
-        $calificar->setEstudiante($estudiante);
-        $calificar->setPeriodo($fecha_hoy);
-        $calificar->setItem($item);
-        $calificar->setNota($nota);
-        $calificar->setPorcentaje($porcentaje);
-        $validacion = $calificar->validatePercent();
+        $criterios = new Notas();
+        $cognitivo = $criterios->dataCognitivo();
+        $procedimental = $criterios->dataProcedimental();
+        $actitudinal = $criterios->dataActitudinal();
 
-        if ($validacion) {
-            $resultado = $calificar->registerNote();
-            var_dump($resultado);
+        if ($actividad == 'evaluacion' || $actividad == 'trimestral') {
+            $criterio = $cognitivo->id_cognitivo;
+            $respuesta = $criterios->saveAllNotes($estudiante, $materia, $periodo, $criterio, $nota, $actividad);
+        } elseif ($actividad == 'tindividual' || $actividad == 'tcolaborativo') {
+            $criterio = $procedimental->id_procedimental;
+            $respuesta = $criterios->saveAllNotes($estudiante, $materia, $periodo, $criterio, $nota, $actividad);
+        } elseif ($actividad == 'apreciativa' || $actividad == 'autoevaluacion') {
+            $criterio = $actitudinal->id_actitudinal;
+            $respuesta = $criterios->saveAllNotes($estudiante, $materia, $periodo, $criterio, $nota, $actividad);
         }
-        Utils::validarReturn($validacion, 'registrarNota');
-
+        Utils::validarReturn($respuesta, 'registrarNota');
         header('Location: ' . base_url . 'Notas/homeNotas&student=' . $estudiante . '&materia=' . $materia . '&nGrado=' . $_POST['grado']);
     }
 
