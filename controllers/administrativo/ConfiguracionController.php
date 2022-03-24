@@ -3,6 +3,7 @@
 require_once 'models/area.php';
 require_once 'models/grados.php';
 require_once 'models/materias.php';
+require_once 'models/notas.php';
 class ConfiguracionController
 {
     public function vista_configuracion()
@@ -28,6 +29,16 @@ class ConfiguracionController
         $listado_aulas = new Grados();
         $todas_aulas = $listado_aulas->selectAllClassroom();
         require_once 'views/administrativo/configuracion/aulas.php';
+    }
+
+    # vista para configurar el porcentaje de los  criterios de evaluacion
+    public function vista_notas()
+    {
+        $criterios = new Notas();
+        $cognitivas = $criterios->listCongnitivo();
+        $procedimentales = $criterios->listProcedimental();
+        $actitudinales = $criterios->listActitudinal();
+        require_once 'views/administrativo/configuracion/notas.php';
     }
 
     public function guardar_area()
@@ -108,4 +119,48 @@ class ConfiguracionController
         Utils::validarReturn($resultado, 'eliminar_base');
         header('Location:' . base_url . 'Configuracion/vista_areas');
     }
+
+    # METODOS PARA ACTUALIZAR LOS PORCENTAJES DE LOS CRITERIOS DE EVALUACION "COGNITIVO, PROCEDIMENTAL Y ACTITUDINAL"
+    public function actualizarCognitivo()
+    {
+        $cognitivo = $_POST['cognitivo'];
+        $evaluacion = $_POST['evaluacion'];
+        $trimestral = $_POST['trimestral'];
+        $actualizador = new Notas();
+        $actualizador->setCognitivo($cognitivo);
+        $actualizador->setEvaluacion($evaluacion);
+        $actualizador->setTrimestral($trimestral);
+        $respuesta = $actualizador->updateCognitivo();
+        Utils::validarReturn($respuesta, 'actualizar_cognitivo');
+        header('Location:' . base_url . 'Configuracion/vista_notas');
+    }
+
+    public function actualizarProcedimental()
+    {
+        $procedimental = $_POST['procedimental'];
+        $individual = $_POST['individual'];
+        $colaborativo = $_POST['colaborativo'];
+        $actualizador = new Notas();
+        $actualizador->setProcedimental($procedimental);
+        $actualizador->setTindividual($individual);
+        $actualizador->setTcolaborativo($colaborativo);
+        $respuesta = $actualizador->updateProcedimental();
+        Utils::validarReturn($respuesta, 'actualizar_procedimental');
+        header('Location:' . base_url . 'Configuracion/vista_notas');
+    }
+
+    public function actualizarActitudinal()
+    {
+        $actitudinal = $_POST['actitudinal'];
+        $apreciativa = $_POST['apreciativa'];
+        $autoevaluacion = $_POST['autoevaluacion'];
+        $actualizador = new Notas();
+        $actualizador->setActitudinal($actitudinal);
+        $actualizador->setApreciativa($apreciativa);
+        $actualizador->setAutoevaluacion($autoevaluacion);
+        $respuesta = $actualizador->updateActitudinal();
+        Utils::validarReturn($respuesta, 'actualizar_actitudinal');
+        header('Location:' . base_url . 'Configuracion/vista_notas');
+    }
+
 }

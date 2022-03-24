@@ -71,3 +71,10 @@ INNER JOIN trimestral t ON t.id_cognitivo_t = c.id_cognitivo
 INNER JOIN estudiante es ON es.id =e.id_estudiante_e = es.id
 INNER JOIN materia m ON m.id = m.id = e.id_materia_e
 WHERE es.id = 1 AND   t.id_periodo_t =  1 AND e.id_periodo_e  = 1;
+
+CREATE TABLE prueba(
+		id INT(4) AUTO_INCREMENT NOT NULL,
+		nombre_mat VARCHAR(30) NOT NULL,
+		numero INT(3) DEFAULT 0,
+		CONSTRAINT pk_prueba PRIMARY KEY(id)
+)ENGINE=InnoDb;

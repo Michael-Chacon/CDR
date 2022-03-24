@@ -8,6 +8,15 @@ class Notas
     private $item;
     private $nota;
     private $porcentaje;
+    private $cognitivo;
+    private $evaluacion;
+    private $trimestral;
+    private $procedimental;
+    private $Tindividual;
+    private $Tcolaborativo;
+    private $actitudinal;
+    private $apreciativa;
+    private $autoevaluacion;
     public $db;
 
     public function __construct()
@@ -155,6 +164,186 @@ class Notas
         return $this;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getCognitivo()
+    {
+        return $this->cognitivo;
+    }
+
+    /**
+     * @param mixed $cognitivo
+     *
+     * @return self
+     */
+    public function setCognitivo($cognitivo)
+    {
+        $this->cognitivo = $cognitivo;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getEvaluacion()
+    {
+        return $this->evaluacion;
+    }
+
+    /**
+     * @param mixed $evaluacion
+     *
+     * @return self
+     */
+    public function setEvaluacion($evaluacion)
+    {
+        $this->evaluacion = $evaluacion;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTrimestral()
+    {
+        return $this->trimestral;
+    }
+
+    /**
+     * @param mixed $trimestral
+     *
+     * @return self
+     */
+    public function setTrimestral($trimestral)
+    {
+        $this->trimestral = $trimestral;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getProcedimental()
+    {
+        return $this->procedimental;
+    }
+
+    /**
+     * @param mixed $procedimental
+     *
+     * @return self
+     */
+    public function setProcedimental($procedimental)
+    {
+        $this->procedimental = $procedimental;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTindividual()
+    {
+        return $this->Tindividual;
+    }
+
+    /**
+     * @param mixed $Tindividual
+     *
+     * @return self
+     */
+    public function setTindividual($Tindividual)
+    {
+        $this->Tindividual = $Tindividual;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTcolaborativo()
+    {
+        return $this->Tcolaborativo;
+    }
+
+    /**
+     * @param mixed $Tcolaborativo
+     *
+     * @return self
+     */
+    public function setTcolaborativo($Tcolaborativo)
+    {
+        $this->Tcolaborativo = $Tcolaborativo;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getActitudinal()
+    {
+        return $this->actitudinal;
+    }
+
+    /**
+     * @param mixed $actitudinal
+     *
+     * @return self
+     */
+    public function setActitudinal($actitudinal)
+    {
+        $this->actitudinal = $actitudinal;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getApreciativa()
+    {
+        return $this->apreciativa;
+    }
+
+    /**
+     * @param mixed $apreciativa
+     *
+     * @return self
+     */
+    public function setApreciativa($apreciativa)
+    {
+        $this->apreciativa = $apreciativa;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAutoevaluacion()
+    {
+        return $this->autoevaluacion;
+    }
+
+    /**
+     * @param mixed $autoevaluacion
+     *
+     * @return self
+     */
+    public function setAutoevaluacion($autoevaluacion)
+    {
+        $this->autoevaluacion = $autoevaluacion;
+
+        return $this;
+    }
+
     public function validatePercent()
     {
         try {
@@ -228,15 +417,66 @@ class Notas
         $periodoUno->execute();
         return $periodoUno;
     }
-    public function notasPeriodo4()
+
+    # listar los porcentajes de los 3 criterios academicos
+
+    public function listCongnitivo()
     {
-        $subject = $this->getMateria();
-        $student = $this->getEstudiante();
-        $periodoUno = $this->db->prepare("SELECT * FROM notas WHERE id_materia_n = :materia AND id_estudiante_n = :estudent AND id_periodo_n = 4");
-        $periodoUno->bindParam(":materia", $subject, PDO::PARAM_INT);
-        $periodoUno->bindParam(":estudent", $student, PDO::PARAM_INT);
-        $periodoUno->execute();
-        return $periodoUno;
+        $cognitivo = $this->db->prepare("SELECT * FROM cognitivo");
+        $cognitivo->execute();
+        return $cognitivo->fetchObject();
+    }
+
+    public function listProcedimental()
+    {
+        $procedimental = $this->db->prepare("SELECT * FROM procedimental");
+        $procedimental->execute();
+        return $procedimental->fetchObject();
+    }
+
+    public function listActitudinal()
+    {
+        $actitudinal = $this->db->prepare("SELECT * FROM actitudinal");
+        $actitudinal->execute();
+        return $actitudinal->fetchObject();
+    }
+
+    # METODOS PARA ACTUALIZAR LOS PORCENTAJES DE LOS CRITERIOS DE EVALUACION "COGNITIVO, PROCEDIMENTAL Y ACTITUDINAL"
+
+    public function updateCognitivo()
+    {
+        $criterio_cognitivo = $this->getCognitivo();
+        $evaluaciones = $this->getEvaluacion();
+        $trimestrales = $this->getTrimestral();
+        $actualizacion = $this->db->prepare("UPDATE cognitivo SET porcentaje_cognitivo = :cognitivo, porcentaje_evaluacion = :evaluacion, porcentaje_trimestral = :trimestral");
+        $actualizacion->bindParam(":cognitivo", $criterio_cognitivo, PDO::PARAM_INT);
+        $actualizacion->bindParam(":evaluacion", $evaluaciones, PDO::PARAM_INT);
+        $actualizacion->bindParam(":trimestral", $trimestrales, PDO::PARAM_INT);
+        return $actualizacion->execute();
+    }
+
+    public function updateProcedimental()
+    {
+        $criterio_procedimental = $this->getProcedimental();
+        $individual = $this->getTindividual();
+        $colaborativo = $this->getTcolaborativo();
+        $actualizacion = $this->db->prepare("UPDATE procedimental SET porcentaje_procedimental = :procedimental, porcentaje_Tindividual = :individual, porcentaje_Tcolaborativo = :colaborativo");
+        $actualizacion->bindParam(":procedimental", $criterio_procedimental, PDO::PARAM_INT);
+        $actualizacion->bindParam(":individual", $individual, PDO::PARAM_INT);
+        $actualizacion->bindParam(":colaborativo", $colaborativo, PDO::PARAM_INT);
+        return $actualizacion->execute();
+    }
+
+    public function updateActitudinal()
+    {
+        $criterio_atitudinal = $this->getActitudinal();
+        $apreciativas = $this->getApreciativa();
+        $autoevaluaciones = $this->getAutoevaluacion();
+        $actualizacion = $this->db->prepare("UPDATE actitudinal SET porcentaje_actitudinal = :actitudinal, porcentaje_apreciativa = :apreciativas, porcentaje_autoevaluacion = :autoevaluacion");
+        $actualizacion->bindParam(":actitudinal", $criterio_atitudinal, PDO::PARAM_INT);
+        $actualizacion->bindParam(":apreciativas", $apreciativas, PDO::PARAM_INT);
+        $actualizacion->bindParam(":autoevaluacion", $autoevaluaciones, PDO::PARAM_INT);
+        return $actualizacion->execute();
     }
 
 }

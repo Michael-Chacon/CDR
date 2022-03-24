@@ -376,9 +376,9 @@ CONSTRAINT fk_grado_aula FOREIGN KEY (id_grado_aula) REFERENCES grado(id) ON DEL
 -- ----------------COGNITIVO---------------------------------------------
 CREATE TABLE cognitivo(
 id_cognitivo INT(3) AUTO_INCREMENT NOT NULL,
-porcenteje_cognitvo INT(3) NOT NULL,
-porcentaje_evaluacion INT(3) NOT NULL,
-porcentaje_trimestral INT(3) NOT NULL,
+porcentaje_cognitivo INT(3) DEFAULT 0,
+porcentaje_evaluacion INT(3) DEFAULT 0,
+porcentaje_trimestral INT(3) DEFAULT 0,
 CONSTRAINT pk_cognitivo PRIMARY KEY (id_cognitivo)
 )ENGINE=InnoDb;
 
@@ -413,9 +413,9 @@ CONSTRAINT fk_cognitivo_trimestral FOREIGN KEY (id_cognitivo_t) REFERENCES cogni
 -------------------------PROCEDIMENTAL-------------------------
 CREATE TABLE procedimental(
 id_procedimental INT(3) AUTO_INCREMENT NOT NULL,
-porcenteje_procedimental INT(3) NOT NULL,
-porcentaje_Tindividual INT(3) NOT NULL,
-porcentaje_Tcolaborativo INT(3) NOT NULL,
+porcenteje_procedimental INT(3) DEFAULT 0,
+porcentaje_Tindividual INT(3) DEFAULT 0,
+porcentaje_Tcolaborativo INT(3) DEFAULT 0,
 CONSTRAINT pk_procedimental PRIMARY KEY (id_procedimental)
 )ENGINE=InnoDb;
 
@@ -450,9 +450,9 @@ CONSTRAINT fk_cognitivo_Tcolaborativo FOREIGN KEY (id_procedimental_Tcolaborativ
 -- ----------------ACTITUDINAL---------------------------------------------
 CREATE TABLE actitudinal(
 id_actitudinal INT(3) AUTO_INCREMENT NOT NULL,
-porcenteje_actitudinal INT(3) NOT NULL,
-porcentaje_apreciativa INT(3) NOT NULL,
-porcentaje_autoevaluacion INT(3) NOT NULL,
+porcenteje_actitudinal INT(3) DEFAULT 0,
+porcentaje_apreciativa INT(3) DEFAULT 0,
+porcentaje_autoevaluacion INT(3) DEFAULT 0,
 CONSTRAINT pk_actitudinal PRIMARY KEY (id_actitudinal)
 )ENGINE=InnoDb;
 
@@ -482,6 +482,13 @@ CONSTRAINT fk_estudianteautoevaluacion FOREIGN KEY (id_estudiante_autoevaluacion
 CONSTRAINT	 fk_mateia_autoevaluacion FOREIGN KEY (id_materia_autoevaluacion) REFERENCES materia (id),
 CONSTRAINT fk_periodo_autoevaluacion FOREIGN KEY (id_periodo_autoevaluacion) REFERENCES periodo (id),
 CONSTRAINT fk_actitudinal_autoevaluacion FOREIGN KEY (id_actitudinal_autoevaluacion) REFERENCES actitudinal (id_actitudinal)
+)ENGINE=InnoDb;
+
+#icono
+CREATE TABLE iconos(
+	id_icono INT(3) AUTO_INCREMENT NOT NULL,
+	icono VARCHAR(30) NOT NULL,
+	CONSTRAINT pk_iconos PRIMARY KEY (id_icono)
 )ENGINE=InnoDb;
 
 --  seleccionar todos los grados

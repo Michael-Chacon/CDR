@@ -599,7 +599,6 @@
                     Seleccione la materia:
                 </label>
             </div>
-            <i class="bi bi-activity"></i>
             <div class="form-floating mb-3">
                 <div class="form-floating">
                     <textarea class="form-control" id="indicadores" name="indicadores" placeholder="Leave a comment here" style="height:100px;" required="">

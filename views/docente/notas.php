@@ -1,4 +1,3 @@
-<!-- inicio del contenido -->
 <section class="container-fluid">
     <section class="row shadow titulo">
         <article class="col-xs-11 col-sm-11 col-md-11 col-lg-11">
@@ -384,93 +383,326 @@
     </table>
 </div>
 </article>
-<article class="col-md-5 mt-3 mb-3">
-    <div>
-        <table class="table text-center caption-top shadow">
-            <caption class="text-center">
-                Cuarto periodo
-            </caption>
-            <?php if ($periodo4->rowCount() != 0):
-                $n = 1;
-                ?>
-                <thead>
-                  <tr>
-                      <th>
-                          #
-                      </th>
-                      <th>
-                          Nombre
-                      </th>
-                      <th>
-                          Nota
-                      </th>
-                      <th>
-                          Porcentaje
-                      </th>
-                      <?php if (isset($_SESSION['teacher'])): ?>
-                          <th>
-                              Editar
-                          </th>
-                          <th>
-                              Eliminar
-                          </th>
-                      <?php endif;?>
-                  </tr>
-              </thead>
-              <tbody>
-                <?php while ($cuatro = $periodo4->fetchObject()): ?>
-                    <tr>
-                        <td>
-                            <?=$n++;?>
-                        </td>
-                        <td>
-                            <?=$cuatro->area?>
-                        </td>
-                        <td>
-                            <?=$cuatro->nota?>
-                        </td>
-                        <td>
-                            <?=$cuatro->porcentaje?>%
-                        </td>
-                        <?php if (isset($_SESSION['teacher'])): ?>
-                            <td>
-                                <a class="icono-actividades"  href="#">
-                                    <i class="bi bi-pen">
-                                    </i>
-                                </a>
-                            </td>
-                            <td>
-                                <a class="icono-actividades"  href="#">
-                                    <i class="bi bi-trash" style="font-size: 1.2rem;">
-                                    </i>
-                                </a>
-                            </td>
-                        <?php endif;?>
-                    </tr>
-                <?php endwhile;?>
-            </tbody>
-            <tfoot>
+</section>
+<!-- inicio periodos -->
+<section class="accordion shadow mb-5" id="accordionPanelsStayOpenExample">
+  <section class="accordion-item">
+    <h2 class="accordion-header" id="1periodo">
+      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#periodo1" aria-expanded="true" aria-controls="periodo1">
+        Periodo 1
+    </button>
+</h2>
+<article id="periodo1" class="accordion-collapse collapse show" aria-labelledby="1periodo">
+  <article class="accordion-body">
+    <article class="row justify-content-center">
+        <article class="col-md-8 shadow">
+            <table class="table text-center">
+              <thead>
                 <tr>
-                    <th>
-                    </th>
-                    <th>
-                        Total
-                    </th>
-                    <th>
-                        50
-                    </th>
-                    <th>
-                        100%
-                    </th>
+                    <th scope="col">Criterio</th>
+                    <th scope="col">actividad</th>
+                    <th scope="col">nota</th>
+                    <th scope="col">Editar</th>
+                    <th scope="col">Eliminar</th>
                 </tr>
-            </tfoot>
-        <?php else: ?>
-            <p class="text-center mt-3"><span class="badge bg-warning text-dark">No hay notas registradas.</span></p>
-        <?php endif;?>
-    </table>
-</div>
+            </thead>
+            <tbody>
+                <tr>
+                  <td scope="row" class="titulo-criterio cognitivo">Cognitivo (50%)</td>
+                  <td class="cognitivo">Evaluación (30%)</td>
+                  <td class="cognitivo">35</td>
+                  <td><i class="bi bi-pen"></i></td>
+                  <td><i class="bi bi-trash"></i></td>
+              </tr>
+              <tr>
+                  <td scope="row"></td>
+                  <td class="cognitivo">Trimestral (20%)</td>
+                  <td class="cognitivo">38</td>
+                  <td><i class="bi bi-pen"></i></td>
+                  <td><i class="bi bi-trash"></i></td>
+              </tr>
+               <tr>
+                  <td scope="row"></td>
+                  <td class="total-nota"><strong>Total</strong></td>
+                  <td class="total-nota"><strong>?</strong></td>
+                  <td></td>
+                  <td></td>
+              </tr>
+              <tr>
+                  <td scope="row"></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+              </tr>
+               <tr>
+                  <td scope="row" class="titulo-criterio procedimental">Procedimental (30%)</td>
+                  <td class="procedimental">Trabajo individual (15%)</td>
+                  <td class="procedimental">40</td>
+                  <td><i class="bi bi-pen"></i></td>
+                  <td><i class="bi bi-trash"></i></td>
+              </tr>
+               <tr>
+                  <td scope="row" ></td>
+                  <td class="procedimental">Trabajo colaborativo (15%)</td>
+                  <td class="procedimental">37</td>
+                  <td><i class="bi bi-pen"></i></td>
+                  <td><i class="bi bi-trash"></i></td>
+              </tr>
+              <tr>
+                  <td scope="row"></td>
+                  <td class=" total-nota"><strong>Total</strong></td>
+                  <td class=" total-nota"><strong>?</strong></td>
+                  <td></td>
+                  <td></td>
+              </tr>
+              <tr>
+                  <td scope="row"></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+              </tr>
+              <tr>
+                  <td scope="row" class="titulo-criterio actitudinal">Actitudinal (20%)</td>
+                  <td class="actitudinal">Apreciativa (15%)</td>
+                  <td class="actitudinal">35</td>
+                  <td><i class="bi bi-pen"></i></td>
+                  <td><i class="bi bi-trash"></i></td>
+              </tr>
+               <tr>
+                  <td scope="row" ></td>
+                  <td class="actitudinal">Autoevaliación (5%)</td>
+                  <td class="actitudinal">45</td>
+                  <td><i class="bi bi-pen"></i></td>
+                  <td><i class="bi bi-trash"></i></td>
+              </tr>
+              <tr>
+                  <td scope="row"></td>
+                  <td class="total-nota"><strong>Total</strong></td>
+                  <td class="total-nota"><strong>?</strong></td>
+                  <td></td>
+                  <td></td>
+              </tr>
+          </tbody>
+        </table>
+        </article>
+    </article>
+</article>
 </article>
 </section>
+<div class="accordion-item">
+    <h2 class="accordion-header" id="2periodo">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#periodo2" aria-expanded="false" aria-controls="periodo2">
+        Periodo 2
+    </button>
+</h2>
+<div id="periodo2" class="accordion-collapse collapse" aria-labelledby="2periodo">
+  <div class="accordion-body">
+    <article class="row justify-content-center">
+        <article class="col-md-8 shadow">
+            <table class="table text-center">
+              <thead>
+                <tr>
+                    <th scope="col">Criterio</th>
+                    <th scope="col">actividad</th>
+                    <th scope="col">nota</th>
+                    <th scope="col">Editar</th>
+                    <th scope="col">Eliminar</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                  <td scope="row" class="titulo-criterio cognitivo">Cognitivo (50%)</td>
+                  <td class="cognitivo">Evaluación (30%)</td>
+                  <td class="cognitivo">35</td>
+                  <td><i class="bi bi-pen"></i></td>
+                  <td><i class="bi bi-trash"></i></td>
+              </tr>
+              <tr>
+                  <td scope="row"></td>
+                  <td class="cognitivo">Trimestral (20%)</td>
+                  <td class="cognitivo">38</td>
+                  <td><i class="bi bi-pen"></i></td>
+                  <td><i class="bi bi-trash"></i></td>
+              </tr>
+               <tr>
+                  <td scope="row"></td>
+                  <td class="total-nota"><strong>Total</strong></td>
+                  <td class="total-nota"><strong>?</strong></td>
+                  <td></td>
+                  <td></td>
+              </tr>
+              <tr>
+                  <td scope="row"></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+              </tr>
+               <tr>
+                  <td scope="row" class="titulo-criterio procedimental">Procedimental (30%)</td>
+                  <td class="procedimental">Trabajo individual (15%)</td>
+                  <td class="procedimental">40</td>
+                  <td><i class="bi bi-pen"></i></td>
+                  <td><i class="bi bi-trash"></i></td>
+              </tr>
+               <tr>
+                  <td scope="row" ></td>
+                  <td class="procedimental">Trabajo colaborativo (15%)</td>
+                  <td class="procedimental">37</td>
+                  <td><i class="bi bi-pen"></i></td>
+                  <td><i class="bi bi-trash"></i></td>
+              </tr>
+              <tr>
+                  <td scope="row"></td>
+                  <td class=" total-nota"><strong>Total</strong></td>
+                  <td class=" total-nota"><strong>?</strong></td>
+                  <td></td>
+                  <td></td>
+              </tr>
+              <tr>
+                  <td scope="row"></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+              </tr>
+              <tr>
+                  <td scope="row" class="titulo-criterio actitudinal">Actitudinal (20%)</td>
+                  <td class="actitudinal">Apreciativa (15%)</td>
+                  <td class="actitudinal">35</td>
+                  <td><i class="bi bi-pen"></i></td>
+                  <td><i class="bi bi-trash"></i></td>
+              </tr>
+               <tr>
+                  <td scope="row" ></td>
+                  <td class="actitudinal">Autoevaliación (5%)</td>
+                  <td class="actitudinal">45</td>
+                  <td><i class="bi bi-pen"></i></td>
+                  <td><i class="bi bi-trash"></i></td>
+              </tr>
+              <tr>
+                  <td scope="row"></td>
+                  <td class="total-nota"><strong>Total</strong></td>
+                  <td class="total-nota"><strong>?</strong></td>
+                  <td></td>
+                  <td></td>
+              </tr>
+          </tbody>
+        </table>
+        </article>
+    </article>
+</div>
+</div>
+</div>
+<div class="accordion-item">
+    <h2 class="accordion-header" id="periodo33">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#periodo3" aria-expanded="false" aria-controls="periodo3">
+        Periodo 3
+    </button>
+</h2>
+<div id="periodo3" class="accordion-collapse collapse" aria-labelledby="periodo33">
+  <div class="accordion-body">
+    <article class="row justify-content-center">
+        <article class="col-md-8 shadow">
+            <table class="table text-center">
+              <thead>
+                <tr>
+                    <th scope="col">Criterio</th>
+                    <th scope="col">actividad</th>
+                    <th scope="col">nota</th>
+                    <th scope="col">Editar</th>
+                    <th scope="col">Eliminar</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                  <td scope="row" class="titulo-criterio cognitivo">Cognitivo (50%)</td>
+                  <td class="cognitivo">Evaluación (30%)</td>
+                  <td class="cognitivo">35</td>
+                  <td><i class="bi bi-pen"></i></td>
+                  <td><i class="bi bi-trash"></i></td>
+              </tr>
+              <tr>
+                  <td scope="row"></td>
+                  <td class="cognitivo">Trimestral (20%)</td>
+                  <td class="cognitivo">38</td>
+                  <td><i class="bi bi-pen"></i></td>
+                  <td><i class="bi bi-trash"></i></td>
+              </tr>
+               <tr>
+                  <td scope="row"></td>
+                  <td class="total-nota"><strong>Total</strong></td>
+                  <td class="total-nota"><strong>?</strong></td>
+                  <td></td>
+                  <td></td>
+              </tr>
+              <tr>
+                  <td scope="row"></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+              </tr>
+               <tr>
+                  <td scope="row" class="titulo-criterio procedimental">Procedimental (30%)</td>
+                  <td class="procedimental">Trabajo individual (15%)</td>
+                  <td class="procedimental">40</td>
+                  <td><i class="bi bi-pen"></i></td>
+                  <td><i class="bi bi-trash"></i></td>
+              </tr>
+               <tr>
+                  <td scope="row" ></td>
+                  <td class="procedimental">Trabajo colaborativo (15%)</td>
+                  <td class="procedimental">37</td>
+                  <td><i class="bi bi-pen"></i></td>
+                  <td><i class="bi bi-trash"></i></td>
+              </tr>
+              <tr>
+                  <td scope="row"></td>
+                  <td class=" total-nota"><strong>Total</strong></td>
+                  <td class=" total-nota"><strong>?</strong></td>
+                  <td></td>
+                  <td></td>
+              </tr>
+              <tr>
+                  <td scope="row"></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+              </tr>
+              <tr>
+                  <td scope="row" class="titulo-criterio actitudinal">Actitudinal (20%)</td>
+                  <td class="actitudinal">Apreciativa (15%)</td>
+                  <td class="actitudinal">35</td>
+                  <td><i class="bi bi-pen"></i></td>
+                  <td><i class="bi bi-trash"></i></td>
+              </tr>
+               <tr>
+                  <td scope="row" ></td>
+                  <td class="actitudinal">Autoevaliación (5%)</td>
+                  <td class="actitudinal">45</td>
+                  <td><i class="bi bi-pen"></i></td>
+                  <td><i class="bi bi-trash"></i></td>
+              </tr>
+              <tr>
+                  <td scope="row"></td>
+                  <td class="total-nota"><strong>Total</strong></td>
+                  <td class="total-nota"><strong>?</strong></td>
+                  <td></td>
+                  <td></td>
+              </tr>
+          </tbody>
+        </table>
+        </article>
+    </article>
+</div>
+</div>
+</div>
+</section>
+<!--  fin periodos -->
 </section>
 <!-- Modal -->
 <section aria-hidden="true" aria-labelledby="exampleModalLabel" class="modal fade" id="newNote" tabindex="-1">
@@ -529,4 +761,4 @@
 </div>
 </section>
 <!-- fin de nueva nota -->
-        <!-- fin del contenido -->
+        <!-- fin del contenido

@@ -81,11 +81,8 @@
 								<div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 nombre-apellidos-numero">
 									<?=$c++?>
 								</div>
-								<div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
-									<i class="<?=$materia->icono?>" style="color: red;"></i>
-								</div>
-								<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8 nombre-apellidos-numero">
-									<?=$materia->nombre_materia?>
+								<div class="col-xs-9 col-sm-9 col-md-9 col-lg-9 nombre-apellidos-numero">
+									<i class="<?=$materia->icono?>"></i> <?=$materia->nombre_materia?>
 								</div>
 								<div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 nombre-apellidos-numero">
 									<span style="color:<?=$materia->color?>">●</span>
@@ -153,6 +150,7 @@
 					<div class="mb-3">
 						<label for="icono" class="form-label">Icono de la materia:</label>
 						<input type="text" name="icono" class="form-control" id="icono" placeholder="Icono">
+						<div id="emailHelp" class="form-text"><a href="" data-bs-target="#segundo" data-bs-toggle="modal" data-bs-dismiss="modal">Listado de iconos</a></div>
 					</div>
 					<hr>
 					<div class="mb-3">
@@ -173,3 +171,22 @@
 		</div>
 	</article>
 </section>
+
+<!-- doble -->
+<article class="modal fade" id="segundo" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+  <article class="modal-dialog modal-fullscreen modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalToggleLabel2">listado de iconos</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Hide this modal and show the first with the button below.
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary"  data-bs-dismiss="modal">Listo</button>
+      </div>
+    </div>
+  </article>
+</article>
+

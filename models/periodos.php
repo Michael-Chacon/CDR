@@ -159,7 +159,7 @@ class Periodos
         return $periodos;
     }
 
-    # eliminar periodo academico
+
     public function onePeriodo()
     {
         $id_periodo = $this->getId();
@@ -182,16 +182,13 @@ class Periodos
         $dos->execute();
         return $dos->fetchObject();
     }
+
     public function periodoTres()
     {
         $tres = $this->db->prepare("SELECT * FROM periodo WHERE id = 3");
         $tres->execute();
         return $tres->fetchObject();
     }
-    public function periodoCuatro()
-    {
-        $cuatro = $this->db->prepare("SELECT * FROM periodo WHERE id = 4");
-        $cuatro->execute();
-        return $cuatro->fetchObject();
-    }
+
+
 } # fin de la clase

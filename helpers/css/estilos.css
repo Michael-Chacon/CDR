@@ -446,6 +446,23 @@ hr {
 =============NOTAS =============
 ================================*/
 
+.total-nota {
+    font-size: 18px;
+    color: black;
+}
+.titulo-criterio {
+    font-size: 20px;
+    font-weight: 400;
+}
+.cognitivo {
+    color: #20A420;
+}
+.procedimental {
+    color: #A420A0;
+}
+.actitudinal {
+    color: #327B96;
+}
 .registro-fallas {
     font-size: 17px;
     font-weight: 600;

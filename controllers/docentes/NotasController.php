@@ -32,7 +32,6 @@ class NotasController
         $periodo1 = $notas->notasPeriodo1();
         $periodo2 = $notas->notasPeriodo2();
         $periodo3 = $notas->notasPeriodo3();
-        $periodo4 = $notas->notasPeriodo4();
         if (isset($_GET['dir']) && $_GET['dir'] == 'ok') {
             require_once 'views/docente/notasDirector.php';
         } else {
