@@ -565,3 +565,15 @@ WHERE es.id = 1 AND   t.id_periodo_t =  1 AND e.id_periodo_e  = 1;
 SELECT mb.nombre_materia, a.color FROM materias_base mb
 INNER JOIN areas a ON a.id_area = mb.id_area_m
 ORDER BY a.id_area;
+
+# seleccionar todas las notas del criterio cognitivo de un estudiante en el periodo 1
+SELECT c.*, e.*, t.* FROM evaluacion e
+INNER JOIN trimestral t ON t.id_cognitivo_t = e.id_cognitivo_e
+INNER JOIN materia m ON m.id = e.id_materia_e
+INNER JOIN estudiante es ON es.id = t.id_estudiante_t
+INNER JOIN cognitivo c ON c.id_cognitivo = t.id_cognitivo_t
+WHERE es.id = 1 AND m.id = 1 AND e.id_periodo_e = 1 AND t.id_periodo_t = 1;
+
+SELECT e.*, c.* FROM evaluacion e
+INNER JOIN cognitivo c ON c.id_cognitivo = e.id_cognitivo_e
+WHERE e.id_estudiante_e = 1 AND e.id_materia_e = 1 AND e.id_periodo_e = 1;

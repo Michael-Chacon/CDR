@@ -344,39 +344,99 @@ class Notas
         return $this;
     }
 
-    # obtener todas los notas de un estudiante en el periodo uno
-    public function notasPeriodo1()
+    # obtener las notas de evaluacion de un estudiante en el periodo x
+    public function notaEvaluacionPeriodox($periodo)
     {
         $subject = $this->getMateria();
         $student = $this->getEstudiante();
-        $periodoUno = $this->db->prepare("SELECT * FROM notas WHERE id_materia_n = :materia AND id_estudiante_n = :estudent AND id_periodo_n = 1");
-        $periodoUno->bindParam(":materia", $subject, PDO::PARAM_INT);
-        $periodoUno->bindParam(":estudent", $student, PDO::PARAM_INT);
-        $periodoUno->execute();
-        return $periodoUno;
+        $evaluacion = $this->db->prepare("SELECT e.*, c.* FROM evaluacion e
+            INNER JOIN cognitivo c ON c.id_cognitivo = e.id_cognitivo_e
+            WHERE e.id_estudiante_e = :student AND e.id_materia_e = :materia AND e.id_periodo_e = :periodo;");
+        $evaluacion->bindParam(":materia", $subject, PDO::PARAM_INT);
+        $evaluacion->bindParam(":student", $student, PDO::PARAM_INT);
+        $evaluacion->bindParam(":periodo", $periodo, PDO::PARAM_INT);
+        $evaluacion->execute();
+        $respuesta = $evaluacion->fetchObject();
+
+        if (empty($respuesta->nota_evaluacion)) {
+            return "vacio";
+        } else {
+            return $respuesta;
+        }
+    }
+    # obtener la nota de la trimestral de un estudiate en el periodo x
+    public function notaTrimestralPeriodox($periodo)
+    {
+        $subject = $this->getMateria();
+        $student = $this->getEstudiante();
+        $trimestral = $this->db->prepare("SELECT  * FROM trimestral
+            WHERE id_estudiante_t = :student AND id_materia_t = :materia AND id_periodo_t = :periodo;");
+        $trimestral->bindParam(":materia", $subject, PDO::PARAM_INT);
+        $trimestral->bindParam(":student", $student, PDO::PARAM_INT);
+        $trimestral->bindParam(":periodo", $periodo, PDO::PARAM_INT);
+        $trimestral->execute();
+        $respuesta = $trimestral->fetchObject();
+
+        if (empty($respuesta->nota_trimestral)) {
+            return "vacio";
+        } else {
+            return $respuesta;
+        }
     }
 
-    public function notasPeriodo2()
+    public function notaTindividualPeriodox($periodo)
     {
         $subject = $this->getMateria();
         $student = $this->getEstudiante();
-        $periodoUno = $this->db->prepare("SELECT * FROM notas WHERE id_materia_n = :materia AND id_estudiante_n = :estudent AND id_periodo_n = 2");
-        $periodoUno->bindParam(":materia", $subject, PDO::PARAM_INT);
-        $periodoUno->bindParam(":estudent", $student, PDO::PARAM_INT);
-        $periodoUno->execute();
-        return $periodoUno;
-    }
-    public function notasPeriodo3()
-    {
-        $subject = $this->getMateria();
-        $student = $this->getEstudiante();
-        $periodoUno = $this->db->prepare("SELECT * FROM notas WHERE id_materia_n = :materia AND id_estudiante_n = :estudent AND id_periodo_n = 3");
-        $periodoUno->bindParam(":materia", $subject, PDO::PARAM_INT);
-        $periodoUno->bindParam(":estudent", $student, PDO::PARAM_INT);
-        $periodoUno->execute();
-        return $periodoUno;
+        $individual = $this->db->prepare("SELECT t.*, p.* FROM tindividual t
+            INNER JOIN procedimental p ON p.id_procedimental = t.id_procedimental_Tindividual
+            WHERE t.id_estudiante_Tindividual = :student AND t.id_materia_Tindividual = :materia AND t.id_periodo_Tindividual = :periodo;");
+        $individual->bindParam(":materia", $subject, PDO::PARAM_INT);
+        $individual->bindParam(":student", $student, PDO::PARAM_INT);
+        $individual->bindParam(":periodo", $periodo, PDO::PARAM_INT);
+        $individual->execute();
+        return $individual->fetchObject();
     }
 
+    public function notaTcolaborativoPeriodox($periodo)
+    {
+        $subject = $this->getMateria();
+        $student = $this->getEstudiante();
+        $colaborativo = $this->db->prepare("SELECT * FROM tcolaborativo t
+            WHERE id_estudiante_Tcolaborativo = :student AND id_materia_Tcolaborativo = :materia AND id_periodo_Tcolaborativo = :periodo;");
+        $colaborativo->bindParam(":materia", $subject, PDO::PARAM_INT);
+        $colaborativo->bindParam(":student", $student, PDO::PARAM_INT);
+        $colaborativo->bindParam(":periodo", $periodo, PDO::PARAM_INT);
+        $colaborativo->execute();
+        return $colaborativo->fetchObject();
+    }
+
+    public function notaApreciativaPeriodox($periodo)
+    {
+        $subject = $this->getMateria();
+        $student = $this->getEstudiante();
+        $apreciativa = $this->db->prepare("SELECT a.*, ac.* FROM apreciativa a
+            INNER JOIN actitudinal ac ON ac.id_actitudinal = a.id_actitudinal_apreciativa
+            WHERE a.id_estudiante_apreciativa = :student AND a.id_materia_apreciativa = :materia AND a.id_periodo_apreciativa = :periodo;");
+        $apreciativa->bindParam(":materia", $subject, PDO::PARAM_INT);
+        $apreciativa->bindParam(":student", $student, PDO::PARAM_INT);
+        $apreciativa->bindParam(":periodo", $periodo, PDO::PARAM_INT);
+        $apreciativa->execute();
+        return $apreciativa->fetchObject();
+    }
+
+    public function notaAutoevaluacionPeriodox($periodo)
+    {
+        $subject = $this->getMateria();
+        $student = $this->getEstudiante();
+        $autoevaluacion = $this->db->prepare("SELECT * FROM autoevaluacion a
+            WHERE id_estudiante_autoevaluacion = :student AND id_materia_autoevaluacion = :materia AND id_periodo_autoevaluacion = :periodo;");
+        $autoevaluacion->bindParam(":materia", $subject, PDO::PARAM_INT);
+        $autoevaluacion->bindParam(":student", $student, PDO::PARAM_INT);
+        $autoevaluacion->bindParam(":periodo", $periodo, PDO::PARAM_INT);
+        $autoevaluacion->execute();
+        return $autoevaluacion->fetchObject();
+    }
     # listar los porcentajes de los 3 criterios academicos
 
     public function listCongnitivo()
@@ -472,5 +532,21 @@ class Notas
         return $actitudinal->fetchObject();
     }
 
+    # metodo para allar promedio de las notas agrupadas por criterios
+    public function calcularPromedio($nota1, $actividad1, $nota2, $actividad2, $criterio)
+    {
+        $notaActividad1 = ($actividad1 / $criterio) * $nota1;
+        $notaActividad2 = ($actividad2 / $criterio) * $nota2;
+        $resultado_criterio = $notaActividad1 + $notaActividad2;
+        $definitiva = ($criterio / 100) * $resultado_criterio;
+        $notas = array($resultado_criterio, $definitiva);
+        return $notas;
+    }
+
+    # nota definitiva de un periodo
+    public function definitivaPerido($uno, $dos, $tres)
+    {
+        return $uno + $dos + $tres;
+    }
 #fin de la clase
 }

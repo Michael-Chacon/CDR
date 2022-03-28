@@ -95,18 +95,18 @@ if ($fechas_fallas->rowCount() != 0): ?>
                                         <?php while ($fechas = $fechas_fallas->fetchObject()):
     $f++;
     ?>
-						                                            <tr>
-						                                              <td>
-						                                                  <?=$f?>
-						                                              </td>
-						                                              <td>
-						                                                  <?=$fechas->fecha_falla?>
-						                                              </td>
-						                                              <td>
-						                                                  <?=$fechas->id_periodo_f?>
-						                                              </td>
-						                                          </tr>
-						                                      <?php endwhile;?>
+																																						                                            <tr>
+																																						                                              <td>
+																																						                                                  <?=$f?>
+																																						                                              </td>
+																																						                                              <td>
+																																						                                                  <?=$fechas->fecha_falla?>
+																																						                                              </td>
+																																						                                              <td>
+																																						                                                  <?=$fechas->id_periodo_f?>
+																																						                                              </td>
+																																						                                          </tr>
+																																						                                      <?php endwhile;?>
                                   </tbody>
                               </table>
                           <?php else: ?>
@@ -150,16 +150,16 @@ if ($fechas_fallas->rowCount() != 0): ?>
             </thead>
             <tbody>
                 <tr>
-                  <td scope="row" class="titulo-criterio cognitivo">Cognitivo (50%)</td>
-                  <td class="cognitivo">Evaluación (30%)</td>
-                  <td class="cognitivo">35</td>
-                  <td class="text-center"><i class="bi bi-pen"></i></td>
+                  <td scope="row" class="titulo-criterio cognitivo">Cognitivo (<?=$evaluacionPeriodo1->porcentaje_cognitivo?>%)</td>
+                  <td class="cognitivo">Evaluación (<?=$evaluacionPeriodo1->porcentaje_evaluacion?>%)</td>
+                  <td class="cognitivo"><?=$evaluacionPeriodo1->nota_evaluacion?></td>
+                  <td class="text-center"><a href="google.com"  class="btn btn-secondary disabled" role="button" aria-disabled="true"><i class="bi bi-pen"></i></a></td>
                   <td class="text-center"><i class="bi bi-trash"></i></td>
               </tr>
               <tr>
                   <td scope="row"></td>
-                  <td class="cognitivo">Trimestral (20%)</td>
-                  <td class="cognitivo">38</td>
+                  <td class="cognitivo">Trimestral (<?=$evaluacionPeriodo1->porcentaje_trimestral?>%)</td>
+                  <td class="cognitivo"><?=$trimestralPeriodo1->nota_trimestral?></td>
                   <td class="text-center"><i class="bi bi-pen"></i></td>
                   <td class="text-center"><i class="bi bi-trash"></i></td>
               </tr>
@@ -178,16 +178,16 @@ if ($fechas_fallas->rowCount() != 0): ?>
                   <td></td>
               </tr>
               <tr>
-                  <td scope="row" class="titulo-criterio procedimental">Procedimental (30%)</td>
-                  <td class="procedimental">Trabajo individual (15%)</td>
+                  <td scope="row" class="titulo-criterio procedimental">Procedimental (<?=$trabajoIndividualPeriodo1->porcentaje_procedimental?>%)</td>
+                  <td class="procedimental">Trabajo individual (<?=$trabajoIndividualPeriodo1->porcentaje_Tindividual?>%)</td>
                   <td class="procedimental">40</td>
                   <td class="text-center"><i class="bi bi-pen"></i></td>
                   <td class="text-center"><i class="bi bi-trash"></i></td>
               </tr>
               <tr>
                   <td scope="row" ></td>
-                  <td class="procedimental">Trabajo colaborativo (15%)</td>
-                  <td class="procedimental">37</td>
+                  <td class="procedimental">Trabajo colaborativo (<?=$trabajoIndividualPeriodo1->porcentaje_Tcolaborativo?>%)</td>
+                  <td class="procedimental"><?=$trabajoColaborativoPeriodo1->nota_Tcolaborativo?></td>
                   <td class="text-center"><i class="bi bi-pen"></i></td>
                   <td class="text-center"><i class="bi bi-trash"></i></td>
               </tr>
@@ -206,16 +206,16 @@ if ($fechas_fallas->rowCount() != 0): ?>
                   <td></td>
               </tr>
               <tr>
-                  <td scope="row" class="titulo-criterio actitudinal">Actitudinal (20%)</td>
-                  <td class="actitudinal">Apreciativa (15%)</td>
-                  <td class="actitudinal">35</td>
+                  <td scope="row" class="titulo-criterio actitudinal">Actitudinal (<?=$apreciativaPeriodo1->porcentaje_actitudinal?>%)</td>
+                  <td class="actitudinal">Apreciativa (<?=$apreciativaPeriodo1->porcentaje_apreciativa?>%)</td>
+                  <td class="actitudinal"><?=$apreciativaPeriodo1->nota_apreciativa?></td>
                   <td class="text-center"><i class="bi bi-pen"></i></td>
                   <td class="text-center"><i class="bi bi-trash"></i></td>
               </tr>
               <tr>
                   <td scope="row" ></td>
-                  <td class="actitudinal">Autoevaliación (5%)</td>
-                  <td class="actitudinal">45</td>
+                  <td class="actitudinal">Autoevaliación (<?=$apreciativaPeriodo1->porcentaje_autoevaluacion?>%)</td>
+                  <td class="actitudinal"><?=$autoevaluacionPeriodo1->nota_autoevaluacion?></td>
                   <td class="text-center"><i class="bi bi-pen"></i></td>
                   <td class="text-center"><i class="bi bi-trash"></i></td>
               </tr>
