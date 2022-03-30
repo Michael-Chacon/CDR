@@ -76,7 +76,7 @@
                     <div aria-labelledby="flush-headingOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample" id="flush-collapseOne">
                         <article class="accordion-body">
                             <?php $f = 0;
-if ($fechas_fallas->rowCount() != 0): ?>
+                            if ($fechas_fallas->rowCount() != 0): ?>
                                 <table class="table text-center">
                                     <thead>
                                         <tr>
@@ -93,23 +93,23 @@ if ($fechas_fallas->rowCount() != 0): ?>
                                     </thead>
                                     <tbody>
                                         <?php while ($fechas = $fechas_fallas->fetchObject()):
-    $f++;
-    ?>
-																																						                                            <tr>
-																																						                                              <td>
-																																						                                                  <?=$f?>
-																																						                                              </td>
-																																						                                              <td>
-																																						                                                  <?=$fechas->fecha_falla?>
-																																						                                              </td>
-																																						                                              <td>
-																																						                                                  <?=$fechas->id_periodo_f?>
-																																						                                              </td>
-																																						                                          </tr>
-																																						                                      <?php endwhile;?>
-                                  </tbody>
-                              </table>
-                          <?php else: ?>
+                                            $f++;
+                                            ?>
+                                            <tr>
+                                               <td>
+                                                   <?=$f?>
+                                               </td>
+                                               <td>
+                                                   <?=$fechas->fecha_falla?>
+                                               </td>
+                                               <td>
+                                                   <?=$fechas->id_periodo_f?>
+                                               </td>
+                                           </tr>
+                                       <?php endwhile;?>
+                                   </tbody>
+                               </table>
+                           <?php else: ?>
                             <p class="text-center mt-3"><span class="badge bg-warning text-dark">Este estudiante no tiene fallas.</span></p>
                         <?php endif;?>
                     </table>
@@ -150,85 +150,136 @@ if ($fechas_fallas->rowCount() != 0): ?>
             </thead>
             <tbody>
                 <tr>
-                  <td scope="row" class="titulo-criterio cognitivo">Cognitivo (<?=$evaluacionPeriodo1->porcentaje_cognitivo?>%)</td>
-                  <td class="cognitivo">Evaluación (<?=$evaluacionPeriodo1->porcentaje_evaluacion?>%)</td>
-                  <td class="cognitivo"><?=$evaluacionPeriodo1->nota_evaluacion?></td>
-                  <td class="text-center"><a href="google.com"  class="btn btn-secondary disabled" role="button" aria-disabled="true"><i class="bi bi-pen"></i></a></td>
-                  <td class="text-center"><i class="bi bi-trash"></i></td>
-              </tr>
-              <tr>
-                  <td scope="row"></td>
-                  <td class="cognitivo">Trimestral (<?=$evaluacionPeriodo1->porcentaje_trimestral?>%)</td>
-                  <td class="cognitivo"><?=$trimestralPeriodo1->nota_trimestral?></td>
-                  <td class="text-center"><i class="bi bi-pen"></i></td>
-                  <td class="text-center"><i class="bi bi-trash"></i></td>
-              </tr>
-              <tr>
-                  <td scope="row"></td>
-                  <td class="total-nota"><strong>Total</strong></td>
-                  <td class="total-nota"><strong>?</strong></td>
-                  <td></td>
-                  <td></td>
-              </tr>
-              <tr>
-                  <td scope="row"></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-              </tr>
-              <tr>
-                  <td scope="row" class="titulo-criterio procedimental">Procedimental (<?=$trabajoIndividualPeriodo1->porcentaje_procedimental?>%)</td>
-                  <td class="procedimental">Trabajo individual (<?=$trabajoIndividualPeriodo1->porcentaje_Tindividual?>%)</td>
-                  <td class="procedimental">40</td>
-                  <td class="text-center"><i class="bi bi-pen"></i></td>
-                  <td class="text-center"><i class="bi bi-trash"></i></td>
-              </tr>
-              <tr>
-                  <td scope="row" ></td>
-                  <td class="procedimental">Trabajo colaborativo (<?=$trabajoIndividualPeriodo1->porcentaje_Tcolaborativo?>%)</td>
-                  <td class="procedimental"><?=$trabajoColaborativoPeriodo1->nota_Tcolaborativo?></td>
-                  <td class="text-center"><i class="bi bi-pen"></i></td>
-                  <td class="text-center"><i class="bi bi-trash"></i></td>
-              </tr>
-              <tr>
-                  <td scope="row"></td>
-                  <td class=" total-nota"><strong>Total</strong></td>
-                  <td class=" total-nota"><strong>?</strong></td>
-                  <td></td>
-                  <td></td>
-              </tr>
-              <tr>
-                  <td scope="row"></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-              </tr>
-              <tr>
-                  <td scope="row" class="titulo-criterio actitudinal">Actitudinal (<?=$apreciativaPeriodo1->porcentaje_actitudinal?>%)</td>
-                  <td class="actitudinal">Apreciativa (<?=$apreciativaPeriodo1->porcentaje_apreciativa?>%)</td>
-                  <td class="actitudinal"><?=$apreciativaPeriodo1->nota_apreciativa?></td>
-                  <td class="text-center"><i class="bi bi-pen"></i></td>
-                  <td class="text-center"><i class="bi bi-trash"></i></td>
-              </tr>
-              <tr>
-                  <td scope="row" ></td>
-                  <td class="actitudinal">Autoevaliación (<?=$apreciativaPeriodo1->porcentaje_autoevaluacion?>%)</td>
-                  <td class="actitudinal"><?=$autoevaluacionPeriodo1->nota_autoevaluacion?></td>
-                  <td class="text-center"><i class="bi bi-pen"></i></td>
-                  <td class="text-center"><i class="bi bi-trash"></i></td>
-              </tr>
-              <tr>
-                  <td scope="row"></td>
-                  <td class="total-nota"><strong>Total</strong></td>
-                  <td class="total-nota"><strong>?</strong></td>
-                  <td></td>
-                  <td></td>
-              </tr>
-          </tbody>
-      </table>
-  </article>
+                    <td scope="row" class="titulo-criterio cognitivo">Cognitivo (<?=$cognitivo->porcentaje_cognitivo?>%)</td>
+                  <td class="cognitivo">Evaluación (<?=$cognitivo->porcentaje_evaluacion?>%)</td>
+                <td class="cognitivo">
+                  <?php if(empty($evaluacionPeriodo1->nota_evaluacion)): ?>
+                    0
+                  <?php else: ?>
+                    <?=$evaluacionPeriodo1->nota_evaluacion?>
+                <?php endif; ?>
+                </td>
+                <td class="text-center"><a href="google.com"  class="btn btn-secondary disabled" role="button" aria-disabled="true"><i class="bi bi-pen"></i></a></td>
+                <td class="text-center"><i class="bi bi-trash"></i></td>
+            </tr>
+            <tr>
+              <td scope="row"></td>
+              <td class="cognitivo">Trimestral (<?=$cognitivo->porcentaje_trimestral?>%)</td>
+              <td class="cognitivo">
+                  <?php if(empty($trimestralPeriodo1->nota_trimestral)): ?>
+                    0
+                  <?php else: ?>
+                    <?=$trimestralPeriodo1->nota_trimestral?>
+                <?php endif; ?>
+                </td>
+              <td class="text-center"><i class="bi bi-pen"></i></td>
+              <td class="text-center"><i class="bi bi-trash"></i></td>
+          </tr>
+          <tr>
+              <td scope="row"></td>
+              <td class="total-nota"><strong>Total</strong></td>
+              <td class="total-nota"><strong><?=$definitiva_cognitivo?></strong></td>
+              <td></td>
+              <td></td>
+          </tr>
+          <tr>
+              <td scope="row"></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+          </tr>
+          <tr>
+              <td scope="row" class="titulo-criterio procedimental">Procedimental (<?=$procedimental->porcentaje_procedimental?>%)</td>
+              <td class="procedimental">Trabajo individual (<?=$procedimental->porcentaje_Tindividual?>%)</td>
+              <td class="procedimental">
+                  <?php if(empty($trabajoIndividualPeriodo1->nota_Tindividual)): ?>
+                    0
+                  <?php else: ?>
+                    <?=$trabajoIndividualPeriodo1->nota_Tindividual?>
+                <?php endif; ?>
+                </td>
+              <td class="text-center"><i class="bi bi-pen"></i></td>
+              <td class="text-center"><i class="bi bi-trash"></i></td>
+          </tr>
+          <tr>
+              <td scope="row" ></td>
+              <td class="procedimental">Trabajo colaborativo (<?=$procedimental->porcentaje_Tcolaborativo?>%)</td>
+              <td class="procedimental">
+                  <?php if(empty($trabajoColaborativoPeriodo1->nota_Tcolaborativo)): ?>
+                    0
+                  <?php else: ?>
+                    <?=$trabajoColaborativoPeriodo1->nota_Tcolaborativo?>
+                <?php endif; ?>
+              </td>
+              <td class="text-center"><i class="bi bi-pen"></i></td>
+              <td class="text-center"><i class="bi bi-trash"></i></td>
+          </tr>
+          <tr>
+              <td scope="row"></td>
+              <td class=" total-nota"><strong>Total</strong></td>
+              <td class=" total-nota"><strong><?=$definitiva_procedimental?></strong></td>
+              <td></td>
+              <td></td>
+          </tr>
+          <tr>
+              <td scope="row"></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+          </tr>
+          <tr>
+              <td scope="row" class="titulo-criterio actitudinal">Actitudinal (<?=$actitudinal->porcentaje_actitudinal?>%)</td>
+              <td class="actitudinal">Apreciativa (<?=$actitudinal->porcentaje_apreciativa?>%)</td>
+              <td class="actitudinal">
+                <?php if(empty($apreciativaPeriodo1->nota_apreciativa)): ?>
+                    0
+                  <?php else: ?>
+                    <?=$apreciativaPeriodo1->nota_apreciativa?>
+                <?php endif; ?>
+                </td>
+              <td class="text-center"><i class="bi bi-pen"></i></td>
+              <td class="text-center"><i class="bi bi-trash"></i></td>
+          </tr>
+          <tr>
+              <td scope="row" ></td>
+              <td class="actitudinal">Autoevaliación (<?=$actitudinal->porcentaje_autoevaluacion?>%)</td>
+              <td class="actitudinal">
+                <?php if(empty($autoevaluacionPeriodo1->nota_autoevaluacion)): ?>
+                    0
+                  <?php else: ?>
+                    <?=$autoevaluacionPeriodo1->nota_autoevaluacion?>
+                <?php endif; ?>
+
+                </td>
+              <td class="text-center"><i class="bi bi-pen"></i></td>
+              <td class="text-center"><i class="bi bi-trash"></i></td>
+          </tr>
+          <tr>
+              <td scope="row"></td>
+              <td class="total-nota"><strong>Total</strong></td>
+              <td class="total-nota"><strong><?=$definitiva_actitudinal?></strong></td>
+              <td></td>
+              <td></td>
+          </tr>
+          <tr>
+              <td scope="row"></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+          </tr>
+           <tr>
+              <td scope="row">DEFINITIVA</td>
+              <td class="total-nota"><strong><?=$definitiva_periodo1?></strong></td>
+              <td class="total-nota"><strong></strong></td>
+              <td></td>
+              <td></td>
+          </tr>
+      </tbody>
+  </table>
+</article>
 </article>
 </article>
 </article>
@@ -475,28 +526,28 @@ if ($fechas_fallas->rowCount() != 0): ?>
                           <option value="apreciativa">Apreciativo</option>
                           <option value="autoevaluacion">Autoevaliación</option>
                       </select>
-              </div>
-              <div class="row">
-                <div class="col-md-6">
-                    <div class="mb-3">
-                        <label class="form-label" for="nota">
-                            Nota:
-                        </label>
-                        <input class="form-control" id="nota" placeholder="Nota" type="number" name="nota" required>
-                    </input>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label class="form-label" for="nota">
+                                Nota:
+                            </label>
+                            <input class="form-control" id="nota" placeholder="Nota" type="number" name="nota" required>
+                        </input>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="modal-footer">
-        <button class="btn btn-outline-danger" data-bs-dismiss="modal" type="button">
-            Cancelar
-        </button>
-        <button class="btn btn-outline-success" type="submit">
-            Registrar nota
-        </button>
-    </div>
-</form>
+        <div class="modal-footer">
+            <button class="btn btn-outline-danger" data-bs-dismiss="modal" type="button">
+                Cancelar
+            </button>
+            <button class="btn btn-outline-success" type="submit">
+                Registrar nota
+            </button>
+        </div>
+    </form>
 </div>
 </div>
 </section>

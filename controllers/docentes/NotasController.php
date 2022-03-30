@@ -28,25 +28,47 @@ class NotasController
 
         # notas por periodo
         $notas = new Notas();
+        # obteniendo los porcentajes de los criterios
+        $cognitivo = $notas->dataCognitivo();
+        $procedimental = $notas->dataProcedimental();
+        $actitudinal = $notas->dataActitudinal();
+        # pasando los parametros de busqueda
         $notas->setMateria($id_materia);
         $notas->setEstudiante($id_estudiante);
-
         # periodo 1
         $evaluacionPeriodo1 = $notas->notaEvaluacionPeriodox(1);
         $trimestralPeriodo1 = $notas->notaTrimestralPeriodox(1);
-        // exit;
+        if (!empty($evaluacionPeriodo1->nota_evaluacion) && !empty($trimestralPeriodo1->nota_trimestral)) {
+            echo "estoy viva";
+            $cognitivas = $notas->calcularPromedio($evaluacionPeriodo1->nota_evaluacion, $cognitivo->porcentaje_evaluacion, $trimestralPeriodo1->nota_trimestral, $cognitivo->porcentaje_trimestral, $cognitivo->porcentaje_cognitivo);
+            print_r($cognitivas);
+            $definitiva_cognitivo = $cognitivas[0];
+        } else {
+            $definitiva_cognitivo = 0;
+        }
+
         $trabajoIndividualPeriodo1 = $notas->notaTindividualPeriodox(1);
         $trabajoColaborativoPeriodo1 = $notas->notaTcolaborativoPeriodox(1);
+        if (!empty($trabajoIndividualPeriodo1->nota_Tindividual) && !empty($trabajoColaborativoPeriodo1->nota_Tcolaborativo)) {
+            $procedimentales = $notas->calcularPromedio($trabajoIndividualPeriodo1->nota_Tindividual, $procedimental->porcentaje_Tindividual, $trabajoColaborativoPeriodo1->nota_Tcolaborativo, $procedimental->porcentaje_Tcolaborativo, $procedimental->porcentaje_procedimental);
+            print_r($procedimentales);
+            $definitiva_procedimental = $procedimentales[0];
+        } else {
+            $definitiva_procedimental = 0;
+        }
         $apreciativaPeriodo1 = $notas->notaApreciativaPeriodox(1);
         $autoevaluacionPeriodo1 = $notas->notaAutoevaluacionPeriodox(1);
-        $cognitivas = $notas->calcularPromedio($evaluacionPeriodo1->nota_evaluacion, $evaluacionPeriodo1->porcentaje_evaluacion, $trimestralPeriodo1->nota_trimestral, $evaluacionPeriodo1->porcentaje_trimestral, $evaluacionPeriodo1->porcentaje_cognitivo);
-
-        $procedimentales = $notas->calcularPromedio($trabajoIndividualPeriodo1->nota_Tindividual, $trabajoIndividualPeriodo1->porcentaje_Tindividual, $trabajoColaborativoPeriodo1->nota_Tcolaborativo, $trabajoIndividualPeriodo1->porcentaje_Tcolaborativo, $trabajoIndividualPeriodo1->porcentaje_procedimental);
-
-        $actitudinales = $notas->calcularPromedio($apreciativaPeriodo1->nota_apreciativa, $apreciativaPeriodo1->porcentaje_apreciativa, $autoevaluacionPeriodo1->nota_autoevaluacion, $apreciativaPeriodo1->porcentaje_autoevaluacion, $apreciativaPeriodo1->porcentaje_actitudinal);
-
-        # nota definitiva para el periodo 1
-        $definitiva = $notas->definitivaPerido($cognitivas[1], $procedimentales[1], $actitudinales[1]);
+        if (!empty($apreciativaPeriodo1->nota_apreciativa) && !empty($autoevaluacionPeriodo1->nota_autoevaluacion)) {
+            $actitudinales = $notas->calcularPromedio($apreciativaPeriodo1->nota_apreciativa, $actitudinal->porcentaje_apreciativa, $autoevaluacionPeriodo1->nota_autoevaluacion, $actitudinal->porcentaje_autoevaluacion, $actitudinal->porcentaje_actitudinal);
+            print_r($actitudinales);
+            $definitiva_actitudinal = $actitudinales[0];
+        } else {
+            $definitiva_actitudinal = 0;
+        }
+        if (!empty($apreciativaPeriodo1->nota_apreciativa) && !empty($autoevaluacionPeriodo1->nota_autoevaluacion) && !empty($trabajoIndividualPeriodo1->nota_Tindividual) && !empty($trabajoColaborativoPeriodo1->nota_Tcolaborativo) && !empty($evaluacionPeriodo1->nota_evaluacion) && !empty($trimestralPeriodo1->nota_trimestral)) {
+            // nota definitiva para el periodo 1
+            $definitiva_periodo1 = $notas->definitivaPerido($cognitivas[1], $procedimentales[1], $actitudinales[1]);
+        }
 
         # periodo 2
         if (isset($_GET['dir']) && $_GET['dir'] == 'ok') {

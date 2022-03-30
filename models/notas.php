@@ -349,9 +349,8 @@ class Notas
     {
         $subject = $this->getMateria();
         $student = $this->getEstudiante();
-        $evaluacion = $this->db->prepare("SELECT e.*, c.* FROM evaluacion e
-            INNER JOIN cognitivo c ON c.id_cognitivo = e.id_cognitivo_e
-            WHERE e.id_estudiante_e = :student AND e.id_materia_e = :materia AND e.id_periodo_e = :periodo;");
+        $evaluacion = $this->db->prepare("SELECT  * FROM evaluacion
+            WHERE id_estudiante_e = :student AND id_materia_e = :materia AND id_periodo_e = :periodo;");
         $evaluacion->bindParam(":materia", $subject, PDO::PARAM_INT);
         $evaluacion->bindParam(":student", $student, PDO::PARAM_INT);
         $evaluacion->bindParam(":periodo", $periodo, PDO::PARAM_INT);
@@ -388,9 +387,8 @@ class Notas
     {
         $subject = $this->getMateria();
         $student = $this->getEstudiante();
-        $individual = $this->db->prepare("SELECT t.*, p.* FROM tindividual t
-            INNER JOIN procedimental p ON p.id_procedimental = t.id_procedimental_Tindividual
-            WHERE t.id_estudiante_Tindividual = :student AND t.id_materia_Tindividual = :materia AND t.id_periodo_Tindividual = :periodo;");
+        $individual = $this->db->prepare("SELECT * FROM tindividual
+            WHERE id_estudiante_Tindividual = :student AND id_materia_Tindividual = :materia AND id_periodo_Tindividual = :periodo;");
         $individual->bindParam(":materia", $subject, PDO::PARAM_INT);
         $individual->bindParam(":student", $student, PDO::PARAM_INT);
         $individual->bindParam(":periodo", $periodo, PDO::PARAM_INT);
@@ -415,9 +413,8 @@ class Notas
     {
         $subject = $this->getMateria();
         $student = $this->getEstudiante();
-        $apreciativa = $this->db->prepare("SELECT a.*, ac.* FROM apreciativa a
-            INNER JOIN actitudinal ac ON ac.id_actitudinal = a.id_actitudinal_apreciativa
-            WHERE a.id_estudiante_apreciativa = :student AND a.id_materia_apreciativa = :materia AND a.id_periodo_apreciativa = :periodo;");
+        $apreciativa = $this->db->prepare("SELECT * FROM apreciativa
+            WHERE id_estudiante_apreciativa = :student AND id_materia_apreciativa = :materia AND id_periodo_apreciativa = :periodo;");
         $apreciativa->bindParam(":materia", $subject, PDO::PARAM_INT);
         $apreciativa->bindParam(":student", $student, PDO::PARAM_INT);
         $apreciativa->bindParam(":periodo", $periodo, PDO::PARAM_INT);
