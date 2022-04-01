@@ -491,6 +491,20 @@ CREATE TABLE iconos(
 	CONSTRAINT pk_iconos PRIMARY KEY (id_icono)
 )ENGINE=InnoDb;
 
+# tabla para almacenar notas definitvas
+CREATE TABLE notasdefinitivas(
+	id_nota INT(3) AUTO_INCREMENT NOT NULL,
+	id_estudiante_nd INT(3) NOT NULL,
+	id_materia_nd INT(3) NOT NULL,
+	id_periodo_nd INT(3) NOT NULL,
+	nota_definitiva INT(4) NOT NULL,
+	fecha DATE NOT NULL,
+	CONSTRAINT pk_nota_definitiva PRIMARY KEY (id_nota),
+	CONSTRAINT fk_estudiante_nota FOREIGN KEY (id_estudiante_nd) REFERENCES estudiante (id) ON DELETE CASCADE,
+	CONSTRAINT fk_materia_nota FOREIGN KEY (id_materia_nd) REFERENCES materia (id) ON DELETE CASCADE,
+	CONSTRAINT fk_periodo_nota FOREIGN KEY (id_periodo_nd) REFERENCES periodo (id)
+)ENGINE=InnoDb;
+
 --  seleccionar todos los grados
 SELECT gd.id_grado_d FROM gradodocente gd
 INNER JOIN docente d ON d.id = gd.id_docente_g
@@ -577,3 +591,5 @@ WHERE es.id = 1 AND m.id = 1 AND e.id_periodo_e = 1 AND t.id_periodo_t = 1;
 SELECT e.*, c.* FROM evaluacion e
 INNER JOIN cognitivo c ON c.id_cognitivo = e.id_cognitivo_e
 WHERE e.id_estudiante_e = 1 AND e.id_materia_e = 1 AND e.id_periodo_e = 1;
+
+# provando la validacion de la nota

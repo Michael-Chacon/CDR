@@ -35,9 +35,9 @@ class ConfiguracionController
     public function vista_notas()
     {
         $criterios = new Notas();
-        $cognitivas = $criterios->listCongnitivo();
-        $procedimentales = $criterios->listProcedimental();
-        $actitudinales = $criterios->listActitudinal();
+        $cognitivas = $criterios->dataCognitivo();
+        $procedimentales = $criterios->dataProcedimental();
+        $actitudinales = $criterios->dataActitudinal();
         require_once 'views/administrativo/configuracion/notas.php';
     }
 

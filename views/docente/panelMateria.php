@@ -53,15 +53,15 @@
                  <?php echo Utils::general_alerts('validarNumeroDArchivos', '', 'No es posible subir este archivo, recuerda que el número de archivos por materia no debe ser mayor de 10, elimina un archivo para poder subir este.') ?>
 
                 <?php Utils::borrar_error('GuardarDocumentosDClase');
-                    Utils::borrar_error('eliminarDocumentoDClase');
-                    Utils::borrar_error('tituloRepetido');
-                    Utils::borrar_error('documentoRepetido');
-                    Utils::borrar_error('GuardarActividadesDClase');
-                    Utils::borrar_error('estadoA');
-                    Utils::borrar_error('registrarFallas');
-                    Utils::borrar_error('eliminarActividad');
-                    Utils::borrar_error('validarNumeroDArchivos');
-                ?>
+Utils::borrar_error('eliminarDocumentoDClase');
+Utils::borrar_error('tituloRepetido');
+Utils::borrar_error('documentoRepetido');
+Utils::borrar_error('GuardarActividadesDClase');
+Utils::borrar_error('estadoA');
+Utils::borrar_error('registrarFallas');
+Utils::borrar_error('eliminarActividad');
+Utils::borrar_error('validarNumeroDArchivos');
+?>
                 <section class="row">
                     <article class="col-md-4">
                         <h3 class="text-center mb-3 titulo-seccion">
@@ -85,13 +85,13 @@
                                     </thead>
                                     <tbody class="text-center texto-body">
                                         <?php $c = 1;
-                                            while ($estudiantes = $listado_estudiantes->fetchObject()): ?>
+while ($estudiantes = $listado_estudiantes->fetchObject()): ?>
                                             <tr>
                                                 <td>
                                                     <?=$c++?>
                                                 </td>
                                                 <td>
-                                                    <a href="<?=base_url?>Notas/homeNotas&student=<?=$estudiantes->id?>&materia=<?=$materia?>&nGrado=<?=$nombre_gra?>">
+                                                    <a href="<?=base_url?>Notas/homeNotas&student=<?=$estudiantes->id?>&materia=<?=$materia?>&nGrado=<?=$nombre_gra?>&event=bad">
                                                         <?=$estudiantes->nombre_e;?> <?=$estudiantes->apellidos_e?>
                                                     </a>
                                                 </td>
@@ -225,32 +225,32 @@
                                         </tr>
                                     </thead>
                                     <tbody class="text-center">
-                                        <?php if($colocar_falla->rowCount() != 0): ?>
-                                        <?php 
-                                         $c = 0;
-                                        while($listado_e = $colocar_falla->fetchObject()):
-                                            $c++;
-                                         ?>
-                                            <tr>
-                                                <td>
-                                                    <?=$c?>
-                                                </td>
-                                                <td>
-                                                    <a href="">
-                                                        <?=$listado_e->nombre_e?> <?=$listado_e->apellidos_e?>
-                                                    </a>
-                                                </td>
-                                                <td>
-                                                    <span class="form-check">
-                                                        <input class="form-check-input" id="flexCheckDefault" type="checkbox" name="ids[]" value="<?=$listado_e->id?>">
-                                                        </input>
-                                                    </span>
-                                                </td>
-                                            </tr>
-                                        <?php endwhile; ?>
+                                        <?php if ($colocar_falla->rowCount() != 0): ?>
+                                        <?php
+$c = 0;
+while ($listado_e = $colocar_falla->fetchObject()):
+    $c++;
+    ?>
+	                                            <tr>
+	                                                <td>
+	                                                    <?=$c?>
+	                                                </td>
+	                                                <td>
+	                                                    <a href="">
+	                                                        <?=$listado_e->nombre_e?> <?=$listado_e->apellidos_e?>
+	                                                    </a>
+	                                                </td>
+	                                                <td>
+	                                                    <span class="form-check">
+	                                                        <input class="form-check-input" id="flexCheckDefault" type="checkbox" name="ids[]" value="<?=$listado_e->id?>">
+	                                                        </input>
+	                                                    </span>
+	                                                </td>
+	                                            </tr>
+	                                        <?php endwhile;?>
                                     <?php else: ?>
                                         <p class="text-center mt-3"><span class="badge bg-warning text-dark">No hay estudiantes matriculados.</span></p>
-                                    <?php endif; ?>
+                                    <?php endif;?>
                                     </tbody>
                                 </table>
                             </div>

@@ -30,7 +30,12 @@
     <!-- fin del header -->
     <section class="row justify-content-center">
         <?php echo Utils::general_alerts('registrarNota', 'Nota registrada con éxito.', ' El porcentaje de esta nota sobrepasa el límite del 100%') ?>
-        <?php Utils::borrar_error('registrarNota');?>
+        <?php echo Utils::general_alerts('validarNota', '', 'En esta actividad ya se encuentra registrada una nota, si quieres actualizarla, elimina la nota existente y registra la nota nueva.') ?>
+        <?php echo Utils::general_alerts('eliminarNota', 'La nota fue eliminia con éxito', 'Algo salió mal al intentar eliminar la nota, intentelo de nuevo'); ?>
+
+        <?php Utils::borrar_error('registrarNota');
+Utils::borrar_error('validarNota');
+Utils::borrar_error('eliminarNota');?>
         <article class="col-md-5 mt-5">
             <ul class="list-group list-group-flush shadow">
                 <li class="list-group-item">
@@ -76,7 +81,7 @@
                     <div aria-labelledby="flush-headingOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample" id="flush-collapseOne">
                         <article class="accordion-body">
                             <?php $f = 0;
-                            if ($fechas_fallas->rowCount() != 0): ?>
+if ($fechas_fallas->rowCount() != 0): ?>
                                 <table class="table text-center">
                                     <thead>
                                         <tr>
@@ -93,24 +98,24 @@
                                     </thead>
                                     <tbody>
                                         <?php while ($fechas = $fechas_fallas->fetchObject()):
-                                            $f++;
-                                            ?>
-                                            <tr>
-                                               <td>
-                                                   <?=$f?>
-                                               </td>
-                                               <td>
-                                                   <?=$fechas->fecha_falla?>
-                                               </td>
-                                               <td>
-                                                   <?=$fechas->id_periodo_f?>
-                                               </td>
-                                           </tr>
-                                       <?php endwhile;?>
+    $f++;
+    ?>
+	                                            <tr>
+	                                               <td>
+	                                                   <?=$f?>
+	                                               </td>
+	                                               <td>
+	                                                   <?=$fechas->fecha_falla?>
+	                                               </td>
+	                                               <td>
+	                                                   <?=$fechas->id_periodo_f?>
+	                                               </td>
+	                                           </tr>
+	                                       <?php endwhile;?>
                                    </tbody>
                                </table>
                            <?php else: ?>
-                            <p class="text-center mt-3"><span class="badge bg-warning text-dark">Este estudiante no tiene fallas.</span></p>
+                            <p class="text-center mt-3"><span class="badge bg-warning text-dark">El estudiante no tiene fallas.</span></p>
                         <?php endif;?>
                     </table>
                 </article>
@@ -144,141 +149,138 @@
                     <th scope="col">Criterio</th>
                     <th scope="col">actividad</th>
                     <th scope="col">nota</th>
-                    <th scope="col" class="text-center">Editar</th>
                     <th scope="col" class="text-center">Eliminar</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
                     <td scope="row" class="titulo-criterio cognitivo">Cognitivo (<?=$cognitivo->porcentaje_cognitivo?>%)</td>
-                  <td class="cognitivo">Evaluación (<?=$cognitivo->porcentaje_evaluacion?>%)</td>
-                <td class="cognitivo">
-                  <?php if(empty($evaluacionPeriodo1->nota_evaluacion)): ?>
-                    0
-                  <?php else: ?>
-                    <?=$evaluacionPeriodo1->nota_evaluacion?>
-                <?php endif; ?>
+                    <td class="cognitivo">Evaluación (<?=$cognitivo->porcentaje_evaluacion?>%)</td>
+                    <td class="cognitivo">
+                      <?php if (empty($evaluacionPeriodo1->nota_evaluacion)): ?>
+                        0
+                    <?php else: ?>
+                        <?=$evaluacionPeriodo1->nota_evaluacion?>
+                    <?php endif;?>
                 </td>
-                <td class="text-center"><a href="google.com"  class="btn btn-secondary disabled" role="button" aria-disabled="true"><i class="bi bi-pen"></i></a></td>
-                <td class="text-center"><i class="bi bi-trash"></i></td>
+                <td class="text-center"><a onclick="return confirm('¿Estás seguro de que deseas eliminar la nota?')" href="<?=base_url?>Notas/eliminarNota&activity=evaluacion&id=<?=$evaluacionPeriodo1->id_evaluacion?>&m=<?=$id_materia?>&g=<?=$grado?>&e=<?=$id_estudiante?>" class="<?=$uno?>"><i class="bi bi-trash efecto_hover"></i></a></td>
             </tr>
             <tr>
               <td scope="row"></td>
               <td class="cognitivo">Trimestral (<?=$cognitivo->porcentaje_trimestral?>%)</td>
               <td class="cognitivo">
-                  <?php if(empty($trimestralPeriodo1->nota_trimestral)): ?>
+                  <?php if (empty($trimestralPeriodo1->nota_trimestral)): ?>
                     0
-                  <?php else: ?>
+                <?php else: ?>
                     <?=$trimestralPeriodo1->nota_trimestral?>
-                <?php endif; ?>
-                </td>
-              <td class="text-center"><i class="bi bi-pen"></i></td>
-              <td class="text-center"><i class="bi bi-trash"></i></td>
-          </tr>
-          <tr>
-              <td scope="row"></td>
-              <td class="total-nota"><strong>Total</strong></td>
-              <td class="total-nota"><strong><?=$definitiva_cognitivo?></strong></td>
-              <td></td>
-              <td></td>
-          </tr>
-          <tr>
-              <td scope="row"></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-          </tr>
-          <tr>
-              <td scope="row" class="titulo-criterio procedimental">Procedimental (<?=$procedimental->porcentaje_procedimental?>%)</td>
-              <td class="procedimental">Trabajo individual (<?=$procedimental->porcentaje_Tindividual?>%)</td>
-              <td class="procedimental">
-                  <?php if(empty($trabajoIndividualPeriodo1->nota_Tindividual)): ?>
-                    0
-                  <?php else: ?>
-                    <?=$trabajoIndividualPeriodo1->nota_Tindividual?>
-                <?php endif; ?>
-                </td>
-              <td class="text-center"><i class="bi bi-pen"></i></td>
-              <td class="text-center"><i class="bi bi-trash"></i></td>
-          </tr>
-          <tr>
-              <td scope="row" ></td>
-              <td class="procedimental">Trabajo colaborativo (<?=$procedimental->porcentaje_Tcolaborativo?>%)</td>
-              <td class="procedimental">
-                  <?php if(empty($trabajoColaborativoPeriodo1->nota_Tcolaborativo)): ?>
-                    0
-                  <?php else: ?>
-                    <?=$trabajoColaborativoPeriodo1->nota_Tcolaborativo?>
-                <?php endif; ?>
-              </td>
-              <td class="text-center"><i class="bi bi-pen"></i></td>
-              <td class="text-center"><i class="bi bi-trash"></i></td>
-          </tr>
-          <tr>
-              <td scope="row"></td>
-              <td class=" total-nota"><strong>Total</strong></td>
-              <td class=" total-nota"><strong><?=$definitiva_procedimental?></strong></td>
-              <td></td>
-              <td></td>
-          </tr>
-          <tr>
-              <td scope="row"></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-          </tr>
-          <tr>
-              <td scope="row" class="titulo-criterio actitudinal">Actitudinal (<?=$actitudinal->porcentaje_actitudinal?>%)</td>
-              <td class="actitudinal">Apreciativa (<?=$actitudinal->porcentaje_apreciativa?>%)</td>
-              <td class="actitudinal">
-                <?php if(empty($apreciativaPeriodo1->nota_apreciativa)): ?>
-                    0
-                  <?php else: ?>
-                    <?=$apreciativaPeriodo1->nota_apreciativa?>
-                <?php endif; ?>
-                </td>
-              <td class="text-center"><i class="bi bi-pen"></i></td>
-              <td class="text-center"><i class="bi bi-trash"></i></td>
-          </tr>
-          <tr>
-              <td scope="row" ></td>
-              <td class="actitudinal">Autoevaliación (<?=$actitudinal->porcentaje_autoevaluacion?>%)</td>
-              <td class="actitudinal">
-                <?php if(empty($autoevaluacionPeriodo1->nota_autoevaluacion)): ?>
-                    0
-                  <?php else: ?>
-                    <?=$autoevaluacionPeriodo1->nota_autoevaluacion?>
-                <?php endif; ?>
+                <?php endif;?>
+            </td>
+            <td class="text-center">
+                <a onclick="return confirm('¿Estás seguro de que deseas eliminar la nota?')" href="<?=base_url?>Notas/eliminarNota&activity=trimestral&id=<?=$trimestralPeriodo1->id_trimestral?>&m=<?=$id_materia?>&g=<?=$grado?>&e=<?=$id_estudiante?>"  class="<?=$uno?>"><i class="bi bi-trash efecto_hover"></i></a>
+            </td>
+        </tr>
+        <tr>
+          <td scope="row"></td>
+          <td class="total-nota"><strong>Total</strong></td>
+          <td class="total-nota"><strong><?=$definitiva_cognitivoUno?></strong></td>
+          <td></td>
+          <td></td>
+      </tr>
+      <tr>
+          <td scope="row"></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+      </tr>
+      <!-- procedimental -->
+      <tr>
+          <td scope="row" class="titulo-criterio procedimental">Procedimental (<?=$procedimental->porcentaje_procedimental?>%)</td>
+          <td class="procedimental">Trabajo individual (<?=$procedimental->porcentaje_Tindividual?>%)</td>
+          <td class="procedimental">
+              <?php if (empty($trabajoIndividualPeriodo1->nota_Tindividual)): ?>
+                0
+            <?php else: ?>
+                <?=$trabajoIndividualPeriodo1->nota_Tindividual?>
+            <?php endif;?>
+        </td>
+        <td class="text-center"><a onclick="return confirm('¿Estás seguro de que deseas eliminar la nota?')" href="<?=base_url?>Notas/eliminarNota&activity=tindividual&id=<?=$trabajoIndividualPeriodo1->id_Tindividual?>&m=<?=$id_materia?>&g=<?=$grado?>&e=<?=$id_estudiante?>" class="<?=$uno?>"><i class="bi bi-trash efecto_hover"></i></a></td>
+    </tr>
+    <tr>
+      <td scope="row" ></td>
+      <td class="procedimental">Trabajo colaborativo (<?=$procedimental->porcentaje_Tcolaborativo?>%)</td>
+      <td class="procedimental">
+          <?php if (empty($trabajoColaborativoPeriodo1->nota_Tcolaborativo)): ?>
+            0
+        <?php else: ?>
+            <?=$trabajoColaborativoPeriodo1->nota_Tcolaborativo?>
+        <?php endif;?>
+    </td>
+    <td class="text-center"><a onclick="return confirm('¿Estás seguro de que deseas eliminar la nota?')" href="<?=base_url?>Notas/eliminarNota&activity=tcolaborativo&id=<?=$trabajoColaborativoPeriodo1->id_Tcolaborativo?>&m=<?=$id_materia?>&g=<?=$grado?>&e=<?=$id_estudiante?>" class="<?=$uno?>"><i class="bi bi-trash efecto_hover"></i></a></td>
+</tr>
+<tr>
+  <td scope="row"></td>
+  <td class=" total-nota"><strong>Total</strong></td>
+  <td class=" total-nota"><strong><?=$definitiva_procedimentalUno?></strong></td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
+  <td scope="row"></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+</tr>
+<!-- actitudinal -->
+<tr>
+  <td scope="row" class="titulo-criterio actitudinal">Actitudinal (<?=$actitudinal->porcentaje_actitudinal?>%)</td>
+  <td class="actitudinal">Apreciativa (<?=$actitudinal->porcentaje_apreciativa?>%)</td>
+  <td class="actitudinal">
+    <?php if (empty($apreciativaPeriodo1->nota_apreciativa)): ?>
+        0
+    <?php else: ?>
+        <?=$apreciativaPeriodo1->nota_apreciativa?>
+    <?php endif;?>
+</td>
+<td class="text-center"><a onclick="return confirm('¿Estás seguro de que deseas eliminar la nota?')" href="<?=base_url?>Notas/eliminarNota&activity=apreciativa&id=<?=$apreciativaPeriodo1->id_apreciativa?>&m=<?=$id_materia?>&g=<?=$grado?>&e=<?=$id_estudiante?>" class="<?=$uno?>"><i class="bi bi-trash efecto_hover"></i></a></td>
+</tr>
+<tr>
+  <td scope="row" ></td>
+  <td class="actitudinal">Autoevaliación (<?=$actitudinal->porcentaje_autoevaluacion?>%)</td>
+  <td class="actitudinal">
+    <?php if (empty($autoevaluacionPeriodo1->nota_autoevaluacion)): ?>
+        0
+    <?php else: ?>
+        <?=$autoevaluacionPeriodo1->nota_autoevaluacion?>
+    <?php endif;?>
 
-                </td>
-              <td class="text-center"><i class="bi bi-pen"></i></td>
-              <td class="text-center"><i class="bi bi-trash"></i></td>
-          </tr>
-          <tr>
-              <td scope="row"></td>
-              <td class="total-nota"><strong>Total</strong></td>
-              <td class="total-nota"><strong><?=$definitiva_actitudinal?></strong></td>
-              <td></td>
-              <td></td>
-          </tr>
-          <tr>
-              <td scope="row"></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-          </tr>
-           <tr>
-              <td scope="row">DEFINITIVA</td>
-              <td class="total-nota"><strong><?=$definitiva_periodo1?></strong></td>
-              <td class="total-nota"><strong></strong></td>
-              <td></td>
-              <td></td>
-          </tr>
-      </tbody>
-  </table>
+</td>
+<td class="text-center"><a onclick="return confirm('¿Estás seguro de que deseas eliminar la nota?')" href="<?=base_url?>Notas/eliminarNota&activity=autoevaluacion&id=<?=$autoevaluacionPeriodo1->id_autoevaluacion?>&m=<?=$id_materia?>&g=<?=$grado?>&e=<?=$id_estudiante?>" class="<?=$uno?>"><i class="bi bi-trash efecto_hover"></i></a></td>
+</tr>
+<tr>
+  <td scope="row"></td>
+  <td class="total-nota"><strong>Total</strong></td>
+  <td class="total-nota"><strong><?=$definitiva_actitudinalUno?></strong></td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
+  <td scope="row"></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
+  <td scope="row">DEFINITIVA</td>
+  <td class="total-nota"><strong><?=$definitiva_periodo1?></strong></td>
+  <td class="total-nota"><strong></strong></td>
+  <td></td>
+  <td></td>
+</tr>
+</tbody>
+</table>
 </article>
 </article>
 </article>
@@ -300,91 +302,137 @@
                     <th scope="col">Criterio</th>
                     <th scope="col">actividad</th>
                     <th scope="col">nota</th>
-                    <th class="text-center" scope="col">Editar</th>
                     <th class="text-center" scope="col">Eliminar</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                  <td scope="row" class="titulo-criterio cognitivo">Cognitivo (50%)</td>
-                  <td class="cognitivo">Evaluación (30%)</td>
-                  <td class="cognitivo">35</td>
-                  <td class="text-center"><i class="bi bi-pen"></i></td>
-                  <td class="text-center"><i class="bi bi-trash"></i></td>
-              </tr>
-              <tr>
-                  <td scope="row"></td>
-                  <td class="cognitivo">Trimestral (20%)</td>
-                  <td class="cognitivo">38</td>
-                  <td class="text-center"><i class="bi bi-pen"></i></td>
-                  <td class="text-center"><i class="bi bi-trash"></i></td>
-              </tr>
-              <tr>
-                  <td scope="row"></td>
-                  <td class="total-nota"><strong>Total</strong></td>
-                  <td class="total-nota"><strong>?</strong></td>
-                  <td></td>
-                  <td></td>
-              </tr>
-              <tr>
-                  <td scope="row"></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-              </tr>
-              <tr>
-                  <td scope="row" class="titulo-criterio procedimental">Procedimental (30%)</td>
-                  <td class="procedimental">Trabajo individual (15%)</td>
-                  <td class="procedimental">40</td>
-                  <td class="text-center"><i class="bi bi-pen"></i></td>
-                  <td class="text-center"><i class="bi bi-trash"></i></td>
-              </tr>
-              <tr>
-                  <td scope="row" ></td>
-                  <td class="procedimental">Trabajo colaborativo (15%)</td>
-                  <td class="procedimental">37</td>
-                  <td class="text-center"><i class="bi bi-pen"></i></td>
-                  <td class="text-center"><i class="bi bi-trash"></i></td>
-              </tr>
-              <tr>
-                  <td scope="row"></td>
-                  <td class=" total-nota"><strong>Total</strong></td>
-                  <td class=" total-nota"><strong>?</strong></td>
-                  <td></td>
-                  <td></td>
-              </tr>
-              <tr>
-                  <td scope="row"></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-              </tr>
-              <tr>
-                  <td scope="row" class="titulo-criterio actitudinal">Actitudinal (20%)</td>
-                  <td class="actitudinal">Apreciativa (15%)</td>
-                  <td class="actitudinal">35</td>
-                  <td class="text-center"><i class="bi bi-pen"></i></td>
-                  <td class="text-center"><i class="bi bi-trash"></i></td>
-              </tr>
-              <tr>
-                  <td scope="row" ></td>
-                  <td class="actitudinal">Autoevaliación (5%)</td>
-                  <td class="actitudinal">45</td>
-                  <td class="text-center"><i class="bi bi-pen"></i></td>
-                  <td class="text-center"><i class="bi bi-trash"></i></td>
-              </tr>
-              <tr>
-                  <td scope="row"></td>
-                  <td class="total-nota"><strong>Total</strong></td>
-                  <td class="total-nota"><strong>?</strong></td>
-                  <td></td>
-                  <td></td>
-              </tr>
-          </tbody>
-      </table>
-  </article>
+                    <td scope="row" class="titulo-criterio cognitivo">Cognitivo (<?=$cognitivo->porcentaje_cognitivo?>%)</td>
+                    <td class="cognitivo">Evaluación (<?=$cognitivo->porcentaje_evaluacion?>%)</td>
+                    <td class="cognitivo">
+                      <?php if (empty($evaluacionPeriodo2->nota_evaluacion)): ?>
+                        0
+                    <?php else: ?>
+                        <?=$evaluacionPeriodo2->nota_evaluacion?>
+                    <?php endif;?>
+                </td>
+                <td class="text-center"><a onclick="return confirm('¿Estás seguro de que deseas eliminar la nota?')" href="<?=base_url?>Notas/eliminarNota&activity=evaluacion&id=<?=$evaluacionPeriodo2->id_evaluacion?>&m=<?=$id_materia?>&g=<?=$grado?>&e=<?=$id_estudiante?>" class="<?=$dos?>"><i class="bi bi-trash efecto_hover"></i></a></td>
+            </tr>
+            <tr>
+              <td scope="row"></td>
+              <td class="cognitivo">Trimestral (<?=$cognitivo->porcentaje_trimestral?>%)</td>
+              <td class="cognitivo">
+                  <?php if (empty($trimestralPeriodo2->nota_trimestral)): ?>
+                    0
+                <?php else: ?>
+                    <?=$trimestralPeriodo2->nota_trimestral?>
+                <?php endif;?>
+            </td>
+            <td class="text-center"><a onclick="return confirm('¿Estás seguro de que deseas eliminar la nota?')" href="<?=base_url?>Notas/eliminarNota&activity=trimestral&id=<?=$trimestralPeriodo2->id_trimestral?>&m=<?=$id_materia?>&g=<?=$grado?>&e=<?=$id_estudiante?>" class="<?=$dos?>"><i class="bi bi-trash efecto_hover"></i></a></td>
+        </tr>
+        <tr>
+          <td scope="row"></td>
+          <td class="total-nota"><strong>Total</strong></td>
+          <td class="total-nota"><strong><?=$definitiva_cognitivoDos?></strong></td>
+          <td></td>
+          <td></td>
+      </tr>
+      <tr>
+          <td scope="row"></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+      </tr>
+      <!-- procedimental -->
+      <tr>
+          <td scope="row" class="titulo-criterio procedimental">Procedimental (<?=$procedimental->porcentaje_procedimental?>%)</td>
+          <td class="procedimental">Trabajo individual (<?=$procedimental->porcentaje_Tindividual?>%)</td>
+          <td class="procedimental">
+              <?php if (empty($trabajoIndividualPeriodo2->nota_Tindividual)): ?>
+                0
+            <?php else: ?>
+                <?=$trabajoIndividualPeriodo2->nota_Tindividual?>
+            <?php endif;?>
+        </td>
+        <td class="text-center"><a onclick="return confirm('¿Estás seguro de que deseas eliminar la nota?')" href="<?=base_url?>Notas/eliminarNota&activity=tindividual&id=<?=$trabajoIndividualPeriodo2->id_Tindividual?>&m=<?=$id_materia?>&g=<?=$grado?>&e=<?=$id_estudiante?>" class="<?=$dos?>"><i class="bi bi-trash efecto_hover"></i></a></td>
+    </tr>
+    <tr>
+      <td scope="row" ></td>
+      <td class="procedimental">Trabajo colaborativo (<?=$procedimental->porcentaje_Tcolaborativo?>%)</td>
+      <td class="procedimental">
+          <?php if (empty($trabajoColaborativoPeriodo2->nota_Tcolaborativo)): ?>
+            0
+        <?php else: ?>
+            <?=$trabajoColaborativoPeriodo2->nota_Tcolaborativo?>
+        <?php endif;?>
+    </td>
+    <td class="text-center"><a onclick="return confirm('¿Estás seguro de que deseas eliminar la nota?')" href="<?=base_url?>Notas/eliminarNota&activity=tcolaborativo&id=<?=$trabajoColaborativoPeriodo2->id_Tcolaborativo?>&m=<?=$id_materia?>&g=<?=$grado?>&e=<?=$id_estudiante?>" class="<?=$dos?>"><i class="bi bi-trash efecto_hover"></i></a></td>
+</tr>
+<tr>
+  <td scope="row"></td>
+  <td class=" total-nota"><strong>Total</strong></td>
+  <td class=" total-nota"><strong><?=$definitiva_procedimentalDos?></strong></td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
+  <td scope="row"></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+</tr>
+<!-- actitudinal -->
+<tr>
+  <td scope="row" class="titulo-criterio actitudinal">Actitudinal (<?=$actitudinal->porcentaje_actitudinal?>%)</td>
+  <td class="actitudinal">Apreciativa (<?=$actitudinal->porcentaje_apreciativa?>%)</td>
+  <td class="actitudinal">
+    <?php if (empty($apreciativaPeriodo2->nota_apreciativa)): ?>
+        0
+    <?php else: ?>
+        <?=$apreciativaPeriodo2->nota_apreciativa?>
+    <?php endif;?>
+</td>
+<td class="text-center"><a onclick="return confirm('¿Estás seguro de que deseas eliminar la nota?')" href="<?=base_url?>Notas/eliminarNota&activity=apreciativa&id=<?=$apreciativaPeriodo2->id_apreciativa?>&m=<?=$id_materia?>&g=<?=$grado?>&e=<?=$id_estudiante?>" class="<?=$dos?>"><i class="bi bi-trash efecto_hover"></i></a></td>
+</tr>
+<tr>
+  <td scope="row" ></td>
+  <td class="actitudinal">Autoevaliación (<?=$actitudinal->porcentaje_autoevaluacion?>%)</td>
+  <td class="actitudinal">
+    <?php if (empty($autoevaluacionPeriodo2->nota_autoevaluacion)): ?>
+        0
+    <?php else: ?>
+        <?=$autoevaluacionPeriodo2->nota_autoevaluacion?>
+    <?php endif;?>
+
+</td>
+<td class="text-center"><a onclick="return confirm('¿Estás seguro de que deseas eliminar la nota?')" href="<?=base_url?>Notas/eliminarNota&activity=autoevaluacion&id=<?=$autoevaluacionPeriodo2->id_autoevaluacion?>&m=<?=$id_materia?>&g=<?=$grado?>&e=<?=$id_estudiante?>" class="<?=$dos?>"><i class="bi bi-trash efecto_hover"></i></a></td>
+</tr>
+<tr>
+  <td scope="row"></td>
+  <td class="total-nota"><strong>Total</strong></td>
+  <td class="total-nota"><strong><?=$definitiva_actitudinalDos?></strong></td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
+  <td scope="row"></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
+  <td scope="row">DEFINITIVA</td>
+  <td class="total-nota"><strong><?=$definitiva_periodo2?></strong></td>
+  <td class="total-nota"><strong></strong></td>
+  <td></td>
+  <td></td>
+</tr>
+</tbody>
+</table>
+</article>
 </article>
 </div>
 </div>
@@ -405,91 +453,137 @@
                     <th scope="col">Criterio</th>
                     <th scope="col">actividad</th>
                     <th scope="col">nota</th>
-                    <th class="text-center" scope="col">Editar</th>
                     <th class="text-center" scope="col">Eliminar</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                  <td scope="row" class="titulo-criterio cognitivo">Cognitivo (50%)</td>
-                  <td class="cognitivo">Evaluación (30%)</td>
-                  <td class="cognitivo">35</td>
-                  <td class="text-center"><i class="bi bi-pen"></i></td>
-                  <td class="text-center"><i class="bi bi-trash"></i></td>
-              </tr>
-              <tr>
-                  <td scope="row"></td>
-                  <td class="cognitivo">Trimestral (20%)</td>
-                  <td class="cognitivo">38</td>
-                  <td class="text-center"><i class="bi bi-pen"></i></td>
-                  <td class="text-center"><i class="bi bi-trash"></i></td>
-              </tr>
-              <tr>
-                  <td scope="row"></td>
-                  <td class="total-nota"><strong>Total</strong></td>
-                  <td class="total-nota"><strong>?</strong></td>
-                  <td></td>
-                  <td></td>
-              </tr>
-              <tr>
-                  <td scope="row"></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-              </tr>
-              <tr>
-                  <td scope="row" class="titulo-criterio procedimental">Procedimental (30%)</td>
-                  <td class="procedimental">Trabajo individual (15%)</td>
-                  <td class="procedimental">40</td>
-                  <td class="text-center"><i class="bi bi-pen"></i></td>
-                  <td class="text-center"><i class="bi bi-trash"></i></td>
-              </tr>
-              <tr>
-                  <td scope="row" ></td>
-                  <td class="procedimental">Trabajo colaborativo (15%)</td>
-                  <td class="procedimental">37</td>
-                  <td class="text-center"><i class="bi bi-pen"></i></td>
-                  <td class="text-center"><i class="bi bi-trash"></i></td>
-              </tr>
-              <tr>
-                  <td scope="row"></td>
-                  <td class=" total-nota"><strong>Total</strong></td>
-                  <td class=" total-nota"><strong>?</strong></td>
-                  <td></td>
-                  <td></td>
-              </tr>
-              <tr>
-                  <td scope="row"></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-              </tr>
-              <tr>
-                  <td scope="row" class="titulo-criterio actitudinal">Actitudinal (20%)</td>
-                  <td class="actitudinal">Apreciativa (15%)</td>
-                  <td class="actitudinal">35</td>
-                  <td class="text-center"><i class="bi bi-pen"></i></td>
-                  <td class="text-center"><i class="bi bi-trash"></i></td>
-              </tr>
-              <tr>
-                  <td scope="row" ></td>
-                  <td class="actitudinal">Autoevaliación (5%)</td>
-                  <td class="actitudinal">45</td>
-                  <td class="text-center"><i class="bi bi-pen"></i></td>
-                  <td class="text-center"><i class="bi bi-trash"></i></td>
-              </tr>
-              <tr>
-                  <td scope="row"></td>
-                  <td class="total-nota"><strong>Total</strong></td>
-                  <td class="total-nota"><strong>?</strong></td>
-                  <td></td>
-                  <td></td>
-              </tr>
-          </tbody>
-      </table>
-  </article>
+                    <td scope="row" class="titulo-criterio cognitivo">Cognitivo (<?=$cognitivo->porcentaje_cognitivo?>%)</td>
+                    <td class="cognitivo">Evaluación (<?=$cognitivo->porcentaje_evaluacion?>%)</td>
+                    <td class="cognitivo">
+                      <?php if (empty($evaluacionPeriodo3->nota_evaluacion)): ?>
+                        0
+                    <?php else: ?>
+                        <?=$evaluacionPeriodo3->nota_evaluacion?>
+                    <?php endif;?>
+                </td>
+                <td class="text-center"><a onclick="return confirm('¿Estás seguro de que deseas eliminar la nota?')" href="<?=base_url?>Notas/eliminarNota&activity=evaluacion&id=<?=$evaluacionPeriodo3->id_evaluacion?>&m=<?=$id_materia?>&g=<?=$grado?>&e=<?=$id_estudiante?>" class="<?=$tres?>"><i class="bi bi-trash efecto_hover"></i></a></td>
+            </tr>
+            <tr>
+              <td scope="row"></td>
+              <td class="cognitivo">Trimestral (<?=$cognitivo->porcentaje_trimestral?>%)</td>
+              <td class="cognitivo">
+                  <?php if (empty($trimestralPeriodo3->nota_trimestral)): ?>
+                    0
+                <?php else: ?>
+                    <?=$trimestralPeriodo3->nota_trimestral?>
+                <?php endif;?>
+            </td>
+            <td class="text-center"><a onclick="return confirm('¿Estás seguro de que deseas eliminar la nota?')" href="<?=base_url?>Notas/eliminarNota&activity=trimestral&id=<?=$trimestralPeriodo3->id_trimestral?>&m=<?=$id_materia?>&g=<?=$grado?>&e=<?=$id_estudiante?>" class="<?=$tres?>"><i class="bi bi-trash efecto_hover"></i></a></td>
+        </tr>
+        <tr>
+          <td scope="row"></td>
+          <td class="total-nota"><strong>Total</strong></td>
+          <td class="total-nota"><strong><?=$definitiva_cognitivoTres?></strong></td>
+          <td></td>
+          <td></td>
+      </tr>
+      <tr>
+          <td scope="row"></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+      </tr>
+      <!-- procedimental -->
+      <tr>
+          <td scope="row" class="titulo-criterio procedimental">Procedimental (<?=$procedimental->porcentaje_procedimental?>%)</td>
+          <td class="procedimental">Trabajo individual (<?=$procedimental->porcentaje_Tindividual?>%)</td>
+          <td class="procedimental">
+              <?php if (empty($trabajoIndividualPeriodo3->nota_Tindividual)): ?>
+                0
+            <?php else: ?>
+                <?=$trabajoIndividualPeriodo3->nota_Tindividual?>
+            <?php endif;?>
+        </td>
+        <td class="text-center"><a onclick="return confirm('¿Estás seguro de que deseas eliminar la nota?')" href="<?=base_url?>Notas/eliminarNota&activity=tindividual&id=<?=$trabajoIndividualPeriodo3->id_Tindividual?>&m=<?=$id_materia?>&g=<?=$grado?>&e=<?=$id_estudiante?>" class="<?=$tres?>"><i class="bi bi-trash efecto_hover"></i></a></td>
+    </tr>
+    <tr>
+      <td scope="row" ></td>
+      <td class="procedimental">Trabajo colaborativo (<?=$procedimental->porcentaje_Tcolaborativo?>%)</td>
+      <td class="procedimental">
+          <?php if (empty($trabajoColaborativoPeriodo3->nota_Tcolaborativo)): ?>
+            0
+        <?php else: ?>
+            <?=$trabajoColaborativoPeriodo3->nota_Tcolaborativo?>
+        <?php endif;?>
+    </td>
+    <td class="text-center"><a onclick="return confirm('¿Estás seguro de que deseas eliminar la nota?')" href="<?=base_url?>Notas/eliminarNota&activity=tcolaborativo&id=<?=$trabajoColaborativoPeriodo3->id_Tcolaborativo?>&m=<?=$id_materia?>&g=<?=$grado?>&e=<?=$id_estudiante?>" class="<?=$tres?>"><i class="bi bi-trash efecto_hover"></i></a></td>
+</tr>
+<tr>
+  <td scope="row"></td>
+  <td class=" total-nota"><strong>Total</strong></td>
+  <td class=" total-nota"><strong><?=$definitiva_procedimentalTres?></strong></td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
+  <td scope="row"></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+</tr>
+<!-- actitudinal -->
+<tr>
+  <td scope="row" class="titulo-criterio actitudinal">Actitudinal (<?=$actitudinal->porcentaje_actitudinal?>%)</td>
+  <td class="actitudinal">Apreciativa (<?=$actitudinal->porcentaje_apreciativa?>%)</td>
+  <td class="actitudinal">
+    <?php if (empty($apreciativaPeriodo3->nota_apreciativa)): ?>
+        0
+    <?php else: ?>
+        <?=$apreciativaPeriodo3->nota_apreciativa?>
+    <?php endif;?>
+</td>
+<td class="text-center"><a onclick="return confirm('¿Estás seguro de que deseas eliminar la nota?')" href="<?=base_url?>Notas/eliminarNota&activity=apreciativa&id=<?=$apreciativaPeriodo3->id_apreciativa?>&m=<?=$id_materia?>&g=<?=$grado?>&e=<?=$id_estudiante?>" class="<?=$tres?>"><i class="bi bi-trash efecto_hover"></i></a></td>
+</tr>
+<tr>
+  <td scope="row" ></td>
+  <td class="actitudinal">Autoevaliación (<?=$actitudinal->porcentaje_autoevaluacion?>%)</td>
+  <td class="actitudinal">
+    <?php if (empty($autoevaluacionPeriodo3->nota_autoevaluacion)): ?>
+        0
+    <?php else: ?>
+        <?=$autoevaluacionPeriodo3->nota_autoevaluacion?>
+    <?php endif;?>
+
+</td>
+<td class="text-center"><a onclick="return confirm('¿Estás seguro de que deseas eliminar la nota?')" href="<?=base_url?>Notas/eliminarNota&activity=autoevaluacion&id=<?=$autoevaluacionPeriodo3->id_autoevaluacion?>&m=<?=$id_materia?>&g=<?=$grado?>&e=<?=$id_estudiante?>" class="<?=$tres?>"><i class="bi bi-trash efecto_hover"></i></a></td>
+</tr>
+<tr>
+  <td scope="row"></td>
+  <td class="total-nota"><strong>Total</strong></td>
+  <td class="total-nota"><strong><?=$definitiva_actitudinalTres?></strong></td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
+  <td scope="row"></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
+  <td scope="row">DEFINITIVA</td>
+  <td class="total-nota"><strong><?=$definitiva_periodo3?></strong></td>
+  <td class="total-nota"><strong></strong></td>
+  <td></td>
+  <td></td>
+</tr>
+</tbody>
+</table>
+</article>
 </article>
 </div>
 </div>

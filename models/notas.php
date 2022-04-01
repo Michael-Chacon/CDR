@@ -344,7 +344,22 @@ class Notas
         return $this;
     }
 
-    # obtener las notas de evaluacion de un estudiante en el periodo x
+    # Metodo para registrar las notas de x actividad a un estudiatne.
+    public function saveAllNotes($estudiante, $materia, $periodo, $criterio, $notas, $actividad)
+    {
+        $nota = $this->db->prepare("INSERT INTO $actividad VALUES(null, :estudiante, :materia, :periodo, :criterio, :nota)");
+        $nota->bindParam(":estudiante", $estudiante, PDO::PARAM_INT);
+        $nota->bindParam(":materia", $materia, PDO::PARAM_INT);
+        $nota->bindParam(":periodo", $periodo, PDO::PARAM_INT);
+        $nota->bindParam(":criterio", $criterio, PDO::PARAM_INT);
+        $nota->bindParam(":nota", $notas, PDO::PARAM_INT);
+        return $nota->execute();
+    }
+
+    /*
+    Lo siguientes 6 metodos seleccionan la informacion de  todas las actividades (evaluaciones, trimestrales, trabajos individuales y colaborativos,  apreciativa, y autoevaluaciones)  por separado.
+    - Los metodos estan desarrollados de esta forma porque necesito tener los datos de las actividades por separado, para consultar la informacion de los 3 periodos academicos solo variando el parametro periodo.
+     */
     public function notaEvaluacionPeriodox($periodo)
     {
         $subject = $this->getMateria();
@@ -363,7 +378,7 @@ class Notas
             return $respuesta;
         }
     }
-    # obtener la nota de la trimestral de un estudiate en el periodo x
+
     public function notaTrimestralPeriodox($periodo)
     {
         $subject = $this->getMateria();
@@ -434,31 +449,34 @@ class Notas
         $autoevaluacion->execute();
         return $autoevaluacion->fetchObject();
     }
-    # listar los porcentajes de los 3 criterios academicos
 
-    public function listCongnitivo()
+    /*
+    En los siguientes 3 metodos obtengo los porcentajes de los 3 criterios academicos junto a los porcetajes de sus actividades, para hallar las notas definitvas
+     */
+    public function dataCognitivo()
     {
         $cognitivo = $this->db->prepare("SELECT * FROM cognitivo");
         $cognitivo->execute();
         return $cognitivo->fetchObject();
     }
 
-    public function listProcedimental()
+    public function dataProcedimental()
     {
         $procedimental = $this->db->prepare("SELECT * FROM procedimental");
         $procedimental->execute();
         return $procedimental->fetchObject();
     }
 
-    public function listActitudinal()
+    public function dataActitudinal()
     {
         $actitudinal = $this->db->prepare("SELECT * FROM actitudinal");
         $actitudinal->execute();
         return $actitudinal->fetchObject();
     }
 
-    # METODOS PARA ACTUALIZAR LOS PORCENTAJES DE LOS CRITERIOS DE EVALUACION "COGNITIVO, PROCEDIMENTAL Y ACTITUDINAL"
-
+    /*
+    Los siguientes 3 metodos tienen la función de actualizar los porcetajes de los 3 criterios de evaluacion "cognitivo, procedimental y actitudinal".
+     */
     public function updateCognitivo()
     {
         $criterio_cognitivo = $this->getCognitivo();
@@ -495,42 +513,8 @@ class Notas
         return $actualizacion->execute();
     }
 
-    # metodo para registrar las notas en su respectivo criterio y actividad
-    public function saveAllNotes($estudiante, $materia, $periodo, $criterio, $notas, $tabla)
-    {
-        $nota = $this->db->prepare("INSERT INTO $tabla VALUES(null, :estudiante, :materia, :periodo, :criterio, :nota)");
-        $nota->bindParam(":estudiante", $estudiante, PDO::PARAM_INT);
-        $nota->bindParam(":materia", $materia, PDO::PARAM_INT);
-        $nota->bindParam(":periodo", $periodo, PDO::PARAM_INT);
-        $nota->bindParam(":criterio", $criterio, PDO::PARAM_INT);
-        $nota->bindParam(":nota", $notas, PDO::PARAM_INT);
-        return $nota->execute();
-    }
-
-    # listar los datos de los criterios
-    public function dataCognitivo()
-    {
-        $cognitivo = $this->db->prepare("SELECT * FROM cognitivo");
-        $cognitivo->execute();
-        return $cognitivo->fetchObject();
-    }
-
-    public function dataProcedimental()
-    {
-        $procedimental = $this->db->prepare("SELECT * FROM procedimental");
-        $procedimental->execute();
-        return $procedimental->fetchObject();
-    }
-
-    public function dataActitudinal()
-    {
-        $actitudinal = $this->db->prepare("SELECT * FROM actitudinal");
-        $actitudinal->execute();
-        return $actitudinal->fetchObject();
-    }
-
     # metodo para allar promedio de las notas agrupadas por criterios
-    public function calcularPromedio($nota1, $actividad1, $nota2, $actividad2, $criterio)
+    public function calcularNota($nota1, $actividad1, $nota2, $actividad2, $criterio)
     {
         $notaActividad1 = ($actividad1 / $criterio) * $nota1;
         $notaActividad2 = ($actividad2 / $criterio) * $nota2;
@@ -540,10 +524,126 @@ class Notas
         return $notas;
     }
 
-    # nota definitiva de un periodo
+    # Metodo para sumar las notas de los 3 criterios evaluativos y asi hallar la nota definitiva de un periodo.
     public function definitivaPerido($uno, $dos, $tres)
     {
         return $uno + $dos + $tres;
     }
-#fin de la clase
-}
+
+    # Metodo para validar que solo se ingrese una nota por periodo en cada actividad
+    public function justANote($estudiante, $nota, $materia, $periodo, $actividad)
+    {
+        switch ($actividad) {
+            case 'evaluacion':
+                $db_estudiante = 'id_estudiante_e';
+                $db_materia = 'id_materia_e';
+                $db_periodo = 'id_periodo_e';
+                break;
+            case 'trimestral':
+                $db_estudiante = 'id_estudiante_t';
+                $db_materia = 'id_materia_t';
+                $db_periodo = 'id_periodo_t';
+                break;
+            case 'tindividual':
+                $db_estudiante = 'id_estudiante_Tindividual';
+                $db_materia = 'id_materia_Tindividual';
+                $db_periodo = 'id_periodo_Tindividual';
+                break;
+            case 'tcolaborativo':
+                $db_estudiante = 'id_estudiante_Tcolaborativo';
+                $db_materia = 'id_materia_Tcolaborativo';
+                $db_periodo = 'id_periodo_Tcolaborativo';
+                break;
+            case 'apreciativa':
+                $db_estudiante = 'id_estudiante_apreciativa';
+                $db_materia = 'id_materia_apreciativa';
+                $db_periodo = 'id_periodo_apreciativa';
+                break;
+            case 'autoevaluacion':
+                $db_estudiante = 'id_estudiante_autoevaluacion';
+                $db_materia = 'id_materia_autoevaluacion';
+                $db_periodo = 'id_periodo_autoevaluacion';
+                break;
+        }
+        $validacion = $this->db->prepare("SELECT * FROM $actividad WHERE $db_estudiante = :estudiante AND $db_materia = :materia AND $db_periodo = :periodo");
+        $validacion->bindParam(":estudiante", $estudiante, PDO::PARAM_INT);
+        $validacion->bindParam(":materia", $materia, PDO::PARAM_INT);
+        $validacion->bindParam(":periodo", $periodo, PDO::PARAM_INT);
+        $validacion->execute();
+        $resultado = $validacion;
+        if ($resultado->rowCount() == 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    # Metodo para eliminar la nota de una actividad
+    public function deleteNote()
+    {
+        $actividad = $this->getItem();
+        $ide = $this->getId();
+
+        switch ($actividad) {
+            case 'evaluacion':
+                $name_id = 'id_evaluacion';
+                break;
+            case 'trimestral':
+                $name_id = 'id_trimestral';
+                break;
+            case 'tindividual':
+                $name_id = 'id_Tindividual';
+                break;
+            case 'tcolaborativo':
+                $name_id = 'id_Tcolaborativo';
+                break;
+            case 'apreciativa':
+                $name_id = 'id_apreciativa';
+                break;
+            case 'autoevaluacion':
+                $name_id = 'id_autoevaluacion';
+                break;
+        }
+        $eliminar = $this->db->prepare("DELETE  FROM $actividad WHERE $name_id = :id");
+        $eliminar->bindParam(":id", $ide, PDO::PARAM_INT);
+        return $eliminar->execute();
+    }
+
+# Metodo para mantener acualizada la nota definitiva de una materia
+    public function updateFinalNote($periodo)
+    {
+        try {
+            $student = $this->getEstudiante();
+            $subject = $this->getMateria();
+            $note = $this->getNota();
+            # Verificando si existe  nota o no.
+            $existe = $this->db->prepare("SELECT  * FROM notasdefinitivas WHERE id_estudiante_nd = :estudiante AND id_materia_nd= :materia AND id_periodo_nd = :periodo");
+            $existe->bindParam(":estudiante", $student, PDO::PARAM_INT);
+            $existe->bindParam(":materia", $subject, PDO::PARAM_INT);
+            $existe->bindParam(":periodo", $periodo, PDO::PARAM_INT);
+            $existe->execute();
+            $total_resultado = $existe;
+
+            if ($total_resultado->rowCount() == 0) {
+                # Sí no existe nota, entonces se registra
+                $registrar = $this->db->prepare("INSERT INTO notasdefinitivas VALUES(null, :id_estudiante, :id_materia, :id_periodo, :nota, CURDATE(), CURTIME())");
+                $registrar->bindParam(":id_estudiante", $student, PDO::PARAM_INT);
+                $registrar->bindParam(":id_materia", $subject, PDO::PARAM_INT);
+                $registrar->bindParam(":id_periodo", $periodo, PDO::PARAM_INT);
+                $registrar->bindParam(":nota", $note, PDO::PARAM_INT);
+                echo $registrar->execute();
+            } else {
+                # Sí ya existe nota, entonce se actualiza con la nueva nota cálculada
+                $actualizar = $this->db->prepare("UPDATE notasdefinitivas SET nota_definitiva = :definitiva, fecha = CURDATE(), hora = CURTIME() WHERE id_estudiante_nd = :id_estudiante AND id_materia_nd = :id_materia AND id_periodo_nd = :id_periodo");
+                $actualizar->bindParam(":id_estudiante", $student, PDO::PARAM_INT);
+                $actualizar->bindParam(":id_materia", $subject, PDO::PARAM_INT);
+                $actualizar->bindParam(":id_periodo", $periodo, PDO::PARAM_INT);
+                $actualizar->bindParam(":definitiva", $note, PDO::PARAM_INT);
+                $actualizar->execute();
+            }
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
+
+} # fin de la clase
