@@ -3,7 +3,7 @@ require_once 'models/materias.php';
 require_once 'models/estudiante.php';
 require_once 'models/fallas.php';
 require_once 'models/notas.php';
-
+require_once 'models/observador.php';
 class NotasController
 {
     public function homeNotas()
@@ -25,6 +25,10 @@ class NotasController
         $asistencia->setMateria($id_materia);
         $fallas = $asistencia->totalFailsAStudent();
         $fechas_fallas = $asistencia->dateFailsAStudent();
+
+        $observaciones = new Observador();
+        $observaciones->setEstudiante($id_estudiante);
+        $observador = $observaciones->countObservations();
 
         # Accediento a la clase Notas
         $notas = new Notas();

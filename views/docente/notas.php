@@ -53,7 +53,7 @@ Utils::borrar_error('eliminarNota');?>
                         <article class="col-md-3">
                             <a href="<?=base_url?>Observador/vista_observador&id=<?=$estudiante->id?>&name=<?=$estudiante->nombre_e?> <?=$estudiante->apellidos_e?>&g=<?=$grado?>">
                                 <small class="badge rounded-pill bg-primary">
-                                    <?=$fallas->total?> Observaciones
+                                    <?=$observador->total?> Observaciones
                                 </small>
                             </a>
                         </article>
@@ -101,29 +101,29 @@ if ($fechas_fallas->rowCount() != 0): ?>
     $f++;
     ?>
 	                                            <tr>
-	                                               <td>
-	                                                   <?=$f?>
-	                                               </td>
-	                                               <td>
-	                                                   <?=$fechas->fecha_falla?>
-	                                               </td>
-	                                               <td>
-	                                                   <?=$fechas->id_periodo_f?>
-	                                               </td>
-	                                           </tr>
-	                                       <?php endwhile;?>
-                                   </tbody>
-                               </table>
-                           <?php else: ?>
-                            <p class="text-center mt-3"><span class="badge bg-warning text-dark">El estudiante no tiene fallas.</span></p>
-                        <?php endif;?>
-                    </table>
-                </article>
+	                                                <td>
+	                                                    <?=$f?>
+	                                                </td>
+	                                                <td>
+	                                                    <?=$fechas->fecha_falla?>
+	                                                </td>
+	                                                <td>
+	                                                    <?=$fechas->id_periodo_f?>
+	                                                </td>
+	                                            </tr>
+	                                        <?php endwhile;?>
+                                    </tbody>
+                                </table>
+                            <?php else: ?>
+                                <p class="text-center mt-3"><span class="badge bg-warning text-dark">El estudiante no tiene fallas.</span></p>
+                            <?php endif;?>
+                        </table>
+                    </article>
+                </div>
             </div>
         </div>
-    </div>
-    <!-- fin del acordeon -->
-</article>
+        <!-- fin del acordeon -->
+    </article>
 </section>
 <!-- fin indicador y contenido -->
 <section class="row justify-content-center mt-5 mb-5">

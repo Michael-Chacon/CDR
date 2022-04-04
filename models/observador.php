@@ -208,4 +208,14 @@ class Observador
         $listado->execute();
         return $listado;
     }
+
+    # Contar el nuemro de observaciones de un estudiante
+    public function countObservations()
+    {
+        $student = $this->getEstudiante();
+        $observaciones = $this->db->prepare("SELECT COUNT(id_observacion) AS 'total' FROM observaciones WHERE id_estudiante_ob = :id_student");
+        $observaciones->bindParam(':id_student', $student, PDO::PARAM_INT);
+        $observaciones->execute();
+        return $observaciones->fetchObject();
+    }
 }

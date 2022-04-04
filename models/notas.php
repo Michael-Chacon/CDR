@@ -370,13 +370,7 @@ class Notas
         $evaluacion->bindParam(":student", $student, PDO::PARAM_INT);
         $evaluacion->bindParam(":periodo", $periodo, PDO::PARAM_INT);
         $evaluacion->execute();
-        $respuesta = $evaluacion->fetchObject();
-
-        if (empty($respuesta->nota_evaluacion)) {
-            return "vacio";
-        } else {
-            return $respuesta;
-        }
+        return $evaluacion->fetchObject();
     }
 
     public function notaTrimestralPeriodox($periodo)
@@ -389,13 +383,7 @@ class Notas
         $trimestral->bindParam(":student", $student, PDO::PARAM_INT);
         $trimestral->bindParam(":periodo", $periodo, PDO::PARAM_INT);
         $trimestral->execute();
-        $respuesta = $trimestral->fetchObject();
-
-        if (empty($respuesta->nota_trimestral)) {
-            return "vacio";
-        } else {
-            return $respuesta;
-        }
+        return $trimestral->fetchObject();
     }
 
     public function notaTindividualPeriodox($periodo)
@@ -631,7 +619,7 @@ class Notas
                 $registrar->bindParam(":id_materia", $subject, PDO::PARAM_INT);
                 $registrar->bindParam(":id_periodo", $periodo, PDO::PARAM_INT);
                 $registrar->bindParam(":nota", $note, PDO::PARAM_INT);
-                echo $registrar->execute();
+                $registrar->execute();
             } else {
                 # Sí ya existe nota, entonce se actualiza con la nueva nota cálculada
                 $actualizar = $this->db->prepare("UPDATE notasdefinitivas SET nota_definitiva = :definitiva, fecha = CURDATE(), hora = CURTIME() WHERE id_estudiante_nd = :id_estudiante AND id_materia_nd = :id_materia AND id_periodo_nd = :id_periodo");
