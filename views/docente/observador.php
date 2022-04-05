@@ -72,8 +72,8 @@
 			</div>
 			<form action="<?=base_url?>Observador/guardar_observacion" method="post">
 				<div class="modal-body">
-					<input type="number" hidden name="id_estudiante" value="<?=$_GET['id']?>">
-					<input type="text" hidden name="grado" value="<?=$_GET['g']?>">
+					<input type="number" hidden name="id_estudiante" value="<?=Utils::decryption($_GET['id'])?>">
+					<input type="text" hidden name="grado" value="<?=Utils::decryption($_GET['g'])?>">
 					<input type="text" hidden name="estudiante" value="<?=$_GET['name']?>">
 					<section class="row">
 						<div class="col-md-5">

@@ -34,7 +34,7 @@
 					<?php while ($estudiante = $listado_estudiantes->fetchObject()): ?>
 						<tr>
 							<td>
-							<a href="<?=base_url?>Notas/homeNotas&student=<?=$estudiante->id?>&materia=<?=$id_subject?>&nGrado=<?=$name_degree?>&dir=ok">
+							<a href="<?=base_url?>Notas/homeNotas&student=<?=Utils::encryption($estudiante->id)?>&materia=<?=Utils::encryption($id_subject)?>&nGrado=<?=$name_degree?>&dir=ok">
 								<?=$estudiante->nombre_e?> <?=$estudiante->apellidos_e?>
 							</a>
 							</td>

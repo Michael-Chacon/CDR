@@ -146,7 +146,7 @@
                                            <h5 class="mt-2">
                                                <?=$materias->nombre_mat?>
                                            </h5>
-                                           <a class="stretched-link" href="<?=base_url?>Notas/homeNotas&student=<?=$estudiante->estudiante_id?>&materia=<?=$materias->id?>&nGrado=<?=$estudiante->nombre_g?>">
+                                           <a class="stretched-link" href="<?=base_url?>Notas/homeNotas&student=<?=Utils::encryption($estudiante->estudiante_id)?>&materia=<?=Utils::encryption($materias->id)?>&nGrado=<?=$estudiante->nombre_g?>">
                                            </a>
                                        </div>
                                    </div>

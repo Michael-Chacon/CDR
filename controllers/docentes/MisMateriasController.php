@@ -7,7 +7,7 @@ class MisMateriasController
         $id_grado = Utils::decryption($_GET['grado']);
         $nombre_grado = $_GET['nombre'];
         if (isset($_GET['idd'])) {
-            $docente = $_GET['idd'];
+            $docente = Utils::decryption($_GET['idd']);
         } else {
             $docente = $_SESSION['teacher']->id;
         }

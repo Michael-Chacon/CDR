@@ -127,10 +127,10 @@ Utils::borrar_error('asignarAula');?>
 										                                     <?=$materias->nombre_mat?>
 										                                 </h5>
 										                                 <?php if (isset($_SESSION['teacher'])): ?>
-										                                     <a class="stretched-link" href="<?=base_url?>Director/vista_director&subject=<?=$materias->id?>&degree=<?=$actual->id?>&name=<?=$materias->nombre_mat?>&namede=<?=$actual->nombre_g?>">
+										                                     <a class="stretched-link" href="<?=base_url?>Director/vista_director&subject=<?=Utils::encryption($materias->id)?>&degree=<?=Utils::encryption($actual->id)?>&name=<?=$materias->nombre_mat?>&namede=<?=$actual->nombre_g?>">
 										                                     </a>
 										                                 <?php else: ?>
-                                    <a class="stretched-link" href="<?=base_url?>PanelMateria/homeMateria&ide=<?=$materias->id?>&name=<?=$materias->nombre_mat?>&degree=<?=$actual->id?>&nombreg=<?=$actual->nombre_g?>">
+                                    <a class="stretched-link" href="<?=base_url?>PanelMateria/homeMateria&ide=<?=Utils::encryption($materias->id)?>&name=<?=$materias->nombre_mat?>&degree=<?=Utils::encryption($actual->id)?>&nombreg=<?=$actual->nombre_g?>">
                                     </a>
                                 <?php endif;?>
                             </div>

@@ -5,7 +5,7 @@ class ObservadorController
 {
     public function vista_observador()
     {
-        $estudiante = $_GET['id'];
+        $estudiante = Utils::decryption($_GET['id']);
         $observaciones = new Observador();
         $observaciones->setEstudiante($estudiante);
         $listado_observaciones = $observaciones->getObservation();
@@ -33,6 +33,6 @@ class ObservadorController
         $respuesta = $observador->saveWatcher();
 
         Utils::validarReturn($respuesta, 'guardar_observacion');
-        header('Location: ' . base_url . 'Observador/vista_observador&id=' . $estudiante . '&name=' . $nombre_e . '&g=' . $grado);
+        header('Location: ' . base_url . 'Observador/vista_observador&id=' . Utils::encryption($estudiante) . '&name=' . $nombre_e . '&g=' . Utils::encryption($grado));
     }
 }

@@ -21,7 +21,7 @@
                             <h6 class="mt-2">
                                 <?=$materia->nombre_mat?>
                             </h6>
-                            <a class="stretched-link" href="<?=base_url?>PanelMateria/homeMateria&ide=<?=$materia->id_materia?>&name=<?=$materia->nombre_mat?>&degree=<?=$id_grado?>&nombreg=<?=$nombre_grado?>">
+                            <a class="stretched-link" href="<?=base_url?>PanelMateria/homeMateria&ide=<?=Utils::encryption($materia->id_materia)?>&name=<?=$materia->nombre_mat?>&degree=<?=Utils::encryption($id_grado)?>&nombreg=<?=$nombre_grado?>">
                             </a>
                         </div>
                     </div>

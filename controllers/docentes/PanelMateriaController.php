@@ -9,8 +9,8 @@ class panelMateriaController
 {
     public function homeMateria()
     {
-        $grado = $_GET['degree'];
-        $materia = $_GET['ide'];
+        $grado = Utils::decryption($_GET['degree']);
+        $materia = Utils::decryption($_GET['ide']);
         $nombre_ma = $_GET['name'];
         $nombre_gra = $_GET['nombreg'];
         # obtener los documentos de la clase, si los hay
@@ -75,7 +75,7 @@ class panelMateriaController
             }
             // here
         }
-        header("Location: " . base_url . 'panelMateria/homeMateria&degree=' . $_POST['degree'] . '&ide=' . $_POST['id_materia'] . '&name=' . $_POST['name'] . '&nombreg=' . $_POST['nombreg']);
+        header("Location: " . base_url . 'panelMateria/homeMateria&degree=' . Utils::encryption($_POST['degree']) . '&ide=' . Utils::encryption($_POST['id_materia']) . '&name=' . $_POST['name'] . '&nombreg=' . $_POST['nombreg']);
     }
 
     # eliminar documentod de la materia
@@ -88,7 +88,7 @@ class panelMateriaController
         $borrador->setId($id);
         $respuestaD = $borrador->deleteClassDocument();
         Utils::validarReturn($respuestaD, 'eliminarDocumentoDClase');
-        header("Location: " . base_url . 'panelMateria/homeMateria&degree=' . $_GET['degree'] . '&ide=' . $_GET['ide'] . '&name=' . $_GET['name'] . '&nombreg=' . $_GET['nombreg']);
+        header("Location: " . base_url . 'panelMateria/homeMateria&degree=' . Utils::encryption($_GET['degree']) . '&ide=' . Utils::encryption($_GET['ide']) . '&name=' . $_GET['name'] . '&nombreg=' . $_GET['nombreg']);
     }
 
     # guardar actividades de  x materia
@@ -115,7 +115,7 @@ class panelMateriaController
                 Utils::validarReturn($estadoA, 'estadoA');
             }
         }
-        header("Location: " . base_url . 'panelMateria/homeMateria&degree=' . $_POST['degree'] . '&ide=' . $_POST['id_materia'] . '&name=' . $_POST['name'] . '&nombreg=' . $_POST['nombreg']);
+        header("Location: " . base_url . 'panelMateria/homeMateria&degree=' . Utils::encryption($_POST['degree']) . '&ide=' . Utils::encryption($_POST['id_materia']) . '&name=' . $_POST['name'] . '&nombreg=' . $_POST['nombreg']);
     }
     public function eliminarActividad()
     {
@@ -124,7 +124,7 @@ class panelMateriaController
         $borrador->setId($id);
         $resultado = $borrador->deleteActivity();
         Utils::validarReturn($resultado, 'eliminarActividad');
-        header("Location: " . base_url . 'panelMateria/homeMateria&degree=' . $_GET['degree'] . '&ide=' . $_GET['ide'] . '&name=' . $_GET['name'] . '&nombreg=' . $_GET['nombreg']);
+        header("Location: " . base_url . 'panelMateria/homeMateria&degree=' . Utils::encryption($_GET['degree']) . '&ide=' . Utils::encryption($_GET['ide']) . '&name=' . $_GET['name'] . '&nombreg=' . $_GET['nombreg']);
     }
 
     # registrar la inasistencia
@@ -143,7 +143,7 @@ class panelMateriaController
         $resultado = $asistencia->registerFails();
 
         Utils::validarReturn($resultado, 'registrarFallas');
-        header("Location: " . base_url . 'panelMateria/homeMateria&degree=' . $_POST['degree'] . '&ide=' . $_POST['id_materia'] . '&name=' . $_POST['name'] . '&nombreg=' . $_POST['nombreg']);
+        header("Location: " . base_url . 'panelMateria/homeMateria&degree=' . Utils::encryption($_POST['degree']) . '&ide=' . Utils::encryption($_POST['id_materia']) . '&name=' . $_POST['name'] . '&nombreg=' . $_POST['nombreg']);
     }
 
 } # fin de la clase

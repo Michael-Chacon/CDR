@@ -304,7 +304,7 @@
                                 <h5>
                                     Grado a mi cargo
                                 </h5>
-                                <a class="<?=$clase?>" href="<?=base_url?>Materias/vista&id_grado=<?=$id_grado?>">
+                                <a class="<?=$clase?>" href="<?=base_url?>Materias/vista&id_grado=<?=Utils::encryption($id_grado)?>">
                                 </a>
                             </div>
                         </div>

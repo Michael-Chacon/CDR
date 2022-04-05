@@ -91,7 +91,7 @@ while ($estudiantes = $listado_estudiantes->fetchObject()): ?>
                                                     <?=$c++?>
                                                 </td>
                                                 <td>
-                                                    <a href="<?=base_url?>Notas/homeNotas&student=<?=$estudiantes->id?>&materia=<?=$materia?>&nGrado=<?=$nombre_gra?>&event=bad">
+                                                    <a href="<?=base_url?>Notas/homeNotas&student=<?=Utils::encryption($estudiantes->id)?>&materia=<?=Utils::encryption($materia)?>&nGrado=<?=$nombre_gra?>&event=bad">
                                                         <?=$estudiantes->nombre_e;?> <?=$estudiantes->apellidos_e?>
                                                     </a>
                                                 </td>

@@ -8,9 +8,9 @@ class NotasController
 {
     public function homeNotas()
     {
-        $id_materia = $_GET['materia'];
+        $id_materia = Utils::decryption($_GET['materia']);
         $grado = $_GET['nGrado'];
-        $id_estudiante = $_GET['student'];
+        $id_estudiante = Utils::decryption($_GET['student']);
         # Obteniendo los datos del estudiante la cual se quire consultar las notas y demas.
         $datos_estudiante = new Estudiante();
         $datos_estudiante->setId($id_estudiante);
@@ -234,7 +234,7 @@ class NotasController
             $mal = false;
             Utils::validarReturn($mal, 'validarNota');
         }
-        header('Location: ' . base_url . 'Notas/homeNotas&student=' . $estudiante . '&materia=' . $materia . '&nGrado=' . $_POST['grado'] . '&event=ok');
+        header('Location: ' . base_url . 'Notas/homeNotas&student=' . Utils::encryption($estudiante) . '&materia=' . Utils::encryption($materia) . '&nGrado=' . $_POST['grado'] . '&event=ok');
     }
 
     # Metodo para eliminar la nota de una actividad
@@ -248,7 +248,7 @@ class NotasController
         $caneca->setItem($actividad);
         $resultado = $caneca->deleteNote();
         Utils::validarReturn($resultado, 'eliminarNota');
-        header('Location: ' . base_url . 'Notas/homeNotas&student=' . $_GET['e'] . '&materia=' . $_GET['m'] . '&nGrado=' . $_GET['g'] . '&event=ok');
+        header('Location: ' . base_url . 'Notas/homeNotas&student=' . Utils::encryption($_GET['e']) . '&materia=' . Utils::encryption($_GET['m']) . '&nGrado=' . $_GET['g'] . '&event=ok');
     }
 
 }

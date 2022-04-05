@@ -9,7 +9,7 @@ class MateriasController
 {
     public function vista()
     {
-        $grado = $_GET['id_grado'];
+        $grado = Utils::decryption($_GET['id_grado']);
         # obtener todas las materias de un grado
         $materias = new Materias();
         $materias->setIdGradoM($grado);

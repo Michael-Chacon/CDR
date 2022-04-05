@@ -51,7 +51,7 @@ Utils::borrar_error('eliminarNota');?>
                             </span>
                         </article>
                         <article class="col-md-3">
-                            <a href="<?=base_url?>Observador/vista_observador&id=<?=$estudiante->id?>&name=<?=$estudiante->nombre_e?> <?=$estudiante->apellidos_e?>&g=<?=$grado?>">
+                            <a href="<?=base_url?>Observador/vista_observador&id=<?=Utils::encryption($estudiante->id)?>&name=<?=$estudiante->nombre_e?> <?=$estudiante->apellidos_e?>&g=<?=Utils::encryption($grado)?>">
                                 <small class="badge rounded-pill bg-primary">
                                     <?=$observador->total?> Observaciones
                                 </small>
