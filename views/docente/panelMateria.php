@@ -11,7 +11,7 @@
                     <article class="col-xs-1 col-sm-1 col-md-1 col-lg-1 config icono-menu text-center">
                         <acticle class="btn-group dropstart">
                             <a aria-expanded="false" class="" data-bs-toggle="dropdown" type="button">
-                                <i class="bi bi-list efecto_hover" style="font-size: 2rem; color: white;">
+                                <i class="bi bi-list efecto_hover" style="font-size: 2rem; color: white;" data-bs-toggle="tooltip" data-bs-placement="left" title="Menú">
                                 </i>
                             </a>
                             <ul class="dropdown-menu">
@@ -231,23 +231,23 @@ $c = 0;
 while ($listado_e = $colocar_falla->fetchObject()):
     $c++;
     ?>
-	                                            <tr>
-	                                                <td>
-	                                                    <?=$c?>
-	                                                </td>
-	                                                <td>
-	                                                    <a href="">
-	                                                        <?=$listado_e->nombre_e?> <?=$listado_e->apellidos_e?>
-	                                                    </a>
-	                                                </td>
-	                                                <td>
-	                                                    <span class="form-check">
-	                                                        <input class="form-check-input" id="flexCheckDefault" type="checkbox" name="ids[]" value="<?=$listado_e->id?>">
-	                                                        </input>
-	                                                    </span>
-	                                                </td>
-	                                            </tr>
-	                                        <?php endwhile;?>
+					                                            <tr>
+					                                                <td>
+					                                                    <?=$c?>
+					                                                </td>
+					                                                <td>
+					                                                    <a href="">
+					                                                        <?=$listado_e->nombre_e?> <?=$listado_e->apellidos_e?>
+					                                                    </a>
+					                                                </td>
+					                                                <td>
+					                                                    <span class="form-check">
+					                                                        <input class="form-check-input" id="flexCheckDefault" type="checkbox" name="ids[]" value="<?=$listado_e->id?>">
+					                                                        </input>
+					                                                    </span>
+					                                                </td>
+					                                            </tr>
+					                                        <?php endwhile;?>
                                     <?php else: ?>
                                         <p class="text-center mt-3"><span class="badge bg-warning text-dark">No hay estudiantes matriculados.</span></p>
                                     <?php endif;?>

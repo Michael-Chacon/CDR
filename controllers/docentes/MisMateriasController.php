@@ -4,7 +4,7 @@ class MisMateriasController
 {
     public function misMaterias()
     {
-        $id_grado = $_GET['grado'];
+        $id_grado = Utils::decryption($_GET['grado']);
         $nombre_grado = $_GET['nombre'];
         if (isset($_GET['idd'])) {
             $docente = $_GET['idd'];

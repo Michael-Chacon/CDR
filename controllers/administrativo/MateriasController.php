@@ -29,11 +29,11 @@ class MateriasController
         $lista_jueves = $dia->listarJueves($grado);
         $lista_viernes = $dia->listarViernes($grado);
 
-        #listado de docentes Y seleccionar el docente que esta asignado como director en este grado
+        # listado de docentes Y seleccionar el docente que esta asignado como director en este grado
         $listado_docentes = new Docente();
         $listado_docentes->setGrupo($grado);
         $dir = $listado_docentes->seleccionarDirector();
-        $docentes = $listado_docentes->allDocentes();
+        $docentes = $listado_docentes->docenteDirector('no');
         # seleccionar todas las aulas
         $aulas = new Grados();
         $listado_aulas = $aulas->selectAllClassroomNotAssigned();

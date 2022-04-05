@@ -111,4 +111,22 @@ class Utils
         return $periodo;
     }
 
+    public static function encryption($dato)
+    {
+        $output = false;
+        $key = hash('sha256', SECRET_KEY);
+        $iv = substr(hash('sha256', SECRET_IV), 0, 16);
+        $output = openssl_encrypt($dato, METHOD, $key, 0, $iv);
+        $output = base64_encode($output);
+        return $output;
+    }
+
+    public static function decryption($dato)
+    {
+        $key = hash('sha256', SECRET_KEY);
+        $iv = substr(hash('sha256', SECRET_IV), 0, 16);
+        $output = openssl_decrypt(base64_decode($dato), METHOD, $key, 0, $iv);
+        return $output;
+    }
+
 } #fin de la clase

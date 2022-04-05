@@ -196,6 +196,9 @@ class DocenteController
             $asignador->setId($docente);
             $asignador->setGrupo($grado);
             $resultado = $asignador->asignarDirector();
+            if ($resultado) {
+                $asignador->uptadeDirector('si');
+            }
             Utils::validarReturn($resultado, 'directorGrado');
         }
         header("Location:" . base_url . 'Materias/vista&id_grado=' . $grado);

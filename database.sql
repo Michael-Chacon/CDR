@@ -117,6 +117,7 @@ CREATE TABLE docente(
 	posgrado_d VARCHAR(2) NOT NULL,
 	nombre_posgrado_d VARCHAR(30) NOT NULL,
 	img 	VARCHAR(255) NULL,
+	director VARCHAR(2) NULL,
 	CONSTRAINT pk_docente PRIMARY KEY(id)
 )ENGINE=InnoDb;
 
@@ -592,4 +593,7 @@ SELECT e.*, c.* FROM evaluacion e
 INNER JOIN cognitivo c ON c.id_cognitivo = e.id_cognitivo_e
 WHERE e.id_estudiante_e = 1 AND e.id_materia_e = 1 AND e.id_periodo_e = 1;
 
-# provando la validacion de la nota
+SELECT d.nombre_d, d.apellidos_d, g.nombre_g FROM director dir
+INNER JOIN grado g ON g.id = dir.id_grado_dir
+INNER JOIN docente d ON d.id = dir.id_docente_dir
+WHERE d.director = 'no';

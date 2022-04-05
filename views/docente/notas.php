@@ -10,7 +10,7 @@
             <article class="col-xs-1 col-sm-1 col-md-1 col-lg-1 config icono-menu text-center">
                 <acticle class="btn-group dropstart">
                     <a aria-expanded="false" class="" data-bs-toggle="dropdown" type="button">
-                        <i class="bi bi-list efecto_hover" style="font-size: 2rem; color: white;">
+                        <i class="bi bi-list efecto_hover" style="font-size: 2rem; color: white;" data-bs-toggle="tooltip" data-bs-placement="left" title="Menú">
                         </i>
                     </a>
                     <ul class="dropdown-menu">
@@ -100,18 +100,18 @@ if ($fechas_fallas->rowCount() != 0): ?>
                                         <?php while ($fechas = $fechas_fallas->fetchObject()):
     $f++;
     ?>
-	                                            <tr>
-	                                                <td>
-	                                                    <?=$f?>
-	                                                </td>
-	                                                <td>
-	                                                    <?=$fechas->fecha_falla?>
-	                                                </td>
-	                                                <td>
-	                                                    <?=$fechas->id_periodo_f?>
-	                                                </td>
-	                                            </tr>
-	                                        <?php endwhile;?>
+		                                            <tr>
+		                                                <td>
+		                                                    <?=$f?>
+		                                                </td>
+		                                                <td>
+		                                                    <?=$fechas->fecha_falla?>
+		                                                </td>
+		                                                <td>
+		                                                    <?=$fechas->id_periodo_f?>
+		                                                </td>
+		                                            </tr>
+		                                        <?php endwhile;?>
                                     </tbody>
                                 </table>
                             <?php else: ?>

@@ -8,18 +8,10 @@
 			<?php if (isset($_SESSION['teacher']) | isset($_SESSION['user'])): ?>
 			<article class="col-xs-1 col-sm-1 col-md-1 col-lg-1 config icono-menu text-center">
 				<acticle class="btn-group dropstart">
-					<a aria-expanded="false" class="" data-bs-toggle="dropdown" type="button">
-						<i class="bi bi-list efecto_hover" style="font-size: 2rem; color: white;">
+					<a class="" data-bs-toggle="modal" data-bs-target="#observador" type="button" href="#">
+						<i class="bi bi-plus-lg efecto_hover" style="font-size: 2rem; color: white;" data-bs-toggle="tooltip" data-bs-placement="left" title="Registrar observación">
 						</i>
 					</a>
-					<ul class="dropdown-menu">
-						<li>
-							<a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#observador" href="#">
-								<i class="bi bi-eye"></i>
-								Nueva observacion
-							</a>
-						</li>
-					</ul>
 				</acticle>
 			</article>
 		<?php else: ?>
@@ -29,8 +21,8 @@
 	<?php Utils::borrar_error('guardar_observacion')?>
 	<section class="row justify-content-center mt-5">
 		<article class="col-md-8">
-			<?php  if($listado_observaciones->rowCount() != 0): ?>
-				<?php while($observador = $listado_observaciones->fetchObject()): ?>
+			<?php if ($listado_observaciones->rowCount() != 0): ?>
+				<?php while ($observador = $listado_observaciones->fetchObject()): ?>
 			<div class="card text-white bg-dark mb-5 shadow">
 				<div class="card-header text-center">
 					<article class="row">
@@ -64,8 +56,8 @@
 					</article>
 				</article>
 			</div>
-		<?php endwhile; ?>
-		<?php endif; ?>
+		<?php endwhile;?>
+		<?php endif;?>
 		</article>
 	</section>
 </section>

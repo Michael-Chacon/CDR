@@ -22,7 +22,7 @@
                                     <?=$grado->nombre_g?>°
                                 </h2>
                                 <hr class="hr-perfil"/>
-                                <a class="stretched-link" href="<?=base_url?>MisMaterias/misMaterias&grado=<?=$grado->id?>&nombre=<?=$grado->nombre_g?>">
+                                <a class="stretched-link" href="<?=base_url?>MisMaterias/misMaterias&grado=<?=Utils::encryption($grado->id)?>&nombre=<?=$grado->nombre_g?>">
                                 </a>
                             </div>
                         </article>
@@ -294,40 +294,17 @@
                 </section>
                 <!-- fin del horario -->
                 <hr/>
+                <!-- Menú de opciones -->
                 <section class="row mt-3 mb-5">
                     <h3 class="text-center mb-5">Menu</h3>
-                    <!-- <article class="col-xs-12 col-sm-12 col-md-4 col-xl-4 mb-2">
-                        <div class="card text-center shadow option">
-                            <div class="card-body contenido-card">
-                                   <i class="bi bi-file-earmark-arrow-down" style="font-size: 3rem;"></i>
-                                <h5>
-                                    Documentos
-                                </h5>
-                                <a class="stretched-link" href="<?=base_url?>Teacher/documentos">
-                                </a>
-                            </div>
-                        </div>
-                    </article>
-                    <article class="col-xs-12 col-sm-12 col-md-4 col-xl-4 mb-2">
-                        <div class="card text-center shadow option">
-                            <div class="card-body contenido-card">
-                                   <i class="bi bi-calendar-range" style="font-size: 3rem;"></i>
-                                <h5>
-                                    Periodos
-                                </h5>
-                                <a class="stretched-link" href="<?=base_url?>Periodo/vista_config">
-                                </a>
-                            </div>
-                        </div>
-                    </article> -->
                      <article class="col-xs-12 col-sm-12 col-md-4 col-xl-4 mb-2">
                         <div class="card text-center shadow option">
                             <div class="card-body contenido-card">
-                                   <span class="" style="font-size: 3rem;"><?=$mi_grado->nombre_g?>°</span>
+                                   <span class="" style="font-size: 3rem;"><?=$nombre_grado?></span>
                                 <h5>
                                     Grado a mi cargo
                                 </h5>
-                                <a class="stretched-link" href="<?=base_url?>Materias/vista&id_grado=<?=$mi_grado->id?>">
+                                <a class="<?=$clase?>" href="<?=base_url?>Materias/vista&id_grado=<?=$id_grado?>">
                                 </a>
                             </div>
                         </div>

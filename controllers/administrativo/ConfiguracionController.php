@@ -4,6 +4,7 @@ require_once 'models/area.php';
 require_once 'models/grados.php';
 require_once 'models/materias.php';
 require_once 'models/notas.php';
+require_once 'models/docente.php';
 class ConfiguracionController
 {
     public function vista_configuracion()
@@ -39,6 +40,14 @@ class ConfiguracionController
         $procedimentales = $criterios->dataProcedimental();
         $actitudinales = $criterios->dataActitudinal();
         require_once 'views/administrativo/configuracion/notas.php';
+    }
+
+    public function vista_directores()
+    {
+        $directores = new Docente();
+        $listado_directores = $directores->directoresGrados();
+
+        require_once 'views/administrativo/configuracion/directores.php';
     }
 
     public function guardar_area()
@@ -161,6 +170,21 @@ class ConfiguracionController
         $respuesta = $actualizador->updateActitudinal();
         Utils::validarReturn($respuesta, 'actualizar_actitudinal');
         header('Location:' . base_url . 'Configuracion/vista_notas');
+    }
+
+    # Metodo para eliminar la asignacion como director a un docente
+
+    public function eliminarDirector()
+    {
+        $docente = $_GET['docente'];
+        $eliminar = new Docente();
+        $eliminar->setId($docente);
+        $respuesta = $eliminar->deleteDirector();
+        if ($respuesta) {
+            $eliminar->uptadeDirector('no');
+        }
+        Utils::validarReturn($respuesta, 'eliminar_director');
+        header('Location:' . base_url . 'Configuracion/vista_directores');
     }
 
 }

@@ -39,9 +39,10 @@ class Docente extends Usuarios
             $pos = $this->getPosgrado();
             $no_pos = $this->getNombrePosgrado();
             $img = $this->getImg();
+            $director = 'no';
             echo $img;
             if ($accion == 'guardar') {
-                $registro = $this->db->prepare("INSERT INTO docente VALUES(null, :nombre, :apellidos, :fe_na, :edad, :genero, :tipo_id, :numeroid, :lu_ex, :fe_ex, :dir, :tel, :co, :reli, :incapacidad, :grupo_s, :rh, :fe_po, :nu_acta, :nu_resolucion, :pre, :no_pre, :pos, :no_pos, :img);");
+                $registro = $this->db->prepare("INSERT INTO docente VALUES(null, :nombre, :apellidos, :fe_na, :edad, :genero, :tipo_id, :numeroid, :lu_ex, :fe_ex, :dir, :tel, :co, :reli, :incapacidad, :grupo_s, :rh, :fe_po, :nu_acta, :nu_resolucion, :pre, :no_pre, :pos, :no_pos, :img, :director);");
                 $registro->bindParam(':img', $img, PDO::PARAM_STR);
             } elseif ($accion == 'actualizar') {
                 $registro = $this->db->prepare("UPDATE docente SET nombre_d = :nombre, apellidos_d = :apellidos, fecha_nacimiento_d = :fe_na, edad_d = :edad, sexo_d = :genero, tipo_identificacion_d = :tipo_id, numero_d = :numeroid, lugar_expedicion_d = :lu_ex, fecha_expedicion_d = :fe_ex, direccion_d = :dir, telefono_d = :tel, correo_d = :co, religion_d = :reli, incapacidad_medica_d = :incapacidad, grupo_sanguineo_d = :grupo_s, rh_d = :rh, fecha_posesion_d = :fe_po, numero_acta_posesion_d = :nu_acta, numero_resolucion_posesion_d = :nu_resolucion, pregrado_d = :pre, nombre_pregrado_d = :no_pre, posgrado_d = :pos, nombre_posgrado_d = :no_pos WHERE id = :id");
@@ -70,7 +71,7 @@ class Docente extends Usuarios
             $registro->bindParam(':no_pre', $no_pre, PDO::PARAM_STR);
             $registro->bindParam(':pos', $pos, PDO::PARAM_STR);
             $registro->bindParam(':no_pos', $no_pos, PDO::PARAM_STR);
-
+            $registro->bindParam(':director', $director, PDO::PARAM_STR);
             return $registro->execute();
 
         } catch (PDOException $e) {
@@ -114,6 +115,7 @@ class Docente extends Usuarios
         return $newphoto->execute();
     }
 
+    # Metodo para asignar director a un grado
     public function asignarDirector()
     {
         $docente = $this->getId();
@@ -123,6 +125,47 @@ class Docente extends Usuarios
         $asignar->bindParam(":docente", $docente, PDO::PARAM_INT);
         $asignar->bindParam(":grado", $grado, PDO::PARAM_INT);
         return $asignar->execute();
+    }
+
+    # Metodo para actualizar el campo director a "si"en la tabla docente
+    public function uptadeDirector($estado)
+    {
+        $docente = $this->getId();
+        $director = $this->db->prepare("UPDATE docente SET director = :dir WHERE id = :docente");
+        $director->bindParam(":dir", $estado, PDO::PARAM_STR);
+        $director->bindParam(":docente", $docente, PDO::PARAM_INT);
+        $director->execute();
+    }
+
+    # Seleccionando los docentes que NO han sido asignados como directores
+    public function docenteDirector($estado)
+    {
+        $noDirector = $this->db->prepare("SELECT * FROM docente WHERE director = :estado");
+        $noDirector->bindParam(":estado", $estado, PDO::PARAM_STR);
+        $noDirector->execute();
+        return $noDirector;
+    }
+
+    # Seleccionar los docentes y el grado donde son directores
+    public function directoresGrados()
+    {
+        $estado = 'si';
+        $directores = $this->db->prepare("SELECT d.id AS 'id_docente', d.nombre_d, d.apellidos_d, .d.img,  g.nombre_g FROM director dir
+            INNER JOIN grado g ON g.id = dir.id_grado_dir
+            INNER JOIN docente d ON d.id = dir.id_docente_dir
+            WHERE d.director = :estado");
+        $directores->bindParam(":estado", $estado, PDO::PARAM_STR);
+        $directores->execute();
+        return $directores;
+    }
+
+    # Eliminar la asignacion como director a un docente
+    public function deleteDirector()
+    {
+        $docente = $this->getId();
+        $eliminar = $this->db->prepare("DELETE FROM director WHERE id_docente_dir = :docente");
+        $eliminar->bindParam(":docente", $docente, PDO::PARAM_INT);
+        return $eliminar->execute();
     }
 
     #seleccionar el director
@@ -146,7 +189,7 @@ class Docente extends Usuarios
             WHERE d.id_docente_dir = :id;");
         $grado->bindParam(":id", $docente, PDO::PARAM_INT);
         $grado->execute();
-        return $grado->fetchObject();
+        return $grado;
     }
 
 } #FIN DE LA CLASE

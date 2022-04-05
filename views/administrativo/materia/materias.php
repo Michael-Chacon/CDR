@@ -35,9 +35,9 @@
 <?php echo Utils::general_alerts('asignarAula', 'Aula asignada con éxito', 'Algo salió mal al intentar asignar el aula, inténtelo de nuevo.') ?>
 <?php if (!isset($_SESSION['teacher'])): ?>
     <?php Utils::borrar_error('eliminarHora');
-    Utils::borrar_error('registrarHorario');
-    Utils::borrar_error("directorGrado");
-    Utils::borrar_error('asignarAula');?>
+Utils::borrar_error('registrarHorario');
+Utils::borrar_error("directorGrado");
+Utils::borrar_error('asignarAula');?>
 
     <section class="row">
         <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -116,20 +116,20 @@
                     Materias
                 </h3>
                 <?php if (isset($datos)):
-                    while ($materias = $datos->fetchObject()): ?>
-                     <article class="col-xs-12 col-sm-6 col-md-4 col-xl-4 mb-2">
-                         <div class="card text-center shadow option">
-                             <div class="card-body contenido-card materias">
-                                 <i class="<?=$materias->icono?>" style="font-size: 3rem;">
-                                 </i>
-                                 <hr class="hr-perfil"/>
-                                 <h5 class="mt-2">
-                                     <?=$materias->nombre_mat?>
-                                 </h5>
-                                 <?php if (isset($_SESSION['teacher'])): ?>
-                                     <a class="stretched-link" href="<?=base_url?>Director/vista_director&subject=<?=$materias->id?>&degree=<?=$actual->id?>&name=<?=$materias->nombre_mat?>&namede=<?=$actual->nombre_g?>">
-                                     </a>
-                                 <?php else: ?>
+    while ($materias = $datos->fetchObject()): ?>
+										                     <article class="col-xs-12 col-sm-6 col-md-4 col-xl-4 mb-2">
+										                         <div class="card text-center shadow option">
+										                             <div class="card-body contenido-card materias">
+										                                 <i class="<?=$materias->icono?>" style="font-size: 3rem;">
+										                                 </i>
+										                                 <hr class="hr-perfil"/>
+										                                 <h5 class="mt-2">
+										                                     <?=$materias->nombre_mat?>
+										                                 </h5>
+										                                 <?php if (isset($_SESSION['teacher'])): ?>
+										                                     <a class="stretched-link" href="<?=base_url?>Director/vista_director&subject=<?=$materias->id?>&degree=<?=$actual->id?>&name=<?=$materias->nombre_mat?>&namede=<?=$actual->nombre_g?>">
+										                                     </a>
+										                                 <?php else: ?>
                                     <a class="stretched-link" href="<?=base_url?>PanelMateria/homeMateria&ide=<?=$materias->id?>&name=<?=$materias->nombre_mat?>&degree=<?=$actual->id?>&nombreg=<?=$actual->nombre_g?>">
                                     </a>
                                 <?php endif;?>
@@ -137,7 +137,7 @@
                         </div>
                     </article>
                 <?php endwhile;
-            endif;?>
+endif;?>
         </section>
         <!-- fin materias -->
     </section>
@@ -164,14 +164,14 @@
                 </li>
             </ul>
             <?php if (isset($estudi)):
-                $c = 1;
-                while ($estudiantes = $estudi->fetchObject()): ?>
-                  <ul class="list-group mb-1 ">
-                     <li class="list-group-item fila-estudiante">
-                         <?php if (!isset($_SESSION['teacher'])): ?>
-                             <a class="stretched-link" href="<?=base_url?>Estudiante/perfilEstudiante&x=<?=$estudiantes->id?>&y=<?=$estudiantes->id_familia_e?>&z=<?=$estudiantes->id_grado?>">
-                             </a>
-                         <?php endif?>
+    $c = 1;
+    while ($estudiantes = $estudi->fetchObject()): ?>
+										                  <ul class="list-group mb-1 ">
+										                     <li class="list-group-item fila-estudiante">
+										                         <?php if (!isset($_SESSION['teacher'])): ?>
+										                             <a class="stretched-link" href="<?=base_url?>Estudiante/perfilEstudiante&x=<?=$estudiantes->id?>&y=<?=$estudiantes->id_familia_e?>&z=<?=$estudiantes->id_grado?>">
+										                             </a>
+										                         <?php endif?>
                          <div class="row">
                             <div class="col-md-2 nombre-apellidos-numero">
                                 <?=$c++?>
@@ -188,7 +188,7 @@
                 </li>
             </ul>
         <?php endwhile;
-    endif;?>
+endif;?>
 </article >
 </section>
 <!-- fin estudiantes -->
@@ -502,16 +502,15 @@
                         </div>
                         <div class="modal-body">
                             <form action="<?=base_url?>Docente/directorGrado" method="post">
-                                <input type="text" name="grado" value="<?=$actual->id?>" hidden>
+                                <input type="text" name="grado" value="<?=$actual->id?>" hidden />
                                 <?php if ($docentes->rowCount() != 0): ?>
                                     <?php while ($docente = $docentes->fetchObject()): ?>
                                         <div class="form-check">
-                                            <input class="form-check-input" id="radio<?=$docente->id?>" name="director" value="<?=$docente->id?>" type="radio">
+                                            <input class="form-check-input" id="radio<?=$docente->id?>" name="director" value="<?=$docente->id?>" type="radio"/>
                                             <label class="form-check-label" for="radio<?=$docente->id?>">
                                                 <?=$docente->nombre_d?><?=$docente->apellidos_d?>
                                             </label>
-                                        </input>
-                                    </div>
+                                        </div>
                                 <?php endwhile;?>
                             <?php else: ?>
                                 <p class="text-center mt-3"><span class="badge bg-warning text-dark">No hay docentes disponibles.</span></p>
@@ -591,9 +590,9 @@
                      <div class="form-floating mb-3">
                       <select class="form-select" aria-label="Default select example" name="materia_area_icono" required="">
                         <option></option>
-                        <?php while($subjects = $listado_materias->fetchObject()): ?>
+                        <?php while ($subjects = $listado_materias->fetchObject()): ?>
                        <option value="<?=$subjects->nombre_materia?>/<?=$subjects->id_area_m?>/<?=$subjects->icono?>"><?=$subjects->nombre_materia?></option>
-                        <?php endwhile; ?>
+                        <?php endwhile;?>
                    </select>
                    <label for="materia">
                     Seleccione la materia:
