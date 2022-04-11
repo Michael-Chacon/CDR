@@ -44,6 +44,7 @@ class Docente extends Usuarios
             if ($accion == 'guardar') {
                 $registro = $this->db->prepare("INSERT INTO docente VALUES(null, :nombre, :apellidos, :fe_na, :edad, :genero, :tipo_id, :numeroid, :lu_ex, :fe_ex, :dir, :tel, :co, :reli, :incapacidad, :grupo_s, :rh, :fe_po, :nu_acta, :nu_resolucion, :pre, :no_pre, :pos, :no_pos, :img, :director);");
                 $registro->bindParam(':img', $img, PDO::PARAM_STR);
+                $registro->bindParam(':director', $director, PDO::PARAM_STR);
             } elseif ($accion == 'actualizar') {
                 $registro = $this->db->prepare("UPDATE docente SET nombre_d = :nombre, apellidos_d = :apellidos, fecha_nacimiento_d = :fe_na, edad_d = :edad, sexo_d = :genero, tipo_identificacion_d = :tipo_id, numero_d = :numeroid, lugar_expedicion_d = :lu_ex, fecha_expedicion_d = :fe_ex, direccion_d = :dir, telefono_d = :tel, correo_d = :co, religion_d = :reli, incapacidad_medica_d = :incapacidad, grupo_sanguineo_d = :grupo_s, rh_d = :rh, fecha_posesion_d = :fe_po, numero_acta_posesion_d = :nu_acta, numero_resolucion_posesion_d = :nu_resolucion, pregrado_d = :pre, nombre_pregrado_d = :no_pre, posgrado_d = :pos, nombre_posgrado_d = :no_pos WHERE id = :id");
                 $registro->bindParam(":id", $id_d, PDO::PARAM_INT);
@@ -71,7 +72,6 @@ class Docente extends Usuarios
             $registro->bindParam(':no_pre', $no_pre, PDO::PARAM_STR);
             $registro->bindParam(':pos', $pos, PDO::PARAM_STR);
             $registro->bindParam(':no_pos', $no_pos, PDO::PARAM_STR);
-            $registro->bindParam(':director', $director, PDO::PARAM_STR);
             return $registro->execute();
 
         } catch (PDOException $e) {

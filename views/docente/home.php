@@ -9,7 +9,7 @@
                 </section>
             </section>
             <section class="container-fluit">
-                <section class="row justify-content-center">
+                <section class="row">
                     <h3 class="text-center mt-2 mb-5">
                         Grados
                     </h3>
@@ -18,9 +18,22 @@
                     <article class="col-xs-12 col-sm-4 col-md-2 col-xl-2 mb-2">
                         <article class="card text-center shadow option">
                             <div class="card-body contenido-card">
-                                <h2 class="mt-2 grados">
-                                    <?=$grado->nombre_g?>°
-                                </h2>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <span class="mt-2 grados">
+                                            <?=$grado->nombre_g?>°
+                                        </span>
+                                    </div>
+                                    <div class="col-md-6 text-center">
+                                        <div class="row">
+                                            <small>(<?=$grado->nombre?>)</small>
+                                        </div>
+                                        <div class="row">
+                                            <span class="aula">aula</span>
+                                        </div>
+                                    </div>
+                                </div>
+
                                 <hr class="hr-perfil"/>
                                 <a class="stretched-link" href="<?=base_url?>MisMaterias/misMaterias&grado=<?=Utils::encryption($grado->id)?>&nombre=<?=$grado->nombre_g?>">
                                 </a>

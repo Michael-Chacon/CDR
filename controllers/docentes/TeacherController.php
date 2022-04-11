@@ -21,7 +21,7 @@ class TeacherController
         $dia_jueves = $dia->horarioJueves();
         $dia_viernes = $dia->horarioViernes();
 
-        #grado don de es el director
+        #grado donde es el director
         $dir = new Docente();
         $dir->setId($id_docente);
         $mi_grado = $dir->seleccionarGradoDirector();

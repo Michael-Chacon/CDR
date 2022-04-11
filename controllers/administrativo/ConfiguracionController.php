@@ -39,7 +39,37 @@ class ConfiguracionController
         $cognitivas = $criterios->dataCognitivo();
         $procedimentales = $criterios->dataProcedimental();
         $actitudinales = $criterios->dataActitudinal();
-        require_once 'views/administrativo/configuracion/notas.php';
+
+        if (empty($cognitivas->porcentaje_cognitivo)) {
+            $cognitivo = 0;
+            $evaluacion = 0;
+            $trimestral = 0;
+        } else {
+            $cognitivo = $cognitivas->porcentaje_cognitivo;
+            $evaluacion = $cognitivas->porcentaje_evaluacion;
+            $trimestral = $cognitivas->porcentaje_trimestral;
+        }
+
+        if (empty($procedimentales->porcentaje_procedimental)) {
+            $procedimental = 0;
+            $individual = 0;
+            $colaborativo = 0;
+        } else {
+            $procedimental = $procedimentales->porcentaje_procedimental;
+            $individual = $procedimentales->porcentaje_Tindividual;
+            $colaborativo = $procedimentales->porcentaje_Tcolaborativo;
+        }
+
+        if (empty($actitudinales->porcentaje_actitudinal)) {
+            $actitudinal = 0;
+            $apreciativa = 0;
+            $autoevaluacion = 0;
+        } else {
+            $actitudinal = $actitudinales->porcentaje_actitudinal;
+            $apreciativa = $actitudinales->porcentaje_apreciativa;
+            $autoevaluacion = $actitudinales->porcentaje_autoevaluacion;
+        }
+        require_once 'views/administrativo/configuracion/porcentaje.php';
     }
 
     public function vista_directores()

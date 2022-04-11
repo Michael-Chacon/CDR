@@ -470,7 +470,17 @@ class Notas
         $criterio_cognitivo = $this->getCognitivo();
         $evaluaciones = $this->getEvaluacion();
         $trimestrales = $this->getTrimestral();
-        $actualizacion = $this->db->prepare("UPDATE cognitivo SET porcentaje_cognitivo = :cognitivo, porcentaje_evaluacion = :evaluacion, porcentaje_trimestral = :trimestral");
+
+        $validacion = $this->db->prepare('SELECT * FROM cognitivo');
+        $validacion->execute();
+        $resultado = $validacion->rowCount();
+
+        if ($resultado == 0) {
+            $actualizacion = $this->db->prepare('INSERT INTO cognitivo VALUES(null, :cognitivo, :evaluacion, :trimestral)');
+        } else {
+            $actualizacion = $this->db->prepare("UPDATE cognitivo SET porcentaje_cognitivo = :cognitivo, porcentaje_evaluacion = :evaluacion, porcentaje_trimestral = :trimestral");
+        }
+
         $actualizacion->bindParam(":cognitivo", $criterio_cognitivo, PDO::PARAM_INT);
         $actualizacion->bindParam(":evaluacion", $evaluaciones, PDO::PARAM_INT);
         $actualizacion->bindParam(":trimestral", $trimestrales, PDO::PARAM_INT);
@@ -482,7 +492,16 @@ class Notas
         $criterio_procedimental = $this->getProcedimental();
         $individual = $this->getTindividual();
         $colaborativo = $this->getTcolaborativo();
-        $actualizacion = $this->db->prepare("UPDATE procedimental SET porcentaje_procedimental = :procedimental, porcentaje_Tindividual = :individual, porcentaje_Tcolaborativo = :colaborativo");
+
+        $validacion = $this->db->prepare('SELECT * FROM procedimental');
+        $validacion->execute();
+        $resultado = $validacion->rowCount();
+
+        if ($resultado == 0) {
+            $actualizacion = $this->db->prepare('INSERT INTO procedimental VALUES(null, :procedimental, :individual, :colaborativo)');
+        } else {
+            $actualizacion = $this->db->prepare("UPDATE procedimental SET porcentaje_procedimental = :procedimental, porcentaje_Tindividual = :individual, porcentaje_Tcolaborativo = :colaborativo");
+        }
         $actualizacion->bindParam(":procedimental", $criterio_procedimental, PDO::PARAM_INT);
         $actualizacion->bindParam(":individual", $individual, PDO::PARAM_INT);
         $actualizacion->bindParam(":colaborativo", $colaborativo, PDO::PARAM_INT);
@@ -494,7 +513,17 @@ class Notas
         $criterio_atitudinal = $this->getActitudinal();
         $apreciativas = $this->getApreciativa();
         $autoevaluaciones = $this->getAutoevaluacion();
-        $actualizacion = $this->db->prepare("UPDATE actitudinal SET porcentaje_actitudinal = :actitudinal, porcentaje_apreciativa = :apreciativas, porcentaje_autoevaluacion = :autoevaluacion");
+
+        $validacion = $this->db->prepare('SELECT * FROM actitudinal');
+        $validacion->execute();
+        $resultado = $validacion->rowCount();
+
+        if ($resultado == 0) {
+            $actualizacion = $this->db->prepare("INSERT INTO actitudinal VALUES(null, :actitudinal, :apreciativas, :autoevaluacion)");
+        } else {
+            $actualizacion = $this->db->prepare("UPDATE actitudinal SET porcentaje_actitudinal = :actitudinal, porcentaje_apreciativa = :apreciativas, porcentaje_autoevaluacion = :autoevaluacion");
+        }
+
         $actualizacion->bindParam(":actitudinal", $criterio_atitudinal, PDO::PARAM_INT);
         $actualizacion->bindParam(":apreciativas", $apreciativas, PDO::PARAM_INT);
         $actualizacion->bindParam(":autoevaluacion", $autoevaluaciones, PDO::PARAM_INT);

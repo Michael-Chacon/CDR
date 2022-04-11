@@ -151,23 +151,25 @@ class NotasController
         $periodo = Utils::validarPeriodoAcademico($hoy);
 
         # metodo para avilitar el boton de borrado
-        switch ($periodo) {
-            case '1':
-                $uno = '';
-                $dos = 'btn disabled';
-                $tres = 'btn disabled';
-                break;
-            case '2':
-                $uno = 'btn disabled';
-                $dos = '';
-                $tres = 'btn disabled';
-                break;
-            case '3':
-                $uno = 'btn disabled';
-                $dos = 'btn disabled';
-                $tres = '';
-                break;
-        }
+
+            switch ($periodo) {
+                case '1':
+                    $uno = '';
+                    $dos = 'btn disabled';
+                    $tres = 'btn disabled';
+                    break;
+                case '2':
+                    $uno = 'btn disabled';
+                    $dos = '';
+                    $tres = 'btn disabled';
+                    break;
+                case '3':
+                    $uno = 'btn disabled';
+                    $dos = 'btn disabled';
+                    $tres = '';
+                    break;
+            }
+
 
         # validar el periodo en el que se está, para insertar la nota definitiva en el periodo correspondiente, solo se actualiza cuando se  registra o se eliminar una nota
         if (isset($_GET['event']) && $_GET['event'] == 'ok') {

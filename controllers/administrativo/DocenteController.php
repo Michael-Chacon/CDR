@@ -115,10 +115,10 @@ class DocenteController
                     $documento = false;
                     Utils::validarReturn($documento, 'validacion_d');
                 }
+                  header('Location: ' . base_url . 'Docente/vista_docente');
             }
 
         }
-        header('Location: ' . base_url . 'Docente/vista_docente');
     }
 
     # perfil del docente
@@ -201,7 +201,7 @@ class DocenteController
             }
             Utils::validarReturn($resultado, 'directorGrado');
         }
-        header("Location:" . base_url . 'Materias/vista&id_grado=' . $grado);
+        header("Location:" . base_url . 'Materias/vista&id_grado=' . Utils::encryption($grado));
     }
 
 } # fin de la clase

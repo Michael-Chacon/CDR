@@ -146,15 +146,15 @@
 					<div class="modal-body">
 						<div class="mb-3">
 							<label for="cognitivo" class="form-label">Porcentaje cognitivo:</label>
-							<input type="text" class="form-control" id="cognitivo" placeholder="Porcentaje" name="cognitivo" value="<?=$cognitivas->porcentaje_cognitivo?>">
+							<input type="text" class="form-control" id="cognitivo" placeholder="Porcentaje" name="cognitivo" value="<?=$cognitivo?>">
 						</div>
 						<div class="mb-3">
 							<label for="evaluacion" class="form-label">Porcentaje evaluacion:</label>
-							<input type="text" class="form-control" id="evaluacion" placeholder="Porcentaje" name="evaluacion" value="<?=$cognitivas->porcentaje_evaluacion?>">
+							<input type="text" class="form-control" id="evaluacion" placeholder="Porcentaje" name="evaluacion" value="<?=$evaluacion?>">
 						</div>
 						<div class="mb-3">
 							<label for="trimestral" class="form-label">Porcentajet trimestral:</label>
-							<input type="text" class="form-control" id="trimestral" placeholder="Porcentaje" name="trimestral" value="<?=$cognitivas->porcentaje_trimestral?>">
+							<input type="text" class="form-control" id="trimestral" placeholder="Porcentaje" name="trimestral" value="<?=$trimestral?>">
 						</div>
 					</div>
 					<div class="modal-footer">
@@ -178,15 +178,15 @@
 					<div class="modal-body">
 						<div class="mb-3">
 							<label for="procedimental" class="form-label">Porcentaje procedimental:</label>
-							<input type="text" class="form-control" id="procedimental" placeholder="Porcentaje" name="procedimental" value="<?=$procedimentales->porcentaje_procedimental?>">
+							<input type="text" class="form-control" id="procedimental" placeholder="Porcentaje" name="procedimental" value="<?=$procedimental?>">
 						</div>
 						<div class="mb-3">
 							<label for="individual" class="form-label">Porcentaje trabajo individual:</label>
-							<input type="text" class="form-control" id="individual" placeholder="Porcentaje" name="individual" value="<?=$procedimentales->porcentaje_Tindividual?>">
+							<input type="text" class="form-control" id="individual" placeholder="Porcentaje" name="individual" value="<?=$individual?>">
 						</div>
 						<div class="mb-3">
 							<label for="colaborativo" class="form-label">Porcentajet trabajo colaborativo:</label>
-							<input type="text" class="form-control" id="colaborativo" placeholder="Porcentaje" name="colaborativo" value="<?=$procedimentales->porcentaje_Tcolaborativo?>">
+							<input type="text" class="form-control" id="colaborativo" placeholder="Porcentaje" name="colaborativo" value="<?=$colaborativo?>">
 						</div>
 					</div>
 					<div class="modal-footer">
@@ -210,15 +210,15 @@
 					<div class="modal-body">
 						<div class="mb-3">
 							<label for="actitudinal" class="form-label">Porcentaje actitudinal:</label>
-							<input type="text" class="form-control" id="actitudinal" placeholder="Porcentaje" name="actitudinal" value="<?=$actitudinales->porcentaje_actitudinal?>">
+							<input type="text" class="form-control" id="actitudinal" placeholder="Porcentaje" name="actitudinal" value="<?=$actitudinal?>">
 						</div>
 						<div class="mb-3">
 							<label for="apreciativa" class="form-label">Porcentaje apreciativa:</label>
-							<input type="text" class="form-control" id="apreciativa" placeholder="Porcentaje" name="apreciativa" value="<?=$actitudinales->porcentaje_apreciativa?>">
+							<input type="text" class="form-control" id="apreciativa" placeholder="Porcentaje" name="apreciativa" value="<?=$apreciativa?>">
 						</div>
 						<div class="mb-3">
 							<label for="autoevaluacion" class="form-label">Porcentajet Autoevaluación:</label>
-							<input type="text" class="form-control" id="autoevaluacion" placeholder="Porcentaje" name="autoevaluacion" value="<?=$actitudinales->porcentaje_autoevaluacion?>">
+							<input type="text" class="form-control" id="autoevaluacion" placeholder="Porcentaje" name="autoevaluacion" value="<?=$autoevaluacion?>">
 						</div>
 					</div>
 					<div class="modal-footer">

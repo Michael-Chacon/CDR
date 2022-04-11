@@ -106,10 +106,16 @@ class Grados
     #obtener los alumos de determinado grado
     public function EstudiantesGrado()
     {
-        $grado = $this->getGrado();
-        $estudiantes = $this->db->prepare("SELECT e.*, g.id AS 'id_grado' FROM estudiante e  INNER JOIN grado g ON g.id = e.id_gradoE WHERE g.id = $grado;");
-        $estudiantes->execute();
-        return $estudiantes;
+        try {
+            $grado = $this->getGrado();
+            $estudiantes = $this->db->prepare("SELECT e.*, g.id AS 'id_grado' FROM
+                estudiante e  INNER JOIN grado g ON g.id = e.id_gradoE
+                WHERE g.id = $grado");
+            $estudiantes->execute();
+            return $estudiantes;
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
     }
 
     #identificar el grado

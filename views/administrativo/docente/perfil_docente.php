@@ -654,7 +654,7 @@
                 </article>
             </section>
         </section>
-        <!-- #modal para axtualizar datos -->
+        <!-- #modal para actualizar datos -->
         <section aria-hidden="true" aria-labelledby="exampleModalLabel" class="modal fade" data-bs-backdrop="static" id="actualizarDatos" tabindex="-1">
             <section class="modal-dialog modal-lg">
                 <div class="modal-content">

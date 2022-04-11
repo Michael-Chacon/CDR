@@ -27,6 +27,9 @@
         <?php else: ?>
         <?php endif;?>
     </section>
+    <h2 class="visually-hidden">Title for screen readers</h2>
+<a class="visually-hidden-focusable" href="#content">Skip to main content</a>
+<div class="visually-hidden-focusable">A container with a <a href="#">focusable element</a>.</div>
     <!-- fin del header -->
     <section class="row justify-content-center">
         <?php echo Utils::general_alerts('registrarNota', 'Nota registrada con éxito.', ' El porcentaje de esta nota sobrepasa el límite del 100%') ?>
@@ -100,18 +103,18 @@ if ($fechas_fallas->rowCount() != 0): ?>
                                         <?php while ($fechas = $fechas_fallas->fetchObject()):
     $f++;
     ?>
-		                                            <tr>
-		                                                <td>
-		                                                    <?=$f?>
-		                                                </td>
-		                                                <td>
-		                                                    <?=$fechas->fecha_falla?>
-		                                                </td>
-		                                                <td>
-		                                                    <?=$fechas->id_periodo_f?>
-		                                                </td>
-		                                            </tr>
-		                                        <?php endwhile;?>
+					                                            <tr>
+					                                                <td>
+					                                                    <?=$f?>
+					                                                </td>
+					                                                <td>
+					                                                    <?=$fechas->fecha_falla?>
+					                                                </td>
+					                                                <td>
+					                                                    <?=$fechas->id_periodo_f?>
+					                                                </td>
+					                                            </tr>
+					                                        <?php endwhile;?>
                                     </tbody>
                                 </table>
                             <?php else: ?>
@@ -149,7 +152,9 @@ if ($fechas_fallas->rowCount() != 0): ?>
                     <th scope="col">Criterio</th>
                     <th scope="col">actividad</th>
                     <th scope="col">nota</th>
+                    <?php if (isset($_SESSION['teacher'])): ?>
                     <th scope="col" class="text-center">Eliminar</th>
+                    <?php endif; ?>
                 </tr>
             </thead>
             <tbody>
@@ -163,7 +168,12 @@ if ($fechas_fallas->rowCount() != 0): ?>
                         <?=$evaluacionPeriodo1->nota_evaluacion?>
                     <?php endif;?>
                 </td>
-                <td class="text-center"><a onclick="return confirm('¿Estás seguro de que deseas eliminar la nota?')" href="<?=base_url?>Notas/eliminarNota&activity=evaluacion&id=<?=$evaluacionPeriodo1->id_evaluacion?>&m=<?=$id_materia?>&g=<?=$grado?>&e=<?=$id_estudiante?>" class="<?=$uno?>"><i class="bi bi-trash efecto_hover"></i></a></td>
+                    <?php if (isset($_SESSION['teacher'])): ?>
+                <td class="text-center">
+                    <a onclick="return confirm('¿Estás seguro de que deseas eliminar la nota?')" href="<?=base_url?>Notas/eliminarNota&activity=evaluacion&id=<?=$evaluacionPeriodo1->id_evaluacion?>&m=<?=$id_materia?>&g=<?=$grado?>&e=<?=$id_estudiante?>" class="<?=$uno?>"><i class="bi bi-trash efecto_hover"></i>
+                    </a>
+                </td>
+            <?php endif; ?>
             </tr>
             <tr>
               <td scope="row"></td>
@@ -175,9 +185,11 @@ if ($fechas_fallas->rowCount() != 0): ?>
                     <?=$trimestralPeriodo1->nota_trimestral?>
                 <?php endif;?>
             </td>
+             <?php if (isset($_SESSION['teacher'])): ?>
             <td class="text-center">
                 <a onclick="return confirm('¿Estás seguro de que deseas eliminar la nota?')" href="<?=base_url?>Notas/eliminarNota&activity=trimestral&id=<?=$trimestralPeriodo1->id_trimestral?>&m=<?=$id_materia?>&g=<?=$grado?>&e=<?=$id_estudiante?>"  class="<?=$uno?>"><i class="bi bi-trash efecto_hover"></i></a>
             </td>
+        <?php endif; ?>
         </tr>
         <tr>
           <td scope="row"></td>
@@ -204,8 +216,11 @@ if ($fechas_fallas->rowCount() != 0): ?>
                 <?=$trabajoIndividualPeriodo1->nota_Tindividual?>
             <?php endif;?>
         </td>
-        <td class="text-center"><a onclick="return confirm('¿Estás seguro de que deseas eliminar la nota?')" href="<?=base_url?>Notas/eliminarNota&activity=tindividual&id=<?=$trabajoIndividualPeriodo1->id_Tindividual?>&m=<?=$id_materia?>&g=<?=$grado?>&e=<?=$id_estudiante?>" class="<?=$uno?>"><i class="bi bi-trash efecto_hover"></i></a></td>
-    </tr>
+        <?php if (isset($_SESSION['teacher'])): ?>
+        <td class="text-center">
+                <a onclick="return confirm('¿Estás seguro de que deseas eliminar la nota?')" href="<?=base_url?>Notas/eliminarNota&activity=tindividual&id=<?=$trabajoIndividualPeriodo1->id_Tindividual?>&m=<?=$id_materia?>&g=<?=$grado?>&e=<?=$id_estudiante?>" class="<?=$uno?>"><i class="bi bi-trash efecto_hover"></i></a></td>
+        <?php endif; ?>
+        </tr>
     <tr>
       <td scope="row" ></td>
       <td class="procedimental">Trabajo colaborativo (<?=$procedimental->porcentaje_Tcolaborativo?>%)</td>
@@ -216,7 +231,9 @@ if ($fechas_fallas->rowCount() != 0): ?>
             <?=$trabajoColaborativoPeriodo1->nota_Tcolaborativo?>
         <?php endif;?>
     </td>
+    <?php if (isset($_SESSION['teacher'])): ?>
     <td class="text-center"><a onclick="return confirm('¿Estás seguro de que deseas eliminar la nota?')" href="<?=base_url?>Notas/eliminarNota&activity=tcolaborativo&id=<?=$trabajoColaborativoPeriodo1->id_Tcolaborativo?>&m=<?=$id_materia?>&g=<?=$grado?>&e=<?=$id_estudiante?>" class="<?=$uno?>"><i class="bi bi-trash efecto_hover"></i></a></td>
+<?php endif; ?>
 </tr>
 <tr>
   <td scope="row"></td>
@@ -243,7 +260,9 @@ if ($fechas_fallas->rowCount() != 0): ?>
         <?=$apreciativaPeriodo1->nota_apreciativa?>
     <?php endif;?>
 </td>
+<?php if (isset($_SESSION['teacher'])): ?>
 <td class="text-center"><a onclick="return confirm('¿Estás seguro de que deseas eliminar la nota?')" href="<?=base_url?>Notas/eliminarNota&activity=apreciativa&id=<?=$apreciativaPeriodo1->id_apreciativa?>&m=<?=$id_materia?>&g=<?=$grado?>&e=<?=$id_estudiante?>" class="<?=$uno?>"><i class="bi bi-trash efecto_hover"></i></a></td>
+<?php endif; ?>
 </tr>
 <tr>
   <td scope="row" ></td>
@@ -254,9 +273,10 @@ if ($fechas_fallas->rowCount() != 0): ?>
     <?php else: ?>
         <?=$autoevaluacionPeriodo1->nota_autoevaluacion?>
     <?php endif;?>
-
 </td>
+<?php if (isset($_SESSION['teacher'])): ?>
 <td class="text-center"><a onclick="return confirm('¿Estás seguro de que deseas eliminar la nota?')" href="<?=base_url?>Notas/eliminarNota&activity=autoevaluacion&id=<?=$autoevaluacionPeriodo1->id_autoevaluacion?>&m=<?=$id_materia?>&g=<?=$grado?>&e=<?=$id_estudiante?>" class="<?=$uno?>"><i class="bi bi-trash efecto_hover"></i></a></td>
+<?php endif; ?>
 </tr>
 <tr>
   <td scope="row"></td>
@@ -302,7 +322,9 @@ if ($fechas_fallas->rowCount() != 0): ?>
                     <th scope="col">Criterio</th>
                     <th scope="col">actividad</th>
                     <th scope="col">nota</th>
+                    <?php if (isset($_SESSION['teacher'])): ?>
                     <th class="text-center" scope="col">Eliminar</th>
+                <?php endif; ?>
                 </tr>
             </thead>
             <tbody>
@@ -316,7 +338,9 @@ if ($fechas_fallas->rowCount() != 0): ?>
                         <?=$evaluacionPeriodo2->nota_evaluacion?>
                     <?php endif;?>
                 </td>
+                <?php if (isset($_SESSION['teacher'])): ?>
                 <td class="text-center"><a onclick="return confirm('¿Estás seguro de que deseas eliminar la nota?')" href="<?=base_url?>Notas/eliminarNota&activity=evaluacion&id=<?=$evaluacionPeriodo2->id_evaluacion?>&m=<?=$id_materia?>&g=<?=$grado?>&e=<?=$id_estudiante?>" class="<?=$dos?>"><i class="bi bi-trash efecto_hover"></i></a></td>
+            <?php endif; ?>
             </tr>
             <tr>
               <td scope="row"></td>
@@ -328,7 +352,9 @@ if ($fechas_fallas->rowCount() != 0): ?>
                     <?=$trimestralPeriodo2->nota_trimestral?>
                 <?php endif;?>
             </td>
+            <?php if (isset($_SESSION['teacher'])): ?>
             <td class="text-center"><a onclick="return confirm('¿Estás seguro de que deseas eliminar la nota?')" href="<?=base_url?>Notas/eliminarNota&activity=trimestral&id=<?=$trimestralPeriodo2->id_trimestral?>&m=<?=$id_materia?>&g=<?=$grado?>&e=<?=$id_estudiante?>" class="<?=$dos?>"><i class="bi bi-trash efecto_hover"></i></a></td>
+        <?php endif; ?>
         </tr>
         <tr>
           <td scope="row"></td>
@@ -355,7 +381,9 @@ if ($fechas_fallas->rowCount() != 0): ?>
                 <?=$trabajoIndividualPeriodo2->nota_Tindividual?>
             <?php endif;?>
         </td>
+        <?php if (isset($_SESSION['teacher'])): ?>
         <td class="text-center"><a onclick="return confirm('¿Estás seguro de que deseas eliminar la nota?')" href="<?=base_url?>Notas/eliminarNota&activity=tindividual&id=<?=$trabajoIndividualPeriodo2->id_Tindividual?>&m=<?=$id_materia?>&g=<?=$grado?>&e=<?=$id_estudiante?>" class="<?=$dos?>"><i class="bi bi-trash efecto_hover"></i></a></td>
+    <?php endif; ?>
     </tr>
     <tr>
       <td scope="row" ></td>
@@ -367,7 +395,9 @@ if ($fechas_fallas->rowCount() != 0): ?>
             <?=$trabajoColaborativoPeriodo2->nota_Tcolaborativo?>
         <?php endif;?>
     </td>
+    <?php if (isset($_SESSION['teacher'])): ?>
     <td class="text-center"><a onclick="return confirm('¿Estás seguro de que deseas eliminar la nota?')" href="<?=base_url?>Notas/eliminarNota&activity=tcolaborativo&id=<?=$trabajoColaborativoPeriodo2->id_Tcolaborativo?>&m=<?=$id_materia?>&g=<?=$grado?>&e=<?=$id_estudiante?>" class="<?=$dos?>"><i class="bi bi-trash efecto_hover"></i></a></td>
+<?php endif; ?>
 </tr>
 <tr>
   <td scope="row"></td>
@@ -394,7 +424,9 @@ if ($fechas_fallas->rowCount() != 0): ?>
         <?=$apreciativaPeriodo2->nota_apreciativa?>
     <?php endif;?>
 </td>
+<?php if (isset($_SESSION['teacher'])): ?>
 <td class="text-center"><a onclick="return confirm('¿Estás seguro de que deseas eliminar la nota?')" href="<?=base_url?>Notas/eliminarNota&activity=apreciativa&id=<?=$apreciativaPeriodo2->id_apreciativa?>&m=<?=$id_materia?>&g=<?=$grado?>&e=<?=$id_estudiante?>" class="<?=$dos?>"><i class="bi bi-trash efecto_hover"></i></a></td>
+<?php  endif;?>
 </tr>
 <tr>
   <td scope="row" ></td>
@@ -407,7 +439,9 @@ if ($fechas_fallas->rowCount() != 0): ?>
     <?php endif;?>
 
 </td>
+<?php if (isset($_SESSION['teacher'])): ?>
 <td class="text-center"><a onclick="return confirm('¿Estás seguro de que deseas eliminar la nota?')" href="<?=base_url?>Notas/eliminarNota&activity=autoevaluacion&id=<?=$autoevaluacionPeriodo2->id_autoevaluacion?>&m=<?=$id_materia?>&g=<?=$grado?>&e=<?=$id_estudiante?>" class="<?=$dos?>"><i class="bi bi-trash efecto_hover"></i></a></td>
+<?php endif; ?>
 </tr>
 <tr>
   <td scope="row"></td>
@@ -453,7 +487,9 @@ if ($fechas_fallas->rowCount() != 0): ?>
                     <th scope="col">Criterio</th>
                     <th scope="col">actividad</th>
                     <th scope="col">nota</th>
+                    <?php if (isset($_SESSION['teacher'])): ?>
                     <th class="text-center" scope="col">Eliminar</th>
+                <?php endif; ?>
                 </tr>
             </thead>
             <tbody>
@@ -467,7 +503,9 @@ if ($fechas_fallas->rowCount() != 0): ?>
                         <?=$evaluacionPeriodo3->nota_evaluacion?>
                     <?php endif;?>
                 </td>
+                <?php if (isset($_SESSION['teacher'])): ?>
                 <td class="text-center"><a onclick="return confirm('¿Estás seguro de que deseas eliminar la nota?')" href="<?=base_url?>Notas/eliminarNota&activity=evaluacion&id=<?=$evaluacionPeriodo3->id_evaluacion?>&m=<?=$id_materia?>&g=<?=$grado?>&e=<?=$id_estudiante?>" class="<?=$tres?>"><i class="bi bi-trash efecto_hover"></i></a></td>
+            <?php endif; ?>
             </tr>
             <tr>
               <td scope="row"></td>
@@ -479,7 +517,9 @@ if ($fechas_fallas->rowCount() != 0): ?>
                     <?=$trimestralPeriodo3->nota_trimestral?>
                 <?php endif;?>
             </td>
+            <?php if (isset($_SESSION['teacher'])): ?>
             <td class="text-center"><a onclick="return confirm('¿Estás seguro de que deseas eliminar la nota?')" href="<?=base_url?>Notas/eliminarNota&activity=trimestral&id=<?=$trimestralPeriodo3->id_trimestral?>&m=<?=$id_materia?>&g=<?=$grado?>&e=<?=$id_estudiante?>" class="<?=$tres?>"><i class="bi bi-trash efecto_hover"></i></a></td>
+        <?php endif; ?>
         </tr>
         <tr>
           <td scope="row"></td>
@@ -506,7 +546,9 @@ if ($fechas_fallas->rowCount() != 0): ?>
                 <?=$trabajoIndividualPeriodo3->nota_Tindividual?>
             <?php endif;?>
         </td>
+        <?php if (isset($_SESSION['teacher'])): ?>
         <td class="text-center"><a onclick="return confirm('¿Estás seguro de que deseas eliminar la nota?')" href="<?=base_url?>Notas/eliminarNota&activity=tindividual&id=<?=$trabajoIndividualPeriodo3->id_Tindividual?>&m=<?=$id_materia?>&g=<?=$grado?>&e=<?=$id_estudiante?>" class="<?=$tres?>"><i class="bi bi-trash efecto_hover"></i></a></td>
+    <?php endif; ?>
     </tr>
     <tr>
       <td scope="row" ></td>
@@ -518,7 +560,9 @@ if ($fechas_fallas->rowCount() != 0): ?>
             <?=$trabajoColaborativoPeriodo3->nota_Tcolaborativo?>
         <?php endif;?>
     </td>
+    <?php if (isset($_SESSION['teacher'])): ?>
     <td class="text-center"><a onclick="return confirm('¿Estás seguro de que deseas eliminar la nota?')" href="<?=base_url?>Notas/eliminarNota&activity=tcolaborativo&id=<?=$trabajoColaborativoPeriodo3->id_Tcolaborativo?>&m=<?=$id_materia?>&g=<?=$grado?>&e=<?=$id_estudiante?>" class="<?=$tres?>"><i class="bi bi-trash efecto_hover"></i></a></td>
+<?php endif; ?>
 </tr>
 <tr>
   <td scope="row"></td>
@@ -545,7 +589,9 @@ if ($fechas_fallas->rowCount() != 0): ?>
         <?=$apreciativaPeriodo3->nota_apreciativa?>
     <?php endif;?>
 </td>
+<?php if (isset($_SESSION['teacher'])): ?>
 <td class="text-center"><a onclick="return confirm('¿Estás seguro de que deseas eliminar la nota?')" href="<?=base_url?>Notas/eliminarNota&activity=apreciativa&id=<?=$apreciativaPeriodo3->id_apreciativa?>&m=<?=$id_materia?>&g=<?=$grado?>&e=<?=$id_estudiante?>" class="<?=$tres?>"><i class="bi bi-trash efecto_hover"></i></a></td>
+<?php endif; ?>
 </tr>
 <tr>
   <td scope="row" ></td>
@@ -558,7 +604,9 @@ if ($fechas_fallas->rowCount() != 0): ?>
     <?php endif;?>
 
 </td>
+<?php if (isset($_SESSION['teacher'])): ?>
 <td class="text-center"><a onclick="return confirm('¿Estás seguro de que deseas eliminar la nota?')" href="<?=base_url?>Notas/eliminarNota&activity=autoevaluacion&id=<?=$autoevaluacionPeriodo3->id_autoevaluacion?>&m=<?=$id_materia?>&g=<?=$grado?>&e=<?=$id_estudiante?>" class="<?=$tres?>"><i class="bi bi-trash efecto_hover"></i></a></td>
+<?php endif; ?>
 </tr>
 <tr>
   <td scope="row"></td>

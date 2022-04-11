@@ -51,7 +51,7 @@ class MateriasController
             $area = $partes[1];
             $icono = $partes[2];
             $indicador = trim($_POST['indicadores']);
-            $grado = $_POST['id_grado'];
+            $grado = Utils::decryption($_POST['id_grado']);
 
             $guardar = new Materias();
             $guardar->setIdGradoM($grado);
@@ -66,7 +66,7 @@ class MateriasController
             } else {
                 $_SESSION['guardar_materia'] = 'Error al registrar la materia';
             }
-            header('Location:' . base_url . 'Materias/vista&id_grado=' . $grado);
+            header('Location:' . base_url . 'Materias/vista&id_grado=' . Utils::encryption($grado));
         }
     }
 

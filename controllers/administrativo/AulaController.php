@@ -15,6 +15,6 @@ class AulaController
             $asignador->updateStateOfClassroom();
         }
         Utils::validarReturn($respuesta, 'asignarAula');
-        header('Location:' . base_url . 'Materias/vista&id_grado=' . $grado);
+        header('Location:' . base_url . 'Materias/vista&id_grado=' . Utils::encryption($grado));
     }
 }

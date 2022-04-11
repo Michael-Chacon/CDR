@@ -106,16 +106,18 @@ class Asignaciones
         return $registro;
     }
 
-    # obtener los grados que se le asigno a cada docente
+    # Obtener los grados que se le asigno a cada docente
     public function docenteGrados()
     {
         $docente = $this->getIdDocente();
         $grados = $this->db->prepare("
-                                                            SELECT g.* FROM grado g
-                                                            INNER JOIN gradodocente gd ON g.id = gd.id_grado_d
-                                                            INNER JOIN docente d ON d.id = gd.id_docente_g
-                                                            WHERE d.id = :docente ORDER BY g.id ASC;
-                                                        ");
+            SELECT g.*, a.nombre FROM grado g
+            INNER JOIN gradodocente gd ON g.id = gd.id_grado_d
+            INNER JOIN docente d ON d.id = gd.id_docente_g
+            INNER JOIN aulagrado ag ON ag.id_grado_aula = g.id
+            INNER JOIN aulas a ON a.id_aula = ag.id_aula_grado
+            WHERE d.id = :docente ORDER BY g.id ASC;
+            ");
         $grados->bindParam(':docente', $docente, PDO::PARAM_INT);
         $grados->execute();
         return $grados;
@@ -146,12 +148,12 @@ class Asignaciones
         $grado = $this->getGrados();
         $docente = $this->getIdDocente();
         $materias = $this->db->prepare("
-                                                            SELECT m.*  FROM gradodocente gd
-                                                            INNER JOIN docente d ON d.id = gd.id_docente_g
-                                                            INNER JOIN grado g ON g.id = gd.id_grado_d
-                                                            INNER JOIN materia m ON m.id_grado_mat =  gd.id_grado_d
-                                                            WHERE g.id = :grado AND d.id = :docente AND m.asignacion = 'no';
-                                                            ");
+            SELECT m.*  FROM gradodocente gd
+            INNER JOIN docente d ON d.id = gd.id_docente_g
+            INNER JOIN grado g ON g.id = gd.id_grado_d
+            INNER JOIN materia m ON m.id_grado_mat =  gd.id_grado_d
+            WHERE g.id = :grado AND d.id = :docente AND m.asignacion = 'no';
+            ");
         $materias->bindParam(':grado', $grado, PDO::PARAM_INT);
         $materias->bindParam(':docente', $docente, PDO::PARAM_INT);
         $materias->execute();
@@ -180,12 +182,12 @@ class Asignaciones
             $grado = $this->getGrados();
 
             $materias = $this->db->prepare("
-                                                                SELECT m.id AS 'id_materia', m.icono, m.nombre_mat, g.* FROM docentemateria dm
-                                                                INNER JOIN docente d ON d.id = dm.id_docente_mat
-                                                                INNER JOIN materia m ON m.id = dm.id_materia_doc
-                                                                INNER JOIN grado g ON g.id = m.id_grado_mat
-                                                                WHERE d.id = :docente AND g.id = :grado;
-                                                            ");
+                SELECT m.id AS 'id_materia', m.icono, m.nombre_mat, g.* FROM docentemateria dm
+                INNER JOIN docente d ON d.id = dm.id_docente_mat
+                INNER JOIN materia m ON m.id = dm.id_materia_doc
+                INNER JOIN grado g ON g.id = m.id_grado_mat
+                WHERE d.id = :docente AND g.id = :grado;
+                ");
             $materias->bindParam(':docente', $docente, PDO::PARAM_INT);
             $materias->bindParam(':grado', $grado, PDO::PARAM_INT);
             $materias->execute();

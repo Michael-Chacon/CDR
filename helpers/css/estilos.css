@@ -318,6 +318,7 @@ hr {
 /*grados*/
 
 .grados {
+    font-size: 30px !important;
     font-weight: 400;
 }
 /*alertas*/
@@ -518,4 +519,12 @@ hr {
 .nombre-director {
     font-size: 18px;
     font-weight: 400;
+}
+/*
+            OTROS
+*/
+
+.aula {
+    font-size: 12px;
+    color: #B0BCC1;
 }

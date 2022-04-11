@@ -1,6 +1,6 @@
 <!-- contenido de  la pagina -->
                 <section class="container-fluid">
-                    <section class="row">
+                    <section class="row mt-3">
                         <article class="col-xs-12 col-sm-12 col-md-4 col-xl-4">
                             <div class="card text-center shadow option">
                                 <div class="card-body contenido-card">

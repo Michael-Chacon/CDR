@@ -32,7 +32,7 @@
 																<?=$grados->nombre_g?>
 															</h2>
 															<hr class="hr-perfil"/>
-															<a class="stretched-link" href="<?=base_url?>Materias/vista&id_grado=<?=urlencode($grados->id)?>">
+															<a class="stretched-link" href="<?=base_url?>Materias/vista&id_grado=<?=Utils::encryption($grados->id)?>">
 															</a>
 														</div>
         											</div>

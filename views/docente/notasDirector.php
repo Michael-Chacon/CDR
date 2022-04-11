@@ -6,9 +6,6 @@
 			</h1>
 		</article>
 	</section>
-</section>
-
-<section class="container-fluid">
 	<article class="row">
 		<article class="col-md-5 mt-5">
 			<ul class="list-group list-group-flush shadow">
@@ -99,4 +96,199 @@
 		<!-- fin del acordeon -->
 	</article>
 </article>
+<section class="row mt-5">
+	<span class="text-center nombre_estudiante mb-3">Periodo 1</span>
+	<section class="col-md-4">
+			<div class="card text-white bg-success mb-3 text-center shadow">
+				<div class="card-header titulo-criterio">Cognitivo <span class="badge bg-danger rounded-pill">
+					<?php if (empty($cognitivo->porcentaje_cognitivo)): ?>
+						0
+					<?php else: ?>
+						<?=$cognitivo->porcentaje_cognitivo?>
+					<?php endif;?>
+				%</span>
+			</div>
+			<div class="card-body">
+				<ul class="list-group">
+					<li class="list-group-item d-flex justify-content-between align-items-center">
+						Evaluaciones
+						(<?php if (empty($cognitivo->porcentaje_evaluacion)): ?>
+								0
+							<?php else: ?>
+								<?=$cognitivo->porcentaje_evaluacion?>
+							<?php endif;?>
+						%)
+						<span class="badge bg-success rounded-pill">
+							Nota: <strong><?php if (empty($evaluacionPeriodo1->nota_evaluacion)): ?>
+							0
+						<?php else: ?>
+							<?=$evaluacionPeriodo1->nota_evaluacion?>
+							<?php endif;?></strong>
+						</span>
+					</li>
+					<li class="list-group-item d-flex justify-content-between align-items-center">
+						Trimestal
+						(<?php if (empty($cognitivo->porcentaje_trimestral)): ?>
+								0
+							<?php else: ?>
+								<?=$cognitivo->porcentaje_trimestral?>
+								<?php endif;?>%)
+						<span class="badge bg-success rounded-pill">
+							Nota: <strong><?php if (empty($trimestralPeriodo1->nota_trimestral)): ?>
+							0
+						<?php else: ?>
+							<?=$trimestralPeriodo1->nota_trimestral?>
+							<?php endif;?></strong>
+							</span>
+							</li>
+						</ul>
+					</div>
+					<div class="card-footer bg-transparent border-success">Footer</div>
+				</div>
+	</section>
+	<section class="col-md-4">
+			<div class="card text-white bg-warning mb-3 text-center shadow">
+				<div class="card-header titulo-criterio">Procedimental <span class="badge bg-danger rounded-pill">
+					<?php if (empty($procedimental->porcentaje_procedimental)): ?>
+						0
+					<?php else: ?>
+						<?=$procedimental->porcentaje_procedimental?>
+					<?php endif;?>
+				%</span>
+			</div>
+			<div class="card-body">
+				<ul class="list-group">
+					<li class="list-group-item d-flex justify-content-between align-items-center">
+						Trabajo individual
+						(<?php if (empty($procedimental->porcentaje_Tindividual)): ?>
+								0
+							<?php else: ?>
+								<?=$procedimental->porcentaje_Tindividual?>
+							<?php endif;?>
+						%)
+						<span class="badge bg-warning rounded-pill text-black">
+							Nota: <strong><?php if (empty($trabajoIndividualPeriodo1->nota_Tindividual)): ?>
+							0
+						<?php else: ?>
+							<?=$trabajoIndividualPeriodo1->nota_Tindividual?>
+							<?php endif;?></strong>
+						</span>
+					</li>
+					<li class="list-group-item d-flex justify-content-between align-items-center">
+						Trabajo colaborativo
+						(<?php if (empty($procedimental->porcentaje_Tcolaborativo)): ?>
+								0
+							<?php else: ?>
+								<?=$procedimental->porcentaje_Tcolaborativo?>
+								<?php endif;?>%)
+						<span class="badge bg-warning rounded-pill text-black">
+							Nota: <strong><?php if (empty($trabajoColaborativoPeriodo1->nota_Tcolaborativo)): ?>
+							0
+						<?php else: ?>
+							<?=$trabajoColaborativoPeriodo1->nota_Tcolaborativo?>
+							<?php endif;?></strong>
+							</span>
+							</li>
+						</ul>
+					</div>
+					<div class="card-footer bg-transparent border-success text-black">Nota del critero = <?=$definitiva_procedimentalUno?></div>
+				</div>
+	</section>
+	<section class="col-md-4">
+			<div class="card text-white bg-primary mb-3 text-center shadow">
+				<div class="card-header titulo-criterio">Actitudinal <span class="badge bg-danger rounded-pill">
+					<?php if (empty($actitudinal->porcentaje_actitudinal)): ?>
+						0
+					<?php else: ?>
+						<?=$actitudinal->porcentaje_actitudinal?>
+					<?php endif;?>
+				%</span>
+			</div>
+			<div class="card-body">
+				<ul class="list-group">
+					<li class="list-group-item d-flex justify-content-between align-items-center">
+						Apreciativa
+						(<?php if (empty($actitudinal->porcentaje_apreciativa)): ?>
+								0
+							<?php else: ?>
+								<?=$actitudinal->porcentaje_apreciativa?>
+							<?php endif;?>
+						%)
+						<span class="badge bg-primary rounded-pill">
+							Nota: <strong><?php if (empty($apreciativaPeriodo1->nota_apreciativa)): ?>
+							0
+						<?php else: ?>
+							<?=$apreciativaPeriodo1->nota_apreciativa?>
+							<?php endif;?></strong>
+						</span>
+					</li>
+					<li class="list-group-item d-flex justify-content-between align-items-center">
+						Autoevaluacion
+						(<?php if (empty($actitudinal->porcentaje_autoevaluacion)): ?>
+								0
+							<?php else: ?>
+								<?=$actitudinal->porcentaje_autoevaluacion?>
+								<?php endif;?>%)
+						<span class="badge bg-primary rounded-pill">
+							Nota: <strong><?php if (empty($autoevaluacionPeriodo1->nota_autoevaluacion)): ?>
+							0
+						<?php else: ?>
+							<?=$autoevaluacionPeriodo1->nota_autoevaluacion?>
+							<?php endif;?></strong>
+							</span>
+							</li>
+						</ul>
+					</div>
+					<div class="card-footer bg-transparent border-success">Footer</div>
+				</div>
+	</section>
+</section>
+<section class="row mt-5">
+	<span class="text-center nombre_estudiante mb-3">Periodo 2</span>
+	<section class="col-md-4">
+		<div class="card border-success mb-3 text-center" >
+			<div class="card-header bg-transparent border-success titulo-criterio">
+				Actitudinal
+				<span class="badge bg-danger rounded-pill">
+					<?php if (empty($actitudinal->porcentaje_actitudinal)): ?>
+						0
+					<?php else: ?>
+						<?=$actitudinal->porcentaje_actitudinal?>
+					<?php endif;?>%
+				</span>
+			</div>
+			<div class="card-body text-success">
+				<ul class="list-group">
+					<li class="list-group-item d-flex justify-content-between align-items-center">
+						Apreciativa
+						(<?php if (empty($actitudinal->porcentaje_apreciativa)): ?>
+								0
+							<?php else: ?>
+								<?=$actitudinal->porcentaje_apreciativa?>
+							<?php endif;?>
+						%)
+						<span class="badge bg-primary rounded-pill">
+							Nota: <strong><?=$apreciativaPeriodo1->nota_apreciativa?></strong>
+						</span>
+					</li>
+					<li class="list-group-item d-flex justify-content-between align-items-center">
+						Autoevaluacion
+						(<?php if (empty($actitudinal->porcentaje_autoevaluacion)): ?>
+								0
+							<?php else: ?>
+								<?=$actitudinal->porcentaje_autoevaluacion?>
+								<?php endif;?>%)
+						<span class="badge bg-primary rounded-pill">
+							Nota: <strong><?=$autoevaluacionPeriodo1->nota_autoevaluacion?></strong>
+							</span>
+							</li>
+						</ul>
+			</div>
+			<div class="card-footer bg-transparent border-success">Footer</div>
+		</div>
+	</section>
+	<section class="col-md-4"></section>
+	<section class="col-md-4"></section>
+</section>
+<!--  fin del contenido -->
 </section>

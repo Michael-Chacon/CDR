@@ -23,6 +23,7 @@ CREATE TABLE materia(
 		nombre_mat VARCHAR(30) NOT NULL,
 		indicadores_mat TEXT NOT NULL,
 		icono VARCHAR(30)  NOT NULL,
+		asignacion VARCHAR(2) NOT NULL,
 		CONSTRAINT pk_materias PRIMARY KEY(id),
 		CONSTRAINT fk_grado_materia FOREIGN KEY(id_grado_mat) REFERENCES grado(id) ON DELETE CASCADE,
 		CONSTRAINT fk_materia_area FOREIGN KEY (id_materia_area) REFERENCES areas (id_area) ON DELETE CASCADE
@@ -597,3 +598,7 @@ SELECT d.nombre_d, d.apellidos_d, g.nombre_g FROM director dir
 INNER JOIN grado g ON g.id = dir.id_grado_dir
 INNER JOIN docente d ON d.id = dir.id_docente_dir
 WHERE d.director = 'no';
+
+SELECT g.*,  a.nombre FROM grado g
+INNER JOIN aulagrado ag ON ag.id_grado_aula = g.id
+INNER JOIN aulas a ON a.id_aula = ag.id_aula_grado;

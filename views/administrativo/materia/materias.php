@@ -573,7 +573,7 @@ endif;?>
         </div>
     </section>
     <!-- fin de asignar aula -->
-    <!-- Modal crear grado-->
+    <!-- Modal crear materia-->
     <section aria-hidden="true" aria-labelledby="exampleModalLabel" class="modal fade" data-bs-backdrop="static" id="CrearMateria" tabindex="-1">
         <section class="modal-dialog ">
             <div class="modal-content">
