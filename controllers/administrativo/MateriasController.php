@@ -70,4 +70,19 @@ class MateriasController
         }
     }
 
+    /*
+    Metodo para resolver el siguiente problema: en un caso especifico la materia aparece como si estuviese asignada a un docente, esto no es verdad, la razón es porque en el pasado la materia le sí fue asignada a un docente, pero el docente fue eliminado de la plataforma y la materia quedo con el estado "asignada", este metodo le da la opcion al usuario administrativo para acutaliza el  estado para que la materia esté disponible para ser asignada a otro docente
+     */
+    public function actualizarAsignacionDeMateria()
+    {
+        $materia = $_POST['id_materia'];
+        $asignacion = new Materias();
+        $asignacion->setId($materia);
+        $respuesta = $asignacion->updateAsignaiconMateria();
+
+        Utils::validarReturn($respuesta, 'actualizarAsignacionDeMateria');
+
+        header("Location: " . base_url . 'panelMateria/homeMateria&degree=' . Utils::encryption($_POST['degree']) . '&ide=' . Utils::encryption($_POST['id_materia']) . '&name=' . $_POST['name'] . '&nombreg=' . $_POST['nombreg']);
+    }
+
 } # fin de la clase

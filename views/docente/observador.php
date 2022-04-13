@@ -57,6 +57,10 @@
 				</article>
 			</div>
 		<?php endwhile;?>
+	<?php else: ?>
+		<div class="alert alert-danger text-center" role="alert">
+			El estudiante no tiene observaciones.
+		</div>
 		<?php endif;?>
 		</article>
 	</section>

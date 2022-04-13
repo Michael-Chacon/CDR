@@ -26,7 +26,9 @@
                                     <div class="card-body">
                                         <ul class="list-group ">
                                             <?php if($lista_m->rowCount() == 0): ?>
-                                                <p class="text-center mt-3"><span class="badge bg-warning text-dark">No hay materias disponibles.</span></p>
+                                                <div class="alert alert-danger text-center" role="alert">
+                                                    No hay materias disponibles.
+                                                </div>
                                             <?php else: ?>
                                                 <?php while ($materias = $lista_m->fetchObject()): ?>
                                                     <h5>
@@ -61,7 +63,9 @@
                                     <input type="" hidden="" name="nombre" value="<?=$_GET['nombre']?>">
                                     <ul class="list-group ">
                                         <?php if($listado_materias->rowCount() == 0): ?>
-                                            <p class="text-center mt-2"><span class="badge bg-warning text-dark">No hay materias asignadas</span></p>
+                                            <div class="alert alert-danger text-center" role="alert">
+                                                No hay materias asignadas
+                                            </div>
                                         <?php else: ?>
                                         <?php while ($materias_asignadas = $listado_materias->fetchObject()): ?>
                                             <h5>    

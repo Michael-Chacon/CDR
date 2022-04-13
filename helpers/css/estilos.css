@@ -53,7 +53,10 @@ hr {
     /* la vieja sintaxis, obsoleta, pero todavía necesaria, prefijada, para Opera y Navegadores basados en Webkit */
     /*background: -prefix-linear-gradient(left, #7C368F, #F9E701);*/
     /* La nueva sintaxis necesaria para navegadores apegados al estandar (IE 10 y Firefox 10 en adelante), sin prefijo */
-    background: linear-gradient(to right, #7C368F, teal);
+    background: linear-gradient(to right, black, #33732C);
+}
+.fondo-elemento {
+    background: linear-gradient(to right, black, teal) !important;
 }
 .config {
     padding-top: 25px;
@@ -186,6 +189,12 @@ hr {
     border-top: 4px solid #7B368F !important;
     border: 2px solid #7B368F;
     color: #7B368F;
+}
+.cdr {
+    margin-left: 20px;
+    font-size: 20px;
+    font-weight: 300;
+    color: grey;
 }
 /*
 ================================================
@@ -527,4 +536,8 @@ hr {
 .aula {
     font-size: 12px;
     color: #B0BCC1;
+}
+.info-materia {
+    text-align: justify;
+    font-size: 20px;
 }

@@ -192,4 +192,13 @@ class Docente extends Usuarios
         return $grado;
     }
 
+    # Eliminar docente
+    public function deleteTeacher()
+    {
+        $id_docente = $this->getId();
+        $eliminar = $this->db->prepare("DELETE FROM docente WHERE id = :docente");
+        $eliminar->bindParam(":docente", $id_docente, PDO::PARAM_INT);
+        return $eliminar->execute();
+    }
+
 } #FIN DE LA CLASE

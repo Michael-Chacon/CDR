@@ -108,8 +108,8 @@ class Grados
     {
         try {
             $grado = $this->getGrado();
-            $estudiantes = $this->db->prepare("SELECT e.*, g.id AS 'id_grado' FROM
-                estudiante e  INNER JOIN grado g ON g.id = e.id_gradoE
+            $estudiantes = $this->db->prepare("SELECT e.*, g.id AS 'id_grado' FROM estudiante e
+                INNER JOIN grado g ON g.id = e.id_gradoE
                 WHERE g.id = $grado");
             $estudiantes->execute();
             return $estudiantes;

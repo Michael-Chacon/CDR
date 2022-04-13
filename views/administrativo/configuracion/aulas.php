@@ -68,6 +68,10 @@
 						</li>
 					</ul>
 				<?php endwhile; ?>
+			<?php else: ?>
+				<div class="alert alert-danger text-center" role="alert">
+					No hay aulas registradas
+				</div>
 			<?php endif; ?>
 		</article>
 	</section>

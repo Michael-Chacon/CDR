@@ -16,7 +16,7 @@
                             <form action="<?=base_url?>Asignaciones/registrarGrados" method="post">
                                 <input type="hidden" name="id_docente"  value="<?=$_GET['id_docente']?>">
                                 <ul class="list-group shadow text-center">
-                                    <?php if (!empty($listado)):
+                                    <?php if (!empty($listado) && $listado->rowCount() != 0):
                                             while ($grados = $listado->fetchObject()): ?>
 		                                        <h3>
 		                                            <li class="list-group-item">
@@ -25,8 +25,12 @@
 		                                                </input>
 		                                            </li>
 		                                        </h3>
-		                                    <?php endwhile;
-                                    endif;?>
+		                                    <?php endwhile;?>
+                                        <?php else: ?>
+                                            <div class="alert alert-danger" role="alert">
+                                                No hay grados disponibles
+                                          </div>
+                                    <?php endif;?>
                                 <button class="btn btn-success btn-lg" type="submit">Guardar</button>
                                 </ul>
                             </form>
@@ -48,7 +52,9 @@
                                             <?php endwhile;?>
                                         <button class="btn btn-danger btn-lg" type="submit">Des asignar</button>
                                     <?php else: ?>
-                                        <p class="text-center mt-3"><span class="badge bg-warning text-dark">No hay grados asignados.</span></p>
+                                        <div class="alert alert-danger text-center" role="alert">
+                                            No hay grados asignados.
+                                        </div>
                                         <?php endif;?>
                                 </ul>
                             </form>

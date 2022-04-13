@@ -84,7 +84,7 @@ Utils::borrar_error('eliminarNota');?>
                     <div aria-labelledby="flush-headingOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample" id="flush-collapseOne">
                         <article class="accordion-body">
                             <?php $f = 0;
-if ($fechas_fallas->rowCount() != 0): ?>
+                            if ($fechas_fallas->rowCount() != 0): ?>
                                 <table class="table text-center">
                                     <thead>
                                         <tr>
@@ -101,25 +101,27 @@ if ($fechas_fallas->rowCount() != 0): ?>
                                     </thead>
                                     <tbody>
                                         <?php while ($fechas = $fechas_fallas->fetchObject()):
-    $f++;
-    ?>
-					                                            <tr>
-					                                                <td>
-					                                                    <?=$f?>
-					                                                </td>
-					                                                <td>
-					                                                    <?=$fechas->fecha_falla?>
-					                                                </td>
-					                                                <td>
-					                                                    <?=$fechas->id_periodo_f?>
-					                                                </td>
-					                                            </tr>
-					                                        <?php endwhile;?>
-                                    </tbody>
-                                </table>
-                            <?php else: ?>
-                                <p class="text-center mt-3"><span class="badge bg-warning text-dark">El estudiante no tiene fallas.</span></p>
-                            <?php endif;?>
+                                            $f++;
+                                            ?>
+                                            <tr>
+                                               <td>
+                                                   <?=$f?>
+                                               </td>
+                                               <td>
+                                                   <?=$fechas->fecha_falla?>
+                                               </td>
+                                               <td>
+                                                   <?=$fechas->id_periodo_f?>
+                                               </td>
+                                           </tr>
+                                       <?php endwhile;?>
+                                   </tbody>
+                               </table>
+                           <?php else: ?>
+                            <div class="alert alert-danger text-center" role="alert">
+                                El estudiante no tiene fallas.
+                            </div>
+                        <?php endif;?>
                         </table>
                     </article>
                 </div>

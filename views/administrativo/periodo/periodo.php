@@ -80,7 +80,9 @@
 				</section>
 			<?php endwhile;
 		else: ?>
-			<p class="text-center mt-3"><span class="badge bg-warning text-dark">No existen periodos académicos.</span></p>
+			<div class="alert alert-danger" role="alert">
+				No existen periodos académicos.
+			</div>
 		<?php endif;?>
 	</section>
 </section>

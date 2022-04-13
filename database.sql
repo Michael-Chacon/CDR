@@ -356,8 +356,8 @@ CREATE TABLE director(
 	id_docente_dir INT(3) NOT NULL,
 	id_grado_dir INT(3) NOT NULL,
 	CONSTRAINT pk_director PRIMARY KEY(id_dir),
-	CONSTRAINT fk_docente_dir_grado FOREIGN KEY(id_docente_dir) REFERENCES docente(id),
-	CONSTRAINT fk_grado_dir_docente FOREIGN KEY(id_grado_dir) REFERENCES grado(id)
+	CONSTRAINT fk_docente_dir_grado FOREIGN KEY(id_docente_dir) REFERENCES docente(id) ON DELETE CASCADE,
+	CONSTRAINT fk_grado_dir_docente FOREIGN KEY(id_grado_dir) REFERENCES grado(id) ON DELETE CASCADE
 )ENGINE=InnoDb;
 
 CREATE TABLE areas(
@@ -602,3 +602,9 @@ WHERE d.director = 'no';
 SELECT g.*,  a.nombre FROM grado g
 INNER JOIN aulagrado ag ON ag.id_grado_aula = g.id
 INNER JOIN aulas a ON a.id_aula = ag.id_aula_grado;
+
+SELECT m.nombre_mat, m.asignacion, a.nombre_area, d.nombre_d, d.apellidos_d  FROM materia m
+INNER JOIN docentemateria dm ON dm.id_materia_doc = m.id
+INNER JOIN docente d ON  d.id = dm.id_docente_mat
+INNER JOIN areas a ON a.id_area = m.id_materia_area
+WHERE m.id = 3;

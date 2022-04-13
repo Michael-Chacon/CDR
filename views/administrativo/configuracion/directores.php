@@ -44,7 +44,9 @@
 					</table>
 				</div>
 			<?php else: ?>
-				<p class="text-center mt-3"><span class="badge bg-warning text-dark">No hay directores de grado asignados.</span></p>
+				<div class="alert alert-danger" role="alert">
+					No hay directores de grado asignados.
+				</div>
 			<?php endif; ?>
 		</section>
 	</section>

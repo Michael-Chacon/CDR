@@ -204,4 +204,14 @@ class DocenteController
         header("Location:" . base_url . 'Materias/vista&id_grado=' . Utils::encryption($grado));
     }
 
+    public  function eliminarDocente()
+    {
+        $docente = $_GET['id'];
+        $borrador = new Docente();
+        $borrador->setId($docente);
+        $resultado = $borrador->deleteTeacher();
+        Utils::validarReturn($resultado, 'eliminarDocente');
+        header("Location: " . base_url . 'Docente/vista_docente');
+    }
+
 } # fin de la clase

@@ -110,44 +110,24 @@
                         <button class="btn btn-success" id="sidebarToggle" accesskey="h">
                             <i class="bi bi-list"></i>Menu
                         </button>
+                         <span class="cdr text-center">CONCENTRACIÓN DE DESARROLLO RURAL VALLE DE SAN JOSÉ</span>
                         <button aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-bs-target="#navbarSupportedContent" data-bs-toggle="collapse" type="button">
                             <span class="navbar-toggler-icon">
                             </span>
                         </button>
-                        <div class="collapse navbar-collapse " id="navbarSupportedContent">
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
                                 <li class="nav-item active">
                                     <a class="nav-link" href="#!">
-                                        Home
+                                        <!-- <h4>CONCENTRACIÓN DE DESARROLLO RURAL VALLE DE SAN JOSÉ</h4> -->
                                     </a>
                                 </li>
-                              <!--   <li class="nav-item">
-                                    <a class="nav-link" href="<?=base_url?>Login/logout">
-                                        <i class="material-icons">power_settings_new</i>
-                                    </a>
-                                </li> -->
                                  <li class="nav-item">
                                     <a class="nav-link" href="<?=base_url?>Login/logout">
-                                        <i class="bi bi-power" style="font-size: 1.5rem; color: red;"></i>
+                                        <button class="btn btn-outline-secondary">
+                                        <i class="bi bi-power" style="font-size: 1.2rem; color: red;"></i>
+                                        </button>
                                     </a>
-                                </li>
-                                <li class="nav-item dropdown">
-                                    <a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" id="navbarDropdown" role="button">
-                                        Dropdown
-                                    </a>
-                                    <div aria-labelledby="navbarDropdown" class="dropdown-menu dropdown-menu-end">
-                                        <a class="dropdown-item" href="#!">
-                                            Action
-                                        </a>
-                                        <a class="dropdown-item" href="#!">
-                                            Another action
-                                        </a>
-                                        <div class="dropdown-divider">
-                                        </div>
-                                        <a class="dropdown-item" href="#!">
-                                            Something else here
-                                        </a>
-                                    </div>
                                 </li>
                             </ul>
                         </div>

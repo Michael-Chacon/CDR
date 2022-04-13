@@ -57,7 +57,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php if (isset($todos_estudiantes)):
+                                    <?php if (isset($todos_estudiantes) && $todos_estudiantes->rowCount() != 0):
                                                     $c = 1;
                                                     while ($estudiantes = $todos_estudiantes->fetchObject()): ?>
 				                                                	 <tr>
@@ -65,12 +65,12 @@
 				                                                        <?=$c++?>
 				                                                    </th>
 				                                                    <td>
-		                                                                <?php if ($estudiantes->img == null): ?>
-		                                                                     <img alt="" class="avatar-tabla circulo" src="<?=base_url?>helpers/img/avatar.jpg"></img>
-		                                                                <?php else: ?>
-		                                                        <img alt="" class="avatar-tabla circulo" src="<?=base_url?>photos/estudiantes/<?=$estudiantes->img?>"></img>
-                                                            <?php endif;?>
-		                                                    </td>
+                                                                    <?php if ($estudiantes->img == null): ?>
+                                                                       <img alt="" class="avatar-tabla circulo" src="<?=base_url?>helpers/img/avatar.jpg"></img>
+                                                                    <?php else: ?>
+                                                                      <img alt="" class="avatar-tabla circulo" src="<?=base_url?>photos/estudiantes/<?=$estudiantes->img?>"></img>
+                                                                    <?php endif;?>
+                                                              </td>
 		                                                    <td class="texto_tabla_docente">
 		                                                        <a href="<?=base_url?>Estudiante/perfilEstudiante&x=<?=$estudiantes->id?>&y=<?=$estudiantes->id_familia_e?>&z=<?=$estudiantes->id_grado?>">
 		                                                              <?=$estudiantes->nombre_e?>
@@ -91,8 +91,12 @@
 		                                                        </a>
 		                                                    </td>
 		                                                </tr>
-		                                      <?php endwhile;
-                                    endif;?>
+		                                      <?php endwhile;?>
+                                          <?php else: ?>
+                                            <div class="alert alert-danger text-center" role="alert">
+                                                Aún no hay estudiantes registrados.
+                                            </div>
+                                        <?php endif;?>
                                 </tbody>
                             </table>
                         </div>

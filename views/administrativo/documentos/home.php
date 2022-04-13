@@ -21,6 +21,7 @@
     <section class="row justify-content-center mt-5">
     	<article class="col-md-10">
     		<div>
+	    				<?php  if($documentos->rowCount() != 0): ?>
 	    		<table class="table shadow table-hover">
 	    			<thead >
 	    				<tr>
@@ -32,9 +33,7 @@
 	    				</tr>
 	    			</thead>
 	    			<tbody>
-	    				<?php 
-
-	    				$c= 1;
+	    			<?php	$c= 1;
 	    				while($documento = $documentos->fetchObject()): ?>
 	    					<tr>
 	    						<td class="text-document " style="border-right: 5px solid #8F09EB;"><?=$c++?></td>
@@ -48,6 +47,11 @@
 	    				<?php endwhile; ?>
 	    			</tbody>
 	    		</table>
+	    		<?php else: ?>
+	    				<div class="alert alert-danger text-center" role="alert">
+	    					No hay documentos registrados.
+	    				</div>
+	    			<?php endif; ?>
     		</div>
     	</article>
     </section>

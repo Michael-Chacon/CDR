@@ -67,7 +67,9 @@
 					</ul>
 				<?php endwhile;?>
 			<?php else: ?>
-				<span class="badge bg-warning text-dark ">No hay areas registradas</span>
+				<div class="alert alert-danger text-center" role="alert">
+					No hay areas registradas
+				</div>
 			<?php endif;?>
 		</article>
 		<article class="col-xs-12 col-sm-12 col-md-5 col-lg-5 text-center ">
@@ -97,7 +99,9 @@
 					</ul>
 				<?php endwhile;?>
 			<?php else: ?>
-				<span class="badge bg-warning text-dark ">No hay materias registradas</span>
+				<div class="alert alert-danger text-center" role="alert">
+					No hay materias registradas
+				</div>
 			<?php endif;?>
 		</article>
 	</section>

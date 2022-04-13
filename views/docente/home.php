@@ -42,7 +42,9 @@
                     </article>
                 <?php endwhile;?>
                 <?php else: ?>
-                   <p class="text-center mt-3"><span class="badge bg-warning text-dark">No hay grados asignadas.</span></p>
+                    <div class="alert alert-danger" role="alert">
+                     No hay grados asignadas.
+                 </div>
                 <?php endif;?>
                 </section>
                 <hr/>
@@ -92,11 +94,9 @@
                                 </tbody>
                             </table>
                             <?php else: ?>
-                            <p class="text-center mt-3">
-                                <span class="badge bg-warning text-dark">
+                                <div class="alert alert-danger text-center" role="alert">
                                     No tienes clases.
-                                </span>
-                            </p>
+                                </div>
                             <?php endif;?>
                         </div>
                     </article>
@@ -144,11 +144,9 @@
                             </table>
                         </div>
                         <?php else: ?>
-                        <p class="text-center mt-3">
-                            <span class="badge bg-warning text-dark">
-                                No tienes clases.
-                            </span>
-                        </p>
+                           <div class="alert alert-danger text-center" role="alert">
+                            No tienes clases.
+                        </div>
                         <?php endif;?>
                     </article>
                     <article class="col-md-4 text-center">
@@ -195,11 +193,9 @@
                             </table>
                         </div>
                         <?php else: ?>
-                        <p class="text-center mt-3">
-                            <span class="badge bg-warning text-dark">
-                                No tienes clases.
-                            </span>
-                        </p>
+                           <div class="alert alert-danger text-center" role="alert">
+                            No tienes clases.
+                        </div>
                         <?php endif;?>
                     </article>
                     <article class="col-md-4 text-center">
@@ -246,11 +242,9 @@
                             </table>
                         </div>
                         <?php else: ?>
-                        <p class="text-center mt-3">
-                            <span class="badge bg-warning text-dark">
-                                No tienes clases.
-                            </span>
-                        </p>
+                           <div class="alert alert-danger text-center" role="alert">
+                            No tienes clases.
+                        </div>
                         <?php endif;?>
                     </article>
                     <article class="col-md-4 text-center">
@@ -297,11 +291,9 @@
                             </table>
                         </div>
                         <?php else: ?>
-                        <p class="text-center mt-3">
-                            <span class="badge bg-warning text-dark">
-                                No tienes clases.
-                            </span>
-                        </p>
+                           <div class="alert alert-danger text-center" role="alert">
+                            No tienes clases.
+                        </div>
                         <?php endif;?>
                     </article>
                 </section>

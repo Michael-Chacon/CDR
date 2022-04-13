@@ -28,7 +28,9 @@
                 </article>
             <?php endwhile;?>
             <?php else: ?>
-                <p class="text-center mt-3"><span class="badge bg-warning text-dark">No hay materias asignadas.</span></p>
+                <div class="alert alert-danger" role="alert">
+                    No hay materias asignadas.
+                </div>
             <?php endif;?>
             </article>
         </section>

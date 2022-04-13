@@ -26,7 +26,7 @@
                     ?>
                     <!-- card -->
                     <section class="row mt-4">
-                        <?php if (isset($listado)):
+                        <?php if (isset($listado) && $listado->rowCount() != 0):
                             while ($administrativo = $listado->fetchObject()): ?>
 			                                    <div class="col-md-6 mt-3 mb-5">
 			                                        <div class="card shadow">
@@ -275,8 +275,12 @@
 			                                            </section>
 			                                        </div>
 			                                    </div>
-			                    <?php endwhile;
-                                endif;?>
+			                    <?php endwhile;?>
+			                <?php else: ?>
+			                	<div class="alert alert-danger text-center" role="alert">
+			                		No hay usuarios administrativos registrados
+			                	</div>
+                                <?php endif;?>
                     </section>
                     <!-- fin del card -->
                     <!-- fin del container en la etiqueta de abajo -->

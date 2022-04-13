@@ -249,4 +249,40 @@ class Materias
         return $delete->execute();
     }
 
+    # Metodo para obtener informacion de la materia actual
+    public function subjectInformation()
+    {
+        $subject = $this->getMateria();
+        $informacion = $this->db->prepare("SELECT m.nombre_mat, m.asignacion, a.nombre_area, d.nombre_d, d.apellidos_d  FROM materia m
+            INNER JOIN docentemateria dm ON dm.id_materia_doc = m.id
+            INNER JOIN docente d ON  d.id = dm.id_docente_mat
+            INNER JOIN areas a ON a.id_area = m.id_materia_area
+            WHERE m.id = :materia");
+        $informacion->bindParam(":materia", $subject, PDO::PARAM_INT);
+        $informacion->execute();
+        return $informacion->fetchObject();
+    }
+
+    # Metodo para obtener el estado del atributo asignacion de la tabla materia, para cambiarlo .
+    public function seeAsignacionMateria($subject)
+    {
+        $asignacion = $this->db->prepare("SELECT asignacion FROM materia WHERE id = :id_materia");
+        $asignacion->bindParam(":id_materia", $subject, PDO::PARAM_INT);
+        $asignacion->execute();
+        return $asignacion->fetchObject();
+    }
+
+    /*
+    Metodo para resolver el siguiente problema: en un caso especifico la materia aparece como si estuviese asignada a un docente, esto no es verdad, la razón es porque en el pasado la materia le sí fue asignada a un docente, pero el docente fue eliminado de la plataforma y la materia quedo con el estado "asignada", este metodo le da la opcion al usuario administrativo para acutaliza el  estado para que la materia esté disponible para ser asignada a otro docente
+     */
+    public function updateAsignaiconMateria()
+    {
+        $id_materia = $this->getId();
+        $asignacion = 'no';
+        $actualizar = $this->db->prepare("UPDATE materia SET asignacion = :estado WHERE id = :materia");
+        $actualizar->bindParam(":estado", $asignacion, PDO::PARAM_STR);
+        $actualizar->bindParam(":materia", $id_materia, PDO::PARAM_INT);
+        return $actualizar->execute();
+    }
+
 } # fin de la clase

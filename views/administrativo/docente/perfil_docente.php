@@ -2,8 +2,10 @@
                 <section class="container-fluid">
                     <?php echo Utils::general_alerts('actualizarD', 'La información del docente fue actualizada con éxito.', 'Algo salió mal al actualizar la información, inténtelo de nuevo.'); ?>
                     <?php echo Utils::general_alerts('actualizarPD', 'La ontraseña del docente fue actualizada con éxito.', 'Algo salió mal al actualizar la contraseña, inténtelo de nuevo.') ?>
+                    <?php echo Utils::general_alerts('eliminarDocente', 'Docente elimnado con éxito', 'Algo salio mal al intentar eliminar al docente, intentelo de nuvo') ?>
                     <?php Utils::borrar_error('actualizarD');
                             Utils::borrar_error('actualizarPD');
+                            Utils::borrar_error('eliminarDocente');
                      ?>
                     <!-- inicon de la fila principal -->
                     <section class="row">
@@ -54,6 +56,15 @@
                                                                     <a class="dropdown-item" data-bs-target="#actualizarDatos" data-bs-toggle="modal" href="#">
                                                                         <i class="bi bi-pen"></i>
                                                                         Actualizar datos
+                                                                    </a>
+                                                                </li>
+                                                                    <li>
+                                                                    <hr class="dropdown-divider"/>
+                                                                </li>
+                                                                <li>
+                                                                    <a onclick="return confirmar()" class="dropdown-item" href="<?=base_url?>Docente/eliminarDocente&id=<?=$docente->id?>">
+                                                                        <i class="bi bi-trash"></i>
+                                                                        Eliminar Docente
                                                                     </a>
                                                                 </li>
                                                             </ul>
@@ -140,7 +151,9 @@
                                                     </article>
                                                 <?php endwhile; ?>
                                             <?php else: ?>
-                                                 <p class="text-center mt-2"><span class="badge bg-warning text-dark">No hay grados asignadas</span></p>
+                                                <div class="alert alert-danger text-center" role="alert">
+                                                    No hay grados asignadas
+                                                </div>
                                             <?php endif; ?>
                                         </section>
                                         <!-- fin materias -->

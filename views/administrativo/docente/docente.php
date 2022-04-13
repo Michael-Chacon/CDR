@@ -49,7 +49,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php if (isset($lista)):
+                                    <?php if (isset($lista) && $lista->rowCount() !=0):
                                             $c = 1;
                                             while ($docente_datos = $lista->fetchObject()): ?>
                                                 <tr>
@@ -81,9 +81,12 @@
                                                         <?=$docente_datos->numero_d?>
                                                     </td>
                                                 </tr>
-                                            <?php endwhile;
-                                    endif;
-                                    ?>
+                                            <?php endwhile;?>
+                                        <?php else: ?>
+                                            <div class="alert alert-danger text-center" role="alert">
+                                                No hay docentes registrados.
+                                            </div>
+                                        <?php endif;?>
                                 </tbody>
                             </table>
                         </div>

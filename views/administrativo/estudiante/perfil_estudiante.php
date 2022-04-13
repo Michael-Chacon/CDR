@@ -135,7 +135,7 @@
                         <h3 class="text-center mb-2 mt-3 titulo-perfil">
                             Materias
                         </h3>
-                        <?php if (isset($datos)):
+                        <?php if (isset($datos) && $datos->rowCount() != 0):
                             while ($materias = $datos->fetchObject()): ?>
                                <article class="col-xs-12 col-sm-6 col-md-4 col-xl-4 mb-2">
                                    <div class="card text-center shadow option">
@@ -151,8 +151,12 @@
                                        </div>
                                    </div>
                                </article>
-                           <?php endwhile;
-                       endif;?>
+                           <?php endwhile;?>
+                       <?php else: ?>
+                        <div class="alert alert-danger text-center" role="alert">
+                            No hay materias asignadas a este estudiante
+                        </div>
+                       <?php endif;?>
                    </section>
                    <!-- fin materias -->
                </article>
@@ -197,7 +201,9 @@
                                            </tr>
                                        <?php endwhile;
                                    else: ?>
-                                    <p class="text-center mt-3"><span class="badge bg-warning text-dark">No hay materias asignadas.</span></p>
+                                    <div class="alert alert-danger text-center" role="alert">
+                                        No hay materias asignadas.
+                                    </div>
                                 <?php endif;?>
                             </tbody>
                         </table>
@@ -238,7 +244,9 @@
                                    </tr>
                                <?php endwhile;
                            else: ?>
-                            <p class="text-center mt-3"><span class="badge bg-warning text-dark">No hay materias asignadas.</span></p>
+                            <div class="alert alert-danger text-center" role="alert">
+                                No hay materias asignadas.
+                            </div>
                         <?php endif;?>
                     </tbody>
                 </table>
@@ -279,7 +287,9 @@
                            </tr>
                        <?php endwhile;
                    else: ?>
-                    <p class="text-center mt-3"><span class="badge bg-warning text-dark">No hay materias asignadas.</span></p>
+                    <div class="alert alert-danger text-center" role="alert">
+                        No hay materias asignadas.
+                    </div>
                 <?php endif;?>
             </tbody>
         </table>
@@ -320,7 +330,9 @@
                        </tr>
                    <?php endwhile;
                else: ?>
-                <p class="text-center mt-3"><span class="badge bg-warning text-dark">No hay materias asignadas.</span></p>
+                <div class="alert alert-danger text-center" role="alert">
+                    No hay materias asignadas.
+                </div>
             <?php endif;?>
         </tbody>
     </table>
@@ -361,7 +373,9 @@
                        </tr>
                    <?php endwhile;
                else: ?>
-                <p class="text-center mt-3"><span class="badge bg-warning text-dark">No hay materias asignadas.</span></p>
+                <div class="alert alert-danger text-center" role="alert">
+                    No hay materias asignadas.
+                </div>
             <?php endif;?>
         </tbody>
     </table>

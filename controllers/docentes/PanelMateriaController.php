@@ -4,6 +4,7 @@ require_once 'models/periodos.php';
 require_once 'models/grados.php';
 require_once 'models/documentos.php';
 require_once 'models/actividades.php';
+require_once 'models/materias.php';
 
 class panelMateriaController
 {
@@ -26,6 +27,11 @@ class panelMateriaController
         $estudiante->setGrado($grado);
         $listado_estudiantes = $estudiante->EstudiantesGrado();
         $colocar_falla = $estudiante->EstudiantesGrado();
+        # Informacion importante de la materia
+        $info = new Materias();
+        $info->setMateria($materia);
+        $datos_materia = $info->subjectInformation();
+        $estado = $info->seeAsignacionMateria($materia);
         require_once 'views/docente/panelMateria.php';
     }
 

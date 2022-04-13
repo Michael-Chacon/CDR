@@ -41,6 +41,13 @@
                     </article>
                 <?php else: ?>
                 <?php endif?>
+                <?php if (isset($_SESSION['user'])): ?>
+                    <article class="col-xs-1 col-sm-1 col-md-1 col-lg-1 config icono-menu text-center">
+                    <a href="#" data-bs-toggle="modal" data-bs-target="#informacion">
+                        <i class="bi bi-info-circle efecto_hover" style="font-size: 2rem; color: white;"></i>
+                    </a>
+                    </article>
+                <?php endif;?>
                 </section>
                 <?php echo Utils::general_alerts('GuardarDocumentosDClase', 'Documento registrado con éxito.', 'Error al intentar registrar el documento, inténtelo de nuevo.') ?>
                 <?php echo Utils::general_alerts('eliminarDocumentoDClase', 'Documento eliminado con éxito.', 'Error al intentar borrar el documento, inténtelo de nuevo.') ?>
@@ -51,17 +58,19 @@
                  <?php echo Utils::general_alerts('registrarFallas', 'Asistencia registrada con éxito.', 'Algo salió mal al intentar registrar la asistencia, inténtalo de nuevo.') ?>
                  <?php echo Utils::general_alerts('eliminarActividad', 'Activada eliminada con éxito.', 'Algo salió mal al intentar eliminar la actividad, inténtelo de nuevo.') ?>
                  <?php echo Utils::general_alerts('validarNumeroDArchivos', '', 'No es posible subir este archivo, recuerda que el número de archivos por materia no debe ser mayor de 10, elimina un archivo para poder subir este.') ?>
+                 <?php echo Utils::general_alerts('actualizarAsignacionDeMateria', 'Muy bien, la materia ya está disponible para ser asignada a un docente.', 'Algo salió mal al intentar cambiar es estado de asignación de la materia, inténtelo de nuevo.'); ?>
 
-                <?php Utils::borrar_error('GuardarDocumentosDClase');
-Utils::borrar_error('eliminarDocumentoDClase');
-Utils::borrar_error('tituloRepetido');
-Utils::borrar_error('documentoRepetido');
-Utils::borrar_error('GuardarActividadesDClase');
-Utils::borrar_error('estadoA');
-Utils::borrar_error('registrarFallas');
-Utils::borrar_error('eliminarActividad');
-Utils::borrar_error('validarNumeroDArchivos');
-?>
+                 <?php Utils::borrar_error('GuardarDocumentosDClase');
+                 Utils::borrar_error('eliminarDocumentoDClase');
+                 Utils::borrar_error('tituloRepetido');
+                 Utils::borrar_error('documentoRepetido');
+                 Utils::borrar_error('GuardarActividadesDClase');
+                 Utils::borrar_error('estadoA');
+                 Utils::borrar_error('registrarFallas');
+                 Utils::borrar_error('eliminarActividad');
+                 Utils::borrar_error('validarNumeroDArchivos');
+                 Utils::borrar_error('actualizarAsignacionDeMateria');
+                 ?>
                 <section class="row">
                     <article class="col-md-4">
                         <h3 class="text-center mb-3 titulo-seccion">
@@ -85,7 +94,7 @@ Utils::borrar_error('validarNumeroDArchivos');
                                     </thead>
                                     <tbody class="text-center texto-body">
                                         <?php $c = 1;
-while ($estudiantes = $listado_estudiantes->fetchObject()): ?>
+                                        while ($estudiantes = $listado_estudiantes->fetchObject()): ?>
                                             <tr>
                                                 <td>
                                                     <?=$c++?>
@@ -99,10 +108,12 @@ while ($estudiantes = $listado_estudiantes->fetchObject()): ?>
                                         <?php endwhile;?>
                                     </tbody>
                                 </table>
-                        </div>
-                                <?php else: ?>
-                                    <p class="text-center mt-3"><span class="badge bg-warning text-dark">No hay estudiantes matriculados.</span></p>
-                            <?php endif;?>
+                            </div>
+                        <?php else: ?>
+                            <div class="alert alert-danger text-center" role="alert">
+                                No hay estudiantes matriculados
+                            </div>
+                        <?php endif;?>
                     </article>
                     <!-- inicio de las  actividades -->
                     <article class="col-xs-12 col-sm-12 col-md-5">
@@ -149,7 +160,9 @@ while ($estudiantes = $listado_estudiantes->fetchObject()): ?>
                                 </section>
                             <?php endwhile;?>
                         <?php else: ?>
-                            <p class="text-center mt-3"><span class="badge bg-warning text-dark">No hay documentos.</span></p>
+                            <div class="alert alert-danger text-center" role="alert">
+                                No hay documentos.
+                            </div>
                         <?php endif;?>
                     </article>
                     <!-- inicio de los recordatorioscol-xs-12 col-sm-12  -->
@@ -187,7 +200,9 @@ while ($estudiantes = $listado_estudiantes->fetchObject()): ?>
                                 </section>
                             <?php endwhile;?>
                         <?php else: ?>
-                            <p class="text-center mt-3"><span class="badge bg-warning text-dark">No hay actividades.</span></p>
+                           <div class="alert alert-danger text-center" role="alert">
+                              No hay actividades.
+                          </div>
                         <?php endif;?>
                     </article>
                 </section>
@@ -226,31 +241,33 @@ while ($estudiantes = $listado_estudiantes->fetchObject()): ?>
                                     </thead>
                                     <tbody class="text-center">
                                         <?php if ($colocar_falla->rowCount() != 0): ?>
-                                        <?php
-$c = 0;
-while ($listado_e = $colocar_falla->fetchObject()):
-    $c++;
-    ?>
-					                                            <tr>
-					                                                <td>
-					                                                    <?=$c?>
-					                                                </td>
-					                                                <td>
-					                                                    <a href="">
-					                                                        <?=$listado_e->nombre_e?> <?=$listado_e->apellidos_e?>
-					                                                    </a>
-					                                                </td>
-					                                                <td>
-					                                                    <span class="form-check">
-					                                                        <input class="form-check-input" id="flexCheckDefault" type="checkbox" name="ids[]" value="<?=$listado_e->id?>">
-					                                                        </input>
-					                                                    </span>
-					                                                </td>
-					                                            </tr>
-					                                        <?php endwhile;?>
-                                    <?php else: ?>
-                                        <p class="text-center mt-3"><span class="badge bg-warning text-dark">No hay estudiantes matriculados.</span></p>
-                                    <?php endif;?>
+                                            <?php
+                                            $c = 0;
+                                            while ($listado_e = $colocar_falla->fetchObject()):
+                                                $c++;
+                                                ?>
+                                                <tr>
+                                                   <td>
+                                                       <?=$c?>
+                                                   </td>
+                                                   <td>
+                                                       <a href="">
+                                                           <?=$listado_e->nombre_e?> <?=$listado_e->apellidos_e?>
+                                                       </a>
+                                                   </td>
+                                                   <td>
+                                                       <span class="form-check">
+                                                           <input class="form-check-input" id="flexCheckDefault" type="checkbox" name="ids[]" value="<?=$listado_e->id?>">
+                                                       </input>
+                                                   </span>
+                                               </td>
+                                           </tr>
+                                       <?php endwhile;?>
+                                   <?php else: ?>
+                                    <div class="alert alert-danger text-center" role="alert">
+                                        No hay estudiantes matriculados.
+                                    </div>
+                                <?php endif;?>
                                     </tbody>
                                 </table>
                             </div>
@@ -420,3 +437,41 @@ while ($listado_e = $colocar_falla->fetchObject()):
                     </div>
                 </div>
             </article>
+
+            <!-- Modal para mostrar la informacion de la materia -->
+            <article class="modal fade" id="informacion" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <?php if (!empty($datos_materia)): ?>
+                            <h1 class="text-center config text-black mb-3">Información de la materia</h1>
+                            <hr/>
+                            <div class="alert alert-info" role="alert">
+                                <p class="info-materia">La materia <strong><?=$datos_materia->nombre_mat?></strong> pertenece al área  de <strong><?=$datos_materia->nombre_area?></strong>. La materia está asignada al docente <strong><?=$datos_materia->nombre_d?> <?=$datos_materia->apellidos_d?></strong>.</p>
+                            </div>
+                        <?php else: ?>
+                            <div class="alert alert-danger" role="alert">
+                              Cuando la materia tenga un docente asignado se podrá ver la información.
+                          </div>
+                            <?php if ($estado->asignacion == 'si'): ?>
+                                <div class="alert alert-danger" role="alert">
+                                    <p class="mt-3">Esta materia aparece como si estuviese asignada a un docente, esto no es verdad, la razón es porque en el pasado la materia le sí fue asignada a un docente, pero el docente fue eliminado de la plataforma y la materia quedo con el estado <strong>"asignada"</strong>, debes actualizar el estado para que la materia esté disponible para ser asignada a otro docente.</p>
+                                    <form action="<?=base_url?>Materias/actualizarAsignacionDeMateria" method="post">
+                                        <input type="text" hidden="true" name="id_materia" value="<?=$materia?>">
+                                        <input type="text" hidden="true" name="degree" value="<?=$grado?>">
+                                        <input type="text" hidden="true" name="name" value="<?=$nombre_ma?>">
+                                        <input type="text" hidden="true" name="nombreg" value="<?=$nombre_gra?>">
+                                        <div class="d-grid gap-2">
+                                          <button onclick="return confirm('Clic en Aceptar para seguir con el proceso de cambiar el estado.')" class="btn btn-danger" type="submit">Clic para cambiar el estado de la materia</button>
+                                      </div>
+                                  </form>
+                              </div>
+                            <?php endif;?>
+                        <?php endif;?>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-sm btn-danger" data-bs-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </article>

@@ -23,7 +23,7 @@
                     <section class="row">
                         <article class="col-xs-12 col-sm-12 col-md-12 col-xl-12 mt-3">
                             <article class="row">
-                            <?php if (isset($datos)):
+                            <?php if (isset($datos) && $datos->rowCount() != 0):
                                             while ($grados = $datos->fetchObject()): ?>
     										<article class="col-xs-12 col-sm-6 col-md-3 col-xl-3 mb-2">
 													<div class="card text-center shadow option">
@@ -37,8 +37,12 @@
 														</div>
         											</div>
     										</article>
-    									<?php endwhile;
-                                    endif;?>
+    									<?php endwhile;?>
+                                    <?php else: ?>
+                                        <div class="alert alert-danger text-center" role="alert">
+                                            No hay grados regostrados.
+                                        </div>
+                                    <?php endif;?>
                             </article>
                         </article>
                     </section>

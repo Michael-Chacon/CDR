@@ -86,7 +86,9 @@
 									</tbody>
 								</table>
 							<?php else: ?>
-								<p class="text-center mt-3"><span class="badge bg-warning text-dark">Este estudiante no tiene fallas.</span></p>
+								<div class="alert alert-danger text-center" role="alert">
+									Este estudiante no tiene fallas>
+								</div>
 							<?php endif;?>
 						</table>
 					</article>
