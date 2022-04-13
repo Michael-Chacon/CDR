@@ -119,7 +119,7 @@
                 </li>
                 <li class="nav-item opciones" role="presentation">
                     <button aria-controls="pills-profile" aria-selected="false" class="nav-link boton-opciones" data-bs-target="#pills-profile" data-bs-toggle="pill" id="pills-profile-tab" role="tab" type="button">
-                        Horario
+                        Horario de clase
                     </button>
                 </li>
                 <li class="nav-item opciones" role="presentation">
@@ -132,7 +132,7 @@
                 <article aria-labelledby="pills-home-tab" class="tab-pane fade show active" id="pills-home" role="tabpanel">
                     <!-- inicio materias -->
                     <section class="row">
-                        <h3 class="text-center mb-2 mt-3 titulo-perfil">
+                        <h3 class="text-center mb-2 mt-3 mb-4 titulo-perfil">
                             Materias
                         </h3>
                         <?php if (isset($datos) && $datos->rowCount() != 0):
@@ -163,15 +163,17 @@
                <article aria-labelledby="pills-profile-tab" class="tab-pane fade" id="pills-profile" role="tabpanel">
                 <!--inicion del horario  -->
                 <section class="row">
-                    <h3 class="text-center mb-2 mt-3 titulo-perfil">
+                    <h3 class="text-center mb-2 mt-3  mb-3 titulo-perfil">
                         Horario de clase
                     </h3>
-                    <article class="col-md-4">
+                    <article class="col-md-4 text-center">
+                        <span class="dia">
+                            Lunes
+                        </span>
+                        <hr/>
+                        <?php if ($lista_lunes->rowCount() != 0): ?>
                         <div>
                             <table class="table shadow text-center table-bordered table-hover">
-                                <caption class="caption-top text-center">
-                                    Lunes
-                                </caption>
                                 <thead>
                                     <tr>
                                         <th scope="col">
@@ -186,8 +188,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php if ($lista_lunes->rowCount() != 0):
-                                        while ($lunes = $lista_lunes->fetchObject()): ?>
+                                        <?php while ($lunes = $lista_lunes->fetchObject()): ?>
                                            <tr>
                                                <td>
                                                    <?=$lunes->inicio?>
@@ -199,22 +200,25 @@
                                                    <?=$lunes->nombre_mat?>
                                                </td>
                                            </tr>
-                                       <?php endwhile;
-                                   else: ?>
-                                    <div class="alert alert-danger text-center" role="alert">
-                                        No hay materias asignadas.
-                                    </div>
-                                <?php endif;?>
-                            </tbody>
-                        </table>
-                    </div>
+                                       <?php endwhile;?>
+                                   </tbody>
+                               </table>
+                           </div>
+                       <?php else: ?>
+                        <div class="alert alert-danger text-center" role="alert">
+                            No hay materias asignadas.
+                        </div>
+                    <?php endif;?>
+                    <hr/>
                 </article>
-                <article class="col-md-4">
+                <article class="col-md-4 text-center">
+                   <span class="dia">
+                    Martes
+                </span>
+                <hr/>
+                <?php if ($lista_martes->rowCount() != 0):?>
                     <div>
                         <table class="table shadow text-center table-bordered table-hover">
-                            <caption class="caption-top text-center">
-                                Martes
-                            </caption>
                             <thead>
                                 <tr>
                                     <th scope="col">
@@ -229,8 +233,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                             <?php if ($lista_martes->rowCount() != 0):
-                                while ($martes = $lista_martes->fetchObject()): ?>
+                                <?php while ($martes = $lista_martes->fetchObject()): ?>
                                    <tr>
                                        <td>
                                            <?=$martes->inicio?>
@@ -242,22 +245,25 @@
                                            <?=$martes->nombre_mat?>
                                        </td>
                                    </tr>
-                               <?php endwhile;
-                           else: ?>
+                               <?php endwhile;?>
+                               </tbody>
+                               </table>
+                               </div>
+                           <?php else: ?>
                             <div class="alert alert-danger text-center" role="alert">
                                 No hay materias asignadas.
                             </div>
                         <?php endif;?>
-                    </tbody>
-                </table>
-            </div>
+                        <hr/>
         </article>
-        <article class="col-md-4">
+        <article class="col-md-4 text-center">
+             <span class="dia">
+            Miércoles
+        </span>
+        <hr/>
+        <?php if ($lista_miercoles->rowCount() != 0):?>
             <div>
                 <table class="table shadow text-center table-bordered table-hover">
-                    <caption class="caption-top text-center">
-                        Miércoles
-                    </caption>
                     <thead>
                         <tr>
                             <th scope="col">
@@ -272,8 +278,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                     <?php if ($lista_miercoles->rowCount() != 0):
-                        while ($miercoles = $lista_miercoles->fetchObject()): ?>
+                        <?php while ($miercoles = $lista_miercoles->fetchObject()): ?>
                            <tr>
                                <td>
                                    <?=$miercoles->inicio?>
@@ -285,22 +290,25 @@
                                    <?=$miercoles->nombre_mat?>
                                </td>
                            </tr>
-                       <?php endwhile;
-                   else: ?>
-                    <div class="alert alert-danger text-center" role="alert">
-                        No hay materias asignadas.
-                    </div>
-                <?php endif;?>
-            </tbody>
-        </table>
-    </div>
+                       <?php endwhile;?>
+                   </tbody>
+               </table>
+           </div>
+       <?php else: ?>
+        <div class="alert alert-danger text-center" role="alert">
+            No hay materias asignadas.
+        </div>
+    <?php endif;?>
+    <hr/>
 </article>
-<article class="col-md-4">
+<article class="col-md-4 text-center">
+    <span class="dia">
+        Jueves
+    </span>
+    <hr/>
+    <?php if ($lista_jueves->rowCount() != 0):?>
     <div>
         <table class="table shadow text-center table-bordered table-hover ">
-            <caption class="caption-top text-center">
-                Jueves
-            </caption>
             <thead>
                 <tr>
                     <th scope="col">
@@ -315,8 +323,7 @@
                 </tr>
             </thead>
             <tbody>
-                <?php if ($lista_jueves->rowCount() != 0):
-                    while ($jueves = $lista_jueves->fetchObject()): ?>
+                    <?php while ($jueves = $lista_jueves->fetchObject()): ?>
                        <tr>
                            <td>
                                <?=$jueves->inicio?>
@@ -328,22 +335,25 @@
                                <?=$jueves->nombre_mat?>
                            </td>
                        </tr>
-                   <?php endwhile;
-               else: ?>
+                   <?php endwhile;?>
+        </tbody>
+    </table>
+</div>
+               <?php else: ?>
                 <div class="alert alert-danger text-center" role="alert">
                     No hay materias asignadas.
                 </div>
             <?php endif;?>
-        </tbody>
-    </table>
-</div>
+            <hr/>
 </article>
-<article class="col-md-4">
+<article class="col-md-4 text-center">
+    <span class="dia">
+        Viernes
+    </span>
+    <hr/>
+    <?php if ($lista_viernes->rowCount() != 0):?>
     <div>
         <table class="table shadow text-center table-bordered table-hover ">
-            <caption class="caption-top text-center">
-                Viernes
-            </caption>
             <thead>
                 <tr>
                     <th scope="col">
@@ -358,8 +368,7 @@
                 </tr>
             </thead>
             <tbody>
-                <?php if ($lista_viernes->rowCount() != 0):
-                    while ($viernes = $lista_viernes->fetchObject()): ?>
+                   <?php while ($viernes = $lista_viernes->fetchObject()): ?>
                        <tr>
                            <td>
                                <?=$viernes->inicio?>
@@ -371,15 +380,16 @@
                                <?=$viernes->nombre_mat?>
                            </td>
                        </tr>
-                   <?php endwhile;
-               else: ?>
+                   <?php endwhile;?>
+        </tbody>
+    </table>
+</div>
+               <?php else: ?>
                 <div class="alert alert-danger text-center" role="alert">
                     No hay materias asignadas.
                 </div>
             <?php endif;?>
-        </tbody>
-    </table>
-</div>
+            <hr/>
 </article>
 </section>
 <!-- fin del horario -->

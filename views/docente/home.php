@@ -42,9 +42,13 @@
                     </article>
                 <?php endwhile;?>
                 <?php else: ?>
-                    <div class="alert alert-danger" role="alert">
-                     No hay grados asignadas.
-                 </div>
+                    <section class="row justify-content-center">
+                        <article class="col-md-6">
+                            <div class="alert alert-danger text-center" role="alert">
+                             No hay grados asignadas.
+                         </div>
+                     </article>
+                   </section>
                 <?php endif;?>
                 </section>
                 <hr/>
