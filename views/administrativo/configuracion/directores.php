@@ -11,8 +11,8 @@
 	<section class="row mt-4">
 		<section class="col-md-6">
 			<?php if($listado_directores->rowCount() !=0): ?>
-				<div>
-					<table class="table">
+				<div class="shadow">
+					<table class="table table-hover">
 						<thead class="text-center">
 							<tr>
 								<th>Foto</th>

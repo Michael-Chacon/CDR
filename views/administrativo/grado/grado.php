@@ -20,6 +20,8 @@
                 <?php Utils::borrar_error('guardar_grado')?>
                 <?php echo Utils::general_alerts('validarGrado', '', 'El  grado que intenta registrar ya existe.'); ?>
                 <?php Utils::borrar_error('validarGrado')?>
+                <?php echo Utils::general_alerts('eliminarGrado', 'El grado se eliminó con éxito.', 'El grado se eliminó con éxito.'); ?>
+                <?php Utils::borrar_error('eliminarGrado'); ?>
                     <section class="row">
                         <article class="col-xs-12 col-sm-12 col-md-12 col-xl-12 mt-3">
                             <article class="row">

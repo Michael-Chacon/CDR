@@ -132,8 +132,7 @@ class Grados
         $gr = $this->getId();
         $eliminar = $this->db->prepare("DELETE FROM grado WHERE id = :id");
         $eliminar->bindParam(":id", $gr, PDO::PARAM_INT);
-        echo $eliminar->execute();
-        exit;
+        return $eliminar->execute();
     }
 
     # guardar el alula

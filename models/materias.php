@@ -285,4 +285,13 @@ class Materias
         return $actualizar->execute();
     }
 
+    # Eliminar una materia
+    public function deleteSubject()
+    {
+        $subject = $this->getMateria();
+        $eliminar = $this->db->prepare("DELETE FROM materia WHERE id = :materia");
+        $eliminar->bindParam(":materia", $subject, PDO::PARAM_INT);
+        return $eliminar->execute();
+    }
+
 } # fin de la clase

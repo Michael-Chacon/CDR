@@ -85,4 +85,16 @@ class MateriasController
         header("Location: " . base_url . 'panelMateria/homeMateria&degree=' . Utils::encryption($_POST['degree']) . '&ide=' . Utils::encryption($_POST['id_materia']) . '&name=' . $_POST['name'] . '&nombreg=' . $_POST['nombreg']);
     }
 
+    # Eliminar materia
+    public function eliminarMateria()
+    {
+        $materia = $_GET['materia'];
+        echo $_GET['degree'];
+        $borrador = new Materias();
+        $borrador->setMateria($materia);
+        $resultado = $borrador->deleteSubject();
+        Utils::validarReturn($resultado, 'eliminarMateria');
+        header('Location:' . base_url . 'Materias/vista&id_grado=' . Utils::encryption($_GET['degree']));
+    }
+
 } # fin de la clase

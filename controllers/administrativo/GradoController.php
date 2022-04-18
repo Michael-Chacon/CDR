@@ -39,7 +39,9 @@ class GradoController
         $id_grado = $_GET['id_grado'];
         $eliminar = new Grados();
         $eliminar->setId($id_grado);
-        $eliminar->deleteGrado();
+        $resultado = $eliminar->deleteGrado();
+        Utils::validarReturn($resultado, 'eliminarGrado');
+        header('Location: ' . base_url . 'Grado/grado');
     }
 
 }

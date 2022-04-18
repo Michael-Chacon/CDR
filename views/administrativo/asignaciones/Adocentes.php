@@ -16,33 +16,26 @@
     <article class="row justify-content-center">
         <?php if (isset($listado) && $listado->rowCount() != 0):
          while ($docentes = $listado->fetchObject()): ?>
-           <article class="col-md-5">
-            <ul class="list-group shadow seccionD">
-                <li class="list-group-item">
-                    <div class="row">
-                        <div class="col-xs-2 col-sm-2 col-md-2 col-lg2">
-                            <img alt="" class="avatar-docente nombreD" src="<?=base_url?>helpers/img/obito.png">
-                        </img>
-                    </div>
-                    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-                        <h6 class="nombreD">
-                         <?=$docentes->nombre_d?> <?=$docentes->apellidos_d?>
-                     </h6>
-                 </div>
-                 <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-                    <a href="<?=base_url?>Asignaciones/vista_Agrados&id_docente=<?=$docentes->id?>" class="btn btn-outline-dark" type="button">
-                        Asignar grados
-                    </a>
+           <article class="col-md-4">
+        <div class="card shadow">
+          <div class="card-body">
+            <h5 class="card-title">
+                <div class="row">
+                    <div class="col-md-3">
+                        <img alt="" class="avatar-docente" src="<?=base_url?>photos/docentes/<?=$docentes->img?>">
+                    </img>
                 </div>
-                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-                    <a href="<?=base_url?>Asignaciones/vista_docenteGrados&id_docente=<?=$docentes->id?>" class="btn btn-outline-success" type="button">
-                        Asignar materias
-                    </a>
-                </div>
+                <div class="col-md-9 mt-3"><?=$docentes->nombre_d?> <?=$docentes->apellidos_d?></div>
             </div>
-        </li>
-    </ul>
-</article>
+        </h5>
+        <hr>
+        <div class="d-grid gap-2">
+          <a href="<?=base_url?>Asignaciones/vista_Agrados&id_docente=<?=$docentes->id?>" class="btn btn-outline-dark" type="button">Asignar grados</a>
+          <a href="<?=base_url?>Asignaciones/vista_docenteGrados&id_docente=<?=$docentes->id?>" class="btn btn-outline-success" type="button">Asignar materias</a>
+      </div>
+        </div>
+    </div>
+    </article>
 <?php endwhile;?>
 <?php else: ?>
 <div class="alert alert-danger" role="alert">

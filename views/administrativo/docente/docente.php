@@ -17,10 +17,12 @@
                      <?php echo Utils::general_alerts('docente', 'El docente se ha registrado con éxito.', 'Algo salió mal al registrar el docente, inténtelo de nuevo.'); ?>
                      <?php echo Utils::general_alerts('credencial_d', 'Se asignaron credenciales al docente con éxito.', 'Algo salió mal al asignar credencale al docente, inténtelo de nuevo.'); ?>
                      <?php echo Utils::general_alerts('validacion_d', '', 'Se encontró un docente en la base de datos con el mismo número de documento, posiblemente este docente ya existe en la plataforma.') ?>
+                     <?php echo Utils::general_alerts('eliminarDocente', 'Docente elimnado con éxito', 'Algo salio mal al intentar eliminar al docente, intentelo de nuvo') ?>
                      <?php
                             Utils::borrar_error('docente');
                             Utils::borrar_error('credencial_d');
                             Utils::borrar_error('validacion_d');
+                            Utils::borrar_error('eliminarDocente');
                     ?>
                     <!-- tabla -->
                     <section class="row justify-content-center mt-5">

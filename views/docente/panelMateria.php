@@ -468,6 +468,9 @@
                               </div>
                             <?php endif;?>
                         <?php endif;?>
+                        <div class="d-grid gap-2">
+                          <a href="<?=base_url?>Materias/eliminarMateria&materia=<?=$materia?>&degree=<?=$grado?>" onclick="return confirm('¿Está seguro que desea eliminar la materia?')" class="btn btn-warning" type="button">Eliminar materia</a>
+                      </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-sm btn-danger" data-bs-dismiss="modal">Cerrar</button>
