@@ -225,6 +225,13 @@ hr {
 }
 .titulo-perfil {
     font-weight: 200;
+    font-size: 35px;
+}
+.tituloss {
+    background: -webkit-linear-gradient(teal, black);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
 }
 .titulo-perfil-perfil {
     font-weight: 400;
@@ -380,7 +387,7 @@ hr {
     color: #FD0303 !important;
 }
 .dia {
-    font-size: 30px !important;
+    font-size: 25px !important;
     font-weight: 300;
 }
 .fila-estudiante:hover {

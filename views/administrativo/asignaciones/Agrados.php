@@ -53,12 +53,16 @@
                                         <button class="btn btn-danger btn-lg" type="submit">Des asignar</button>
                                     <?php else: ?>
                                         <div class="alert alert-danger text-center" role="alert">
-                                            No hay grados asignados.
+                                            No hay grados asignados. <strong>Recuerde que antes de asignar grados a los docentes usted debe asignar aulas a los grados, de lo contrario no se mostraran los grados asignados a los docentes.</strong>
                                         </div>
                                         <?php endif;?>
                                 </ul>
                             </form>
                         </article>
                     </section>
+                    <div class="alert alert-warning alert-dismissible fade show mt-3 text-center" role="alert">
+                        Recuerde que antes de asignar grados a los docentes usted debe <strong>asignar aulas a los grados</strong>, de lo contrario no se mostraran los grados asignados a los docentes.
+                      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                  </div>
                 </section>
                 <!-- fin del contenedor

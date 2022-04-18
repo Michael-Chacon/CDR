@@ -294,4 +294,17 @@ class Materias
         return $eliminar->execute();
     }
 
+    # Materias asignadas a un estudinte
+    public function subjectStudent()
+    {
+        $estudiante = $this->getId();
+        $materias = $this->db->prepare("SELECT m.* FROM materia m
+            INNER JOIN estudiantemateria em ON em.id_materia_e = m.id
+            INNER JOIN estudiante e ON e.id = em.id_estudiante_m
+            WHERE e.id = :estudiante");
+        $materias->bindParam(":estudiante", $estudiante, PDO::PARAM_INT);
+        $materias->execute();
+        return $materias;
+    }
+
 } # fin de la clase

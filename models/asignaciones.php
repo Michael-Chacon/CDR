@@ -116,8 +116,7 @@ class Asignaciones
             INNER JOIN docente d ON d.id = gd.id_docente_g
             INNER JOIN aulagrado ag ON ag.id_grado_aula = g.id
             INNER JOIN aulas a ON a.id_aula = ag.id_aula_grado
-            WHERE d.id = :docente ORDER BY g.id ASC;
-            ");
+            WHERE d.id = :docente ORDER BY g.id ASC;");
         $grados->bindParam(':docente', $docente, PDO::PARAM_INT);
         $grados->execute();
         return $grados;

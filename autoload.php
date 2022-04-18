@@ -25,3 +25,12 @@ function autocarga_docentes($docentes)
     }
 }
 spl_autoload_register('autocarga_docentes');
+
+# Autocargar los controladores del modulo de estudiantes
+function autocarga_estudiante($estudiante)
+{
+    if (file_exists('controllers/estudiantes/' . $estudiante . '.php')) {
+        include 'controllers/estudiantes/' . $estudiante . '.php';
+    }
+}
+spl_autoload_register('autocarga_estudiante');

@@ -47,14 +47,6 @@ class LoginController
                     $_SESSION['user'] = $info;
                     header('Location: ' . base_url . 'Login/homeAdministrativo');
                     break;
-                #usuario Estudiante
-                case 'estudiante':
-                    $id_user = $respuesta->id_estudiante;
-                    $informacion->setIdUsuario($id_user);
-                    $info = $informacion->obtenerDatos($rol);
-                    $_SESSION['student'] = $info;
-                    header('Location: ' . base_url . 'Login/homeEstudiante');
-                    break;
                 #usuario Docente
                 case 'docente':
                     $id_user = $respuesta->id_docente;
@@ -62,6 +54,14 @@ class LoginController
                     $info = $informacion->obtenerDatos($rol);
                     $_SESSION['teacher'] = $info;
                     header('Location: ' . base_url . 'Teacher/homeDocente');
+                    break;
+                #usuario Estudiante
+                case 'estudiante':
+                    $id_user = $respuesta->id_estudiante;
+                    $informacion->setIdUsuario($id_user);
+                    $info = $informacion->obtenerDatos($rol);
+                    $_SESSION['student'] = $info;
+                    header('Location: ' . base_url . 'Student/homeEstudiante');
                     break;
                 default:
                     break;

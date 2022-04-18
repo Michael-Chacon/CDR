@@ -608,3 +608,9 @@ INNER JOIN docentemateria dm ON dm.id_materia_doc = m.id
 INNER JOIN docente d ON  d.id = dm.id_docente_mat
 INNER JOIN areas a ON a.id_area = m.id_materia_area
 WHERE m.id = 3;
+
+# listar las materias de un estudiante
+SELECT m.* FROM materia m
+INNER JOIN estudiantemateria em ON em.id_materia_e = m.id
+INNER JOIN estudiante e ON e.id = em.id_estudiante_m
+WHERE e.id = 3;
