@@ -25,7 +25,6 @@ class LoginController
         if (isset($_POST['usuario']) && isset($_POST['password'])) {
             $user = $_POST['usuario'];
             $pass = $_POST['password'];
-
             #validar las credenciales del usuario
             $datos = new Login();
             $datos->setUsuario($user);
@@ -60,7 +59,8 @@ class LoginController
                     $id_user = $respuesta->id_estudiante;
                     $informacion->setIdUsuario($id_user);
                     $info = $informacion->obtenerDatos($rol);
-                    $_SESSION['student'] = $info;
+                    $estudiante = array_merge((array) $respuesta, (array) $info);
+                    $_SESSION['student'] = $estudiante;
                     header('Location: ' . base_url . 'Student/homeEstudiante');
                     break;
                 default:

@@ -3,14 +3,14 @@
                 <div class="sidebar-heading border-bottom ">
                     <div class="row justify-content-center bg-light ">
                         <div class="col-6 text-center bg-light">
-                            <img alt="" class="avatar circulo" src="<?=base_url?>photos/estudiantes/<?=$_SESSION['student']->img?>">
-                            </img>
+                            <img alt="" class="avatar circulo" src="<?=base_url?>photos/estudiantes/<?=$_SESSION['student']['img']?>"/>
                         </div>
                     </div>
                     <div class="row">
                         <p class="nombre">
-                            <?=$_SESSION['student']->nombre_e;?>
-                            <?=$_SESSION['student']->apellidos_e;?>
+                            <?=$_SESSION['student']['nombre_e'];?>
+                            <?=$_SESSION['student']['apellidos_e'];?>
+                        <small><?=$_SESSION['student']['rol']?></small>
                         </p>
                     </div>
                 </div>

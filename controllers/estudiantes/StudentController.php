@@ -6,12 +6,12 @@ class StudentController
     public function homeEstudiante()
     {
         $listado_materias = new Materias();
-        $listado_materias->setId($_SESSION['student']->id);
+        $listado_materias->setId($_SESSION['student']['id_estudiante']);
         $materias = $listado_materias->subjectStudent();
 
         # Horario de clase
         $dia = new Horario();
-        $grado = $_SESSION['student']->id_gradoE;
+        $grado = $_SESSION['student']['id_gradoE'];
         $lista_lunes = $dia->listarLunes($grado);
         $lista_martes = $dia->listarMartes($grado);
         $lista_miercoles = $dia->listarMiercoles($grado);
