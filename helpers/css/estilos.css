@@ -312,7 +312,7 @@ hr {
     text-align: justify;
     font-size: 16px;
 }
-.definicion {
+.|cion {
     font-size: 14px;
     text-align: justify;
 }
@@ -487,6 +487,7 @@ hr {
     color: black;
 }
 .titulo-criterio {
+    color: black;
     font-size: 20px;
     font-weight: 400;
 }
@@ -579,4 +580,7 @@ hr {
 .titulo-documento {
     font-size: 18px;
     /*font-weight: 300;*/
+}
+.definitiva {
+    font-size: 40px;
 }
