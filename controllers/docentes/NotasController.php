@@ -5,6 +5,7 @@ require_once 'models/fallas.php';
 require_once 'models/notas.php';
 require_once 'models/observador.php';
 require_once 'models/actividades.php';
+require_once 'models/documentos.php';
 class NotasController
 {
     public function homeNotas()
@@ -211,7 +212,10 @@ class NotasController
             $actividades = new Actividades();
             $actividades->setMateria($id_materia);
             $listado_actividades = $actividades->listClassActivitys();
-
+            # listar los documentos que existen en la materia
+            $documentos = new Documentos();
+            $documentos->setId($id_materia);
+            $listado_documentos = $documentos->listClassDocuments();
             require_once 'views/estudiante/notas.php';
         } else {
             require_once 'views/docente/notas.php';

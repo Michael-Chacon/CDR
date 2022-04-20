@@ -130,7 +130,7 @@ class Actividades
     public function listClassActivitys()
     {
         $id_materia = $this->getMateria();
-        $listado = $this->db->prepare("SELECT * FROM actividadesmateria WHERE id_materia_a = :id");
+        $listado = $this->db->prepare("SELECT * FROM actividadesmateria WHERE id_materia_a = :id ORDER BY id DESC");
         $listado->bindParam(":id", $id_materia, PDO::PARAM_INT);
         $listado->execute();
         return $listado;
