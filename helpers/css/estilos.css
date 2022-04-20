@@ -141,8 +141,8 @@ hr {
 */
 
 .avatar {
-    height: 5rem;
-    width: 5rem;
+    height: 6rem;
+    width: 6rem;
     max-width: 150px;
     object-fit: cover;
 }
@@ -169,14 +169,18 @@ hr {
 }
 .titulo-menu {
     color: black;
-    font-size: 15PX;
-    font-weight: 400;
+    font-size: 16PX;
+    font-weight: 300;
+    text-transform: capitalize;
 }
 .subtexto {
-    margin-top: -6px;
+    margin-top: -10px;
     font-weight: 300;
     font-size: 13px;
     color: grey;
+}
+.sobra {
+    margin-bottom: -14px;
 }
 .contenido-card {
     padding: 40px 0px;
@@ -206,6 +210,13 @@ hr {
     font-size: 19px;
     font-weight: 400;
     padding-top: 17px !important;
+}
+.avatar-perfil-d {
+    height: 7rem;
+    width: 7rem;
+    border-radius: 50%;
+    border: 3px solid #CBCED8;
+    object-fit: cover !important;
 }
 .avatar-perfil {
     height: 7rem;
@@ -297,6 +308,10 @@ hr {
 .indicadores {
     padding: 0px 20px;
 }
+.indicador {
+    text-align: justify;
+    font-size: 16px;
+}
 .definicion {
     font-size: 14px;
     text-align: justify;
@@ -350,6 +365,10 @@ hr {
     color: white;
     font-weight: 300;
     font-size: 18px;
+}
+.correo_d {
+    color: grey;
+    font-weight: 400;
 }
 /*
 ====================================
@@ -547,4 +566,13 @@ hr {
 .info-materia {
     text-align: justify;
     font-size: 20px;
+}
+.perfil-notas {
+    padding: 10px;
+}
+.punto-bien {
+    color: #60F605;
+}
+.punto-mal {
+    color: red;
 }

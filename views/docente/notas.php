@@ -3,7 +3,7 @@
         <article class="col-xs-11 col-sm-11 col-md-11 col-lg-11">
             <h1 class="text-center config">
                 <i class="bi <?=$materia->icono?>"></i>
-                <?=$materia->nombre_mat?> <?=$grado?>°
+                <?=$materia->nombre_mat?> <?=$grado?>
             </h1>
         </article>
         <?php if (isset($_SESSION['teacher'])): ?>
@@ -84,7 +84,7 @@ Utils::borrar_error('eliminarNota');?>
                     <div aria-labelledby="flush-headingOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample" id="flush-collapseOne">
                         <article class="accordion-body">
                             <?php $f = 0;
-                            if ($fechas_fallas->rowCount() != 0): ?>
+if ($fechas_fallas->rowCount() != 0): ?>
                                 <table class="table text-center">
                                     <thead>
                                         <tr>
@@ -101,20 +101,20 @@ Utils::borrar_error('eliminarNota');?>
                                     </thead>
                                     <tbody>
                                         <?php while ($fechas = $fechas_fallas->fetchObject()):
-                                            $f++;
-                                            ?>
-                                            <tr>
-                                               <td>
-                                                   <?=$f?>
-                                               </td>
-                                               <td>
-                                                   <?=$fechas->fecha_falla?>
-                                               </td>
-                                               <td>
-                                                   <?=$fechas->id_periodo_f?>
-                                               </td>
-                                           </tr>
-                                       <?php endwhile;?>
+    $f++;
+    ?>
+	                                            <tr>
+	                                               <td>
+	                                                   <?=$f?>
+	                                               </td>
+	                                               <td>
+	                                                   <?=$fechas->fecha_falla?>
+	                                               </td>
+	                                               <td>
+	                                                   <?=$fechas->id_periodo_f?>
+	                                               </td>
+	                                           </tr>
+	                                       <?php endwhile;?>
                                    </tbody>
                                </table>
                            <?php else: ?>
@@ -156,7 +156,7 @@ Utils::borrar_error('eliminarNota');?>
                     <th scope="col">nota</th>
                     <?php if (isset($_SESSION['teacher'])): ?>
                     <th scope="col" class="text-center">Eliminar</th>
-                    <?php endif; ?>
+                    <?php endif;?>
                 </tr>
             </thead>
             <tbody>
@@ -175,7 +175,7 @@ Utils::borrar_error('eliminarNota');?>
                     <a onclick="return confirm('¿Estás seguro de que deseas eliminar la nota?')" href="<?=base_url?>Notas/eliminarNota&activity=evaluacion&id=<?=$evaluacionPeriodo1->id_evaluacion?>&m=<?=$id_materia?>&g=<?=$grado?>&e=<?=$id_estudiante?>" class="<?=$uno?>"><i class="bi bi-trash efecto_hover"></i>
                     </a>
                 </td>
-            <?php endif; ?>
+            <?php endif;?>
             </tr>
             <tr>
               <td scope="row"></td>
@@ -191,7 +191,7 @@ Utils::borrar_error('eliminarNota');?>
             <td class="text-center">
                 <a onclick="return confirm('¿Estás seguro de que deseas eliminar la nota?')" href="<?=base_url?>Notas/eliminarNota&activity=trimestral&id=<?=$trimestralPeriodo1->id_trimestral?>&m=<?=$id_materia?>&g=<?=$grado?>&e=<?=$id_estudiante?>"  class="<?=$uno?>"><i class="bi bi-trash efecto_hover"></i></a>
             </td>
-        <?php endif; ?>
+        <?php endif;?>
         </tr>
         <tr>
           <td scope="row"></td>
@@ -221,7 +221,7 @@ Utils::borrar_error('eliminarNota');?>
         <?php if (isset($_SESSION['teacher'])): ?>
         <td class="text-center">
                 <a onclick="return confirm('¿Estás seguro de que deseas eliminar la nota?')" href="<?=base_url?>Notas/eliminarNota&activity=tindividual&id=<?=$trabajoIndividualPeriodo1->id_Tindividual?>&m=<?=$id_materia?>&g=<?=$grado?>&e=<?=$id_estudiante?>" class="<?=$uno?>"><i class="bi bi-trash efecto_hover"></i></a></td>
-        <?php endif; ?>
+        <?php endif;?>
         </tr>
     <tr>
       <td scope="row" ></td>
@@ -235,7 +235,7 @@ Utils::borrar_error('eliminarNota');?>
     </td>
     <?php if (isset($_SESSION['teacher'])): ?>
     <td class="text-center"><a onclick="return confirm('¿Estás seguro de que deseas eliminar la nota?')" href="<?=base_url?>Notas/eliminarNota&activity=tcolaborativo&id=<?=$trabajoColaborativoPeriodo1->id_Tcolaborativo?>&m=<?=$id_materia?>&g=<?=$grado?>&e=<?=$id_estudiante?>" class="<?=$uno?>"><i class="bi bi-trash efecto_hover"></i></a></td>
-<?php endif; ?>
+<?php endif;?>
 </tr>
 <tr>
   <td scope="row"></td>
@@ -264,7 +264,7 @@ Utils::borrar_error('eliminarNota');?>
 </td>
 <?php if (isset($_SESSION['teacher'])): ?>
 <td class="text-center"><a onclick="return confirm('¿Estás seguro de que deseas eliminar la nota?')" href="<?=base_url?>Notas/eliminarNota&activity=apreciativa&id=<?=$apreciativaPeriodo1->id_apreciativa?>&m=<?=$id_materia?>&g=<?=$grado?>&e=<?=$id_estudiante?>" class="<?=$uno?>"><i class="bi bi-trash efecto_hover"></i></a></td>
-<?php endif; ?>
+<?php endif;?>
 </tr>
 <tr>
   <td scope="row" ></td>
@@ -278,7 +278,7 @@ Utils::borrar_error('eliminarNota');?>
 </td>
 <?php if (isset($_SESSION['teacher'])): ?>
 <td class="text-center"><a onclick="return confirm('¿Estás seguro de que deseas eliminar la nota?')" href="<?=base_url?>Notas/eliminarNota&activity=autoevaluacion&id=<?=$autoevaluacionPeriodo1->id_autoevaluacion?>&m=<?=$id_materia?>&g=<?=$grado?>&e=<?=$id_estudiante?>" class="<?=$uno?>"><i class="bi bi-trash efecto_hover"></i></a></td>
-<?php endif; ?>
+<?php endif;?>
 </tr>
 <tr>
   <td scope="row"></td>
@@ -326,7 +326,7 @@ Utils::borrar_error('eliminarNota');?>
                     <th scope="col">nota</th>
                     <?php if (isset($_SESSION['teacher'])): ?>
                     <th class="text-center" scope="col">Eliminar</th>
-                <?php endif; ?>
+                <?php endif;?>
                 </tr>
             </thead>
             <tbody>
@@ -342,7 +342,7 @@ Utils::borrar_error('eliminarNota');?>
                 </td>
                 <?php if (isset($_SESSION['teacher'])): ?>
                 <td class="text-center"><a onclick="return confirm('¿Estás seguro de que deseas eliminar la nota?')" href="<?=base_url?>Notas/eliminarNota&activity=evaluacion&id=<?=$evaluacionPeriodo2->id_evaluacion?>&m=<?=$id_materia?>&g=<?=$grado?>&e=<?=$id_estudiante?>" class="<?=$dos?>"><i class="bi bi-trash efecto_hover"></i></a></td>
-            <?php endif; ?>
+            <?php endif;?>
             </tr>
             <tr>
               <td scope="row"></td>
@@ -356,7 +356,7 @@ Utils::borrar_error('eliminarNota');?>
             </td>
             <?php if (isset($_SESSION['teacher'])): ?>
             <td class="text-center"><a onclick="return confirm('¿Estás seguro de que deseas eliminar la nota?')" href="<?=base_url?>Notas/eliminarNota&activity=trimestral&id=<?=$trimestralPeriodo2->id_trimestral?>&m=<?=$id_materia?>&g=<?=$grado?>&e=<?=$id_estudiante?>" class="<?=$dos?>"><i class="bi bi-trash efecto_hover"></i></a></td>
-        <?php endif; ?>
+        <?php endif;?>
         </tr>
         <tr>
           <td scope="row"></td>
@@ -385,7 +385,7 @@ Utils::borrar_error('eliminarNota');?>
         </td>
         <?php if (isset($_SESSION['teacher'])): ?>
         <td class="text-center"><a onclick="return confirm('¿Estás seguro de que deseas eliminar la nota?')" href="<?=base_url?>Notas/eliminarNota&activity=tindividual&id=<?=$trabajoIndividualPeriodo2->id_Tindividual?>&m=<?=$id_materia?>&g=<?=$grado?>&e=<?=$id_estudiante?>" class="<?=$dos?>"><i class="bi bi-trash efecto_hover"></i></a></td>
-    <?php endif; ?>
+    <?php endif;?>
     </tr>
     <tr>
       <td scope="row" ></td>
@@ -399,7 +399,7 @@ Utils::borrar_error('eliminarNota');?>
     </td>
     <?php if (isset($_SESSION['teacher'])): ?>
     <td class="text-center"><a onclick="return confirm('¿Estás seguro de que deseas eliminar la nota?')" href="<?=base_url?>Notas/eliminarNota&activity=tcolaborativo&id=<?=$trabajoColaborativoPeriodo2->id_Tcolaborativo?>&m=<?=$id_materia?>&g=<?=$grado?>&e=<?=$id_estudiante?>" class="<?=$dos?>"><i class="bi bi-trash efecto_hover"></i></a></td>
-<?php endif; ?>
+<?php endif;?>
 </tr>
 <tr>
   <td scope="row"></td>
@@ -428,7 +428,7 @@ Utils::borrar_error('eliminarNota');?>
 </td>
 <?php if (isset($_SESSION['teacher'])): ?>
 <td class="text-center"><a onclick="return confirm('¿Estás seguro de que deseas eliminar la nota?')" href="<?=base_url?>Notas/eliminarNota&activity=apreciativa&id=<?=$apreciativaPeriodo2->id_apreciativa?>&m=<?=$id_materia?>&g=<?=$grado?>&e=<?=$id_estudiante?>" class="<?=$dos?>"><i class="bi bi-trash efecto_hover"></i></a></td>
-<?php  endif;?>
+<?php endif;?>
 </tr>
 <tr>
   <td scope="row" ></td>
@@ -443,7 +443,7 @@ Utils::borrar_error('eliminarNota');?>
 </td>
 <?php if (isset($_SESSION['teacher'])): ?>
 <td class="text-center"><a onclick="return confirm('¿Estás seguro de que deseas eliminar la nota?')" href="<?=base_url?>Notas/eliminarNota&activity=autoevaluacion&id=<?=$autoevaluacionPeriodo2->id_autoevaluacion?>&m=<?=$id_materia?>&g=<?=$grado?>&e=<?=$id_estudiante?>" class="<?=$dos?>"><i class="bi bi-trash efecto_hover"></i></a></td>
-<?php endif; ?>
+<?php endif;?>
 </tr>
 <tr>
   <td scope="row"></td>
@@ -491,7 +491,7 @@ Utils::borrar_error('eliminarNota');?>
                     <th scope="col">nota</th>
                     <?php if (isset($_SESSION['teacher'])): ?>
                     <th class="text-center" scope="col">Eliminar</th>
-                <?php endif; ?>
+                <?php endif;?>
                 </tr>
             </thead>
             <tbody>
@@ -507,7 +507,7 @@ Utils::borrar_error('eliminarNota');?>
                 </td>
                 <?php if (isset($_SESSION['teacher'])): ?>
                 <td class="text-center"><a onclick="return confirm('¿Estás seguro de que deseas eliminar la nota?')" href="<?=base_url?>Notas/eliminarNota&activity=evaluacion&id=<?=$evaluacionPeriodo3->id_evaluacion?>&m=<?=$id_materia?>&g=<?=$grado?>&e=<?=$id_estudiante?>" class="<?=$tres?>"><i class="bi bi-trash efecto_hover"></i></a></td>
-            <?php endif; ?>
+            <?php endif;?>
             </tr>
             <tr>
               <td scope="row"></td>
@@ -521,7 +521,7 @@ Utils::borrar_error('eliminarNota');?>
             </td>
             <?php if (isset($_SESSION['teacher'])): ?>
             <td class="text-center"><a onclick="return confirm('¿Estás seguro de que deseas eliminar la nota?')" href="<?=base_url?>Notas/eliminarNota&activity=trimestral&id=<?=$trimestralPeriodo3->id_trimestral?>&m=<?=$id_materia?>&g=<?=$grado?>&e=<?=$id_estudiante?>" class="<?=$tres?>"><i class="bi bi-trash efecto_hover"></i></a></td>
-        <?php endif; ?>
+        <?php endif;?>
         </tr>
         <tr>
           <td scope="row"></td>
@@ -550,7 +550,7 @@ Utils::borrar_error('eliminarNota');?>
         </td>
         <?php if (isset($_SESSION['teacher'])): ?>
         <td class="text-center"><a onclick="return confirm('¿Estás seguro de que deseas eliminar la nota?')" href="<?=base_url?>Notas/eliminarNota&activity=tindividual&id=<?=$trabajoIndividualPeriodo3->id_Tindividual?>&m=<?=$id_materia?>&g=<?=$grado?>&e=<?=$id_estudiante?>" class="<?=$tres?>"><i class="bi bi-trash efecto_hover"></i></a></td>
-    <?php endif; ?>
+    <?php endif;?>
     </tr>
     <tr>
       <td scope="row" ></td>
@@ -564,7 +564,7 @@ Utils::borrar_error('eliminarNota');?>
     </td>
     <?php if (isset($_SESSION['teacher'])): ?>
     <td class="text-center"><a onclick="return confirm('¿Estás seguro de que deseas eliminar la nota?')" href="<?=base_url?>Notas/eliminarNota&activity=tcolaborativo&id=<?=$trabajoColaborativoPeriodo3->id_Tcolaborativo?>&m=<?=$id_materia?>&g=<?=$grado?>&e=<?=$id_estudiante?>" class="<?=$tres?>"><i class="bi bi-trash efecto_hover"></i></a></td>
-<?php endif; ?>
+<?php endif;?>
 </tr>
 <tr>
   <td scope="row"></td>
@@ -593,7 +593,7 @@ Utils::borrar_error('eliminarNota');?>
 </td>
 <?php if (isset($_SESSION['teacher'])): ?>
 <td class="text-center"><a onclick="return confirm('¿Estás seguro de que deseas eliminar la nota?')" href="<?=base_url?>Notas/eliminarNota&activity=apreciativa&id=<?=$apreciativaPeriodo3->id_apreciativa?>&m=<?=$id_materia?>&g=<?=$grado?>&e=<?=$id_estudiante?>" class="<?=$tres?>"><i class="bi bi-trash efecto_hover"></i></a></td>
-<?php endif; ?>
+<?php endif;?>
 </tr>
 <tr>
   <td scope="row" ></td>
@@ -608,7 +608,7 @@ Utils::borrar_error('eliminarNota');?>
 </td>
 <?php if (isset($_SESSION['teacher'])): ?>
 <td class="text-center"><a onclick="return confirm('¿Estás seguro de que deseas eliminar la nota?')" href="<?=base_url?>Notas/eliminarNota&activity=autoevaluacion&id=<?=$autoevaluacionPeriodo3->id_autoevaluacion?>&m=<?=$id_materia?>&g=<?=$grado?>&e=<?=$id_estudiante?>" class="<?=$tres?>"><i class="bi bi-trash efecto_hover"></i></a></td>
-<?php endif; ?>
+<?php endif;?>
 </tr>
 <tr>
   <td scope="row"></td>

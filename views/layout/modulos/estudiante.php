@@ -10,9 +10,19 @@
                         <p class="nombre">
                             <?=$_SESSION['student']['nombre_e'];?>
                             <?=$_SESSION['student']['apellidos_e'];?>
-                        <small><?=$_SESSION['student']['rol']?></small>
                         </p>
                     </div>
+                     <hr class="hr-perfil"/>
+                     <div class="row text-center justify-content-center sobra">
+                         <div class="col-md-6">
+                            <h6 class="titulo-menu">
+                                <small><?=$_SESSION['student']['rol']?></small>
+                            </h6>
+                            <p class="subtexto">
+                                Rol
+                            </p>
+                        </div>
+                </div>
                 </div>
                 <div class="list-group list-group-flush ">
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="<?=base_url?>Student/homeEstudiante">

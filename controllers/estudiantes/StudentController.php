@@ -20,9 +20,4 @@ class StudentController
         require_once 'views/estudiante/home.php';
     }
 
-    # Notas del estudiante en una materia
-    public function noteStudent()
-    {
-        echo $materia = Utils::decryption($_GET['ids']);
-    }
 } # fin de la clase

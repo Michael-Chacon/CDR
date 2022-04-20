@@ -4,13 +4,18 @@ require_once 'models/estudiante.php';
 require_once 'models/fallas.php';
 require_once 'models/notas.php';
 require_once 'models/observador.php';
+require_once 'models/actividades.php';
 class NotasController
 {
     public function homeNotas()
     {
         $id_materia = Utils::decryption($_GET['materia']);
-        $grado = $_GET['nGrado'];
         $id_estudiante = Utils::decryption($_GET['student']);
+        if (isset($_GET['nGrado'])) {
+            $grado = $_GET['nGrado'] . '°';
+        } else {
+            $grado = '';
+        }
         # Obteniendo los datos del estudiante la cual se quire consultar las notas y demas.
         $datos_estudiante = new Estudiante();
         $datos_estudiante->setId($id_estudiante);
@@ -18,7 +23,11 @@ class NotasController
         # Obteniendo los datos de la materia
         $datos_materia = new Materias();
         $datos_materia->setMateria($id_materia);
+        #informacion de la materia
         $materia = $datos_materia->selectOneSubject();
+        # JInformacion del docente y la materia
+        $docente = $datos_materia->subjectInformation();
+
         # Obteniendo informacion de la inasistencia del estudianta
         $asistencia = new Fallas();
         $asistencia->setEstudiante($id_estudiante);
@@ -152,24 +161,23 @@ class NotasController
 
         # metodo para avilitar el boton de borrado
 
-            switch ($periodo) {
-                case '1':
-                    $uno = '';
-                    $dos = 'btn disabled';
-                    $tres = 'btn disabled';
-                    break;
-                case '2':
-                    $uno = 'btn disabled';
-                    $dos = '';
-                    $tres = 'btn disabled';
-                    break;
-                case '3':
-                    $uno = 'btn disabled';
-                    $dos = 'btn disabled';
-                    $tres = '';
-                    break;
-            }
-
+        switch ($periodo) {
+            case '1':
+                $uno = '';
+                $dos = 'btn disabled';
+                $tres = 'btn disabled';
+                break;
+            case '2':
+                $uno = 'btn disabled';
+                $dos = '';
+                $tres = 'btn disabled';
+                break;
+            case '3':
+                $uno = 'btn disabled';
+                $dos = 'btn disabled';
+                $tres = '';
+                break;
+        }
 
         # validar el periodo en el que se está, para insertar la nota definitiva en el periodo correspondiente, solo se actualiza cuando se  registra o se eliminar una nota
         if (isset($_GET['event']) && $_GET['event'] == 'ok') {
@@ -198,6 +206,13 @@ class NotasController
         # Validando el tipo de usurio activo, para redireccionarlo a un vista especifica
         if (isset($_GET['dir']) && $_GET['dir'] == 'ok') {
             require_once 'views/docente/notasDirector.php';
+        } elseif (isset($_SESSION['student'])) {
+            # Listar las actividades que existen en esta materia
+            $actividades = new Actividades();
+            $actividades->setMateria($id_materia);
+            $listado_actividades = $actividades->listClassActivitys();
+
+            require_once 'views/estudiante/notas.php';
         } else {
             require_once 'views/docente/notas.php';
         }

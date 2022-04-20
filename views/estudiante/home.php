@@ -12,7 +12,7 @@
 							<h6 class="mt-2">
 								<?=$materia->nombre_mat?>
 							</h6>
-							<a class="stretched-link" href="<?=base_url?>Student/noteStudent&ids=<?=Utils::encryption($materia->id)?>">
+							<a class="stretched-link" href="<?=base_url?>Notas/homeNotas&materia=<?=Utils::encryption($materia->id)?>&student=<?=Utils::encryption($_SESSION['student']['id_estudiante'])?>">
 							</a>
 						</div>
 					</div>

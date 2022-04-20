@@ -614,3 +614,9 @@ SELECT m.* FROM materia m
 INNER JOIN estudiantemateria em ON em.id_materia_e = m.id
 INNER JOIN estudiante e ON e.id = em.id_estudiante_m
 WHERE e.id = 3;
+
+# Obtener los datos del docente y de la materia
+SELECT m.*, d.nombre_d, d.apellidos_d, d.nombre_pregrado_d FROM materia m
+INNER JOIN docentemateria dm ON dm.id_materia_doc = m.id
+INNER JOIN docente d ON d.id = dm.id_docente_mat
+WHERE m.id = 7;
