@@ -613,7 +613,7 @@
 				  			<?php while($documento = $listado_documentos->fetchObject()): ?>
 				  				<div class="col-md-4 mb-3">
 				  					<div class="card border-success mb-3 shadow">
-				  						<div class="card-header bg-transparent border-success titulo-documento"><?=$documento->titulo?></div>
+				  						<div class="card-header bg-transparent border-success titulo-documento text-center"><?=$documento->titulo?></div>
 				  						<div class="card-body">
 				  							<div class="row text-center">
 				  								<div class="col-md-6">

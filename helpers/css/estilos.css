@@ -342,6 +342,12 @@ hr {
     font-weight: 200;
     color: grey;
 }
+.texto-medio {
+    text-align: justify;
+    font-size: 19px;
+    font-weight: 200;
+    color: black;
+}
 .valor_item {
     font-size: 25px;
     font-weight: 200;

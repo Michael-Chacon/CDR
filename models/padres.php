@@ -580,4 +580,32 @@ class Padres
         return $seleccion->fetchObject()->id;
 
     }
+
+    # Seleccionar la informacion de los padres de familia
+    public function padres()
+    {
+        $id_padres = $this->getId();
+        $datos = $this->db->prepare("SELECT * FROM padres WHERE id = :id_padres");
+        $datos->bindParam(":id_padres", $id_padres, PDO::PARAM_INT);
+        $datos->execute();
+        return $datos->fetchObject();
+    }
+
+    # Actualizar los datos de los pladres en el controlador StudentController
+    public function actualizarPadres()
+    {
+        $id_padres = $_SESSION['student']['id_familia_e'];
+        $te_m = $this->getTelefonoM();
+        $te_p = $this->getTelefonoP();
+        $co = $this->getCorreo();
+        $dir = $this->getDireccion();
+        $acutalizar = $this->db->prepare("UPDATE padres SET telefono_m = :madre, telefono_p = :padre, direccion = :dir, correo = :cor WHERE id = :id_padres");
+        $acutalizar->bindParam(":madre", $te_m, PDO::PARAM_INT);
+        $acutalizar->bindParam(":padre", $te_p, PDO::PARAM_INT);
+        $acutalizar->bindParam(":dir", $dir, PDO::PARAM_STR);
+        $acutalizar->bindParam(":cor", $co, PDO::PARAM_STR);
+        $acutalizar->bindParam(":id_padres", $id_padres, PDO::PARAM_INT);
+        return $acutalizar->execute();
+    }
+
 } # Fin de la clase

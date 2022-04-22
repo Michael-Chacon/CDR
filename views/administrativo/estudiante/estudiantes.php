@@ -84,7 +84,7 @@
 		                                                        <?=$estudiantes->numero_e?>
 		                                                    </td>
 		                                                    <td class="text-center">
-		                                                        <a href="<?=base_url?>Materias/vista&id_grado=<?=$estudiantes->id_gradoE?>">
+		                                                        <a href="<?=base_url?>Materias/vista&id_grado=<?=Utils::encryption($estudiantes->id_gradoE)?>">
 		                                                            <h3>
 		                                                                <?=$estudiantes->nombre_g?>
 		                                                            </h3>

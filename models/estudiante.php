@@ -211,4 +211,19 @@ class Estudiante extends Usuarios
         return $datos->fetchObject();
     }
 
+    # Actualizar los datos del estudiante en el controlador StudentController
+    public function actualizarEstudiante()
+    {
+        $id_estudiante = $_SESSION['student']['id_estudiante'];
+        $tel = $this->getTelefono();
+        $dir = $this->getDireccion();
+        $co = $this->getCorreo();
+        $acutalizar = $this->db->prepare("UPDATE estudiante SET telefono_e = :telefono,  direccion_e = :dir, correo_e = :cor WHERE id = :id_estudiante");
+        $acutalizar->bindParam(":telefono", $tel, PDO::PARAM_INT);
+        $acutalizar->bindParam(":dir", $dir, PDO::PARAM_STR);
+        $acutalizar->bindParam(":cor", $co, PDO::PARAM_STR);
+        $acutalizar->bindParam(":id_estudiante", $id_estudiante, PDO::PARAM_INT);
+        return $acutalizar->execute();
+    }
+
 } # fin de la clase

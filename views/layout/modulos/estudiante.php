@@ -28,6 +28,12 @@
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="<?=base_url?>Student/homeEstudiante">
                        <i class="bi bi-house"></i> <span>Inicio</span>
                     </a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3 menu-items" href="<?=base_url?>Student/datosEstudiante">
+                       <i class="bi bi-info-circle"></i>  Mis datos
+                    </a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3 menu-items" href="<?=base_url?>Student/observador">
+                       <i class="bi bi-sunglasses"></i> Observaciones
+                    </a>
                     <a class="list-group-item list-group-item-action list-group-item-light p-3 menu-items" href="<?=base_url?>Teacher/documentos">
                        <i class="bi bi-file-earmark-arrow-down"></i>  Documentos institucionales
                     </a>
