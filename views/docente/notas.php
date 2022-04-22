@@ -27,6 +27,15 @@
         <?php else: ?>
         <?php endif;?>
     </section>
+    <section class="row justify-content-center">
+        <?php echo Utils::general_alerts('registrarNota', 'Nota registrada con éxito.', ' El porcentaje de esta nota sobrepasa el límite del 100%') ?>
+        <?php echo Utils::general_alerts('validarNota', '', 'En esta actividad ya se encuentra registrada una nota, si quieres actualizarla, elimina la nota existente y registra la nota nueva.') ?>
+        <?php echo Utils::general_alerts('eliminarNota', 'La nota fue eliminia con éxito', 'Algo salió mal al intentar eliminar la nota, intentelo de nuevo'); ?>
+
+        <?php Utils::borrar_error('registrarNota');
+        Utils::borrar_error('validarNota');
+        Utils::borrar_error('eliminarNota');?>
+    </section>
     <!-- cambio -->
     <section class="row mt-3">
         <section class="col-md-4">
@@ -586,17 +595,6 @@
     <!-- fin de las notas -->
     </section>
     <!-- fin del cambio -->
-    <!-- fin del header -->
-    <section class="row justify-content-center">
-        <?php echo Utils::general_alerts('registrarNota', 'Nota registrada con éxito.', ' El porcentaje de esta nota sobrepasa el límite del 100%') ?>
-        <?php echo Utils::general_alerts('validarNota', '', 'En esta actividad ya se encuentra registrada una nota, si quieres actualizarla, elimina la nota existente y registra la nota nueva.') ?>
-        <?php echo Utils::general_alerts('eliminarNota', 'La nota fue eliminia con éxito', 'Algo salió mal al intentar eliminar la nota, intentelo de nuevo'); ?>
-
-        <?php Utils::borrar_error('registrarNota');
-        Utils::borrar_error('validarNota');
-        Utils::borrar_error('eliminarNota');?>
-    </section>
-<!-- fin indicador y contenido -->
 </section>
 <!-- Modal -->
 <section aria-hidden="true" aria-labelledby="exampleModalLabel" class="modal fade" id="newNote" tabindex="-1">
