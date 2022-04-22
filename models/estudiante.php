@@ -205,7 +205,7 @@ class Estudiante extends Usuarios
     public function selectOneStudent()
     {
         $id_student = $this->getId();
-        $datos = $this->db->prepare("SELECT id, nombre_e, apellidos_e, id_gradoE FROM estudiante WHERE id = :estudiante");
+        $datos = $this->db->prepare("SELECT id, nombre_e, apellidos_e, id_gradoE, img FROM estudiante WHERE id = :estudiante");
         $datos->bindParam(":estudiante", $id_student, PDO::PARAM_INT);
         $datos->execute();
         return $datos->fetchObject();
