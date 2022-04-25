@@ -145,17 +145,6 @@
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-floating mb-3">
-                                                <input class="form-control" id="edad" name="edad" placeholder="edad" required="" type="number">
-                                                    <label for="edad">
-                                                        Edad:
-                                                    </label>
-                                                </input>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-floating mb-3">
                                                 <select aria-label=".form-select-lg example" class="form-select form-select-md mb-3" name="sexo" required="">
                                                     <option>
                                                     </option>
@@ -262,12 +251,6 @@
                                                     </label>
                                                 </input>
                                             </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div>
-                                          <label for="fotoD" class="form-label">Foto del docente:</label>
-                                          <input class="form-control" id="fotoD" type="file" name="fotoDocente">
                                         </div>
                                     </div>
                                     <h5 class="text-center mt-5">

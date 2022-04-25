@@ -19,7 +19,6 @@ class Personal extends Usuarios
             $no = $this->getNombre();
             $ap = $this->getApellidos();
             $fe_na = $this->getNacimiento();
-            $ed = $this->getEdad();
             $gen = $this->getGenero();
             $car = $this->getCargo();
             $ti_docu = $this->getTipoDocu();
@@ -43,8 +42,10 @@ class Personal extends Usuarios
 
             # validar si se va a guardar o actualizar
             if ($accion == 'guardar') {
+                $ed = Utils::hallarEdad($fe_na);
                 $registro = $this->db->prepare("INSERT INTO personal VALUES(null, :nombre, :apellidos, :fe_na, :edad, :genero, :cargo, :tipo_id, :numeroid, :lu_ex, :fe_ex, :dir, :tel, :co, :reli, :incapacidad, :grupo_s, :rh, :fe_po, :nu_acta, :nu_resolucion, :pre, :no_pre, :pos, :no_pos);");
             } elseif ($accion == 'actualizar') {
+                $ed = $this->getEdad();
                 $registro = $this->db->prepare("UPDATE personal SET nombre_per = :nombre, apellidos_per = :apellidos, fecha_nacimiento_per = :fe_na, edad_per = :edad, sexo_per = :genero, cargo_per = :cargo, tipo_identificacion_per = :tipo_id, numero_per = :numeroid, lugar_expedicion_per = :lu_ex, fecha_expedicion_per = :fe_ex, direccion_per = :dir, telefono_per =:tel, correo_per = :co, religion_per = :reli, incapacidad_medica_per = :incapacidad, grupo_sanguineo_per = :grupo_s, rh_per = :rh, fecha_posesion_per = :fe_po, numero_acta_posesion_per = :nu_acta, numero_resolucion_posesion_per = :nu_resolucion, pregrado_per = :pre, nombre_pregrado_per = :no_pre, posgrado_per = :pos, nombre_posgrado_per = :no_pos WHERE id = :id");
                 $registro->bindParam(":id", $id_per, PDO::PARAM_INT);
             }

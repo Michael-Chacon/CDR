@@ -61,37 +61,37 @@
                                     <?php if (isset($todos_estudiantes) && $todos_estudiantes->rowCount() != 0):
                                                     $c = 1;
                                                     while ($estudiantes = $todos_estudiantes->fetchObject()): ?>
-				                                                	 <tr>
-				                                                    <th class="texto_tabla_docente text-center" scope="row">
-				                                                        <?=$c++?>
-				                                                    </th>
-				                                                    <td>
-                                                                    <?php if ($estudiantes->img == null): ?>
-                                                                       <img alt="" class="avatar-tabla circulo" src="<?=base_url?>helpers/img/avatar.jpg"></img>
-                                                                    <?php else: ?>
-                                                                      <img alt="" class="avatar-tabla circulo" src="<?=base_url?>photos/estudiantes/<?=$estudiantes->img?>"></img>
-                                                                    <?php endif;?>
-                                                              </td>
-		                                                    <td class="texto_tabla_docente">
-		                                                        <a href="<?=base_url?>Estudiante/perfilEstudiante&x=<?=$estudiantes->id?>&y=<?=$estudiantes->id_familia_e?>&z=<?=$estudiantes->id_grado?>">
-		                                                              <?=$estudiantes->nombre_e?>
-		                                                               <?=$estudiantes->apellidos_e?>
-		                                                        </a>
-		                                                    </td>
-		                                                    <td class="texto_tabla_docente text-center">
-		                                                        <?=$estudiantes->correo_e?>
-		                                                    </td>
-		                                                    <td class="texto_tabla_docente text-center">
-		                                                        <?=$estudiantes->numero_e?>
-		                                                    </td>
-		                                                    <td class="text-center">
-		                                                        <a href="<?=base_url?>Materias/vista&id_grado=<?=Utils::encryption($estudiantes->id_gradoE)?>">
-		                                                            <h3>
-		                                                                <?=$estudiantes->nombre_g?>
-		                                                            </h3>
-		                                                        </a>
-		                                                    </td>
-		                                                </tr>
+                                                      <tr>
+                                                        <th class="texto_tabla_docente text-center" scope="row">
+                                                            <?=$c++?>
+                                                        </th>
+                                                        <td>
+                                                            <?php if ($estudiantes->img == null): ?>
+                                                                <img alt="" class="avatar-tabla circulo" src="<?=base_url?>helpers/img/avatar.jpg"></img>
+                                                            <?php else: ?>
+                                                             <img alt="" class="avatar-tabla circulo" src="<?=base_url?>photos/estudiantes/<?=$estudiantes->img?>"></img>
+                                                            <?php endif;?>
+                                                        </td>
+                                                      <td class="texto_tabla_docente">
+                                                          <a href="<?=base_url?>Estudiante/perfilEstudiante&x=<?=$estudiantes->id?>&y=<?=$estudiantes->id_familia_e?>&z=<?=$estudiantes->id_grado?>">
+                                                            <?=$estudiantes->nombre_e?>
+                                                            <?=$estudiantes->apellidos_e?>
+                                                        </a>
+                                                    </td>
+                                                    <td class="texto_tabla_docente text-center">
+                                                      <?=$estudiantes->correo_e?>
+                                                  </td>
+                                                  <td class="texto_tabla_docente text-center">
+                                                      <?=$estudiantes->numero_e?>
+                                                  </td>
+                                                  <td class="text-center">
+                                                      <a href="<?=base_url?>Materias/vista&id_grado=<?=Utils::encryption($estudiantes->id_gradoE)?>">
+                                                          <h3>
+                                                              <?=$estudiantes->nombre_g?>
+                                                          </h3>
+                                                      </a>
+                                                  </td>
+                                                </tr>
 		                                      <?php endwhile;?>
                                           <?php else: ?>
                                             <div class="alert alert-danger text-center" role="alert">
@@ -147,15 +147,6 @@
                                                 <input class="form-control" id="nacimienito" name="nacimienito" placeholder="nacimienito" required="" type="date">
                                                     <label for="nacimienito">
                                                         Fecha de nacimiento:
-                                                    </label>
-                                                </input>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-floating mb-3">
-                                                <input class="form-control" id="edad" name="edad" placeholder="edad" required="" type="number">
-                                                    <label for="edad">
-                                                        Edad:
                                                     </label>
                                                 </input>
                                             </div>
@@ -387,12 +378,6 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="row">
-                                        <div>
-                                          <label for="formFileLg" class="form-label">Foto del estudiante:</label>
-                                          <input class="form-control" id="formFileLg" type="file" name="foto">
-                                        </div>
-                                    </div>
                                  <h5 class="text-center mt-3 mb-3">
                                         Padres
                                     </h5>
@@ -469,15 +454,6 @@
                                                                 <input class="form-control" id="nacimiento_m" name="nacimiento_m" placeholder="Fecha nacimiento"  type="date">
                                                                     <label for="nacimiento_m">
                                                                         Fecha de nacimiento:
-                                                                    </label>
-                                                                </input>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <div class="form-floating mb-3">
-                                                                <input class="form-control" id="edad_m" name="edad_m" placeholder="Edad"  type="number">
-                                                                    <label for="edad_m">
-                                                                        Edad:
                                                                     </label>
                                                                 </input>
                                                             </div>
@@ -584,15 +560,6 @@
                                                                 <input class="form-control" id="nacimiento_pa" name="nacimiento_pa" placeholder="Fecha nacimiento"  type="date">
                                                                     <label for="nacimiento_pa">
                                                                         Fecha de nacimiento:
-                                                                    </label>
-                                                                </input>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <div class="form-floating mb-3">
-                                                                <input class="form-control" id="edad_pa" name="edad_pa" placeholder="Edad"  type="number">
-                                                                    <label for="edad_pa">
-                                                                        Edad:
                                                                     </label>
                                                                 </input>
                                                             </div>

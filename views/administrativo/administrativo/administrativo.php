@@ -141,7 +141,7 @@
  													</td>
  													<td>
  														<span class="detalle_info">
- 															<?=$administrativo->edad_a?>
+ 															<?=Utils::hallarEdad($administrativo->fecha_nacimiento_a)?>
  														</span>
  													</td>
  												</tr>
@@ -322,22 +322,13 @@
 			<div class="row">
 				<div class="col-md-6">
 					<div class="form-floating mb-3">
-						<input class="form-control" id="nacimienito" name="nacimienito" placeholder="nacimiento" required="" type="date">
+						<input class="form-control" id="nacimienito" name="nacimiento" placeholder="nacimiento" required="" type="date">
 						<label for="nacimienito">
 							Fecha de nacimiento:
 						</label>
 					</input>
 				</div>
 			</div>
-			<div class="col-md-6">
-				<div class="form-floating mb-3">
-					<input class="form-control" id="edad" name="edad" placeholder="edad" required="" type="number">
-					<label for="edad">
-						Edad:
-					</label>
-				</input>
-			</div>
-		</div>
 	</div>
 	<h5 class="text-center mt-5">
 		<i class="bi bi-fingerprint"></i> Identificación

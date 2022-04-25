@@ -26,7 +26,6 @@ class EstudianteController
             $nombre_e = trim($_POST['nombres']);
             $apellidos_e = trim($_POST['apellidos']);
             $fecha_nacimiento_e = trim($_POST['nacimienito']);
-            $edad_e = trim($_POST['edad']);
             $genero = trim($_POST['genero']);
             $tipo = trim($_POST['tipo_e']);
             $numero = trim($_POST['numero']);
@@ -48,7 +47,6 @@ class EstudianteController
             $nombre_m = trim($_POST['nombres_m']);
             $apellidos_m = trim($_POST['apellidos_m']);
             $nacimiento_m = trim($_POST['nacimiento_m']);
-            $edad_m = trim($_POST['edad_m']);
             $tipo_m = trim($_POST['tipo_m']);
             $numero_m = trim($_POST['numero_m']);
             $lugar_expedi_m = trim($_POST['lugar_expedicion_m']);
@@ -60,7 +58,6 @@ class EstudianteController
             $nombre_pa = trim($_POST['nombres_pa']);
             $apellidos_pa = trim($_POST['apellidos_pa']);
             $nacimiento_pa = trim($_POST['nacimiento_pa']);
-            $edad_pa = trim($_POST['edad_pa']);
             $tipo_pa = trim($_POST['tipo_pa']);
             $numero_pa = trim($_POST['numero_pa']);
             $lugar_expedi_pa = trim($_POST['lugar_expedicion_pa']);
@@ -76,7 +73,6 @@ class EstudianteController
             $padres->setNombreM($nombre_m);
             $padres->setApellidosM($apellidos_m);
             $padres->setNacimientoM($nacimiento_m);
-            $padres->setEdadM($edad_m);
             $padres->setTipoM($tipo_m);
             $padres->setNumeroM($numero_m);
             $padres->setLugarExpediM($lugar_expedi_m);
@@ -87,7 +83,6 @@ class EstudianteController
             $padres->setNombreP($nombre_pa);
             $padres->setApellidosP($apellidos_pa);
             $padres->setNacimientoP($nacimiento_pa);
-            $padres->setEdadP($edad_pa);
             $padres->setTipoP($tipo_pa);
             $padres->setNumeroP($numero_pa);
             $padres->setLugarExpediP($lugar_expedi_pa);
@@ -103,7 +98,6 @@ class EstudianteController
             $estudiantes->setNombre($nombre_e);
             $estudiantes->setApellidos($apellidos_e);
             $estudiantes->setNacimiento($fecha_nacimiento_e);
-            $estudiantes->setEdad($edad_e);
             $estudiantes->setGenero($genero);
             $estudiantes->setTipoDocu($tipo);
             $estudiantes->setNumeroDocu($numero);
@@ -122,11 +116,17 @@ class EstudianteController
             # validar si se va a actualizar  o  ha guardar
             if (isset($_POST['padres']) && isset($_POST['estudiante_id'])) {
                 # ACTUALIZAR
+                $edad_e = trim($_POST['edad']);
+                $estudiantes->setEdad($edad_e);
                 $papas = $_POST['padres'];
                 $estudiante_id = $_POST['estudiante_id'];
                 $estudiantes->setId($estudiante_id);
                 $actualizarEstudiante = $estudiantes->registroEstudiantes('', 'actualizar');
                 $padres->setId($papas);
+                $edad_m = trim($_POST['edad_m']);
+                $edad_pa = trim($_POST['edad_pa']);
+                $padres->setEdadM($edad_m);
+                $padres->setEdadP($edad_pa);
                 $actualizarPadres = $padres->guardarPadres('actualizar');
                 # validarReturn valida si la accion sobre la base de datos devuelve true o false, para generar la respectiva alerta.
                 Utils::validarReturn($actualizarEstudiante, 'actualizarE');
@@ -135,24 +135,11 @@ class EstudianteController
                 # validar si ya existe el estudiante antes de proceder a guardar
                 $validacion = Utils::validarExistenciaUsuario($_POST['numero'], 'estudiante', 'numero_e');
                 if ($validacion == 0) {
-                    if (isset($_FILES['foto'])) {
-                        $file = $_FILES['foto'];
-                        $filename = $file['name'];
-                        $mimetype = $file['type'];
-                        if ($mimetype == "image/jpg" || $mimetype == "image/jpeg" || $mimetype == "image/png" || $mimetype == "image/gif") {
-
-                            if (!is_dir('photos/estudiantes/')) {
-                                mkdir('photos/estudiantes/', 0777, true);
-                            }
-                            move_uploaded_file($file['tmp_name'], 'photos/estudiantes/' . $filename);
-                            $estudiantes->setImg($filename);
-                        }
-                    } else {
-                        $estudiantes->setImg('');
-                    }
+                    $estudiantes->setImg('');
                     # GUARDAR
+                    # metodo para guardar la info de los padres
+                    # validar si se va a guardar la hijo de un padre que ya esta registrado en la db
                     if (isset($_POST['existePadres']) && $_POST['existePadres'] == 'no') {
-                        # metodo para guardar la info de los padres
                         $padres->guardarPadres('guardar');
                         $id_padres = $padres->idPadres();
                     } elseif (isset($_POST['existePadres']) && $_POST['existePadres'] == 'si') {

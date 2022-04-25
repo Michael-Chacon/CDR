@@ -21,7 +21,6 @@ class DocenteController
             $nombre = trim($_POST['nombres']);
             $apellidos = trim($_POST['apellidos']);
             $nacimiento = trim($_POST['nacimiento']);
-            $edad = trim($_POST['edad']);
             $genero = trim($_POST['sexo']);
             $tipo = trim($_POST['tipo']);
             $numeroId = trim($_POST['numero']);
@@ -48,7 +47,6 @@ class DocenteController
             $docente->setNombre($nombre);
             $docente->setApellidos($apellidos);
             $docente->setNacimiento($nacimiento);
-            $docente->setEdad($edad);
             $docente->setGenero($genero);
             $docente->setTipoDocu($tipo);
             $docente->setNumeroDocu($numeroId);
@@ -72,6 +70,8 @@ class DocenteController
             # validar si se va a guardar o a actualizar
             if (isset($_POST['actualizarDocente'])) {
                 # ACTUALIZAR
+                $edad = trim($_POST['edad']);
+                $docente->setEdad($edad);
                 $docente->setId($_POST['actualizarDocente']);
                 $resultado_actualizacion = $docente->guardarDocentes('actualizar');
                 Utils::validarReturn($resultado_actualizacion, 'actualizarD');
@@ -80,21 +80,7 @@ class DocenteController
                 # GUARDAR
                 $validacion = Utils::validarExistenciaUsuario($_POST['numero'], 'docente', 'numero_d');
                 if ($validacion == 0) {
-                    if (isset($_FILES['fotoDocente'])) {
-                        $file = $_FILES['fotoDocente'];
-                        $filename = $file['name'];
-                        $mimetype = $file['type'];
-                        if ($mimetype == "image/jpg" || $mimetype == "image/jpeg" || $mimetype == "image/png" || $mimetype == "image/gif") {
-
-                            if (!is_dir('photos/docentes/')) {
-                                mkdir('photos/docentes/', 0777, true);
-                            }
-                            move_uploaded_file($file['tmp_name'], 'photos/docentes/' . $filename);
-                            $docente->setImg($filename);
-                        }
-                    } else {
-                        $docente->setImg('');
-                    }
+                    $docente->setImg('');
                     #metodo de guardar
                     $resultado = $docente->guardarDocentes('guardar');
                     # validar el return para generar notificacion

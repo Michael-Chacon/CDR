@@ -39,7 +39,7 @@
                                             <label class="form-label" for="formGroupExampleInput2">
                                                 Edad:
                                             </label>
-                                            <input class="form-control" id="formGroupExampleInput2" name="edad" type="text" value="<?=$info->edad_a?>">
+                                            <input class="form-control" id="formGroupExampleInput2" name="edad" type="text" value="<?=Utils::hallarEdad($info->fecha_nacimiento_a)?>">
                                             </input>
                                         </div>
                                     </div>

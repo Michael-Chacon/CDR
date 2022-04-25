@@ -401,7 +401,11 @@
             <div class="card shadow">
                 <div class="card-body">
                     <div class="text-center mb-2">
+                        <?php if ($estudiante->img == null): ?>
+                            <img alt="..." class="avatar circulo" src="<?=base_url?>helpers/img/avatar.jpg"/>
+                        <?php else: ?>
                         <img class="avatar circulo" src="<?=base_url?>photos/estudiantes/<?=$estudiante->img?>">
+                        <?php endif; ?>
                         <h5 class="card-title"><?=$estudiante->nombre_e?> <?=$estudiante->apellidos_e?></h5>
                         <h6 class="card-subtitle mb-2 text-muted">Estudiante</h6>
                     </div>
@@ -673,7 +677,7 @@
             </div>
             <div class="col-md-6">
                 <div class="form-floating mb-3">
-                    <input class="form-control" id="edad" name="edad" placeholder="edad" required="" type="number" value="<?=$estudiantePadres->edad_e?>">
+                    <input class="form-control " disabled id="edad" name="edad" placeholder="edad" required="" type="number" value="<?=Utils::hallarEdad($estudiantePadres->fecha_nacimiento_e)?>">
                     <label for="edad">
                         Edad:
                     </label>
@@ -881,7 +885,7 @@
 </div>
 <div class="col-md-6">
     <div class="form-floating mb-3">
-        <input class="form-control" id="edad_m" name="edad_m" placeholder="Edad"  type="number" value="<?=$estudiantePadres->edad_m?>">
+        <input class="form-control" id="edad_m" name="edad_m" placeholder="Edad"  type="number" value="<?=Utils::hallarEdad($estudiantePadres->fecha_nacimiento_m)?>">
         <label for="edad_m">
             Edad:
         </label>
@@ -985,7 +989,7 @@
 </div>
 <div class="col-md-6">
     <div class="form-floating mb-3">
-        <input class="form-control" id="edad_pa" name="edad_pa" placeholder="Edad"  type="number" value="<?=$estudiantePadres->edad_p?>">
+        <input class="form-control" id="edad_pa" name="edad_pa" placeholder="Edad"  type="number" value="<?=Utils::hallarEdad($estudiantePadres->fecha_nacimiento_p)?>">
         <label for="edad_pa">
             Edad:
         </label>

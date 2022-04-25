@@ -585,7 +585,7 @@
                                             <label class="form-label" for="formGroupExampleInput2">
                                                 Edad:
                                             </label>
-                                            <input class="form-control" id="formGroupExampleInput2" name="edad" type="text" value="<?=$info_docente->edad_d?>">
+                                            <input class="form-control" id="formGroupExampleInput2" disabled name="edad" type="text" value="<?=Utils::hallarEdad($info_docente->fecha_nacimiento_d)?>">
                                             </input>
                                         </div>
                                     </div>

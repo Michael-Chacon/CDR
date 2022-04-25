@@ -18,7 +18,6 @@ class PersonalController
             $nombre = trim($_POST['nombres']);
             $apellidos = trim($_POST['apellidos']);
             $nacimiento = trim($_POST['nacimiento']);
-            $edad = trim($_POST['edad']);
             $genero = trim($_POST['sexo']);
             $cargo = trim($_POST['cargo']);
             $tipo = trim($_POST['tipo']);
@@ -46,7 +45,6 @@ class PersonalController
             $personal->setNombre($nombre);
             $personal->setApellidos($apellidos);
             $personal->setNacimiento($nacimiento);
-            $personal->setEdad($edad);
             $personal->setGenero($genero);
             $personal->setCargo($cargo);
             $personal->setTipoDocu($tipo);
@@ -68,8 +66,10 @@ class PersonalController
             $personal->setPosgrado($posgrado);
             $personal->setNombrePosgrado($nombre_posgrado);
 
+            #Actualizar los datos del personal
             if (isset($_POST['actualizarPersonal'])) {
-                echo "VAMOS A ACTUALIZAR";
+                 $edad = trim($_POST['edad']);
+                 $personal->setEdad($edad);
                 $id = $_POST['actualizarPersonal'];
                 $personal->setId($id);
                 $actualizar_personal = $personal->guardarPersonal('actualizar');

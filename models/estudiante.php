@@ -82,7 +82,6 @@ class Estudiante extends Usuarios
             $no = $this->getNombre();
             $ap = $this->getApellidos();
             $fn = $this->getNacimiento();
-            $ed = $this->getEdad();
             $gra = $this->getGradoE();
             $gen = $this->getGenero();
             $ti = $this->getTipoDocu();
@@ -102,12 +101,14 @@ class Estudiante extends Usuarios
 
             # validar la accion a ejecutar
             if ($accion == 'guardar') {
+                $ed = Utils::hallarEdad($fn);
                 $registro = $this->db->prepare("INSERT INTO estudiante VALUES(null, :grado, :familia, :nombre, :apellidos, :fe_na, :edad, :sexo, :tipo_id, :numero, :lugar_ex, :fe_ex, :dir, :tel, :correo, :reli, :incapacidad, :grupo, :rh, :trasporte, :pae, :img)");
+                $registro->bindParam(":img", $imagen, PDO::PARAM_STR);
                 $registro->bindParam(":grado", $gra, PDO::PARAM_INT);
                 $registro->bindParam(':familia', $id_padres, PDO::PARAM_INT);
-                $registro->bindParam(":img", $imagen, PDO::PARAM_STR);
 
             } elseif ($accion == 'actualizar') {
+                $ed = $this->getEdad();
                 $registro = $this->db->prepare("UPDATE estudiante SET nombre_e = :nombre, apellidos_e = :apellidos, fecha_nacimiento_e = :fe_na, edad_e = :edad, sexo_e = :sexo, tipo_identificacion_e = :tipo_id, numero_e = :numero, lugar_expedicion_e = :lugar_ex, fecha_expedicion_e = :fe_ex, direccion_e = :dir, telefono_e = :tel, correo_e = :correo, religion_e = :reli, incapacidad_medica_e = :incapacidad, grupo_sanguineo_e = :grupo, rh_e = :rh, transporte = :trasporte, pae = :pae WHERE id = :id_estudiante");
                 $registro->bindParam(":id_estudiante", $id_e, PDO::PARAM_INT);
             }
@@ -135,6 +136,7 @@ class Estudiante extends Usuarios
         } catch (PDOException $e) {
             echo $e->getMessage();
         }
+        exit;
     }
 
     # crear la credencial para el  estudiante

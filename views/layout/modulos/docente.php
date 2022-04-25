@@ -3,7 +3,11 @@
                 <div class="sidebar-heading border-bottom ">
                     <div class="row justify-content-center bg-light ">
                         <div class="col-6 text-center bg-light">
+                            <?php if ($_SESSION['teacher']->img == null): ?>
+                                <img alt="..." class="avatar circulo" src="<?=base_url?>helpers/img/avatar.jpg">
+                            <?php else: ?>
                             <img alt="" class="avatar circulo" src="<?=base_url?>photos/docentes/<?=$_SESSION['teacher']->img?>">
+                            <?php endif; ?>
                             </img>
                         </div>
                     </div>

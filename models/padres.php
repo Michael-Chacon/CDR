@@ -504,7 +504,6 @@ class Padres
             $n_m = $this->getNombreM();
             $a_m = $this->getApellidosM();
             $nacimi_m = $this->getNacimientoM();
-            $ed_m = $this->getEdadM();
             $t_m = $this->getTipoM();
             $nu_m = $this->getNumeroM();
             $lu_m = $this->getLugarExpediM();
@@ -515,7 +514,6 @@ class Padres
             $n_p = $this->getNombreP();
             $a_p = $this->getApellidosP();
             $nacimi_p = $this->getNacimientoP();
-            $ed_p = $this->getEdadP();
             $t_p = $this->getTipoP();
             $nu_p = $this->getNumeroP();
             $lu_p = $this->getLugarExpediP();
@@ -527,9 +525,13 @@ class Padres
             $id_padres = $this->getId();
 
             if ($accion == 'guardar') {
+                $ed_m = Utils::hallarEdad($nacimi_m);
+                $ed_p = Utils::hallarEdad($nacimi_p);
                 $registro = $this->db->prepare("INSERT INTO padres VALUES(null, :nombre_m, :apellidos_m, :fecha_nacimiento_m, :edad_m, :tipo_identificacion_m, :numero_m, :lugar_expedicion_m, :fecha_expedi_m, :telefono_m, :ocupacion_m, :nombre_p, :apellidos_p, :fecha_nacimiento_p, :edad_p, :tipo_identificacion_p, :numero_p, :lugar_expedicion_p, :fecha_expedi_p, :telefono_p, :ocupacion_p, :dir, :co)");
 
             } elseif ($accion == 'actualizar') {
+                $ed_m = $this->getEdadM();
+                $ed_p = $this->getEdadP();
                 $registro = $this->db->prepare("UPDATE padres SET nombre_m = :nombre_m, apellidos_m = :apellidos_m, fecha_nacimiento_m = :fecha_nacimiento_m, edad_m = :edad_m, tipo_identificacion_m = :tipo_identificacion_m , numero_m = :numero_m, lugar_expedicion_m = :lugar_expedicion_m, fecha_expedicion_m = :fecha_expedi_m, telefono_m = :telefono_m, ocupacion_m = :ocupacion_m, nombre_p = :nombre_p, apellidos_p = :apellidos_p, fecha_nacimiento_p = :fecha_nacimiento_p, edad_p = :edad_p, tipo_identificacion_p = :tipo_identificacion_p, numero_p = :numero_p, lugar_expedicion_p = :lugar_expedicion_p, fecha_expedicion_p = :fecha_expedi_p, telefono_p = :telefono_p, ocupacion_p = :ocupacion_p, direccion = :dir, correo = :co WHERE id = :id_padres");
                 $registro->bindParam(":id_padres", $id_padres, PDO::PARAM_INT);
             }

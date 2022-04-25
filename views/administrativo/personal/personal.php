@@ -129,7 +129,7 @@
                                                                                 </td>
                                                                                 <td>
                                                                                     <span class="detalle_info">
-                                                                                        <?=$personal->edad_per?>
+                                                                                        <?=Utils::hallarEdad($personal->fecha_nacimiento_per)?>
                                                                                     </span>
                                                                                 </td>
                                                                             </tr>
@@ -313,15 +313,6 @@
                                                 <input class="form-control" id="nacimienito" name="nacimiento" placeholder="nacimiento" required="" type="date">
                                                     <label for="nacimienito">
                                                         Fecha de nacimiento:
-                                                    </label>
-                                                </input>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-floating mb-3">
-                                                <input class="form-control" id="edad" name="edad" placeholder="edad" required="" type="number">
-                                                    <label for="edad">
-                                                        Edad:
                                                     </label>
                                                 </input>
                                             </div>

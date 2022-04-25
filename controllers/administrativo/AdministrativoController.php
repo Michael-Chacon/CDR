@@ -20,7 +20,6 @@ class AdministrativoController
             $nombre = trim($_POST['nombres']);
             $apellidos = trim($_POST['apellidos']);
             $nacimiento = trim($_POST['nacimiento']);
-            $edad = trim($_POST['edad']);
             $genero = trim($_POST['sexo']);
             $cargo = trim($_POST['cargo']);
             $tipo = trim($_POST['tipo']);
@@ -48,7 +47,6 @@ class AdministrativoController
             $administrativo->setNombre($nombre);
             $administrativo->setApellidos($apellidos);
             $administrativo->setNacimiento($nacimiento);
-            $administrativo->setEdad($edad);
             $administrativo->setGenero($genero);
             $administrativo->setCargo($cargo);
             $administrativo->setTipoDocu($tipo);
@@ -70,11 +68,15 @@ class AdministrativoController
             $administrativo->setPosgrado($posgrado);
             $administrativo->setNombrePosgrado($nombre_posgrado);
 
+            # Metodo para actualizar los datos del estudiantes
             if (isset($_POST['actualizarAdministrativo']) && !empty($_POST['actualizarAdministrativo'])) {
+                $edad = trim($_POST['edad']);
+                $administrativo->setEdad($edad);
                 $administrativo->setId($_POST['actualizarAdministrativo']);
                 $actualizarInfo = $administrativo->guardarAdministrativo('actualizar');
                 Utils::validarReturn($actualizarInfo, 'actualizarA');
             } else {
+                # Metodo para registrar un estudinte nuevo
                 $validacion = Utils::validarExistenciaUsuario($_POST['numero'], 'administrativo', 'numero_a');
                 if ($validacion == 0) {
                     #metodo de guardar
