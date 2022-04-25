@@ -8,10 +8,11 @@
 	</section>
 	<?php echo Utils::general_alerts('eliminar_director', 'El docente ya no es director', 'Algo salió mal al intentar eliminar el director.'); ?>
 	<?php Utils::borrar_error('eliminar_director'); ?>
-	<section class="row mt-4">
-		<section class="col-md-6">
+	<section class="row mt-4 justify-content-around">
+		<section class="col-xs-12 col-sm-12 col-md-10 col-lg-7">
 			<?php if($listado_directores->rowCount() !=0): ?>
 				<div class="shadow">
+					<div class="table-responsive">
 					<table class="table table-hover">
 						<thead class="text-center">
 							<tr>
@@ -42,6 +43,7 @@
 							<?php endwhile; ?>
 						</tbody>
 					</table>
+					</div>
 				</div>
 			<?php else: ?>
 				<div class="alert alert-danger" role="alert">

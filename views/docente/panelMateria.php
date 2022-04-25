@@ -79,11 +79,14 @@
                         <hr/>
                         <?php if ($listado_estudiantes->rowCount() != 0): ?>
                         <div class="shadow">
-                                <table class="table table-hover">
-                                    <thead class="text-center">
+                                <table class="table table-hover table-responsive">
+                                    <thead class="">
                                         <tr>
                                             <th>
                                                 #
+                                            </th>
+                                            <th>
+
                                             </th>
                                             <th>
                                                 <h4>
@@ -92,7 +95,7 @@
                                             </th>
                                         </tr>
                                     </thead>
-                                    <tbody class="text-center texto-body">
+                                    <tbody class=" texto-body">
                                         <?php $c = 1;
                                         while ($estudiantes = $listado_estudiantes->fetchObject()): ?>
                                             <tr>
@@ -100,6 +103,9 @@
                                                     <?=$c++?>
                                                 </td>
                                                 <td>
+                                                    <img class="avatar-tabla circulo" src="<?=base_url?>photos/estudiantes/<?=$estudiantes->img?>" alt="">
+                                                </td>
+                                                <td class="texto_tabla_docente">
                                                     <a href="<?=base_url?>Notas/homeNotas&student=<?=Utils::encryption($estudiantes->id)?>&materia=<?=Utils::encryption($materia)?>&nGrado=<?=$nombre_gra?>&event=bad">
                                                         <?=$estudiantes->nombre_e;?> <?=$estudiantes->apellidos_e?>
                                                     </a>

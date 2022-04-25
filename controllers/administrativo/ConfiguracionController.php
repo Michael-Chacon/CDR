@@ -203,7 +203,6 @@ class ConfiguracionController
     }
 
     # Metodo para eliminar la asignacion como director a un docente
-
     public function eliminarDirector()
     {
         $docente = $_GET['docente'];

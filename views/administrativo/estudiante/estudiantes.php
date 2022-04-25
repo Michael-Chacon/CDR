@@ -33,6 +33,7 @@
                             <article id="emailHelp" class="form-text">Puedes buscar por nombres o por número de documento.</article>
                         </article>
                         <div class="col-md-10 shadow">
+                            <div class="table-responsive">
                             <table class="table table-hover">
                                 <thead class="table-dark text-center">
                                     <tr>
@@ -99,6 +100,7 @@
                                         <?php endif;?>
                                 </tbody>
                             </table>
+                            </div>
                         </div>
                     </section>
                     <!-- fin del container etiquita de abajo-->

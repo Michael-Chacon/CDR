@@ -59,7 +59,7 @@
                     <p class="text-center subtitulo">Estudiante</p>
                     <div class="row">
                         <div class="col-md-6">
-                            <button type="button" class="btn btn-outline-primary position-relative btn-sm" data-bs-toggle="modal" data-bs-target="#listadoFallas">
+                            <button type="button" class="btn btn-outline-primary position-relative btn-sm mb-2" data-bs-toggle="modal" data-bs-target="#listadoFallas">
                                 Fallas <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"><?=$fallas->total?><span class="visually-hidden">unread messages</span></span>
                             </button>
                         </div>
@@ -661,7 +661,8 @@
             <div class="modal-body">
                 <?php $f = 0;
                 if ($fechas_fallas->rowCount() != 0): ?>
-                    <table class="table text-center">
+                    <table class="table text-center caption-top table-responsive">
+                        <caption>Formato de fecha: aaaa/mm/dd</caption>
                         <thead>
                             <tr>
                                 <th>

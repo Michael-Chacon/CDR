@@ -168,7 +168,7 @@ class Docente extends Usuarios
         return $eliminar->execute();
     }
 
-    #seleccionar el director
+    # seleccionar el director
     public function seleccionarDirector()
     {
         $grado = $this->getGrupo();
@@ -199,6 +199,21 @@ class Docente extends Usuarios
         $eliminar = $this->db->prepare("DELETE FROM docente WHERE id = :docente");
         $eliminar->bindParam(":docente", $id_docente, PDO::PARAM_INT);
         return $eliminar->execute();
+    }
+
+    # Metodo para que el docente actulice los datos que le estan permitido actualizar.
+    public function actualizarDocente()
+    {
+        $id_docente = $_SESSION['teacher']->id;
+        $tel = $this->getTelefono();
+        $dir = $this->getDireccion();
+        $co = $this->getCorreo();
+        $acutalizar = $this->db->prepare("UPDATE docente SET telefono_d = :telefono,  direccion_d = :dir, correo_d = :cor WHERE id = :id_docente");
+        $acutalizar->bindParam(":telefono", $tel, PDO::PARAM_INT);
+        $acutalizar->bindParam(":dir", $dir, PDO::PARAM_STR);
+        $acutalizar->bindParam(":cor", $co, PDO::PARAM_STR);
+        $acutalizar->bindParam(":id_docente", $id_docente, PDO::PARAM_INT);
+        return $acutalizar->execute();
     }
 
 } #FIN DE LA CLASE

@@ -27,6 +27,7 @@
                     <!-- tabla -->
                     <section class="row justify-content-center mt-5">
                         <div class="col-md-10 shadow">
+                            <div class="table-responsive">
                             <table class="table table-hover">
                                 <thead class="table-dark">
                                     <tr>
@@ -91,6 +92,7 @@
                                         <?php endif;?>
                                 </tbody>
                             </table>
+                            </div>
                         </div>
                     </section>
                     <!-- fin de la tabla -->

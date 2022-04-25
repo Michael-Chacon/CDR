@@ -44,4 +44,29 @@ class TeacherController
         $documentos = $listado->listar();
         require_once 'views/docente/documentos.php';
     }
+
+    # Llamar a los datos del docente
+    public function misDatos()
+    {
+        $datos = new Docente();
+        $datos->setId($_SESSION['teacher']->id);
+        $docente = $datos->obtenerPerfil();
+        require_once 'views/docente/misDatos.php';
+    }
+
+    # Metodo para enviar al model docente los datos los datos que le estan permitido actualizar.
+    public function actualizarDatosDeDocente()
+    {
+        $telefono = $_POST['telefono_d'];
+        $direccion = $_POST['direccion_d'];
+        $correo = $_POST['correo_d'];
+        $actualizar = new Docente();
+        $actualizar->setTelefono($telefono);
+        $actualizar->setDireccion($direccion);
+        $actualizar->setCorreo($correo);
+        $resultado = $actualizar->actualizarDocente();
+        Utils::validarReturn($resultado, 'actualizarDatosDeDocente');
+        header('Location: ' . base_url . 'Teacher/misDatos');
+    }
+
 }
