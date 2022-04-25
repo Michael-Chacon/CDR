@@ -398,206 +398,81 @@
                                     </section>
                                     <section aria-labelledby="pills-contact-tab" class="tab-pane fade" id="pills-contact" role="tabpanel">
                                         <!-- inicio informacion del docente -->
-                                        <article class="row justify-content-center">
-                                            <article class="col-md-10 text-center">
-                                                <section class="row shadow">
-                                                    <div class="col-md-6">
-                                                        <span class="item_info">
-                                                            Nombre:
-                                                        </span>
-                                                        <span class="valor_item">
-                                                            <?=$docente->nombre_d?>
-                                                        </span>
-                                                        <hr/>
-                                                        <span class="item_info">
-                                                            Apellidos:
-                                                        </span>
-                                                        <span class="valor_item">
-                                                            <?=$docente->apellidos_d?>
-                                                        </span>
-                                                        <hr/>
+                                        <!-- inicio info docente -->
+                                        <section class="row justify-content-center">
+                                            <section class="col-md-6">
+                                                <div class="card shadow">
+                                                    <div class="card-body">
+                                                        <div class="text-center mb-3">
+                                                            <h5 class="card-title valor_item">Datos del docente</h5>
+                                                        </div>
+                                                        <div class="row text-center">
+                                                            <div class="col-md-6 mt-3 mb-3">
+                                                                <span class="item_info">Fecha nacimiento:</span> <span class="valor_item"><?=$docente->fecha_nacimiento_d?></span>
+                                                            </div>
+                                                            <div class="col-md-6 mt-3 mb-3">
+                                                                <span class="item_info">Edad:</span> <span class="valor_item"><?=Utils::hallarEdad($docente->fecha_nacimiento_d)?></span> <small class="text-muted">(años)</small>
+                                                            </div>
+                                                            <div class="col-md-6 mt-3 mb-3">
+                                                                <span class="item_info">Genero:</span> <span class="valor_item"><?=$docente->sexo_d?></span>
+                                                            </div>
+                                                            <div class="col-md-6 mt-3 mb-3">
+                                                                <span class="item_info">Tipo identificación:</span> <span class="valor_item"><?=$docente->tipo_identificacion_d?></span>
+                                                            </div>
+                                                            <div class="col-md-6 mt-3 mb-3">
+                                                                <span class="item_info">Numero identificación:</span> <span class="valor_item"><?=$docente->numero_d?></span>
+                                                            </div>
+                                                            <div class="col-md-6 mt-3 mb-3">
+                                                                <span class="item_info">Lugar de expedición:</span> <span class="valor_item"><?=$docente->lugar_expedicion_d?></span>
+                                                            </div>
+                                                            <div class="col-md-6 mt-3 mb-3">
+                                                                <span class="item_info">Fecha expedición:</span> <span class="valor_item"><?=$docente->fecha_expedicion_d?></span>
+                                                            </div>
+                                                            <div class="col-md-6 mt-3 mb-3">
+                                                                <span class="item_info">Dirección:</span> <span class="valor_item"><?=$docente->direccion_d?></span>
+                                                            </div>
+                                                            <div class="col-md-6 mt-3 mb-3">
+                                                                <span class="item_info">Telefono:</span> <span class="valor_item"><?=$docente->telefono_d?></span>
+                                                            </div>
+                                                            <div class="col-md-6 mt-3 mb-3">
+                                                                <span class="item_info">Correo:</span> <span class="valor_item"><?=$docente->correo_d?></span>
+                                                            </div>
+                                                            <div class="col-md-6 mt-3 mb-3">
+                                                                <span class="item_info">Religión:</span> <span class="valor_item"><?=$docente->religion_d?></span>
+                                                            </div>
+                                                            <div class="col-md-6 mt-3 mb-3">
+                                                                <span class="item_info">Incapacidad medica:</span> <span class="valor_item"><?=$docente->incapacidad_medica_d?></span>
+                                                            </div>
+                                                            <div class="col-md-6 mt-3 mb-3">
+                                                                <span class="item_info">Grupo sanguíneo + Rh:</span> <span class="valor_item"><?=$docente->grupo_sanguineo_d?> <?=$docente->rh_d?></span>
+                                                            </div>
+                                                            <div class="col-md-6 mt-3 mb-3">
+                                                                <span class="item_info">Fecha posesión:</span> <span class="valor_item"><?=$docente->fecha_expedicion_d?></span>
+                                                            </div>
+                                                            <div class="col-md-6 mt-3 mb-3">
+                                                                <span class="item_info">Número acta de posesión:</span> <span class="valor_item"><?=$docente->numero_acta_posesion_d?></span>
+                                                            </div>
+                                                            <div class="col-md-6 mt-3 mb-3">
+                                                                <span class="item_info">Número resolución posesión:</span> <span class="valor_item"><?=$docente->numero_resolucion_posesion_d?></span>
+                                                            </div>
+                                                            <div class="col-md-6 mt-3 mb-3">
+                                                                <span class="item_info">Pregrado:</span> <span class="valor_item"><?=$docente->pregrado_d?></span>
+                                                            </div>
+                                                            <div class="col-md-6 mt-3 mb-3">
+                                                                <span class="item_info">Nombre pregrado:</span> <span class="valor_item"><?=$docente->nombre_pregrado_d?></span>
+                                                            </div>
+                                                            <div class="col-md-6 mt-3 mb-3">
+                                                                <span class="item_info">Posgrado:</span> <span class="valor_item"><?=$docente->posgrado_d?></span>
+                                                            </div>
+                                                            <div class="col-md-6 mt-3 mb-3">
+                                                                <span class="item_info">Nombre posgrado:</span> <span class="valor_item"><?=$docente->nombre_posgrado_d?></span>
+                                                            </div>
+                                                        </div>
                                                     </div>
-                                                    <div class="col-md-6">
-                                                        <span class="item_info">
-                                                            Fecha de nacimiento:
-                                                        </span>
-                                                        <span class="valor_item">
-                                                            <?=$docente->fecha_nacimiento_d?>
-                                                        </span>
-                                                        <hr/>
-                                                        <span class="item_info">
-                                                            Edad:
-                                                        </span>
-                                                        <span class="valor_item">
-                                                            <?=$docente->edad_d?>
-                                                        </span>
-                                                        <hr/>
-                                                    </div>
-                                                </section>
-                                                <hr/>
-                                                <section class="row shadow">
-                                                    <div class="col-md-6">
-                                                        <span class="item_info">
-                                                            Tipo:
-                                                        </span>
-                                                        <span class="valor_item">
-                                                            <?=$docente->tipo_identificacion_d?>
-                                                        </span>
-                                                        <hr/>
-                                                        <span class="item_info">
-                                                            Número:
-                                                        </span>
-                                                        <span class="valor_item">
-                                                            <?=$docente->numero_d?>
-                                                        </span>
-                                                        <hr/>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <span class="item_info">
-                                                            Lugar de expedición:
-                                                        </span>
-                                                        <span class="valor_item">
-                                                            <?=$docente->lugar_expedicion_d?>
-                                                        </span>
-                                                        <hr/>
-                                                        <span class="item_info">
-                                                            Fecha de expedición:
-                                                        </span>
-                                                        <span class="valor_item">
-                                                            <?=$docente->fecha_expedicion_d?>
-                                                        </span>
-                                                        <hr/>
-                                                    </div>
-                                                </section>
-                                                <hr/>
-                                                <section class="row shadow">
-                                                    <div class="col-md-6">
-                                                        <span class="item_info">
-                                                            Dirección:
-                                                        </span>
-                                                        <span class="valor_item">
-                                                            <?=$docente->direccion_d?>
-                                                        </span>
-                                                        <hr/>
-                                                        <span class="item_info">
-                                                            Correo electrónico:
-                                                        </span>
-                                                        <span class="valor_item">
-                                                            <?=$docente->correo_d?>
-                                                        </span>
-                                                        <hr/>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <span class="item_info">
-                                                            Numero de celular:
-                                                        </span>
-                                                        <span class="valor_item">
-                                                            <?=$docente->telefono_d?>
-                                                        </span>
-                                                        <hr/>
-                                                    </div>
-                                                </section>
-                                                <hr/>
-                                                <section class="row shadow">
-                                                    <div class="col-md-6">
-                                                        <span class="item_info">
-                                                            Religión:
-                                                        </span>
-                                                        <span class="valor_item">
-                                                           <?=$docente->religion_d?>
-                                                        </span>
-                                                        <hr/>
-                                                        <span class="item_info">
-                                                            Incapacidad médica:
-                                                        </span>
-                                                        <span class="valor_item">
-                                                            <?=$docente->incapacidad_medica_d?>
-                                                        </span>
-                                                        <hr/>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <span class="item_info">
-                                                            Grupo sanguíneo:
-                                                        </span>
-                                                        <span class="valor_item">
-                                                            <?=$docente->grupo_sanguineo_d?>
-                                                        </span>
-                                                            <hr/>
-                                                        <span class="item_info">
-                                                            RH:
-                                                        </span>
-                                                        <span class="valor_item">
-                                                            <?=$docente->rh_d?>
-                                                        </span>
-                                                            <hr/>
-                                                    </div>
-                                                </section>
-                                                <hr/>
-                                                <section class="row shadow">
-                                                    <div class="col-md-6">
-                                                        <span class="item_info">
-                                                            Fecha de posesión:
-                                                        </span>
-                                                        <span class="valor_item">
-                                                            <?=$docente->fecha_posesion_d?>
-                                                        </span>
-                                                        <hr/>
-                                                        <span class="item_info">
-                                                            Número resolución de posesión:
-                                                        </span>
-                                                        <span class="valor_item">
-                                                            <?=$docente->numero_resolucion_posesion_d?>
-                                                        </span>
-                                                        <hr/>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <span class="item_info">
-                                                            Número acta de posesión:
-                                                        </span>
-                                                        <span class="valor_item">
-                                                            <?=$docente->numero_acta_posesion_d?>
-                                                        </span>
-                                                        <hr/>
-                                                    </div>
-                                                </section>
-                                                <hr/>
-                                                <section class="row shadow">
-                                                    <div class="col-md-6">
-                                                        <span class="item_info">
-                                                            Título de pregrado:
-                                                        </span>
-                                                        <span class="valor_item">
-                                                            <?=$docente->pregrado_d?>
-                                                        </span>
-                                                        <hr/>
-                                                        <span class="item_info">
-                                                            Nombre título de pregrado:
-                                                        </span>
-                                                        <span class="valor_item">
-                                                            <?=$docente->nombre_pregrado_d?>
-                                                        </span>
-                                                        <hr/>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <span class="item_info">
-                                                            Título de posgrado:
-                                                        </span>
-                                                        <span class="valor_item">
-                                                            <?=$docente->posgrado_d?>
-                                                        </span>
-                                                        <hr/>
-                                                        <span class="item_info">
-                                                            Nombre título de posgrado:
-                                                        </span>
-                                                        <span class="valor_item">
-                                                            <?=$docente->nombre_posgrado_d?>
-                                                        </span>
-                                                    </div>
-                                                </section>
-                                                <hr/>
-                                            </article>
-                                        </article>    
-                                        <!-- fin informacion del  docente -->
+                                                </div>
+                                            </section>
+                                        </section>
+                                        <!-- fin info docente -->
                                     </section>
                                 </section>
                             </article>
@@ -899,4 +774,4 @@
         <!-- fin del modal -->
         <!-- ================================================
     =================FIN MODALES====================
-    ================================================= -->
+    =================================================
