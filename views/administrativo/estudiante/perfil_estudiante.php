@@ -395,350 +395,165 @@
 <!-- fin del horario -->
 </article>
 <section aria-labelledby="pills-contact-tab" class="tab-pane fade" id="pills-contact" role="tabpanel">
-    <!-- inicio informacion del estdiante -->
-    <article class="row justify-content-center">
-        <article class="col-md-10 text-center">
-            <h2 class="text-center titulo-perfil mb-5">
-                Información del estudiante
-            </h2>
-            <section class="row shadow">
-                <div class="col-md-6">
-                    <span class="item_info">
-                        Nombre:
-                    </span>
-                    <span class="valor_item">
-                        <?=$estudiante->nombre_e?>
-                    </span>
-                    <hr/>
-                    <span class="item_info">
-                        Apellidos:
-                    </span>
-                    <span class="valor_item">
-                        <?=$estudiante->apellidos_e?>
-                    </span>
-                    <hr/>
+    <section class="row mt-3 mb-5">
+        <!-- inicio informacion del estdiante -->
+        <section class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+            <div class="card shadow">
+                <div class="card-body">
+                    <div class="text-center mb-2">
+                        <img class="avatar circulo" src="<?=base_url?>photos/estudiantes/<?=$estudiante->img?>">
+                        <h5 class="card-title"><?=$estudiante->nombre_e?> <?=$estudiante->apellidos_e?></h5>
+                        <h6 class="card-subtitle mb-2 text-muted">Estudiante</h6>
+                    </div>
+                    <hr>
+                    <div class="row text-center">
+                        <div class="col-md-6 mt-3 mb-3">
+                            <span class="item_info">Fecha de nacimiento:</span> <span class="valor_item"><?=$estudiante->fecha_nacimiento_e?></span>
+                        </div>
+                        <div class="col-md-6 mt-3 mb-3">
+                            <span class="item_info">Edad: </span> <span class="valor_item"><?=Utils::hallarEdad($estudiante->fecha_nacimiento_e)?></span>
+                        </div>
+                        <div class="col-md-6 mt-3 mb-3">
+                            <span class="item_info">Tipo idantificacion:</span> <span class="valor_item"><?=$estudiante->tipo_identificacion_e?></span>
+                        </div>
+                        <div class="col-md-6 mt-3 mb-3">
+                            <span class="item_info">Número identifición:</span> <span class="valor_item"><?=$estudiante->numero_e?></span>
+                        </div>
+                        <div class="col-md-6 mt-3 mb-3">
+                            <span class="item_info">Lugar de expedición:</span> <span class="valor_item"><?=$estudiante->lugar_expedicion_e?></span>
+                        </div>
+                        <div class="col-md-6 mt-3 mb-3">
+                            <span class="item_info">Fecha de expedición:</span> <span class="valor_item"><?=$estudiante->fecha_expedicion_e?></span>
+                        </div>
+                        <div class="col-md-6 mt-3 mb-3">
+                            <span class="item_info">Dirección de residencia:</span> <span class="valor_item"><?=$estudiante->direccion_e?></span>
+                        </div>
+                        <div class="col-md-6 mt-3 mb-3">
+                            <span class="item_info">Telefono:</span> <span class="valor_item"><?=$estudiante->telefono_e?></span>
+                        </div>
+                        <div class="col-md-6 mt-3 mb-3">
+                            <span class="item_info">Correo:</span> <span class="valor_item"><?=$estudiante->correo_e?></span>
+                        </div>
+                        <div class="col-md-6 mt-3 mb-3">
+                            <span class="item_info">Religion:</span> <span class="valor_item"><?=$estudiante->religion_e?></span>
+                        </div>
+                        <div class="col-md-6 mt-3 mb-3">
+                            <span class="item_info">Grupo sanguíneo + RH:</span> <span class="valor_item"><?=$estudiante->grupo_sanguineo_e?> <?=$estudiante->rh_e?></span>
+                        </div>
+                        <div class="col-md-6 mt-3 mb-3">
+                            <span class="item_info">Incapacidad medica:</span> <span class="valor_item"><?=$estudiante->incapacidad_medica_e?></span>
+                        </div>
+                        <div class="col-md-6 mt-3 mb-3">
+                            <span class="item_info">Tranasporte:</span> <span class="valor_item"><?=$estudiante->transporte?></span>
+                        </div>
+                        <div class="col-md-6 mt-3 mb-3">
+                            <span class="item_info">PAE:</span> <span class="valor_item"><?=$estudiante->pae?></span>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-md-6">
-                    <span class="item_info">
-                        Fecha de nacimiento:
-                    </span>
-                    <span class="valor_item">
-                        <?=$estudiante->fecha_nacimiento_e?>
-                    </span>
-                    <hr/>
-                    <span class="item_info">
-                        Edad:
-                    </span>
-                    <span class="valor_item">
-                        <?=$estudiante->edad_e?>
-                    </span>
-                    <hr/>
+            </div>
+        </section>
+        <!-- fin info estudiantes -->
+        <!-- inicio info padres -->
+        <section class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+            <div class="card">
+                <div class="card-body">
+                    <div class="text-center mb-2">
+                        <img class="avatar circulo" src="<?=base_url?>photos/estudiantes/familia.jpg">
+                        <h5 class="card-title">Padres de <?=$estudiante->nombre_e?></h5>
+                        <h6 class="card-subtitle mb-2 text-muted">Familia</h6>
+                    </div>
+                    <hr>
+                    <div class="row text-center">
+                        <span class="valor_item">Madre</span>
+                        <?php if (!empty($estudiante->nombre_m)): ?>
+                            <div class="col-md-6 mt-3">
+                                <span class="item_info">Nombre: </span> <span class="valor_item"><?=$estudiante->nombre_m?></span>
+                            </div>
+                            <div class="col-md-6 mt-3">
+                                <span class="item_info">Apellidos: </span>  <span class="valor_item"><?=$estudiante->apellidos_m?></span>
+                            </div>
+                            <div class="col-md-6 mt-3">
+                                <span class="item_info">Fecha de nacimiento: </span>    <span class="valor_item"><?=$estudiante->fecha_nacimiento_m?></span>
+                            </div>
+                            <div class="col-md-6 mt-3">
+                                <span class="item_info">Edad: </span>   <span class="valor_item"><?=Utils::hallarEdad($estudiante->fecha_nacimiento_m)?></span>
+                            </div>
+                            <div class="col-md-6 mt-3">
+                                <span class="item_info">Tipo identifición: </span>  <span class="valor_item"><?=$estudiante->tipo_identificacion_m?></span>
+                            </div>
+                            <div class="col-md-6 mt-3">
+                                <span class="item_info">Número identifición: </span>    <span class="valor_item"><?=$estudiante->numero_m?></span>
+                            </div>
+                            <div class="col-md-6 mt-3">
+                                <span class="item_info">Lugar de expedición: </span>    <span class="valor_item"><?=$estudiante->lugar_expedicion_m?></span>
+                            </div>
+                            <div class="col-md-6 mt-3">
+                                <span class="item_info">Fecha expedición: </span>   <span class="valor_item"><?=$estudiante->fecha_expedicion_m?></span>
+                            </div>
+                            <div class="col-md-6 mt-3">
+                                <span class="item_info">Telefono: </span>   <span class="valor_item"><?=$estudiante->telefono_m?></span>
+                            </div>
+                            <div class="col-md-6 mt-3">
+                                <span class="item_info">Ocupación: </span>  <span class="valor_item"><?=$estudiante->ocupacion_m?></span>
+                            </div>
+                        <?php else: ?>
+                            <div class="alert alert-danger" role="alert">
+                                No hay información de la mamá.
+                            </div>
+                        <?php endif;?>
+                        <hr/>
+                        <span class="valor_item">Padre</span>
+                        <?php if (!empty($estudiante->nombre_p)): ?>
+                            <div class="col-md-6 mt-3">
+                                <span class="item_info">Nombre: </span> <span class="valor_item"><?=$estudiante->nombre_p?></span>
+                            </div>
+                            <div class="col-md-6 mt-3">
+                                <span class="item_info">Apellidos: </span>  <span class="valor_item"><?=$estudiante->apellidos_p?></span>
+                            </div>
+                            <div class="col-md-6 mt-3">
+                                <span class="item_info">Fecha de nacimiento: </span>    <span class="valor_item"><?=$estudiante->fecha_nacimiento_p?></span>
+                            </div>
+                            <div class="col-md-6 mt-3">
+                                <span class="item_info">Edad: </span>   <span class="valor_item"><?=Utils::hallarEdad($estudiante->fecha_nacimiento_p)?></span>
+                            </div>
+                            <div class="col-md-6 mt-3">
+                                <span class="item_info">Tipo identifición: </span>  <span class="valor_item"><?=$estudiante->tipo_identificacion_p?></span>
+                            </div>
+                            <div class="col-md-6 mt-3">
+                                <span class="item_info">Número identifición: </span>    <span class="valor_item"><?=$estudiante->numero_p?></span>
+                            </div>
+                            <div class="col-md-6 mt-3">
+                                <span class="item_info">Lugar de expedición: </span>    <span class="valor_item"><?=$estudiante->lugar_expedicion_p?></span>
+                            </div>
+                            <div class="col-md-6 mt-3">
+                                <span class="item_info">Fecha expedición: </span>   <span class="valor_item"><?=$estudiante->fecha_expedicion_p?></span>
+                            </div>
+                            <div class="col-md-6 mt-3">
+                                <span class="item_info">Telefono: </span>   <span class="valor_item"><?=$estudiante->telefono_p?></span>
+                            </div>
+                            <div class="col-md-6 mt-3">
+                                <span class="item_info">Ocupación: </span>  <span class="valor_item"><?=$estudiante->ocupacion_p?></span>
+                            </div>
+                        <?php else: ?>
+                            <div class="alert alert-danger" role="alert">
+                                No hay información del papá.
+                            </div>
+                        <?php endif;?>
+                        <hr/>
+                        <span class="valor_item">Otros datos</span>
+                        <div class="col-md-6 mt-3">
+                            <span class="item_info">Dirección: </span>  <span class="valor_item"><?=$estudiante->direccion?></span>
+                        </div>
+                        <div class="col-md-6 mt-3">
+                            <span class="item_info">Correo: </span> <span class="valor_item"><?=$estudiante->correo?></span>
+                        </div>
+                    </div>
                 </div>
-            </section>
-            <hr/>
-            <section class="row shadow">
-                <div class="col-md-6">
-                    <span class="item_info">
-                        Tipo:
-                    </span>
-                    <span class="valor_item">
-                        <?=$estudiante->tipo_identificacion_e?>
-                    </span>
-                    <hr/>
-                    <span class="item_info">
-                        Número:
-                    </span>
-                    <span class="valor_item">
-                        <?=$estudiante->numero_e?>
-                    </span>
-                    <hr/>
-                </div>
-                <div class="col-md-6">
-                    <span class="item_info">
-                        Lugar de expedición:
-                    </span>
-                    <span class="valor_item">
-                        <?=$estudiante->lugar_expedicion_e?>
-                    </span>
-                    <hr/>
-                    <span class="item_info">
-                        Fecha de expedición:
-                    </span>
-                    <span class="valor_item">
-                        <?=$estudiante->fecha_expedicion_e?>
-                    </span>
-                    <hr/>
-                </div>
-            </section>
-            <hr/>
-            <section class="row shadow">
-                <div class="col-md-6">
-                    <span class="item_info">
-                        Dirección:
-                    </span>
-                    <span class="valor_item">
-                        <?=$estudiante->direccion_e?>
-                    </span>
-                    <hr/>
-                    <span class="item_info">
-                        Correo electrónico:
-                    </span>
-                    <span class="valor_item">
-                        <?=$estudiante->correo_e?>
-                    </span>
-                    <hr/>
-                </div>
-                <div class="col-md-6">
-                    <span class="item_info">
-                        Numero de celular:
-                    </span>
-                    <span class="valor_item">
-                        <?=$estudiante->telefono_e?>
-                    </span>
-                    <hr/>
-                </div>
-            </section>
-            <hr/>
-            <section class="row shadow">
-                <div class="col-md-6">
-                    <span class="item_info">
-                        Religión:
-                    </span>
-                    <span class="valor_item">
-                     <?=$estudiante->religion_e?>
-                 </span>
-                 <hr/>
-                 <span class="item_info">
-                    Incapacidad médica:
-                </span>
-                <span class="valor_item">
-                    <?=$estudiante->incapacidad_medica_e?>
-                </span>
-                <hr/>
-                <span class="item_info">
-                    Trasporte:
-                </span>
-                <span class="valor_item">
-                    <?=$estudiante->transporte?>
-                </span>
-                <hr/>
-            </div>
-            <div class="col-md-6">
-                <span class="item_info">
-                    Grupo sanguíneo:
-                </span>
-                <span class="valor_item">
-                    <?=$estudiante->grupo_sanguineo_e?>
-                </span>
-                <hr/>
-                <span class="item_info">
-                    RH:
-                </span>
-                <span class="valor_item">
-                    <?=$estudiante->rh_e?>
-                </span>
-                <hr/>
-                <span class="item_info">
-                    PAE:
-                </span>
-                <span class="valor_item">
-                    <?=$estudiante->pae?>
-                </span>
-                <hr/>
             </div>
         </section>
-        <hr/>
-        <h2 class="titulo-perfil text-center mb-5">
-            Información de la mamá
-        </h2>
-        <section class="row shadow">
-            <div class="col-md-6">
-                <span class="item_info">
-                    Nombre:
-                </span>
-                <span class="valor_item">
-                    <?=$estudiante->nombre_m?>
-                </span>
-                <hr/>
-                <span class="item_info">
-                    Apellidos:
-                </span>
-                <span class="valor_item">
-                    <?=$estudiante->apellidos_m?>
-                </span>
-                <hr/>
-            </div>
-            <div class="col-md-6">
-                <span class="item_info">
-                    Fecha de nacimiento:
-                </span>
-                <span class="valor_item">
-                    <?=$estudiante->fecha_nacimiento_m?>
-                </span>
-                <hr/>
-                <span class="item_info">
-                    Edad:
-                </span>
-                <span class="valor_item">
-                    <?=$estudiante->edad_m?>
-                </span>
-                <hr/>
-            </div>
-        </section>
-        <hr/>
-        <section class="row shadow">
-            <div class="col-md-6">
-                <span class="item_info">
-                    Tipo de identificación:
-                </span>
-                <span class="valor_item">
-                    <?=$estudiante->tipo_identificacion_m?>
-                </span>
-                <hr/>
-                <span class="item_info">
-                    Número:
-                </span>
-                <span class="valor_item">
-                    <?=$estudiante->numero_m?>
-                </span>
-                <hr/>
-            </div>
-            <div class="col-md-6">
-                <span class="item_info">
-                    Lugar de expedición:
-                </span>
-                <span class="valor_item">
-                    <?=$estudiante->lugar_expedicion_m?>
-                </span>
-                <hr/>
-                <span class="item_info">
-                    Fecha de expedición:
-                </span>
-                <span class="valor_item">
-                    <?=$estudiante->fecha_expedicion_m?>
-                </span>
-                <hr/>
-            </div>
-        </section>
-        <hr/>
-        <section class="row shadow">
-            <div class="col-md-6">
-                <span class="item_info">
-                    Telefono:
-                </span>
-                <span class="valor_item">
-                    <?=$estudiante->telefono_m?>
-                </span>
-                <hr/>
-            </div>
-            <div class="col-md-6">
-                <span class="item_info">
-                    Ocupación:
-                </span>
-                <span class="valor_item">
-                    <?=$estudiante->ocupacion_m?>
-                </span>
-                <hr/>
-            </div>
-        </section>
-        <hr/>
-        <h2 class="titulo-perfil text-center mb-5">
-            Información del papá
-        </h2>
-        <section class="row shadow">
-            <div class="col-md-6">
-                <span class="item_info">
-                    Nombre:
-                </span>
-                <span class="valor_item">
-                    <?=$estudiante->nombre_p?>
-                </span>
-                <hr/>
-                <span class="item_info">
-                    Apellidos:
-                </span>
-                <span class="valor_item">
-                    <?=$estudiante->apellidos_p?>
-                </span>
-                <hr/>
-            </div>
-            <div class="col-md-6">
-                <span class="item_info">
-                    Fecha de nacimiento:
-                </span>
-                <span class="valor_item">
-                    <?=$estudiante->fecha_nacimiento_p?>
-                </span>
-                <hr/>
-                <span class="item_info">
-                    Edad:
-                </span>
-                <span class="valor_item">
-                    <?=$estudiante->edad_p?>
-                </span>
-                <hr/>
-            </div>
-        </section>
-        <hr/>
-        <section class="row shadow">
-            <div class="col-md-6">
-                <span class="item_info">
-                    Tipo de identificación:
-                </span>
-                <span class="valor_item">
-                    <?=$estudiante->tipo_identificacion_p?>
-                </span>
-                <hr/>
-                <span class="item_info">
-                    Número:
-                </span>
-                <span class="valor_item">
-                    <?=$estudiante->numero_p?>
-                </span>
-                <hr/>
-            </div>
-            <div class="col-md-6">
-                <span class="item_info">
-                    Lugar de expedición:
-                </span>
-                <span class="valor_item">
-                    <?=$estudiante->lugar_expedicion_p?>
-                </span>
-                <hr/>
-                <span class="item_info">
-                    Fecha de expedición:
-                </span>
-                <span class="valor_item">
-                    <?=$estudiante->fecha_expedicion_p?>
-                </span>
-                <hr/>
-            </div>
-        </section>
-        <hr/>
-        <section class="row shadow">
-            <div class="col-md-6">
-                <span class="item_info">
-                    Telefono:
-                </span>
-                <span class="valor_item">
-                    <?=$estudiante->telefono_p?>
-                </span>
-                <hr/>
-            </div>
-            <div class="col-md-6">
-                <span class="item_info">
-                    Ocupación:
-                </span>
-                <span class="valor_item">
-                    <?=$estudiante->ocupacion_p?>
-                </span>
-                <hr/>
-            </div>
-        </section>
-        <hr/>
-    </article>
-</article>
-<!-- fin informacion del  estudiante -->
+        <!-- fin info padres -->
+    </section>
 </section>
 </section>
 </article>
