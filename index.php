@@ -11,8 +11,7 @@ $db = new Database();
 
 function show_error()
 {
-    $error404 = new ErrorController();
-    $error404->error();
+    Utils::Error404();
 }
 
 if (isset($_GET['controlador'])) {

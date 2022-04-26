@@ -132,15 +132,20 @@ class Utils
     # metodo para hallar la edad
     public static function hallarEdad($fechaNacimiento)
     {
-        list($ano, $mes, $dia) = explode("-", $fechaNacimiento);
-        $ano_diferencia = date("Y") - $ano;
+        list($año, $mes, $dia) = explode("-", $fechaNacimiento);
+        $año_diferencia = date("Y") - $año;
         $mes_diferencia = date("m") - $mes;
         $dia_diferencia = date("d") - $dia;
         if ($dia_diferencia < 0 || $mes_diferencia < 0) {
-            $ano_diferencia--;
+            $año_diferencia--;
         }
 
-        return $ano_diferencia;
+        return $año_diferencia;
+    }
+
+    public static function Error404()
+    {
+        require_once 'views/layout/404.php';
     }
 
 } #fin de la clase
