@@ -9,37 +9,43 @@ class MateriasController
 {
     public function vista()
     {
-        $grado = Utils::decryption($_GET['id_grado']);
-        # obtener todas las materias de un grado
-        $materias = new Materias();
-        $materias->setIdGradoM($grado);
-        $datos = $materias->allMaterias();
-        $matter = $materias->allMaterias();
-        $listado_materias = $materias->getAllBaseSubjectes();
-        # obtener los estudiantes y el grado actual
-        $estudiantes = new Grados();
-        $estudiantes->setGrado($grado);
-        $estudi = $estudiantes->EstudiantesGrado();
-        $actual = $estudiantes->gradoActual($grado);
-        # listar lis horarios de todos los dias de la semana
-        $dia = new Horario();
-        $lista_lunes = $dia->listarLunes($grado);
-        $lista_martes = $dia->listarMartes($grado);
-        $lista_miercoles = $dia->listarMiercoles($grado);
-        $lista_jueves = $dia->listarJueves($grado);
-        $lista_viernes = $dia->listarViernes($grado);
+        if (!isset($_GET['id_grado'])) {
+            Utils::Error404();
+        } elseif (empty(Utils::decryption($_GET['id_grado']))) {
+            Utils::Error404();
+        } else {
+            $grado = Utils::decryption($_GET['id_grado']);
+            # obtener todas las materias de un grado
+            $materias = new Materias();
+            $materias->setIdGradoM($grado);
+            $datos = $materias->allMaterias();
+            $matter = $materias->allMaterias();
+            $listado_materias = $materias->getAllBaseSubjectes();
+            # obtener los estudiantes y el grado actual
+            $estudiantes = new Grados();
+            $estudiantes->setGrado($grado);
+            $estudi = $estudiantes->EstudiantesGrado();
+            $actual = $estudiantes->gradoActual($grado);
+            # listar lis horarios de todos los dias de la semana
+            $dia = new Horario();
+            $lista_lunes = $dia->listarLunes($grado);
+            $lista_martes = $dia->listarMartes($grado);
+            $lista_miercoles = $dia->listarMiercoles($grado);
+            $lista_jueves = $dia->listarJueves($grado);
+            $lista_viernes = $dia->listarViernes($grado);
 
-        # listado de docentes Y seleccionar el docente que esta asignado como director en este grado
-        $listado_docentes = new Docente();
-        $listado_docentes->setGrupo($grado);
-        $dir = $listado_docentes->seleccionarDirector();
-        $docentes = $listado_docentes->docenteDirector('no');
-        # seleccionar todas las aulas
-        $aulas = new Grados();
-        $listado_aulas = $aulas->selectAllClassroomNotAssigned();
-        $aula_grado = $aulas->selectClassroomOfDeegre($grado);
+            # listado de docentes Y seleccionar el docente que esta asignado como director en este grado
+            $listado_docentes = new Docente();
+            $listado_docentes->setGrupo($grado);
+            $dir = $listado_docentes->seleccionarDirector();
+            $docentes = $listado_docentes->docenteDirector('no');
+            # seleccionar todas las aulas
+            $aulas = new Grados();
+            $listado_aulas = $aulas->selectAllClassroomNotAssigned();
+            $aula_grado = $aulas->selectClassroomOfDeegre($grado);
 
-        require_once 'views/administrativo/materia/materias.php';
+            require_once 'views/administrativo/materia/materias.php';
+        }
     }
 
     public function guardarMateria()

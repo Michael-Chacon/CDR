@@ -5,11 +5,17 @@ class ObservadorController
 {
     public function vista_observador()
     {
-        $estudiante = Utils::decryption($_GET['id']);
-        $observaciones = new Observador();
-        $observaciones->setEstudiante($estudiante);
-        $listado_observaciones = $observaciones->getObservation();
-        require_once 'views/docente/observador.php';
+        if (!isset($_GET['id']) || !isset($_GET['g']) || !isset($_GET['name'])) {
+            Utils::Error404();
+        } elseif (empty(Utils::decryption($_GET['id'])) || empty(Utils::decryption($_GET['g'])) || empty($_GET['name'])) {
+            Utils::Error404();
+        } else {
+            $estudiante = Utils::decryption($_GET['id']);
+            $observaciones = new Observador();
+            $observaciones->setEstudiante($estudiante);
+            $listado_observaciones = $observaciones->getObservation();
+            require_once 'views/docente/observador.php';
+        }
     }
 
     public function guardar_observacion()

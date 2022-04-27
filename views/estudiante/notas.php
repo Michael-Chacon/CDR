@@ -24,28 +24,28 @@
 							</article>
 						</article>
 					</div>
-					<h5 class="card-subtitle  text-center"><?php if(!empty($docente->nombre_d) && !empty($docente->apellidos_d)): ?>
+					<h5 class="card-subtitle  text-center"><?php if (!empty($docente->nombre_d) && !empty($docente->apellidos_d)): ?>
 						<?=$docente->nombre_d?> <?=$docente->apellidos_d?>
 					<?php else: ?>
 						No hay docente
-					<?php endif; ?>
+					<?php endif;?>
 					</h5>
 					<p class="text-center subtitulo">Docente</p>
-					<p class="text-center"><strong class="correo_d">Correos del docente:</strong> <?php if(!empty($docente->correo_d)):?>
+					<p class="text-center"><strong class="correo_d">Correos del docente:</strong> <?php if (!empty($docente->correo_d)): ?>
 					<?=$docente->correo_d?></p>
 				<?php else: ?>
 					sin correo
-				<?php endif; ?>
+				<?php endif;?>
 					<hr>
 					<p class="card-text indicador"><strong>Indicadores de la materia:</strong> <?=$materia->indicadores_mat?></p>
 					<p class="indicador"><strong>Área:</strong>
-						<?php if(!empty($docente->nombre_area)):?>
+						<?php if (!empty($docente->nombre_area)): ?>
 							<?=ucfirst(strtolower($docente->nombre_area))?>
 						<?php else: ?>
 							No hay docente
-						<?php endif; ?>
+						<?php endif;?>
 					</p>
-					<button type="button" class="btn btn-primary position-relative" data-bs-toggle="modal" data-bs-target="#listadoFallas">
+					<button type="button" class="btn btn-outline-dark position-relative btn-sm" data-bs-toggle="modal" data-bs-target="#listadoFallas">
 						Fallas <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"><?=$fallas->total?><span class="visually-hidden">unread messages</span></span>
 					</button>
 					<!-- <a href="#" class="card-link">Another link</a> -->
@@ -588,8 +588,8 @@
 				</section>
 				 <section aria-labelledby="actividades-tab" class="tab-pane fade" id="actividades" role="tabpanel">
 				 	<section class="row mt-3 p-2">
-				 	<?php if($listado_actividades->rowCount() != 0): ?>
-				 		<?php while($actividad = $listado_actividades->fetchObject()): ?>
+				 	<?php if ($listado_actividades->rowCount() != 0): ?>
+				 		<?php while ($actividad = $listado_actividades->fetchObject()): ?>
 				 			<div class="col-md-4 mb-3">
 				 				<div class="card text-center shadow-sm">
 				 					<div class="card-body">
@@ -599,18 +599,18 @@
 				 					</div>
 				 				</div>
 				 			</div>
-				 		<?php endwhile; ?>
+				 		<?php endwhile;?>
 				 	<?php else: ?>
 				 		<div class="alert alert-danger text-center" role="alert">
 				 			El docente no ha registrado actividades en esta materia.
 				 		</div>
-				 	<?php endif; ?>
+				 	<?php endif;?>
 				 	</section>
 				 </section>
 				  <section aria-labelledby="documentos-tab" class="tab-pane fade" id="documentos" role="tabpanel">
 				  	<div class="row mt-3 ">
-				  		<?php if($listado_documentos->rowCount() != 0): ?>
-				  			<?php while($documento = $listado_documentos->fetchObject()): ?>
+				  		<?php if ($listado_documentos->rowCount() != 0): ?>
+				  			<?php while ($documento = $listado_documentos->fetchObject()): ?>
 				  				<div class="col-md-4 mb-3">
 				  					<div class="card border-success mb-3 shadow">
 				  						<div class="card-header bg-transparent border-success titulo-documento text-center"><?=$documento->titulo?></div>
@@ -634,12 +634,12 @@
 				  						</div>
 				  					</div>
 				  				</div>
-				  			<?php endwhile; ?>
+				  			<?php endwhile;?>
 				  		<?php else: ?>
 				  			<div class="alert alert-danger text-center" role="alert">
 				  				El docente no ha registrado documentos en esta materia.
 				  			</div>
-				  		<?php endif; ?>
+				  		<?php endif;?>
 				  	</div>
 				  </section>
 			</section>
@@ -656,7 +656,7 @@
 			</div>
 			<div class="modal-body">
 				<?php $f = 0;
-				if ($fechas_fallas->rowCount() != 0): ?>
+if ($fechas_fallas->rowCount() != 0): ?>
 					<table class="table text-center">
 						<thead>
 							<tr>
@@ -673,20 +673,20 @@
 						</thead>
 						<tbody>
 							<?php while ($fechas = $fechas_fallas->fetchObject()):
-								$f++;
-								?>
-								<tr>
-									<td>
-										<?=$f?>
-									</td>
-									<td>
-										<?=$fechas->fecha_falla?>
-									</td>
-									<td>
-										<?=$fechas->id_periodo_f?>
-									</td>
-								</tr>
-							<?php endwhile;?>
+    $f++;
+    ?>
+										<tr>
+											<td>
+												<?=$f?>
+											</td>
+											<td>
+												<?=$fechas->fecha_falla?>
+											</td>
+											<td>
+												<?=$fechas->id_periodo_f?>
+											</td>
+										</tr>
+									<?php endwhile;?>
 						</tbody>
 					</table>
 				<?php else: ?>

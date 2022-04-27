@@ -10,29 +10,35 @@ class panelMateriaController
 {
     public function homeMateria()
     {
-        $grado = Utils::decryption($_GET['degree']);
-        $materia = Utils::decryption($_GET['ide']);
-        $nombre_ma = $_GET['name'];
-        $nombre_gra = $_GET['nombreg'];
-        # obtener los documentos de la clase, si los hay
-        $documentos = new Documentos();
-        $documentos->setId($materia);
-        $listado_documentos = $documentos->listClassDocuments();
-        # obtener el listado de actividades de la clase
-        $actividades = new Actividades();
-        $actividades->setMateria($materia);
-        $listado_actividades = $actividades->listClassActivitys();
-        # listado de los estudiante que estan matriuculados en la materia
-        $estudiante = new Grados();
-        $estudiante->setGrado($grado);
-        $listado_estudiantes = $estudiante->EstudiantesGrado();
-        $colocar_falla = $estudiante->EstudiantesGrado();
-        # Informacion importante de la materia
-        $info = new Materias();
-        $info->setMateria($materia);
-        $datos_materia = $info->subjectInformation();
-        $estado = $info->seeAsignacionMateria($materia);
-        require_once 'views/docente/panelMateria.php';
+        if (!isset($_GET['degree']) || !isset($_GET['ide']) || !isset($_GET['name']) || !isset($_GET['nombreg'])) {
+            Utils::Error404();
+        } elseif (empty(Utils::decryption($_GET['degree'])) || empty(Utils::decryption($_GET['ide'])) || empty($_GET['name']) || empty($_GET['nombreg'])) {
+            Utils::Error404();
+        } else {
+            $grado = Utils::decryption($_GET['degree']);
+            $materia = Utils::decryption($_GET['ide']);
+            $nombre_ma = $_GET['name'];
+            $nombre_gra = $_GET['nombreg'];
+            # obtener los documentos de la clase, si los hay
+            $documentos = new Documentos();
+            $documentos->setId($materia);
+            $listado_documentos = $documentos->listClassDocuments();
+            # obtener el listado de actividades de la clase
+            $actividades = new Actividades();
+            $actividades->setMateria($materia);
+            $listado_actividades = $actividades->listClassActivitys();
+            # listado de los estudiante que estan matriuculados en la materia
+            $estudiante = new Grados();
+            $estudiante->setGrado($grado);
+            $listado_estudiantes = $estudiante->EstudiantesGrado();
+            $colocar_falla = $estudiante->EstudiantesGrado();
+            # Informacion importante de la materia
+            $info = new Materias();
+            $info->setMateria($materia);
+            $datos_materia = $info->subjectInformation();
+            $estado = $info->seeAsignacionMateria($materia);
+            require_once 'views/docente/panelMateria.php';
+        }
     }
 
     # guardar los documentos de talleres en una determinada materia
