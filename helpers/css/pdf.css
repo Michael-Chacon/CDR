@@ -1,0 +1,35 @@
+/*
+================= Cabeza de los documentos
+*/
+
+.table-head {
+    margin-left: 16%;
+    text-align: center;
+}
+.td-head {
+    /*border: 1px solid grey;*/
+}
+.titulo-head {
+    font-size: 20px;
+}
+.subtitulo-head {
+    font-size: 17px;
+}
+/*
+============= Listado de alumnos por grado
+*/
+
+.estudiantes-grado {
+    margin-left: 25%;
+    border-collapse: collapse;
+}
+.nombre-numero {
+    font-size: 16px;
+}
+.linea {
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border: 1px solid grey;
+}

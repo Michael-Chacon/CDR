@@ -21,25 +21,25 @@
                 <?php echo Utils::general_alerts('validarGrado', '', 'El  grado que intenta registrar ya existe.'); ?>
                 <?php Utils::borrar_error('validarGrado')?>
                 <?php echo Utils::general_alerts('eliminarGrado', 'El grado se eliminó con éxito.', 'El grado se eliminó con éxito.'); ?>
-                <?php Utils::borrar_error('eliminarGrado'); ?>
+                <?php Utils::borrar_error('eliminarGrado');?>
                     <section class="row">
                         <article class="col-xs-12 col-sm-12 col-md-12 col-xl-12 mt-3">
                             <article class="row">
                             <?php if (isset($datos) && $datos->rowCount() != 0):
-                                            while ($grados = $datos->fetchObject()): ?>
-    										<article class="col-xs-12 col-sm-6 col-md-3 col-xl-3 mb-2">
-													<div class="card text-center shadow option">
-														<div class="card-body contenido-card">
-															<h2 class="mt-2 grados">
-																<?=$grados->nombre_g?>
-															</h2>
-															<hr class="hr-perfil"/>
-															<a class="stretched-link" href="<?=base_url?>Materias/vista&id_grado=<?=Utils::encryption($grados->id)?>">
-															</a>
-														</div>
-        											</div>
-    										</article>
-    									<?php endwhile;?>
+    while ($grados = $datos->fetchObject()): ?>
+							    										<article class="col-xs-12 col-sm-6 col-md-3 col-xl-3 mb-2">
+																				<div class="card text-center shadow option">
+																					<div class="card-body contenido-card">
+																						<h2 class="mt-2 grados">
+																							<?=$grados->nombre_g?>
+																						</h2>
+																						<hr class="hr-perfil"/>
+																						<a class="stretched-link" href="<?=base_url?>Materias/vista&id_grado=<?=Utils::encryption($grados->id)?>">
+																						</a>
+																					</div>
+							        											</div>
+							    										</article>
+							    									<?php endwhile;?>
                                     <?php else: ?>
                                         <div class="alert alert-danger text-center" role="alert">
                                             No hay grados regostrados.
@@ -48,6 +48,7 @@
                             </article>
                         </article>
                     </section>
+                    <a type="button"  class="btn btn-success " href="<?=base_url?>Pdf/pdf">PDF</a>
                 </section>
                 <!-- fin del contenedor -->
                 <!-- ================================================
