@@ -1,34 +1,83 @@
+/*========= Estilos generales ===============*/
+
+.alerta {
+    margin-left: 17%;
+    width: 500px;
+    height: 30px;
+    border: 2px solid red;
+    text-align: center;
+    font-size: 30px;
+}
+.asunto {
+    margin-bottom: 20px;
+    text-align: center;
+}
 /*
 ================= Cabeza de los documentos
 */
 
-.table-head {
-    margin-left: 16%;
-    text-align: center;
+.clearfix:after {
+    content: "";
+    display: table;
+    clear: both;
 }
-.td-head {
-    /*border: 1px solid grey;*/
+#company {
+    float: right;
+    text-align: right;
 }
+h2.name {
+    font-size: 1.4em;
+    font-weight: normal;
+    margin: 0;
+}
+/*#logo {
+    float: left;
+    margin-top: 8px;
+}*/
+
+.logo {
+    /*float: left;*/
+    max-width: 150px;
+    max-height: 80px;
+}
+/**/
+
+#client {
+    padding-left: 6px;
+    border-left: 6px solid #0087C3;
+    float: left;
+}
+#invoice {
+    margin-top: -115px;
+    display: block;
+    float: right;
+    text-align: right;
+}
+.address {
+    font-size: 15px;
+}
+/**/
+
 .titulo-head {
     font-size: 20px;
 }
 .subtitulo-head {
-    font-size: 17px;
+    font-size: 18px;
 }
 /*
 ============= Listado de alumnos por grado
 */
 
 .estudiantes-grado {
-    margin-left: 25%;
+    margin-left: 20%;
     border-collapse: collapse;
 }
 .nombre-numero {
     font-size: 16px;
 }
 .linea {
-    padding-left: 10px;
-    padding-right: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
     padding-top: 5px;
     padding-bottom: 5px;
     border: 1px solid grey;

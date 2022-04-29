@@ -44,4 +44,15 @@ class GradoController
         header('Location: ' . base_url . 'Grado/grado');
     }
 
+    # Generar pdf con el listado de los estudiantes del grado
+    public function listadoEstudiante()
+    {
+        $grado = $_GET['grado'];
+        $nombre_grado  = $_GET['nombreg'];
+        $students = new Grados();
+        $students->setGrado($grado);
+        $listado_estudiantes = $students->EstudiantesGrado();
+        require_once 'views/pdf/grados.php';
+    }
+
 }

@@ -191,7 +191,6 @@ class Estudiante extends Usuarios
     }
 
     # cambiar la foto de perfil
-
     public function imgPerfil()
     {
         $id_estudiante = $this->getId();

@@ -15,18 +15,28 @@ $mpdf = new mPDF('', // mode - default ''
     'P'); // L - landscape, P - portrait
 
 $mpdf->AddPage('P');
+if($listado_estudiantes->rowCount()  != 0):
 $html = '
-<table class="table-head">
-  <tbody>
-    <tr class="tr-head">
-      <td class="td-head"><p class="titulo-head">Concentracion de desarrollo rural (CDR)</p></td>
-    </tr>
-    <tr class="tr-head">
-      <td class="td-head"><span class="subtitulo-head"> Listado de estudiantes del grado <strong>6</strong>, fecha de corte: <strong>02/22/2022</strong></span></td>
-    </tr>
-  </tbody>
-</table>
-<hr>
+    <div id="details" class="clearfix">
+        <div id="client">
+          <h2 class="name">'.name_col.'</h2>
+          <div class="address">Valle de San José</div>
+          <div class="email"><strong>Sede:</strong> PRINCIPAL</div>
+          <div class="vereda"><strong>Dane:</strong> 168855000154</div>
+          <div class="vereda"><strong>NIT:</strong> 890.204.616-2</div>
+        </div>
+        <div id="invoice">
+
+          <div class="date">.</div>
+          <div class="date"></div>
+          <div class="date">.</div>
+        <img class="logo" src="helpers/img/escudo_base.jpg">
+        </div>
+      </div>
+      <hr>
+<div class="asunto">
+      <td class="asunto"><span class="subtitulo-head"> Listado de estudiantes del grado '.$nombre_grado.', fecha de corte: '.date('Y-m-d').'.</span></td>
+    </div>
 <table class="estudiantes-grado">
   <thead>
     <tr>
@@ -35,25 +45,23 @@ $html = '
       <th scope="col">Identificación</th>
     </tr>
   </thead>
-  <tbody>
-    <tr>
-      <td class="linea numero">1</td>
-      <td class="linea"><span class="nombre-numero">Michael Alexis Chacón Marín</td>
-      <td class="linea"><span class="nombre-numero">1103365268</td>
-    </tr>
-    <tr>
-      <td class="linea">2</td>
-      <td class="linea"><span class="nombre-numero">Briand Johan Porras Vargas</span></td>
-      <td class="linea"><span class="nombre-numero">1103654987</span></td>
-    </tr>
-    <tr>
-      <td class="linea">3</td>
-      <td class="linea"><span class="nombre-numero">Larry the Bird Idiot</span></td>
-      <td class="linea"><span class="nombre-numero">012345687</span></td>
-    </tr>
-  </tbody>
-</table>
-';
+  <tbody>';
+  $contador = 1;
+while($estudiantes = $listado_estudiantes->fetchObject()):
+    $html .='<tr>
+      <td class="linea numero">'.$contador++.'</td>
+      <td class="linea"><span class="nombre-numero">'.$estudiantes->nombre_e . $estudiantes->apellidos_e.'</td>
+      <td class="linea"><span class="nombre-numero">'.$estudiantes->numero_e.'</td>
+    </tr>';
+endwhile;
+  $html .= '</tbody>
+</table>';
+else:
+    $html = '
+    <div class="alerta">
+        No hay estudiantes en este grado.
+    </div>';
+endif;
 $css = file_get_contents(base_url . 'helpers/css/pdf.css');
 $mpdf->WriteHTML($css, 1);
 $mpdf->WriteHTML($html);
