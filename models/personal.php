@@ -88,7 +88,7 @@ class Personal extends Usuarios
     }
 
     # obtener los datos de un usuario del personal
-    public function datosPersona()
+    public function datosPersonal()
     {
         $id_p = $this->getId();
         $datos = $this->db->prepare("SELECT * FROM personal WHERE id = :id");

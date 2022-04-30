@@ -68,8 +68,8 @@ class PersonalController
 
             #Actualizar los datos del personal
             if (isset($_POST['actualizarPersonal'])) {
-                 $edad = trim($_POST['edad']);
-                 $personal->setEdad($edad);
+                $edad = trim($_POST['edad']);
+                $personal->setEdad($edad);
                 $id = $_POST['actualizarPersonal'];
                 $personal->setId($id);
                 $actualizar_personal = $personal->guardarPersonal('actualizar');
@@ -98,6 +98,16 @@ class PersonalController
         $persona->setId($id);
         $info = $persona->datosPersona();
         require_once 'views/administrativo/personal/actualizar.php';
+    }
+
+    # Obtener los datos del personal  para generar el pdf
+    public function generaPDF()
+    {
+        $persona = $_GET['person'];
+        $datos = new Personal();
+        $datos->setId($persona);
+        $personal = $datos->datosPersonal();
+        require_once 'views/pdf/infoPersonal.php';
     }
 
 } # fin de la clase

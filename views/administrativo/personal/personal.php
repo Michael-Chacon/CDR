@@ -17,258 +17,265 @@
                     <?php echo Utils::general_alerts('validacion', '', 'Se encontró un usuario en la base de datos con el mismo número de documento, posiblemente este usuario ya existe en la plataforma.') ?>
                     <?php echo Utils::general_alerts('actualizarPer', 'La información del usuario ha sido actualizada con éxito.', 'Algo salió mal al actualizar la información, inténtelo de nuevo.') ?>
                      <?php Utils::borrar_error('personal');
-                     Utils::borrar_error('validacion');
-                     Utils::borrar_error('actualizarPer');?>
+Utils::borrar_error('validacion');
+Utils::borrar_error('actualizarPer');?>
                      <!-- card -->
                     <section class="row mt-4">
-                        <?php if(isset($listado) && $listado->rowCount() != 0):
-                            while($personal = $listado->fetchObject()): ?>
-                                    <div class="col-md-6 mt-3 mb-5">
-                                        <div class="card shadow">
-                                            <div class="card-body ">
-                                                <div class="row ">
-                                                    <div class="col-3 text-center">
-                                                        <img alt="" class="avatar circulo " src="<?=base_url?>helpers/img/obito.png">
-                                                        </img>
-                                                    </div>
-                                                    <div class="col-8">
-                                                        <h5 class="card-title nombre_personal">
-                                                           <?=$personal->nombre_per;?> <?=$personal->apellidos_per;?>
-                                                        </h5>
-                                                        <p class="card-text">
-                                                            <span class="badge insignia_cargo text-center">
-                                                                <i class="bi bi-person-check">
-                                                                </i>
-                                                                <?=$personal->cargo_per?>
-                                                            </span>
-                                                            <span class="badge insignia">
-                                                                <i class="bi bi-telephone">
-                                                                </i>
-                                                                <?=$personal->telefono_per?>
-                                                            </span>
-                                                            <span class="badge insignia">
-                                                                <i class="bi bi-file-earmark">
-                                                                </i>
-                                                                id: <?=$personal->numero_per?>
-                                                            </span>
-                                                            <span class="badge insignia">
-                                                                <i class="bi bi-envelope-open">
-                                                                </i>
-                                                               <?=$personal->correo_per?>
-                                                            </span>
-                                                        </p>
-                                                    </div>
-                                                    <div class="col-1">
-                                                        <a aria-expanded="false" data-bs-toggle="dropdown" type="button">
-                                                            <i class="bi bi-three-dots-vertical" style="font-size: 1.5rem;">
-                                                            </i>
-                                                        </a>
-                                                        <ul class="dropdown-menu">
-                                                            <li>
-                                                                <a class="dropdown-item" href="<?=base_url?>Personal/actualizar&id=<?=$personal->id?>">
-                                                                    <i class="bi bi-pen">
-                                                                    </i>
-                                                                    Editar
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a class="dropdown-item" href="#">
-                                                                    <i class="bi bi-trash">
-                                                                    </i>
-                                                                    Eliminar
-                                                                </a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <section class="row mt-3">
-                                                <article class="col-12">
-                                                    <div class="accordion" id="accordionExample2">
-                                                        <div class="accordion-item">
-                                                            <h2 class="accordion-header" id="heading3">
-                                                                <button aria-controls="collapse3" aria-expanded="false" class="accordion-button collapsed text-center" data-bs-target="#collapse<?=$personal->id?>" data-bs-toggle="collapse" type="button">
-                                                                    <i class="bi bi-info-circle-fill">
-                                                                    </i>
-                                                                    Información
-                                                                </button>
-                                                            </h2>
-                                                            <div aria-labelledby="heading3" class="accordion-collapse collapse" data-bs-parent="#accordionExample2" id="collapse<?=$personal->id?>">
-                                                                <div class="accordion-body">
-                                                                    <table class="table table-striped table-hover">
-                                                                        <tbody>
-                                                                            <tr>
-                                                                                <td>
-                                                                                    <p class="titulo_info">
-                                                                                        Dirección:
-                                                                                    </p>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <span class="detalle_info">
-                                                                                        <?=$personal->direccion_per?>
-                                                                                    </span>
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>
-                                                                                    <p class="titulo_info">
-                                                                                        Fecha de nacimiento:
-                                                                                    </p>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <span class="detalle_info">
-                                                                                       <?=$personal->fecha_nacimiento_per?>
-                                                                                    </span>
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>
-                                                                                    <p class="titulo_info">
-                                                                                        Edad:
-                                                                                    </p>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <span class="detalle_info">
-                                                                                        <?=Utils::hallarEdad($personal->fecha_nacimiento_per)?>
-                                                                                    </span>
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>
-                                                                                    <p class="titulo_info">
-                                                                                        Lugar expedición id:
-                                                                                    </p>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <span class="detalle_info">
-                                                                                        <?=$personal->lugar_expedicion_per?>
-                                                                                    </span>
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>
-                                                                                    <p class="titulo_info">
-                                                                                        Fecha de expedición id:
-                                                                                    </p>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <span class="detalle_info">
-                                                                                        <?=$personal->fecha_expedicion_per?>
-                                                                                    </span>
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>
-                                                                                    <p class="titulo_info">
-                                                                                        Religión:
-                                                                                    </p>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <span class="detalle_info">
-                                                                                        <?=$personal->religion_per?>
-                                                                                    </span>
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>
-                                                                                    <p class="titulo_info">
-                                                                                        Incapacidad medica:
-                                                                                    </p>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <span class="detalle_info">
-                                                                                        <?=$personal->incapacidad_medica_per?>
-                                                                                    </span>
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>
-                                                                                    <p class="titulo_info">
-                                                                                        Grupo sanguíneo + Rh:
-                                                                                    </p>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <span class="detalle_info">
-                                                                                        <?=$personal->grupo_sanguineo_per?> <?=$personal->rh_per?>
-                                                                                    </span>
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>
-                                                                                    <p class="titulo_info">
-                                                                                        Fecha posesión:
-                                                                                    </p>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <span class="detalle_info">
-                                                                                        <?=$personal->fecha_posesion_per?>
-                                                                                    </span>
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>
-                                                                                    <p class="titulo_info">
-                                                                                        Número acta posesión:
-                                                                                    </p>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <span class="detalle_info">
-                                                                                        <?=$personal->numero_acta_posesion_per?>
-                                                                                    </span>
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>
-                                                                                    <p class="titulo_info">
-                                                                                        Número resolución posesión:
-                                                                                    </p>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <span class="detalle_info">
-                                                                                        <?=$personal->numero_resolucion_posesion_per?>
-                                                                                    </span>
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>
-                                                                                    <p class="titulo_info">
-                                                                                        Pregrado:
-                                                                                    </p>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <span class="detalle_info">
-                                                                                        <?=$personal->nombre_pregrado_per?>
-                                                                                    </span>
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>
-                                                                                    <p class="titulo_info">
-                                                                                        Posgrado:
-                                                                                    </p>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <span class="detalle_info">
-                                                                                        <?=$personal->nombre_posgrado_per?>
-                                                                                    </span>
-                                                                                </td>
-                                                                            </tr>
-                                                                        </tbody>
-                                                                    </table>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </article>
-                                            </section>
-                                        </div>
-                                    </div>
-                    <?php endwhile;?>
-                <?php else: ?>
+                        <?php if (isset($listado) && $listado->rowCount() != 0):
+                        while ($personal = $listado->fetchObject()): ?>
+                          <div class="col-md-6 mt-3 mb-5">
+                              <div class="card shadow">
+                                  <div class="card-body ">
+                                      <div class="row ">
+                                          <div class="col-3 text-center">
+                                              <img alt="" class="avatar circulo " src="<?=base_url?>helpers/img/obito.png">
+                                          </img>
+                                      </div>
+                                      <div class="col-8">
+                                          <h5 class="card-title nombre_personal">
+                                           <?=$personal->nombre_per;?> <?=$personal->apellidos_per;?>
+                                       </h5>
+                                       <p class="card-text">
+                                          <span class="badge insignia_cargo text-center">
+                                              <i class="bi bi-person-check">
+                                              </i>
+                                              <?=$personal->cargo_per?>
+                                          </span>
+                                          <span class="badge insignia">
+                                              <i class="bi bi-telephone">
+                                              </i>
+                                              <?=$personal->telefono_per?>
+                                          </span>
+                                          <span class="badge insignia">
+                                              <i class="bi bi-file-earmark">
+                                              </i>
+                                              id: <?=$personal->numero_per?>
+                                          </span>
+                                          <span class="badge insignia">
+                                              <i class="bi bi-envelope-open">
+                                              </i>
+                                              <?=$personal->correo_per?>
+                                          </span>
+                                      </p>
+                                  </div>
+                                  <div class="col-1">
+                                      <a aria-expanded="false" data-bs-toggle="dropdown" type="button">
+                                          <i class="bi bi-three-dots-vertical" style="font-size: 1.5rem;">
+                                          </i>
+                                      </a>
+                                      <ul class="dropdown-menu">
+                                          <li>
+                                              <a class="dropdown-item" href="<?=base_url?>Personal/actualizar&id=<?=$personal->id?>">
+                                                  <i class="bi bi-pen">
+                                                  </i>
+                                                  Editar
+                                              </a>
+                                          </li>
+                                          <li>
+                                              <a class="dropdown-item" href="#">
+                                                  <i class="bi bi-trash">
+                                                  </i>
+                                                  Eliminar
+                                              </a>
+                                          </li>
+                                          <li>
+                                              <a class="dropdown-item" href="<?=base_url?>Personal/generaPDF&person=<?=$personal->id?>">
+                                                  <i class="bi bi-arrow-down-circle">
+                                                  </i>
+                                                  Descargar información
+                                              </a>
+                                          </li>
+                                      </ul>
+                                  </div>
+                              </div>
+                          </div>
+                          <section class="row mt-3">
+                              <article class="col-12">
+                                  <div class="accordion" id="accordionExample2">
+                                      <div class="accordion-item">
+                                          <h2 class="accordion-header" id="heading3">
+                                              <button aria-controls="collapse3" aria-expanded="false" class="accordion-button collapsed text-center" data-bs-target="#collapse<?=$personal->id?>" data-bs-toggle="collapse" type="button">
+                                                  <i class="bi bi-info-circle-fill">
+                                                  </i>
+                                                  Información
+                                              </button>
+                                          </h2>
+                                          <div aria-labelledby="heading3" class="accordion-collapse collapse" data-bs-parent="#accordionExample2" id="collapse<?=$personal->id?>">
+                                              <div class="accordion-body">
+                                                  <table class="table table-striped table-hover">
+                                                      <tbody>
+                                                          <tr>
+                                                              <td>
+                                                                  <p class="titulo_info">
+                                                                      Dirección:
+                                                                  </p>
+                                                              </td>
+                                                              <td>
+                                                                  <span class="detalle_info">
+                                                                      <?=$personal->direccion_per?>
+                                                                  </span>
+                                                              </td>
+                                                          </tr>
+                                                          <tr>
+                                                              <td>
+                                                                  <p class="titulo_info">
+                                                                      Fecha de nacimiento:
+                                                                  </p>
+                                                              </td>
+                                                              <td>
+                                                                  <span class="detalle_info">
+                                                                   <?=$personal->fecha_nacimiento_per?>
+                                                               </span>
+                                                           </td>
+                                                       </tr>
+                                                       <tr>
+                                                          <td>
+                                                              <p class="titulo_info">
+                                                                  Edad:
+                                                              </p>
+                                                          </td>
+                                                          <td>
+                                                              <span class="detalle_info">
+                                                                  <?=Utils::hallarEdad($personal->fecha_nacimiento_per)?>
+                                                              </span>
+                                                          </td>
+                                                      </tr>
+                                                      <tr>
+                                                          <td>
+                                                              <p class="titulo_info">
+                                                                  Lugar expedición id:
+                                                              </p>
+                                                          </td>
+                                                          <td>
+                                                              <span class="detalle_info">
+                                                                  <?=$personal->lugar_expedicion_per?>
+                                                              </span>
+                                                          </td>
+                                                      </tr>
+                                                      <tr>
+                                                          <td>
+                                                              <p class="titulo_info">
+                                                                  Fecha de expedición id:
+                                                              </p>
+                                                          </td>
+                                                          <td>
+                                                              <span class="detalle_info">
+                                                                  <?=$personal->fecha_expedicion_per?>
+                                                              </span>
+                                                          </td>
+                                                      </tr>
+                                                      <tr>
+                                                          <td>
+                                                              <p class="titulo_info">
+                                                                  Religión:
+                                                              </p>
+                                                          </td>
+                                                          <td>
+                                                              <span class="detalle_info">
+                                                                  <?=$personal->religion_per?>
+                                                              </span>
+                                                          </td>
+                                                      </tr>
+                                                      <tr>
+                                                          <td>
+                                                              <p class="titulo_info">
+                                                                  Incapacidad medica:
+                                                              </p>
+                                                          </td>
+                                                          <td>
+                                                              <span class="detalle_info">
+                                                                  <?=$personal->incapacidad_medica_per?>
+                                                              </span>
+                                                          </td>
+                                                      </tr>
+                                                      <tr>
+                                                          <td>
+                                                              <p class="titulo_info">
+                                                                  Grupo sanguíneo + Rh:
+                                                              </p>
+                                                          </td>
+                                                          <td>
+                                                              <span class="detalle_info">
+                                                                  <?=$personal->grupo_sanguineo_per?> <?=$personal->rh_per?>
+                                                              </span>
+                                                          </td>
+                                                      </tr>
+                                                      <tr>
+                                                          <td>
+                                                              <p class="titulo_info">
+                                                                  Fecha posesión:
+                                                              </p>
+                                                          </td>
+                                                          <td>
+                                                              <span class="detalle_info">
+                                                                  <?=$personal->fecha_posesion_per?>
+                                                              </span>
+                                                          </td>
+                                                      </tr>
+                                                      <tr>
+                                                          <td>
+                                                              <p class="titulo_info">
+                                                                  Número acta posesión:
+                                                              </p>
+                                                          </td>
+                                                          <td>
+                                                              <span class="detalle_info">
+                                                                  <?=$personal->numero_acta_posesion_per?>
+                                                              </span>
+                                                          </td>
+                                                      </tr>
+                                                      <tr>
+                                                          <td>
+                                                              <p class="titulo_info">
+                                                                  Número resolución posesión:
+                                                              </p>
+                                                          </td>
+                                                          <td>
+                                                              <span class="detalle_info">
+                                                                  <?=$personal->numero_resolucion_posesion_per?>
+                                                              </span>
+                                                          </td>
+                                                      </tr>
+                                                      <tr>
+                                                          <td>
+                                                              <p class="titulo_info">
+                                                                  Pregrado:
+                                                              </p>
+                                                          </td>
+                                                          <td>
+                                                              <span class="detalle_info">
+                                                                  <?=$personal->nombre_pregrado_per?>
+                                                              </span>
+                                                          </td>
+                                                      </tr>
+                                                      <tr>
+                                                          <td>
+                                                              <p class="titulo_info">
+                                                                  Posgrado:
+                                                              </p>
+                                                          </td>
+                                                          <td>
+                                                              <span class="detalle_info">
+                                                                  <?=$personal->nombre_posgrado_per?>
+                                                              </span>
+                                                          </td>
+                                                      </tr>
+                                                  </tbody>
+                                              </table>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                          </article>
+                      </section>
+                  </div>
+              </div>
+          <?php endwhile;?>
+      <?php else: ?>
                  <div class="alert alert-danger text-center" role="alert">
                     Aún no hay personal registrado en la plataforma.
                 </div>
-                <?php endif; ?>
+                <?php endif;?>
                     </section>
                     <!-- fin del card -->
                     <!-- fin del container en la etiqueta de abajo -->
@@ -400,10 +407,16 @@
                                                     <option>
                                                     </option>
                                                     <option value="celador">
-                                                        celador
+                                                        Celador
                                                     </option>
                                                     <option value="servicios generales">
-                                                        servicios generales
+                                                        Servicios generales
+                                                    </option>
+                                                    <option value="pagador">
+                                                        Pagador
+                                                    </option>
+                                                    <option value="bibliotecario">
+                                                        Bibliotecario
                                                     </option>
                                                 </select>
                                                 <label for="incapacidad">

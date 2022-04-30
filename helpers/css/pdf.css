@@ -117,3 +117,23 @@ footer {
 .item-firma {
     text-align: center;
 }
+/* PDF con la informacion del personal de serviocios de la institucion */
+
+.tabla-personal {
+    margin-top: 30px;
+    margin-left: 3%;
+    border-collapse: collapse;
+}
+.items {
+    border: 1px solid grey;
+    padding: 15px;
+}
+.person-item {
+    font-size: 14px;
+    font-weight: 200;
+    padding: 10px;
+}
+.person-valor {
+    font-size: 17px;
+    padding: 10px;
+}
