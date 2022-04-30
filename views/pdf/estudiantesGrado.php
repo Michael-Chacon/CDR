@@ -35,7 +35,7 @@ $html = '
       </div>
       <hr>
 <div class="asunto">
-      <td class="asunto"><span class="subtitulo-head"> Listado de estudiantes del grado '.$nombre_grado.', fecha de corte: '.date('Y-m-d').'.</span></td>
+      <td class="asunto"><span class="subtitulo-head"> Listado de estudiantes del grado '.$nombre_grado.', fecha de corte: '.date('Y-m-d').'</span></td>
     </div>
 <table class="estudiantes-grado">
   <thead>

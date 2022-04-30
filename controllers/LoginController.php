@@ -45,6 +45,7 @@ class LoginController
                     $info = $informacion->obtenerDatos($rol);
                     $_SESSION['user'] = $info;
                     header('Location: ' . base_url . 'Login/homeAdministrativo');
+                    Utils::tal();
                     break;
                 #usuario Docente
                 case 'docente':

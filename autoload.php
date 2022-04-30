@@ -34,3 +34,12 @@ function autocarga_estudiante($estudiante)
     }
 }
 spl_autoload_register('autocarga_estudiante');
+
+# Autocargar los controladores del modulo de estudiantes
+function tal($estudiante)
+{
+    if (file_exists('controllers/estudiantes/' . $estudiante . '.php')) {
+        include 'controllers/estudiantes/' . $estudiante . '.php';
+    }
+}
+spl_autoload_register('tal');

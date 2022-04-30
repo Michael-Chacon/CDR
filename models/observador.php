@@ -203,7 +203,7 @@ class Observador
     public function getObservation()
     {
         $estudiante = $this->getEstudiante();
-        $listado = $this->db->prepare("SELECT * FROM observaciones WHERE id_estudiante_ob = :id");
+        $listado = $this->db->prepare("SELECT * FROM observaciones WHERE id_estudiante_ob = :id ORDER BY id_observacion DESC ");
         $listado->bindParam(":id", $estudiante, PDO::PARAM_INT);
         $listado->execute();
         return $listado;
@@ -217,5 +217,15 @@ class Observador
         $observaciones->bindParam(':id_student', $student, PDO::PARAM_INT);
         $observaciones->execute();
         return $observaciones->fetchObject();
+    }
+    # Obtener los datos de una obsrvacion para generar el reporte ne pdf
+    public function observationInPDF()
+    {
+        $id_observacion = $this->getId();
+        $listado = $this->db->prepare("SELECT * FROM observaciones WHERE id_observacion = :id");
+        $listado->bindParam(":id", $id_observacion, PDO::PARAM_INT);
+        $listado->execute();
+        return $listado->fetchObject();
+
     }
 }

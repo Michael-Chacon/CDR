@@ -52,7 +52,7 @@
 					<p class="card-text"><?=$observador->acciones?></p>
 					<hr/>
 					<article class="d-grid gap-2">
-						<button class="btn btn-outline-primary" type="button">Descargar</button>
+						<a href="<?=base_url?>Observador/observadorEstudiante&id=<?=$observador->id_observacion?>" class="btn btn-outline-primary" type="button">Descargar</a>
 					</article>
 				</article>
 			</div>

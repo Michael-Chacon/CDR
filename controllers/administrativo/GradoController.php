@@ -52,7 +52,7 @@ class GradoController
         $students = new Grados();
         $students->setGrado($grado);
         $listado_estudiantes = $students->EstudiantesGrado();
-        require_once 'views/pdf/grados.php';
+        require_once 'views/pdf/estudiantesgrado.php';
     }
 
 }

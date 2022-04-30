@@ -620,3 +620,5 @@ SELECT m.*, d.nombre_d, d.apellidos_d, d.nombre_pregrado_d FROM materia m
 INNER JOIN docentemateria dm ON dm.id_materia_doc = m.id
 INNER JOIN docente d ON d.id = dm.id_docente_mat
 WHERE m.id = 7;
+
+

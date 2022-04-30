@@ -41,4 +41,14 @@ class ObservadorController
         Utils::validarReturn($respuesta, 'guardar_observacion');
         header('Location: ' . base_url . 'Observador/vista_observador&id=' . Utils::encryption($estudiante) . '&name=' . $nombre_e . '&g=' . Utils::encryption($grado));
     }
+
+    # Generar pdf con la observacion del estudiante.
+    public function observadorEstudiante()
+    {
+        $id_observacion = $_GET['id'];
+        $observador = new Observador();
+        $observador->setId($id_observacion);
+        $observacion = $observador->observationInPDF();
+        require_once 'views/pdf/observador.php';
+    }
 }

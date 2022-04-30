@@ -9,7 +9,7 @@
     font-size: 30px;
 }
 .asunto {
-    margin-bottom: 20px;
+    margin-bottom: 30px;
     text-align: center;
 }
 /*
@@ -20,10 +20,6 @@
     content: "";
     display: table;
     clear: both;
-}
-#company {
-    float: right;
-    text-align: right;
 }
 h2.name {
     font-size: 1.4em;
@@ -81,4 +77,43 @@ h2.name {
     padding-top: 5px;
     padding-bottom: 5px;
     border: 1px solid grey;
+}
+/* informe de observaciones a estudiantes */
+
+.datos {
+    font-size: 15px;
+}
+.item {
+    font-size: 13px;
+}
+.texto {
+    text-align: justify;
+    font-size: 15px;
+}
+.titulo-items {
+    font-size: 18px;
+}
+.observacion, .acciones {
+    margin-top: 40px;
+}
+.datos-observacion {
+    margin-top: 20px;
+}
+.tr-firmas {}
+.firma {
+    width: 300px;
+    padding-left: 10px;
+    border-bottom: 1px solid #000;
+}
+.tal {
+    margin-left: 5%;
+}
+footer {
+    position: absolute;
+    bottom: 100;
+    width: 100%;
+    height: 40px;
+}
+.item-firma {
+    text-align: center;
 }
