@@ -156,3 +156,16 @@ footer {
 .texto-fallas {
     font-size: 15px;
 }
+/* reporte de notas definitivas por materia */
+
+.tabla-notas_definitivas {
+    margin-left: 17%;
+    border-collapse: collapse;
+}
+.valores-notas {
+    border: 1px solid grey;
+    padding: 15px;
+}
+.texto-notas-definitivas {
+    font-size: 13px;
+}

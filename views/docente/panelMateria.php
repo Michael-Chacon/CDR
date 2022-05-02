@@ -48,7 +48,15 @@
                     </a>
                     </article>
                 <?php endif;?>
-                <a href="<?=base_url?>Grado/listadoEstudiante&grado=<?=$grado?>&nombreg=<?=$nombre_gra?>&materia=<?=$nombre_ma?>" type="button" class="btn btn-success btn-sm">Listado de estudianes (PDF)</a>
+                </section>
+                <section class="row mt-5 mb-5">
+                    <article class="col-md-2">
+                        <a href="<?=base_url?>Grado/listadoEstudiante&grado=<?=$grado?>&nombreg=<?=$nombre_gra?>&materia=<?=$nombre_ma?>" type="button" class="btn btn-success btn-sm">Listado de estudianes (PDF)</a>
+                    </article>
+                    <article class="col-md-2">
+                        <a href="<?=base_url?>Pdf/listadoNotasEstudiantesXMateria&degree=<?=$grado?>&subject=<?=$materia?>&nombreg=<?=$nombre_gra?>&materia=<?=$nombre_ma?>" type="button" class="btn btn-success btn-sm">Listado de notas definitivas (PDF)</a>
+                    </article>
+                    <article class="col-md-2"></article>
                 </section>
                 <?php echo Utils::general_alerts('GuardarDocumentosDClase', 'Documento registrado con éxito.', 'Error al intentar registrar el documento, inténtelo de nuevo.') ?>
                 <?php echo Utils::general_alerts('eliminarDocumentoDClase', 'Documento eliminado con éxito.', 'Error al intentar borrar el documento, inténtelo de nuevo.') ?>

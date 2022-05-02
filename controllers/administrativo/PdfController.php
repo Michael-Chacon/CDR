@@ -1,5 +1,6 @@
 <?php
 require_once 'models/fallas.php';
+require_once 'models/notas.php';
 class PdfController
 {
     # generar el pdf con los estudiantes que petenecen a un a grado
@@ -23,6 +24,20 @@ class PdfController
         $listado_fallas = $fallas->dateFailsAStudent();
         require_once 'views/pdf/reporteFallas.php';
 
+    }
+
+    # Generar el pdf con las notas definitvas de todos los estudiantes de x materia
+    public function listadoNotasEstudiantesXMateria()
+    {
+        $nombre_materia = $_GET['materia'];
+        $nombre_grado = $_GET['nombreg'];
+        $grado = $_GET['degree'];
+        $materia = $_GET['subject'];
+        $notas = new Notas();
+        $notas->setId($grado);
+        $notas->setMateria($materia);
+        $listado_notas = $notas->listadoNotasDefinitvasXMateria();
+        require_once 'views/pdf/notasXMateria.php';
     }
 
 }

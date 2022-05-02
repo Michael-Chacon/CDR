@@ -621,6 +621,7 @@ INNER JOIN docentemateria dm ON dm.id_materia_doc = m.id
 INNER JOIN docente d ON d.id = dm.id_docente_mat
 WHERE m.id = 7;
 
+# intentar generar el boletin de notas
 SELECT estu.nombre_e, mat.nombre_mat, doc.nombre_d,  nd.nota_definitiva FROM estudiantemateria  em
 INNER JOIN  estudiante estu  ON estu.id = em.id_estudiante_m
 LEFT JOIN docentemateria dm ON  dm.id_materia_doc = em.id_materia_e
@@ -629,3 +630,11 @@ JOIN docente doc
 JOIN materia mat
 INNER JOIN grado g ON g.id = mat.id_grado_mat
 WHERE nd.id_estudiante_nd = 1 AND g.id = 1;
+
+# reporte de las notas de todos los estudiantes en una materia
+SELECT e.nombre_e, e.apellidos_e, nd.nota_definitiva FROM estudiante e
+INNER JOIN notasdefinitivas nd ON nd.id_estudiante_nd = e.id
+INNER JOIN materia m ON m.id = nd.id_materia_nd
+WHERE e.id_gradoE = 1 AND m.id = 6;
+
+

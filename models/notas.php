@@ -663,4 +663,23 @@ class Notas
         }
     }
 
+    # Metodo para obtener la notas definitivas de todos los estudiantes de x materia
+    public function listadoNotasDefinitvasXMateria()
+    {
+        $id_grado = $this->getId();
+        $id_materia = $this->getMateria();
+        $hoy = date("Y-m-d");
+        $periodo = Utils::validarPeriodoAcademico($hoy);
+        $listado = $this->db->prepare("SELECT e.nombre_e, e.apellidos_e, nd.nota_definitiva FROM estudiante e
+            INNER JOIN notasdefinitivas nd ON nd.id_estudiante_nd = e.id
+            INNER JOIN materia m ON m.id = nd.id_materia_nd
+            WHERE e.id_gradoE = :grado AND m.id = :materia AND id_periodo_nd = :periodo
+            ORDER BY nd.nota_definitiva DESC");
+        $listado->bindParam(":grado", $id_grado, PDO::PARAM_INT);
+        $listado->bindParam(":materia", $id_materia, PDO::PARAM_INT);
+        $listado->bindParam(":periodo", $periodo, PDO::PARAM_INT);
+        $listado->execute();
+        return $listado;
+    }
+
 } # fin de la clase
