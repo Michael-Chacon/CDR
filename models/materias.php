@@ -204,7 +204,7 @@ class Materias
     public function allMaterias()
     {
         $grado = $this->getIdGradoM();
-        $materias = $this->db->prepare("SELECT * FROM materia WHERE id_grado_mat = :grado");
+        $materias = $this->db->prepare("SELECT * FROM materia WHERE id_grado_mat = :grado ORDER BY nombre_mat ASC");
         $materias->bindParam(":grado", $grado, PDO::PARAM_INT);
         $materias->execute();
         return $materias;

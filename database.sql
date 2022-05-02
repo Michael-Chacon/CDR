@@ -621,4 +621,11 @@ INNER JOIN docentemateria dm ON dm.id_materia_doc = m.id
 INNER JOIN docente d ON d.id = dm.id_docente_mat
 WHERE m.id = 7;
 
-
+SELECT estu.nombre_e, mat.nombre_mat, doc.nombre_d,  nd.nota_definitiva FROM estudiantemateria  em
+INNER JOIN  estudiante estu  ON estu.id = em.id_estudiante_m
+LEFT JOIN docentemateria dm ON  dm.id_materia_doc = em.id_materia_e
+INNER JOIN notasdefinitivas nd ON  nd.id_estudiante_nd = estu.id
+JOIN docente doc
+JOIN materia mat
+INNER JOIN grado g ON g.id = mat.id_grado_mat
+WHERE nd.id_estudiante_nd = 1 AND g.id = 1;

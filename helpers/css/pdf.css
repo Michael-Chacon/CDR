@@ -137,3 +137,22 @@ footer {
     font-size: 17px;
     padding: 10px;
 }
+/* reporte de fallas */
+
+.tabla-fallas {
+    margin-left: 34%;
+    border-collapse: collapse;
+}
+.datos-fallas {
+    border: 1px solid grey;
+    padding: 20px;
+}
+.margen-titulo-fallas {
+    margin-bottom: 11px;
+}
+.titulo-fallas {
+    font-size: 13px;
+}
+.texto-fallas {
+    font-size: 15px;
+}

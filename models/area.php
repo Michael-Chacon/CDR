@@ -83,7 +83,7 @@ class Area
 
     public function getAreas()
     {
-        $seleccionar = $this->db->prepare("SELECT * FROM areas");
+        $seleccionar = $this->db->prepare("SELECT * FROM areas ORDER BY nombre_area");
         $seleccionar->execute();
         return $seleccionar;
     }

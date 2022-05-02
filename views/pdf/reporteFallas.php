@@ -15,7 +15,6 @@ $mpdf = new mPDF('', // mode - default ''
     'P'); // L - landscape, P - portrait
 
 $mpdf->AddPage('P');
-if($listado_estudiantes->rowCount()  != 0):
     $html = '
         <div id="details" class="clearfix">
             <div id="client">
@@ -32,41 +31,42 @@ if($listado_estudiantes->rowCount()  != 0):
                 <img class="logo" src="helpers/img/escudo_base.jpg">
             </div>
         </div>
-        <hr>';
-        if(isset($_GET['materia'])):
-             $html .= '<div class="asunto">
-                <td class="asunto"><span class="subtitulo-head"> Listado de estudiantes de la materia '.$_GET['materia'].'  '.$nombre_grado.'°</span></td>
-            </div>';
-        else:
-            $html .= '<div class="asunto">
-                <td class="asunto"><span class="subtitulo-head"> Listado de estudiantes '.$nombre_grado.'°, fecha de corte: '.date('Y-m-d').'</span></td>
-            </div>';
-        endif;
-        $html .= '<table class="estudiantes-grado">
+        <hr>
+        <div class="asunto">
+            <td class="asunto"><span class="subtitulo-head">Reporte de fallas  '.$nombre.', '.$materia.' '. $grado.'</span></td>
+        </div>
+        <table class="tabla-fallas">
             <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Estudiante</th>
-                    <th scope="col">Identificación</th>
+                <tr class="margen-titulo-fallas">
+                    <th>
+                        <span class="titulo-fallas">#</span>
+                    </th>
+                    <th>
+                        <span class="titulo-fallas">Fecha</span>
+                    </th>
+                    <th>
+                        <span class="titulo-fallas">Perido</span>
+                    </th>
                 </tr>
             </thead>
             <tbody>';
-                $contador = 1;
-                while($estudiantes = $listado_estudiantes->fetchObject()):
-                    $html .='<tr>
-                        <td class="linea numero">'.$contador++.'</td>
-                        <td class="linea"><span class="nombre-numero">'.$estudiantes->apellidos_e .'  '. $estudiantes->nombre_e.'</td>
-                        <td class="linea"><span class="nombre-numero">'.$estudiantes->numero_e.'</td>
-                    </tr>';
-                endwhile;
+            $c = 1;
+            while($falla = $listado_fallas->fetchObject()):
+                $html .= '<tr>
+                    <td class="datos-fallas">
+                        <span class="texto-fallas">'.$c++.'</span>
+                    </td>
+                    <td class="datos-fallas">
+                        <span class="texto-fallas">'.$falla->fecha_falla.'</span>
+                    </td>
+                    <td class="datos-fallas">
+                        <span class="texto-fallas">'.$falla->id_periodo_f.'</span>
+                    </td>
+                </tr>';
+            endwhile    ;
             $html .= '</tbody>
-        </table>';
-else:
-    $html = '
-    <div class="alerta">
-        No hay estudiantes en este grado.
-    </div>';
-endif;
+        </table>
+        ';
 
 $css = file_get_contents(base_url . 'helpers/css/pdf.css');
 $mpdf->WriteHTML($css, 1);

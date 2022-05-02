@@ -98,7 +98,7 @@ class Grados
     #seleccionar todos los grados
     public function allGrados()
     {
-        $todos = $this->db->prepare("SELECT  *  FROM grado");
+        $todos = $this->db->prepare("SELECT  *  FROM grado ORDER BY nombre_g");
         $todos->execute();
         return $todos;
     }
@@ -110,7 +110,7 @@ class Grados
             $grado = $this->getGrado();
             $estudiantes = $this->db->prepare("SELECT e.*, g.id AS 'id_grado' FROM estudiante e
                 INNER JOIN grado g ON g.id = e.id_gradoE
-                WHERE g.id = $grado");
+                WHERE g.id = $grado ORDER BY apellidos_e ASC");
             $estudiantes->execute();
             return $estudiantes;
         } catch (PDOException $e) {
@@ -149,7 +149,7 @@ class Grados
     # seleccionar todas la aulas
     public function selectAllClassroom()
     {
-        $select = $this->db->prepare("SELECT * FROM aulas");
+        $select = $this->db->prepare("SELECT * FROM aulas ORDER BY nombre");
         $select->execute();
         return $select;
     }

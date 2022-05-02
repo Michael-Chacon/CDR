@@ -1,6 +1,6 @@
  <!-- inicio del contenido de la pagina -->
             <section class="container-fluid">
-                      <section class="row shadow titulo mb-3">
+                <section class="row shadow titulo mb-3">
                     <article class="col-xs-11 col-sm-11 col-md-11 col-lg-11">
                         <h1 class="text-center config">
                             <?=$nombre_ma?> <?=$nombre_gra?>°
@@ -48,6 +48,7 @@
                     </a>
                     </article>
                 <?php endif;?>
+                <a href="<?=base_url?>Grado/listadoEstudiante&grado=<?=$grado?>&nombreg=<?=$nombre_gra?>&materia=<?=$nombre_ma?>" type="button" class="btn btn-success btn-sm">Listado de estudianes (PDF)</a>
                 </section>
                 <?php echo Utils::general_alerts('GuardarDocumentosDClase', 'Documento registrado con éxito.', 'Error al intentar registrar el documento, inténtelo de nuevo.') ?>
                 <?php echo Utils::general_alerts('eliminarDocumentoDClase', 'Documento eliminado con éxito.', 'Error al intentar borrar el documento, inténtelo de nuevo.') ?>

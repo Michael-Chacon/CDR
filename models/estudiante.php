@@ -168,7 +168,7 @@ class Estudiante extends Usuarios
     # obtener todos los estudiantes
     public function allEstudiantes()
     {
-        $estudiantes = $this->db->prepare("SELECT e.*, g.nombre_g, g.id AS 'id_grado' FROM estudiante e INNER JOIN grado g ON g.id = e.id_gradoE ORDER BY id ASC;");
+        $estudiantes = $this->db->prepare("SELECT e.*, g.nombre_g, g.id AS 'id_grado' FROM estudiante e INNER JOIN grado g ON g.id = e.id_gradoE ORDER BY id DESC;");
         $estudiantes->execute();
         return $estudiantes;
     }

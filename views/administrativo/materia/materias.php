@@ -153,7 +153,7 @@ Utils::borrar_error('eliminarMateria')?>
             <h3 class="text-center mb-2 mt-3 mb-3 titulo-perfil">
                 Estudiantes matriculados
             </h3>
-            <article class="col-md-5 text-center">
+            <article class="col-md-5 ">
              <ul class="list-group mb-4 padre">
                 <li class="list-group-item ">
                     <div class="row">
@@ -170,34 +170,34 @@ Utils::borrar_error('eliminarMateria')?>
                 </li>
             </ul>
             <?php if (isset($estudi) && $estudi->rowCount() != 0):
-    $c = 1;
-    while ($estudiantes = $estudi->fetchObject()): ?>
-												                  <ul class="list-group mb-1 ">
-												                     <li class="list-group-item fila-estudiante">
-												                         <?php if (!isset($_SESSION['teacher'])): ?>
-												                             <a class="stretched-link" href="<?=base_url?>Estudiante/perfilEstudiante&x=<?=$estudiantes->id?>&y=<?=$estudiantes->id_familia_e?>&z=<?=$estudiantes->id_grado?>">
-												                             </a>
-												                         <?php endif?>
-                         <div class="row">
-                            <div class="col-md-2 nombre-apellidos-numero">
-                                <?=$c++?>
-                            </div>
-                            <div class="col-md-2">
-                                <img alt="" class="avatar-tabla circulo" src="<?=base_url?>photos/estudiantes/<?=$estudiantes->img?>">
-                            </img>
-                        </div>
-                        <div class="col-md-8 nombre-apellidos-numero">
-                            <?=$estudiantes->nombre_e?>
-                            <?=$estudiantes->apellidos_e?>
-                        </div>
+            $c = 1;
+            while ($estudiantes = $estudi->fetchObject()): ?>
+              <ul class="list-group mb-1 ">
+               <li class="list-group-item fila-estudiante">
+                   <?php if (!isset($_SESSION['teacher'])): ?>
+                       <a class="stretched-link" href="<?=base_url?>Estudiante/perfilEstudiante&x=<?=$estudiantes->id?>&y=<?=$estudiantes->id_familia_e?>&z=<?=$estudiantes->id_grado?>">
+                       </a>
+                   <?php endif?>
+                   <div class="row">
+                    <div class="col-md-2 nombre-apellidos-numero">
+                        <?=$c++?>
                     </div>
-                </li>
-            </ul>
-        <?php endwhile?>
-    <?php else: ?>
-        <div class="alert alert-danger text-center" role="alert">
-            No hay estudiantes registrados en este grado.
-        </div>
+                    <div class="col-md-2">
+                        <img alt="" class="avatar-tabla circulo" src="<?=base_url?>photos/estudiantes/<?=$estudiantes->img?>">
+                    </img>
+                </div>
+                <div class="col-md-8 nombre-apellidos-numero">
+                    <?=$estudiantes->apellidos_e?>
+                    <?=$estudiantes->nombre_e?>
+                </div>
+            </div>
+        </li>
+    </ul>
+<?php endwhile?>
+<?php else: ?>
+    <div class="alert alert-danger text-center" role="alert">
+        No hay estudiantes registrados en este grado.
+    </div>
 <?php endif;?>
 </article >
 </section>

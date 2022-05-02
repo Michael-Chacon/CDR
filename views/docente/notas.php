@@ -694,12 +694,16 @@
                             <?php endwhile;?>
                         </tbody>
                     </table>
+                    <?php if(!isset($_SESSION['student'])): ?>
+                        <div class="d-grid gap-2">
+                        <a href="<?=base_url?>Pdf/listadoFallas&student=<?=$estudiante->id?>&id_subject=<?=$materia->id?>&subject=<?=$materia->nombre_mat?>&degree=<?=$grado?>&name=<?=$estudiante->nombre_e?> <?=$estudiante->apellidos_e?>" class="btn btn-warning" type="button">Descargar reporte de fallas</a>
+                    </div>
+                    <?php endif; ?>
                 <?php else: ?>
                     <div class="alert alert-danger text-center" role="alert">
                         El estudiante no tiene fallas.
                     </div>
                 <?php endif;?>
-            </table>
             </div>
         </div>
     </div>

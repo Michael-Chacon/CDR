@@ -61,6 +61,7 @@
                                     <?php if (isset($todos_estudiantes) && $todos_estudiantes->rowCount() != 0):
                                                     $c = 1;
                                                     while ($estudiantes = $todos_estudiantes->fetchObject()): ?>
+
                                                       <tr>
                                                         <th class="texto_tabla_docente text-center" scope="row">
                                                             <?=$c++?>
