@@ -196,19 +196,24 @@ class NotasController
                 switch ($periodo) {
                     case '1':
                         $id_periodo = 1;
-                        $definitiva = $definitiva_periodo1;
+                        $definitiva = number_format($definitiva_periodo1, '2');
                         break;
                     case '2':
                         $id_periodo = 2;
-                        $definitiva = $definitiva_periodo2;
+                        $definitiva = number_format($definitiva_periodo2, '2');
                         break;
                     case '3':
                         $id_periodo = 3;
-                        $definitiva = $definitiva_periodo3;
+                        $definitiva = number_format($definitiva_periodo3, '2');
                         break;
                 }
-                $nota_definitiva->setNota($definitiva);
+                $nota_definitiva->setNota(round($definitiva, 0, PHP_ROUND_HALF_UP));
                 $nota_definitiva->updateFinalNote($id_periodo);
+                $promedio = $notas;
+                $promedio->setEstudiante($id_estudiante);
+                $promedio->setPeriodo($id_periodo);
+                $promedio->promedioEstudiante();
+
             }
 
             # Validando el tipo de usurio activo, para redireccionarlo a un vista especifica

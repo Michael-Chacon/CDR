@@ -507,6 +507,17 @@ CREATE TABLE notasdefinitivas(
 	CONSTRAINT fk_periodo_nota FOREIGN KEY (id_periodo_nd) REFERENCES periodo (id)
 )ENGINE=InnoDb;
 
+# Tabla para almacenar el promedio por periodo de un estudiante
+CREATE TABLE promedioEstudiante(
+	id_avg INT(10) AUTO_INCREMENT NOT NULL,
+	id_estudiante_avg INT(4) NOT NULL,
+	id_periodo_avg INT(4) NOT NULL,
+	promedio FLOAT NOT NULL,
+	CONSTRAINT pk_promedio PRIMARY KEY (id_avg),
+	CONSTRAINT fk_estudiante_avg FOREIGN KEY (id_estudiante_avg) REFERENCES estudiante (id) ON DELETE CASCADE,
+	CONSTRAINT fk_periodo_avg FOREIGN KEY (id_periodo_avg) REFERENCES periodo (id)
+)ENGINE=InnoDb;
+
 --  seleccionar todos los grados
 SELECT gd.id_grado_d FROM gradodocente gd
 INNER JOIN docente d ON d.id = gd.id_docente_g
@@ -637,4 +648,9 @@ INNER JOIN notasdefinitivas nd ON nd.id_estudiante_nd = e.id
 INNER JOIN materia m ON m.id = nd.id_materia_nd
 WHERE e.id_gradoE = 1 AND m.id = 6;
 
+# hallar el promedio de estudiante
+SELECT AVG(nd.nota_definitiva), e.nombre_e, nd.nota_definitiva FROM notasdefinitivas nd
+INNER JOIN estudiante e ON e.id = nd.id_estudiante_nd
+INNER JOIN periodo p ON p.id = nd.id_periodo_nd
+WHERE e.id = 6 AND p.id =1;
 

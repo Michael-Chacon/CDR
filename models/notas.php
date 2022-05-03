@@ -17,6 +17,7 @@ class Notas
     private $actitudinal;
     private $apreciativa;
     private $autoevaluacion;
+    private $promedio;
     public $db;
 
     public function __construct()
@@ -340,6 +341,25 @@ class Notas
     public function setAutoevaluacion($autoevaluacion)
     {
         $this->autoevaluacion = $autoevaluacion;
+
+        return $this;
+    }
+    /**
+     * @return mixed
+     */
+    public function getPromedio()
+    {
+        return $this->promedio;
+    }
+
+    /**
+     * @param mixed $promedio
+     *
+     * @return self
+     */
+    public function setPromedio($promedio)
+    {
+        $this->promedio = $promedio;
 
         return $this;
     }
@@ -682,4 +702,42 @@ class Notas
         return $listado;
     }
 
+    # Metodo para calcular el promedio general de un estudiante
+    public function promedioEstudiante()
+    {
+        try {
+            $id_estudiante = $this->getEstudiante();
+            $id_periodo = $this->getPeriodo();
+            $consultar_promedio = $this->db->prepare("SELECT * FROM promedioEstudiante WHERE id_estudiante_avg = :id_student AND id_periodo_avg = :id_period");
+            $consultar_promedio->bindParam(":id_student", $id_estudiante, PDO::PARAM_INT);
+            $consultar_promedio->bindParam(":id_period", $id_periodo, PDO::PARAM_INT);
+            $consultar_promedio->execute();
+            # Validar si existen notas para generar el promedio
+            if ($consultar_promedio->rowCount() == 0) {
+                $insertar_promedio = $this->db->prepare("INSERT INTO promedioEstudiante values(null, :estudiante, :periodo, 0)");
+                $insertar_promedio->bindParam(":estudiante", $id_estudiante, PDO::PARAM_INT);
+                $insertar_promedio->bindParam(":periodo", $id_periodo, PDO::PARAM_INT);
+                $insertar_promedio->execute();
+            } else {
+                # Consultar le periodo de las notas
+                $calcular_promedio = $this->db->prepare("SELECT AVG(nd.nota_definitiva) AS 'promedio' FROM notasdefinitivas nd
+                    INNER JOIN estudiante e ON e.id = nd.id_estudiante_nd
+                    INNER JOIN periodo p ON p.id = nd.id_periodo_nd
+                    WHERE e.id = :estudiante AND p.id = :periodo;");
+                $calcular_promedio->bindParam(":estudiante", $id_estudiante, PDO::PARAM_INT);
+                $calcular_promedio->bindParam(":periodo", $id_periodo, PDO::PARAM_INT);
+                $calcular_promedio->execute();
+                # Actualizar el promedio
+                $avg = $calcular_promedio->fetchObject();
+                $nota = $avg->promedio;
+                $actualizar_promedio = $this->db->prepare("UPDATE promedioEstudiante SET promedio = :avg WHERE id_estudiante_avg = :student AND id_periodo_avg = :period");
+                $actualizar_promedio->bindParam(":avg", $nota, PDO::PARAM_INT);
+                $actualizar_promedio->bindParam(":student", $id_estudiante, PDO::PARAM_INT);
+                $actualizar_promedio->bindParam(":period", $id_periodo, PDO::PARAM_INT);
+                $actualizar_promedio->execute();
+            }
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
 } # fin de la clase
