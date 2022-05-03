@@ -702,24 +702,27 @@ class Notas
         return $listado;
     }
 
-    # Metodo para calcular el promedio general de un estudiante
+    /* Metodo para calcular y acutalizar el promedio general de un estudiante, este metodo se ejecuta
+    cuando un docente realiza alcugan accion (eliminar o registrar) sobre las notas de un estudiante.
+     */
     public function promedioEstudiante()
     {
         try {
             $id_estudiante = $this->getEstudiante();
             $id_periodo = $this->getPeriodo();
+            # Validar si existen notas para generar el promedio
             $consultar_promedio = $this->db->prepare("SELECT * FROM promedioEstudiante WHERE id_estudiante_avg = :id_student AND id_periodo_avg = :id_period");
             $consultar_promedio->bindParam(":id_student", $id_estudiante, PDO::PARAM_INT);
             $consultar_promedio->bindParam(":id_period", $id_periodo, PDO::PARAM_INT);
             $consultar_promedio->execute();
-            # Validar si existen notas para generar el promedio
             if ($consultar_promedio->rowCount() == 0) {
+                # Sí no existen notas entonces se registra 0 en el promedio del estudiante
                 $insertar_promedio = $this->db->prepare("INSERT INTO promedioEstudiante values(null, :estudiante, :periodo, 0)");
                 $insertar_promedio->bindParam(":estudiante", $id_estudiante, PDO::PARAM_INT);
                 $insertar_promedio->bindParam(":periodo", $id_periodo, PDO::PARAM_INT);
                 $insertar_promedio->execute();
             } else {
-                # Consultar le periodo de las notas
+                # Sí existen notas definitivas entonces se calcula el promedio general del estudiante con las notas que existen
                 $calcular_promedio = $this->db->prepare("SELECT AVG(nd.nota_definitiva) AS 'promedio' FROM notasdefinitivas nd
                     INNER JOIN estudiante e ON e.id = nd.id_estudiante_nd
                     INNER JOIN periodo p ON p.id = nd.id_periodo_nd
@@ -730,6 +733,7 @@ class Notas
                 # Actualizar el promedio
                 $avg = $calcular_promedio->fetchObject();
                 $nota = $avg->promedio;
+                # Se actuliza el promedio pormedio general
                 $actualizar_promedio = $this->db->prepare("UPDATE promedioEstudiante SET promedio = :avg WHERE id_estudiante_avg = :student AND id_periodo_avg = :period");
                 $actualizar_promedio->bindParam(":avg", $nota, PDO::PARAM_INT);
                 $actualizar_promedio->bindParam(":student", $id_estudiante, PDO::PARAM_INT);

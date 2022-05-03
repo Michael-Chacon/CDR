@@ -210,6 +210,7 @@ class NotasController
                 $nota_definitiva->setNota(round($definitiva, 0, PHP_ROUND_HALF_UP));
                 $nota_definitiva->updateFinalNote($id_periodo);
                 $promedio = $notas;
+                # Se envian los datos para calcular el promedio del estudiante
                 $promedio->setEstudiante($id_estudiante);
                 $promedio->setPeriodo($id_periodo);
                 $promedio->promedioEstudiante();
