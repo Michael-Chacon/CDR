@@ -186,3 +186,15 @@ footer {
     margin-left: 21%;
     border-collapse: collapse;
 }
+/*listado de administrativos*/
+
+.tabla-listado-administrativos {
+    margin-left: 12%;
+    border-collapse: collapse;
+}
+/*listado de administrativos*/
+
+.tabla-listado-personal {
+    margin-left: 11%;
+    border-collapse: collapse;
+}

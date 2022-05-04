@@ -3,6 +3,8 @@ require_once 'models/fallas.php';
 require_once 'models/notas.php';
 require_once 'models/estudiante.php';
 require_once 'models/docente.php';
+require_once 'models/administrativo.php';
+require_once 'models/personal.php';
 class PdfController
 {
     # generar el pdf con los estudiantes que petenecen a un a grado
@@ -73,6 +75,22 @@ class PdfController
         $docentes = new Docente();
         $listado_docentes  = $docentes->allDocentes();
         require_once 'views/pdf/listadoDocentes.php';
+    }
+
+    # Generar pdf con los datos de los usuarios administrativos
+    public function listadoAdministrativos()
+    {
+        $administrativos = new Administrativo();
+        $listado_administrativos = $administrativos->listarAdministrativos();
+        require_once 'views/pdf/listadoAdministrativos.php';
+    }
+
+    # Generar pdf con los datos de los usuarios del personal
+    public function listadoPersonal()
+    {
+        $personal = new Personal();
+        $listado_personal = $personal->listarPersonal();
+        require_once 'views/pdf/listadoPersonal.php';
     }
 
 }

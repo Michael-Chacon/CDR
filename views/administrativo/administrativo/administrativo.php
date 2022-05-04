@@ -24,8 +24,15 @@
  	Utils::borrar_error('actualizarA');
  	Utils::borrar_error('cambiarPassA');
  	?>
+ 	<section class="container-fluid">
+ 		<section class="row justify-content-center mt-3">
+ 			<article class="col-md-3">
+ 				<a href="<?=base_url?>Pdf/listadoAdministrativos" class="btn btn-success btn-sm">Listado de adminstrativos en PDF</a>
+ 			</article>
+ 		</section>
+ 	</section>
  	<!-- card -->
- 	<section class="row mt-4">
+ 	<section class="row mt-2">
  		<?php if (isset($listado) && $listado->rowCount() != 0):
  		while ($administrativo = $listado->fetchObject()): ?>
  			<div class="col-md-6 mt-3 mb-5">

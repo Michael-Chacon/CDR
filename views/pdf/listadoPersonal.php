@@ -15,7 +15,7 @@ $mpdf = new mPDF('', // mode - default ''
     'P'); // L - landscape, P - portrait
 
 $mpdf->AddPage('P');
-if($listado_docentes->rowCount()  != 0):
+if($listado_personal->rowCount()  != 0):
     $html = '
         <div id="details" class="clearfix">
             <div id="client">
@@ -34,30 +34,32 @@ if($listado_docentes->rowCount()  != 0):
         </div>
         <hr>
         <div class="asunto">
-            <td class="asunto"><span class="subtitulo-head"> Listado de docentes</span></td>
+            <td class="asunto"><span class="subtitulo-head">Listado de funcionarios auxiliares</span></td>
         </div>
-        <table class="tabla-listado-docentes">
+        <table class="tabla-listado-personal">
             <thead>
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">Estudiante</th>
                     <th scope="col">Identificación</th>
+                    <th scope="col">Cargo</th>
                 </tr>
             </thead>
             <tbody>';
                 $contador = 1;
-                while($docente = $listado_docentes->fetchObject()):
+                while($empleado = $listado_personal->fetchObject()):
                     $html .='<tr>
                         <td class="linea numero">'.$contador++.'</td>
-                        <td class="linea"><span class="nombre-numero">'.$docente->apellidos_d .'  '. $docente->nombre_d.'</td>
-                        <td class="linea"><span class="nombre-numero">'.$docente->numero_d.'</td>
+                        <td class="linea"><span class="nombre-numero">'.$empleado->apellidos_per .'  '. $empleado->nombre_per.'</td>
+                        <td class="linea"><span class="nombre-numero">'.$empleado->numero_per.'</td>
+                        <td class="linea"><span class="nombre-numero">'.ucfirst($empleado->cargo_per).'</td>
                     </tr>';
                 endwhile;
             $html .= '</tbody>
         </table>';
 else:
     $html = '<div class="alerta">
-         Aún no hay docentes registrados en la plataforma.
+         Aún no hay  funcionarios auxiliares registrados en la plataforma.
     </div>';
 endif;
 

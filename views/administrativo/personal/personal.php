@@ -17,10 +17,17 @@
                     <?php echo Utils::general_alerts('validacion', '', 'Se encontró un usuario en la base de datos con el mismo número de documento, posiblemente este usuario ya existe en la plataforma.') ?>
                     <?php echo Utils::general_alerts('actualizarPer', 'La información del usuario ha sido actualizada con éxito.', 'Algo salió mal al actualizar la información, inténtelo de nuevo.') ?>
                      <?php Utils::borrar_error('personal');
-Utils::borrar_error('validacion');
-Utils::borrar_error('actualizarPer');?>
+                        Utils::borrar_error('validacion');
+                        Utils::borrar_error('actualizarPer');?>
+                  <section class="container-fluid">
+                    <section class="row justify-content-center mt-3">
+                      <article class="col-md-3">
+                        <a href="<?=base_url?>Pdf/listadoPersonal" class="btn btn-success btn-sm">Listado del personal en PDF</a>
+                      </article>
+                    </section>
+                  </section>
                      <!-- card -->
-                    <section class="row mt-4">
+                    <section class="row mt-2">
                         <?php if (isset($listado) && $listado->rowCount() != 0):
                         while ($personal = $listado->fetchObject()): ?>
                           <div class="col-md-6 mt-3 mb-5">
