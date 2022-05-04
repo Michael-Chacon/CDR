@@ -56,6 +56,15 @@
                                                                         Actualizar datos
                                                                     </a>
                                                                 </li>
+                                                                 <li>
+                                                                    <hr class="dropdown-divider"/>
+                                                                </li>
+                                                                <li>
+                                                                    <a class="dropdown-item" href="<?=base_url?>Pdf/infoDocente&id=<?=$docente->id?>">
+                                                                        <i class="bi bi-arrow-down-circle"></i>
+                                                                        Descargar datos
+                                                                    </a>
+                                                                </li>
                                                                     <li>
                                                                     <hr class="dropdown-divider"/>
                                                                 </li>

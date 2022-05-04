@@ -2,6 +2,7 @@
 require_once 'models/fallas.php';
 require_once 'models/notas.php';
 require_once 'models/estudiante.php';
+require_once 'models/docente.php';
 class PdfController
 {
     # generar el pdf con los estudiantes que petenecen a un a grado
@@ -55,6 +56,15 @@ class PdfController
         $dato = $datos->datosEstudiante();
 
         require_once 'views/pdf/infoEstudiantes.php';
+    }
+
+    # Genera informe con los datos de un docente
+    public function infoDocente(){
+        $id_docente = $_GET['id'];
+        $datos = new Docente();
+        $datos->setId($id_docente);
+        $docente = $datos->obtenerPerfil();
+        require_once 'views/pdf/infoDocentes.php';
     }
 
 }

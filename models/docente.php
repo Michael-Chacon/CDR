@@ -98,7 +98,6 @@ class Docente extends Usuarios
     public function obtenerPerfil()
     {
         $id_docente = $this->getId();
-
         $datos = $this->db->prepare("SELECT * FROM docente WHERE id = :id");
         $datos->bindParam(":id", $id_docente, PDO::PARAM_INT);
         $datos->execute();

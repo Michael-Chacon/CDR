@@ -654,3 +654,16 @@ INNER JOIN estudiante e ON e.id = nd.id_estudiante_nd
 INNER JOIN periodo p ON p.id = nd.id_periodo_nd
 WHERE e.id = 6 AND p.id =1;
 
+ # listado de estudiantes y totola de fallas
+ SELECT e.nombre_e, m.nombre_mat, fa.total FROM estudiante e
+ INNER JOIN estudiantemateria em ON em.id_estudiante_m = e.id
+ INNER JOIN materia m ON m.id = em.id_materia_e
+ JOIN
+ 	(SELECT COUNT(f.id) AS total FROM falla f
+ 	INNER JOIN estudiante es ON es.id = f.id_estudiante_f
+ 	INNER JOIN materia ma ON ma.id = f.id_materia_f
+ 	WHERE f.id_materia_f = ma.id
+ 	) fa
+ WHERE m.id=3;
+
+fallas
