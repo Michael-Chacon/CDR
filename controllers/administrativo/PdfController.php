@@ -1,6 +1,7 @@
 <?php
 require_once 'models/fallas.php';
 require_once 'models/notas.php';
+require_once 'models/estudiante.php';
 class PdfController
 {
     # generar el pdf con los estudiantes que petenecen a un a grado
@@ -38,6 +39,22 @@ class PdfController
         $notas->setMateria($materia);
         $listado_notas = $notas->listadoNotasDefinitvasXMateria();
         require_once 'views/pdf/notasXMateria.php';
+    }
+
+    # Generar pdf con la informacion de los estudiantes y sus padres de familia
+    public function infoEstudiantes()
+    {
+        $estudiante = $_GET['student'];
+        $grado = $_GET['degree'];
+        $padres = $_GET['fathers'];
+
+        $datos = new Estudiante();
+        $datos->setId($estudiante);
+        $datos->setGradoE($grado);
+        $datos->setPadres($padres);
+        $dato = $datos->datosEstudiante();
+
+        require_once 'views/pdf/infoEstudiantes.php';
     }
 
 }

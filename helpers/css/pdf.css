@@ -99,7 +99,6 @@ h2.name {
 .datos-observacion {
     margin-top: 20px;
 }
-.tr-firmas {}
 .firma {
     width: 300px;
     padding-left: 10px;
@@ -126,7 +125,7 @@ footer {
 }
 .items {
     border: 1px solid grey;
-    padding: 15px;
+    padding: 10px;
 }
 .person-item {
     font-size: 14px;
@@ -168,4 +167,16 @@ footer {
 }
 .texto-notas-definitivas {
     font-size: 13px;
+}
+/* Reporte de informacion del estudiante y de sus padres */
+
+.tabla-estudiante-padres {
+    margin-left: 3%;
+    border-collapse: collapse;
+}
+.vacio {
+    text-align: center;
+}
+.texto-vacio {
+    font-size: 15px;
 }

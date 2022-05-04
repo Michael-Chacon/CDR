@@ -55,6 +55,14 @@
                                                     <i class="bi bi-pen"></i>  Actualizar datos
                                                 </a>
                                             </li>
+                                            <li>
+                                                <hr class="dropdown-divider"/>
+                                            </li>
+                                            <li>
+                                                <a class="dropdown-item" href="<?=base_url?>Pdf/infoEstudiantes&student=<?=$estudiante_id?>&degree=<?=$grado?>&fathers=<?=$padres?>">
+                                                    <i class="bi bi-arrow-down-circle"></i>  Descargar datos
+                                                </a>
+                                            </li>
                                         </ul>
                                     </div>
                                 </span>
