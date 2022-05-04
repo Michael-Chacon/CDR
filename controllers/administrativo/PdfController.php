@@ -67,4 +67,12 @@ class PdfController
         require_once 'views/pdf/infoDocentes.php';
     }
 
+    # Generar listado en pdf con datos de todos los docente
+    public function listadoDocente()
+    {
+        $docentes = new Docente();
+        $listado_docentes  = $docentes->allDocentes();
+        require_once 'views/pdf/listadoDocentes.php';
+    }
+
 }

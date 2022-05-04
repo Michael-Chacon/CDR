@@ -24,8 +24,15 @@
                             Utils::borrar_error('validacion_d');
                             Utils::borrar_error('eliminarDocente');
                     ?>
+                    <section class="container-fluid">
+                        <section class="row justify-content-center mt-3">
+                            <article class="col-md-3">
+                                <a href="<?=base_url?>Pdf/listadoDocente" class="btn btn-success btn-sm" type="button">Listado de docentes en PDF</a>
+                            </article>
+                        </section>
+                    </section>
                     <!-- tabla -->
-                    <section class="row justify-content-center mt-5">
+                    <section class="row justify-content-center mt-3">
                         <div class="col-md-10 shadow">
                             <div class="table-responsive">
                             <table class="table table-hover">

@@ -65,7 +65,7 @@ h2.name {
 */
 
 .estudiantes-grado {
-    margin-left: 20%;
+    margin-left: 21%;
     border-collapse: collapse;
 }
 .nombre-numero {
@@ -179,4 +179,10 @@ footer {
 }
 .texto-vacio {
     font-size: 15px;
+}
+/*listado de docentes*/
+
+.tabla-listado-docentes {
+    margin-left: 21%;
+    border-collapse: collapse;
 }
