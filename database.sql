@@ -518,6 +518,32 @@ CREATE TABLE promedioEstudiante(
 	CONSTRAINT fk_periodo_avg FOREIGN KEY (id_periodo_avg) REFERENCES periodo (id)
 )ENGINE=InnoDb;
 
+-- -----------------------------------------------BOLETIN ----------------------------------
+CREATE TABLE boletin(
+	id_boletin  INT(10) AUTO_INCREMENT NOT NULL,
+	id_estudiante_boletin INT(10) NOT NULL,
+	id_materia_boletin INT(10) NOT NULL,
+	id_area_boletin INT(10) NOT NULL,
+	id_periodo_boletin INT(10) NOT NULL,
+	nombre_estudiante VARCHAR(40) NOT NULL,
+	nombre_docente VARCHAR(40) NOT NULL,
+	observaciones TEXT NOT NULL,
+	recuperacion_nota VARCHAR(10) NULL,
+	nota_periodo1 INT(2) NOT NULL,
+	nota_periodo2 INT(2) NOT NULL,
+	nota_periodo3 INT(2) NOT NULL,
+	primerdio_materia FLOAT NOT NULL,
+	total_fallas_periodo INT(2) NOT NULL,
+	CONSTRAINT pk_boletin PRIMARY KEY (id_boletin),
+	CONSTRAINT fk_estudiante_boletin FOREIGN KEY (id_estudiante_boletin) REFERENCES estudiante (id) ON DELETE CASCADE,
+	CONSTRAINT fk_materia_boletin FOREIGN KEY (id_materia_boletin) REFERENCES materia (id) ON DELETE CASCADE,
+	CONSTRAINT fk_area_boletin FOREIGN KEY (id_area_boletin) REFERENCES areas (id_area),
+	CONSTRAINT fk_periodo_boletin FOREIGN KEY (id_periodo_boletin) REFERENCES periodo (id)
+)ENGINE=InnoDb;
+
+# tabla para avilitar o desabilitar el envio de notas al boletin general
+CREATE TABLE avilitarBoletin
+
 --  seleccionar todos los grados
 SELECT gd.id_grado_d FROM gradodocente gd
 INNER JOIN docente d ON d.id = gd.id_docente_g
@@ -666,4 +692,4 @@ WHERE e.id = 6 AND p.id =1;
  	) fa
  WHERE m.id=3;
 
-fallas
+
