@@ -33,7 +33,7 @@ class NotasController
             $datos_materia->setMateria($id_materia);
             #informacion de la materia
             $materia = $datos_materia->selectOneSubject();
-            # JInformacion del docente y la materia
+            # Informacion del docente y la materia
             $docente = $datos_materia->subjectInformation();
 
             # Obteniendo informacion de la inasistencia del estudianta
@@ -41,6 +41,7 @@ class NotasController
             $asistencia->setEstudiante($id_estudiante);
             $asistencia->setMateria($id_materia);
             $fallas = $asistencia->totalFailsAStudent();
+            $fallas_por_periodo = $asistencia->totalFailsAStudentPeriod();
             $fechas_fallas = $asistencia->dateFailsAStudent();
 
             $observaciones = new Observador();
@@ -87,7 +88,7 @@ class NotasController
             }
             # Hallando la nota definitiva del periodo 1
             if (!empty($apreciativaPeriodo1->nota_apreciativa) && !empty($autoevaluacionPeriodo1->nota_autoevaluacion) && !empty($trabajoIndividualPeriodo1->nota_Tindividual) && !empty($trabajoColaborativoPeriodo1->nota_Tcolaborativo) && !empty($evaluacionPeriodo1->nota_evaluacion) && !empty($trimestralPeriodo1->nota_trimestral)) {
-                $definitiva_periodo1 = $notas->definitivaPerido($cognitivasUno[1], $procedimentalesUno[1], $actitudinalesUno[1]);
+                $definitiva_periodo1 = round($notas->definitivaPerido($cognitivasUno[1], $procedimentalesUno[1], $actitudinalesUno[1]));
             } else {
                 $definitiva_periodo1 = 0;
             }
@@ -122,7 +123,7 @@ class NotasController
             }
             // Hallando la nota definitiva del periodo 2
             if (!empty($apreciativaPeriodo2->nota_apreciativa) && !empty($autoevaluacionPeriodo2->nota_autoevaluacion) && !empty($trabajoIndividualPeriodo2->nota_Tindividual) && !empty($trabajoColaborativoPeriodo2->nota_Tcolaborativo) && !empty($evaluacionPeriodo2->nota_evaluacion) && !empty($trimestralPeriodo2->nota_trimestral)) {
-                $definitiva_periodo2 = $notas->definitivaPerido($cognitivasDos[1], $procedimentalesDos[1], $actitudinalesDos[1]);
+                $definitiva_periodo2 = round($notas->definitivaPerido($cognitivasDos[1], $procedimentalesDos[1], $actitudinalesDos[1]));
             } else {
                 $definitiva_periodo2 = 0;
             }
@@ -159,7 +160,7 @@ class NotasController
 
             // Hallando la nota definitivia del periodo 3
             if (!empty($apreciativaPeriodo3->nota_apreciativa) && !empty($autoevaluacionPeriodo3->nota_autoevaluacion) && !empty($trabajoIndividualPeriodo3->nota_Tindividual) && !empty($trabajoColaborativoPeriodo3->nota_Tcolaborativo) && !empty($evaluacionPeriodo3->nota_evaluacion) && !empty($trimestralPeriodo3->nota_trimestral)) {
-                $definitiva_periodo3 = $notas->definitivaPerido($cognitivasTres[1], $procedimentalesTres[1], $actitudinalesTres[1]);
+                $definitiva_periodo3 = round($notas->definitivaPerido($cognitivasTres[1], $procedimentalesTres[1], $actitudinalesTres[1]));
             } else {
                 $definitiva_periodo3 = 0;
             }

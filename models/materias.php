@@ -255,7 +255,7 @@ class Materias
     public function subjectInformation()
     {
         $subject = $this->getMateria();
-        $informacion = $this->db->prepare("SELECT m.nombre_mat, m.asignacion, a.nombre_area, d.nombre_d, d.apellidos_d, d.img, d.nombre_pregrado_d, d.correo_d FROM materia m
+        $informacion = $this->db->prepare("SELECT m.nombre_mat, m.asignacion, a.nombre_area, a.id_area, d.nombre_d, d.apellidos_d, d.img, d.nombre_pregrado_d, d.correo_d FROM materia m
             INNER JOIN docentemateria dm ON dm.id_materia_doc = m.id
             INNER JOIN docente d ON  d.id = dm.id_docente_mat
             INNER JOIN areas a ON a.id_area = m.id_materia_area

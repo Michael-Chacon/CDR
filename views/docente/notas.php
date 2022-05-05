@@ -31,10 +31,11 @@
         <?php echo Utils::general_alerts('registrarNota', 'Nota registrada con éxito.', ' El porcentaje de esta nota sobrepasa el límite del 100%') ?>
         <?php echo Utils::general_alerts('validarNota', '', 'En esta actividad ya se encuentra registrada una nota, si quieres actualizarla, elimina la nota existente y registra la nota nueva.') ?>
         <?php echo Utils::general_alerts('eliminarNota', 'La nota fue eliminia con éxito', 'Algo salió mal al intentar eliminar la nota, intentelo de nuevo'); ?>
-
+        <?php echo Utils::general_alerts('guardarBoletin', 'La nota definitiva se ha enviado hacia el boletín con éxito', 'Algo salió mal al intentar enviar la nota definitiva al boletín, inténtelo de nuevo.'); ?>
         <?php Utils::borrar_error('registrarNota');
         Utils::borrar_error('validarNota');
-        Utils::borrar_error('eliminarNota');?>
+        Utils::borrar_error('eliminarNota');
+        Utils::borrar_error('guardarBoletin');?>
     </section>
     <!-- cambio -->
     <section class="row mt-3">
@@ -70,13 +71,19 @@
                         </div>
                     </div>
                     <hr>
+                    <?php $x = 1;
+if ($x == 1): ?>
+                        <div class="d-grid gap-2 mt-2 mb-3">
+                          <button class="btn btn-danger" type="button" data-bs-toggle="modal" data-bs-target="#boletin">¡Ya puedes generar el boletín!</button>
+                      </div>
+                  <?php endif;?>
                     <p class="card-text indicador"><strong>Indicadores de la materia:</strong> <?=$materia->indicadores_mat?></p>
                     <p class="indicador"><strong>Área:</strong>
-                        <?php if(!empty($docente->nombre_area)):?>
+                        <?php if (!empty($docente->nombre_area)): ?>
                             <?=ucfirst(strtolower($docente->nombre_area))?>
                         <?php else: ?>
                             No hay docente
-                        <?php endif; ?>
+                        <?php endif;?>
                     </p>
                 </div>
             </div>
@@ -660,7 +667,7 @@
             </div>
             <div class="modal-body">
                 <?php $f = 0;
-                if ($fechas_fallas->rowCount() != 0): ?>
+if ($fechas_fallas->rowCount() != 0): ?>
                     <table class="table text-center caption-top table-responsive">
                         <caption>Formato de fecha: aaaa/mm/dd</caption>
                         <thead>
@@ -678,27 +685,27 @@
                         </thead>
                         <tbody>
                             <?php while ($fechas = $fechas_fallas->fetchObject()):
-                                $f++;
-                                ?>
-                                <tr>
-                                    <td>
-                                        <?=$f?>
-                                    </td>
-                                    <td>
-                                        <?=$fechas->fecha_falla?>
-                                    </td>
-                                    <td>
-                                        <?=$fechas->id_periodo_f?>
-                                    </td>
-                                </tr>
-                            <?php endwhile;?>
+    $f++;
+    ?>
+	                                <tr>
+	                                    <td>
+	                                        <?=$f?>
+	                                    </td>
+	                                    <td>
+	                                        <?=$fechas->fecha_falla?>
+	                                    </td>
+	                                    <td>
+	                                        <?=$fechas->id_periodo_f?>
+	                                    </td>
+	                                </tr>
+	                            <?php endwhile;?>
                         </tbody>
                     </table>
-                    <?php if(!isset($_SESSION['student'])): ?>
+                    <?php if (!isset($_SESSION['student'])): ?>
                         <div class="d-grid gap-2">
                         <a href="<?=base_url?>Pdf/listadoFallas&student=<?=$estudiante->id?>&id_subject=<?=$materia->id?>&subject=<?=$materia->nombre_mat?>&degree=<?=$grado?>&name=<?=$estudiante->nombre_e?> <?=$estudiante->apellidos_e?>" class="btn btn-warning" type="button">Descargar reporte de fallas</a>
                     </div>
-                    <?php endif; ?>
+                    <?php endif;?>
                 <?php else: ?>
                     <div class="alert alert-danger text-center" role="alert">
                         El estudiante no tiene fallas.
@@ -709,4 +716,67 @@
     </div>
 </section>
 <!-- fin de nueva nota -->
-        <!-- fin del contenido
+
+<!-- Modal para registrar el boletin-->
+<section class="modal fade" id="boletin" data-bs-backdrop="static" data-bs-keyboard="true" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Boletín de notas periodo <?=$periodo?></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="<?=base_url?>Boletin/guardarBoletin" method="post">
+                <div class="modal-body">
+                    <input type="text" hidden name="nGrado" value="<?=$grado?>">
+                    <input type="number" hidden name="estudiante" value="<?=$estudiante->id?>">
+                    <input type="number" hidden name="materia" value="<?=$id_materia?>">
+                    <input type="number" hidden name="area" value="<?=$docente->id_area?>">
+                    <input type="number" hidden name="periodo" value="<?=$periodo?>">
+                    <input type="text" hidden name="nombre_materia" value="<?=$materia->nombre_mat?>">
+                    <input type="text"  hidden name="nombre_estudiante" value="<?=$estudiante->nombre_e?> <?=$estudiante->apellidos_e?>">
+                    <input type="text" hidden name="docente" value="<?=$_SESSION['teacher']->nombre_d?> <?=$_SESSION['teacher']->apellidos_d?>">
+                    <input type="number" hidden name="fallas" value="<?=$fallas_por_periodo->fallas_periodo?>">
+
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput1" class="form-label">Observaciones:</label>
+                        <div class="form-floating">
+                          <textarea class="form-control" name="observacion" placeholder="Leave a comment here" id="floatingTextarea" style="height: 80px" required></textarea>
+                          <label for="floatingTextarea"></label>
+                      </div>
+                    </div>
+                    <div class="row text-center">
+                        <span class="valor_item mb-2">Notas </span>
+                        <div class="col-md-4">
+                            <div class="mb-3">
+                                <label for="nota1" class="form-label">Periodo 1:</label>
+                                <input type="text" readonly class="form-control" id="nota1" placeholder="Nota" name="periodo1" value="<?=$definitiva_periodo1?>">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="mb-3">
+                                <label for="nota2" class="form-label">Periodo 2:</label>
+                                <input type="text" readonly class="form-control" id="nota2" placeholder="Nota" name="periodo2" value="<?=$definitiva_periodo2?>">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="mb-3">
+                                <label for="nota3" class="form-label">Periodo 3:</label>
+                                <input type="text" readonly class="form-control" id="nota3" placeholder="Nota" name="periodo3" value="<?=$definitiva_periodo3?>">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-check mt-3 mb-3">
+                      <input class="form-check-input" type="checkbox" value="yes" id="flexCheckDefault" name="recuperacion">
+                      <label class="form-check-label" for="flexCheckDefault">
+                        ¿El estudiante tuvo que recuperar la nota?
+                    </label>
+                </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-success">Enviar nota al boletín</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>

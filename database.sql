@@ -525,6 +525,7 @@ CREATE TABLE boletin(
 	id_materia_boletin INT(10) NOT NULL,
 	id_area_boletin INT(10) NOT NULL,
 	id_periodo_boletin INT(10) NOT NULL,
+	nombre_materia VARCHAR(50) NOT NULL,
 	nombre_estudiante VARCHAR(40) NOT NULL,
 	nombre_docente VARCHAR(40) NOT NULL,
 	observaciones TEXT NOT NULL,
