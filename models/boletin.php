@@ -373,4 +373,46 @@ class Boletin
         return $boletin;
     }
 
+    # metodo para hallar el puesto del estudiante en el grado
+    public function calcularPuestoEstudiante($grado)
+    {
+        try {
+            # Obtener todos los registros de promedios
+            $periodo = Utils::validarPeriodoAcademico(date("Y-m-d"));
+            $cunsultar_promedio = $this->db->prepare("SELECT * FROM promedioEstudiante WHERE id_grado_avg = :grado AND id_periodo_avg = :periodo ORDER BY promedio DESC");
+            $cunsultar_promedio->bindParam(":grado", $grado, PDO::PARAM_INT);
+            $cunsultar_promedio->bindParam(":periodo", $periodo, PDO::PARAM_INT);
+            $cunsultar_promedio->execute();
+            $c = 1;
+            # guardar los puestos
+            while ($orden = $cunsultar_promedio->fetchObject()) {
+                $puesto = $c++;
+                # vamos a ver si el estudiante tiene un registro en la tabla
+                $consultar_puesto = $this->db->prepare("SELECT * FROM puestos WHERE id_estudiante_puesto = :student AND id_periodo_puesto = :period AND id_grado_puesto = :degree");
+                $consultar_puesto->bindParam(":student", $orden->id_estudiante_avg, PDO::PARAM_INT);
+                $consultar_puesto->bindParam(":period", $periodo, PDO::PARAM_INT);
+                $consultar_puesto->bindParam(":degree", $orden->id_grado_avg, PDO::PARAM_INT);
+                $consultar_puesto->execute();
+
+                if ($consultar_puesto->rowCount() == 0) {
+                    $registrar_puesto = $this->db->prepare("INSERT INTO puestos VALUES (null, :es, :pe, :gra, :puesto, CURDATE(), CURTIME())");
+                    $registrar_puesto->bindParam(":es", $orden->id_estudiante_avg, PDO::PARAM_INT);
+                    $registrar_puesto->bindParam(":pe", $periodo, PDO::PARAM_INT);
+                    $registrar_puesto->bindParam(":gra", $orden->id_grado_avg, PDO::PARAM_INT);
+                    $registrar_puesto->bindParam(":puesto", $puesto, PDO::PARAM_INT);
+                    $registrar_puesto->execute();
+                } else {
+                    $actualizar_puesto = $this->db->prepare("UPDATE  puestos SET puesto = :puesto, fecha = CURDATE(), hora = CURTIME() WHERE  id_estudiante_puesto = :es AND id_periodo_puesto = :pe AND id_grado_puesto = :gra");
+                    $actualizar_puesto->bindParam(":puesto", $puesto, PDO::PARAM_INT);
+                    $actualizar_puesto->bindParam(":es", $orden->id_estudiante_avg, PDO::PARAM_INT);
+                    $actualizar_puesto->bindParam(":pe", $periodo, PDO::PARAM_INT);
+                    $actualizar_puesto->bindParam(":gra", $orden->id_grado_avg, PDO::PARAM_INT);
+                    $actualizar_puesto->execute();
+                }
+            }
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
+
 } # fin de la clase

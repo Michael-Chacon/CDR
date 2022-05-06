@@ -716,6 +716,7 @@ class Notas
             $consultar_promedio->bindParam(":id_student", $id_estudiante, PDO::PARAM_INT);
             $consultar_promedio->bindParam(":id_period", $id_periodo, PDO::PARAM_INT);
             $consultar_promedio->execute();
+
             if ($consultar_promedio->rowCount() == 0) {
                 # Sí no existen notas entonces se registra 0 en el promedio del estudiante
                 $insertar_promedio = $this->db->prepare("INSERT INTO promedioEstudiante values(null, :estudiante, :periodo, :grado, 0)");
@@ -723,6 +724,7 @@ class Notas
                 $insertar_promedio->bindParam(":periodo", $id_periodo, PDO::PARAM_INT);
                 $insertar_promedio->bindParam(":grado", $id_grado, PDO::PARAM_INT);
                 $insertar_promedio->execute();
+
             } else {
                 # Sí existen notas definitivas entonces se calcula el promedio general del estudiante con las notas que existen
                 $calcular_promedio = $this->db->prepare("SELECT AVG(nd.nota_definitiva) AS 'promedio' FROM notasdefinitivas nd
@@ -742,6 +744,7 @@ class Notas
                 $actualizar_promedio->bindParam(":period", $id_periodo, PDO::PARAM_INT);
                 $actualizar_promedio->execute();
             }
+
         } catch (PDOException $e) {
             echo $e->getMessage();
         }

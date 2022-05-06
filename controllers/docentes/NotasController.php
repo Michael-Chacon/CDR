@@ -6,6 +6,7 @@ require_once 'models/notas.php';
 require_once 'models/observador.php';
 require_once 'models/actividades.php';
 require_once 'models/documentos.php';
+require_once 'models/boletin.php';
 class NotasController
 {
     public function homeNotas()
@@ -216,6 +217,9 @@ class NotasController
                 $promedio->setPeriodo($id_periodo);
                 $promedio->setId($materia->id_grado_mat);
                 $promedio->promedioEstudiante();
+                # PRUEBA DE PUESTOS
+                $puesto = new Boletin();
+                $puesto->calcularPuestoEstudiante($materia->id_grado_mat);
 
             }
 

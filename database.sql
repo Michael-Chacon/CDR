@@ -501,6 +501,7 @@ CREATE TABLE notasdefinitivas(
 	id_periodo_nd INT(3) NOT NULL,
 	nota_definitiva INT(4) NOT NULL,
 	fecha DATE NOT NULL,
+	hora TIME NOT NULL,
 	CONSTRAINT pk_nota_definitiva PRIMARY KEY (id_nota),
 	CONSTRAINT fk_estudiante_nota FOREIGN KEY (id_estudiante_nd) REFERENCES estudiante (id) ON DELETE CASCADE,
 	CONSTRAINT fk_materia_nota FOREIGN KEY (id_materia_nd) REFERENCES materia (id) ON DELETE CASCADE,
@@ -546,6 +547,21 @@ CREATE TABLE boletin(
 
 # tabla para avilitar o desabilitar el envio de notas al boletin general
 CREATE TABLE avilitarBoletin
+
+#tabla para guardar el puesto que ocupa un estudiante
+CREATE TABLE puestos(
+	id_puesto  INT(10) AUTO_INCREMENT NOT NULL,
+	id_estudiante_puesto INT(10) NOT NULL,
+	id_periodo_puesto INT(10) NOT NULL,
+	id_grado_puesto INT(10) NOT NULL,
+	puesto INT(3) NOT NULL,
+	fecha DATE NOT NULL,
+	hora TIME NOT NULL,
+	CONSTRAINT pk_pruesto PRIMARY KEY (id_puesto),
+	CONSTRAINT fk_estudiante_puesto FOREIGN KEY (id_estudiante_puesto) REFERENCES estudiante (id) ON DELETE CASCADE,
+	CONSTRAINT fk_periodo_puesto FOREIGN KEY (id_periodo_puesto) REFERENCES periodo (id),
+	CONSTRAINT fk_grado_puesto FOREIGN KEY (id_grado_puesto) REFERENCES grado (id) ON DELETE CASCADE
+)ENGINE=InnoDb;
 
 --  seleccionar todos los grados
 SELECT gd.id_grado_d FROM gradodocente gd
@@ -683,16 +699,11 @@ INNER JOIN estudiante e ON e.id = nd.id_estudiante_nd
 INNER JOIN periodo p ON p.id = nd.id_periodo_nd
 WHERE e.id = 6 AND p.id =1;
 
- # listado de estudiantes y totola de fallas
- SELECT e.nombre_e, m.nombre_mat, fa.total FROM estudiante e
- INNER JOIN estudiantemateria em ON em.id_estudiante_m = e.id
- INNER JOIN materia m ON m.id = em.id_materia_e
- JOIN
- 	(SELECT COUNT(f.id) AS total FROM falla f
- 	INNER JOIN estudiante es ON es.id = f.id_estudiante_f
- 	INNER JOIN materia ma ON ma.id = f.id_materia_f
- 	WHERE f.id_materia_f = ma.id
- 	) fa
- WHERE m.id=3;
+# Listar los puestos de un grado
+SELECT e.nombre_e, p.puesto, p.id_periodo_puesto FROM estudiante e
+INNER JOIN puestos p ON p.id_estudiante_puesto = e.id
+WHERE p.id_grado_puesto = 2 ORDER BY puesto DESC;
+
+
 
 
