@@ -214,6 +214,7 @@ class NotasController
                 # Se envian los datos para calcular el promedio del estudiante
                 $promedio->setEstudiante($id_estudiante);
                 $promedio->setPeriodo($id_periodo);
+                $promedio->setId($materia->id_grado_mat);
                 $promedio->promedioEstudiante();
 
             }

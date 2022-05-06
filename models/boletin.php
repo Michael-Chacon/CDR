@@ -363,4 +363,14 @@ class Boletin
         }
     }
 
+    # Seleccionar las notas de todas las materias de un estudiante para generar el boletín por periodo
+    public function crearBoletin()
+    {
+        $student = $this->getIdEstudiante();
+        $boletin = $this->db->prepare("SELECT * FROM boletin WHERE id_estudiante_boletin = :estudiante ORDER BY id_area_boletin");
+        $boletin->bindParam(":estudiante", $student, PDO::PARAM_INT);
+        $boletin->execute();
+        return $boletin;
+    }
+
 } # fin de la clase

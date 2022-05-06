@@ -512,10 +512,12 @@ CREATE TABLE promedioEstudiante(
 	id_avg INT(10) AUTO_INCREMENT NOT NULL,
 	id_estudiante_avg INT(4) NOT NULL,
 	id_periodo_avg INT(4) NOT NULL,
-	promedio FLOAT NOT NULL,
+	id_grado_avg INT(4) NOT NULL,
+	promedio FLOAT(4,2) NOT NULL,
 	CONSTRAINT pk_promedio PRIMARY KEY (id_avg),
 	CONSTRAINT fk_estudiante_avg FOREIGN KEY (id_estudiante_avg) REFERENCES estudiante (id) ON DELETE CASCADE,
-	CONSTRAINT fk_periodo_avg FOREIGN KEY (id_periodo_avg) REFERENCES periodo (id)
+	CONSTRAINT fk_periodo_avg FOREIGN KEY (id_periodo_avg) REFERENCES periodo (id),
+	CONSTRAINT fk_grado_avg FOREIGN KEY (id_grado_avg) REFERENCES grado (id) ON DELETE CASCADE
 )ENGINE=InnoDb;
 
 -- -----------------------------------------------BOLETIN ----------------------------------

@@ -54,7 +54,18 @@ class BoletinController
         $boletin->setFallas($fallas);
         $respuesta = $boletin->saveBoletin();
         Utils::validarReturn($respuesta, 'guardarBoletin');
-        header("Location: " .base_url. 'Notas/homeNotas&student='.Utils::encryption($id_estudiante). '&materia='.Utils::encryption($id_materia).'&nGrado=' .$_POST['nGrado'].'&event=bad');
+        header("Location: " . base_url . 'Notas/homeNotas&student=' . Utils::encryption($id_estudiante) . '&materia=' . Utils::encryption($id_materia) . '&nGrado=' . $_POST['nGrado'] . '&event=bad');
+    }
+
+    # Ver el boletin
+    public function verBoletin()
+    {
+        $estudiante = Utils::decryption($_GET['student']);
+        $grado = Utils::decryption($_GET['degree']);
+        $boletin = new Boletin();
+        $boletin->setIdEstudiante($estudiante);
+        $listado_materias = $boletin->crearBoletin();
+        require_once 'views/administrativo/boletin/boletin.php';
     }
 
 } # fin de la clase

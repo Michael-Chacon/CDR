@@ -710,6 +710,7 @@ class Notas
         try {
             $id_estudiante = $this->getEstudiante();
             $id_periodo = $this->getPeriodo();
+            $id_grado = $this->getId();
             # Validar si existen notas para generar el promedio
             $consultar_promedio = $this->db->prepare("SELECT * FROM promedioEstudiante WHERE id_estudiante_avg = :id_student AND id_periodo_avg = :id_period");
             $consultar_promedio->bindParam(":id_student", $id_estudiante, PDO::PARAM_INT);
@@ -717,9 +718,10 @@ class Notas
             $consultar_promedio->execute();
             if ($consultar_promedio->rowCount() == 0) {
                 # Sí no existen notas entonces se registra 0 en el promedio del estudiante
-                $insertar_promedio = $this->db->prepare("INSERT INTO promedioEstudiante values(null, :estudiante, :periodo, 0)");
+                $insertar_promedio = $this->db->prepare("INSERT INTO promedioEstudiante values(null, :estudiante, :periodo, :grado, 0)");
                 $insertar_promedio->bindParam(":estudiante", $id_estudiante, PDO::PARAM_INT);
                 $insertar_promedio->bindParam(":periodo", $id_periodo, PDO::PARAM_INT);
+                $insertar_promedio->bindParam(":grado", $id_grado, PDO::PARAM_INT);
                 $insertar_promedio->execute();
             } else {
                 # Sí existen notas definitivas entonces se calcula el promedio general del estudiante con las notas que existen
@@ -732,10 +734,10 @@ class Notas
                 $calcular_promedio->execute();
                 # Actualizar el promedio
                 $avg = $calcular_promedio->fetchObject();
-                $nota = $avg->promedio;
+                $nota = number_format($avg->promedio, 2);
                 # Se actuliza el promedio pormedio general
                 $actualizar_promedio = $this->db->prepare("UPDATE promedioEstudiante SET promedio = :avg WHERE id_estudiante_avg = :student AND id_periodo_avg = :period");
-                $actualizar_promedio->bindParam(":avg", $nota, PDO::PARAM_INT);
+                $actualizar_promedio->bindParam(":avg", $nota, PDO::PARAM_STR);
                 $actualizar_promedio->bindParam(":student", $id_estudiante, PDO::PARAM_INT);
                 $actualizar_promedio->bindParam(":period", $id_periodo, PDO::PARAM_INT);
                 $actualizar_promedio->execute();

@@ -63,6 +63,14 @@
                                                     <i class="bi bi-arrow-down-circle"></i>  Descargar datos
                                                 </a>
                                             </li>
+                                            <li>
+                                                <hr class="dropdown-divider"/>
+                                            </li>
+                                            <li>
+                                                <a class="dropdown-item" href="<?=base_url?>Boletin/verBoletin&student=<?=Utils::encryption($estudiante_id)?>&degree=<?=Utils::encryption($grado)?>">
+                                                    <i class="bi bi-file-earmark-text"></i>  Ver boletín
+                                                </a>
+                                            </li>
                                         </ul>
                                     </div>
                                 </span>
