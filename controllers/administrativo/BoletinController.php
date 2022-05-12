@@ -62,10 +62,28 @@ class BoletinController
     {
         $estudiante = Utils::decryption($_GET['student']);
         $grado = Utils::decryption($_GET['degree']);
+        $periodo = Utils::decryption($_GET['period']);
         $boletin = new Boletin();
         $boletin->setIdEstudiante($estudiante);
-        $listado_materias = $boletin->crearBoletin();
-        require_once 'views/administrativo/boletin/boletin.php';
+        $boletin->setIdPeriodo($periodo);
+        $periodox = $boletin->generarBoletin();
+        $infoBoletinPeriodo1 = $boletin->puestoPromedioPeriodo1();
+        $infoBoletinPeriodo2 = $boletin->puestoPromedioPeriodo2();
+        $infoBoletinPeriodo3 = $boletin->puestoPromedioPeriodo3();
+        $perdidasPeriodo1 = $boletin->materiasPerdidasPeriodo1();
+        $perdidasPeriodo2 = $boletin->materiasPerdidasPeriodo2();
+        $perdidasPeriodo3 = $boletin->materiasPerdidasPeriodo3();
+        $fallasPeriodo1 = $boletin->totolFallasPeriodo1();
+        $fallasPeriodo2 = $boletin->totolFallasPeriodo2();
+        $fallasPeriodo3 = $boletin->totolFallasPeriodo3();
+        $docenteEstudiante = $boletin;
+        $docenteEstudiante->setIdEstudiante($estudiante);
+        $informacionUsuarios = $docenteEstudiante->datosDocenteEstudianteGrado($grado);
+        if (isset($_GET['pdf']) && $_GET['pdf'] == 'b') {
+            require_once 'views/pdf/boletin.php';
+        }else{
+            require_once 'views/administrativo/boletin/boletin.php';
+        }
     }
 
 } # fin de la clase

@@ -704,6 +704,24 @@ SELECT e.nombre_e, p.puesto, p.id_periodo_puesto FROM estudiante e
 INNER JOIN puestos p ON p.id_estudiante_puesto = e.id
 WHERE p.id_grado_puesto = 2 ORDER BY puesto DESC;
 
+# Obtener el puesto que ocupa el estudiante y el promedio, en x periodo
+SELECT pe.promedio, p.puesto FROM promedioestudiante pe
+INNER JOIN estudiante e ON e.id = pe.id_estudiante_avg
+INNER JOIN puestos p ON p.id_estudiante_puesto = e.id
+WHERE e.id = 6 AND p.id_periodo_puesto = 1 AND id_periodo_avg = 1;
 
+# seleccionar el numero de materias perdidad en x periodo
+SELECT COUNT(id_nota) AS 'perdidas' FROM notasdefinitivas
+WHERE id_estudiante_nd = 6 AND id_periodo_nd = 1 AND nota_definitiva < 30;
 
+# Total de fallas de un estudiante
+SELECT COUNT(f.id) FROM falla f
+INNER JOIN estudiante e ON e.id = f.id_estudiante_f
+WHERE e.id = 6 AND f.id_periodo_f = 1;
 
+# Obtener los datos del estudiante y del direcor de grado
+SELECT e.nombre_e, e.apellidos_e, do.nombre_d, do.apellidos_d, g.nombre_g FROM director d
+INNER JOIN docente do ON do.id = d.id_docente_dir
+INNER JOIN grado g ON g.id = d.id_grado_dir
+INNER JOIN estudiante e ON e.id_gradoE = g.id
+WHERE e.id = 6 AND g.id= 2;

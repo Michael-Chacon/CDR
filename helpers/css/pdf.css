@@ -198,3 +198,45 @@ footer {
     margin-left: 11%;
     border-collapse: collapse;
 }
+/* --------------------------------- BOLETIN --------------------------- */
+
+.info-colegio-boletin {
+    margin-left: 28%;
+    text-align: center;
+}
+.datos-boletin {
+    margin-top: 5px;
+    margin-left: 5px;
+    text-align: center;
+    border-collapse: collapse;
+}
+.td-datos-boletin {
+    border: 1px solid grey;
+    padding: 8px;
+}
+.texto-principal {
+    font-weight: 200;
+    font-size: 14px;
+}
+.logo-boletin {
+    /*float: left;*/
+    max-width: 160px;
+    max-height: 130px;
+}
+.tabla-boletin {
+    border-collapse: collapse;
+}
+.td-items-boletin {
+    /*text-align: justify;*/
+    border: 1px solid grey;
+    padding: 8px;
+    /*  padding-top: 10px;
+    padding-bottom: 10px;*/
+}
+.texto-observacion {
+    text-align: justify;
+    font-size: 11px;
+}
+.texto-center {
+    text-align: center;
+}

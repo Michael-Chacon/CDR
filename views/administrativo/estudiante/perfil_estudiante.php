@@ -67,7 +67,7 @@
                                                 <hr class="dropdown-divider"/>
                                             </li>
                                             <li>
-                                                <a class="dropdown-item" href="<?=base_url?>Boletin/verBoletin&student=<?=Utils::encryption($estudiante_id)?>&degree=<?=Utils::encryption($grado)?>">
+                                                <a class="dropdown-item"   data-bs-toggle="modal" data-bs-target="#boletiness">
                                                     <i class="bi bi-file-earmark-text"></i>  Ver boletín
                                                 </a>
                                             </li>
@@ -1114,3 +1114,26 @@
         <!-- ================================================
     =================FIN MODALES====================
     ================================================= -->
+<!-- Modal para ver los boletines-->
+<section class="modal fade" id="boletiness" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Ver boletines</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="d-grid gap-2">
+                  <a class="btn btn-primary btn-lg" href="<?=base_url?>Boletin/verBoletin&student=<?=Utils::encryption($estudiante_id)?>&degree=<?=Utils::encryption($grado)?>&period=<?=Utils::encryption(1)?>"type="button">Boletín periodo 1</a>
+                  <a class="btn btn-success btn-lg" href="<?=base_url?>Boletin/verBoletin&student=<?=Utils::encryption($estudiante_id)?>&degree=<?=Utils::encryption($grado)?>&period=<?=Utils::encryption(2)?>"type="button">Boletín periodo 2</a>
+                  <a class="btn btn-dark btn-lg" href="<?=base_url?>Boletin/verBoletin&student=<?=Utils::encryption($estudiante_id)?>&degree=<?=Utils::encryption($grado)?>&period=<?=Utils::encryption(3)?>"type="button">Boletín periodo 3</a>
+              </div>
+            </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>

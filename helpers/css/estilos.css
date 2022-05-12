@@ -179,6 +179,18 @@ hr {
     font-size: 13px;
     color: grey;
 }
+.titulo-boletin {
+    margin-top: -10px;
+    font-weight: 400;
+    font-size: 20px;
+    color: black;
+}
+.subtitulo {
+    margin-top: -10px;
+    font-weight: 300;
+    font-size: 15px;
+    color: black;
+}
 .sobra {
     margin-bottom: -14px;
 }
