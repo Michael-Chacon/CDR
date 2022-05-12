@@ -73,9 +73,11 @@
                     <hr>
                     <?php $x = 1;
 if ($x == 1): ?>
+                    <?php if(isset($_SESSION['teacher'])): ?>
                         <div class="d-grid gap-2 mt-2 mb-3">
                           <button class="btn btn-danger" type="button" data-bs-toggle="modal" data-bs-target="#boletin">¡Ya puedes generar el boletín!</button>
                       </div>
+                  <?php endif ?>
                   <?php endif;?>
                     <p class="card-text indicador"><strong>Indicadores de la materia:</strong> <?=$materia->indicadores_mat?></p>
                     <p class="indicador"><strong>Área:</strong>

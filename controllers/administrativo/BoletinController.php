@@ -23,7 +23,6 @@ class BoletinController
         $periodo1 = $_POST['periodo1'];
         $periodo2 = $_POST['periodo2'];
         $periodo3 = $_POST['periodo3'];
-
         # Hallar el promedio
         switch ($id_periodo) {
             case '1':
@@ -79,6 +78,7 @@ class BoletinController
         $docenteEstudiante = $boletin;
         $docenteEstudiante->setIdEstudiante($estudiante);
         $informacionUsuarios = $docenteEstudiante->datosDocenteEstudianteGrado($grado);
+
         if (isset($_GET['pdf']) && $_GET['pdf'] == 'b') {
             require_once 'views/pdf/boletin.php';
         }else{

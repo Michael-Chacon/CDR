@@ -65,16 +65,16 @@ $mpdf->AddPage('P');
         <table class="tabla-boletin">
             <thead>
                 <tr>
-                    <th class="td-items-boletin">Materias</th>
-                    <th class="td-items-boletin">Observaciones</th>
-                    <th class="td-items-boletin">Docentes</th>
-                    <th class="td-items-boletin">R</th>
-                    <th class="td-items-boletin">P1</th>
-                    <th class="td-items-boletin">P2</th>
-                    <th class="td-items-boletin">P3</th>
-                    <th class="td-items-boletin">Pro</th>
-                    <th class="td-items-boletin">Desempeño</th>
-                    <th class="td-items-boletin">Fallas</th>
+                    <td class="td-items-boletin texto-center resaltar">Materias</td>
+                    <td class="td-items-boletin texto-center resaltar">Observaciones</td>
+                    <td class="td-items-boletin texto-center resaltar">Docentes</td>
+                    <td class="td-items-boletin texto-center">R</td>
+                    <td class="td-items-boletin texto-center">P1</td>
+                    <td class="td-items-boletin texto-center">P2</td>
+                    <td class="td-items-boletin texto-center">P3</td>
+                    <td class="td-items-boletin texto-center">Pro</td>
+                    <td class="td-items-boletin texto-center texto-observacion">Desempeño</td>
+                    <td class="td-items-boletin texto-center">Fallas</td>
                 </tr>
             </thead>
             <tbody>';
@@ -88,11 +88,158 @@ $mpdf->AddPage('P');
                     <td class="td-items-boletin texto-center">'.$materias->nota_periodo2.'</td>
                     <td class="td-items-boletin texto-center">'.$materias->nota_periodo3.'</td>
                     <td class="td-items-boletin texto-center">'.$materias->promedio_materia.'</td>
-                    <td class="td-items-boletin texto-center">ALTO</td>
+                    <td class="td-items-boletin texto-center">';
+                        if ($periodo == 1) {
+                            $desempeño = $materias->nota_periodo1;
+                        }elseif ($periodo == 2) {
+                            $desempeño = $materias->nota_periodo2;
+                        }elseif ($periodo == 3) {
+                            $desempeño = $materias->nota_periodo3;
+                        }
+                        echo $desempeño;
+                         if ($desempeño >= 0 && $desempeño <= 31):
+                            $html .= 'BAJO';
+                         elseif ($desempeño >= 32 && $desempeño <= 39):
+                            $html .= 'BÁSICO';
+                         elseif ($desempeño >= 40 && $desempeño <= 45):
+                            $html .= 'ALTO';
+                         elseif ($desempeño >= 46 && $desempeño <= 50):
+                            $html .= 'SUPERIOR';
+                        endif;
+                    $html .='</td>
                     <td class="td-items-boletin texto-center">'.$materias->total_fallas_periodo.'</td>
                 </tr>';
             endwhile;
             $html .='</tbody>
+        </table>
+
+        <table class="tabla-firmas-datos">
+            <tbody>
+                <tr>
+                    <td class="td-firmas"></td>
+                    <td class="td-firmas">P1</td>
+                    <td class="td-firmas">P2</td>
+                    <td class="td-firmas">P3</td>
+                </tr>
+                <tr>
+                    <td class="td-firmas">PUESTO EN EL GRUPO</td>
+                    <td class="td-firmas texto-center espacio">';
+                        if(!empty($infoBoletinPeriodo1->puesto)):
+                            $html .= $infoBoletinPeriodo1->puesto;
+                        else:
+                            $html .= '0';
+                        endif;
+                $html .= '</td>
+                    <td class="td-firmas texto-center espacio">';
+                        if(!empty($infoBoletinPeriodo2->puesto)):
+                            $html .= $infoBoletinPeriodo2->puesto;
+                        else:
+                            $html .= '0';
+                        endif;
+                $html .= '</td>
+                    <td class="td-firmas texto-center espacio">';
+                        if(!empty($infoBoletinPeriodo3->puesto)):
+                            $html .= $infoBoletinPeriodo3->puesto;
+                        else:
+                            $html .= '0';
+                        endif;
+                $html .= '</td>
+                </tr>
+                <tr>
+                    <td class="td-firmas">PROMEDIO ESTUDIANTE</td>
+                    <td class="td-firmas texto-center">';
+                        if(!empty($infoBoletinPeriodo1->promedio)):
+                            $html .= $infoBoletinPeriodo1->promedio;
+                        else:
+                            $html .= '0';
+                        endif;
+                $html .= '</td>
+                    <td class="td-firmas texto-center">';
+                        if(!empty($infoBoletinPeriodo2->promedio)):
+                            $html .= $infoBoletinPeriodo2->promedio;
+                        else:
+                            $html .= '0';
+                        endif;
+                $html .= '</td>
+                    <td class="td-firmas texto-center">';
+                        if(!empty($infoBoletinPeriodo3->promedio)):
+                            $html .= $infoBoletinPeriodo3->promedio;
+                        else:
+                            $html .= '0';
+                        endif;
+                $html .= '</td>
+                </tr>
+                <tr>
+                    <td class="td-firmas">ASIGNATURAS PERDIDAS</td>
+                    <td class="td-firmas texto-center">';
+                        if(!empty($infoBoletinPeriodo1->perdidas1)):
+                            $html .= $infoBoletinPeriodo1->perdidas1;
+                        else:
+                            $html .= '0';
+                        endif;
+                $html .= '</td>
+                    <td class="td-firmas texto-center">';
+                        if(!empty($infoBoletinPeriodo2->perdidas1)):
+                            $html .= $infoBoletinPeriodo2->perdidas1;
+                        else:
+                            $html .= '0';
+                        endif;
+                $html .= '</td>
+                    <td class="td-firmas texto-center">';
+                        if(!empty($infoBoletinPeriodo3->perdidas1)):
+                            $html .= $infoBoletinPeriodo3->perdidas1;
+                        else:
+                            $html .= '0';
+                        endif;
+                $html .= '</td>
+                </tr>
+                <tr>
+                    <td class="td-firmas">TOTAL FALLAS</td>
+                    <td class="td-firmas texto-center">';
+                        if(!empty($fallasPeriodo1->total)):
+                            $html .= $fallasPeriodo1->total;
+                        else:
+                            $html .= '0';
+                        endif;
+                $html .= '</td>
+                    <td class="td-firmas texto-center">';
+                        if(!empty($fallasPeriodo2->total)):
+                            $html .= $fallasPeriodo2->total;
+                        else:
+                            $html .= '0';
+                        endif;
+                $html .= '</td>
+                    <td class="td-firmas texto-center">';
+                        if(!empty($fallasPeriodo2->total)):
+                            $html .= $fallasPeriodo2->total;
+                        else:
+                            $html .= '0';
+                        endif;
+                $html .= '</td>
+                </tr>
+            </tbody>
+        </table>
+            <table class="table-firmas">
+                <tr>
+                    <td class="firmas firma"></td>
+                    <td class="firmas firma"></td>
+                </tr>
+                <tr>
+                    <td class="firmas texto-center">Firma rector(a)</td>
+                    <td class="firmas texto-center">Firma director(a) de grupo</td>
+                </tr>
+            </table>
+        <table class="observacion-final">
+            <tbody>
+                <tr>
+                    <td class="td-observacion-final ob"></td>
+                    <td class="td-observacion-final resultado"></td>
+                </tr>
+                <tr>
+                    <td class="td-observacion-final texto-center">Observaciones</td>
+                    <td class="td-observacion-final texto-center">Resultado final</td>
+                </tr>
+            </tbody>
         </table>
         ';
 

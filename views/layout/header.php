@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
     <head>
         <meta charset="utf-8"/>
         <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport"/>
@@ -9,31 +9,29 @@
             CDR
         </title>
         <!-- Iconos do bootstrap-->
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.1/font/bootstrap-icons.css">
-            <!-- fuente -->
-            <style>
-                @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
-            </style>
-            <!-- Favicon-->
-            <link href="assets/favicon.ico" rel="icon" type="image/x-icon"/>
-            <!-- Core theme CSS (includes Bootstrap)-->
-            <link href="<?=base_url?>helpers/css/estilos.css" rel="stylesheet" type="text/css">
-                <link href="<?=base_url?>helpers/css/styles.css" rel="stylesheet"/>
-            </link>
-        </link>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.1/font/bootstrap-icons.css"/>
+        <!-- fuente -->
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+        </style>
+        <!-- Favicon-->
+        <link href="assets/favicon.ico" rel="icon" type="image/x-icon"/>
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="<?=base_url?>helpers/css/estilos.css" rel="stylesheet" type="text/css"/>
+        <link href="<?=base_url?>helpers/css/styles.css" rel="stylesheet"/>
     </head>
     <body>
         <main class="d-flex" id="wrapper">
             <!-- menu para adminstrativos -->
             <?php if (isset($_SESSION['user'])): ?>
                 <?php include 'views/layout/modulos/administrativo.php';?>
-            <!-- menu para el modulo de docentes -->
+                <!-- menu para el modulo de docentes -->
             <?php elseif (isset($_SESSION['teacher'])): ?>
                 <?php include 'views/layout/modulos/docente.php';?>
                 <!-- menu para estudiantes -->
             <?php elseif (isset($_SESSION['student'])): ?>
-		            <?php include 'views/layout/modulos/estudiante.php';?>
-		        <?php endif;?>
+                <?php include 'views/layout/modulos/estudiante.php';?>
+            <?php endif;?>
             <!-- Page content wrapper-->
             <section id="page-content-wrapper">
                 <!-- Top navigation-->
@@ -42,7 +40,7 @@
                         <button class="btn btn-success" id="sidebarToggle" accesskey="h">
                             <i class="bi bi-list"></i>Menu
                         </button>
-                         <span class="cdr text-center">CONCENTRACIÓN DE DESARROLLO RURAL VALLE DE SAN JOSÉ</span>
+                        <span class="cdr text-center">CONCENTRACIÓN DE DESARROLLO RURAL VALLE DE SAN JOSÉ</span>
                         <button aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-bs-target="#navbarSupportedContent" data-bs-toggle="collapse" type="button">
                             <span class="navbar-toggler-icon">
                             </span>
@@ -54,10 +52,10 @@
                                         <!-- <h4>CONCENTRACIÓN DE DESARROLLO RURAL VALLE DE SAN JOSÉ</h4> -->
                                     </a>
                                 </li>
-                                 <li class="nav-item">
+                                <li class="nav-item">
                                     <a class="nav-link" href="<?=base_url?>Login/logout">
                                         <button class="btn btn-outline-secondary">
-                                        <i class="bi bi-power" style="font-size: 1.2rem; color: red;"></i>
+                                            <i class="bi bi-power" style="font-size: 1.2rem; color: red;"></i>
                                         </button>
                                     </a>
                                 </li>
@@ -65,5 +63,4 @@
                         </div>
                     </div>
                 </nav>
-
-                <!-- contenido de  la pagina -->
+            <!-- contenido de  la pagina -->

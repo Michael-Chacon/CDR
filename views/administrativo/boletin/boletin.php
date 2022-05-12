@@ -17,7 +17,7 @@
                     <h5 class="card-title mt-3 titulo-boletin"><?=$informacionUsuarios->nombre_e?> <?=$informacionUsuarios->apellidos_e?></h5>
                     <h6 class="card-subtitle mb-2 subtitulo">Estudiante</h6>
                 </div>
-                <div class="row mt-4 mb-3">
+                <div class="row mt-3 mb-2">
                     <div class="col-md-4 text-center">
                         <h5 class="card-title titulo-boletin"><?=date("Y")?></h5>
                         <h6 class="card-subtitle mb-2 subtitulo">Año escolar</h6>
@@ -37,10 +37,11 @@
         <article class="col-md-4 mb-3">
             <div class="card shadow" >
               <div class="card-body">
-                <div class="text-center">
+                <div class="text-center mt-4 mb-3">
                     <img src="<?=base_url?>/photos/docentes/<?=$informacionUsuarios->img?>" class="avatar circulo" alt="">
                     <h5 class="card-title mt-3 titulo-boletin"><?=$informacionUsuarios->nombre_d?> <?=$informacionUsuarios->apellidos_d?></h5>
                     <h6 class="card-subtitle mb-2 subtitulo">Director(a) de grupo</h6>
+                    <br/>
                 </div>
             </div>
         </div>
@@ -133,7 +134,7 @@
                             </tr>
                             <tr>
                                 <th style="font-weight: 400;">TOTAL DE FALLAS</th>
-                                                                 <td class="text-center">
+                                <td class="text-center">
                                     <?php if(!empty($fallasPeriodo1->total)):?>
                                         <?=$fallasPeriodo1->total?>
                                     <?php else: ?>
