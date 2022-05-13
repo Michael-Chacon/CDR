@@ -252,14 +252,14 @@ footer {
     /*margin-top: 30px;*/
     margin-top: 30px;
     border-collapse: collapse;
-    margin-left: 500px;
+    margin-left: 540px;
 }
 .td-firmas {
     border: 1px solid grey;
 }
 .table-firmas {
     margin-top: -90px;
-    margin-left: 20px;
+    margin-left: 0px;
     border-collapse: collapse;
 }
 .firmas {
@@ -267,23 +267,23 @@ footer {
 }
 .firma {
     height: 71px;
-    width: 240px;
+    width: 270px;
 }
 .observacion-final {
     border-collapse: collapse;
     margin-top: 10px;
-    margin-left: 20px;
+    margin-left: 0px;
 }
 .td-observacion-final {
-    border: 1px solid grey;
+    border: 1px solid black;
 }
 .ob {
     height: 71px;
-    width: 525px;
+    width: 563px;
 }
 .resultado {
     height: 71px;
-    width: 200px;
+    width: 250px;
 }
 .espacio {
     width: 35px;
