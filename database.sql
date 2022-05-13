@@ -546,7 +546,12 @@ CREATE TABLE boletin(
 )ENGINE=InnoDb;
 
 # tabla para avilitar o desabilitar el envio de notas al boletin general
-CREATE TABLE avilitarBoletin
+CREATE TABLE habilitarBoletin(
+	id_estado INT(3) NOT NULL,
+	estado VARCHAR(15) NOT NULL,
+	CONSTRAINT pd_habilitar_boletin PRIMARY KEY (id_estado)
+)ENGINE=InnoDb;
+INSERT INTO habilitarBoletin VALUES(1, 'Deshabilitado');
 
 #tabla para guardar el puesto que ocupa un estudiante
 CREATE TABLE puestos(

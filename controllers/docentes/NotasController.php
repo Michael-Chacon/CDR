@@ -48,6 +48,8 @@ class NotasController
             $observaciones = new Observador();
             $observaciones->setEstudiante($id_estudiante);
             $observador = $observaciones->countObservations();
+            $estadoBoletin = new Boletin();
+            $estado = $estadoBoletin->estadoBoletin();
 
             # Accediento a la clase Notas
             $notas = new Notas();

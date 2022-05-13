@@ -33,9 +33,9 @@
         <?php echo Utils::general_alerts('eliminarNota', 'La nota fue eliminia con éxito', 'Algo salió mal al intentar eliminar la nota, intentelo de nuevo'); ?>
         <?php echo Utils::general_alerts('guardarBoletin', 'La nota definitiva se ha enviado hacia el boletín con éxito', 'Algo salió mal al intentar enviar la nota definitiva al boletín, inténtelo de nuevo.'); ?>
         <?php Utils::borrar_error('registrarNota');
-        Utils::borrar_error('validarNota');
-        Utils::borrar_error('eliminarNota');
-        Utils::borrar_error('guardarBoletin');?>
+Utils::borrar_error('validarNota');
+Utils::borrar_error('eliminarNota');
+Utils::borrar_error('guardarBoletin');?>
     </section>
     <!-- cambio -->
     <section class="row mt-3">
@@ -71,14 +71,13 @@
                         </div>
                     </div>
                     <hr>
-                    <?php $x = 1;
-if ($x == 1): ?>
-                    <?php if(isset($_SESSION['teacher'])): ?>
-                        <div class="d-grid gap-2 mt-2 mb-3">
-                          <button class="btn btn-danger" type="button" data-bs-toggle="modal" data-bs-target="#boletin">¡Ya puedes generar el boletín!</button>
-                      </div>
-                  <?php endif ?>
-                  <?php endif;?>
+                    <?php if ($estado->estado == 'Habilitado'): ?>
+                        <?php if (isset($_SESSION['teacher'])): ?>
+                            <div class="d-grid gap-2 mt-2 mb-3">
+                              <button class="btn btn-danger" type="button" data-bs-toggle="modal" data-bs-target="#boletin">¡Ya puedes generar el boletín!</button>
+                          </div>
+                      <?php endif?>
+                    <?php endif?>
                     <p class="card-text indicador"><strong>Indicadores de la materia:</strong> <?=$materia->indicadores_mat?></p>
                     <p class="indicador"><strong>Área:</strong>
                         <?php if (!empty($docente->nombre_area)): ?>
@@ -689,18 +688,18 @@ if ($fechas_fallas->rowCount() != 0): ?>
                             <?php while ($fechas = $fechas_fallas->fetchObject()):
     $f++;
     ?>
-	                                <tr>
-	                                    <td>
-	                                        <?=$f?>
-	                                    </td>
-	                                    <td>
-	                                        <?=$fechas->fecha_falla?>
-	                                    </td>
-	                                    <td>
-	                                        <?=$fechas->id_periodo_f?>
-	                                    </td>
-	                                </tr>
-	                            <?php endwhile;?>
+						                                <tr>
+						                                    <td>
+						                                        <?=$f?>
+						                                    </td>
+						                                    <td>
+						                                        <?=$fechas->fecha_falla?>
+						                                    </td>
+						                                    <td>
+						                                        <?=$fechas->id_periodo_f?>
+						                                    </td>
+						                                </tr>
+						                            <?php endwhile;?>
                         </tbody>
                     </table>
                     <?php if (!isset($_SESSION['student'])): ?>

@@ -5,6 +5,7 @@ require_once 'models/grados.php';
 require_once 'models/materias.php';
 require_once 'models/notas.php';
 require_once 'models/docente.php';
+require_once 'models/boletin.php';
 class ConfiguracionController
 {
     public function vista_configuracion()
@@ -78,6 +79,13 @@ class ConfiguracionController
         $listado_directores = $directores->directoresGrados();
 
         require_once 'views/administrativo/configuracion/directores.php';
+    }
+
+    public function vista_havilitar_boletin()
+    {
+        $boletin = new Boletin();
+        $estado = $boletin->estadoBoletin();
+        require_once 'views/administrativo/configuracion/HavBoletin.php';
     }
 
     public function guardar_area()
@@ -214,6 +222,20 @@ class ConfiguracionController
         }
         Utils::validarReturn($respuesta, 'eliminar_director');
         header('Location:' . base_url . 'Configuracion/vista_directores');
+    }
+
+    public function cambiarEstadoBoletin()
+    {
+        if (empty($_POST['estado'])) {
+            $estado = 'Deshabilitado';
+        } else {
+            $estado = 'Habilitado';
+        }
+        $estado_boletin = new Boletin();
+        $estado_boletin->setObservacion($estado);
+        $resultado = $estado_boletin->actualizarEstadoBoletin();
+        Utils::validarReturn($resultado, 'cambiarEstadoBoletin');
+        header("Location: " . base_url . 'Configuracion/vista_havilitar_boletin');
     }
 
 }

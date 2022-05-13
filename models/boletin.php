@@ -501,7 +501,7 @@ class Boletin
         return $fallas->fetchObject();
     }
 
-     public function totolFallasPeriodo2()
+    public function totolFallasPeriodo2()
     {
         $student = $this->getIdEstudiante();
         $fallas = $this->db->prepare("SELECT COUNT(f.id) AS 'total' FROM falla f
@@ -512,7 +512,7 @@ class Boletin
         return $fallas->fetchObject();
     }
 
-     public function totolFallasPeriodo3()
+    public function totolFallasPeriodo3()
     {
         $student = $this->getIdEstudiante();
         $fallas = $this->db->prepare("SELECT COUNT(f.id) AS 'total' FROM falla f
@@ -536,6 +536,20 @@ class Boletin
         $datos->bindParam(":grado", $grado, PDO::PARAM_INT);
         $datos->execute();
         return $datos->fetchObject();
+    }
+    # consultar si el registro de  notas en el boletin esta activado o no.
+    public function estadoBoletin()
+    {
+        $estado = $this->db->prepare("SELECT * FROM habilitarBoletin");
+        $estado->execute();
+        return $estado->fetchObject();
+    }
+    public function actualizarEstadoBoletin()
+    {
+        $estado = $this->getObservacion();
+        $actualizar = $this->db->prepare("UPDATE habilitarBoletin SET estado = :newState");
+        $actualizar->bindParam(":newState", $estado, PDO::PARAM_STR);
+        return $actualizar->execute();
     }
 
 } # fin de la clase
