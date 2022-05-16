@@ -167,7 +167,10 @@
             		<section class="row mb-5">
             			<article class="col-lg-12">
             				<?php if ($periodox->rowCount() != 0): ?>
-                            <a type="button" href="<?=base_url?>Boletin/verBoletin&student=<?=Utils::encryption($estudiante)?>&degree=<?=Utils::encryption($grado)?>&period=<?=Utils::encryption($periodo)?>&pdf=b" class="btn btn-outline-success"><i class="bi bi-cloud-arrow-down"></i> Descargar boletín</a>
+                                <?php if(!isset($_SESSION['student'])): ?>
+                                <a type="button" href="<?=base_url?>Boletin/verBoletin&student=<?=Utils::encryption($estudiante)?>&degree=<?=Utils::encryption($grado)?>&period=<?=Utils::encryption($periodo)?>&pdf=b" class="btn btn-outline-success"><i class="bi bi-cloud-arrow-down"></i> Descargar boletín
+                                </a>
+                            <?php endif ?>
             				<div class="table-responsive">
             				<table class="table table-bordered mt-3 mb-3 shadow">
             					<thead class="text-center">

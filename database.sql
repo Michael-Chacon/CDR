@@ -183,7 +183,7 @@ CREATE TABLE personal(
 
 
 CREATE TABLE credenciales(
-	id INT(4) AUTO_INCREMENT NOT NULL,
+	idC INT(4) AUTO_INCREMENT NOT NULL,
 	id_administrativo INT(4),
 	id_estudiante INT(4),
 	id_docente INT(4),
