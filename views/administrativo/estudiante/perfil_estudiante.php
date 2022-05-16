@@ -41,6 +41,7 @@
                                                 </i>
                                             </a>
                                             <ul aria-labelledby="opcionesPerfil" class="dropdown-menu">
+                                            <?php if(isset($_SESSION['user'])): ?>
                                                 <li>
                                                     <a class="dropdown-item " data-bs-target="#updatePassword" data-bs-toggle="modal" href="#">
                                                      <i class="bi bi-key"></i>
@@ -58,6 +59,7 @@
                                             <li>
                                                 <hr class="dropdown-divider"/>
                                             </li>
+                                        <?php endif ?>
                                             <li>
                                                 <a class="dropdown-item" href="<?=base_url?>Pdf/infoEstudiantes&student=<?=$estudiante_id?>&degree=<?=$grado?>&fathers=<?=$padres?>">
                                                     <i class="bi bi-arrow-down-circle"></i>  Descargar datos
@@ -162,8 +164,10 @@
                                            <h5 class="mt-2">
                                                <?=$materias->nombre_mat?>
                                            </h5>
+                                           <?php if(!isset($_SESSION['teacher'])): ?>
                                            <a class="stretched-link" href="<?=base_url?>Notas/homeNotas&student=<?=Utils::encryption($estudiante->estudiante_id)?>&materia=<?=Utils::encryption($materias->id)?>&nGrado=<?=$estudiante->nombre_g?>">
                                            </a>
+                                       <?php endif ?>
                                        </div>
                                    </div>
                                </article>
@@ -1126,9 +1130,9 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="d-grid gap-2">
-                  <a class="btn btn-primary btn-lg" href="<?=base_url?>Boletin/verBoletin&student=<?=Utils::encryption($estudiante_id)?>&degree=<?=Utils::encryption($grado)?>&period=<?=Utils::encryption(1)?>"type="button">Boletín periodo 1</a>
-                  <a class="btn btn-success btn-lg" href="<?=base_url?>Boletin/verBoletin&student=<?=Utils::encryption($estudiante_id)?>&degree=<?=Utils::encryption($grado)?>&period=<?=Utils::encryption(2)?>"type="button">Boletín periodo 2</a>
-                  <a class="btn btn-dark btn-lg" href="<?=base_url?>Boletin/verBoletin&student=<?=Utils::encryption($estudiante_id)?>&degree=<?=Utils::encryption($grado)?>&period=<?=Utils::encryption(3)?>"type="button">Boletín periodo 3</a>
+                  <a class="btn btn-primary btn-lg mb-3" href="<?=base_url?>Boletin/verBoletin&student=<?=Utils::encryption($estudiante_id)?>&degree=<?=Utils::encryption($grado)?>&period=<?=Utils::encryption(1)?>"type="button">Boletín periodo 1</a>
+                  <a class="btn btn-success btn-lg mb-3" href="<?=base_url?>Boletin/verBoletin&student=<?=Utils::encryption($estudiante_id)?>&degree=<?=Utils::encryption($grado)?>&period=<?=Utils::encryption(2)?>"type="button">Boletín periodo 2</a>
+                  <a class="btn btn-dark btn-lg mb-3" href="<?=base_url?>Boletin/verBoletin&student=<?=Utils::encryption($estudiante_id)?>&degree=<?=Utils::encryption($grado)?>&period=<?=Utils::encryption(3)?>"type="button">Boletín periodo 3</a>
               </div>
             </div>
         </div>

@@ -118,27 +118,27 @@ Utils::borrar_error('eliminarMateria')?>
                     Materias
                 </h3>
                 <?php if (isset($datos) && $datos->rowCount() != 0):
-    while ($materias = $datos->fetchObject()): ?>
-												                     <article class="col-xs-12 col-sm-6 col-md-4 col-xl-4 mb-2">
-												                         <div class="card text-center shadow option">
-												                             <div class="card-body contenido-card materias">
-												                                 <i class="<?=$materias->icono?>" style="font-size: 3rem;">
-												                                 </i>
-												                                 <hr class="hr-perfil"/>
-												                                 <h5 class="mt-2">
-												                                     <?=$materias->nombre_mat?>
-												                                 </h5>
-												                                 <?php if (isset($_SESSION['teacher'])): ?>
-												                                     <a class="stretched-link" href="<?=base_url?>Director/vista_director&subject=<?=Utils::encryption($materias->id)?>&degree=<?=Utils::encryption($actual->id)?>&name=<?=$materias->nombre_mat?>&namede=<?=$actual->nombre_g?>">
-												                                     </a>
-												                                 <?php else: ?>
-                                    <a class="stretched-link" href="<?=base_url?>PanelMateria/homeMateria&ide=<?=Utils::encryption($materias->id)?>&name=<?=$materias->nombre_mat?>&degree=<?=Utils::encryption($actual->id)?>&nombreg=<?=$actual->nombre_g?>">
-                                    </a>
-                                <?php endif;?>
-                            </div>
+                while ($materias = $datos->fetchObject()): ?>
+                   <article class="col-xs-12 col-sm-6 col-md-4 col-xl-4 mb-2">
+                       <div class="card text-center shadow option">
+                           <div class="card-body contenido-card materias">
+                               <i class="<?=$materias->icono?>" style="font-size: 3rem;">
+                               </i>
+                               <hr class="hr-perfil"/>
+                               <h5 class="mt-2">
+                                   <?=$materias->nombre_mat?>
+                               </h5>
+                               <?php if (isset($_SESSION['teacher'])): ?>
+                                   <a class="stretched-link" href="<?=base_url?>Director/vista_director&subject=<?=Utils::encryption($materias->id)?>&degree=<?=Utils::encryption($actual->id)?>&name=<?=$materias->nombre_mat?>&namede=<?=$actual->nombre_g?>">
+                                   </a>
+                               <?php else: ?>
+                                <a class="stretched-link" href="<?=base_url?>PanelMateria/homeMateria&ide=<?=Utils::encryption($materias->id)?>&name=<?=$materias->nombre_mat?>&degree=<?=Utils::encryption($actual->id)?>&nombreg=<?=$actual->nombre_g?>">
+                                </a>
+                            <?php endif;?>
                         </div>
-                    </article>
-                <?php endwhile?>
+                    </div>
+                </article>
+            <?php endwhile?>
             <?php else: ?>
                 <div class="alert alert-danger text-center" role="alert">
                     No hay materias asignadas a este grado
@@ -174,10 +174,8 @@ Utils::borrar_error('eliminarMateria')?>
             while ($estudiantes = $estudi->fetchObject()): ?>
               <ul class="list-group mb-1 ">
                <li class="list-group-item fila-estudiante">
-                   <?php if (!isset($_SESSION['teacher'])): ?>
                        <a class="stretched-link" href="<?=base_url?>Estudiante/perfilEstudiante&x=<?=$estudiantes->id?>&y=<?=$estudiantes->id_familia_e?>&z=<?=$estudiantes->id_grado?>">
                        </a>
-                   <?php endif?>
                    <div class="row">
                     <div class="col-md-2 nombre-apellidos-numero">
                         <?=$c++?>
