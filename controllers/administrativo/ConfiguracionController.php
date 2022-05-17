@@ -98,10 +98,10 @@ class ConfiguracionController
             $guardar->setNombre($nombre);
             $guardar->setColor($color);
             $respuesta = $guardar->saveArea();
-            Utils::validarReturn($respuesta, 'guardar_area');
+            Utils::alertas($respuesta, 'Área creada con éxito', 'Algo salió mal al intentar registrar el área, inténtalo de nuevo.');
         } else {
             $mal = false;
-            Utils::validarReturn($mal, 'area_duplicada');
+            Utils::alertas($mal, '', 'El nombre de esta área ya está registrado en la base de datos, intenta con otro nombre.');
         }
         header('Location:' . base_url . 'Configuracion/vista_areas');
     }
@@ -112,7 +112,7 @@ class ConfiguracionController
         $eliminar = new Area();
         $eliminar->setId($id_area);
         $resultado = $eliminar->deleteArea();
-        Utils::validarReturn($resultado, 'eliminar_area');
+        Utils::alertas($resultado, 'El área fue eliminada con éxito', 'Algo salió mal al intentar eliminar el área, inténtelo de nuevo');
         header('Location:' . base_url . 'Configuracion/vista_areas');
     }
 
@@ -124,10 +124,10 @@ class ConfiguracionController
             $aula = new Grados();
             $aula->setAula($nombre);
             $respuesta = $aula->saveClassroom();
-            Utils::validarReturn($respuesta, 'guardar_aula');
+            Utils::alertas($respuesta, 'Aula creada con éxito', 'Algo salió mal al intentar registrar el aula, inténtalo de nuevo.');
         } else {
             $mal = false;
-            Utils::validarReturn($mal, 'aula_duplicada');
+            Utils::alertas($mal, '', 'Ya existe una aula con el mismo nombre registrada en la base de datos, utiliza un nombre diferente.');
         }
         header('Location:' . base_url . 'Configuracion/vista_aula');
     }
@@ -138,7 +138,7 @@ class ConfiguracionController
         $eliminar = new Grados();
         $eliminar->setId($id_aula);
         $resultado = $eliminar->deleteClassroom();
-        Utils::validarReturn($resultado, 'eliminar_aula');
+        Utils::alertas($resultado, 'El aula fue eliminada con éxito', 'Algo salió mal al intentar eliminar el aula, inténtelo de nuevo');
         header('Location:' . base_url . 'Configuracion/vista_aula');
     }
 
@@ -153,7 +153,7 @@ class ConfiguracionController
         $registrador->setIcono($icono);
         $registrador->setArea($area);
         $respuesta = $registrador->saveBaseSubject();
-        Utils::validarReturn($respuesta, 'guardar_materia_base');
+        Utils::alertas($respuesta, 'La materia fue registrada con éxito.', 'Algo salió mal al registrar la materia, inténtelo de nuevo.');
         header("Location:" . base_url . 'Configuracion/vista_areas');
     }
 
@@ -163,7 +163,7 @@ class ConfiguracionController
         $eliminar = new Materias();
         $eliminar->setArea($id_materia);
         $resultado = $eliminar->deleteBaseSubject();
-        Utils::validarReturn($resultado, 'eliminar_base');
+        Utils::alertas($resultado, 'La materia fue eliminada con éxito.', 'Algo salió mal al eliminar la materia, inténtelo de nuevo.');
         header('Location:' . base_url . 'Configuracion/vista_areas');
     }
 
@@ -178,7 +178,7 @@ class ConfiguracionController
         $actualizador->setEvaluacion($evaluacion);
         $actualizador->setTrimestral($trimestral);
         $respuesta = $actualizador->updateCognitivo();
-        Utils::validarReturn($respuesta, 'actualizar_cognitivo');
+        Utils::alertas($respuesta, 'Porcentaje actualizado con éxito', 'Error al actualizar el porcentaje');
         header('Location:' . base_url . 'Configuracion/vista_notas');
     }
 
@@ -192,7 +192,7 @@ class ConfiguracionController
         $actualizador->setTindividual($individual);
         $actualizador->setTcolaborativo($colaborativo);
         $respuesta = $actualizador->updateProcedimental();
-        Utils::validarReturn($respuesta, 'actualizar_procedimental');
+        Utils::alertas($respuesta, 'Porcentaje actualizado con éxito', 'Error al actualizar el porcentaje');
         header('Location:' . base_url . 'Configuracion/vista_notas');
     }
 
@@ -206,7 +206,7 @@ class ConfiguracionController
         $actualizador->setApreciativa($apreciativa);
         $actualizador->setAutoevaluacion($autoevaluacion);
         $respuesta = $actualizador->updateActitudinal();
-        Utils::validarReturn($respuesta, 'actualizar_actitudinal');
+        Utils::alertas($respuesta, 'Porcentaje actualizado con éxito', 'Error al actualizar el porcentaje');
         header('Location:' . base_url . 'Configuracion/vista_notas');
     }
 
@@ -220,7 +220,7 @@ class ConfiguracionController
         if ($respuesta) {
             $eliminar->uptadeDirector('no');
         }
-        Utils::validarReturn($respuesta, 'eliminar_director');
+        Utils::alertas($respuesta, 'El docente ya no es director', 'Algo salió mal al intentar eliminar el director.');
         header('Location:' . base_url . 'Configuracion/vista_directores');
     }
 
@@ -234,7 +234,7 @@ class ConfiguracionController
         $estado_boletin = new Boletin();
         $estado_boletin->setObservacion($estado);
         $resultado = $estado_boletin->actualizarEstadoBoletin();
-        Utils::validarReturn($resultado, 'cambiarEstadoBoletin');
+        Utils::alertas($resultado, 'El estado del boletín fue actualizado con éxito', 'Algo salió mal al intentar actualizar el estado del boletín, inténtelo de nuevo.');
         header("Location: " . base_url . 'Configuracion/vista_havilitar_boletin');
     }
 

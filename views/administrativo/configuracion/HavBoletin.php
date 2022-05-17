@@ -6,8 +6,8 @@
             </h1>
         </article>
     </section>
-    <?php echo Utils::general_alerts('cambiarEstadoBoletin', 'El estado del boletín fue actualizado con éxito', 'Algo salió mal al intentar actualizar el estado del boletín, inténtelo de nuevo.'); ?>
-    <?php Utils::borrar_error('cambiarEstadoBoletin');?>
+    <?php echo Utils::getAlert(); ?>
+    <?php Utils::borrar_error('alert');?>
     <section class="row justify-content-center mt-5">
         <article class="col-md-4">
             <div class="card mb-3 shadow">

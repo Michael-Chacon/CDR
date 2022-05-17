@@ -29,16 +29,8 @@
         </article>
     <?php endif;?>
 </section>
-<?php echo Utils::general_alerts('registrarHorario', 'Horario registrado con éxito.', 'Algo salió mal al intentar registrar el horario.'); ?>
-<?php echo Utils::general_alerts('directorGrado', 'El director se ha asignado con éxito', 'Algo salió mal al intentar asignar el director, intenta de nuevo.'); ?>
-<?php echo Utils::general_alerts('eliminarHora', 'Horario eliminado con éxito.', 'Algo salió mal al intentar eliminar el horario.'); ?>
-<?php echo Utils::general_alerts('asignarAula', 'Aula asignada con éxito', 'Algo salió mal al intentar asignar el aula, inténtelo de nuevo.') ?>
-<?php echo Utils::general_alerts('eliminarMateria', 'La materia se eliminó con éxito', 'Algo salió mal al intentar eliminar la materia'); ?>
-    <?php Utils::borrar_error('eliminarHora');
-Utils::borrar_error('registrarHorario');
-Utils::borrar_error("directorGrado");
-Utils::borrar_error('asignarAula');
-Utils::borrar_error('eliminarMateria')?>
+<?php echo Utils::getAlert() ?>
+    <?php Utils::borrar_error('alert');?>
 <?php if (!isset($_SESSION['teacher'])): ?>
     <section class="row">
         <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">

@@ -52,7 +52,7 @@ class BoletinController
         $boletin->setPromedio($promedio);
         $boletin->setFallas($fallas);
         $respuesta = $boletin->saveBoletin();
-        Utils::validarReturn($respuesta, 'guardarBoletin');
+        Utils::alertas($respuesta, 'La nota definitiva se ha enviado hacia el boletín con éxito', 'Algo salió mal al intentar enviar la nota definitiva al boletín, inténtelo de nuevo.');
         header("Location: " . base_url . 'Notas/homeNotas&student=' . Utils::encryption($id_estudiante) . '&materia=' . Utils::encryption($id_materia) . '&nGrado=' . $_POST['nGrado'] . '&event=bad');
     }
 

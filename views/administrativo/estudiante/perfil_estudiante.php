@@ -1,9 +1,7 @@
             <!-- contenido de  la pagina -->
             <section class="container-fluid">
-                <?php echo Utils::general_alerts('actualizarE', 'La información del estudiante se actualizó con éxito.', 'Algo salió mal al actualizar la información del estudiante.') ?>
-                <?php echo Utils::general_alerts('cambiarPhoto', 'La foto ha sido actualizada con éxito.', 'La foto ha sido actualizada con éxito.'); ?>
-                <?php Utils::borrar_error('actualizarE');
-                Utils::borrar_error('cambiarPhoto');?>
+                <?php echo Utils::getAlert() ?>
+                <?php Utils::borrar_error('alert');?>
                 <!-- inicon de la fila principal -->
                 <section class="row">
                     <article class="col-md-5">

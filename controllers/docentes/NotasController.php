@@ -272,10 +272,10 @@ class NotasController
                 $criterio = $actitudinal->id_actitudinal;
                 $respuesta = $criterios->saveAllNotes($estudiante, $materia, $periodo, $criterio, $nota, $actividad);
             }
-            Utils::validarReturn($respuesta, 'registrarNota');
+            Utils::alertas($respuesta, 'Nota registrada con éxito.', 'El porcentaje de esta nota sobrepasa el límite del 100%');
         } else {
             $mal = false;
-            Utils::validarReturn($mal, 'validarNota');
+            Utils::alertas($mal, '', 'En esta actividad ya se encuentra registrada una nota, si quieres actualizarla, elimina la nota existente y registra la nota nueva.');
         }
         header('Location: ' . base_url . 'Notas/homeNotas&student=' . Utils::encryption($estudiante) . '&materia=' . Utils::encryption($materia) . '&nGrado=' . $_POST['grado'] . '&event=ok');
     }
@@ -290,7 +290,7 @@ class NotasController
         $caneca->setId($id_nota);
         $caneca->setItem($actividad);
         $resultado = $caneca->deleteNote();
-        Utils::validarReturn($resultado, 'eliminarNota');
+        Utils::alertas($resultado, 'La nota fue eliminia con éxito', 'Algo salió mal al intentar eliminar la nota, intentelo de nuevo');
         header('Location: ' . base_url . 'Notas/homeNotas&student=' . Utils::encryption($_GET['e']) . '&materia=' . Utils::encryption($_GET['m']) . '&nGrado=' . $_GET['g'] . '&event=ok');
     }
 

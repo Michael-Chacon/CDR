@@ -73,17 +73,17 @@ class panelMateriaController
                         $registrar->setNombre($name);
                         $registrar->setDescripcion($descripcion);
                         $respuestaS = $registrar->saveClassDocument();
-                        Utils::validarReturn($respuestaS, 'GuardarDocumentosDClase');
+                        Utils::alertas($respuestaS, 'Documento registrado con éxito.', 'Error al intentar registrar el documento, inténtelo de nuevo.');
                     } else {
                         $documentoRepetido = false;
-                        Utils::validarReturn($documentoRepetido, 'documentoRepetido');
+                        Utils::alertas($documentoRepetido, '', 'El nombre del documento ya está registrado en esta materia, cámbialo.');
                     }
                 } else {
                     $tituloRepetido = false;
-                    Utils::validarReturn($tituloRepetido, 'tituloRepetido');
+                    Utils::alertas($tituloRepetido, '', 'El título de este documento ya está registrado en esta materia, cámbialo.');
                 }
             } else {
-                Utils::validarReturn($validar_total_archivos, 'validarNumeroDArchivos');
+                Utils::alertas($validar_total_archivos, '', 'No es posible subir este archivo, recuerda que el número de archivos por materia no debe ser mayor de 10, elimina un archivo para poder subir este.');
             }
             // here
         }
@@ -99,7 +99,7 @@ class panelMateriaController
         $borrador = new Documentos();
         $borrador->setId($id);
         $respuestaD = $borrador->deleteClassDocument();
-        Utils::validarReturn($respuestaD, 'eliminarDocumentoDClase');
+        Utils::alertas($respuestaD, 'Documento eliminado con éxito.', 'Error al intentar borrar el documento, inténtelo de nuevo.');
         header("Location: " . base_url . 'panelMateria/homeMateria&degree=' . Utils::encryption($_GET['degree']) . '&ide=' . Utils::encryption($_GET['ide']) . '&name=' . $_GET['name'] . '&nombreg=' . $_GET['nombreg']);
     }
 
@@ -121,10 +121,10 @@ class panelMateriaController
                 $agenda->setFecha($fecha);
                 $agenda->setDescripcion($descripcion);
                 $respuestaA = $agenda->saveClassActivity();
-                Utils::validarReturn($respuestaA, 'GuardarActividadesDClase');
+                Utils::alertas($respuestaA, 'Actividad registrada con éxito.', 'Error al intentar registrar la actividad, inténtelo de nuevo.');
             } else {
                 $estadoA = false;
-                Utils::validarReturn($estadoA, 'estadoA');
+                Utils::alertas($estadoA, '', 'El título de esta actividad ya está registrado en esta materia, cámbialo.');
             }
         }
         header("Location: " . base_url . 'panelMateria/homeMateria&degree=' . Utils::encryption($_POST['degree']) . '&ide=' . Utils::encryption($_POST['id_materia']) . '&name=' . $_POST['name'] . '&nombreg=' . $_POST['nombreg']);
@@ -135,7 +135,7 @@ class panelMateriaController
         $borrador = new Actividades();
         $borrador->setId($id);
         $resultado = $borrador->deleteActivity();
-        Utils::validarReturn($resultado, 'eliminarActividad');
+        Utils::alertas($resultado, 'Activada eliminada con éxito.', 'Algo salió mal al intentar eliminar la actividad, inténtelo de nuevo.');
         header("Location: " . base_url . 'panelMateria/homeMateria&degree=' . Utils::encryption($_GET['degree']) . '&ide=' . Utils::encryption($_GET['ide']) . '&name=' . $_GET['name'] . '&nombreg=' . $_GET['nombreg']);
     }
 
@@ -153,8 +153,8 @@ class panelMateriaController
         $asistencia->setMateria($materia);
         $asistencia->setPeriodo($periodo_actual);
         $resultado = $asistencia->registerFails();
-
-        Utils::validarReturn($resultado, 'registrarFallas');
+        # Generar alerta
+        Utils::alertas($resultado, 'Asistencia registrada con éxito.', 'Algo salió mal al intentar registrar la asistencia, inténtalo de nuevo.');
         header("Location: " . base_url . 'panelMateria/homeMateria&degree=' . Utils::encryption($_POST['degree']) . '&ide=' . Utils::encryption($_POST['id_materia']) . '&name=' . $_POST['name'] . '&nombreg=' . $_POST['nombreg']);
     }
 

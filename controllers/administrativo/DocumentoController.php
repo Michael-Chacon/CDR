@@ -23,7 +23,7 @@ class DocumentoController
         $cargar->setNombre($name);
         $cargar->setDescripcion($descripcion);
         $resultado = $cargar->save();
-        Utils::validarReturn($resultado, 'guardarDocu');
+        Utils::alertas($resultado, 'Documento guardado con éxito.', 'Algo salió mal al subir el documento, inténtelo de nuevo.');
         header('Location: ' . base_url . 'Documento/vista_documentos');
     }
 
@@ -35,7 +35,7 @@ class DocumentoController
         $documento = new Documentos();
         $documento->setId($id);
         $respuesta = $documento->delete();
-        Utils::validarReturn($respuesta, 'eliminarDocu');
+        Utils::alertas($respuesta, 'Documento eliminado con éxito.', 'Algo salió mal al eliminar el documento, inténtelo de nuevo.');
         header('Location: ' . base_url . 'Documento/vista_documentos');
     }
 

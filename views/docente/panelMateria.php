@@ -50,6 +50,8 @@
                 <?php endif;?>
                 </section>
                 <section class="row mt-5 mb-5">
+                    <?php echo Utils::getAlert(); ?>
+                    <?php Utils::borrar_error('alert');?>
                     <article class="col-md-2">
                         <a href="<?=base_url?>Grado/listadoEstudiante&grado=<?=$grado?>&nombreg=<?=$nombre_gra?>&materia=<?=$nombre_ma?>" type="button" class="btn btn-success btn-sm">Listado de estudianes (PDF)</a>
                     </article>
@@ -58,28 +60,6 @@
                     </article>
                     <article class="col-md-2"></article>
                 </section>
-                <?php echo Utils::general_alerts('GuardarDocumentosDClase', 'Documento registrado con éxito.', 'Error al intentar registrar el documento, inténtelo de nuevo.') ?>
-                <?php echo Utils::general_alerts('eliminarDocumentoDClase', 'Documento eliminado con éxito.', 'Error al intentar borrar el documento, inténtelo de nuevo.') ?>
-                 <?php echo Utils::general_alerts('tituloRepetido', '', 'El título de este documento ya está registrado en esta materia, cámbialo.') ?>
-                 <?php echo Utils::general_alerts('documentoRepetido', '', 'El nombre del documento ya está registrado en esta materia, cámbialo.') ?>
-                 <?php echo Utils::general_alerts('GuardarActividadesDClase', 'Actividad registrada con éxito.', 'Error al intentar registrar la actividad, inténtelo de nuevo.') ?>
-                 <?php echo Utils::general_alerts('estadoA', '', 'El título de esta actividad ya está registrado en esta materia, cámbialo.') ?>
-                 <?php echo Utils::general_alerts('registrarFallas', 'Asistencia registrada con éxito.', 'Algo salió mal al intentar registrar la asistencia, inténtalo de nuevo.') ?>
-                 <?php echo Utils::general_alerts('eliminarActividad', 'Activada eliminada con éxito.', 'Algo salió mal al intentar eliminar la actividad, inténtelo de nuevo.') ?>
-                 <?php echo Utils::general_alerts('validarNumeroDArchivos', '', 'No es posible subir este archivo, recuerda que el número de archivos por materia no debe ser mayor de 10, elimina un archivo para poder subir este.') ?>
-                 <?php echo Utils::general_alerts('actualizarAsignacionDeMateria', 'Muy bien, la materia ya está disponible para ser asignada a un docente.', 'Algo salió mal al intentar cambiar es estado de asignación de la materia, inténtelo de nuevo.'); ?>
-
-                 <?php Utils::borrar_error('GuardarDocumentosDClase');
-                 Utils::borrar_error('eliminarDocumentoDClase');
-                 Utils::borrar_error('tituloRepetido');
-                 Utils::borrar_error('documentoRepetido');
-                 Utils::borrar_error('GuardarActividadesDClase');
-                 Utils::borrar_error('estadoA');
-                 Utils::borrar_error('registrarFallas');
-                 Utils::borrar_error('eliminarActividad');
-                 Utils::borrar_error('validarNumeroDArchivos');
-                 Utils::borrar_error('actualizarAsignacionDeMateria');
-                 ?>
                 <section class="row">
                     <article class="col-md-4">
                         <h3 class="text-center mb-3 titulo-seccion">
@@ -106,7 +86,7 @@
                                     </thead>
                                     <tbody class=" texto-body">
                                         <?php $c = 1;
-                                        while ($estudiantes = $listado_estudiantes->fetchObject()): ?>
+while ($estudiantes = $listado_estudiantes->fetchObject()): ?>
                                             <tr>
                                                 <td>
                                                     <?=$c++?>

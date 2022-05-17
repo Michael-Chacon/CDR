@@ -13,17 +13,8 @@
                             </a>
                         </article>
                     </section>
-                    <?php echo Utils::general_alerts('estudiante', 'Estudiante registrado con éxito.', 'Algo salió mal al registrar el estudiante, inténtelo de nuevo.'); ?>
-                    <?php echo Utils::general_alerts('credencial', 'Credencial asignada con éxito.', 'Algo salió mal al asignar la cresencial al estudiante, inténtelo de nuevo.'); ?>
-                    <?php echo Utils::general_alerts('materias', 'Materias asignadas al estudiante con éxito.', 'Algo salió mal al asignar las materias al  estudiante, inténtelo de nuevo.'); ?>
-                    <?php echo Utils::general_alerts('validacion_e', '', 'Se encontró un estudiante en la base de datos con el mismo número de documento, posiblemente este estudiante ya existe en la plataforma.') ?>
-                    <?php echo Utils::general_alerts('cambiarPassword', 'Contraseña actualizada con éxito.', 'Algo salió mal al actualizar la contraseña, inténtelo de nuevo.'); ?>
-                    <?php Utils::borrar_error('estudiante');
-                            Utils::borrar_error('credencial');
-                            Utils::borrar_error('materias');
-                                                                            Utils::borrar_error('validacion_e');
-                            Utils::borrar_error('cambiarPassword');
-                    ?>
+                    <?php echo Utils::getAlert(); ?>
+                    <?php Utils::borrar_error('alert');?>
                     <section class="row justify-content-center mt-3 mb-5">
                         <article class="col-md-6 justify-content-end mb-4 ">
                              <form class="d-flex ">

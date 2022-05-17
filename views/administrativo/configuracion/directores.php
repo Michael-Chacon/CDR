@@ -6,8 +6,8 @@
 			</h1>
 		</article>
 	</section>
-	<?php echo Utils::general_alerts('eliminar_director', 'El docente ya no es director', 'Algo salió mal al intentar eliminar el director.'); ?>
-	<?php Utils::borrar_error('eliminar_director'); ?>
+	<?php echo Utils::getAlert(); ?>
+	<?php Utils::borrar_error('alert'); ?>
 	<section class="row mt-4 justify-content-around">
 		<section class="col-xs-12 col-sm-12 col-md-10 col-lg-7">
 			<?php if($listado_directores->rowCount() !=0): ?>

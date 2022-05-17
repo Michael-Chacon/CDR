@@ -19,31 +19,27 @@ class Utils
         }
     }
 
-    # Validar el éxito de una accion sobre la base de datos  para pasarle la session al metodo {general_alerts()}
-    public static function validarReturn($variable, $entidad)
+    # Nuevo sistema de alertas
+    public static function alertas($respuesta, $exito, $error)
     {
-        if ($variable) {
-            $_SESSION[$entidad] = 'exito';
-        } else {
-            $_SESSION[$entidad] = 'fallo';
-        }
-    }
-
-    # Imprimir las alertas  generadas en toda la plataforma.
-    public static function general_alerts($alert, $bien, $mal)
-    {
-        $alerta = '';
-        if (isset($_SESSION[$alert]) && $_SESSION[$alert] == 'exito') {
-            $alerta = "<div class='alert alert-dismissible fade show text-center alerta-ok mt-2' role='alert'><strong><i class='bi bi-check2' style='font-size:1.5rem; color:white;'></i> </strong>" . $bien .
+        if ($respuesta) {
+            $_SESSION['alert'] = "<div class='alert alert-dismissible fade show text-center alerta-ok mt-2' role='alert'><strong><i class='bi bi-check2' style='font-size:1.5rem; color:white;'></i> </strong>" . $exito .
                 "<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button></div>";
-        } elseif (isset($_SESSION[$alert]) && $_SESSION[$alert] == 'fallo') {
-            $alerta = "<div class='alert alerta-bad alert-dismissible fade show text-center mt-2' role='alert'>
-                            <svg class='bi flex-shrink-0 me-2' width='24' height='24' role='img' aria-label='Danger:'><use xlink:href='exclamation-triangle-fill'/></svg>
-                                    <i class='bi bi-x-octagon' style='font-size:1.4rem; color:white;'></i> <strong>Error!</strong> " . $mal .
+        } else {
+            $_SESSION['alert'] = "<div class='alert alerta-bad alert-dismissible fade show text-center mt-2' role='alert'>
+            <svg class='bi flex-shrink-0 me-2' width='24' height='24' role='img' aria-label='Danger:'><use xlink:href='exclamation-triangle-fill'/></svg>
+            <i class='bi bi-x-octagon' style='font-size:1.4rem; color:white;'></i> <strong>Error! </strong> " . $error .
                 "<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
-                            </div>";
+            </div>";
         }
-        return $alerta;
+
+    }
+    # Mostrar el mensaje de la alerta
+    public static function getAlert()
+    {
+        if (isset($_SESSION['alert'])) {
+            echo $_SESSION['alert'];
+        }
     }
 
     public static function validarExistenciaUsuario($documento, $tabla, $campo)

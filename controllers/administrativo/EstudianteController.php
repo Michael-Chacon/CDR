@@ -129,7 +129,7 @@ class EstudianteController
                 $padres->setEdadP($edad_pa);
                 $actualizarPadres = $padres->guardarPadres('actualizar');
                 # validarReturn valida si la accion sobre la base de datos devuelve true o false, para generar la respectiva alerta.
-                Utils::validarReturn($actualizarEstudiante, 'actualizarE');
+                Utils::alertas($actualizarEstudiante, 'La información del estudiante se actualizó con éxito.', 'Algo salió mal al actualizar la información del estudiante.');
                 header("Location: " . base_url . 'Estudiante/perfilEstudiante&x=' . $_POST['x'] . '&y=' . $_POST['y'] . '&z=' . $_POST['z']);
             } else {
                 # validar si ya existe el estudiante antes de proceder a guardar
@@ -152,13 +152,13 @@ class EstudianteController
                     $estudiantes->setGradoE($grado);
                     $resultadoE = $estudiantes->registroEstudiantes($id_padres, 'guardar');
                     $id_estudiante = $estudiantes->idEstudiante();
-                    Utils::validarReturn($resultadoE, 'estudiante');
+                    Utils::alertas($resultadoE, 'Estudiante registrado con éxito.', 'Algo salió mal al registrar el estudiante, inténtelo de nuevo.');
 
                     if ($resultadoE) {
                         # inscribir a los alumnos en las materias correspondientes
                         $estudiantes->setGradoE($grado);
                         $materias = $estudiantes->materiasEstudiante($id_estudiante);
-                        Utils::validarReturn($materias, 'materias');
+                        Utils::alertas($materias, 'Materias asignadas al estudiante con éxito.', 'Algo salió mal al asignar las materias al  estudiante, inténtelo de nuevo.');
                     }
                     # crea las credenciales para el estudiante
                     $credencial = new Credencial();
@@ -167,10 +167,10 @@ class EstudianteController
                     $credencial->setRol('estudiante');
                     $credencial->setEstado('activo');
                     $credenciales = $credencial->credenciales_usuario($id_estudiante, 'estudiante');
-                    Utils::validarReturn($credenciales, 'credencial');
+                    Utils::alertas($credenciales, 'Credencial asignada con éxito.', 'Algo salió mal al asignar la cresencial al estudiante, inténtelo de nuevo.');
                 } else {
                     $documento = false;
-                    Utils::validarReturn($documento, 'validacion_e');
+                    Utils::alertas($documento, '', 'Se encontró un estudiante en la base de datos con el mismo número de documento, posiblemente este estudiante ya existe en la plataforma.');
                 }
                 header("Location: " . base_url . 'Estudiante/estudiantes');
             }
@@ -223,7 +223,7 @@ class EstudianteController
         $actualizacion->setRol($usuario);
         $actualizacion->setPassword($contra);
         $estado = $actualizacion->updatePassword();
-        Utils::validarReturn($estado, 'cambiarPassword');
+        Utils::alertas($estado, 'Contraseña actualizada con éxito.', 'Algo salió mal al actualizar la contraseña, inténtelo de nuevo.');
         header("Location: " . base_url . 'Estudiante/estudiantes');
     }
 
@@ -245,7 +245,7 @@ class EstudianteController
         $new_photo->setId($id);
         $new_photo->setImg($foto);
         $resultadoF = $new_photo->imgPerfil();
-        Utils::validarReturn($resultadoF, 'cambiarPhoto');
+        Utils::alertas($resultadoF, 'La foto ha sido actualizada con éxito.', 'La foto ha sido actualizada con éxito.');
         header("Location: " . base_url . 'Estudiante/perfilEstudiante&x=' . $_POST['x'] . '&y=' . $_POST['y'] . '&z=' . $_POST['z']);
     }
 

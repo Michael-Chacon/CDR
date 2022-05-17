@@ -13,10 +13,8 @@
             </a>
 		 </article>
     </section>
-    <?php echo Utils::general_alerts('guardarDocu', 'Documento guardado con éxito.', 'Algo salió mal al subir el documento, inténtelo de nuevo.') ?>
-    <?php echo Utils::general_alerts('eliminarDocu', 'Documento eliminado con éxito.', 'Algo salió mal al eliminar el documento, inténtelo de nuevo.') ?>
-    <?php Utils::borrar_error('guardarDocu'); 
-    					Utils::borrar_error('eliminarDocu');?>
+    <?php echo Utils::getAlert(); ?>
+    <?php Utils::borrar_error('alert'); ?>
     <!-- inicio de la  tabla con los documentos -->
     <section class="row justify-content-center mt-5">
     	<article class="col-md-10">

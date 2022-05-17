@@ -74,7 +74,7 @@ class AdministrativoController
                 $administrativo->setEdad($edad);
                 $administrativo->setId($_POST['actualizarAdministrativo']);
                 $actualizarInfo = $administrativo->guardarAdministrativo('actualizar');
-                Utils::validarReturn($actualizarInfo, 'actualizarA');
+                Utils::alertas($actualizarInfo, 'Información del usuario actualizada con éxito.', 'Algo salió mal al actualizar la información, inténtelo de nuevo.');
             } else {
                 # Metodo para registrar un estudinte nuevo
                 $validacion = Utils::validarExistenciaUsuario($_POST['numero'], 'administrativo', 'numero_a');
@@ -82,7 +82,7 @@ class AdministrativoController
                     #metodo de guardar
                     $resultado_admin = $administrativo->guardarAdministrativo('guardar');
                     # validar el return para generar notificacion
-                    Utils::validarReturn($resultado_admin, 'administrativo');
+                    Utils::alertas($resultado_admin, 'El usuario administrativo se ha registrado con éxito.', 'Algo salió mal al registrar el usuario administrativo, inténtelo de nuevo.');
                     # obtener el id del administrativo
                     $id_administrativo = $administrativo->idAdministrativo();
 
@@ -94,10 +94,10 @@ class AdministrativoController
                     $credencial->setEstado('activo');
                     $credenciales = $credencial->credenciales_usuario($id_administrativo, 'administrativo');
                     # validar la resupuesta de los intert en la base de datos
-                    Utils::validarReturn($credenciales, 'credencial_a');
+                    Utils::alertas($credenciales, 'Se asignaron credenciales al usuario administrativo con éxito.', 'Algo salió mal al asignar credencale al usuario administartivo, inténtelo de nuevo.');
                 } else {
                     $documento = false;
-                    Utils::validarReturn($documento, 'validacion_a');
+                    Utils::alertas($documento, '', 'Se encontró un usuario administrativo en la base de datos con el mismo número de documento, posiblemente este administrativo ya existe en la plataforma.');
                 }
             }
 
@@ -133,9 +133,9 @@ class AdministrativoController
         if ($resultado && $_SESSION['user']->id == $id) {
             $exit = new LoginController();
             $exit->logout();
-            Utils::validarReturn($resultado, 'cambiarPassA');
+            Utils::alertas($resultado, 'Contraseña actualizada con éxito.', 'Algo salió mal al cambiar la contraseña, inténtelo de nuevo.');
         } else {
-            Utils::validarReturn($resultado, 'cambiarPassA');
+            Utils::alertas($resultado, 'Contraseña actualizada con éxito.', 'Algo salió mal al cambiar la contraseña, inténtelo de nuevo.');
             header("Location: " . base_url . 'Administrativo/vista_administrativo');
         }
     }

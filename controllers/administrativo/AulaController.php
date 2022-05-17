@@ -14,7 +14,7 @@ class AulaController
         if ($respuesta) {
             $asignador->updateStateOfClassroom();
         }
-        Utils::validarReturn($respuesta, 'asignarAula');
+        Utils::alertas($respuesta, 'Aula asignada con éxito', 'Algo salió mal al intentar asignar el aula, inténtelo de nuevo.');
         header('Location:' . base_url . 'Materias/vista&id_grado=' . Utils::encryption($grado));
     }
 }

@@ -74,7 +74,7 @@ class DocenteController
                 $docente->setEdad($edad);
                 $docente->setId($_POST['actualizarDocente']);
                 $resultado_actualizacion = $docente->guardarDocentes('actualizar');
-                Utils::validarReturn($resultado_actualizacion, 'actualizarD');
+                Utils::alertas($resultado_actualizacion, 'La información del docente fue actualizada con éxito.', 'Algo salió mal al actualizar la información, inténtelo de nuevo.');
                 header("Location:" . base_url . 'Docente/perfilDocente&id=' . $_POST['actualizarDocente']);
             } else {
                 # GUARDAR
@@ -84,7 +84,7 @@ class DocenteController
                     #metodo de guardar
                     $resultado = $docente->guardarDocentes('guardar');
                     # validar el return para generar notificacion
-                    Utils::validarReturn($resultado, 'docente');
+                    Utils::alertas($resultado, 'El docente se ha registrado con éxito.', 'Algo salió mal al registrar el docente, inténtelo de nuevo.');
                     # obtener el id del docente
                     $id_docente = $docente->idDocente();
 
@@ -96,10 +96,10 @@ class DocenteController
                     $credencial->setEstado('activo');
                     $credenciales = $credencial->credenciales_usuario($id_docente, 'docente');
                     # validar la resupuesta de los intert en la base de datos
-                    Utils::validarReturn($credenciales, 'credencial_d');
+                    Utils::alertas($credenciales, 'Se asignaron credenciales al docente con éxito.', 'Algo salió mal al asignar credencale al docente, inténtelo de nuevo.');
                 } else {
                     $documento = false;
-                    Utils::validarReturn($documento, 'validacion_d');
+                    Utils::alertas($documento, '', 'Se encontró un docente en la base de datos con el mismo número de documento, posiblemente este docente ya existe en la plataforma.');
                 }
                   header('Location: ' . base_url . 'Docente/vista_docente');
             }
@@ -142,7 +142,7 @@ class DocenteController
         $actualizar->setPassword($contra);
         $actualizar->setRol('id_docente');
         $result = $actualizar->updatePassword();
-        Utils::validarReturn($result, 'actualizarPD');
+        Utils::alertas($result, 'La ontraseña del docente fue actualizada con éxito.', 'Algo salió mal al actualizar la contraseña, inténtelo de nuevo.');
         header("Location:" . base_url . 'Docente/perfilDocente&id=' . $id);
     }
 
@@ -168,7 +168,6 @@ class DocenteController
         if ($resultadoF) {
             unlink('photos/docentes/' . $foto_actual);
         }
-        Utils::validarReturn($resultadoF, 'cambiarPhotoD');
         header("Location: " . base_url . 'Docente/perfilDocente&id=' . $_POST['docente']);
     }
 
@@ -185,7 +184,7 @@ class DocenteController
             if ($resultado) {
                 $asignador->uptadeDirector('si');
             }
-            Utils::validarReturn($resultado, 'directorGrado');
+            Utils::alertas($resultado, 'El director se ha asignado con éxito', 'Algo salió mal al intentar asignar el director, intenta de nuevo.');
         }
         header("Location:" . base_url . 'Materias/vista&id_grado=' . Utils::encryption($grado));
     }
@@ -196,7 +195,7 @@ class DocenteController
         $borrador = new Docente();
         $borrador->setId($docente);
         $resultado = $borrador->deleteTeacher();
-        Utils::validarReturn($resultado, 'eliminarDocente');
+        Utils::alertas($resultado, 'Docente elimnado con éxito', 'Algo salio mal al intentar eliminar al docente, intentelo de nuvo');
         header("Location: " . base_url . 'Docente/vista_docente');
     }
 

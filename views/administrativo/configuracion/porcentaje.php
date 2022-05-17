@@ -6,15 +6,8 @@
 			</h1>
 		</article>
 	</section>
-	<?php echo Utils::general_alerts('actualizar_cognitivo', 'Porcentaje actualizado con éxito', 'Error al actualizar el porcentaje'); ?>
-	<?php echo Utils::general_alerts('actualizar_procedimental', 'Porcentaje actualizado con éxito', 'Error al actualizar el porcentaje'); ?>
-	<?php echo Utils::general_alerts('actualizar_actitudinal', 'Porcentaje actualizado con éxito', 'Error al actualizar el porcentaje'); ?>
-
-	<?php
-	Utils::borrar_error('actualizar_cognitivo');
-	Utils::borrar_error('actualizar_procedimental');
-	Utils::borrar_error('actualizar_actitudinal');
-	?>
+	<?php echo Utils::getAlert(); ?>
+	<?php Utils::borrar_error('alert');?>
 	<section class="row  justify-content-center mt-5">
 		<article class="col-md-3">
 			<div class="card text-white bg-success mb-3 text-center shadow">

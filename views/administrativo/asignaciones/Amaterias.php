@@ -11,8 +11,8 @@
                     </h2>
                     <section class="row justify-content-center mt-5">
                         <article class="col-xs-12 col-sm-12 col-md-4   col-lg-4 mb-4">
-                    <?php echo Utils::general_alerts('materiaDocente', 'Materias asignadas.', 'en la asignación de las materias.'); ?>
-                    <?php Utils::borrar_error('materiaDocente');?>
+                    <?php echo Utils::getAlert(); ?>
+                    <?php Utils::borrar_error('alert');?>
                             <form action="<?=base_url?>Asignaciones/registrarMateriasADocente" method="post">
                                 <input type="" hidden="" name="docente" value="<?=$id_docente?>">
                                 <input type="" hidden="" name="grado" value="<?=$_GET['id_grado']?>">
@@ -49,8 +49,7 @@
                             </form>
                         </article>
                        <article class="col-xs-12 col-sm-12 col-md-4  col-lg-4 ">
-                        <?php echo Utils::general_alerts('DesasignarMateriaDocente', 'Materias retirada con éxito', 'en la desasignación de las materias.'); ?>
-                        <?php Utils::borrar_error('DesasignarMateriaDocente');?>
+                        <?php echo Utils::getAlert(); ?>
                             <div class="card shadow">
                                     <h3 class="card-title text-center mt-2">
                                         Materias ya asignadas

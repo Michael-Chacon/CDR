@@ -43,7 +43,8 @@ class StudentController
         $actualizar->setDireccion($direccion);
         $actualizar->setCorreo($correo);
         $resultado = $actualizar->actualizarEstudiante();
-        Utils::validarReturn($resultado, 'actualizarDatosEstudiante');
+        # Generar alerta
+        Utils::alertas($resultado, 'Los datos del estudiante han sido actualizados con éxito, Cuando inicie sesión de nuevo podrá ver los cambios.', 'Algo salió mal al intentar actualizar los datos del estudiante');
         header('Location: ' . base_url . 'Student/datosEstudiante');
     }
 
@@ -60,12 +61,13 @@ class StudentController
         $actualizar->setDireccion($direccion);
         $actualizar->setCorreo($correo);
         $resultado = $actualizar->actualizarPadres();
-        Utils::validarReturn($resultado, 'actualizarDatosPadres');
+        Utils::alertas($resultado, 'Los datos de los padres han sido actualizados con éxito, Cuando inicie sesión de nuevo podrá ver los cambios.', 'Algo salió mal al intentar actualizar los datos de los padres');
         header('Location: ' . base_url . 'Student/datosEstudiante');
     }
 
     # Observaciones del estudiante
-    public function observador(){
+    public function observador()
+    {
         $observador = new Observador();
         $observador->setEstudiante($_SESSION['student']['id_estudiante']);
         $observaciones = $observador->getObservation();

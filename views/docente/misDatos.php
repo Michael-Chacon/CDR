@@ -9,8 +9,8 @@
 	</section>
 	<!-- inicio info docente -->
 	<section class="row justify-content-center mt-5">
-		<?php echo Utils::general_alerts('actualizarDatosDeDocente', 'Datos actualizados con éxito', 'Algo salió mal al intentar acualizar los datos.') ?>
-		<?php Utils::borrar_error('actualizarDatosDeDocente'); ?>
+		<?php Utils::getAlert();?>
+		<?php Utils::borrar_error('alert');?>
 		<section class="col-md-8">
 			<div class="card shadow">
 				<div class="card-body">

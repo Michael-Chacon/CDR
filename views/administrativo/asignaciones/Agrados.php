@@ -1,7 +1,7 @@
 <!--inicio del contenedor -->
                 <section class="container-fluid">
-                    <?php echo Utils::general_alerts('eliminar_asignacion_grado', 'Los grados se ha des asignado con éxito.', 'Algo salió mal al des asignar los grados, inténtelo de nuevo.');
-                    Utils::borrar_error('eliminar_asignacion_grado'); ?>
+                    <?php echo Utils::getAlert();
+                    Utils::borrar_error('alert'); ?>
                     <section class="row shadow titulo">
                         <article class="col-xs-12col-sm-12col-md-12 col-lg-12">
                             <h1 class="text-center config">

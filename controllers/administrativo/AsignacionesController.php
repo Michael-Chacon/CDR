@@ -65,7 +65,7 @@ class AsignacionesController
         $docente_grados->setIdDocente($id_docente);
         $docente_grados->setGrados($grados);
         $resultado = $docente_grados->guardarGrados();
-        Utils::validarReturn($resultado, 'grado_docente');
+        Utils::alertas($resultado, 'Asignación de grados exitosa.', 'Algo salió mal al asignar los grados al docente, inténtelo nuevamente.');
         header("Location: " . base_url . 'Asignaciones/vista_asignaciones');
     }
 
@@ -78,7 +78,7 @@ class AsignacionesController
         $eliminar->setIdDocente($id_docente);
         $eliminar->setGrados($grados);
         $resultado = $eliminar->EliminiarAsignacionDGrado();
-        Utils::validarReturn($resultado, 'eliminar_asignacion_grado');
+        Utils::alertas($resultado, 'Los grados se ha des asignado con éxito.', 'Algo salió mal al des asignar los grados, inténtelo de nuevo.');
         header("Location: " . base_url . 'Asignaciones/vista_Agrados&id_docente=' . $id_docente);
     }
 
@@ -95,7 +95,7 @@ class AsignacionesController
         $actualizar_estado_materia = new Asignaciones();
         $actualizar_estado_materia->setMateria($materias);
         $estado = $actualizar_estado_materia->cambiarEstadoAsignacion(true);
-        Utils::validarReturn($resultado, 'materiaDocente');
+        Utils::alertas($resultado, 'Materias asignadas.', 'en la asignación de las materias.');
         header("Location: " . base_url . 'Asignaciones/vista_Amaterias&id_grado=' . $_POST['grado'] . '&nombre=' . $_POST['nombre'] . '&docente=' . $docente);
     }
 
@@ -115,7 +115,7 @@ class AsignacionesController
             $actualizar_estado_materia->setMateria($materias);
             $estado = $actualizar_estado_materia->cambiarEstadoAsignacion(false);
         }
-        Utils::validarReturn($resultado, 'DesasignarMateriaDocente');
+        Utils::alertas($resultado, 'Materias retirada con éxito', 'en la desasignación de las materias.');
         header("Location: " . base_url . 'Asignaciones/vista_Amaterias&id_grado=' . $_POST['grado'] . '&nombre=' . $_POST['nombre'] . '&docente=' . $docente);
 
     }

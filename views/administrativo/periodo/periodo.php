@@ -7,14 +7,10 @@
 			</h1>
 		</article>
 	</section>
-	<?php echo Utils::general_alerts('periodo', 'Periodo académico registrado con éxito.', 'Algo salió mal al registrar el periodo académico, inténtelo de nuevo.'); ?>
-	<?php Utils::borrar_error('periodo');?>
+	<?php echo Utils::getAlert(); ?>
+	<?php Utils::borrar_error('alert');?>
 	<?php echo Utils::general_alerts('validacion_fechas', '', 'Las fechas que acaba de ingresar se cruzan con la fecha de un periodo que ya existe.'); ?>
-	<?php Utils::borrar_error('validacion_fechas');?>
 	<?php echo Utils::general_alerts('validacion_numero', '', 'El número del periodo académico ya existe.'); ?>
-	<?php Utils::borrar_error('validacion_numero');?>
-	<?php echo Utils::general_alerts('eliminarPeriodo', 'El periodo fue eliminado con éxito.', 'Algo salió mal al eliminar el periodo.'); ?>
-	<?php Utils::borrar_error('eliminarPeriodo');?>
 
 	<section class="row justify-content-center">
 		<small class="text-center mb-2">aaaa/mm/dd</small>

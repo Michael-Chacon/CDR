@@ -17,8 +17,8 @@
 		<?php else: ?>
 		<?php endif;?>
 	</section>
-	<?php echo Utils::general_alerts('guardar_observacion', 'Observación registrada con éxito.', 'Algo salió mal al intentar registrar la observación, inténtelo de nuevo.') ?>
-	<?php Utils::borrar_error('guardar_observacion')?>
+	<?php echo Utils::getAlert();?>
+	<?php Utils::borrar_error('alert')?>
 	<section class="row justify-content-center mt-5">
 		<article class="col-md-8">
 			<?php if ($listado_observaciones->rowCount() != 0): ?>

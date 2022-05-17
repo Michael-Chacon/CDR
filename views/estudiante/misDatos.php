@@ -8,10 +8,8 @@
 	</article>
 </section>
 	<section class="row  mt-5 mb-5">
-		<?php echo Utils::general_alerts('actualizarDatosEstudiante', 'Los datos del estudiante han sido actualizados con éxito, Cuando inicie sesión de nuevo podrá ver los cambios.', 'Algo salió mal al intentar actualizar los datos del estudiante') ?>
-		<?php echo Utils::general_alerts('actualizarDatosPadres', 'Los datos de los padres han sido actualizados con éxito, Cuando inicie sesión de nuevo podrá ver los cambios.', 'Algo salió mal al intentar actualizar los datos de los padres') ?>
-		<?php Utils::borrar_error('actualizarDatosEstudiante');
-		Utils::borrar_error('actualizarDatosPadres');?>
+		<?php Utils::getAlert();?>
+		<?php Utils::borrar_error('alert');?>
 		<section class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
 			<div class="card shadow">
 				<div class="card-body">

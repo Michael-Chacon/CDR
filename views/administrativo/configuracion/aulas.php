@@ -11,12 +11,8 @@
 			</a>
 		</article>
 	</section>
-	<?php echo Utils::general_alerts('guardar_aula', 'Aula creada con éxito', 'Algo salió mal al intentar registrar el aula, inténtalo de nuevo.'); ?>
-	<?php echo Utils::general_alerts('eliminar_aula', 'El aula fue eliminada con éxito', 'Algo salió mal al intentar eliminar el aula, inténtelo de nuevo'); ?>
-	<?php echo Utils::general_alerts('aula_duplicada', '', 'Ya existe una aula con el mismo nombre registrada en la base de datos, utiliza un nombre diferente.') ?>
-	<?php Utils::borrar_error('guardar_aula');
-	Utils::borrar_error('eliminar_aula');
-	Utils::borrar_error('aula_duplicada');?>
+	<?php echo Utils::getAlert(); ?>
+	<?php Utils::borrar_error('alert');?>
 
 	<section class="row justify-content-center mt-5">
 		<article class="col-md-5">

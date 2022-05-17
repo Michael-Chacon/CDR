@@ -16,7 +16,7 @@ class HorarioController
             $horario->setInicio($inicio);
             $horario->setFin($fin);
             $resultado = $horario->guardarHorario();
-            Utils::validarReturn($resultado, 'registrarHorario');
+            Utils::alertas($resultado, 'Horario registrado con éxito.', 'Algo salió mal al intentar registrar el horario.');
         }
         header("Location: " . base_url . 'Materias/vista&id_grado=' . $_POST['id_grado']);
     }
@@ -32,7 +32,7 @@ class HorarioController
         $delete->setId($id);
         $delete->setDia($dia);
         $resultado = $delete->deleteDay();
-        Utils::validarReturn($resultado, 'eliminarHora');
+        Utils::alertas($resultado, 'Horario eliminado con éxito.', 'Algo salió mal al intentar eliminar el horario.');
 
         header("Location: " . base_url . 'Materias/vista&id_grado=' . $grado);
     }

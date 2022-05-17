@@ -73,17 +73,17 @@ class PersonalController
                 $id = $_POST['actualizarPersonal'];
                 $personal->setId($id);
                 $actualizar_personal = $personal->guardarPersonal('actualizar');
-                Utils::validarReturn($actualizar_personal, 'actualizarPer');
+                Utils::alertas($actualizar_personal, 'La información del usuario ha sido actualizada con éxito.', 'Algo salió mal al actualizar la información, inténtelo de nuevo.');
             } else {
                 $validacion = Utils::validarExistenciaUsuario($_POST['numero'], 'personal', 'numero_per');
                 if ($validacion == 0) {
                     #metodo de guardar
                     $resultado_personal = $personal->guardarPersonal('guardar');
                     # validar el return para generar notificacion
-                    Utils::validarReturn($resultado_personal, 'personal');
+                    Utils::alertas($resultado_personal, 'El usuario del personal se ha registrado con éxito.', 'Algo salió mal al registrar el usuario del personal, inténtelo de nuevo.');
                 } else {
                     $documento = false;
-                    Utils::validarReturn($documento, 'validacion');
+                    Utils::alertas($documento, '', 'Se encontró un usuario en la base de datos con el mismo número de documento, posiblemente este usuario ya existe en la plataforma.');
                 }
             }
 

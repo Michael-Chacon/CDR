@@ -11,8 +11,8 @@
     Asignaciones de grados y materias.
 </h2>
 <section class="row">
-    <?php echo Utils::general_alerts('grado_docente', 'Asignación de grados exitosa.', 'Algo salió mal al asignar los grados al docente, inténtelo nuevamente.'); ?>
-    <?php Utils::borrar_error('grado_docente');?>
+    <?php echo Utils::getAlert() ?>
+    <?php Utils::borrar_error('alert');?>
     <article class="row justify-content-center">
         <?php if (isset($listado) && $listado->rowCount() != 0):
          while ($docentes = $listado->fetchObject()): ?>

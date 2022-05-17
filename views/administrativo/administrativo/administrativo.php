@@ -13,17 +13,8 @@
  			</a>
  		</article>
  	</section>
- 	<?php echo Utils::general_alerts('administrativo', 'El usuario administrativo se ha registrado con éxito.', 'Algo salió mal al registrar el usuario administrativo, inténtelo de nuevo.'); ?>
- 	<?php echo Utils::general_alerts('credencial_a', 'Se asignaron credenciales al usuario administrativo con éxito.', 'Algo salió mal al asignar credencale al usuario administartivo, inténtelo de nuevo.'); ?>
- 	<?php echo Utils::general_alerts('validacion_a', '', 'Se encontró un usuario administrativo en la base de datos con el mismo número de documento, posiblemente este administrativo ya existe en la plataforma.') ?>
- 	<?php echo Utils::general_alerts('actualizarA', 'Información del usuario actualizada con éxito.', 'Algo salió mal al actualizar la información, inténtelo de nuevo.') ?>
- 	<?php echo Utils::general_alerts('cambiarPassA', 'Contraseña actualizada con éxito.', 'Algo salió mal al cambiar la contraseña, inténtelo de nuevo.'); ?>
- 	<?php Utils::borrar_error('administrativo');
- 	Utils::borrar_error('credencial_a');
- 	Utils::borrar_error('validacion_a');
- 	Utils::borrar_error('actualizarA');
- 	Utils::borrar_error('cambiarPassA');
- 	?>
+ 	<?php echo Utils::getAlert(); ?>
+ 	<?php Utils::borrar_error('alert');?>
  	<section class="container-fluid">
  		<section class="row justify-content-center mt-3">
  			<article class="col-md-3">

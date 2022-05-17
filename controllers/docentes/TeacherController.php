@@ -65,7 +65,8 @@ class TeacherController
         $actualizar->setDireccion($direccion);
         $actualizar->setCorreo($correo);
         $resultado = $actualizar->actualizarDocente();
-        Utils::validarReturn($resultado, 'actualizarDatosDeDocente');
+        # generar alerta
+        Utils::alertas($resultado, 'Datos actualizados con éxito', 'Algo salió mal al intentar acualizar los datos.');
         header('Location: ' . base_url . 'Teacher/misDatos');
     }
 

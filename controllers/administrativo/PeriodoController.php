@@ -44,7 +44,7 @@ class PeriodoController
             $guardar->setFechaFin($fin);
             $guardar->setEstado($estado);
             $retorno = $guardar->guardarPeriodo();
-            Utils::validarReturn($retorno, 'periodo');
+            Utils::alertas($retorno, 'Periodo académico registrado con éxito.', 'Algo salió mal al registrar el periodo académico, inténtelo de nuevo.');
             // } else {
             //     Utils::validarReturn($resultado, 'validacion_fechas');
             // }
@@ -60,7 +60,7 @@ class PeriodoController
             $eliminar = new Periodos();
             $eliminar->setId($periodo);
             $resultado = $eliminar->deletePeriodo();
-            Utils::validarReturn($resultado, 'eliminarPeriodo');
+            Utils::alertas($resultado, 'El periodo fue eliminado con éxito.', 'Algo salió mal al eliminar el periodo.');
         }
         header("Location: " . base_url . 'Periodo/vista_config');
     }

@@ -38,7 +38,7 @@ class ObservadorController
         $observador->setAcciones($acciones);
         $respuesta = $observador->saveWatcher();
 
-        Utils::validarReturn($respuesta, 'guardar_observacion');
+        Utils::alertas($respuesta, 'Observación registrada con éxito.', 'Algo salió mal al intentar registrar la observación, inténtelo de nuevo.');
         header('Location: ' . base_url . 'Observador/vista_observador&id=' . Utils::encryption($estudiante) . '&name=' . $nombre_e . '&g=' . Utils::encryption($grado));
     }
 

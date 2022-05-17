@@ -1,10 +1,7 @@
 <!-- contenido de  la pagina -->
                 <section class="container-fluid">
-                    <?php echo Utils::general_alerts('actualizarD', 'La información del docente fue actualizada con éxito.', 'Algo salió mal al actualizar la información, inténtelo de nuevo.'); ?>
-                    <?php echo Utils::general_alerts('actualizarPD', 'La ontraseña del docente fue actualizada con éxito.', 'Algo salió mal al actualizar la contraseña, inténtelo de nuevo.') ?>
-                    <?php Utils::borrar_error('actualizarD');
-                            Utils::borrar_error('actualizarPD');
-                     ?>
+                    <?php echo Utils::getAlert(); ?>
+                    <?php Utils::borrar_error('alert');?>
                     <!-- inicon de la fila principal -->
                     <section class="row">
                         <article class="col-md-5">

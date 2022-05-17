@@ -21,14 +21,10 @@ class GradoController
                 $grado = new Grados();
                 $grado->setGrado($numero);
                 $resultado = $grado->guardar();
-                if ($resultado) {
-                    $_SESSION['guardar_grado'] = 'exito';
-                } else {
-                    $_SESSION['guardar_grado'] = 'fallo';
-                }
+               Utils::alertas($resultado, 'Grado registrado con exito.', 'Algo salio mal al registrar el grado.');
             } else {
                 $parametro = false;
-                Utils::validarReturn($parametro, 'validarGrado');
+                Utils::alertas($parametro, '', 'El  grado que intenta registrar ya existe.');
             }
             header('Location: ' . base_url . 'Grado/grado');
         }
@@ -40,7 +36,7 @@ class GradoController
         $eliminar = new Grados();
         $eliminar->setId($id_grado);
         $resultado = $eliminar->deleteGrado();
-        Utils::validarReturn($resultado, 'eliminarGrado');
+        Utils::alertas($resultado, 'El grado se eliminó con éxito.', 'El grado se eliminó con éxito.');
         header('Location: ' . base_url . 'Grado/grado');
     }
 

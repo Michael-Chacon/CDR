@@ -27,17 +27,9 @@
 			</articles>
 		</article>
 	</section>
-	<?php echo Utils::general_alerts('guardar_area', 'Área creada con éxito', 'Algo salió mal al intentar registrar el área, inténtalo de nuevo.'); ?>
-	<?php echo Utils::general_alerts('eliminar_area', 'El área fue eliminada con éxito', 'Algo salió mal al intentar eliminar el área, inténtelo de nuevo'); ?>
-	<?php echo Utils::general_alerts('area_duplicada', '', 'El nombre de esta área ya está registrado en la base de datos, intenta con otro nombre.'); ?>
-	<?php echo Utils::general_alerts('guardar_materia_base', 'La materia fue registrada con éxito.', 'Algo salió mal al registrar la materia, inténtelo de nuevo.') ?>
-	<?php echo Utils::general_alerts('eliminar_base', 'La materia fue eliminada con éxito.', 'Algo salió mal al eliminar la materia, inténtelo de nuevo.') ?>
+	<?php echo Utils::getAlert() ?>
 
-	<?php Utils::borrar_error('guardar_area');
-	Utils::borrar_error('eliminar_area');
-	Utils::borrar_error('area_duplicada');
-	Utils::borrar_error('guardar_materia_base');
-	Utils::borrar_error('eliminar_base');?>
+	<?php Utils::borrar_error('alert');?>
 	<!-- contenido de la pagina  -->
 	<section class="row mt-4">
 		<article class="col-xs-12 col-sm-12 col-md-7 col-lg-7 text-center">

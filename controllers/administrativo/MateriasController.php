@@ -86,7 +86,7 @@ class MateriasController
         $asignacion->setId($materia);
         $respuesta = $asignacion->updateAsignaiconMateria();
 
-        Utils::validarReturn($respuesta, 'actualizarAsignacionDeMateria');
+        Utils::alertas($respuesta, 'Muy bien, la materia ya está disponible para ser asignada a un docente.', 'Algo salió mal al intentar cambiar es estado de asignación de la materia, inténtelo de nuevo.');
 
         header("Location: " . base_url . 'panelMateria/homeMateria&degree=' . Utils::encryption($_POST['degree']) . '&ide=' . Utils::encryption($_POST['id_materia']) . '&name=' . $_POST['name'] . '&nombreg=' . $_POST['nombreg']);
     }
@@ -99,7 +99,7 @@ class MateriasController
         $borrador = new Materias();
         $borrador->setMateria($materia);
         $resultado = $borrador->deleteSubject();
-        Utils::validarReturn($resultado, 'eliminarMateria');
+        Utils::alertas($resultado, 'La materia se eliminó con éxito', 'Algo salió mal al intentar eliminar la materia');
         header('Location:' . base_url . 'Materias/vista&id_grado=' . Utils::encryption($_GET['degree']));
     }
 
