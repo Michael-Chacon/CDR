@@ -730,3 +730,11 @@ INNER JOIN docente do ON do.id = d.id_docente_dir
 INNER JOIN grado g ON g.id = d.id_grado_dir
 INNER JOIN estudiante e ON e.id_gradoE = g.id
 WHERE e.id = 6 AND g.id= 2;
+
+
+# Seleccionar los estudiantes que estan matriculados en x mateia en un grado determinado
+SELECT e.nombre_e, e.apellidos_e, e.id AS 'estudiante_id', e.img, m.id AS 'materia_id',  FROM estudiante e
+INNER JOIN estudiantemateria em ON em.id_estudiante_m = e.id
+INNER JOIN materia m ON m.id = em.id_materia_e
+INNER JOIN grado g ON g.id = m.id_grado_mat
+WHERE m.id = 10 AND g.id = 2;

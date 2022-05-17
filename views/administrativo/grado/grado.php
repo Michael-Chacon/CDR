@@ -44,7 +44,6 @@
                             </article>
                         </article>
                     </section>
-                    <a type="button"  class="btn btn-success " href="<?=base_url?>Pdf/pdf">PDF</a>
                 </section>
                 <!-- fin del contenedor -->
                 <!-- ================================================

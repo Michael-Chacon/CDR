@@ -309,4 +309,20 @@ class Materias
         return $materias;
     }
 
+    # Seleccionar los estudiantes que estan matriculados en x mateia en un grado determinado
+    public function estudianteMateriaGrado()
+    {
+        $subject = $this->getMateria();
+        $degree = $this->getIdGradoM();
+        $estudiantes = $this->db->prepare("SELECT e.nombre_e, e.apellidos_e, e.id , e.img, m.id AS 'materia_id', m.id AS 'id_materia', g.id AS 'id_grado' FROM estudiante e
+            INNER JOIN estudiantemateria em ON em.id_estudiante_m = e.id
+            INNER JOIN materia m ON m.id = em.id_materia_e
+            INNER JOIN grado g ON g.id = m.id_grado_mat
+            WHERE m.id = :materia AND g.id = :grado");
+        $estudiantes->bindParam(":materia", $subject, PDO::PARAM_INT);
+        $estudiantes->bindParam(":grado", $degree, PDO::PARAM_INT);
+        $estudiantes->execute();
+        return $estudiantes;
+    }
+
 } # fin de la clase

@@ -30,11 +30,14 @@ class panelMateriaController
             # listado de los estudiante que estan matriuculados en la materia
             $estudiante = new Grados();
             $estudiante->setGrado($grado);
-            $listado_estudiantes = $estudiante->EstudiantesGrado();
-            $colocar_falla = $estudiante->EstudiantesGrado();
+            // $listado_estudiantes = $estudiante->EstudiantesGrado();
+            // $colocar_falla = $estudiante->EstudiantesGrado();
             # Informacion importante de la materia
             $info = new Materias();
             $info->setMateria($materia);
+            $info->setIdGradoM($grado);
+            $listado_estudiantes = $info->estudianteMateriaGrado();
+            $colocar_falla = $info->estudianteMateriaGrado();
             $datos_materia = $info->subjectInformation();
             $estado = $info->seeAsignacionMateria($materia);
             require_once 'views/docente/panelMateria.php';
