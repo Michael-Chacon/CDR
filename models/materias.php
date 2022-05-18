@@ -356,4 +356,19 @@ class Materias
         return $materias;
     }
 
+    # Eliminar materias a un estudiante en especifico
+    public function deleteSubjectToStudent()
+    {
+        $estudiante = $this->getId();
+        $materias = $this->getMateria();
+        foreach ($materias as $materia_id) {
+            $eliminar = $this->db->prepare("DELETE FROM estudiantemateria
+                WHERE id_estudiante_m = :id_estudiante AND id_materia_e = :id_materia");
+            $eliminar->bindParam(":id_estudiante", $estudiante, PDO::PARAM_INT);
+            $eliminar->bindParam(":id_materia", $materia_id, PDO::PARAM_INT);
+            $eliminar->execute();
+        }
+        return $eliminar;
+    }
+
 } # fin de la clase

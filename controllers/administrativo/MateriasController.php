@@ -135,4 +135,36 @@ class MateriasController
         header('Location:' . base_url . 'Estudiante/perfilEstudiante&x=' . $estudiante . '&y=' . $_POST['padres'] . '&z=' . $_POST['grado']);
     }
 
+    # Eliminar materias a un estudiante en especifico
+    public function listadoMateriasStudent()
+    {
+        if (!isset($_GET['student']) || !isset($_GET['degree'])) {
+            Utils::Error404();
+        } elseif (empty(Utils::decryption($_GET['student'])) || empty(Utils::decryption($_GET['degree']))) {
+            Utils::Error404();
+        } else {
+            $estudiante = Utils::decryption($_GET['student']);
+            $grado = Utils::decryption($_GET['degree']);
+            $padres = $_GET['fathers'];
+            $materias = new Materias();
+            $materias->setId($estudiante);
+            $materias->setIdGradoM($grado);
+            $listado_materias = $materias->allSubjectsOfOneStudent();
+            require_once 'views/estudiante/eliminarMateria.php';
+        }
+    }
+
+    # Eliminar barias materias a un estudiante
+    public function eliminiarMateriasAEstudiantes()
+    {
+        $estudiante = $_POST['estudiante'];
+        $materias = $_POST['materias'];
+        $delete = new Materias();
+        $delete->setId($estudiante);
+        $delete->setMateria($materias);
+        $resultado = $delete->deleteSubjectToStudent();
+        Utils::alertas($resultado, 'La materia fue eliminada con éxito.', 'Algo salió mal al intentar eliminar la materia, inténtelo de nuevo.');
+        header('Location:' . base_url . 'Estudiante/perfilEstudiante&x=' . $estudiante . '&y=' . $_POST['padres'] . '&z=' . $_POST['grado']);
+    }
+
 } # fin de la clase
