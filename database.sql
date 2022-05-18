@@ -738,3 +738,18 @@ INNER JOIN estudiantemateria em ON em.id_estudiante_m = e.id
 INNER JOIN materia m ON m.id = em.id_materia_e
 INNER JOIN grado g ON g.id = m.id_grado_mat
 WHERE m.id = 10 AND g.id = 2;
+
+# Seleccinar las materias que pertenecen a un grado pero que el estudiante no esta matriculado en ellas
+SELECT * FROM materia
+WHERE id NOT IN (
+	SELECT id_materia_e FROM estudiantemateria
+	WHERE id_estudiante_m = 1
+) AND id_grado_mat = 1;
+
+# seleccionar todas las materas de un grado
+SELECT id, nombre_mat FROM materia WHERE id_grado_mat = 1;
+
+# Selecctionar las materias de un estudiante
+SELECT m.id, m.nombre_mat FROM materia m
+INNER JOIN estudiantemateria em ON em.id_materia_e = m.id
+WHERE m.id_grado_mat = 1 AND em.id_estudiante_m = 1;

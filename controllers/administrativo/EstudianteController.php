@@ -157,7 +157,7 @@ class EstudianteController
                     if ($resultadoE) {
                         # inscribir a los alumnos en las materias correspondientes
                         $estudiantes->setGradoE($grado);
-                        $materias = $estudiantes->materiasEstudiante($id_estudiante);
+                        $materias = $estudiantes->materiasEstudiante($id_estudiante, 'automatico');
                         Utils::alertas($materias, 'Materias asignadas al estudiante con éxito.', 'Algo salió mal al asignar las materias al  estudiante, inténtelo de nuevo.');
                     }
                     # crea las credenciales para el estudiante
@@ -188,8 +188,9 @@ class EstudianteController
 
             # obtener todas las materias de un grado
             $materias = new Materias();
+            $materias->setId($estudiante_id);
             $materias->setIdGradoM($grado);
-            $datos = $materias->allMaterias();
+            $datos = $materias->allSubjectsOfOneStudent();
 
             # obtener el horario por dias
             $dia = new Horario();

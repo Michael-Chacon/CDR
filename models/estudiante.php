@@ -147,21 +147,31 @@ class Estudiante extends Usuarios
     }
 
     # asignar las materias del grado en que se matriculo al estudiantes
-    public function materiasEstudiante($estudiante)
+    public function materiasEstudiante($estudiante, $metodo)
     {
-        # obtener todas las materias correspodientes al grado
-        $grado = $this->getGradoE();
-        $vinculo = '';
-        $materias = $this->db->prepare("SELECT id FROM materia WHERE id_grado_mat = :grado");
-        $materias->bindParam(':grado', $grado, PDO::PARAM_INT);
-        $materias->execute();
-        #asignar las materias al estudiante
-        while ($materia = $materias->fetchObject()) {
-            $vinculo = $this->db->prepare("INSERT INTO estudiantemateria VALUES(:estudiante, :materia)");
-            $vinculo->bindParam(':estudiante', $estudiante, PDO::PARAM_INT);
-            $vinculo->bindParam(':materia', $materia->id, PDO::PARAM_INT);
-            $vinculo->execute();
+        if ($metodo == 'automatico') {
+            # obtener todas las materias correspodientes al grado
+            $grado = $this->getGradoE();
+            $vinculo = '';
+            $materias = $this->db->prepare("SELECT id FROM materia WHERE id_grado_mat = :grado");
+            $materias->bindParam(':grado', $grado, PDO::PARAM_INT);
+            $materias->execute();
+            while ($materia = $materias->fetchObject()) {
+                $vinculo = $this->db->prepare("INSERT INTO estudiantemateria VALUES(:estudiante, :materia)");
+                $vinculo->bindParam(':estudiante', $estudiante, PDO::PARAM_INT);
+                $vinculo->bindParam(':materia', $materia->id, PDO::PARAM_INT);
+                $vinculo->execute();
+            }
+        } elseif ($metodo == 'manual') {
+            $materias = $this->getId();
+            foreach ($materias as $valor) {
+                $vinculo = $this->db->prepare("INSERT INTO estudiantemateria VALUES(:estudiante, :materia)");
+                $vinculo->bindParam(':estudiante', $estudiante, PDO::PARAM_INT);
+                $vinculo->bindParam(':materia', $valor, PDO::PARAM_INT);
+                $vinculo->execute();
+            }
         }
+        #asignar las materias al estudiante
         return $vinculo;
     }
 

@@ -18,7 +18,7 @@
                                             <?php else: ?>
                                                 <img alt="..." class="avatar-perfil" src="<?=base_url?>photos/estudiantes/<?=$estudiante->img?>">
                                             </img>
-                                        <?php endif; ?>
+                                        <?php endif;?>
                                     </a>
                                 </article>
                             </article>
@@ -39,7 +39,7 @@
                                                 </i>
                                             </a>
                                             <ul aria-labelledby="opcionesPerfil" class="dropdown-menu">
-                                            <?php if(isset($_SESSION['user'])): ?>
+                                            <?php if (isset($_SESSION['user'])): ?>
                                                 <li>
                                                     <a class="dropdown-item " data-bs-target="#updatePassword" data-bs-toggle="modal" href="#">
                                                      <i class="bi bi-key"></i>
@@ -54,10 +54,18 @@
                                                     <i class="bi bi-pen"></i>  Actualizar datos
                                                 </a>
                                             </li>
+                                              <li>
+                                                <hr class="dropdown-divider"/>
+                                            </li>
+                                            <li>
+                                                <a class="dropdown-item" href="<?=base_url?>Materias/matricularMaterias&student=<?=Utils::encryption($estudiante_id)?>&degree=<?=Utils::encryption($grado)?>&fathers=<?=$padres?>">
+                                                    <i class="bi bi-plus-circle-dotted"></i>  Matricular materia adicional
+                                                </a>
+                                            </li>
                                             <li>
                                                 <hr class="dropdown-divider"/>
                                             </li>
-                                        <?php endif ?>
+                                        <?php endif?>
                                             <li>
                                                 <a class="dropdown-item" href="<?=base_url?>Pdf/infoEstudiantes&student=<?=$estudiante_id?>&degree=<?=$grado?>&fathers=<?=$padres?>">
                                                     <i class="bi bi-arrow-down-circle"></i>  Descargar datos
@@ -152,20 +160,20 @@
                             Materias
                         </h3>
                         <?php if (isset($datos) && $datos->rowCount() != 0):
-                            while ($materias = $datos->fetchObject()): ?>
-                               <article class="col-xs-12 col-sm-6 col-md-4 col-xl-4 mb-2">
-                                   <div class="card text-center shadow option">
-                                       <div class="card-body contenido-card materias">
-                                           <i class="<?=$materias->icono?>" style="font-size: 3rem;">
-                                           </i>
-                                           <hr class="hr-perfil"/>
-                                           <h5 class="mt-2">
-                                               <?=$materias->nombre_mat?>
-                                           </h5>
-                                           <?php if(!isset($_SESSION['teacher'])): ?>
-                                           <a class="stretched-link" href="<?=base_url?>Notas/homeNotas&student=<?=Utils::encryption($estudiante->estudiante_id)?>&materia=<?=Utils::encryption($materias->id)?>&nGrado=<?=$estudiante->nombre_g?>">
-                                           </a>
-                                       <?php endif ?>
+    while ($materias = $datos->fetchObject()): ?>
+								                               <article class="col-xs-12 col-sm-6 col-md-4 col-xl-4 mb-2">
+								                                   <div class="card text-center shadow option">
+								                                       <div class="card-body contenido-card materias">
+								                                           <i class="<?=$materias->icono?>" style="font-size: 3rem;">
+								                                           </i>
+								                                           <hr class="hr-perfil"/>
+								                                           <h5 class="mt-2">
+								                                               <?=$materias->nombre_mat?>
+								                                           </h5>
+								                                           <?php if (!isset($_SESSION['teacher'])): ?>
+								                                           <a class="stretched-link" href="<?=base_url?>Notas/homeNotas&student=<?=Utils::encryption($estudiante->estudiante_id)?>&materia=<?=Utils::encryption($materias->id)?>&nGrado=<?=$estudiante->nombre_g?>">
+								                                           </a>
+								                                       <?php endif?>
                                        </div>
                                    </div>
                                </article>
@@ -234,7 +242,7 @@
                     Martes
                 </span>
                 <hr/>
-                <?php if ($lista_martes->rowCount() != 0):?>
+                <?php if ($lista_martes->rowCount() != 0): ?>
                     <div>
                         <table class="table shadow text-center table-bordered table-hover">
                             <thead>
@@ -279,7 +287,7 @@
             Miércoles
         </span>
         <hr/>
-        <?php if ($lista_miercoles->rowCount() != 0):?>
+        <?php if ($lista_miercoles->rowCount() != 0): ?>
             <div>
                 <table class="table shadow text-center table-bordered table-hover">
                     <thead>
@@ -324,7 +332,7 @@
         Jueves
     </span>
     <hr/>
-    <?php if ($lista_jueves->rowCount() != 0):?>
+    <?php if ($lista_jueves->rowCount() != 0): ?>
     <div>
         <table class="table shadow text-center table-bordered table-hover ">
             <thead>
@@ -369,7 +377,7 @@
         Viernes
     </span>
     <hr/>
-    <?php if ($lista_viernes->rowCount() != 0):?>
+    <?php if ($lista_viernes->rowCount() != 0): ?>
     <div>
         <table class="table shadow text-center table-bordered table-hover ">
             <thead>
@@ -423,7 +431,7 @@
                             <img alt="..." class="avatar circulo" src="<?=base_url?>helpers/img/avatar.jpg"/>
                         <?php else: ?>
                         <img class="avatar circulo" src="<?=base_url?>photos/estudiantes/<?=$estudiante->img?>">
-                        <?php endif; ?>
+                        <?php endif;?>
                         <h5 class="card-title"><?=$estudiante->nombre_e?> <?=$estudiante->apellidos_e?></h5>
                         <h6 class="card-subtitle mb-2 text-muted">Estudiante</h6>
                     </div>
@@ -1134,7 +1142,6 @@
               </div>
             </div>
         </div>
-
       </div>
     </div>
   </div>

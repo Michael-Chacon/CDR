@@ -201,11 +201,26 @@ class Materias
         }
     }
 
+    # Seleccionar las materias de un grado
     public function allMaterias()
     {
         $grado = $this->getIdGradoM();
         $materias = $this->db->prepare("SELECT * FROM materia WHERE id_grado_mat = :grado ORDER BY nombre_mat ASC");
         $materias->bindParam(":grado", $grado, PDO::PARAM_INT);
+        $materias->execute();
+        return $materias;
+    }
+
+    # Seleccionar las materias de un estudiante
+    public function allSubjectsOfOneStudent()
+    {
+        $estudiante_id = $this->getId();
+        $grado_id = $this->getIdGradoM();
+        $materias = $this->db->prepare("SELECT m.* FROM materia m
+            INNER JOIN estudiantemateria em ON em.id_materia_e = m.id
+            WHERE m.id_grado_mat = :grado AND em.id_estudiante_m = :estudiante ORDER BY nombre_mat ASC");
+        $materias->bindParam(":grado", $grado_id, PDO::PARAM_INT);
+        $materias->bindParam(":estudiante", $estudiante_id, PDO::PARAM_INT);
         $materias->execute();
         return $materias;
     }
@@ -309,7 +324,7 @@ class Materias
         return $materias;
     }
 
-    # Seleccionar los estudiantes que estan matriculados en x mateia en un grado determinado
+    # Seleccionar los estudiantes que estan matriculados en x materia en un grado determinado
     public function estudianteMateriaGrado()
     {
         $subject = $this->getMateria();
@@ -323,6 +338,22 @@ class Materias
         $estudiantes->bindParam(":grado", $degree, PDO::PARAM_INT);
         $estudiantes->execute();
         return $estudiantes;
+    }
+
+    # Seleccionar las materias que pertenecen al grado pero en las que el estudiante no esta matriculado
+    public function matriculaManual()
+    {
+        $estudiante_id = $this->getId();
+        $grado_id = $this->getIdGradoM();
+        $materias = $this->db->prepare("SELECT * FROM materia
+            WHERE id NOT IN (
+                SELECT id_materia_e FROM estudiantemateria
+                WHERE id_estudiante_m = :estudiante)
+            AND id_grado_mat = :grado;");
+        $materias->bindParam(":estudiante", $estudiante_id, PDO::PARAM_INT);
+        $materias->bindParam(":grado", $grado_id, PDO::PARAM_INT);
+        $materias->execute();
+        return $materias;
     }
 
 } # fin de la clase

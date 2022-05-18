@@ -4,6 +4,7 @@ require_once 'models/grados.php';
 require_once 'models/horario.php';
 require_once 'models/docente.php';
 require_once 'models/area.php';
+require_once 'models/estudiante.php';
 
 class MateriasController
 {
@@ -101,6 +102,37 @@ class MateriasController
         $resultado = $borrador->deleteSubject();
         Utils::alertas($resultado, 'La materia se eliminó con éxito', 'Algo salió mal al intentar eliminar la materia');
         header('Location:' . base_url . 'Materias/vista&id_grado=' . Utils::encryption($_GET['degree']));
+    }
+
+    # Ver la materias en las que el estudiante no esta matriculado
+    public function matricularMaterias()
+    {
+        if (!isset($_GET['student']) || !isset($_GET['degree'])) {
+            Utils::Error404();
+        } elseif (empty(Utils::decryption($_GET['student'])) || empty(Utils::decryption($_GET['degree']))) {
+            Utils::Error404();
+        } else {
+            $estudiante = Utils::decryption($_GET['student']);
+            $grado = Utils::decryption($_GET['degree']);
+            $padres = $_GET['fathers'];
+            $materias = new Materias();
+            $materias->setId($estudiante);
+            $materias->setIdGradoM($grado);
+            $listado_materias = $materias->matriculaManual();
+            require_once 'views/estudiante/matriculaManual.php';
+        }
+    }
+
+    # Asignar materias de forma manual a un estudiante
+    public function guardarMatriculaDMateria()
+    {
+        $estudiante = $_POST['estudiante'];
+        $materias = $_POST['materias'];
+        $asignar = new Estudiante();
+        $asignar->setId($materias);
+        $resultado = $asignar->materiasEstudiante($estudiante, 'manual');
+        Utils::alertas($resultado, 'La matrícula fue exitosa.', 'Algo salió mal al intentar hacer la matrícula, inténtelo de nuevo.');
+        header('Location:' . base_url . 'Estudiante/perfilEstudiante&x=' . $estudiante . '&y=' . $_POST['padres'] . '&z=' . $_POST['grado']);
     }
 
 } # fin de la clase

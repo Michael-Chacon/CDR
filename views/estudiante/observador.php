@@ -8,9 +8,9 @@
 		</article>
 	</section>
 	<section class="row mt-5">
-		<?php if($observaciones->rowCount() != 0): ?>
-			<?php while($observacion = $observaciones->fetchObject()): ?>
-				<section class="col-md-6">
+		<?php if ($observaciones->rowCount() != 0): ?>
+			<?php while ($observacion = $observaciones->fetchObject()): ?>
+				<section class="col-md-6 mb-4">
 					<div class="card shadow">
 						<div class="card-body">
 							<div class="row mb-3">
@@ -32,11 +32,11 @@
 						</div>
 					</div>
 				</section>
-			<?php endwhile; ?>
+			<?php endwhile;?>
 		<?php else: ?>
 		<div class="alert alert-primary text-center" role="alert">
 			No tienes observaciones registradas.
 		</div>
-	<?php endif; ?>
+	<?php endif;?>
 	</section>
 </section>
