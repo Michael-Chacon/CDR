@@ -21,7 +21,8 @@ class TableroController
         $save->setDescripcion($descripcion);
         $save->setColor($color);
         $resultado = $save->saveActivity();
-        print_r($resultado);
+        Utils::alertas($resultado, 'La actividad se ha registrado en el tablero exitosamente', 'Algo salió mal al intentar registrar la actividad, inténtelo de nuevo.');
+        header('Location:' . base_url . 'Tablero/tablero');
 
     }
 }

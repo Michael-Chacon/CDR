@@ -6,6 +6,8 @@
 			</h1>
 		</article>
 	</section>
+	<?php Utils::getAlert();?>
+	<?php Utils::borrar_error('alert');?>
 	<section class="row justify-content-center mt-4">
 		<article class="col-md-6">
 			<div class="form shadow">
