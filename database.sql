@@ -568,6 +568,15 @@ CREATE TABLE puestos(
 	CONSTRAINT fk_grado_puesto FOREIGN KEY (id_grado_puesto) REFERENCES grado (id) ON DELETE CASCADE
 )ENGINE=InnoDb;
 
+	# Tablero de actividades
+	CREATE TABLE tableroactividades(
+		id INT(3) AUTO_INCREMENT NOT NULL,
+		titulo VARCHAR(100) NOT NULL,
+		fecha DATE NOT NULL,
+		descripcion TEXT NOT NULL,
+		CONSTRAINT pk_tablero_actividades PRIMARY KEY (id)
+	)ENGINE=InnoDb;
+
 --  seleccionar todos los grados
 SELECT gd.id_grado_d FROM gradodocente gd
 INNER JOIN docente d ON d.id = gd.id_docente_g

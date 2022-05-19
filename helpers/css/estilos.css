@@ -49,7 +49,7 @@ hr {
 */
 
 .titulo {
-    height: 100px;
+    height: 80px;
     /* la vieja sintaxis, obsoleta, pero todavía necesaria, prefijada, para Opera y Navegadores basados en Webkit */
     /*background: -prefix-linear-gradient(left, #7C368F, #F9E701);*/
     /* La nueva sintaxis necesaria para navegadores apegados al estandar (IE 10 y Firefox 10 en adelante), sin prefijo */
@@ -59,7 +59,7 @@ hr {
     background: linear-gradient(to right, black, teal) !important;
 }
 .config {
-    padding-top: 25px;
+    padding-top: 13px;
     color: white;
     font-weight: 300;
 }
@@ -625,4 +625,12 @@ hr {
 .boletin-texto {
     font-size: 20px;
     font-weight: 400;
+}
+.separador {
+    height: 20px !important;
+    border: 1px solid black !important;
+    background-color: black;
+}
+.form {
+    padding: 10px;
 }
