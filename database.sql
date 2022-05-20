@@ -569,12 +569,22 @@ CREATE TABLE puestos(
 )ENGINE=InnoDb;
 
 	# Tablero de actividades
-	CREATE TABLE tableroactividades(
+	CREATE TABLE tableroactividadesestudiantes(
 		id INT(3) AUTO_INCREMENT NOT NULL,
 		titulo VARCHAR(100) NOT NULL,
 		fecha DATE NOT NULL,
-		descripcion TEXT NOT NULL,
-		CONSTRAINT pk_tablero_actividades PRIMARY KEY (id)
+		detalle TEXT NOT NULL,
+		color VARCHAR(20) NOT NULL,
+		CONSTRAINT pk_tablero_actividades_estudiantes PRIMARY KEY (id)
+	)ENGINE=InnoDb;
+
+	CREATE TABLE tableroactividadesdocentes(
+		id INT(3) AUTO_INCREMENT NOT NULL,
+		titulo VARCHAR(100) NOT NULL,
+		fecha DATE NOT NULL,
+		detalle TEXT NOT NULL,
+		color VARCHAR(20) NOT NULL,
+		CONSTRAINT pk_tablero_actividades_docentes PRIMARY KEY (id)
 	)ENGINE=InnoDb;
 
 --  seleccionar todos los grados

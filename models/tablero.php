@@ -4,7 +4,7 @@ class Tablero
     private $id;
     private $titulo;
     private $fecha;
-    private $descripcion;
+    private $detalle;
     private $color;
     public $db;
 
@@ -76,19 +76,19 @@ class Tablero
     /**
      * @return mixed
      */
-    public function getDescripcion()
+    public function getDetalle()
     {
-        return $this->descripcion;
+        return $this->detalle;
     }
 
     /**
-     * @param mixed $descripcion
+     * @param mixed $detalle
      *
      * @return self
      */
-    public function setDescripcion($descripcion)
+    public function setDetalle($detalle)
     {
-        $this->descripcion = $descripcion;
+        $this->detalle = $detalle;
 
         return $this;
     }
@@ -114,17 +114,43 @@ class Tablero
     }
 
     # Metodo para guardar las actividades
-    public function saveActivity()
+    public function saveActivityStudents()
     {
         $title = $this->getTitulo();
         $date = $this->getFecha();
-        $description = $this->getDescripcion();
+        $description = $this->getDetalle();
         $colores = $this->getColor();
-        $guardar = $this->db->prepare("INSERT INTO tableroactividades VALUES(null, :titulo, :fecha, :des, :color)");
+        $guardar = $this->db->prepare("INSERT INTO tableroactividadesestudiantes VALUES(null, :titulo, :fecha, :des, :color)");
         $guardar->bindParam(":titulo", $title, PDO::PARAM_STR);
         $guardar->bindParam(":fecha", $date, PDO::PARAM_STR);
         $guardar->bindParam(":des", $description, PDO::PARAM_STR);
         $guardar->bindParam(":color", $colores, PDO::PARAM_STR);
         return $guardar->execute();
+    }
+    public function saveActivityTeachers()
+    {
+        $title = $this->getTitulo();
+        $date = $this->getFecha();
+        $description = $this->getDetalle();
+        $colores = $this->getColor();
+        $guardar = $this->db->prepare("INSERT INTO tableroactividadesdocentes VALUES(null, :titulo, :fecha, :des, :color)");
+        $guardar->bindParam(":titulo", $title, PDO::PARAM_STR);
+        $guardar->bindParam(":fecha", $date, PDO::PARAM_STR);
+        $guardar->bindParam(":des", $description, PDO::PARAM_STR);
+        $guardar->bindParam(":color", $colores, PDO::PARAM_STR);
+        return $guardar->execute();
+    }
+    # metodo para obtener todas las actividades
+    public function getAllActivitiesStudends()
+    {
+        $listar = $this->db->prepare("SELECT * FROM tableroactividadesestudiantes ORDER BY fecha ASC");
+        $listar->execute();
+        return $listar;
+    }
+    public function getAllActivitiesTeachers()
+    {
+        $listar = $this->db->prepare("SELECT * FROM tableroactividadesdocentes ORDER BY fecha ASC");
+        $listar->execute();
+        return $listar;
     }
 }
