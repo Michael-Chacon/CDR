@@ -21,10 +21,17 @@
 			<span class="valor_item text-center">Tablero de los estudiantes</span>
 				<?php if ($actividades_estudiantes->rowCount() != 0): ?>
 					<?php while ($actividad = $actividades_estudiantes->fetchObject()): ?>
-						<article class="col-xs-12 col-sm-12 col-md-6 col-lg-6 mt-2 mb-3">
+						<article class="col-xs-12 col-sm-12 col-md-6 col-lg-6 mt-3">
 							<div class="card shadow" style="border-left: 6px solid <?=$actividad->color?> !important;">
 								<div class="card-body">
-									<h6 class="card-subtitle mb-1 "><?=ucfirst($actividad->titulo)?></h6>
+									<div class="row">
+										<div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+											<h6 class="card-subtitle mb-1 "><?=ucfirst($actividad->titulo)?></h6>
+										</div>
+										<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+											<a onclick="return confirmar()" href="<?=base_url?>Tablero/eliminarTablero&id=<?=$actividad->id?>&usuario=estudiante"><i class="bi bi-trash efecto_hover"></i></a>
+										</div>
+									</div>
 									<p class="card-text "><?=$actividad->fecha?></p>
 									<!-- <a href="#" class="card-link">Ver</a> -->
 									<div class="d-grid gap-2">
@@ -54,7 +61,14 @@
 						<article class="col-xs-12 col-sm-12 col-md-6 col-lg-6 mt-2 mb-3">
 							<div class="card " style="border-right: 6px solid <?=$actividad_d->color?> !important;">
 								<div class="card-body">
-									<h6 class="card-subtitle mb-1 "><?=ucfirst($actividad_d->titulo)?></h6>
+									<div class="row">
+										<div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+											<h6 class="card-subtitle mb-1 "><?=ucfirst($actividad_d->titulo)?></h6>
+										</div>
+										<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+											<a onclick="return confirmar()" href="<?=base_url?>Tablero/eliminarTablero&id=<?=$actividad_d->id?>&usuario=docente"><i class="bi bi-trash efecto_hover"></i></a>
+										</div>
+									</div>
 									<p class="card-text "><?=$actividad_d->fecha?></p>
 									<!-- <a href="#" class="card-link">Ver</a> -->
 									<div class="d-grid gap-2">

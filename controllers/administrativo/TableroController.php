@@ -43,4 +43,28 @@ class TableroController
         header('Location:' . base_url . 'Tablero/tablero');
 
     }
+
+    # Eliminar actividad del tablero
+    public function eliminarTablero()
+    {
+        $id_actividad = $_GET['id'];
+        $usuario = $_GET['usuario'];
+
+        switch ($usuario) {
+            case 'estudiante':
+                $tabla = "tableroactividadesestudiantes";
+                break;
+            case 'docente':
+                $tabla = "tableroactividadesdocentes";
+                break;
+        }
+
+        $borrador = new Tablero();
+        $borrador->setId($id_actividad);
+        $borrador->setUsuario($tabla);
+        $resultado = $borrador->delecteActivity();
+
+        Utils::alertas($resultado, 'La actividad se ha eliminado del tablero exitosamente', 'Algo salió mal al intentar eliminar la actividad');
+        header('Location:' . base_url . 'Tablero/tablero');
+    }
 }

@@ -6,6 +6,7 @@ class Tablero
     private $fecha;
     private $detalle;
     private $color;
+    private $usuario;
     public $db;
 
     public function __construct()
@@ -112,6 +113,25 @@ class Tablero
 
         return $this;
     }
+    /**
+     * @return mixed
+     */
+    public function getUsuario()
+    {
+        return $this->usuario;
+    }
+
+    /**
+     * @param mixed $usuario
+     *
+     * @return self
+     */
+    public function setUsuario($usuario)
+    {
+        $this->usuario = $usuario;
+
+        return $this;
+    }
 
     # Metodo para guardar las actividades
     public function saveActivityStudents()
@@ -147,10 +167,22 @@ class Tablero
         $listar->execute();
         return $listar;
     }
+
     public function getAllActivitiesTeachers()
     {
         $listar = $this->db->prepare("SELECT * FROM tableroactividadesdocentes ORDER BY fecha ASC");
         $listar->execute();
         return $listar;
     }
+
+    # Eliminar actividad del tablero
+    public function delecteActivity()
+    {
+        $id_actividad = $this->getId();
+        $usuario = $this->getUsuario();
+        $delete = $this->db->prepare("DELETE FROM $usuario WHERE id = :id");
+        $delete->bindParam(":id", $id_actividad, PDO::PARAM_INT);
+        return $delete->execute();
+    }
+
 }
