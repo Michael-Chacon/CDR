@@ -142,7 +142,7 @@
 					</div>
 					<div class="form-check form-check-inline">
 						<input class="form-check-input" type="radio" name="destinatario" id="inlineRadio3" value="estudianteDocente">
-						<label class="form-check-label" for="inlineRadio3">Eestudiantes y docentes</label>
+						<label class="form-check-label" for="inlineRadio3">Estudiantes y docentes</label>
 					</div>
 					<div class="d-grid gap-2 mt-3">
 						<button class="btn btn-primary btn-sm" type="submit">Guardar actividad</button>

@@ -5,13 +5,15 @@ class DocumentoController
     public function vista_documentos()
     {
         $listado = new Documentos();
-        $documentos = $listado->listar();
+        $documentos_teacher = $listado->listarTeacher();
+        $documentos_students = $listado->listarStudents();
         require_once 'views/administrativo/documentos/home.php';
     }
 
     # guardar el documento
     public function guardar()
     {
+        $destinatario = $_POST['destinatario'];
         $descripcion = trim($_POST['descripcion']);
         $file = $_FILES['documento'];
         $name = $file['name'];
@@ -22,7 +24,21 @@ class DocumentoController
         $cargar = new Documentos();
         $cargar->setNombre($name);
         $cargar->setDescripcion($descripcion);
-        $resultado = $cargar->save();
+        switch ($destinatario) {
+            case 'estudiante':
+                $resultado = $cargar->saveStudents();
+                break;
+            case 'docente':
+                $resultado = $cargar->saveTeachers();
+                break;
+            case 'estudianteDocente':
+                $resultado = $cargar->saveStudents();
+                $resultado = $cargar->saveTeachers();
+                break;
+            default:
+                // code...
+                break;
+        }
         Utils::alertas($resultado, 'Documento guardado con éxito.', 'Algo salió mal al subir el documento, inténtelo de nuevo.');
         header('Location: ' . base_url . 'Documento/vista_documentos');
     }
@@ -31,7 +47,7 @@ class DocumentoController
     {
         $id = $_GET['id'];
         $nombre = $_GET['nombre'];
-        unlink('documentos/'. $nombre);
+        unlink('documentos/' . $nombre);
         $documento = new Documentos();
         $documento->setId($id);
         $respuesta = $documento->delete();

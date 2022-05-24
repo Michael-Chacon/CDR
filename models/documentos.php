@@ -135,12 +135,26 @@ class Documentos
         return $this;
     }
 
-    public function save()
+    public function saveTeachers()
     {
         try {
             $name = $this->getNombre();
             $description = $this->getDescripcion();
-            $guardar = $this->db->prepare("INSERT INTO documentos VALUES(null, :nombre, :descripcion);");
+            $guardar = $this->db->prepare("INSERT INTO documentosdocentes VALUES(null, :nombre, :descripcion);");
+            $guardar->bindParam(":nombre", $name, PDO::PARAM_STR);
+            $guardar->bindParam(":descripcion", $description, PDO::PARAM_STR);
+            return $guardar->execute();
+
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
+    public function saveStudents()
+    {
+        try {
+            $name = $this->getNombre();
+            $description = $this->getDescripcion();
+            $guardar = $this->db->prepare("INSERT INTO documentosestudiantes VALUES(null, :nombre, :descripcion);");
             $guardar->bindParam(":nombre", $name, PDO::PARAM_STR);
             $guardar->bindParam(":descripcion", $description, PDO::PARAM_STR);
             return $guardar->execute();
@@ -150,9 +164,16 @@ class Documentos
         }
     }
 
-    public function listar()
+    public function listarTeacher()
     {
-        $obtener = $this->db->prepare("SELECT * FROM documentos");
+        $obtener = $this->db->prepare("SELECT * FROM documentosdocentes");
+        $obtener->execute();
+        return $obtener;
+    }
+
+    public function listarStudents()
+    {
+        $obtener = $this->db->prepare("SELECT * FROM documentosestudiantes");
         $obtener->execute();
         return $obtener;
     }
@@ -160,7 +181,7 @@ class Documentos
     public function delete()
     {
         $id_docu = $this->getId();
-        $eliminar = $this->db->prepare("DELETE FROM documentos WHERE id = :id;");
+        $eliminar = $this->db->prepare("DELETE FROM documentosdocentes WHERE id = :id;");
         $eliminar->bindParam(":id", $id_docu, PDO::PARAM_INT);
         return $eliminar->execute();
     }

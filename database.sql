@@ -303,11 +303,18 @@ CREATE TABLE viernes(
 	CONSTRAINT fK_materia_viernes FOREIGN KEY(id_materia_viernes) REFERENCES materia(id) ON DELETE CASCADE
 )ENGINE=InnoDb;
 
-CREATE TABLE documentos(
+CREATE TABLE documentosdocentes(
 	id INT(4) AUTO_INCREMENT NOT NULL,
 	nombre  VARCHAR(255) NOT NULL, 
 	descripcion VARCHAR(100) NOT NULL,
-	CONSTRAINT pk_documentos PRIMARY KEY(id)
+	CONSTRAINT pk_documentos_docentes PRIMARY KEY(id)
+)ENGINE=InnoDb;
+
+CREATE TABLE documentosestudiantes(
+	id INT(4) AUTO_INCREMENT NOT NULL,
+	nombre  VARCHAR(255) NOT NULL,
+	descripcion VARCHAR(100) NOT NULL,
+	CONSTRAINT pk_documentos_estudiantes PRIMARY KEY(id)
 )ENGINE=InnoDb;
 
 # tablas nuevas

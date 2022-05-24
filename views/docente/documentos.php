@@ -9,26 +9,26 @@
 </section>
 <section class="container-fluid mt-5">
     <section class="row">
-        <article class="col-md-3">
             <?php if($documentos->rowCount() != 0 ): ?>
                 <?php while($documento = $documentos->fetchObject()): ?>
-                    <div class="card border-success mb-3 shadow" style="max-width: 18rem;">
-                      <div class="card-body text-success">
+                <article class="col-md-4">
+                    <div class="card mb-3 shadow" >
+                      <div class="card-body">
                         <h5 class="card-title"><?=$documento->nombre?></h5>
                         <p class="card-text"><?=$documento->descripcion?></p>
                     </div>
-                    <div class="card-footer bg-transparent border-success text-center ">
+                    <div class="card-footer  text-center ">
                         <a download="<?=$documento->nombre?>" href="<?=base_url?>documentos/<?=$documento->nombre?>">
                             <i class="bi bi-download icono_docu"> Descargar</i>
                         </a>
                     </div>
                 </div>
+                </article>
             <?php endwhile; ?>
         <?php else:?>
          <div class="alert alert-danger text-center" role="alert">
             No hay documentos.
         </div>
-    </article>
     <?php endif; ?>
     </section>
 </section>
