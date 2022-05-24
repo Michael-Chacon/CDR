@@ -179,6 +179,12 @@ class Tablero
         $listar->execute();
         return $listar;
     }
+    public function getAllActivitiesTeachersLimit()
+    {
+        $listar = $this->db->prepare("SELECT * FROM tableroactividadesdocentes ORDER BY fecha ASC");
+        $listar->execute();
+        return $listar;
+    }
 
     # Eliminar actividad del tablero
     public function delecteActivity()
@@ -190,4 +196,11 @@ class Tablero
         return $delete->execute();
     }
 
+    # Contar las actividades que hay en el tablero de docentes o estudiantes
+    public function totalActividades($tabla)
+    {
+        $total = $this->db->prepare("SELECT COUNT(id) AS 'countActivityes' FROM $tabla");
+        $total->execute();
+        return $total->fetchObject();
+    }
 }

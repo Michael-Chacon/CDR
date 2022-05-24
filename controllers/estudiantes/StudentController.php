@@ -16,6 +16,7 @@ class StudentController
         # Tablero de actividades
         $tablero = new Tablero();
         $actividades_estudiantes = $tablero->getAllActivitiesStudendsLimit();
+        $total_actividades = $tablero->totalActividades("tableroactividadesestudiantes");
         # Horario de clase
         $dia = new Horario();
         $grado = $_SESSION['student']['id_gradoE'];

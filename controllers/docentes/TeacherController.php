@@ -3,6 +3,7 @@ require_once 'models/asignaciones.php';
 require_once 'models/horario.php';
 require_once 'models/documentos.php';
 require_once 'models/docente.php';
+require_once 'models/tablero.php';
 
 class TeacherController
 {
@@ -12,6 +13,10 @@ class TeacherController
         $grados = new Asignaciones();
         $grados->setIdDocente($id_docente);
         $mis_grados = $grados->docenteGrados();
+        # Tablero de tareas
+        $tablero = new Tablero();
+        $actividades_docentes = $tablero->getAllActivitiesTeachersLimit();
+        $total_actividades = $tablero->totalActividades("tableroactividadesdocentes");
         # horario
         $dia = new Horario();
         $dia->setId($id_docente);

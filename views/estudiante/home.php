@@ -1,4 +1,4 @@
-<section class="container-fluid">
+ <section class="container-fluid">
 	<main class="row">
 		<section class="col-md-9">
 			<section class="row">
@@ -279,10 +279,10 @@
 								</div>
 							</div>
 					<?php endwhile;?>
-					<div class="card shadow mt-5">
-						<div class="card-body text-center">
-							<a href="#" class="card-link">Ver todas las actividades</a>
-						</div>
+					<div class="d-grid gap-2">
+						<a  href="<?=base_url?>Tablero/verActividades&user=<?=Utils::encryption("estudiante")?>" type="button" class="btn btn-outline-primary position-relative">
+							Ver todas las actividades<span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"><?=$total_actividades->countActivityes?> <span class="visually-hidden">unread messages</span></span>
+						</a>
 					</div>
 				<?php else: ?>
 					<div class="card shadow mt-3">

@@ -67,4 +67,19 @@ class TableroController
         Utils::alertas($resultado, 'La actividad se ha eliminado del tablero exitosamente', 'Algo salió mal al intentar eliminar la actividad');
         header('Location:' . base_url . 'Tablero/tablero');
     }
+
+    # Metodo para listar todas las actividades de estudiantes o docentes
+    public function verActividades()
+    {
+        $usuario = Utils::decryption($_GET['user']);
+        $tablero = new Tablero();
+        if ($usuario == 'docente') {
+            $listado_actividades = $tablero->getAllActivitiesTeachers();
+        } elseif ($usuario == 'estudiante') {
+            $listado_actividades = $tablero->getAllActivitiesStudends();
+        } else {
+            Utils::Error404();
+        }
+        require_once 'views/administrativo/tablero/actividades.php';
+    }
 }

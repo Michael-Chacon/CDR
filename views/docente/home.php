@@ -8,14 +8,17 @@
                     </article>
                 </section>
             </section>
-            <section class="container-fluit">
+            <section class="container-fluid">
+                <main class="row">
+                    <section class="col-md-9">
+
                 <section class="row">
                     <h3 class="text-center mt-2 mb-5">
                         Grados
                     </h3>
                     <?php if ($mis_grados->rowCount() != 0): ?>
                         <?php while ($grado = $mis_grados->fetchObject()): ?>
-                    <article class="col-xs-12 col-sm-4 col-md-2 col-xl-2 mb-2">
+                    <article class="col-xs-12 col-sm-4 col-md-2 col-lg-3 col-xl-3 mb-2">
                         <article class="card text-center shadow option">
                             <div class="card-body contenido-card">
                                 <div class="row">
@@ -319,4 +322,38 @@
                         </div>
                     </article>
                 </section>
+                    </section>
+                    <section class="col-md-3">
+                        <span class="valor_item text-center">Tablero de actividades</span>
+                        <?php if ($actividades_docentes->rowCount() != 0): ?>
+                            <?php while ($actividad = $actividades_docentes->fetchObject()): ?>
+                                <div class="card shadow mt-3 mb-3" style="border-left: 6px solid <?=$actividad->color?> !important;">
+                                    <div class="card-body">
+                                        <h6 class="card-subtitle mb-1 "><?=ucfirst($actividad->titulo)?></h6>
+                                        <p class="card-text "><?=$actividad->fecha?></p>
+                                        <div class="d-grid gap-2">
+                                            <a class="btn btn-outline-dark btn-sm" data-bs-toggle="collapse" href="#info_estudiante<?=$actividad->id?>"  aria-expanded="false" aria-controls="info">Detalles de la actividad
+                                            </a>
+                                        </div>
+                                        <div class="collapse multi-collapse mt-3" id="info_estudiante<?=$actividad->id?>">
+                                            <hr style="border: 1px solid <?=$actividad->color?>!important;">
+                                            <span><?=$actividad->detalle?></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            <?php endwhile;?>
+                            <div class="d-grid gap-2 shadow">
+                                <a  href="<?=base_url?>Tablero/verActividades&user=<?=Utils::encryption("docente")?>" type="button" class="btn btn-outline-primary position-relative">
+                                    Ver todas las actividades<span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"><?=$total_actividades->countActivityes?> <span class="visually-hidden">unread messages</span></span>
+                                </a>
+                            </div>
+                        <?php else: ?>
+                            <div class="card shadow mt-3">
+                                <div class="card-body">
+                                    No hay actividades en el tablero.
+                                </div>
+                            </div>
+                        <?php endif;?>
+                    </section>
+                </main>
             </section>
