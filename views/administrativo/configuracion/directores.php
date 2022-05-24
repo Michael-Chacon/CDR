@@ -46,7 +46,7 @@
 					</div>
 				</div>
 			<?php else: ?>
-				<div class="alert alert-danger" role="alert">
+				<div class="alert alert-danger text-center" role="alert">
 					No hay directores de grado asignados.
 				</div>
 			<?php endif; ?>

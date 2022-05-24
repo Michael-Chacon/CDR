@@ -9,8 +9,7 @@
 	</section>
 	<?php echo Utils::getAlert(); ?>
 	<?php Utils::borrar_error('alert');?>
-	<?php echo Utils::general_alerts('validacion_fechas', '', 'Las fechas que acaba de ingresar se cruzan con la fecha de un periodo que ya existe.'); ?>
-	<?php echo Utils::general_alerts('validacion_numero', '', 'El número del periodo académico ya existe.'); ?>
+
 
 	<section class="row justify-content-center">
 		<small class="text-center mb-2">aaaa/mm/dd</small>

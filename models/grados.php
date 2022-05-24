@@ -90,7 +90,7 @@ class Grados
     {
         $grado = $this->getGrado();
         $consulta = $this->db->prepare("INSERT INTO grado VALUES(null, :g)");
-        $consulta->bindParam(":g", $grado, PDO::PARAM_INT);
+        $consulta->bindParam(":g", $grado, PDO::PARAM_STR);
         return $consulta->execute();
 
     }

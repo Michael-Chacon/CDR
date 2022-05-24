@@ -63,7 +63,7 @@
                     <form action="<?=base_url?>Grado/guardarGrado" method="post">
                         <div class="modal-body">
                             <div class="form-floating mb-3">
-                                <input class="form-control" id="grado" name="grado" placeholder="Grado" type="number" required="">
+                                <input class="form-control" id="grado" name="grado" placeholder="Grado" type="text" required="">
                                     <label for="grado">
                                         Grado:
                                     </label>

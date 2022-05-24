@@ -41,7 +41,7 @@ class Docente extends Usuarios
             $director = 'no';
             echo $img;
             if ($accion == 'guardar') {
-                $ed = Utils::hallarEdad();
+                $ed = Utils::hallarEdad($fe_na);
                 $registro = $this->db->prepare("INSERT INTO docente VALUES(null, :nombre, :apellidos, :fe_na, :edad, :genero, :tipo_id, :numeroid, :lu_ex, :fe_ex, :dir, :tel, :co, :reli, :incapacidad, :grupo_s, :rh, :fe_po, :nu_acta, :nu_resolucion, :pre, :no_pre, :pos, :no_pos, :img, :director);");
                 $registro->bindParam(':img', $img, PDO::PARAM_STR);
                 $registro->bindParam(':director', $director, PDO::PARAM_STR);

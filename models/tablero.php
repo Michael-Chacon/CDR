@@ -167,7 +167,12 @@ class Tablero
         $listar->execute();
         return $listar;
     }
-
+    public function getAllActivitiesStudendsLimit()
+    {
+        $listar = $this->db->prepare("SELECT * FROM tableroactividadesestudiantes ORDER BY fecha ASC LIMIT 4");
+        $listar->execute();
+        return $listar;
+    }
     public function getAllActivitiesTeachers()
     {
         $listar = $this->db->prepare("SELECT * FROM tableroactividadesdocentes ORDER BY fecha ASC");

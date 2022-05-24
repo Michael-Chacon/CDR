@@ -4,6 +4,7 @@ require_once 'models/horario.php';
 require_once 'models/padres.php';
 require_once 'models/estudiante.php';
 require_once 'models/observador.php';
+require_once 'models/tablero.php';
 class StudentController
 {
     public function homeEstudiante()
@@ -12,6 +13,9 @@ class StudentController
         $listado_materias->setId($_SESSION['student']['id_estudiante']);
         $materias = $listado_materias->subjectStudent();
 
+        # Tablero de actividades
+        $tablero = new Tablero();
+        $actividades_estudiantes = $tablero->getAllActivitiesStudendsLimit();
         # Horario de clase
         $dia = new Horario();
         $grado = $_SESSION['student']['id_gradoE'];
