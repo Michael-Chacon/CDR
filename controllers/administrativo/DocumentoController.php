@@ -45,12 +45,24 @@ class DocumentoController
 
     public function eliminar()
     {
+        $usuario = $_GET['user'];
+        switch ($usuario) {
+            case 'estudiante':
+                $tabla = 'documentosestudiantes';
+                break;
+            case 'docente':
+                $tabla = 'documentosdocentes';
+                break;
+            default:
+                Utils::Error404();
+                break;
+        }
         $id = $_GET['id'];
         $nombre = $_GET['nombre'];
         unlink('documentos/' . $nombre);
         $documento = new Documentos();
         $documento->setId($id);
-        $respuesta = $documento->delete();
+        $respuesta = $documento->delete($tabla);
         Utils::alertas($respuesta, 'Documento eliminado con éxito.', 'Algo salió mal al eliminar el documento, inténtelo de nuevo.');
         header('Location: ' . base_url . 'Documento/vista_documentos');
     }

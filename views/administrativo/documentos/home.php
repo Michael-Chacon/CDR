@@ -23,13 +23,14 @@
     			<?php if ($documentos_teacher->rowCount() != 0): ?>
     				<?php while ($documento = $documentos_teacher->fetchObject()): ?>
     					<section class="col-md-6 mb-2">
-    						<div class="card shadow">
+    						<div class="card shadow" style="border-left: 5px solid purple;">
     							<div class="card-body">
     								<h6 class="card-subtitle mb-2 text-muted "><?=$documento->nombre?></h6>
     								<p class="card-text "><?=$documento->descripcion?></p>
+    								<hr>
     								<div class="row text-center">
     									<div class="col-md-6">
-    										<a href="<?=base_url?>Documento/eliminar&id=<?=$documento->id?>&nombre=<?=$documento->nombre?>" onclick="return confirm('Esta seguro de eliminar el archivo?');" class="card-link"><i class="bi bi-trash icono_docu" style="font-size: 1.5rem;"></i></a>
+    										<a href="<?=base_url?>Documento/eliminar&id=<?=$documento->id?>&nombre=<?=$documento->nombre?>&user=docente" onclick="return confirm('Esta seguro de eliminar el archivo?');" class="card-link"><i class="bi bi-trash icono_docu" style="font-size: 1.5rem;"></i></a>
     									</div>
     									<div class="col-md-6">
     										<a download="<?=$documento->nombre?>" href="<?=base_url?>documentos/<?=$documento->nombre?>" class="card-link"><i class="bi bi-download icono_docu" style="font-size: 1.5rem;"></i></a>
@@ -40,9 +41,13 @@
     					</section>
     				<?php endwhile;?>
     			<?php else: ?>
-    				<div class="alert alert-danger text-center" role="alert">
-    					No hay documentos registrados.
-    				</div>
+    				<article class="row justify-content-center">
+    					<article class="col-md-6">
+    						<div class="alert alert-danger text-center" role="alert">
+    							No hay documentos registrados.
+    						</div>
+    					</article>
+    				</article>
     			<?php endif;?>
     		</article>
     	</section>
@@ -52,13 +57,14 @@
     			<?php if ($documentos_students->rowCount() != 0): ?>
     				<?php while ($documento = $documentos_students->fetchObject()): ?>
     					<section class="col-md-6 mb-2">
-    						<div class="card shadow">
+    						<div class="card shadow" style="border-right: 5px solid teal;">
     							<div class="card-body">
     								<h6 class="card-subtitle mb-2 text-muted "><?=$documento->nombre?></h6>
     								<p class="card-text "><?=$documento->descripcion?></p>
+    								<hr>
     								<div class="row text-center">
     									<div class="col-md-6">
-    										<a href="<?=base_url?>Documento/eliminar&id=<?=$documento->id?>&nombre=<?=$documento->nombre?>" onclick="return confirm('Esta seguro de eliminar el archivo?');" class="card-link"><i class="bi bi-trash icono_docu" style="font-size: 1.5rem;"></i></a>
+    										<a href="<?=base_url?>Documento/eliminar&id=<?=$documento->id?>&nombre=<?=$documento->nombre?>&user=estudiante" onclick="return confirm('Esta seguro de eliminar el archivo?');" class="card-link"><i class="bi bi-trash icono_docu" style="font-size: 1.5rem;"></i></a>
     									</div>
     									<div class="col-md-6">
     										<a download="<?=$documento->nombre?>" href="<?=base_url?>documentos/<?=$documento->nombre?>" class="card-link"><i class="bi bi-download icono_docu" style="font-size: 1.5rem;"></i></a>
@@ -69,9 +75,13 @@
     					</section>
     				<?php endwhile;?>
     			<?php else: ?>
-    				<div class="alert alert-danger text-center" role="alert">
-    					No hay documentos registrados.
-    				</div>
+    				<article class="row justify-content-center">
+    					<article class="col-md-6">
+    						<div class="alert alert-danger text-center" role="alert">
+    							No hay documentos registrados.
+    						</div>
+    					</article>
+    				</article>
     			<?php endif;?>
     		</article>
     	</section>

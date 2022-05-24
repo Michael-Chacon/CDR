@@ -9,8 +9,8 @@
 </section>
 <section class="container-fluid mt-5">
     <section class="row">
-            <?php if($documentos->rowCount() != 0 ): ?>
-                <?php while($documento = $documentos->fetchObject()): ?>
+            <?php if ($documentos->rowCount() != 0): ?>
+                <?php while ($documento = $documentos->fetchObject()): ?>
                 <article class="col-md-4">
                     <div class="card mb-3 shadow" >
                       <div class="card-body">
@@ -24,11 +24,15 @@
                     </div>
                 </div>
                 </article>
-            <?php endwhile; ?>
-        <?php else:?>
-         <div class="alert alert-danger text-center" role="alert">
-            No hay documentos.
-        </div>
-    <?php endif; ?>
+            <?php endwhile;?>
+        <?php else: ?>
+            <article class="row justify-content-center">
+                <article class="col-md-6">
+                    <div class="alert alert-danger text-center" role="alert">
+                        No hay documentos registrados.
+                    </div>
+                </article>
+            </article>
+    <?php endif;?>
     </section>
 </section>

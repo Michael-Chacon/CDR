@@ -46,7 +46,11 @@ class TeacherController
     public function documentos()
     {
         $listado = new Documentos();
-        $documentos = $listado->listar();
+        if (isset($_SESSION['student'])) {
+            $documentos = $listado->listarStudents();
+        } elseif (isset($_SESSION['teacher'])) {
+            $documentos = $listado->listarTeacher();
+        }
         require_once 'views/docente/documentos.php';
     }
 

@@ -178,10 +178,10 @@ class Documentos
         return $obtener;
     }
 
-    public function delete()
+    public function delete($tabla)
     {
         $id_docu = $this->getId();
-        $eliminar = $this->db->prepare("DELETE FROM documentosdocentes WHERE id = :id;");
+        $eliminar = $this->db->prepare("DELETE FROM $tabla WHERE id = :id;");
         $eliminar->bindParam(":id", $id_docu, PDO::PARAM_INT);
         return $eliminar->execute();
     }
