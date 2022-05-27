@@ -11,6 +11,7 @@ CREATE TABLE materias_base(
 	id_base INT(4) AUTO_INCREMENT NOT NULL,
 	id_area_m INT(4) NOT NULL,
 	nombre_materia VARCHAR(50) NOT NULL,
+	porcentaje_materia_b INT(3) NOT NULL,
 	icono VARCHAR(60) NOT NULL,
 	CONSTRAINT pk_materias_base PRIMARY KEY (id_base),
 	CONSTRAINT fk_base_area FOREIGN KEY (id_area_m) REFERENCES areas(id_area) ON DELETE CASCADE
@@ -22,6 +23,7 @@ CREATE TABLE materia(
 		id_materia_area INT(4) NOT NULL,
 		nombre_mat VARCHAR(30) NOT NULL,
 		indicadores_mat TEXT NOT NULL,
+		porcentaje_materia INT(3) NOT NULL,
 		icono VARCHAR(30)  NOT NULL,
 		asignacion VARCHAR(2) NOT NULL,
 		CONSTRAINT pk_materias PRIMARY KEY(id),
@@ -370,7 +372,7 @@ CREATE TABLE director(
 CREATE TABLE areas(
 	id_area INT(3) AUTO_INCREMENT NOT NULL,
 	nombre_area VARCHAR (60) NOT NULL,
-	CONSTRAINT pk_area PRIMARY KEY(id_area)
+	CONSTRAINT pk_area PRIMARY KEY(id_area) ON DELETE CASCADE
 )ENGINE=InnoDb;
 
 CREATE TABLE aulaGrado(

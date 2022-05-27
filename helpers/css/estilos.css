@@ -433,7 +433,7 @@ hr {
 }
 .nombre-apellidos-numero {
     font-size: 20px;
-    padding-top: 12px;
+    /*padding-top: 12px;*/
 }
 .estado-aula {
     font-size: 15px;

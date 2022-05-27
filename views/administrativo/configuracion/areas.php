@@ -28,68 +28,70 @@
 		</article>
 	</section>
 	<?php echo Utils::getAlert() ?>
-
 	<?php Utils::borrar_error('alert');?>
 	<!-- contenido de la pagina  -->
 	<section class="row mt-4">
-		<article class="col-xs-12 col-sm-12 col-md-7 col-lg-7 text-center">
+		<article class="col-xs-12 col-sm-12 col-md-7 col-lg-7 ">
 			<span>Areas</span>
 			<?php if ($areas->rowCount() != 0):
-				$c = 1;?>
-				<?php while ($area = $areas->fetchObject()): ?>
-					<ul class="list-group mb-1 shadow">
-						<li class="list-group-item fila-estudiante">
-							<div class="row">
-								<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 nombre-apellidos-numero">
-									<?=$c++?>
+    			$c = 1;?>
+					<?php while ($area = $areas->fetchObject()): ?>
+						<ul class="list-group mb-1 shadow">
+							<li class="list-group-item fila-estudiante">
+								<div class="row">
+									<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 nombre-apellidos-numero">
+										<?=$c++?>
+									</div>
+									<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8 nombre-apellidos-numero">
+										<?=$area->nombre_area?>
+									</div>
+									<div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 nombre-apellidos-numero">
+										<span style="color:<?=$area->color?>">●</span>
+									</div>
+									<div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 nombre-apellidos-numero">
+										<a onclick="return (confirmar())" href="<?=base_url?>Configuracion/eliminar_area&id=<?=$area->id_area?>"  class="efecto_hover">
+											<i class="bi bi-trash"></i>
+										</a>
+									</div>
 								</div>
-								<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8 nombre-apellidos-numero">
-									<?=$area->nombre_area?>
-								</div>
-								<div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 nombre-apellidos-numero">
-									<span style="color:<?=$area->color?>">●</span>
-								</div>
-								<div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 nombre-apellidos-numero">
-									<a onclick="return (confirmar())" href="<?=base_url?>Configuracion/eliminar_area&id=<?=$area->id_area?>"  class="efecto_hover">
-										<i class="bi bi-trash"></i>
-									</a>
-								</div>
-							</div>
-						</li>
-					</ul>
-				<?php endwhile;?>
+							</li>
+						</ul>
+					<?php endwhile;?>
 			<?php else: ?>
 				<div class="alert alert-danger text-center" role="alert">
 					No hay areas registradas
 				</div>
 			<?php endif;?>
 		</article>
-		<article class="col-xs-12 col-sm-12 col-md-5 col-lg-5 text-center ">
+		<article class="col-xs-12 col-sm-12 col-md-5 col-lg-5 ">
 			<span class="text-center">Materias</span>
 			<?php if ($listado_materias->rowCount() != 0):
-				$c = 1;?>
-				<?php while ($materia = $listado_materias->fetchObject()): ?>
-					<ul class="list-group mb-1 shadow">
-						<li class="list-group-item fila-estudiante">
-							<div class="row">
-								<div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 nombre-apellidos-numero">
-									<?=$c++?>
+    		$c = 1;?>
+					<?php while ($materia = $listado_materias->fetchObject()): ?>
+						<ul class="list-group mb-1 shadow">
+							<li class="list-group-item fila-estudiante">
+								<div class="row">
+									<div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 nombre-apellidos-numero">
+										<?=$c++?>
+									</div>
+									<div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 nombre-apellidos-numero">
+										<i class="<?=$materia->icono?>"></i> <?=$materia->nombre_materia?>
+									</div>
+									<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 nombre-apellidos-numero">
+										<?=$materia->porcentaje_materia_b?>%
+									</div>
+									<div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 nombre-apellidos-numero">
+										<span style="color:<?=$materia->color?>">●</span>
+									</div>
+									<div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 nombre-apellidos-numero">
+										<a onclick="return (confirmar())" href="<?=base_url?>Configuracion/eliminar_materia_base&id=<?=$materia->id_base?>"  class="efecto_hover">
+											<i class="bi bi-trash"></i>
+										</a>
+									</div>
 								</div>
-								<div class="col-xs-9 col-sm-9 col-md-9 col-lg-9 nombre-apellidos-numero">
-									<i class="<?=$materia->icono?>"></i> <?=$materia->nombre_materia?>
-								</div>
-								<div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 nombre-apellidos-numero">
-									<span style="color:<?=$materia->color?>">●</span>
-								</div>
-								<div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 nombre-apellidos-numero">
-									<a onclick="return (confirmar())" href="<?=base_url?>Configuracion/eliminar_materia_base&id=<?=$materia->id_base?>"  class="efecto_hover">
-										<i class="bi bi-trash"></i>
-									</a>
-								</div>
-							</div>
-						</li>
-					</ul>
-				<?php endwhile;?>
+							</li>
+						</ul>
+					<?php endwhile;?>
 			<?php else: ?>
 				<div class="alert alert-danger text-center" role="alert">
 					No hay materias registradas
@@ -144,6 +146,11 @@
 					</div>
 					<hr>
 					<div class="mb-3">
+						<label for="materia" class="form-label">Porcentaje:</label>
+						<input type="number" name="porcentaje" class="form-control" id="materia" placeholder="Porcentaje de la materia" required>
+					</div>
+					<hr/>
+					<div class="mb-3">
 						<label for="icono" class="form-label">Icono de la materia:</label>
 						<input type="text" name="icono" class="form-control" id="icono" placeholder="Icono">
 						<div id="emailHelp" class="form-text"><a href="" data-bs-target="#segundo" data-bs-toggle="modal" data-bs-dismiss="modal">Listado de iconos</a></div>
@@ -153,9 +160,9 @@
 						<label for="area" class="form-label">Área a la que pertenece la materia:</label>
 						<select class="form-select" aria-label="Default select example" id="area" name="area" required>
 							<option></option>
-							<?php while($area_base = $areas_materia->fetchObject()): ?>
+							<?php while ($area_base = $areas_materia->fetchObject()): ?>
 							<option value="<?=$area_base->id_area?>"><?=$area_base->nombre_area?></option>
-						<?php endwhile; ?>
+						<?php endwhile;?>
 						</select>
 					</div>
 				</div>

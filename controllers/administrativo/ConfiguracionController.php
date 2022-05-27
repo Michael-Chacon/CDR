@@ -90,7 +90,7 @@ class ConfiguracionController
 
     public function guardar_area()
     {
-        $nombre = strtoupper($_POST['area']);
+        $nombre = mb_strtoupper($_POST['area'], 'UTF-8');
         $color = $_POST['color'];
         $duplicado = Utils::validarExistenciaDUnCampo($nombre, 'areas', 'nombre_area');
         if ($duplicado == 0) {
@@ -146,10 +146,12 @@ class ConfiguracionController
     public function guardar_materia_base()
     {
         $materia = trim($_POST['materia']);
+        $porcentaje = $_POST['porcentaje'];
         $icono = trim($_POST['icono']);
         $area = $_POST['area'];
         $registrador = new Materias();
         $registrador->setMateria($materia);
+        $registrador->setPorcentaje($porcentaje);
         $registrador->setIcono($icono);
         $registrador->setArea($area);
         $respuesta = $registrador->saveBaseSubject();

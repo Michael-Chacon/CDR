@@ -9,6 +9,7 @@ class Materias
     protected $icono;
     protected $asignada;
     protected $area;
+    protected $porcentaje;
 
     public $db;
     public function __construct()
@@ -176,6 +177,26 @@ class Materias
         return $this;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getPorcentaje()
+    {
+        return $this->porcentaje;
+    }
+
+    /**
+     * @param mixed $porcentaje
+     *
+     * @return self
+     */
+    public function setPorcentaje($porcentaje)
+    {
+        $this->porcentaje = $porcentaje;
+
+        return $this;
+    }
+
     #mis metodos
     public function RegistrarMateria()
     {
@@ -240,11 +261,13 @@ class Materias
     public function saveBaseSubject()
     {
         $subject = $this->getMateria();
+        $porcentage = $this->getPorcentaje();
         $iconoS = $this->getIcono();
         $areaS = $this->getArea();
-        $base = $this->db->prepare("INSERT INTO materias_base VALUES(null, :area, :nombre, :icono)");
+        $base = $this->db->prepare("INSERT INTO materias_base VALUES(null, :area, :nombre, :porcentaje, :icono)");
         $base->bindParam(":area", $areaS, PDO::PARAM_INT);
         $base->bindParam(":nombre", $subject, PDO::PARAM_STR);
+        $base->bindParam(":porcentaje", $porcentage, PDO::PARAM_INT);
         $base->bindParam(":icono", $iconoS, PDO::PARAM_STR);
         return $base->execute();
     }
