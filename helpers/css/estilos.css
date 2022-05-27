@@ -1,6 +1,6 @@
 body {
     font-family: 'Montserrat', sans-serif;
-    background-color: #F9FAFD !important;
+    background-color: #F3F2EF !important;
 }
 div {
     background: white;
@@ -13,7 +13,7 @@ hr {
 }
 .menu-items:hover {
     font-weight: 600;
-    color: #7B368F !important;
+    color: teal !important;
 }
 /*
 =========================================
@@ -202,9 +202,9 @@ hr {
     margin-bottom: 30px;
 }
 .option:hover {
-    border-top: 4px solid #7B368F !important;
-    border: 2px solid #7B368F;
-    color: #7B368F;
+    border-top: 4px solid teal !important;
+    border: 2px solid teal;
+    color: teal;
 }
 .cdr {
     margin-left: 20px;
@@ -638,4 +638,13 @@ hr {
 
 .detalle {
     /*text-align: justify;*/
+}
+.logos-footer{
+    width: 80px;
+    height: 80px;
+}
+
+.footer{
+    padding-top: 30px;
+    padding-bottom: 10px;
 }

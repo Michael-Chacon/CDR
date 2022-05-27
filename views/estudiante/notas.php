@@ -30,7 +30,7 @@
 						No hay docente
 					<?php endif;?>
 					</h5>
-					<p class="text-center subtitulo">Docente</p>
+					<p class="text-center text-secondary">Docente</p>
 					<p class="text-center"><strong class="correo_d">Correo del docente:</strong> <?php if (!empty($docente->correo_d)): ?>
 					<?=$docente->correo_d?></p>
 				<?php else: ?>
@@ -675,18 +675,18 @@ if ($fechas_fallas->rowCount() != 0): ?>
 							<?php while ($fechas = $fechas_fallas->fetchObject()):
     $f++;
     ?>
-											<tr>
-												<td>
-													<?=$f?>
-												</td>
-												<td>
-													<?=$fechas->fecha_falla?>
-												</td>
-												<td>
-													<?=$fechas->id_periodo_f?>
-												</td>
-											</tr>
-										<?php endwhile;?>
+													<tr>
+														<td>
+															<?=$f?>
+														</td>
+														<td>
+															<?=$fechas->fecha_falla?>
+														</td>
+														<td>
+															<?=$fechas->id_periodo_f?>
+														</td>
+													</tr>
+												<?php endwhile;?>
 						</tbody>
 					</table>
 				<?php else: ?>
