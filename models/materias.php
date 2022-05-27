@@ -208,12 +208,14 @@ class Materias
             $gradoM = $this->getIdGradoM();
             $asignacion = 'no';
             $areaS = $this->getArea();
+            $porcentage = $this->getPorcentaje();
 
-            $registro = $this->db->prepare("INSERT INTO materia VALUES(null, :grado, :area, :nombre, :indicadores, :icono, :asignada)");
+            $registro = $this->db->prepare("INSERT INTO materia VALUES(null, :grado, :area, :nombre, :indicadores, :porcentaje, :icono, :asignada)");
             $registro->bindParam(":grado", $gradoM, PDO::PARAM_INT);
             $registro->bindParam(":area", $areaS, PDO::PARAM_INT);
             $registro->bindParam(":nombre", $materiaM, PDO::PARAM_STR);
             $registro->bindParam(":indicadores", $indicadorM, PDO::PARAM_STR);
+            $registro->bindParam(":porcentaje", $porcentage, PDO::PARAM_INT);
             $registro->bindParam(":icono", $iconoM, PDO::PARAM_STR);
             $registro->bindParam(':asignada', $asignacion, PDO::PARAM_STR);
             return $registro->execute();

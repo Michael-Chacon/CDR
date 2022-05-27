@@ -595,7 +595,7 @@
                       <select class="form-select" aria-label="Default select example" name="materia_area_icono" required="">
                         <option></option>
                         <?php while ($subjects = $listado_materias->fetchObject()): ?>
-                       <option value="<?=$subjects->nombre_materia?>/<?=$subjects->id_area_m?>/<?=$subjects->icono?>"><?=$subjects->nombre_materia?></option>
+                       <option value="<?=$subjects->nombre_materia?>/<?=$subjects->id_area_m?>/<?=$subjects->icono?>/<?=$subjects->porcentaje_materia_b?>"><?=$subjects->nombre_materia?></option>
                         <?php endwhile;?>
                    </select>
                    <label for="materia">

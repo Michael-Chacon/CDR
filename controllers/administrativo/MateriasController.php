@@ -57,6 +57,7 @@ class MateriasController
             $materia = $partes[0];
             $area = $partes[1];
             $icono = $partes[2];
+            $porcentaje = $partes[3];
             $indicador = trim($_POST['indicadores']);
             $grado = Utils::decryption($_POST['id_grado']);
 
@@ -64,15 +65,13 @@ class MateriasController
             $guardar->setIdGradoM($grado);
             $guardar->setMateria($materia);
             $guardar->setIndicadores($indicador);
+            $guardar->setPorcentaje($porcentaje);
             $guardar->setIcono($icono);
             $guardar->setArea($area);
             $resultado = $guardar->RegistrarMateria();
 
-            if ($resultado) {
-                $_SESSION['guardar_materia'] = 'Materia registrada con exito!!!';
-            } else {
-                $_SESSION['guardar_materia'] = 'Error al registrar la materia';
-            }
+            Utils::alertas($resultado, 'Materia registrada con exito!!!', 'Error al registrar la materia');
+
             header('Location:' . base_url . 'Materias/vista&id_grado=' . Utils::encryption($grado));
         }
     }
