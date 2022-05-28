@@ -438,8 +438,8 @@ id_periodo_Tindividual INT(3) NOT NULL,
 id_procedimental_Tindividual INT(3) NOT NULL,
 nota_Tindividual INT(2) NOT NULL,
 CONSTRAINT pk_trabajo_individual PRIMARY KEY (id_Tindividual),
-CONSTRAINT fk_estudiante_Tindividual FOREIGN KEY (id_estudiante_Tindividual) REFERENCES estudiante(id),
-CONSTRAINT	 fk_mateia_Tindividual FOREIGN KEY (id_materia_Tindividual) REFERENCES materia (id),
+CONSTRAINT fk_estudiante_Tindividual FOREIGN KEY (id_estudiante_Tindividual) REFERENCES estudiante(id) ON DELETE CASCADE,
+CONSTRAINT	 fk_mateia_Tindividual FOREIGN KEY (id_materia_Tindividual) REFERENCES materia (id) ON DELETE CASCADE,
 CONSTRAINT fk_periodo_Tindividual FOREIGN KEY (id_periodo_Tindividual) REFERENCES periodo (id),
 CONSTRAINT fk_cognitivo_Tindividual FOREIGN KEY (id_procedimental_Tindividual) REFERENCES procedimental (id_procedimental)
 )ENGINE=InnoDb;
@@ -452,8 +452,8 @@ id_periodo_Tcolaborativo INT(3) NOT NULL,
 id_procedimental_Tcolaborativo INT(3) NOT NULL,
 nota_Tcolaborativo INT(2) NOT NULL,
 CONSTRAINT pk_trabajo_colaborativo PRIMARY KEY (id_Tcolaborativo),
-CONSTRAINT fk_estudiante_Tcolaborativo FOREIGN KEY (id_estudiante_Tcolaborativo) REFERENCES estudiante(id),
-CONSTRAINT	 fk_mateia_Tcolaborativo FOREIGN KEY (id_materia_Tcolaborativo) REFERENCES materia (id),
+CONSTRAINT fk_estudiante_Tcolaborativo FOREIGN KEY (id_estudiante_Tcolaborativo) REFERENCES estudiante(id) ON DELETE CASCADE,
+CONSTRAINT	 fk_mateia_Tcolaborativo FOREIGN KEY (id_materia_Tcolaborativo) REFERENCES materia (id)  ON DELETE CASCADE,
 CONSTRAINT fk_periodo_Tcolaborativo FOREIGN KEY (id_periodo_Tcolaborativo) REFERENCES periodo (id),
 CONSTRAINT fk_cognitivo_Tcolaborativo FOREIGN KEY (id_procedimental_Tcolaborativo) REFERENCES procedimental (id_procedimental)
 )ENGINE=InnoDb;

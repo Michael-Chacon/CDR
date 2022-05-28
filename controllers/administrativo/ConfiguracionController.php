@@ -145,7 +145,7 @@ class ConfiguracionController
     // guardar las materias base
     public function guardar_materia_base()
     {
-        $materia = trim($_POST['materia']);
+        $materia = trim(ucfirst($_POST['materia']));
         $porcentaje = $_POST['porcentaje'];
         $icono = trim($_POST['icono']);
         $area = $_POST['area'];

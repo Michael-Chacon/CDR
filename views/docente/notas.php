@@ -51,7 +51,7 @@
                     <h5 class="card-subtitle  text-center">
                         <?=$estudiante->nombre_e?> <?=$estudiante->apellidos_e?>
                     </h5>
-                    <p class="text-center subtitulo">Estudiante</p>
+                    <p class="text-center subtitulo mt-1">Estudiante</p>
                     <div class="row">
                         <div class="col-md-6">
                             <button type="button" class="btn btn-outline-primary position-relative btn-sm mb-2" data-bs-toggle="modal" data-bs-target="#listadoFallas">
