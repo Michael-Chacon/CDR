@@ -583,7 +583,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">
-                        Asignar materias al grado
+                        Selecciona las materias que vas a asignar a este grado
                     </h5>
                     <button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button">
                     </button>
@@ -591,35 +591,23 @@
                 <form action="<?=base_url?>Materias/guardarMateria" method="post">
                     <div class="modal-body">
                      <input type="hidden" name="id_grado" id="" value="<?=$_GET['id_grado']?>">
-                     <div class="form-floating mb-3">
-                      <select class="form-select" aria-label="Default select example" name="materia_area_icono" required="">
-                        <option></option>
-                        <?php while ($subjects = $listado_materias->fetchObject()): ?>
-                       <option value="<?=$subjects->nombre_materia?>/<?=$subjects->id_area_m?>/<?=$subjects->icono?>/<?=$subjects->porcentaje_materia_b?>"><?=$subjects->nombre_materia?></option>
-                        <?php endwhile;?>
-                   </select>
-                   <label for="materia">
-                    Seleccione la materia:
-                </label>
+                     <ul class="list-group">
+                        <?php while($subjectss = $listado_materias->fetchObject()): ?>
+                          <li class="list-group-item">
+                            <input class="form-check-input me-1" type="checkbox" name="materia_area_iconos[]" value="<?=$subjectss->nombre_materia?>/<?=$subjectss->id_area_m?>/<?=$subjectss->icono?>/<?=$subjectss->porcentaje_materia_b?>" aria-label="...">
+                            <i class="<?=$subjectss->icono?>"></i> <?=$subjectss->nombre_materia?>
+                        </li>
+                    <?php endwhile; ?>
+                </ul>
             </div>
-            <div class="form-floating mb-3">
-                <div class="form-floating">
-                    <textarea class="form-control" id="indicadores" name="indicadores" placeholder="Leave a comment here" style="height:100px;" required="">
-                    </textarea>
-                    <label for="indicadores">
-                        Indicadores
-                    </label>
-                </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">
+                    Cancelar
+                </button>
+                <button class="btn btn-primary" type="submit">
+                    Registrar
+                </button>
             </div>
-        </div>
-        <div class="modal-footer">
-            <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">
-                Cancelar
-            </button>
-            <button class="btn btn-primary" type="submit">
-                Registrar
-            </button>
-        </div>
     </form>
 </div>
 </section>

@@ -198,27 +198,29 @@ class Materias
     }
 
     #mis metodos
-    public function RegistrarMateria()
+    public function RegistrarMateria($datos)
     {
         try {
-
-            $materiaM = $this->getMateria();
-            $indicadorM = $this->getIndicadores();
-            $iconoM = $this->getIcono();
-            $gradoM = $this->getIdGradoM();
+            $c = 0;
+            $indicador = 'Sin indicador';
             $asignacion = 'no';
-            $areaS = $this->getArea();
-            $porcentage = $this->getPorcentaje();
+            $gradoM = $this->getIdGradoM();
 
-            $registro = $this->db->prepare("INSERT INTO materia VALUES(null, :grado, :area, :nombre, :indicadores, :porcentaje, :icono, :asignada)");
-            $registro->bindParam(":grado", $gradoM, PDO::PARAM_INT);
-            $registro->bindParam(":area", $areaS, PDO::PARAM_INT);
-            $registro->bindParam(":nombre", $materiaM, PDO::PARAM_STR);
-            $registro->bindParam(":indicadores", $indicadorM, PDO::PARAM_STR);
-            $registro->bindParam(":porcentaje", $porcentage, PDO::PARAM_INT);
-            $registro->bindParam(":icono", $iconoM, PDO::PARAM_STR);
-            $registro->bindParam(':asignada', $asignacion, PDO::PARAM_STR);
-            return $registro->execute();
+            foreach ($datos as $valor) {
+                $parte = explode('/', $datos[$c++]);
+
+                $registro = $this->db->prepare("INSERT INTO materia VALUES(null, :grado, :area, :nombre, :indicadores, :porcentaje, :icono, :asignada)");
+                $registro->bindParam(":grado", $gradoM, PDO::PARAM_INT);
+                $registro->bindParam(":area", $parte[1], PDO::PARAM_INT);
+                $registro->bindParam(":nombre", $parte[0], PDO::PARAM_STR);
+                $registro->bindParam(":indicadores", $indicador, PDO::PARAM_STR);
+                $registro->bindParam(":porcentaje", $parte[3], PDO::PARAM_INT);
+                $registro->bindParam(":icono", $parte[2], PDO::PARAM_STR);
+                $registro->bindParam(':asignada', $asignacion, PDO::PARAM_STR);
+                $registro->execute();
+            }
+            return $registro;
+
         } catch (PDOException $e) {
             echo $e->getMessage();
         }

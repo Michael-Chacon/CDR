@@ -52,23 +52,13 @@ class MateriasController
     public function guardarMateria()
     {
         if (isset($_POST)) {
-            $materia_area_icono = $_POST['materia_area_icono'];
-            $partes = explode('/', $materia_area_icono);
-            $materia = $partes[0];
-            $area = $partes[1];
-            $icono = $partes[2];
-            $porcentaje = $partes[3];
-            $indicador = trim($_POST['indicadores']);
+            $materia_area_iconos = $_POST['materia_area_iconos'];
+
             $grado = Utils::decryption($_POST['id_grado']);
 
             $guardar = new Materias();
             $guardar->setIdGradoM($grado);
-            $guardar->setMateria($materia);
-            $guardar->setIndicadores($indicador);
-            $guardar->setPorcentaje($porcentaje);
-            $guardar->setIcono($icono);
-            $guardar->setArea($area);
-            $resultado = $guardar->RegistrarMateria();
+            $resultado = $guardar->RegistrarMateria($materia_area_iconos);
 
             Utils::alertas($resultado, 'Materia registrada con exito!!!', 'Error al registrar la materia');
 
