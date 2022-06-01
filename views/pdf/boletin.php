@@ -77,24 +77,36 @@ $mpdf->AddPage('P');
                     <td class="td-items-boletin texto-center">Fallas</td>
                 </tr>
             </thead>
-            <tbody>';
-            while($materias = $periodox->fetchObject()):
+            <tbody>
+            <tr>
+                <th class="td-items-boletin texto-center">MATEMÁTICAS</th>
+                <th class="td-items-boletin texto-center"></th>
+                <th class="td-items-boletin texto-center"></th>
+                <th class="td-items-boletin texto-center"></th>
+                <th class="td-items-boletin texto-center">'.$notaMatematicas.'</th>
+                <th class="td-items-boletin texto-center"></th>
+                <th class="td-items-boletin texto-center"></th>
+                <th class="td-items-boletin texto-center"></th>
+                <th class="td-items-boletin texto-center"></th>
+                <th class="td-items-boletin texto-center"></th>
+            </tr>';
+            while($matematicas = $areaMatermaticas->fetchObject()):
                 $html.='<tr>
-                    <td class="td-items-boletin">'.$materias->nombre_materia.'</td>
-                    <td class="td-items-boletin texto-observacion">'.$materias->observaciones.'</td>
-                    <td class="td-items-boletin">'.$materias->nombre_docente.'</td>
-                    <td class="td-items-boletin texto-center">'.$materias->recuperacion_nota.'</td>
-                    <td class="td-items-boletin texto-center">'.$materias->nota_periodo1.'</td>
-                    <td class="td-items-boletin texto-center">'.$materias->nota_periodo2.'</td>
-                    <td class="td-items-boletin texto-center">'.$materias->nota_periodo3.'</td>
-                    <td class="td-items-boletin texto-center">'.$materias->promedio_materia.'</td>
+                    <td class="td-items-boletin">'.$matematicas->nombre_materia.'</td>
+                    <td class="td-items-boletin texto-observacion">'.$matematicas->observaciones.'</td>
+                    <td class="td-items-boletin">'.$matematicas->nombre_docente.'</td>
+                    <td class="td-items-boletin texto-center">'.$matematicas->recuperacion_nota.'</td>
+                    <td class="td-items-boletin texto-center">'.$matematicas->nota_periodo1.'</td>
+                    <td class="td-items-boletin texto-center">'.$matematicas->nota_periodo2.'</td>
+                    <td class="td-items-boletin texto-center">'.$matematicas->nota_periodo3.'</td>
+                    <td class="td-items-boletin texto-center">'.$matematicas->promedio_materia.'</td>
                     <td class="td-items-boletin texto-center">';
                         if ($periodo == 1) {
-                            $desempeño = $materias->nota_periodo1;
+                            $desempeño = $matematicas->nota_periodo1;
                         }elseif ($periodo == 2) {
-                            $desempeño = $materias->nota_periodo2;
+                            $desempeño = $matematicas->nota_periodo2;
                         }elseif ($periodo == 3) {
-                            $desempeño = $materias->nota_periodo3;
+                            $desempeño = $matematicas->nota_periodo3;
                         }
                         echo $desempeño;
                          if ($desempeño >= 0 && $desempeño <= 31):
@@ -107,7 +119,183 @@ $mpdf->AddPage('P');
                             $html .= 'SUPERIOR';
                         endif;
                     $html .='</td>
-                    <td class="td-items-boletin texto-center">'.$materias->total_fallas_periodo.'</td>
+                    <td class="td-items-boletin texto-center">'.$matematicas->total_fallas_periodo.'</td>
+                </tr>';
+            endwhile;
+            $html .='<tr>
+                <th class="td-items-boletin texto-center">HUMANIDADES, LENGUAJE CASTELLANO</th>
+                <th class="td-items-boletin texto-center"></th>
+                <th class="td-items-boletin texto-center"></th>
+                <th class="td-items-boletin texto-center"></th>
+                <th class="td-items-boletin texto-center">'.$notaHumanidades.'</th>
+                <th class="td-items-boletin texto-center"></th>
+                <th class="td-items-boletin texto-center"></th>
+                <th class="td-items-boletin texto-center"></th>
+                <th class="td-items-boletin texto-center"></th>
+                <th class="td-items-boletin texto-center"></th>
+            </tr>';
+            while($humanidades = $areaHumanidades->fetchObject()):
+                $html.='<tr>
+                    <td class="td-items-boletin">'.$humanidades->nombre_materia.'</td>
+                    <td class="td-items-boletin texto-observacion">'.$humanidades->observaciones.'</td>
+                    <td class="td-items-boletin">'.$humanidades->nombre_docente.'</td>
+                    <td class="td-items-boletin texto-center">'.$humanidades->recuperacion_nota.'</td>
+                    <td class="td-items-boletin texto-center">'.$humanidades->nota_periodo1.'</td>
+                    <td class="td-items-boletin texto-center">'.$humanidades->nota_periodo2.'</td>
+                    <td class="td-items-boletin texto-center">'.$humanidades->nota_periodo3.'</td>
+                    <td class="td-items-boletin texto-center">'.$humanidades->promedio_materia.'</td>
+                    <td class="td-items-boletin texto-center">';
+                        if ($periodo == 1) {
+                            $desempeño = $humanidades->nota_periodo1;
+                        }elseif ($periodo == 2) {
+                            $desempeño = $humanidades->nota_periodo2;
+                        }elseif ($periodo == 3) {
+                            $desempeño = $humanidades->nota_periodo3;
+                        }
+                        echo $desempeño;
+                         if ($desempeño >= 0 && $desempeño <= 31):
+                            $html .= 'BAJO';
+                         elseif ($desempeño >= 32 && $desempeño <= 39):
+                            $html .= 'BÁSICO';
+                         elseif ($desempeño >= 40 && $desempeño <= 45):
+                            $html .= 'ALTO';
+                         elseif ($desempeño >= 46 && $desempeño <= 50):
+                            $html .= 'SUPERIOR';
+                        endif;
+                    $html .='</td>
+                    <td class="td-items-boletin texto-center">'.$humanidades->total_fallas_periodo.'</td>
+                </tr>';
+            endwhile;
+            $html .='<tr>
+                <th class="td-items-boletin texto-center">CIENCIAS NATURALES Y EDUCACIÓN AMBIENTAL</th>
+                <th class="td-items-boletin texto-center"></th>
+                <th class="td-items-boletin texto-center"></th>
+                <th class="td-items-boletin texto-center"></th>
+                <th class="td-items-boletin texto-center">'.$notaCiencias.'</th>
+                <th class="td-items-boletin texto-center"></th>
+                <th class="td-items-boletin texto-center"></th>
+                <th class="td-items-boletin texto-center"></th>
+                <th class="td-items-boletin texto-center"></th>
+                <th class="td-items-boletin texto-center"></th>
+            </tr>';
+            while($ciencias_naturales = $areaCiencias->fetchObject()):
+                $html.='<tr>
+                    <td class="td-items-boletin">'.$ciencias_naturales->nombre_materia.'</td>
+                    <td class="td-items-boletin texto-observacion">'.$ciencias_naturales->observaciones.'</td>
+                    <td class="td-items-boletin">'.$ciencias_naturales->nombre_docente.'</td>
+                    <td class="td-items-boletin texto-center">'.$ciencias_naturales->recuperacion_nota.'</td>
+                    <td class="td-items-boletin texto-center">'.$ciencias_naturales->nota_periodo1.'</td>
+                    <td class="td-items-boletin texto-center">'.$ciencias_naturales->nota_periodo2.'</td>
+                    <td class="td-items-boletin texto-center">'.$ciencias_naturales->nota_periodo3.'</td>
+                    <td class="td-items-boletin texto-center">'.$ciencias_naturales->promedio_materia.'</td>
+                    <td class="td-items-boletin texto-center">';
+                        if ($periodo == 1) {
+                            $desempeño = $ciencias_naturales->nota_periodo1;
+                        }elseif ($periodo == 2) {
+                            $desempeño = $ciencias_naturales->nota_periodo2;
+                        }elseif ($periodo == 3) {
+                            $desempeño = $ciencias_naturales->nota_periodo3;
+                        }
+                        echo $desempeño;
+                         if ($desempeño >= 0 && $desempeño <= 31):
+                            $html .= 'BAJO';
+                         elseif ($desempeño >= 32 && $desempeño <= 39):
+                            $html .= 'BÁSICO';
+                         elseif ($desempeño >= 40 && $desempeño <= 45):
+                            $html .= 'ALTO';
+                         elseif ($desempeño >= 46 && $desempeño <= 50):
+                            $html .= 'SUPERIOR';
+                        endif;
+                    $html .='</td>
+                    <td class="td-items-boletin texto-center">'.$ciencias_naturales->total_fallas_periodo.'</td>
+                </tr>';
+            endwhile;
+             $html .='<tr>
+                <th class="td-items-boletin texto-center">ÁREA TÉCNICA</th>
+                <th class="td-items-boletin texto-center"></th>
+                <th class="td-items-boletin texto-center"></th>
+                <th class="td-items-boletin texto-center"></th>
+                <th class="td-items-boletin texto-center">'.$notaTecnica.'</th>
+                <th class="td-items-boletin texto-center"></th>
+                <th class="td-items-boletin texto-center"></th>
+                <th class="td-items-boletin texto-center"></th>
+                <th class="td-items-boletin texto-center"></th>
+                <th class="td-items-boletin texto-center"></th>
+            </tr>';
+            while($modalidad = $areaTecnica->fetchObject()):
+                $html.='<tr>
+                    <td class="td-items-boletin">'.$modalidad->nombre_materia.'</td>
+                    <td class="td-items-boletin texto-observacion">'.$modalidad->observaciones.'</td>
+                    <td class="td-items-boletin">'.$modalidad->nombre_docente.'</td>
+                    <td class="td-items-boletin texto-center">'.$modalidad->recuperacion_nota.'</td>
+                    <td class="td-items-boletin texto-center">'.$modalidad->nota_periodo1.'</td>
+                    <td class="td-items-boletin texto-center">'.$modalidad->nota_periodo2.'</td>
+                    <td class="td-items-boletin texto-center">'.$modalidad->nota_periodo3.'</td>
+                    <td class="td-items-boletin texto-center">'.$modalidad->promedio_materia.'</td>
+                    <td class="td-items-boletin texto-center">';
+                        if ($periodo == 1) {
+                            $desempeño = $modalidad->nota_periodo1;
+                        }elseif ($periodo == 2) {
+                            $desempeño = $modalidad->nota_periodo2;
+                        }elseif ($periodo == 3) {
+                            $desempeño = $modalidad->nota_periodo3;
+                        }
+                        echo $desempeño;
+                         if ($desempeño >= 0 && $desempeño <= 31):
+                            $html .= 'BAJO';
+                         elseif ($desempeño >= 32 && $desempeño <= 39):
+                            $html .= 'BÁSICO';
+                         elseif ($desempeño >= 40 && $desempeño <= 45):
+                            $html .= 'ALTO';
+                         elseif ($desempeño >= 46 && $desempeño <= 50):
+                            $html .= 'SUPERIOR';
+                        endif;
+                    $html .='</td>
+                    <td class="td-items-boletin texto-center">'.$modalidad->total_fallas_periodo.'</td>
+                </tr>';
+            endwhile;
+            $html .='<tr>
+                <th class="td-items-boletin texto-center">SIN ÁREA</th>
+                <th class="td-items-boletin texto-center"></th>
+                <th class="td-items-boletin texto-center"></th>
+                <th class="td-items-boletin texto-center"></th>
+                <th class="td-items-boletin texto-center"></th>
+                <th class="td-items-boletin texto-center"></th>
+                <th class="td-items-boletin texto-center"></th>
+                <th class="td-items-boletin texto-center"></th>
+                <th class="td-items-boletin texto-center"></th>
+                <th class="td-items-boletin texto-center"></th>
+            </tr>';
+            while($demas = $sinArea->fetchObject()):
+                $html.='<tr>
+                    <td class="td-items-boletin">'.$demas->nombre_materia.'</td>
+                    <td class="td-items-boletin texto-observacion">'.$demas->observaciones.'</td>
+                    <td class="td-items-boletin">'.$demas->nombre_docente.'</td>
+                    <td class="td-items-boletin texto-center">'.$demas->recuperacion_nota.'</td>
+                    <td class="td-items-boletin texto-center">'.$demas->nota_periodo1.'</td>
+                    <td class="td-items-boletin texto-center">'.$demas->nota_periodo2.'</td>
+                    <td class="td-items-boletin texto-center">'.$demas->nota_periodo3.'</td>
+                    <td class="td-items-boletin texto-center">'.$demas->promedio_materia.'</td>
+                    <td class="td-items-boletin texto-center">';
+                        if ($periodo == 1) {
+                            $desempeño = $demas->nota_periodo1;
+                        }elseif ($periodo == 2) {
+                            $desempeño = $demas->nota_periodo2;
+                        }elseif ($periodo == 3) {
+                            $desempeño = $demas->nota_periodo3;
+                        }
+                        echo $desempeño;
+                         if ($desempeño >= 0 && $desempeño <= 31):
+                            $html .= 'BAJO';
+                         elseif ($desempeño >= 32 && $desempeño <= 39):
+                            $html .= 'BÁSICO';
+                         elseif ($desempeño >= 40 && $desempeño <= 45):
+                            $html .= 'ALTO';
+                         elseif ($desempeño >= 46 && $desempeño <= 50):
+                            $html .= 'SUPERIOR';
+                        endif;
+                    $html .='</td>
+                    <td class="td-items-boletin texto-center">'.$demas->total_fallas_periodo.'</td>
                 </tr>';
             endwhile;
             $html .='</tbody>
@@ -172,22 +360,22 @@ $mpdf->AddPage('P');
                 <tr>
                     <td class="td-firmas">ASIGNATURAS PERDIDAS</td>
                     <td class="td-firmas texto-center">';
-                        if(!empty($infoBoletinPeriodo1->perdidas1)):
-                            $html .= $infoBoletinPeriodo1->perdidas1;
+                        if(!empty($perdidasPeriodo1->perdidas1)):
+                            $html .= $perdidasPeriodo1->perdidas1;
                         else:
                             $html .= '0';
                         endif;
                 $html .= '</td>
                     <td class="td-firmas texto-center">';
-                        if(!empty($infoBoletinPeriodo2->perdidas1)):
-                            $html .= $infoBoletinPeriodo2->perdidas1;
+                        if(!empty($perdidasPeriodo2->perdidas1)):
+                            $html .= $perdidasPeriodo2->perdidas1;
                         else:
                             $html .= '0';
                         endif;
                 $html .= '</td>
                     <td class="td-firmas texto-center">';
-                        if(!empty($infoBoletinPeriodo3->perdidas1)):
-                            $html .= $infoBoletinPeriodo3->perdidas1;
+                        if(!empty($perdidasPeriodo3->perdidas1)):
+                            $html .= $perdidasPeriodo3->perdidas1;
                         else:
                             $html .= '0';
                         endif;
