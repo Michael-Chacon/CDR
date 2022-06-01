@@ -9,8 +9,8 @@
                     </section>
                     <h2 class="text-center">
                     </h2>
-                    <section class="row justify-content-center mt-5">
-                        <article class="col-xs-12 col-sm-12 col-md-4   col-lg-4 mb-4">
+                    <section class="row mt-5">
+                        <article class="col-xs-12 col-sm-12 col-md-6 col-lg-6 mb-4">
                     <?php echo Utils::getAlert(); ?>
                     <?php Utils::borrar_error('alert');?>
                             <form action="<?=base_url?>Asignaciones/registrarMateriasADocente" method="post">
@@ -48,7 +48,7 @@
                                 </div>
                             </form>
                         </article>
-                       <article class="col-xs-12 col-sm-12 col-md-4  col-lg-4 ">
+                       <article class="col-xs-12 col-sm-12 col-md-6  col-lg-6 ">
                         <?php echo Utils::getAlert(); ?>
                             <div class="card shadow">
                                     <h3 class="card-title text-center mt-2">

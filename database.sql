@@ -781,3 +781,9 @@ SELECT id, nombre_mat FROM materia WHERE id_grado_mat = 1;
 SELECT m.id, m.nombre_mat FROM materia m
 INNER JOIN estudiantemateria em ON em.id_materia_e = m.id
 WHERE m.id_grado_mat = 1 AND em.id_estudiante_m = 1;
+
+# Obtener las notas del area de matematicas
+SELECT m.nombre_mat, nd.nota_definitiva, m.porcentaje_materia, b.* FROM materia m
+INNER JOIN notasdefinitivas nd ON  nd.id_materia_nd = m.id
+INNER JOIN areas a ON a.id_area = m.id_materia_area
+WHERE a.nombre_area = 'MATEMATICAS' AND nd.id_estudiante_nd = 1 AND nd.id_periodo_nd = 1;

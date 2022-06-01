@@ -65,7 +65,31 @@ class BoletinController
         $boletin = new Boletin();
         $boletin->setIdEstudiante($estudiante);
         $boletin->setIdPeriodo($periodo);
-        $periodox = $boletin->generarBoletin();
+
+        # Calcular la nota del area y mostrar la materias que perteneces la area y sus respectivas notas
+        #   MATEMATICAS
+        $matematicas = $boletin->calcularArea('MATEMATICAS');
+        $notaMatematicas = Utils::calcularNotaArea($matematicas);
+        $areaMatermaticas = $boletin->obtenerMateriasXArea('MATEMATICAS');
+
+        # HUMANIDADES, LENGUA CASTELLANA
+        $humanidades = $boletin->calcularArea("HUMANIDADES, LENGUAJE CASTELLANO");
+        $notaHumanidades = Utils::calcularNotaArea($humanidades);
+        $areaHumanidades = $boletin->obtenerMateriasXArea('HUMANIDADES, LENGUAJE CASTELLANO');
+
+        # CIENCIAS NATURALES Y EDUCACIÓN AMBIENTAL
+        $ciencias = $boletin->calcularArea("CIENCIAS NATURALES Y EDUCACIÓN AMBIENTAL");
+        $notaCiencias = Utils::calcularNotaArea($ciencias);
+        $areaCiencias = $boletin->obtenerMateriasXArea('CIENCIAS NATURALES Y EDUCACIÓN AMBIENTAL');
+
+        # ÁREA TÉCNICA
+        $tecnica = $boletin->calcularArea("ÁREA TÉCNICA");
+        $notaTecnica = Utils::calcularNotaArea($tecnica);
+        $areaTecnica = $boletin->obtenerMateriasXArea("ÁREA TÉCNICA");
+
+        # SIN ÁREA
+        $sinArea= $boletin->obtenerMateriasXArea("SIN ÁREA");
+
         $infoBoletinPeriodo1 = $boletin->puestoPromedioPeriodo1();
         $infoBoletinPeriodo2 = $boletin->puestoPromedioPeriodo2();
         $infoBoletinPeriodo3 = $boletin->puestoPromedioPeriodo3();
@@ -81,7 +105,7 @@ class BoletinController
 
         if (isset($_GET['pdf']) && $_GET['pdf'] == 'b') {
             require_once 'views/pdf/boletin.php';
-        }else{
+        } else {
             require_once 'views/administrativo/boletin/boletin.php';
         }
     }

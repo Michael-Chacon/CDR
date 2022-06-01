@@ -405,18 +405,6 @@ class Boletin
         }
     }
 
-    # Seleccionar las notas de todas las materias de un estudiante para generar el boletín por periodos
-    public function generarBoletin()
-    {
-        $student = $this->getIdEstudiante();
-        $periodo_id = $this->getIdPeriodo();
-        $boletin = $this->db->prepare("SELECT * FROM boletin WHERE id_estudiante_boletin = :estudiante AND id_periodo_boletin = :periodo ORDER BY id_area_boletin");
-        $boletin->bindParam(":estudiante", $student, PDO::PARAM_INT);
-        $boletin->bindParam(":periodo", $periodo_id, PDO::PARAM_INT);
-        $boletin->execute();
-        return $boletin;
-    }
-
     # ver el puesto y el promedio del estudiante en x periodo
 
     public function puestoPromedioPeriodo1()
@@ -550,6 +538,34 @@ class Boletin
         $actualizar = $this->db->prepare("UPDATE habilitarBoletin SET estado = :newState");
         $actualizar->bindParam(":newState", $estado, PDO::PARAM_STR);
         return $actualizar->execute();
+    }
+    # Listar las materias por área
+    public function calcularArea($area)
+    {
+        $student = $this->getIdEstudiante();
+        $periodo_id = $this->getIdPeriodo();
+        $notas = $this->db->prepare("SELECT m.nombre_mat, nd.nota_definitiva, m.porcentaje_materia FROM materia m
+            INNER JOIN notasdefinitivas nd ON  nd.id_materia_nd = m.id
+            INNER JOIN areas a ON a.id_area = m.id_materia_area
+            WHERE a.nombre_area = '$area' AND nd.id_estudiante_nd = :estudiante AND nd.id_periodo_nd = :periodo;");
+        $notas->bindParam(":estudiante", $student, PDO::PARAM_INT);
+        $notas->bindParam(":periodo", $periodo_id, PDO::PARAM_INT);
+        $notas->execute();
+        return $notas;
+    }
+
+    # Seleccionar las datos y las notas definitvas de las materias que pertenecen a un área
+    public function obtenerMateriasXArea($area)
+    {
+        $student = $this->getIdEstudiante();
+        $periodo_id = $this->getIdPeriodo();
+        $boletin = $this->db->prepare("SELECT * FROM boletin b
+            INNER JOIN areas a ON a.id_area = b.id_area_boletin
+            WHERE b.id_estudiante_boletin = :estudiante AND b.id_periodo_boletin = :periodo AND a.nombre_area = '$area' ORDER BY id_area_boletin");
+        $boletin->bindParam(":estudiante", $student, PDO::PARAM_INT);
+        $boletin->bindParam(":periodo", $periodo_id, PDO::PARAM_INT);
+        $boletin->execute();
+        return $boletin;
     }
 
 } # fin de la clase

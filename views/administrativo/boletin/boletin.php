@@ -166,7 +166,7 @@
             <!-- inicio contenido -->
             		<section class="row mb-5">
             			<article class="col-lg-12">
-            				<?php if ($periodox->rowCount() != 0): ?>
+            				<?php if ($areaMatermaticas->rowCount() != 0): ?>
                                 <?php if(!isset($_SESSION['student'])): ?>
                                 <a type="button" href="<?=base_url?>Boletin/verBoletin&student=<?=Utils::encryption($estudiante)?>&degree=<?=Utils::encryption($grado)?>&period=<?=Utils::encryption($periodo)?>&pdf=b" class="btn btn-outline-success"><i class="bi bi-cloud-arrow-down"></i> Descargar boletín
                                 </a>
@@ -188,30 +188,186 @@
             						</tr>
             					</thead>
             					<tbody>
-            						<?php while ($boletin = $periodox->fetchObject()): ?>
+                                    <tr>
+                                        <th class="text-center">MATEMÁTICAS</th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th><?=$notaMatematicas?></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                    </tr>
+            						<?php while ($matematicas = $areaMatermaticas->fetchObject()): ?>
             							<tr>
-            								<td><?=$boletin->nombre_materia?></td>
-            								<td><?=$boletin->observaciones?></td>
-            								<td><?=$boletin->nombre_docente?></td>
-            								<td class="text-center"><?=$boletin->recuperacion_nota?></td>
-            								<td class="text-center"><?=$boletin->nota_periodo1?></td>
-            								<td class="text-center"><?=$boletin->nota_periodo2?></td>
-            								<td class="text-center"><?=$boletin->nota_periodo3?></td>
-            								<td class="text-center"><?=$boletin->promedio_materia?></td>
+            								<td class="text-center"><?=$matematicas->nombre_materia?></td>
+            								<td><?=$matematicas->observaciones?></td>
+            								<td><?=$matematicas->nombre_docente?></td>
+            								<td class="text-center"><?=$matematicas->recuperacion_nota?></td>
+            								<td class="text-center"><?=$matematicas->nota_periodo1?></td>
+            								<td class="text-center"><?=$matematicas->nota_periodo2?></td>
+            								<td class="text-center"><?=$matematicas->nota_periodo3?></td>
+            								<td class="text-center"><?=$matematicas->promedio_materia?></td>
             								<td class="text-center">
-                                                <?php if ($boletin->nota_periodo1 >= 0 && $boletin->nota_periodo1 <= 31): ?>
+                                                <?php if ($matematicas->nota_periodo1 >= 0 && $matematicas->nota_periodo1 <= 31): ?>
                                                 BAJO
-                                                <?php elseif ($boletin->nota_periodo1 >= 32 && $boletin->nota_periodo1 <= 39): ?>
+                                                <?php elseif ($matematicas->nota_periodo1 >= 32 && $matematicas->nota_periodo1 <= 39): ?>
                                                 BÁSICO
-                                                <?php elseif ($boletin->nota_periodo1 >= 40 && $boletin->nota_periodo1 <= 45): ?>
+                                                <?php elseif ($matematicas->nota_periodo1 >= 40 && $matematicas->nota_periodo1 <= 45): ?>
                                                 ALTO
-                                                <?php elseif ($boletin->nota_periodo1 >= 46 && $boletin->nota_periodo1 <= 50): ?>
+                                                <?php elseif ($matematicas->nota_periodo1 >= 46 && $matematicas->nota_periodo1 <= 50): ?>
                                                 SUPERIOR
                                                 <?php endif;?>
                                             </td>
-            								<td class="text-center"><?=$boletin->total_fallas_periodo?></td>
+            								<td class="text-center"><?=$matematicas->total_fallas_periodo?></td>
             							</tr>
             						<?php endwhile;?>
+                                     <tr>
+                                        <th class="text-center">HUMANIDADES, LENGUAJE CASTELLANO</th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th><?=$notaHumanidades?></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                    </tr>
+                                    <?php while ($humanidades = $areaHumanidades->fetchObject()): ?>
+                                        <tr>
+                                            <td class="text-center"><?=$humanidades->nombre_materia?></td>
+                                            <td><?=$humanidades->observaciones?></td>
+                                            <td><?=$humanidades->nombre_docente?></td>
+                                            <td class="text-center"><?=$humanidades->recuperacion_nota?></td>
+                                            <td class="text-center"><?=$humanidades->nota_periodo1?></td>
+                                            <td class="text-center"><?=$humanidades->nota_periodo2?></td>
+                                            <td class="text-center"><?=$humanidades->nota_periodo3?></td>
+                                            <td class="text-center"><?=$humanidades->promedio_materia?></td>
+                                            <td class="text-center">
+                                                <?php if ($humanidades->nota_periodo1 >= 0 && $humanidades->nota_periodo1 <= 31): ?>
+                                                BAJO
+                                                <?php elseif ($humanidades->nota_periodo1 >= 32 && $humanidades->nota_periodo1 <= 39): ?>
+                                                BÁSICO
+                                                <?php elseif ($humanidades->nota_periodo1 >= 40 && $humanidades->nota_periodo1 <= 45): ?>
+                                                ALTO
+                                                <?php elseif ($humanidades->nota_periodo1 >= 46 && $humanidades->nota_periodo1 <= 50): ?>
+                                                SUPERIOR
+                                                <?php endif;?>
+                                            </td>
+                                            <td class="text-center"><?=$humanidades->total_fallas_periodo?></td>
+                                        </tr>
+                                    <?php endwhile;?>
+                                    <tr>
+                                        <th class="text-center">CIENCIAS NATURALES Y EDUCACIÓN AMBIENTAL</th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th><?=$notaCiencias?></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                    </tr>
+                                    <?php while ($ciencias_naturales = $areaCiencias->fetchObject()): ?>
+                                        <tr>
+                                            <td class="text-center"><?=$ciencias_naturales->nombre_materia?></td>
+                                            <td><?=$ciencias_naturales->observaciones?></td>
+                                            <td><?=$ciencias_naturales->nombre_docente?></td>
+                                            <td class="text-center"><?=$ciencias_naturales->recuperacion_nota?></td>
+                                            <td class="text-center"><?=$ciencias_naturales->nota_periodo1?></td>
+                                            <td class="text-center"><?=$ciencias_naturales->nota_periodo2?></td>
+                                            <td class="text-center"><?=$ciencias_naturales->nota_periodo3?></td>
+                                            <td class="text-center"><?=$ciencias_naturales->promedio_materia?></td>
+                                            <td class="text-center">
+                                                <?php if ($ciencias_naturales->nota_periodo1 >= 0 && $ciencias_naturales->nota_periodo1 <= 31): ?>
+                                                BAJO
+                                                <?php elseif ($ciencias_naturales->nota_periodo1 >= 32 && $ciencias_naturales->nota_periodo1 <= 39): ?>
+                                                BÁSICO
+                                                <?php elseif ($ciencias_naturales->nota_periodo1 >= 40 && $ciencias_naturales->nota_periodo1 <= 45): ?>
+                                                ALTO
+                                                <?php elseif ($ciencias_naturales->nota_periodo1 >= 46 && $ciencias_naturales->nota_periodo1 <= 50): ?>
+                                                SUPERIOR
+                                                <?php endif;?>
+                                            </td>
+                                            <td class="text-center"><?=$ciencias_naturales->total_fallas_periodo?></td>
+                                        </tr>
+                                    <?php endwhile;?>
+                                    <tr>
+                                        <th class="text-center">ÁREA TÉCNICA</th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th><?=$notaTecnica?></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                    </tr>
+                                    <?php while ($modalidad = $areaTecnica->fetchObject()): ?>
+                                        <tr>
+                                            <td class="text-center"><?=$modalidad->nombre_materia?></td>
+                                            <td><?=$modalidad->observaciones?></td>
+                                            <td><?=$modalidad->nombre_docente?></td>
+                                            <td class="text-center"><?=$modalidad->recuperacion_nota?></td>
+                                            <td class="text-center"><?=$modalidad->nota_periodo1?></td>
+                                            <td class="text-center"><?=$modalidad->nota_periodo2?></td>
+                                            <td class="text-center"><?=$modalidad->nota_periodo3?></td>
+                                            <td class="text-center"><?=$modalidad->promedio_materia?></td>
+                                            <td class="text-center">
+                                                <?php if ($modalidad->nota_periodo1 >= 0 && $modalidad->nota_periodo1 <= 31): ?>
+                                                BAJO
+                                                <?php elseif ($modalidad->nota_periodo1 >= 32 && $modalidad->nota_periodo1 <= 39): ?>
+                                                BÁSICO
+                                                <?php elseif ($modalidad->nota_periodo1 >= 40 && $modalidad->nota_periodo1 <= 45): ?>
+                                                ALTO
+                                                <?php elseif ($modalidad->nota_periodo1 >= 46 && $modalidad->nota_periodo1 <= 50): ?>
+                                                SUPERIOR
+                                                <?php endif;?>
+                                            </td>
+                                            <td class="text-center"><?=$modalidad->total_fallas_periodo?></td>
+                                        </tr>
+                                    <?php endwhile;?>
+                                    <tr>
+                                        <th class="text-center">SIN ÁREA</th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                    </tr>
+                                    <?php while ($demas = $sinArea->fetchObject()): ?>
+                                        <tr>
+                                            <td class="text-center"><?=$demas->nombre_materia?></td>
+                                            <td><?=$demas->observaciones?></td>
+                                            <td><?=$demas->nombre_docente?></td>
+                                            <td class="text-center"><?=$demas->recuperacion_nota?></td>
+                                            <td class="text-center"><?=$demas->nota_periodo1?></td>
+                                            <td class="text-center"><?=$demas->nota_periodo2?></td>
+                                            <td class="text-center"><?=$demas->nota_periodo3?></td>
+                                            <td class="text-center"><?=$demas->promedio_materia?></td>
+                                            <td class="text-center">
+                                                <?php if ($demas->nota_periodo1 >= 0 && $demas->nota_periodo1 <= 31): ?>
+                                                BAJO
+                                                <?php elseif ($demas->nota_periodo1 >= 32 && $demas->nota_periodo1 <= 39): ?>
+                                                BÁSICO
+                                                <?php elseif ($demas->nota_periodo1 >= 40 && $demas->nota_periodo1 <= 45): ?>
+                                                ALTO
+                                                <?php elseif ($demas->nota_periodo1 >= 46 && $demas->nota_periodo1 <= 50): ?>
+                                                SUPERIOR
+                                                <?php endif;?>
+                                            </td>
+                                            <td class="text-center"><?=$demas->total_fallas_periodo?></td>
+                                        </tr>
+                                    <?php endwhile;?>
             					</tbody>
             				</table>
             				</div>

@@ -154,4 +154,14 @@ class Utils
         }
     }
 
+    # Calcular las notas por area
+    public static function calcularNotaArea($notas)
+    {
+        $resultado = 0;
+        while ($area = $notas->fetchObject()) {
+            $nota = ($area->porcentaje_materia / 100) * $area->nota_definitiva;
+            $resultado += $nota;
+        }
+        return round($resultado, 0, PHP_ROUND_HALF_UP);
+    }
 } #fin de la clase

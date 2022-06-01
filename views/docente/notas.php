@@ -221,7 +221,7 @@
                             </tr>
                             <tr>
                                 <td scope="row" ></td>
-                                <td class="actitudinal">Autoevaliación (<?=$actitudinal->porcentaje_autoevaluacion?>%)</td>
+                                <td class="actitudinal">Autoevaluación (<?=$actitudinal->porcentaje_autoevaluacion?>%)</td>
                                 <td class="actitudinal">
                                     <?php if (empty($autoevaluacionPeriodo1->nota_autoevaluacion)): ?>
                                         0
@@ -385,7 +385,7 @@
         </tr>
         <tr>
           <td scope="row" ></td>
-          <td class="actitudinal">Autoevaliación (<?=$actitudinal->porcentaje_autoevaluacion?>%)</td>
+          <td class="actitudinal">Autoevaluación (<?=$actitudinal->porcentaje_autoevaluacion?>%)</td>
           <td class="actitudinal">
             <?php if (empty($autoevaluacionPeriodo2->nota_autoevaluacion)): ?>
                 0
@@ -550,7 +550,7 @@
         </tr>
         <tr>
           <td scope="row" ></td>
-          <td class="actitudinal">Autoevaliación (<?=$actitudinal->porcentaje_autoevaluacion?>%)</td>
+          <td class="actitudinal">Autoevaluación (<?=$actitudinal->porcentaje_autoevaluacion?>%)</td>
           <td class="actitudinal">
             <?php if (empty($autoevaluacionPeriodo3->nota_autoevaluacion)): ?>
                 0
@@ -625,7 +625,7 @@
                           <option value="tindividual">Trabajo individual</option>
                           <option value="tcolaborativo">Trabajo_colaborativo</option>
                           <option value="apreciativa">Apreciativo</option>
-                          <option value="autoevaluacion">Autoevaliación</option>
+                          <option value="autoevaluacion">Autoevaluación</option>
                       </select>
                   </div>
                   <div class="row">

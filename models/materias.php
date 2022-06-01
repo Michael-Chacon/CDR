@@ -345,7 +345,7 @@ class Materias
         $materias = $this->db->prepare("SELECT m.* FROM materia m
             INNER JOIN estudiantemateria em ON em.id_materia_e = m.id
             INNER JOIN estudiante e ON e.id = em.id_estudiante_m
-            WHERE e.id = :estudiante");
+            WHERE e.id = :estudiante ORDER BY id_materia_area");
         $materias->bindParam(":estudiante", $estudiante, PDO::PARAM_INT);
         $materias->execute();
         return $materias;
