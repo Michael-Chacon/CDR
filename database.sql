@@ -596,6 +596,7 @@ CREATE TABLE puestos(
 		CONSTRAINT pk_tablero_actividades_docentes PRIMARY KEY (id)
 	)ENGINE=InnoDb;
 
+
 --  seleccionar todos los grados
 SELECT gd.id_grado_d FROM gradodocente gd
 INNER JOIN docente d ON d.id = gd.id_docente_g

@@ -87,6 +87,14 @@
                                                     <i class="bi bi-file-earmark-text"></i>  Ver boletín
                                                 </a>
                                             </li>
+                                            <li>
+                                                <hr class="dropdown-divider"/>
+                                            </li>
+                                            <li>
+                                                <a class="dropdown-item"   data-bs-toggle="modal" data-bs-target="#notaDirector">
+                                                    <i class="bi bi-shield-check"></i> Nota comportamiento
+                                                </a>
+                                            </li>
                                         </ul>
                                     </div>
                                 </span>
@@ -168,26 +176,26 @@
                             Materias
                         </h3>
                         <?php if (isset($datos) && $datos->rowCount() != 0):
-    while ($materias = $datos->fetchObject()): ?>
-																								                               <article class="col-xs-12 col-sm-6 col-md-4 col-xl-4 mb-2">
-																								                                   <div class="card text-center shadow option">
-																								                                       <div class="card-body contenido-card materias">
-																								                                           <i class="<?=$materias->icono?>" style="font-size: 3rem;">
-																								                                           </i>
-																								                                           <hr class="hr-perfil"/>
-																								                                           <h5 class="mt-2">
-																								                                               <?=$materias->nombre_mat?>
-																								                                           </h5>
-																								                                           <?php if (!isset($_SESSION['teacher'])): ?>
-																								                                           <a class="stretched-link" href="<?=base_url?>Notas/homeNotas&student=<?=Utils::encryption($estudiante->estudiante_id)?>&materia=<?=Utils::encryption($materias->id)?>&nGrado=<?=$estudiante->nombre_g?>">
-																								                                           </a>
-																								                                       <?php endif?>
-                                       </div>
-                                   </div>
-                               </article>
-                           <?php endwhile;?>
-                       <?php else: ?>
-                        <div class="alert alert-danger text-center" role="alert">
+                        while ($materias = $datos->fetchObject()): ?>
+                         <article class="col-xs-12 col-sm-6 col-md-4 col-xl-4 mb-2">
+                             <div class="card text-center shadow option">
+                                 <div class="card-body contenido-card materias">
+                                     <i class="<?=$materias->icono?>" style="font-size: 3rem;">
+                                     </i>
+                                     <hr class="hr-perfil"/>
+                                     <h5 class="mt-2">
+                                         <?=$materias->nombre_mat?>
+                                     </h5>
+                                     <?php if (!isset($_SESSION['teacher'])): ?>
+                                         <a class="stretched-link" href="<?=base_url?>Notas/homeNotas&student=<?=Utils::encryption($estudiante->estudiante_id)?>&materia=<?=Utils::encryption($materias->id)?>&nGrado=<?=$estudiante->nombre_g?>">
+                                         </a>
+                                     <?php endif?>
+                                 </div>
+                             </div>
+                         </article>
+                     <?php endwhile;?>
+                 <?php else: ?>
+                    <div class="alert alert-danger text-center" role="alert">
                             No hay materias asignadas a este estudiante
                         </div>
                        <?php endif;?>
@@ -1150,6 +1158,27 @@
               </div>
             </div>
         </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Modal para calificar el comportamiento de los estudiantes por parte del director-->
+<section class="modal fade" id="notaDirector" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Ver boletines</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form action="#">
+            <div class="row">
+                <div class="form-control">
+
+                </div>
+            </div>
+        </form>
       </div>
     </div>
   </div>
