@@ -1,4 +1,12 @@
 <section class="container-fluid">
+    <section class="row  titulo mb-5">
+        <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <h1 class="text-center config">
+                <i class="bi bi-calendar2-range"></i>
+                Modificar periodo académico
+            </h1>
+        </article>
+    </section>
 	<article class="row justify-content-center mt-5">
 		<div class="col-6">
 			<h3 class="text-center"><?=$_GET['name']?></h3>
@@ -39,9 +47,7 @@
                                         </div>
                                     </div>
 		                            <button class="btn btn-primary" type="submit">
-		                                <i class="bi bi-check2">
-		                                </i>
-		                                Registrar
+		                                Guardar cambios
 		                            </button>
                                 </div>
                      </form>

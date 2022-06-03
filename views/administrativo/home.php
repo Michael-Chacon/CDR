@@ -1,14 +1,14 @@
 <!-- contenido de  la pagina -->
                 <section class="container-fluid">
                     <section class="row mt-4">
-                        <article class="col-xs-12 col-sm-12 col-md-4 col-xl-4 ">
+                         <article class="col-xs-12 col-sm-12 col-md-4 col-xl-4">
                             <div class="card text-center shadow option">
                                 <div class="card-body contenido-card">
-                                    <i class="bi bi-clipboard" style="font-size: 3rem;"></i>
+                                   <i class="bi bi-grid-3x2-gap" style="font-size: 3rem;"></i>
                                     <h5>
-                                        Tablero de actividades
+                                        Grados
                                     </h5>
-                                    <a class="stretched-link" href="<?=base_url?>Tablero/tablero">
+                                    <a class="stretched-link" href="<?=base_url?>Grado/grado">
                                     </a>
                                 </div>
                             </div>
@@ -52,6 +52,18 @@
                         <article class="col-xs-12 col-sm-12 col-md-4 col-xl-4">
                             <div class="card text-center shadow option">
                                 <div class="card-body contenido-card">
+                                   <i class="bi bi-file-earmark" style="font-size: 3rem;"></i>
+                                    <h5>
+                                        Documentos
+                                    </h5>
+                                    <a class="stretched-link" href="<?=base_url?>Documento/vista_documentos">
+                                    </a>
+                                </div>
+                            </div>
+                        </article>
+                        <article class="col-xs-12 col-sm-12 col-md-4 col-xl-4">
+                            <div class="card text-center shadow option">
+                                <div class="card-body contenido-card">
                                     <i class="bi bi-shield" style="font-size: 3rem;"></i>
                                     <h5>
                                         Personal
@@ -61,14 +73,14 @@
                                 </div>
                             </div>
                         </article>
-                        <article class="col-xs-12 col-sm-12 col-md-4 col-xl-4">
+                        <article class="col-xs-12 col-sm-12 col-md-4 col-xl-4 ">
                             <div class="card text-center shadow option">
                                 <div class="card-body contenido-card">
-                                   <i class="bi bi-grid-3x2-gap" style="font-size: 3rem;"></i>
+                                    <i class="bi bi-clipboard" style="font-size: 3rem;"></i>
                                     <h5>
-                                        Grados
+                                        Tablero de actividades
                                     </h5>
-                                    <a class="stretched-link" href="<?=base_url?>Grado/grado">
+                                    <a class="stretched-link" href="<?=base_url?>Tablero/tablero">
                                     </a>
                                 </div>
                             </div>
@@ -97,18 +109,7 @@
                                 </div>
                             </div>
                         </article>
-                        <article class="col-xs-12 col-sm-12 col-md-4 col-xl-4">
-                            <div class="card text-center shadow option">
-                                <div class="card-body contenido-card">
-                                   <i class="bi bi-file-earmark" style="font-size: 3rem;"></i>
-                                    <h5>
-                                        Documentos
-                                    </h5>
-                                    <a class="stretched-link" href="<?=base_url?>Documento/vista_documentos">
-                                    </a>
-                                </div>
-                            </div>
-                        </article>
+
                         <article class="col-xs-12 col-sm-12 col-md-4 col-xl-4">
                             <div class="card text-center shadow option">
                                 <div class="card-body contenido-card">

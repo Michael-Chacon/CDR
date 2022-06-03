@@ -135,7 +135,7 @@ class Login
                 return 'Contraseña incorrecta';
             }
         } else {
-            return 'No existe el usuario';
+            return 'El usuario no existe';
         }
     }
 

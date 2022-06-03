@@ -31,7 +31,7 @@ class LoginController
             $datos->setPassword($pass);
             $respuesta = $datos->validar_user();
 
-            if ($respuesta == 'No existe el usuario' || $respuesta == 'Contraseña incorrecta' || $respuesta == 'Usuario inactivo') {
+            if ($respuesta == 'El usuario no existe' || $respuesta == 'Contraseña incorrecta' || $respuesta == 'Usuario inactivo') {
                 $_SESSION['error_login'] = $respuesta;
                 header('Location: ' . base_url);
             }
