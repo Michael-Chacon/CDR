@@ -6,6 +6,7 @@ require_once 'models/materias.php';
 require_once 'models/notas.php';
 require_once 'models/docente.php';
 require_once 'models/boletin.php';
+require_once 'models/icono.php';
 class ConfiguracionController
 {
     public function vista_configuracion()
@@ -17,6 +18,8 @@ class ConfiguracionController
     {
         $listado = new Area();
         $areas = $listado->getAreas();
+        $iconos = new Iconos();
+        $listado_iconos = $iconos->listIconos();
         $areas_materia = $listado->getAreas();
 
         # listado de materias

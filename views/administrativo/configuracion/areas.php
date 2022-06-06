@@ -150,11 +150,29 @@
 						<input type="number" name="porcentaje" class="form-control" id="materia" placeholder="Porcentaje de la materia" required>
 					</div>
 					<hr/>
-					<div class="mb-3">
-						<label for="icono" class="form-label">Icono de la materia:</label>
-						<input type="text" name="icono" class="form-control" id="icono" placeholder="Icono">
-						<div id="emailHelp" class="form-text"><a href="" data-bs-target="#segundo" data-bs-toggle="modal" data-bs-dismiss="modal">Listado de iconos</a></div>
+					<!-- iconos -->
+						<button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#listadoIconos" aria-expanded="false" aria-controls="listadoIconos">
+							Ver los iconos
+						</button>
+					<div class="collapse" id="listadoIconos">
+							<div class="row">
+								<span class="item_info text-center">Selecciona un icono</span>
+								<?php while($icono = $listado_iconos->fetchObject()): ?>
+									<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 col-xl-2 mb-2">
+										<div class="card">
+											<div class="card-body">
+												<i class="<?=$icono->icono?>" style="font-size: 1.2rem;"></i>
+												<div class="form-check">
+													<input class="form-check-input" name="icono" type="radio" value="<?=$icono->icono?>">
+													</input>
+											</div>
+										</div>
+									</div>
+								</div>
+							<?php endwhile; ?>
+						</div>
 					</div>
+					<!-- end iconos -->
 					<hr>
 					<div class="mb-3">
 						<label for="area" class="form-label">Área a la que pertenece la materia:</label>
