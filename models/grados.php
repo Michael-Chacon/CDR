@@ -75,8 +75,8 @@ class Grados
     public function validar()
     {
         $nombre = $this->getGrado();
-        $validacion = $this->db->prepare("SELECT COUNT(id) AS 'resultado' FROM grado WHERE nombre_g = :nombre");
-        $validacion->bindParam(":nombre", $nombre, PDO::PARAM_INT);
+        $validacion = $this->db->prepare("SELECT COUNT(id) AS 'resultado', nombre_g FROM grado WHERE nombre_g = :nombre");
+        $validacion->bindParam(":nombre", $nombre, PDO::PARAM_STR);
         $validacion->execute();
         $total = $validacion->fetchObject();
         if ($total->resultado == 0) {
@@ -98,7 +98,7 @@ class Grados
     #seleccionar todos los grados
     public function allGrados()
     {
-        $todos = $this->db->prepare("SELECT  *  FROM grado ORDER BY nombre_g");
+        $todos = $this->db->prepare("SELECT  *  FROM grado ORDER BY id");
         $todos->execute();
         return $todos;
     }
