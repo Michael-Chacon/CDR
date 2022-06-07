@@ -2,7 +2,7 @@
 	<section class="row shadow titulo">
 		<article class="col-xs-11col-sm-11 col-md-11 col-lg-11">
 			<h1 class="text-center config">
-				Areas  y banco de materias
+				Áreas  y materias base
 			</h1>
 		</article>
 		<article class="col-xs-1 col-sm-1 col-md-1 col-lg-1 config icono-menu text-center">
@@ -32,7 +32,7 @@
 	<!-- contenido de la pagina  -->
 	<section class="row mt-4">
 		<article class="col-xs-12 col-sm-12 col-md-7 col-lg-7 ">
-			<span>Areas</span>
+			<span class="valor_item">Áreas</span>
 			<?php if ($areas->rowCount() != 0):
     			$c = 1;?>
 					<?php while ($area = $areas->fetchObject()): ?>
@@ -59,12 +59,12 @@
 					<?php endwhile;?>
 			<?php else: ?>
 				<div class="alert alert-danger text-center" role="alert">
-					No hay areas registradas
+					No hay áreas registradas
 				</div>
 			<?php endif;?>
 		</article>
 		<article class="col-xs-12 col-sm-12 col-md-5 col-lg-5 ">
-			<span class="text-center">Materias</span>
+			<span class="valor_item">Materias</span>
 			<?php if ($listado_materias->rowCount() != 0):
     		$c = 1;?>
 					<?php while ($materia = $listado_materias->fetchObject()): ?>

@@ -13,7 +13,7 @@
 				<div class="card-body contenido-card">
 					<i class="bi bi-card-list" style="font-size: 3rem;"></i>
 					<h5>
-						Areas y materias
+						Áreas y materias
 					</h5>
 					<a class="stretched-link" href="<?=base_url?>Configuracion/vista_areas">
 					</a>
