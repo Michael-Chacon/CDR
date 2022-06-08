@@ -15,9 +15,9 @@
                     </i>
                 </a>
                 <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" data-bs-target="#CrearMateria" data-bs-toggle="modal" href="#"><i class="bi bi-book-half"></i>  Crear materia</a></li>
+                    <li><a class="dropdown-item" data-bs-target="#CrearMateria" data-bs-toggle="modal" href="#"><i class="bi bi-book-half"></i>  Asignar materias</a></li>
                     <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" data-bs-target="#CreatHorario" data-bs-toggle="modal"  href="#"><i class="bi bi-calendar-week"></i>Asignar horario</a></li>
+                    <li><a class="dropdown-item" data-bs-target="#CreatHorario" data-bs-toggle="modal"  href="#"><i class="bi bi-calendar-week"></i> Asignar horario</a></li>
                     <li><hr class="dropdown-divider"></li>
                     <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#director"><i class="bi bi-check2-square"></i> Asignar director</a></li>
                     <li><hr class="dropdown-divider"></li>
@@ -628,7 +628,8 @@
                 <input type="hidden" name="id_grado" id="" value="<?=$_GET['id_grado']?>">
                 <div class="modal-body">
                     <div class="form-floating mb-3">
-                        <select aria-label=".form-select-lg example" class="form-select form-select-lg mb-3" name="id_materia" >
+                        <select aria-label=".form-select-lg example" class="form-select form-select-lg mb-3" name="id_materia" required="">
+                            <option></option>
                             <?php while ($materia = $matter->fetchObject()): ?>
                                 <option value="<?=$materia->id?>">
                                     <?=$materia->nombre_mat?>

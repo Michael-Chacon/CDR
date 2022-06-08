@@ -87,6 +87,7 @@
                                                     <i class="bi bi-file-earmark-text"></i>  Ver boletín
                                                 </a>
                                             </li>
+                                            <?php if(isset($_SESSION['teacher'])): ?>
                                             <li>
                                                 <hr class="dropdown-divider"/>
                                             </li>
@@ -95,6 +96,7 @@
                                                     <i class="bi bi-shield-check"></i> Nota comportamiento
                                                 </a>
                                             </li>
+                                        <?php endif; ?>
                                         </ul>
                                     </div>
                                 </span>
