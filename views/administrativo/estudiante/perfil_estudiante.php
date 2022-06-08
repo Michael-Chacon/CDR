@@ -35,7 +35,7 @@
                                     <span class="col-2">
                                         <div class="dropdown">
                                             <a data-bs-toggle="dropdown" href="#" id="opcionesPerfil" role="button">
-                                                <i class="bi bi-chevron-down btn-sm btn-outline-info" style="font-size: 1rem; color: #0d47a1 ;">
+                                                <i class="bi bi-chevron-down btn-sm btn-primary" style="font-size: 1rem; color: white;">
                                                 </i>
                                             </a>
                                             <ul aria-labelledby="opcionesPerfil" class="dropdown-menu dropdown-menu-dark">
@@ -51,7 +51,7 @@
                                             </li>
                                             <li>
                                                 <a class="dropdown-item" href="#" data-bs-target="#actualizarDatos" data-bs-toggle="modal">
-                                                    <i class="bi bi-pen"></i>  Actualizar datos
+                                                    <i class="bi bi-pen"></i>  Editar datos
                                                 </a>
                                             </li>
                                               <li>
@@ -145,7 +145,7 @@
     </article>
     <div class="col-md-7">
         <div>
-           <h2 class="text-center">Gráfica o informes.</h2>
+           <h2 class="text-center">Gráfica</h2>
        </div>
    </div>
 </section>
@@ -678,7 +678,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">
-                    Actualizar datos del estudiante
+                    Editar datos del estudiante y sus padres
                 </h5>
             </div>
             <form action="<?=base_url?>Estudiante/registrarEstudiante" method="post" enctype="multipart/form-data">
@@ -885,12 +885,6 @@
       </div>
   </div>
 </div>
-</div>
-<div class="row">
-    <div>
-      <label for="formFileLg" class="form-label">Foto del estudiante:</label>
-      <input class="form-control" id="formFileLg" type="file" name="foto">
-  </div>
 </div>
 <h5 class="text-center mt-5">
  <i class="bi bi-people"></i> Información de la madre
@@ -1131,7 +1125,7 @@
         Cancelar
     </button>
     <button class="btn btn-primary" type="submit">
-        Actualizar
+        Guardar los cambios
     </button>
 </div>
 </form>

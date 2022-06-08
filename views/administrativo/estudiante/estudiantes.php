@@ -3,7 +3,7 @@
                     <section class="row shadow titulo">
                         <article class="col-xs-11 col-sm-11 col-md-11 col-lg-11">
                             <h1 class="text-center config">
-                                Estudiantes
+                                Registro de estudiantes
                             </h1>
                         </article>
                         <article class="col-xs-1 col-sm-1 col-md-1 col-lg-1 config icono-menu text-center">
@@ -23,77 +23,76 @@
                             </form>
                             <article id="emailHelp" class="form-text">Puedes buscar por nombres o por número de documento.</article>
                         </article>
-                        <div class="col-md-10 shadow">
+                        <section class="col-md-10">
+                            <?php if (isset($todos_estudiantes) && $todos_estudiantes->rowCount() != 0):?>
                             <div class="table-responsive">
-                            <table class="table table-hover">
-                                <thead class="table-dark text-center">
-                                    <tr>
-                                        <th scope="col">
-                                            #
-                                        </th>
-                                           <th  scope="col">
+                                <table class="table table-hover">
+                                    <thead class="table-dark text-center">
+                                        <tr>
+                                            <th scope="col">
+                                                #
+                                            </th>
+                                            <th  scope="col">
                                                 Foto
-                                        </th>
-                                        <th scope="col">
-                                            Nombres
-                                        </th>
-                                        <th scope="col">
-                                            Correo
-                                        </th>
-                                        <th scope="col">
-                                            Documento
-                                        </th>
-                                        <th scope="col">
-                                            Grado
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php if (isset($todos_estudiantes) && $todos_estudiantes->rowCount() != 0):
-                                                    $c = 1;
-                                                    while ($estudiantes = $todos_estudiantes->fetchObject()): ?>
-
-                                                      <tr>
-                                                        <th class="texto_tabla_docente text-center" scope="row">
-                                                            <?=$c++?>
-                                                        </th>
-                                                        <td>
-                                                            <?php if ($estudiantes->img == null): ?>
-                                                                <img alt="" class="avatar-tabla circulo" src="<?=base_url?>helpers/img/avatar.jpg"></img>
-                                                            <?php else: ?>
-                                                             <img alt="" class="avatar-tabla circulo" src="<?=base_url?>photos/estudiantes/<?=$estudiantes->img?>"></img>
-                                                            <?php endif;?>
-                                                        </td>
-                                                      <td class="texto_tabla_docente">
-                                                          <a href="<?=base_url?>Estudiante/perfilEstudiante&x=<?=$estudiantes->id?>&y=<?=$estudiantes->id_familia_e?>&z=<?=$estudiantes->id_grado?>">
-                                                            <?=$estudiantes->nombre_e?>
-                                                            <?=$estudiantes->apellidos_e?>
-                                                        </a>
-                                                    </td>
-                                                    <td class="texto_tabla_docente text-center">
-                                                      <?=$estudiantes->correo_e?>
-                                                  </td>
-                                                  <td class="texto_tabla_docente text-center">
-                                                      <?=$estudiantes->numero_e?>
-                                                  </td>
-                                                  <td class="text-center">
-                                                      <a href="<?=base_url?>Materias/vista&id_grado=<?=Utils::encryption($estudiantes->id_gradoE)?>">
-                                                          <h3>
-                                                              <?=$estudiantes->nombre_g?>
-                                                          </h3>
-                                                      </a>
-                                                  </td>
-                                                </tr>
-		                                      <?php endwhile;?>
-                                          <?php else: ?>
-                                            <div class="alert alert-danger text-center" role="alert">
-                                                Aún no hay estudiantes registrados.
-                                            </div>
-                                        <?php endif;?>
-                                </tbody>
-                            </table>
-                            </div>
+                                            </th>
+                                            <th scope="col">
+                                                Nombres
+                                            </th>
+                                            <th scope="col">
+                                                Correo
+                                            </th>
+                                            <th scope="col">
+                                                Documento
+                                            </th>
+                                            <th scope="col">
+                                                Grado
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                       <?php $c = 1;
+                                        while ($estudiantes = $todos_estudiantes->fetchObject()): ?>
+                                          <tr>
+                                            <th class="texto_tabla_docente text-center" scope="row">
+                                                <?=$c++?>
+                                            </th>
+                                            <td>
+                                                <?php if ($estudiantes->img == null): ?>
+                                                    <img alt="" class="avatar-tabla circulo" src="<?=base_url?>helpers/img/avatar.jpg"></img>
+                                                <?php else: ?>
+                                                 <img alt="" class="avatar-tabla circulo" src="<?=base_url?>photos/estudiantes/<?=$estudiantes->img?>"></img>
+                                             <?php endif;?>
+                                         </td>
+                                         <td class="texto_tabla_docente">
+                                          <a href="<?=base_url?>Estudiante/perfilEstudiante&x=<?=$estudiantes->id?>&y=<?=$estudiantes->id_familia_e?>&z=<?=$estudiantes->id_grado?>">
+                                            <?=$estudiantes->nombre_e?>
+                                            <?=$estudiantes->apellidos_e?>
+                                        </a>
+                                    </td>
+                                    <td class="texto_tabla_docente text-center">
+                                      <?=$estudiantes->correo_e?>
+                                  </td>
+                                  <td class="texto_tabla_docente text-center">
+                                      <?=$estudiantes->numero_e?>
+                                  </td>
+                                  <td class="text-center">
+                                      <a href="<?=base_url?>Materias/vista&id_grado=<?=Utils::encryption($estudiantes->id_gradoE)?>">
+                                          <h3>
+                                              <?=$estudiantes->nombre_g?>
+                                          </h3>
+                                      </a>
+                                  </td>
+                              </tr>
+                          <?php endwhile;?>
+                </tbody>
+            </table>
+                      <?php else: ?>
+                        <div class="alert alert-danger text-center" role="alert">
+                            Aún no hay estudiantes registrados.
                         </div>
+                    <?php endif;?>
+                            </div>
+                        </section>
                     </section>
                     <!-- fin del container etiquita de abajo-->
                 </section>

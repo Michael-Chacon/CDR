@@ -158,7 +158,6 @@ class EstudianteController
                         # inscribir a los alumnos en las materias correspondientes
                         $estudiantes->setGradoE($grado);
                         $materias = $estudiantes->materiasEstudiante($id_estudiante, 'automatico');
-                        Utils::alertas($materias, 'Materias asignadas al estudiante con éxito.', 'Algo salió mal al asignar las materias al  estudiante, inténtelo de nuevo.');
                     }
                     # crea las credenciales para el estudiante
                     $credencial = new Credencial();
@@ -167,7 +166,6 @@ class EstudianteController
                     $credencial->setRol('estudiante');
                     $credencial->setEstado('activo');
                     $credenciales = $credencial->credenciales_usuario($id_estudiante, 'estudiante');
-                    Utils::alertas($credenciales, 'Credencial asignada con éxito.', 'Algo salió mal al asignar la cresencial al estudiante, inténtelo de nuevo.');
                 } else {
                     $documento = false;
                     Utils::alertas($documento, '', 'Se encontró un estudiante en la base de datos con el mismo número de documento, posiblemente este estudiante ya existe en la plataforma.');
