@@ -8,7 +8,8 @@
 	</section>
 </section>
 <section class="container-fluid">
-     <section class="row mt-5 mb-5">
+     <section class="row mt-5 mb-5 justify-content-center">
+        <?php if(!empty($informacionUsuarios->nombre_e)): ?>
         <article class="col-md-4 mb-3">
             <div class="card shadow" >
               <div class="card-body">
@@ -46,6 +47,11 @@
             </div>
         </div>
         </article>
+    <?php else: ?>
+        <div class="alert alert-light text-center" role="alert">
+            El grado no tiene un director asignado
+      </div>
+    <?php endif; ?>
         <article class="col-md-4 mb-3">
             <div class="card shadow">
               <div class="card-body">
