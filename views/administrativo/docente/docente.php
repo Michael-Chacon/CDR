@@ -3,7 +3,7 @@
                         <section class="row shadow titulo">
                         <article class="col-xs-11 col-sm-11 col-md-11 col-lg-11">
                             <h1 class="text-center config">
-                                Docentes
+                                Regristro de docentes
                             </h1>
                         </article>
                         <article class="col-xs-1 col-sm-1 col-md-1 col-lg-1 config icono-menu text-center">
@@ -25,74 +25,74 @@
                     </section>
                     <!-- tabla -->
                     <section class="row justify-content-center mt-3">
-                        <div class="col-md-10 shadow">
+                        <section class="col-md-10">
+                        <?php if (isset($lista) && $lista->rowCount() !=0):?>
                             <div class="table-responsive">
-                            <table class="table table-hover">
-                                <thead class="table-dark">
-                                    <tr>
-                                        <th scope="col">
-                                            #
-                                        </th>
-                                           <th  scope="col">
+                                <table class="table table-hover">
+                                    <thead class="table-dark">
+                                        <tr>
+                                            <th scope="col">
+                                                #
+                                            </th>
+                                            <th  scope="col">
                                                 Foto
-                                        </th>
-                                        <th scope="col">
-                                            Nombres
-                                        </th>
-                                        <th scope="col">
-                                            Correo
-                                        </th>
-                                        <th scope="col">
-                                            Telefono
-                                        </th>
-                                        <th scope="col">
-                                            Documento
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php if (isset($lista) && $lista->rowCount() !=0):
-                                            $c = 1;
-                                            while ($docente_datos = $lista->fetchObject()): ?>
-                                                <tr>
-                                                    <th class="" scope="row">
-                                                        <?=$c++?>
-                                                    </th>
-                                                    <td>
-                                                        <?php if ($docente_datos->img == null): ?>
-                                                            <img alt="" class="avatar-tabla circulo" src="<?=base_url?>helpers/img/avatar.jpg"></img>
-                                                        <?php else: ?>
-                                                            <img alt="" class="avatar-tabla circulo" src="<?=base_url?>photos/docentes/<?=$docente_datos->img?>"></img>
-                                                        <?php endif;?>
-                                                    </td>
-                                                    <td class="texto_tabla_docente">
-                                                        <a href="<?=base_url?>Docente/perfilDocente&id=<?=$docente_datos->id?>">
-                                                            <?=$docente_datos->nombre_d?>
-                                                            <?=$docente_datos->apellidos_d?>
-                                                            <br/>
-                                                        </a>
-                                                        <small class="pregrado"><?=$docente_datos->nombre_pregrado_d?></small>
-                                                    </td>
-                                                    <td class="texto_tabla_docente">
-                                                        <?=$docente_datos->correo_d?>
-                                                    </td>
-                                                    <td class="texto_tabla_docente">
-                                                        <?=$docente_datos->telefono_d?>
-                                                    </td>
-                                                    <td class="texto_tabla_docente">
-                                                        <?=$docente_datos->numero_d?>
-                                                    </td>
-                                                </tr>
-                                            <?php endwhile;?>
-                                        <?php else: ?>
-                                            <div class="alert alert-danger text-center" role="alert">
-                                                No hay docentes registrados.
-                                            </div>
-                                        <?php endif;?>
+                                            </th>
+                                            <th scope="col">
+                                                Nombres
+                                            </th>
+                                            <th scope="col">
+                                                Correo
+                                            </th>
+                                            <th scope="col">
+                                                Telefono
+                                            </th>
+                                            <th scope="col">
+                                                Documento
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php $c = 1;
+                                        while ($docente_datos = $lista->fetchObject()): ?>
+                                            <tr>
+                                                <th class="" scope="row">
+                                                    <?=$c++?>
+                                                </th>
+                                                <td>
+                                                    <?php if ($docente_datos->img == null): ?>
+                                                        <img alt="" class="avatar-tabla circulo" src="<?=base_url?>helpers/img/avatar.jpg"></img>
+                                                    <?php else: ?>
+                                                        <img alt="" class="avatar-tabla circulo" src="<?=base_url?>photos/docentes/<?=$docente_datos->img?>"></img>
+                                                    <?php endif;?>
+                                                </td>
+                                                <td class="texto_tabla_docente">
+                                                    <a href="<?=base_url?>Docente/perfilDocente&id=<?=$docente_datos->id?>">
+                                                        <?=$docente_datos->nombre_d?>
+                                                        <?=$docente_datos->apellidos_d?>
+                                                        <br/>
+                                                    </a>
+                                                    <small class="pregrado"><?=$docente_datos->nombre_pregrado_d?></small>
+                                                </td>
+                                                <td class="texto_tabla_docente">
+                                                    <?=$docente_datos->correo_d?>
+                                                </td>
+                                                <td class="texto_tabla_docente">
+                                                    <?=$docente_datos->telefono_d?>
+                                                </td>
+                                                <td class="texto_tabla_docente">
+                                                    <?=$docente_datos->numero_d?>
+                                                </td>
+                                            </tr>
+                                        <?php endwhile;?>
                                 </tbody>
                             </table>
                             </div>
-                        </div>
+                        <?php else: ?>
+                            <article class="alert alert-danger text-center" role="alert">
+                                No hay docentes registrados.
+                            </article>
+                        <?php endif;?>
+                        </section>
                     </section>
                     <!-- fin de la tabla -->
                     <!-- fin del container en la etiqueta de abajo -->

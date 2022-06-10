@@ -34,7 +34,7 @@
                                                     <span class="col-2">
                                                         <div class="dropdown">
                                                             <a data-bs-toggle="dropdown" href="#" id="opcionesPerfil" role="button">
-                                                                <i class="bi bi-chevron-down btn-sm btn-outline-info" style="font-size: 1rem; color: #0d47a1 ;">
+                                                                <i class="bi bi-chevron-down btn-sm btn-primary" style="font-size: 1rem; color: white ;">
                                                                 </i>
                                                             </a>
                                                             <ul aria-labelledby="opcionesPerfil" class="dropdown-menu">

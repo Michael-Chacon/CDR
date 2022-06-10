@@ -96,7 +96,7 @@ class PersonalController
         $id = $_GET['id'];
         $persona = new Personal();
         $persona->setId($id);
-        $info = $persona->datosPersona();
+        $info = $persona->datosPersonal();
         require_once 'views/administrativo/personal/actualizar.php';
     }
 

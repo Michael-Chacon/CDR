@@ -2,14 +2,14 @@
 	<section class="row shadow titulo">
         <article class="col-xs-12col-sm-12col-md-12 col-lg-12">
             <h1 class="text-center config">
-             Docentes
-         </h1>
-     </article>
- </section>
- <h2 class="text-center mt-4 mb-4 espezor">
-    <i class="bi bi-clipboard-check"></i>
-    Asignaciones de grados y materias.
-</h2>
+                Asignación de grados y materias.
+            </h1>
+        </article>
+    </section>
+    <h2 class="text-center mt-4 mb-4 espezor">
+        <i class="bi bi-clipboard-check"></i>
+        Docentes
+    </h2>
 <section class="row">
     <?php echo Utils::getAlert() ?>
     <?php Utils::borrar_error('alert');?>
