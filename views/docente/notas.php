@@ -21,6 +21,14 @@
                                 Nueva nota
                             </a>
                         </li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li>
+                            <a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#criterio"   href="#">
+                                <i class="bi bi-pen">
+                                </i>
+                                Editar indicadores
+                            </a>
+                        </li>
                     </ul>
                 </acticle>
             </article>
@@ -68,7 +76,7 @@
                     <?php if ($estado->estado == 'Habilitado'): ?>
                         <?php if (isset($_SESSION['teacher'])): ?>
                             <div class="d-grid gap-2 mt-2 mb-3">
-                              <button class="btn btn-danger" type="button" data-bs-toggle="modal" data-bs-target="#boletin">¡Ya puedes generar el boletín!</button>
+                              <button class="btn btn-danger" type="button" data-bs-toggle="modal" data-bs-target="#boletin">¡Ya puedes subir la nota al boletín!</button>
                           </div>
                       <?php endif?>
                     <?php endif?>
@@ -775,3 +783,25 @@
         </div>
     </div>
 </section>
+
+<!-- modal para editar el criterio de la materia. -->
+<article class="modal fade" id="criterio" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Editer indicadores de la materia</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="form-floating">
+          <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea>
+          <label for="floatingTextarea2">Indicadores de la materia</label>
+      </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-outline-success">Guardar cambios</button>
+      </div>
+    </div>
+  </div>
+</article>

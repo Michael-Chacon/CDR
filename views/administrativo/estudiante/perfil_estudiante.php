@@ -1171,8 +1171,19 @@
         <form action="#">
             <div class="row">
                 <div class="form-control">
-
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput1" class="form-label">Nota de comportamiento:</label>
+                      <input type="number" class="form-control" id="exampleFormControlInput1" placeholder="Ingrese acá la nota de comportamiento" name="nota" required>
+                  </div>
+                  <div class="mb-3">
+                      <label for="exampleFormControlTextarea1" class="form-label">Observación:</label>
+                      <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="observacion" required></textarea>
+                  </div>
                 </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                <button type="submit" class="btn btn-success">Registrar</button>
             </div>
         </form>
       </div>

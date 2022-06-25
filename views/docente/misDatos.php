@@ -19,6 +19,7 @@
 						<h5 class="card-title"><?=$_SESSION['teacher']->nombre_d?> <?=$_SESSION['teacher']->apellidos_d?></h5>
 						<h6 class="card-subtitle mb-2 text-muted">Docente</h6>
 					<a href="#" class="card-link btn btn-sm btn-outline-success" data-bs-toggle="modal" data-bs-target="#datos-docente">Editar mis datos</a>
+					<a href="#" class="card-link btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#password-docente">Cambiar contraseña</a>
 					</div>
 					<div class="row text-center">
 						<div class="col-md-4 mt-3 mb-3">
@@ -128,3 +129,30 @@
 		</div>
 	</section>
 </section>
+<!-- Modal para actualizar los datos del estudiante -->
+	<section class="modal fade" id="password-docente" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Actualizar la contraseña</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<form action="<?=base_url?>Teacher/actualizarPass" method="post">
+					<div class="modal-body">
+						<div class="row">
+							<div class="col-md-12">
+								<div class="mb-3">
+									<label for="ed" class="form-label">Contraseña nueva:</label>
+									<input type="text" class="form-control" id="ed" name="new_pass" placeholder="Ingresa acá tu nueva contraseña " required>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+						<button type="submit" class="btn btn-primary">Actualizar</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</section>
