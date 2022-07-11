@@ -23,22 +23,39 @@
 			</acticle>
 		</article>
 	</section>
-	<section class="row">
+	<section class="row justify-content-center mt-3">
+		<article class="col-md-5">
+			<a href="<?=base_url?>Pdf/listadoNotasEstudiantesXMateria&degree=<?=$id_degree?>&subject=<?=$id_subject?>&nombreg=<?=$name_degree?>&materia=<?=$name_subject?>" type="button" class="btn btn-success btn-sm">Listado de notas definitivas (PDF)</a>
+		</article>
+	</section>
+	<section class="row justify-content-center mt-5">
 		<article class="col-md-5">
 			<div class="shadow">
 				<table class="table">
 					<tr>
+						<th>#</th>
+						<th>Foto</th>
 						<th>Nombre</th>
-						<th>Definitiva</th>
 					</tr>
-					<?php while ($estudiante = $listado_estudiantes->fetchObject()): ?>
+					<?php
+					$c = 1;
+					while ($estudiante = $listado_estudiantes->fetchObject()): ?>
 						<tr>
+							<td class="texto_tabla_docente">
+								<?php echo $c++; ?>
+							</td>
 							<td>
+								<?php if ($estudiante->img == null): ?>
+									<img alt="" class="avatar-tabla circulo" src="<?=base_url?>helpers/img/avatar.jpg"></img>
+								<?php else: ?>
+									<img alt="" class="avatar-tabla circulo" src="<?=base_url?>photos/estudiantes/<?=$estudiante->img?>"></img>
+								<?php endif;?>
+							</td>
+							<td class="texto_tabla_docente">
 							<a href="<?=base_url?>Notas/homeNotas&student=<?=Utils::encryption($estudiante->id)?>&materia=<?=Utils::encryption($id_subject)?>&nGrado=<?=$name_degree?>&dir=ok">
-								<?=$estudiante->nombre_e?> <?=$estudiante->apellidos_e?>
+								<?=$estudiante->apellidos_e?> <?=$estudiante->nombre_e?>
 							</a>
 							</td>
-							<td>45</td>
 						</tr>
 					<?php endwhile;?>
 				</table>

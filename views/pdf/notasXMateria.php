@@ -97,7 +97,7 @@ if($listado_notas->rowCount()  != 0):
 else:
     $html = '
         <div class="alerta">
-            No hay estudiantes en este grado.
+            Aún no hay notas definitivas
         </div>';
 endif;
 
