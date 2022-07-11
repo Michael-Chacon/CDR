@@ -659,6 +659,7 @@
                     <input type="text" hidden name="x" value="<?=$estudiantePadres->estudiante_id?>">
                     <input type="text" hidden name="y" value="<?=$estudiantePadres->padres?>">
                     <input type="text" hidden name="z" value="<?=$estudiantePadres->id_gradoE?>">
+
                     <label for="perfil" class="form-label">Elija la nueva foto de perfil</label>
                     <input class="form-control form-control-lg" id="perfil" name="foto_perfil" type="file" required>
                 </div>
@@ -1168,9 +1169,12 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form action="#">
+        <form action="<?=base_url?>Director/nota_comportamiento" method="post">
             <div class="row">
                 <div class="form-control">
+                    <input type="text" hidden name="x" value="<?=$estudiantePadres->estudiante_id?>">
+                    <input type="text" hidden name="y" value="<?=$estudiantePadres->padres?>">
+                    <input type="text" hidden name="z" value="<?=$estudiantePadres->id_gradoE?>">
                     <div class="mb-3">
                         <label for="exampleFormControlInput1" class="form-label">Nota de comportamiento:</label>
                       <input type="number" class="form-control" id="exampleFormControlInput1" placeholder="Ingrese acá la nota de comportamiento" name="nota" required>

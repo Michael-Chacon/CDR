@@ -1,6 +1,6 @@
 <?php
 require_once 'models/grados.php';
-
+require_once 'models/notas.php';
 class DirectorController
 {
     # vista para los directores de grado
@@ -23,4 +23,22 @@ class DirectorController
             require_once 'views/docente/homeDirector.php';
         }
     }
+
+    # Nota de comportamiento
+    public function nota_comportamiento()
+    {
+       if (isset($_POST) && !empty($_POST)) {
+           $id_estudiante = $_POST['x'];
+           $calificacion = $_POST['nota'];
+           $observacion = $_POST['observacion'];
+           $periodo = Utils::validarPeriodoAcademico(date("Y-m-d"));
+
+           $nota = new Notas();
+           $nota->setEstudiante($id_estudiante);
+           $nota->setPeriodo($periodo);
+           $nota->setNota($calificacion);
+           $nota->setItem($observacion);
+       }
+    }
+
 }
