@@ -22,8 +22,11 @@
             <h5 class="card-title">
                 <div class="row">
                     <div class="col-md-3">
-                        <img alt="" class="avatar-docente" src="<?=base_url?>photos/docentes/<?=$docentes->img?>">
-                    </img>
+                        <?php if ($docentes->img == null): ?>
+                            <img alt="" class="avatar-docente" src="<?=base_url?>helpers/img/avatar.jpg"></img>
+                        <?php else: ?>
+                            <img alt="" class="avatar-docente" src="<?=base_url?>photos/docentes/<?=$docentes->img?>"></img>
+                     <?php endif;?>
                 </div>
                 <div class="col-md-9 mt-3"><?=$docentes->nombre_d?> <?=$docentes->apellidos_d?></div>
             </div>

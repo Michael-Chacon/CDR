@@ -2,7 +2,7 @@
 	<section class="row shadow titulo mb-3">
 		<article class="col-xs-11 col-sm-11 col-md-12 col-lg-11">
 			<h1 class="text-center config">
-				<i class="<?=$materia->icono?>"></i> <?=$materia->nombre_mat?> <?=$grado?>°
+				<i class="<?=$materia->icono?>"></i> <?=$materia->nombre_mat?> <?=$grado?>
 			</h1>
 		</article>
 	</section>
@@ -31,7 +31,7 @@
 								No hay estudiante
 							<?php endif; ?>
 						</h5>
-						<p class="text-center subtitulo">Estudiante</p>
+						<p class="text-center subtitulo mt-1">Estudiante</p>
 						<div class="row justify-content-center">
 							<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
 								<button type="button" class="btn btn-outline-dark position-relative btn-sm" data-bs-toggle="modal" data-bs-target="#listadoFallas">
@@ -75,7 +75,7 @@
 								No hay docente
 							<?php endif; ?>
 						</h5>
-						<p class="text-center subtitulo">Docente</p>
+						<p class="text-center subtitulo mt-1">Docente</p>
 					</div>
 				</div>
 				<!-- Fin docente -->

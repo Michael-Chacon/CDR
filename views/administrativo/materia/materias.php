@@ -173,9 +173,12 @@
 	                        <?=$c++?>
 	                    </div>
 	                    <div class="col-md-2">
-	                        <img alt="" class="avatar-tabla circulo" src="<?=base_url?>photos/estudiantes/<?=$estudiantes->img?>">
-	                    </img>
-	                </div>
+                            <?php if ($estudiantes->img == null): ?>
+                                <img alt="" class="avatar-tabla circulo" src="<?=base_url?>helpers/img/avatar.jpg"></img>
+                            <?php else: ?>
+                               <img alt="" class="avatar-tabla circulo" src="<?=base_url?>photos/estudiantes/<?=$estudiantes->img?>"></img>
+                           <?php endif;?>
+                       </div>
 	                <div class="col-md-8 nombre-apellidos-numero">
 	                    <?=$estudiantes->apellidos_e?>
 	                    <?=$estudiantes->nombre_e?>

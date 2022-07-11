@@ -86,14 +86,18 @@
                                     </thead>
                                     <tbody class=" texto-body">
                                         <?php $c = 1;
-while ($estudiantes = $listado_estudiantes->fetchObject()): ?>
+                                        while ($estudiantes = $listado_estudiantes->fetchObject()): ?>
                                             <tr>
                                                 <td>
                                                     <?=$c++?>
                                                 </td>
                                                 <td>
-                                                    <img class="avatar-tabla circulo" src="<?=base_url?>photos/estudiantes/<?=$estudiantes->img?>" alt="">
-                                                </td>
+                                                    <?php if ($estudiantes->img == null): ?>
+                                                        <img alt="" class="avatar-tabla circulo" src="<?=base_url?>helpers/img/avatar.jpg"></img>
+                                                    <?php else: ?>
+                                                       <img alt="" class="avatar-tabla circulo" src="<?=base_url?>photos/estudiantes/<?=$estudiantes->img?>"></img>
+                                                   <?php endif;?>
+                                               </td>
                                                 <td class="texto_tabla_docente">
                                                     <a href="<?=base_url?>Notas/homeNotas&student=<?=Utils::encryption($estudiantes->id)?>&materia=<?=Utils::encryption($materia)?>&nGrado=<?=$nombre_gra?>&event=bad">
                                                         <?=$estudiantes->nombre_e;?> <?=$estudiantes->apellidos_e?>

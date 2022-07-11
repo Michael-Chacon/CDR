@@ -48,7 +48,7 @@
                     <div class="row">
                         <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                             <article class="flex-shrink-0 text-center mb-1">
-                                    <?php if (empty($docente->img)): ?>
+                                    <?php if (empty($estudiante->img)): ?>
                                         <img alt="" class="avatar-perfil-d" src="<?=base_url?>helpers/img/avatar.jpg"></img>
                                     <?php else: ?>
                                         <img alt="" class="avatar-perfil-d" src="<?=base_url?>photos/estudiantes/<?=$estudiante->img?>"></img>

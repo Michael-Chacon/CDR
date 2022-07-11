@@ -10,11 +10,16 @@
 <section class="container-fluid">
      <section class="row mt-5 mb-5 justify-content-center">
         <?php if(!empty($informacionUsuarios->nombre_e)): ?>
+            <!--  Datos del estudiante -->
         <article class="col-md-4 mb-3">
             <div class="card shadow" >
               <div class="card-body">
                  <div class="text-center">
-                    <img src="<?=base_url?>/photos/estudiantes/<?=$informacionUsuarios->photo?>" class="avatar circulo" alt="">
+                   <?php if ($informacionUsuarios->photo == null): ?>
+                        <img alt="" class="avatar circulo" src="<?=base_url?>helpers/img/avatar.jpg"></img>
+                    <?php else: ?>
+                        <img alt="" class="avatar circulo" src="<?=base_url?>photos/estudiantes/<?=$informacionUsuarios->photo?>"></img>
+                    <?php endif;?>
                     <h5 class="card-title mt-3 titulo-boletin"><?=$informacionUsuarios->nombre_e?> <?=$informacionUsuarios->apellidos_e?></h5>
                     <h6 class="card-subtitle mb-2 subtitulo">Estudiante</h6>
                 </div>
@@ -35,11 +40,16 @@
             </div>
         </div>
         </article>
+        <!-- Datos del director de grado -->
         <article class="col-md-4 mb-3">
             <div class="card shadow" >
               <div class="card-body">
                 <div class="text-center mt-4 mb-3">
-                    <img src="<?=base_url?>/photos/docentes/<?=$informacionUsuarios->img?>" class="avatar circulo" alt="">
+                    <?php if ($informacionUsuarios->img == null): ?>
+                        <img alt="" class="avatar circulo" src="<?=base_url?>helpers/img/avatar.jpg"></img>
+                    <?php else: ?>
+                       <img alt="" class="avatar circulo" src="<?=base_url?>photos/docentes/<?=$informacionUsuarios->img?>"></img>
+                    <?php endif;?>
                     <h5 class="card-title mt-3 titulo-boletin"><?=$informacionUsuarios->nombre_d?> <?=$informacionUsuarios->apellidos_d?></h5>
                     <h6 class="card-subtitle mb-2 subtitulo">Director(a) de grupo</h6>
                     <br/>

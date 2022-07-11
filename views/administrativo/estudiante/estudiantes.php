@@ -186,6 +186,8 @@
                                         <div class="col-md-6">
                                             <div class="form-floating mb-3">
                                                 <select aria-label=".form-select-lg example" class="form-select form-select-md mb-3" name="tipo_e" required="">
+                                                    <option>
+                                                    </option>
                                                     <option value="cedula">
                                                         Cédula
                                                     </option>
@@ -454,6 +456,8 @@
                                                         <div class="col-md-6">
                                                             <div class="form-floating mb-3">
                                                                 <select aria-label=".form-select-lg example" class="form-select form-select-md mb-3" name="tipo_m" >
+                                                                    <option>
+                                                                    </option>
                                                                     <option value="cedula">
                                                                         Cedula
                                                                     </option>
@@ -560,6 +564,8 @@
                                                         <div class="col-md-6">
                                                             <div class="form-floating mb-3">
                                                                 <select aria-label=".form-select-lg example" class="form-select form-select-md mb-3" name="tipo_pa" >
+                                                                    <option>
+                                                                    </option>
                                                                     <option value="cedula">
                                                                         Cedula
                                                                     </option>

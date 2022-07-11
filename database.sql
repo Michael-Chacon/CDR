@@ -596,6 +596,15 @@ CREATE TABLE puestos(
 		CONSTRAINT pk_tablero_actividades_docentes PRIMARY KEY (id)
 	)ENGINE=InnoDb;
 
+# Tabla para registar las notas de comportamiento de los estudiante por parte del docente
+CREATE TABLE notacomportamiento(
+	id INT(4) AUTO_INCREMENT NOT NULL,
+	id_estudiante_compor INT(4) NOT NULL,
+	observacion TEXT NOT NULL,
+	nota FLOAT NOT NULL,
+	CONSTRAINT pk_nota_comportamiento PRIMARY KEY (id),
+	CONSTRAINT fk_estudiante_comportamiento FOREIGN KEY (id_estudiante_compor) REFERENCES estudiante (id) ON DELETE CASCADE
+)ENGINE=InnoDb;
 
 --  seleccionar todos los grados
 SELECT gd.id_grado_d FROM gradodocente gd

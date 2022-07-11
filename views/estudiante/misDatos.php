@@ -14,7 +14,11 @@
 			<div class="card shadow">
 				<div class="card-body">
 					<div class="text-center mb-2">
-						<img class="avatar circulo" src="<?=base_url?>photos/estudiantes/<?=$_SESSION['student']['img']?>">
+						<?php if ($_SESSION['student']['img'] == null): ?>
+							<img alt="" class="avatar circulo" src="<?=base_url?>helpers/img/avatar.jpg"></img>
+						<?php else: ?>
+							<img alt="" class="avatar circulo" src="<?=base_url?>photos/estudiantes/<?=$_SESSION['student']['img']?>"></img>
+						<?php endif;?>
 						<h5 class="card-title"><?=$_SESSION['student']['nombre_e']?> <?=$_SESSION['student']['apellidos_e']?></h5>
 						<h6 class="card-subtitle mb-2 text-muted">Estudiante</h6>
 					<a href="#" class="card-link btn btn-sm btn-outline-success" data-bs-toggle="modal" data-bs-target="#datos-estudiante">Editar mis datos</a>

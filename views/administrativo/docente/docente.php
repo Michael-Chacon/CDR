@@ -170,6 +170,7 @@
                                         <div class="col-md-6">
                                             <div class="form-floating mb-3">
                                                 <select aria-label=".form-select-lg example" class="form-select form-select-md mb-3" name="tipo" required="">
+                                                    <option></option>
                                                     <option value="cedula">
                                                         Cedula
                                                     </option>
@@ -279,6 +280,7 @@
                                         <div class="col-md-6">
                                             <div class="form-floating mb-3">
                                                 <select aria-label=".form-select-lg example" class="form-select form-select-md mb-3" name="grupo" required="">
+                                                    <option ></option>
                                                     <option value="A">
                                                         A
                                                     </option>
@@ -300,6 +302,7 @@
                                         <div class="col-md-6">
                                             <div class="form-floating mb-3">
                                                 <select aria-label=".form-select-lg example" class="form-select form-select-md mb-3" name="rh" required="">
+                                                    <option></option>
                                                     <option value="+">
                                                         Positivo
                                                     </option>
@@ -356,6 +359,7 @@
                                         <div class="col-md-6">
                                             <div class="form-floating mb-3">
                                                 <select aria-label=".form-select-lg example" class="form-select form-select-md mb-3" name="pregrado" required="">
+                                                    <option></option>
                                                     <option value="si">
                                                         Si
                                                     </option>
@@ -384,6 +388,7 @@
                                         <div class="col-md-6">
                                             <div class="form-floating mb-3">
                                                 <select aria-label=".form-select-lg example" class="form-select form-select-md mb-3" name="posgrado" >
+                                                    <option></option>
                                                     <option value="si">
                                                         Si
                                                     </option>
