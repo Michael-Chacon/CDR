@@ -749,4 +749,21 @@ class Notas
             echo $e->getMessage();
         }
     }
+
+    public function notaComportamiento()
+    {
+        $id_estudiante = $this->getEstudiante();
+        $id_periodo = $this->getPeriodo();
+        $calificacion = $this->getNota();
+        $observacion = $this->getItem();
+
+        $registro = $this->db->prepare("INSERT INTO notacomportamiento VALUES (null, :estudiante, :periodo, :caligicacion, :observacion)");
+        $registro->bindParam(":estudiante", $id_estudiante, PDO::PARAM_INT);
+        $registro->bindParam(":periodo", $id_periodo, PDO::PARAM_INT);
+        $registro->bindParam(":calificacion", $calificacion, PDO::PARAM_INT);
+        $registro->bindParam(":observacion", $observacion, PDO::PARAM_STR);
+        return $registro->execute();
+    }
+
+
 } # fin de la clase
