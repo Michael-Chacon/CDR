@@ -3,6 +3,7 @@ require_once 'models/observador.php';
 
 class ObservadorController
 {
+    # ver las observaciones de un estudiante
     public function vista_observador()
     {
         if (!isset($_GET['id']) || !isset($_GET['g']) || !isset($_GET['name'])) {

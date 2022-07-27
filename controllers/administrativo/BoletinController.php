@@ -103,6 +103,11 @@ class BoletinController
         $docenteEstudiante->setIdEstudiante($estudiante);
         $informacionUsuarios = $docenteEstudiante->datosDocenteEstudianteGrado($grado);
 
+        # Nota de comportamiento
+        $nota_comportamiento = $boletin->comportamiento();
+
+
+
         if (isset($_GET['pdf']) && $_GET['pdf'] == 'b') {
             require_once 'views/pdf/boletin.php';
         } else {

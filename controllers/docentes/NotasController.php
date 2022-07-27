@@ -25,7 +25,7 @@ class NotasController
             } else {
                 $grado = '';
             }
-            # Obteniendo los datos del estudiante la cual se quire consultar las notas y demas.
+            # Obteniendo los datos del estudiante la cual se quiere consultar las notas y demas.
             $datos_estudiante = new Estudiante();
             $datos_estudiante->setId($id_estudiante);
             $estudiante = $datos_estudiante->selectOneStudent();

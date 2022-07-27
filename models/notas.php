@@ -1,23 +1,23 @@
 <?php
 class Notas
 {
-    private $id;
-    private $materia;
-    private $estudiante;
-    private $periodo;
-    private $item;
-    private $nota;
-    private $porcentaje;
-    private $cognitivo;
-    private $evaluacion;
-    private $trimestral;
-    private $procedimental;
-    private $Tindividual;
-    private $Tcolaborativo;
-    private $actitudinal;
-    private $apreciativa;
-    private $autoevaluacion;
-    private $promedio;
+    protected $id;
+    protected $materia;
+    protected $estudiante;
+    protected $periodo;
+    protected $item;
+    protected $nota;
+    protected $porcentaje;
+    protected $cognitivo;
+    protected $evaluacion;
+    protected $trimestral;
+    protected $procedimental;
+    protected $Tindividual;
+    protected $Tcolaborativo;
+    protected $actitudinal;
+    protected $apreciativa;
+    protected $autoevaluacion;
+    protected $promedio;
     public $db;
 
     public function __construct()
@@ -754,14 +754,14 @@ class Notas
     {
         $id_estudiante = $this->getEstudiante();
         $id_periodo = $this->getPeriodo();
-        $calificacion = $this->getNota();
         $observacion = $this->getItem();
+        $calificacion = $this->getNota();
 
-        $registro = $this->db->prepare("INSERT INTO notacomportamiento VALUES (null, :estudiante, :periodo, :caligicacion, :observacion)");
+        $registro = $this->db->prepare("INSERT INTO notacomportamiento VALUES (null, :estudiante, :periodo, :observacion, :calificacion)");
         $registro->bindParam(":estudiante", $id_estudiante, PDO::PARAM_INT);
         $registro->bindParam(":periodo", $id_periodo, PDO::PARAM_INT);
-        $registro->bindParam(":calificacion", $calificacion, PDO::PARAM_INT);
         $registro->bindParam(":observacion", $observacion, PDO::PARAM_STR);
+        $registro->bindParam(":calificacion", $calificacion, PDO::PARAM_INT);
         return $registro->execute();
     }
 

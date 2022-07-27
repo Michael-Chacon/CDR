@@ -1,6 +1,5 @@
 <?php
 require_once 'models/login.php';
-require_once 'models/datos.php';
 class LoginController
 {
     public function login()
@@ -36,13 +35,12 @@ class LoginController
                 header('Location: ' . base_url);
             }
             $rol = $respuesta->rol;
-            $informacion = new Filtro();
             switch ($respuesta->rol) {
                 #usuario Administrador
                 case 'administrativo':
                     $id_user = $respuesta->id_administrativo;
-                    $informacion->setIdUsuario($id_user);
-                    $info = $informacion->obtenerDatos($rol);
+                    $datos->setIdUsuario($id_user);
+                    $info = $datos->obtenerDatos($rol);
                     $_SESSION['user'] = $info;
                     header('Location: ' . base_url . 'Login/homeAdministrativo');
                     Utils::tal();
@@ -50,16 +48,16 @@ class LoginController
                 #usuario Docente
                 case 'docente':
                     $id_user = $respuesta->id_docente;
-                    $informacion->setIdUsuario($id_user);
-                    $info = $informacion->obtenerDatos($rol);
+                    $datos->setIdUsuario($id_user);
+                    $info = $datos->obtenerDatos($rol);
                     $_SESSION['teacher'] = $info;
                     header('Location: ' . base_url . 'Teacher/homeDocente');
                     break;
                 #usuario Estudiante
                 case 'estudiante':
                     $id_user = $respuesta->id_estudiante;
-                    $informacion->setIdUsuario($id_user);
-                    $info = $informacion->obtenerDatos($rol);
+                    $datos->setIdUsuario($id_user);
+                    $info = $datos->obtenerDatos($rol);
                     $estudiante = array_merge((array) $respuesta, (array) $info);
                     $_SESSION['student'] = $estudiante;
                     header('Location: ' . base_url . 'Student/homeEstudiante');

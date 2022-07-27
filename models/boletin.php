@@ -1,21 +1,21 @@
 <?php
 class Boletin
 {
-    private $id_boletin;
-    private $id_estudiante;
-    private $id_materia;
-    private $area;
-    private $id_periodo;
-    private $materia;
-    private $estudiante;
-    private $docente;
-    private $fallas;
-    private $observacion;
-    private $periodo1;
-    private $periodo2;
-    private $periodo3;
-    private $promedio;
-    private $recuperacion;
+    protected $id_boletin;
+    protected $id_estudiante;
+    protected $id_materia;
+    protected $area;
+    protected $id_periodo;
+    protected $materia;
+    protected $estudiante;
+    protected $docente;
+    protected $fallas;
+    protected $observacion;
+    protected $periodo1;
+    protected $periodo2;
+    protected $periodo3;
+    protected $promedio;
+    protected $recuperacion;
 
     public $db;
     public function __construct()
@@ -367,14 +367,17 @@ class Boletin
     public function calcularPuestoEstudiante($grado)
     {
         try {
-            # Obtener todos los registros de promedios
+            # Obtener todos los registros de promedios de todos los estudiantes del grado, ordenados del mayor promedio hasta el menor promedio
             $periodo = Utils::validarPeriodoAcademico(date("Y-m-d"));
             $cunsultar_promedio = $this->db->prepare("SELECT * FROM promedioEstudiante WHERE id_grado_avg = :grado AND id_periodo_avg = :periodo ORDER BY promedio DESC");
             $cunsultar_promedio->bindParam(":grado", $grado, PDO::PARAM_INT);
             $cunsultar_promedio->bindParam(":periodo", $periodo, PDO::PARAM_INT);
             $cunsultar_promedio->execute();
             $c = 1;
-            # guardar los puestos
+            /*
+            Cada vez que se inserta una nota se recalcula el puesto del estudiante, hay que definir si el estudiantes ya tiene
+            un registro en la tabla puesto, si no lo tiene hay que inserterlo, si ya lo tiene hay que actualizarlo
+            */
             while ($orden = $cunsultar_promedio->fetchObject()) {
                 $puesto = $c++;
                 # vamos a ver si el estudiante tiene un registro en la tabla
@@ -385,6 +388,7 @@ class Boletin
                 $consultar_puesto->execute();
 
                 if ($consultar_puesto->rowCount() == 0) {
+                    # El estudiante no tiene registro
                     $registrar_puesto = $this->db->prepare("INSERT INTO puestos VALUES (null, :es, :pe, :gra, :puesto, CURDATE(), CURTIME())");
                     $registrar_puesto->bindParam(":es", $orden->id_estudiante_avg, PDO::PARAM_INT);
                     $registrar_puesto->bindParam(":pe", $periodo, PDO::PARAM_INT);
@@ -392,6 +396,7 @@ class Boletin
                     $registrar_puesto->bindParam(":puesto", $puesto, PDO::PARAM_INT);
                     $registrar_puesto->execute();
                 } else {
+                    # El estudiante si tiene registro
                     $actualizar_puesto = $this->db->prepare("UPDATE  puestos SET puesto = :puesto, fecha = CURDATE(), hora = CURTIME() WHERE  id_estudiante_puesto = :es AND id_periodo_puesto = :pe AND id_grado_puesto = :gra");
                     $actualizar_puesto->bindParam(":puesto", $puesto, PDO::PARAM_INT);
                     $actualizar_puesto->bindParam(":es", $orden->id_estudiante_avg, PDO::PARAM_INT);
@@ -567,5 +572,17 @@ class Boletin
         $boletin->execute();
         return $boletin;
     }
+
+    # Obtener la nota de conportamiento
+        public function comportamiento()
+        {
+           $student = $this->getIdEstudiante();
+           $periodo_id = $this->getIdPeriodo();
+           $comportamiento = $this->db->prepare("SELECT * FROM notacomportamiento WHERE id_estudiante_compor = :estudiante AND id_periodo_compor = :periodo");
+           $comportamiento->bindParam(":estudiante", $student, PDO::PARAM_INT);
+           $comportamiento->bindParam(":periodo", $periodo_id, PDO::PARAM_INT);
+           $comportamiento->execute();
+           return $comportamiento->fetchObject();
+        }
 
 } # fin de la clase

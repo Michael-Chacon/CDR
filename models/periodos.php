@@ -159,7 +159,7 @@ class Periodos
         return $periodos;
     }
 
-
+    # seleccionar solo un periodo academico
     public function onePeriodo()
     {
         $id_periodo = $this->getId();

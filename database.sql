@@ -32,12 +32,17 @@ CREATE TABLE materia(
 )ENGINE=InnoDb;
 
 CREATE TABLE periodo(
-	id INT(4) AUTO_INCREMENT NOT NULL,
+	id INT(4) NOT NULL,
 	nombre_periodo VARCHAR(10) NOT NULL,
 	fecha_inicio DATE NOT NULL,
 	fecha_fin DATE NOT NULL,
 	CONSTRAINT pk_periodo PRIMARY KEY(id)
 )ENGINE=InnoDb;
+
+INSERT INTO periodo VALUES (1, '2022-01-01', '2022-02-02');
+INSERT INTO periodo VALUES (2, '2022-03-03', '2022-04-04');
+INSERT INTO periodo VALUES (3, '2022-05-05', '2022-06-06');
+-- -----------------------------------------------------
 
 CREATE TABLE padres(
 	id INT(4) AUTO_INCREMENT NOT NULL,
@@ -372,6 +377,7 @@ CREATE TABLE director(
 CREATE TABLE areas(
 	id_area INT(3) AUTO_INCREMENT NOT NULL,
 	nombre_area VARCHAR (60) NOT NULL,
+	color VARCHAR(10) NOT NULL,
 	CONSTRAINT pk_area PRIMARY KEY(id_area) ON DELETE CASCADE
 )ENGINE=InnoDb;
 
@@ -495,12 +501,51 @@ CONSTRAINT fk_periodo_autoevaluacion FOREIGN KEY (id_periodo_autoevaluacion) REF
 CONSTRAINT fk_actitudinal_autoevaluacion FOREIGN KEY (id_actitudinal_autoevaluacion) REFERENCES actitudinal (id_actitudinal)
 )ENGINE=InnoDb;
 
-#icono
+# icono
 CREATE TABLE iconos(
 	id_icono INT(3) AUTO_INCREMENT NOT NULL,
-	icono VARCHAR(30) NOT NULL,
+	icono VARCHAR(50) NOT NULL,
 	CONSTRAINT pk_iconos PRIMARY KEY (id_icono)
 )ENGINE=InnoDb;
+INSERT INTO iconos VALUES (NULL, 'bi bi-rulers');
+INSERT INTO iconos VALUES (NULL, 'bi bi-activity');
+INSERT INTO iconos VALUES (NULL, 'bi bi-translate');
+INSERT INTO iconos VALUES (NULL, 'bi bi-patch-question');
+INSERT INTO iconos VALUES (NULL, 'bi bi-yin-yang');
+INSERT INTO iconos VALUES (NULL, 'bi bi-globe');
+INSERT INTO iconos VALUES (NULL, 'bi bi-cloud-sun');
+INSERT INTO iconos VALUES (NULL, 'bi bi-book');
+INSERT INTO iconos VALUES (NULL, 'bi bi-spellcheck');
+INSERT INTO iconos VALUES (NULL, 'bi bi-graph-down');
+INSERT INTO iconos VALUES (NULL, 'bi bi-list-ol');
+INSERT INTO iconos VALUES (NULL, 'bi bi-droplet-half');
+INSERT INTO iconos VALUES (NULL, 'bi bi-brightness-high');
+INSERT INTO iconos VALUES (NULL, 'bi bi-alarm');
+INSERT INTO iconos VALUES (NULL, 'bi bi-arrow-repeat');
+INSERT INTO iconos VALUES (NULL, 'bi bi-at');
+INSERT INTO iconos VALUES (NULL, 'bi bi-arrows-collapse');
+INSERT INTO iconos VALUES (NULL, 'bi bi-award');
+INSERT INTO iconos VALUES (NULL, 'bi bi-back');
+INSERT INTO iconos VALUES (NULL, 'bi bi-backspace');
+INSERT INTO iconos VALUES (NULL, 'bi bi-bank');
+INSERT INTO iconos VALUES (NULL, 'bi bi-bar-chart-line');
+INSERT INTO iconos VALUES (NULL, 'bi bi-bar-chart-steps');
+INSERT INTO iconos VALUES (NULL, 'bi bi-bell');
+INSERT INTO iconos VALUES (NULL, 'bi bi-bookmark-star');
+INSERT INTO iconos VALUES (NULL, 'bi bi-box');
+INSERT INTO iconos VALUES (NULL, 'bi bi-brush');
+INSERT INTO iconos VALUES (NULL, 'bi bi-calculator');
+INSERT INTO iconos VALUES (NULL, 'bi bi-cash-coin');
+INSERT INTO iconos VALUES (NULL, 'bi bi-coin');
+INSERT INTO iconos VALUES (NULL, 'bi bi-dribbble');
+INSERT INTO iconos VALUES (NULL, 'bi bi-graph-down-arrow');
+INSERT INTO iconos VALUES (NULL, 'bi bi-hammer');
+INSERT INTO iconos VALUES (NULL, 'bi bi-palette');
+INSERT INTO iconos VALUES (NULL, 'bi bi-people');
+INSERT INTO iconos VALUES (NULL, 'bi bi-piggy-bank');
+INSERT INTO iconos VALUES (NULL, 'bi bi-radioactive');
+INSERT INTO iconos VALUES (NULL, 'bi bi-stars');
+-- -----------------------------------------------------
 
 # tabla para almacenar notas definitvas
 CREATE TABLE notasdefinitivas(
@@ -561,8 +606,9 @@ CREATE TABLE habilitarBoletin(
 	CONSTRAINT pd_habilitar_boletin PRIMARY KEY (id_estado)
 )ENGINE=InnoDb;
 INSERT INTO habilitarBoletin VALUES(1, 'Deshabilitado');
+-- ----------------------------------------------------------------------------
 
-#tabla para guardar el puesto que ocupa un estudiante
+# tabla para guardar el puesto que ocupa un estudiante
 CREATE TABLE puestos(
 	id_puesto  INT(10) AUTO_INCREMENT NOT NULL,
 	id_estudiante_puesto INT(10) NOT NULL,
@@ -600,10 +646,12 @@ CREATE TABLE puestos(
 CREATE TABLE notacomportamiento(
 	id INT(4) AUTO_INCREMENT NOT NULL,
 	id_estudiante_compor INT(4) NOT NULL,
+	id_periodo_compor INT(4) NOT NULL,
 	observacion TEXT NOT NULL,
 	nota FLOAT NOT NULL,
 	CONSTRAINT pk_nota_comportamiento PRIMARY KEY (id),
-	CONSTRAINT fk_estudiante_comportamiento FOREIGN KEY (id_estudiante_compor) REFERENCES estudiante (id) ON DELETE CASCADE
+	CONSTRAINT fk_estudiante_comportamiento FOREIGN KEY (id_estudiante_compor) REFERENCES estudiante (id) ON DELETE CASCADE,
+	CONSTRAINT fk_nota_compor_periodo FOREIGN KEY (id_periodo_compor) REFERENCES periodo (id)
 )ENGINE=InnoDb;
 
 --  seleccionar todos los grados

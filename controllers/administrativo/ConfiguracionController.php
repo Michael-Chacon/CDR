@@ -178,6 +178,7 @@ class ConfiguracionController
         $cognitivo = $_POST['cognitivo'];
         $evaluacion = $_POST['evaluacion'];
         $trimestral = $_POST['trimestral'];
+
         $actualizador = new Notas();
         $actualizador->setCognitivo($cognitivo);
         $actualizador->setEvaluacion($evaluacion);

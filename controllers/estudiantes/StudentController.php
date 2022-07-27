@@ -57,7 +57,7 @@ class StudentController
     public function actualizarDatosPadres()
     {
         $telefono_m = $_POST['telefono_m'];
-        $telefono_p = $_POST['telefono_m'];
+        $telefono_p = $_POST['telefono_p'];
         $direccion = $_POST['direccion_pm'];
         $correo = $_POST['correo_pm'];
         $actualizar = new Padres();

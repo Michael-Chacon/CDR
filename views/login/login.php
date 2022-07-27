@@ -35,7 +35,7 @@
                                             <label for="floatingPassword">
                                                 Contraseña:
                                             </label>
-                                            <!-- <div class="form-text text-end" data-bs-target="#recuperar_pass" data-bs-toggle="modal">
+                                       <!--      <div class="form-text text-end" data-bs-target="#recuperar_pass" data-bs-toggle="modal">
                                                 <a href="#">
                                                     Olvidaste tu contraseña?
                                                 </a>

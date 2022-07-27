@@ -2,14 +2,14 @@
 
 class Credencial
 {
-    public $id;
-    public $id_administrativo;
-    public $id_estudiante;
-    public $id_docente;
-    public $rol;
-    public $usuario;
-    public $password;
-    public $estado;
+    protected $id;
+    protected $id_administrativo;
+    protected $id_estudiante;
+    protected $id_docente;
+    protected $rol;
+    protected $usuario;
+    protected $password;
+    protected $estado;
 
     public $db;
     public function __construct()

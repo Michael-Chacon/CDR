@@ -24,7 +24,7 @@ class DirectorController
         }
     }
 
-    # Nota de comportamiento
+    # Registrar nota de comportamiento
     public function nota_comportamiento()
     {
        if (isset($_POST) && !empty($_POST)) {
@@ -36,8 +36,11 @@ class DirectorController
            $nota = new Notas();
            $nota->setEstudiante($id_estudiante);
            $nota->setPeriodo($periodo);
-           $nota->setNota($calificacion);
            $nota->setItem($observacion);
+           $nota->setNota($calificacion);
+           $resultado = $nota->notaComportamiento();
+           Utils::alertas($resultado, 'Nota de comportamiento registrada con éxito', 'Algo salió mal al intentar registrar la nota de comportamiento, inténtelo de nuevo.');
+           header("Location: " .base_url. 'Estudiante/perfilEstudiante&x=' . $id_estudiante. '&y=' .$_POST['y']. '&z=' . $_POST['z']);
        }
     }
 

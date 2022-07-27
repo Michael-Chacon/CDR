@@ -9,6 +9,7 @@ class TeacherController
 {
     public function homeDocente()
     {
+        # listar los grados a cargo del docente
         $id_docente = $_SESSION['teacher']->id;
         $grados = new Asignaciones();
         $grados->setIdDocente($id_docente);

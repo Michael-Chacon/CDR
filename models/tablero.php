@@ -1,12 +1,12 @@
 <?php
 class Tablero
 {
-    private $id;
-    private $titulo;
-    private $fecha;
-    private $detalle;
-    private $color;
-    private $usuario;
+    protected $id;
+    protected $titulo;
+    protected $fecha;
+    protected $detalle;
+    protected $color;
+    protected $usuario;
     public $db;
 
     public function __construct()

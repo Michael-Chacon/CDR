@@ -384,6 +384,7 @@
                                             <td class="text-center"><?=$demas->total_fallas_periodo?></td>
                                         </tr>
                                     <?php endwhile;?>
+
             					</tbody>
             				</table>
             				</div>

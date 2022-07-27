@@ -2,11 +2,11 @@
 
 class Actividades
 {
-    private $id;
-    private $materia;
-    private $titulo;
-    private $fecha;
-    private $descripcion;
+    protected $id;
+    protected $materia;
+    protected $titulo;
+    protected $fecha;
+    protected $descripcion;
 
     public $db;
     public function __construct()

@@ -135,6 +135,7 @@ class Documentos
         return $this;
     }
 
+    # documentos dirigidos a los profesores
     public function saveTeachers()
     {
         try {
@@ -149,6 +150,8 @@ class Documentos
             echo $e->getMessage();
         }
     }
+
+    # Documentos dirigidos a los estudiantes
     public function saveStudents()
     {
         try {
