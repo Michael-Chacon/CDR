@@ -572,6 +572,24 @@ class Padres
         return $this->db->lastInsertId();
     }
 
+    # Metodo para consultar el numero de hijos que tienen los padres en la institucion
+    public function numberSons()
+    {
+        $id_padres = $this->getId();
+        $hijos = $this->db->prepare("SELECT COUNT(id) AS 'total' FROM estudiante WHERE id_familia_e = :papas");
+        $hijos->bindParam("papas", $id_padres, PDO::PARAM_INT);
+        $hijos->execute();
+        return $hijos->fetchObject();
+    }
+
+    # Metodo para eliminiar un estudiante de la plataforma
+    public function deleteFathers()
+    {
+        $papas = $this->getId();
+        $eliminar = $this->db->prepare("DELETE FROM padres WHERE id = :padres");
+        $eliminar->bindParam(":padres", $papas, PDO::PARAM_INT);
+        return $eliminar->execute();
+    }
     # seleccionar el id del padre cuando ya esta registrado en la db y se va a matricular ha un segundo hijo
     public function padresExistentes()
     {

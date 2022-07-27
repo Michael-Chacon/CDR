@@ -146,6 +146,15 @@ class Estudiante extends Usuarios
         return $id_estudiante;
     }
 
+    # Metodo para eliminiar un estudiante de la plataforma
+    public function deleteStudent()
+    {
+        $id_student = $this->getId();
+        $eliminar = $this->db->prepare("DELETE FROM estudiante WHERE id = :estudiante");
+        $eliminar->bindParam(":estudiante", $id_student, PDO::PARAM_INT);
+        return $eliminar->execute();
+    }
+
     # asignar las materias del grado en que se matriculo al estudiantes
     public function materiasEstudiante($estudiante, $metodo)
     {

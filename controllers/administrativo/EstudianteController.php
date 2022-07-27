@@ -226,6 +226,7 @@ class EstudianteController
         header("Location: " . base_url . 'Estudiante/estudiantes');
     }
 
+    # Metodo para cambir la foto de perfil
     public function fotoPerfil()
     {
         $file = $_FILES['foto_perfil'];
@@ -244,8 +245,34 @@ class EstudianteController
         $new_photo->setId($id);
         $new_photo->setImg($foto);
         $resultadoF = $new_photo->imgPerfil();
-        Utils::alertas($resultadoF, 'La foto ha sido actualizada con éxito.', 'La foto ha sido actualizada con éxito.');
+        Utils::alertas($resultadoF, 'La foto ha sido actualizada con éxito.', 'Algo salió mal al intentar actualizar la foto.');
         header("Location: " . base_url . 'Estudiante/perfilEstudiante&x=' . $_POST['x'] . '&y=' . $_POST['y'] . '&z=' . $_POST['z']);
+    }
+
+    /*
+    Metodo para eliminiar estudiantes y padres de familia,
+    si un padre de familia tiene 2 hijos o mas,  no se eliminara
+    si tiene solo 1 hijo, se eliminara.
+    */
+    public function eliminarEstudiante()
+    {
+        $id_padres = Utils::decryption($_GET['fathers']);
+        $padres = new Padres();
+        $padres->setId($id_padres);
+        $numeroHijos = $padres->numberSons();
+
+        $estudiante = Utils::decryption($_GET['student']);
+        $eliminar = new Estudiante();
+        $eliminar->setId($estudiante);
+
+        if ($numeroHijos->total >= 2) {
+            $resultado = $eliminar->deleteStudent();
+        } elseif ($numeroHijos->total == 1) {
+            $padres->deleteFathers();
+            $resultado = $eliminar->deleteStudent();
+        }
+        Utils::alertas($resultado, 'Estudiante eliminado con éxito', 'Algo salió mal al intentar eliminar el estudiante');
+        header("Location: " . base_url . 'Estudiante/estudiantes');
     }
 
 } # Fin de la clase
