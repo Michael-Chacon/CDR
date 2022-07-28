@@ -220,7 +220,7 @@ CREATE TABLE credenciales(
 	password VARCHAR(20) NOT NULL, 
 	estado VARCHAR(8) NOT NULL,
 	CONSTRAINT pk_credenciales PRIMARY KEY(id),
-	CONSTRAINT fk_usuario_credencial FOREIGN KEY(id_administrativo) REFERENCES administrativo(id) ON DELETE CASCADE,
+	CONSTRAINT fk_usuario_credencial FOREIGN KEY(id_administrativo) REFERENCES administrativo(id_admin) ON DELETE CASCADE,
 	CONSTRAINT fk_estudiante_credencial FOREIGN KEY(id_estudiante) REFERENCES estudiante(id) ON DELETE CASCADE,
 	CONSTRAINT fk_docente_credencial FOREIGN KEY(id_docente) REFERENCES docente(id) ON DELETE CASCADE,
 	CONSTRAINT fk_admin_credenciales FOREIGN KEY (id_admin_credenciales) REFERENCES administrativo (id_admin)
@@ -676,6 +676,48 @@ CREATE TABLE notacomportamiento(
 	CONSTRAINT fk_estudiante_comportamiento FOREIGN KEY (id_estudiante_compor) REFERENCES estudiante (id) ON DELETE CASCADE,
 	CONSTRAINT fk_nota_compor_periodo FOREIGN KEY (id_periodo_compor) REFERENCES periodo (id)
 )ENGINE=InnoDb;
+
+
+
+-- ------------------------------------------------------------------- INICIO TABLAS Y TRIGGERS PARA AUDITORIA --------------------------------------------------------
+# Tabla para ver quien actualizo el periodo academico
+CREATE TABLE update_periodo(
+	id_up INT(4) AUTO_INCREMENT NOT NULL,
+	id_admin_up INT(4) NOT NULL,
+	nombre_periodo VARCHAR(12) NOT NULL,
+	fecha_inicio VARCHAR (15) NOT NULL,
+	fecha_fin VARCHAR(15) NOT NULL,
+	fecha_modificacion_up DATETIME NOT NULL,
+	CONSTRAINT pk_update_periodo PRIMARY KEY (id_up),
+	CONSTRAINT fk_auditoria_periodo FOREIGN KEY (id_admin_up) REFERENCES administrativo (id_admin)
+)ENGINE=InnoDb;
+
+# Trigger para la tabla update_periodo
+CREATE TRIGGER update_periodo_bu BEFORE UPDATE ON periodo
+FOR EACH ROW
+INSERT INTO update_periodo (id_admin_up, nombre_periodo, fecha_inicio, fecha_fin, fecha_modificacion_up)
+VALUES (old.id_admin_periodo, old.nombre_periodo, old.fecha_inicio, old.fecha_fin, NOW());
+
+# tabla para ver quien registro una materia y cuando
+CREATE TABLE insertar_grado(
+	id_ig INT(4) AUTO_INCREMENT NOT NULL,
+	id_admin_ig INT(4) NOT NULL,
+	nombre_grado_ig VARCHAR(10) NOT NULL,
+	fecha_creacion_grado DATETIME NOT NULL,
+	CONSTRAINT pk_insertar_grado PRIMARY KEY (id_admin_up),
+	CONSTRAINT fk_admin_insert_grado FOREIGN KEY (id_admin_ig) REFERENCES administrativo (id_admin),
+)ENGINE=InnoDb;
+# trigger para auditar la creacion de lo grados
+CREATE TRIGGER insertar_grado_bi BEFORE INSERT ON grado
+FOR EACH ROW
+INSERT INTO insertar_grado_bi (id_admin_ig, nombre_grado_ig, fecha_creacion_grado)
+VALUES (new.id_admin_grado, new.nombre_g, NOW())
+
+
+
+
+-- ------------------------------------------------------------------- FIN TABLAS Y TRIGGERS PARA AUDITORIA -----------------------------------------------------------
+
 
 --  seleccionar todos los grados
 SELECT gd.id_grado_d FROM gradodocente gd
