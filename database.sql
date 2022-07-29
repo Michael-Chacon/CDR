@@ -206,7 +206,6 @@ CREATE TABLE personal(
 
 CREATE TABLE credenciales(
 	idC INT(4) AUTO_INCREMENT NOT NULL,
-	id_admin_credenciales INT(4) NOT NULL,
 	id_administrativo INT(4),
 	id_estudiante INT(4),
 	id_docente INT(4),
@@ -217,8 +216,7 @@ CREATE TABLE credenciales(
 	CONSTRAINT pk_credenciales PRIMARY KEY(id),
 	CONSTRAINT fk_usuario_credencial FOREIGN KEY(id_administrativo) REFERENCES administrativo(id_admin) ON DELETE CASCADE,
 	CONSTRAINT fk_estudiante_credencial FOREIGN KEY(id_estudiante) REFERENCES estudiante(id) ON DELETE CASCADE,
-	CONSTRAINT fk_docente_credencial FOREIGN KEY(id_docente) REFERENCES docente(id) ON DELETE CASCADE,
-	CONSTRAINT fk_admin_credenciales FOREIGN KEY (id_admin_credenciales) REFERENCES administrativo (id_admin)
+	CONSTRAINT fk_docente_credencial FOREIGN KEY(id_docente) REFERENCES docente(id) ON DELETE CASCADE
 )ENGINE=InnoDb;
 
 CREATE TABLE estudianteMateria(
@@ -615,10 +613,8 @@ CREATE TABLE boletin(
 # tabla para avilitar o desabilitar el envio de notas al boletin general
 CREATE TABLE habilitarBoletin(
 	id_estado INT(3) NOT NULL,
-	id_admin_boletin_habil INT NOT NULL,
 	estado VARCHAR(15) NOT NULL,
 	CONSTRAINT pd_habilitar_boletin PRIMARY KEY (id_estado)
-	CONSTRAINT fk_admin_habil_boletin FOREIGN KEY (id_admin_boletin_habil) REFERENCES administrativo (id_admin)
 )ENGINE=InnoDb;
 
 INSERT INTO habilitarBoletin VALUES(1, 'Deshabilitado');
@@ -676,19 +672,13 @@ CREATE TABLE notacomportamiento(
 # Tabla para ver quien actualizo el periodo academico
 CREATE TABLE update_periodo(
 	id_up INT(4) AUTO_INCREMENT NOT NULL,
-	id_admin_up INT(4) NOT NULL,
+	nombre_admin_up VARCHAR(50) NOT NULL,
 	nombre_periodo VARCHAR(12) NOT NULL,
 	fecha_inicio VARCHAR (15) NOT NULL,
 	fecha_fin VARCHAR(15) NOT NULL,
 	fecha_modificacion_up DATETIME NOT NULL,
-	CONSTRAINT pk_update_periodo PRIMARY KEY (id_up),
-	CONSTRAINT fk_auditoria_periodo FOREIGN KEY (id_admin_up) REFERENCES administrativo (id_admin)
+	CONSTRAINT pk_update_periodo PRIMARY KEY (id_up)
 )ENGINE=InnoDb;
-# Trigger para la tabla update_periodo
-CREATE TRIGGER update_periodo_bu BEFORE UPDATE ON periodo
-FOR EACH ROW
-INSERT INTO update_periodo (id_admin_up, nombre_periodo, fecha_inicio, fecha_fin, fecha_modificacion_up)
-VALUES (old.id_admin_periodo, old.nombre_periodo, old.fecha_inicio, old.fecha_fin, NOW());
 
 
 # tabla para ver quien registro una materia y cuando
@@ -724,22 +714,17 @@ FOR EACH ROW
 INSERT INTO insertar_estudiante (id_admin_ie, nombre_estudiante_ie, apellidos_estudiante_ie, identificacion_ie, fecha_creacion_ie)
 VALUES(new.id_admin_estudiante, new.nombre_e, new.apellidos_e, new.numero_e, NOW());
 
+
 # tabla para registar las fecha en que se modifico un estudiante
 CREATE TABLE actualizar_estudiante(
 	id_ue INT(4) AUTO_INCREMENT NOT NULL,
-	id_admin_ue INT(4) NOT NULL,
+	nombre_admin_ue VARCHAR(50) NOT NULL,
 	nombre_estudiante_ue VARCHAR(20) NOT NULL,
 	apellidos_estudiante_ue VARCHAR(30) NOT NULL,
 	identificacion_ue INT(11) NOT NULL,
 	fecha_modificacion_ue DATETIME NOT NULL,
-	CONSTRAINT pk_actualizar_estudiante PRIMARY KEY (id_ue),
-	CONSTRAINT fk_admin_actualizo_estudiante FOREIGN KEY (id_admin_ue) REFERENCES administrativo (id_admin)
+	CONSTRAINT pk_actualizar_estudiante PRIMARY KEY (id_ue)
 )ENGINE=InnoDb;
-# trigger para auditar cuando se actualizar los datos de un estuidiante
-CREATE TRIGGER actualizar_estudiante_au AFTER UDATE ON estudiante
-FOR EACH ROW
-INSERT INTO actualizar_estudiante (id_admin_ue, nombre_estudiante_ue, apellidos_estudiante_ue, identificacion_ue, fecha_modificacion_ue)
-VALUES(new.id_admin_estudiante, old.nombre_e, old.apellidos_e, old.numero_e, NOW());
 
 
 # tabla para registar las fecha en que se inserto un docente
@@ -763,50 +748,32 @@ VALUES(new.id_admin_docente, new.nombre_d, new.apellidos_d, new.numero_d, NOW())
 # tabla para registar las fecha en que se modifico un docente
 CREATE TABLE actualizar_docente(
 	id_ue INT(4) AUTO_INCREMENT NOT NULL,
-	id_admin_ud INT(4) NOT NULL,
+	nombre_admin_ud VARCHAR(50) NOT NULL,
 	nombre_docente_ud VARCHAR(20) NOT NULL,
 	apellidos_docente_ud VARCHAR(30) NOT NULL,
 	identificacion_ud INT(11) NOT NULL,
 	fecha_modificacion_ud DATETIME NOT NULL,
-	CONSTRAINT pk_actualizar_docente PRIMARY KEY (id_ue),
-	CONSTRAINT fk_admin_actualizo_docente FOREIGN KEY (id_admin_ue) REFERENCES administrativo (id_admin)
+	CONSTRAINT pk_actualizar_docente PRIMARY KEY (id_ue)
 )ENGINE=InnoDb;
-# trigger para auditar cuando se actualizar los datos de un docente
-CREATE TRIGGER actualizar_docente_au AFTER UDATE ON docente
-FOR EACH ROW
-INSERT INTO actualizar_docente (id_admin_ud, nombre_docente_ud, apellidos_docente_ud, identificacion_ud, fecha_modificacion_ud)
-VALUES(new.id_admin_docente, old.nombre_d, old.apellidos_d, old.numero_d, NOW());
 
 # tabla para registrar la fecha de las acutalizaciones de las credenciales de los usuaros
 CREATE TABLE actualizar_credenciales(
 	id_acu INT(4) AUTO_INCREMENT NOT NULL,
-	id_admin_acu INT(4) NOT NULL,
+	nombre_admin_acu VARCHAR(50) NOT NULL,
 	nombre_usuario_acu VARCHAR(20) NOT NULL,
 	fecha_actualizacion_acu DATETIME NOT NULL,
-	CONSTRAINT pk_admin_credenciales PRIMARY KEY (id_acu),
-	CONSTRAINT fk_admin_actualizo_crendenciales FOREIGN KEY (id_admin_acu) REFERENCES administrativo (id_admin)
+	CONSTRAINT pk_admin_credenciales PRIMARY KEY (id_acu)
 )ENGINE=InnoDb;
-# trigger para auditar el camcio en las credenciales
-CREATE TRIGGER actualizar_credenciales_bu BEFORE UPDATE ON credenciales
-FOR EACH ROW
-INSERT INTO actualizar_credenciales (id_admin_acu, nombre_usuario_acu, fecha_actualizacion_acu)
-VALUES(new.id_admin_credenciales, old.usuario, NOW());
 
 
 # tabla para registrar la habilitacion del boletín
 CREATE TABLE habilitacion_boletin(
 	id_hb INT(4) AUTO_INCREMENT NOT NULL,
-	id_admin_hb INT(4) NOT NULL,
+	nombre_admin_hb VARCHAR(50) NOT NULL,
 	estado_hb VARCHAR(15) NOT NULL,
 	fecha_modificacion_hb DATETIME NOT NULL,
-	CONSTRAINT pk_admin_habilitacion PRIMARY KEY (id_hb),
-	CONSTRAINT  fk_habilitacion_boletin FOREIGN KEY (id_admin_hb) REFERENCES administrativo (id_admin)
+	CONSTRAINT pk_admin_habilitacion PRIMARY KEY (id_hb)
 )ENGINE=InnoDb;
-# trigger para auditar el cambio de estado del boletin
-CREATE TRIGGER habilitacion_boletin_bi BEFORE UPDATE ON habilitarboletin
-FOR EACH ROW
-INSERT INTO habilitacion_boletin (id_admin_hb, estado_hb, fecha_modificacion_hb)
-VALUES(new.id_admin_boletin_habil,  new.estado, NOW());
 
 
 # tabla para registrar los cambios en la tabla materia

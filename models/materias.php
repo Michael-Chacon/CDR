@@ -201,6 +201,7 @@ class Materias
     public function RegistrarMateria($datos)
     {
         try {
+            $id_admin = $_SESSION['user']->id;
             $c = 0;
             $indicador = 'Sin indicador';
             $asignacion = 'no';
@@ -209,9 +210,10 @@ class Materias
             foreach ($datos as $valor) {
                 $parte = explode('/', $datos[$c++]);
 
-                $registro = $this->db->prepare("INSERT INTO materia VALUES(null, :grado, :area, :nombre, :indicadores, :porcentaje, :icono, :asignada)");
+                $registro = $this->db->prepare("INSERT INTO materia VALUES(null, :grado, :area, :admin, :nombre, :indicadores, :porcentaje, :icono, :asignada)");
                 $registro->bindParam(":grado", $gradoM, PDO::PARAM_INT);
                 $registro->bindParam(":area", $parte[1], PDO::PARAM_INT);
+                $registro->bindParam(":admin", $id_admin, PDO::PARAM_INT);
                 $registro->bindParam(":nombre", $parte[0], PDO::PARAM_STR);
                 $registro->bindParam(":indicadores", $indicador, PDO::PARAM_STR);
                 $registro->bindParam(":porcentaje", $parte[3], PDO::PARAM_INT);

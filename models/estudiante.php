@@ -77,7 +77,7 @@ class Estudiante extends Usuarios
     public function registroEstudiantes($id_padres, $accion)
     {
         try {
-
+            $id_admin = $_SESSION['user']->id;
             $id_e = $this->getId();
             $no = $this->getNombre();
             $ap = $this->getApellidos();
@@ -102,10 +102,11 @@ class Estudiante extends Usuarios
             # validar la accion a ejecutar
             if ($accion == 'guardar') {
                 $ed = Utils::hallarEdad($fn);
-                $registro = $this->db->prepare("INSERT INTO estudiante VALUES(null, :grado, :familia, :nombre, :apellidos, :fe_na, :edad, :sexo, :tipo_id, :numero, :lugar_ex, :fe_ex, :dir, :tel, :correo, :reli, :incapacidad, :grupo, :rh, :trasporte, :pae, :img)");
+                $registro = $this->db->prepare("INSERT INTO estudiante VALUES(null, :grado, :familia, :admin, :nombre, :apellidos, :fe_na, :edad, :sexo, :tipo_id, :numero, :lugar_ex, :fe_ex, :dir, :tel, :correo, :reli, :incapacidad, :grupo, :rh, :trasporte, :pae, :img)");
                 $registro->bindParam(":img", $imagen, PDO::PARAM_STR);
                 $registro->bindParam(":grado", $gra, PDO::PARAM_INT);
                 $registro->bindParam(':familia', $id_padres, PDO::PARAM_INT);
+                $registro->bindParam(":admin", $id_admin, PDO::PARAM_INT);
 
             } elseif ($accion == 'actualizar') {
                 $ed = $this->getEdad();

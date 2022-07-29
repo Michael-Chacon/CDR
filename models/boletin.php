@@ -326,6 +326,7 @@ class Boletin
     public function saveBoletin()
     {
         try {
+            $id_docente = $_SESSION['teacher']->id;
             $student_id = $this->getIdEstudiante();
             $subject_id = $this->getIdMateria();
             $area_id = $this->getArea();
@@ -341,7 +342,8 @@ class Boletin
             $periodoDos = $this->getPeriodo2();
             $periodoTres = $this->getPeriodo3();
 
-            $boletin = $this->db->prepare("INSERT INTO boletin VALUES(null, :e_id, :m_id, :a_id, :p_id, :materia, :student, :teacher, :observa, :recuperacion, :p1, :p2, :p3, :avg, :fail)");
+            $boletin = $this->db->prepare("INSERT INTO boletin VALUES(null, :admin, :e_id, :m_id, :a_id, :p_id, :materia, :student, :teacher, :observa, :recuperacion, :p1, :p2, :p3, :avg, :fail)");
+            $boletin->bindParam(":admin", $id_docente, PDO::PARAM_INT);
             $boletin->bindParam(":e_id", $student_id, PDO::PARAM_INT);
             $boletin->bindParam(":m_id", $subject_id, PDO::PARAM_INT);
             $boletin->bindParam(":a_id", $area_id, PDO::PARAM_INT);

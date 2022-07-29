@@ -13,7 +13,7 @@ class Docente extends Usuarios
     public function guardarDocentes($accion)
     {
         try {
-
+            $id_admin = $_SESSION['user']->id;
             $id_d = $this->getId();
             $no = $this->getNombre();
             $ap = $this->getApellidos();
@@ -42,9 +42,10 @@ class Docente extends Usuarios
             echo $img;
             if ($accion == 'guardar') {
                 $ed = Utils::hallarEdad($fe_na);
-                $registro = $this->db->prepare("INSERT INTO docente VALUES(null, :nombre, :apellidos, :fe_na, :edad, :genero, :tipo_id, :numeroid, :lu_ex, :fe_ex, :dir, :tel, :co, :reli, :incapacidad, :grupo_s, :rh, :fe_po, :nu_acta, :nu_resolucion, :pre, :no_pre, :pos, :no_pos, :img, :director);");
+                $registro = $this->db->prepare("INSERT INTO docente VALUES(null, :admin, :nombre, :apellidos, :fe_na, :edad, :genero, :tipo_id, :numeroid, :lu_ex, :fe_ex, :dir, :tel, :co, :reli, :incapacidad, :grupo_s, :rh, :fe_po, :nu_acta, :nu_resolucion, :pre, :no_pre, :pos, :no_pos, :img, :director);");
                 $registro->bindParam(':img', $img, PDO::PARAM_STR);
                 $registro->bindParam(':director', $director, PDO::PARAM_STR);
+                $registro->bindParam(":admin", $id_admin, PDO::PARAM_INT);
             } elseif ($accion == 'actualizar') {
                 $ed = $this->getEdad();
                 $registro = $this->db->prepare("UPDATE docente SET nombre_d = :nombre, apellidos_d = :apellidos, fecha_nacimiento_d = :fe_na, edad_d = :edad, sexo_d = :genero, tipo_identificacion_d = :tipo_id, numero_d = :numeroid, lugar_expedicion_d = :lu_ex, fecha_expedicion_d = :fe_ex, direccion_d = :dir, telefono_d = :tel, correo_d = :co, religion_d = :reli, incapacidad_medica_d = :incapacidad, grupo_sanguineo_d = :grupo_s, rh_d = :rh, fecha_posesion_d = :fe_po, numero_acta_posesion_d = :nu_acta, numero_resolucion_posesion_d = :nu_resolucion, pregrado_d = :pre, nombre_pregrado_d = :no_pre, posgrado_d = :pos, nombre_posgrado_d = :no_pos WHERE id = :id");
