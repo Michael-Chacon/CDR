@@ -77,7 +77,7 @@ class Estudiante extends Usuarios
     public function registroEstudiantes($id_padres, $accion)
     {
         try {
-            $id_admin = $_SESSION['user']->id;
+            $id_admin = $_SESSION['user']->id_admin;
             $id_e = $this->getId();
             $no = $this->getNombre();
             $ap = $this->getApellidos();

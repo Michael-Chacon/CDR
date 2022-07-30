@@ -201,7 +201,7 @@ class Materias
     public function RegistrarMateria($datos)
     {
         try {
-            $id_admin = $_SESSION['user']->id;
+            $id_admin = $_SESSION['user']->id_admin;
             $c = 0;
             $indicador = 'Sin indicador';
             $asignacion = 'no';

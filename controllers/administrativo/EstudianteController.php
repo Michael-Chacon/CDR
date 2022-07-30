@@ -5,6 +5,7 @@ require_once 'models/padres.php';
 require_once 'models/credencial.php';
 require_once 'models/horario.php';
 require_once 'models/materias.php';
+require 'models/auditoria.php';
 
 class EstudianteController
 {
@@ -116,6 +117,9 @@ class EstudianteController
             # validar si se va a actualizar  o  ha guardar
             if (isset($_POST['padres']) && isset($_POST['estudiante_id'])) {
                 # ACTUALIZAR
+                # auditar  la actualizacion de datos del estudiante
+                $auditar = new Auditoria();
+                $auditar->auditarActualizacionEstudiante($nombre_e, $apellidos_e, $numero);
                 $edad_e = trim($_POST['edad']);
                 $estudiantes->setEdad($edad_e);
                 $papas = $_POST['padres'];
@@ -216,7 +220,11 @@ class EstudianteController
         # usuario es el campo en la tabla credenciales que contiene el id del usuario,  el vinculo con la tabla estudiante en este caso.
         $usuario = 'id_estudiante';
         $id = $_POST['id'];
-
+        $nombre = $_POST['nombres'];
+        # auditar cambio de contraseñas
+        $auditar = new Auditoria();
+        $auditar->auditarCredenciales($nombre, 'Estudiante');
+        # actualizar contaseña
         $actualizacion = new Credencial();
         $actualizacion->setId($id);
         $actualizacion->setRol($usuario);
@@ -253,7 +261,7 @@ class EstudianteController
     Metodo para eliminiar estudiantes y padres de familia,
     si un padre de familia tiene 2 hijos o mas,  no se eliminara
     si tiene solo 1 hijo, se eliminara.
-    */
+     */
     public function eliminarEstudiante()
     {
         $id_padres = Utils::decryption($_GET['fathers']);

@@ -3,6 +3,7 @@ require_once 'models/docente.php';
 require_once 'models/credencial.php';
 require_once 'models/asignaciones.php';
 require_once 'models/horario.php';
+require_once 'models/auditoria.php';
 
 class DocenteController
 {
@@ -70,6 +71,9 @@ class DocenteController
             # validar si se va a guardar o a actualizar
             if (isset($_POST['actualizarDocente'])) {
                 # ACTUALIZAR
+                # auditar la actualizacion de los datos del docente
+                $auditar = new Auditoria();
+                $auditar->auditarActualizacionDocentes($nombre, $apellidos, $numeroId);
                 $edad = trim($_POST['edad']);
                 $docente->setEdad($edad);
                 $docente->setId($_POST['actualizarDocente']);
@@ -101,7 +105,7 @@ class DocenteController
                     $documento = false;
                     Utils::alertas($documento, '', 'Se encontró un docente en la base de datos con el mismo número de documento, posiblemente este docente ya existe en la plataforma.');
                 }
-                  header('Location: ' . base_url . 'Docente/vista_docente');
+                header('Location: ' . base_url . 'Docente/vista_docente');
             }
 
         }
@@ -137,6 +141,10 @@ class DocenteController
     {
         $id = $_POST['id_docente'];
         $contra = $_POST['new_pass'];
+        $nombre = $_POST['nombres'];
+        # auditar cambio de contraseñas
+        $auditar = new Auditoria();
+        $auditar->auditarCredenciales($nombre, 'Docente');
         $actualizar = new Credencial();
         $actualizar->setId($id);
         $actualizar->setPassword($contra);
@@ -189,7 +197,7 @@ class DocenteController
         header("Location:" . base_url . 'Materias/vista&id_grado=' . Utils::encryption($grado));
     }
 
-    public  function eliminarDocente()
+    public function eliminarDocente()
     {
         $docente = $_GET['id'];
         $borrador = new Docente();

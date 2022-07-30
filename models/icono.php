@@ -40,7 +40,7 @@ class Iconos
 
     public function listIconos()
     {
-        $listar = $this->db->prepare("SELECT * FROM iconos ORDER BY id DESC");
+        $listar = $this->db->prepare("SELECT * FROM iconos ORDER BY id_icono DESC");
         $listar->execute();
         return $listar;
     }

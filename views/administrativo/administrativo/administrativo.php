@@ -68,14 +68,14 @@
  							</a>
  							<ul class="dropdown-menu">
  								<li>
- 									<a class="dropdown-item" href="<?=base_url?>Administrativo/actualizar&id=<?=$administrativo->id?>">
+ 									<a class="dropdown-item" href="<?=base_url?>Administrativo/actualizar&id=<?=$administrativo->id_admin?>">
  										<i class="bi bi-pen">
  										</i>
  										Editar
  									</a>
  								</li>
  								<li>
- 									<a class="dropdown-item" href="<?=base_url?>Administrativo/newPassword&id=<?=$administrativo->id?>">
+ 									<a class="dropdown-item" href="<?=base_url?>Administrativo/newPassword&id=<?=$administrativo->id_admin?>&nombres=<?=$administrativo->nombre_a;?> <?=$administrativo->apellidos_a;?>">
  										<i class="bi bi-key">
  										</i>
  										Cambiar contaseña
@@ -97,13 +97,13 @@
  						<div class="accordion" id="accordionExample2">
  							<div class="accordion-item">
  								<h2 class="accordion-header" id="heading3">
- 									<button aria-controls="collapse3" aria-expanded="false" class="accordion-button collapsed text-center" data-bs-target="#collapse<?=$administrativo->id?>" data-bs-toggle="collapse" type="button">
+ 									<button aria-controls="collapse3" aria-expanded="false" class="accordion-button collapsed text-center" data-bs-target="#collapse<?=$administrativo->id_admin?>" data-bs-toggle="collapse" type="button">
  										<i class="bi bi-info-circle-fill">
  										</i>
  										Información
  									</button>
  								</h2>
- 								<div aria-labelledby="heading3" class="accordion-collapse collapse" data-bs-parent="#accordionExample2" id="collapse<?=$administrativo->id?>">
+ 								<div aria-labelledby="heading3" class="accordion-collapse collapse" data-bs-parent="#accordionExample2" id="collapse<?=$administrativo->id_admin?>">
  									<div class="accordion-body">
  										<table class="table table-striped table-hover">
  											<tbody>

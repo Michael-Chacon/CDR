@@ -40,7 +40,7 @@ class LoginController
                 case 'administrativo':
                     $id_user = $respuesta->id_administrativo;
                     $datos->setIdUsuario($id_user);
-                    $info = $datos->obtenerDatos($rol);
+                    $info = $datos->obtenerDatos($rol, 'id_admin');
                     $_SESSION['user'] = $info;
                     header('Location: ' . base_url . 'Login/homeAdministrativo');
                     Utils::tal();
@@ -49,7 +49,7 @@ class LoginController
                 case 'docente':
                     $id_user = $respuesta->id_docente;
                     $datos->setIdUsuario($id_user);
-                    $info = $datos->obtenerDatos($rol);
+                    $info = $datos->obtenerDatos($rol, 'id');
                     $_SESSION['teacher'] = $info;
                     header('Location: ' . base_url . 'Teacher/homeDocente');
                     break;
@@ -57,7 +57,7 @@ class LoginController
                 case 'estudiante':
                     $id_user = $respuesta->id_estudiante;
                     $datos->setIdUsuario($id_user);
-                    $info = $datos->obtenerDatos($rol);
+                    $info = $datos->obtenerDatos($rol, 'id');
                     $estudiante = array_merge((array) $respuesta, (array) $info);
                     $_SESSION['student'] = $estudiante;
                     header('Location: ' . base_url . 'Student/homeEstudiante');

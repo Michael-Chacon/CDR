@@ -11,3 +11,5 @@ define('SECRET_KEY', '$MICHAEL@2345');
 define('SECRET_IV', '101712');
 # nombre de la institucion
 define('name_col', 'CONCENTRACIÓN DE DESARROLLO RURAL <small>(CDR)</small>');
+
+date_default_timezone_set('America/Bogota');

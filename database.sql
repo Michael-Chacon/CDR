@@ -1,5 +1,5 @@
-CREATE DATABASE cdr_beta;
-USE cdr_beta;
+CREATE DATABASE cdr;
+USE cdr;
 
 CREATE TABLE administrativo(
 	id_admin INT(4) AUTO_INCREMENT NOT NULL,
@@ -27,7 +27,7 @@ CREATE TABLE administrativo(
 	nombre_pregrado_a VARCHAR(30) NOT NULL,
 	posgrado_a VARCHAR(2) NOT NULL,
 	nombre_posgrado_a VARCHAR(30) NOT NULL,
-	CONSTRAINT pk_administrativo PRIMARY KEY(id)
+	CONSTRAINT pk_administrativo PRIMARY KEY(id_admin)
 )ENGINE=InnoDb;
 
 CREATE TABLE grado(
@@ -42,7 +42,7 @@ CREATE TABLE areas(
 	id_area INT(3) AUTO_INCREMENT NOT NULL,
 	nombre_area VARCHAR (60) NOT NULL,
 	color VARCHAR(10) NOT NULL,
-	CONSTRAINT pk_area PRIMARY KEY(id_area) ON DELETE CASCADE
+	CONSTRAINT pk_area PRIMARY KEY(id_area)
 )ENGINE=InnoDb;
 
 CREATE TABLE materias_base(
@@ -73,17 +73,16 @@ CREATE TABLE materia(
 
 CREATE TABLE periodo(
 	id INT(4) NOT NULL,
-	id_admin_periodo INT(4) NOT NULL,
 	nombre_periodo VARCHAR(10) NOT NULL,
 	fecha_inicio DATE NOT NULL,
 	fecha_fin DATE NOT NULL,
-	CONSTRAINT pk_periodo PRIMARY KEY(id),
-	CONSTRAINT fk_admin_periodo FOREIGN KEY (id_admin_periodo) REFERENCES administrativo (id_admin)
+	estado VARCHAR(10) NOT NULL,
+	CONSTRAINT pk_periodo PRIMARY KEY(id)
 )ENGINE=InnoDb;
 
-INSERT INTO periodo VALUES (1, '2022-01-01', '2022-02-02');
-INSERT INTO periodo VALUES (2, '2022-03-03', '2022-04-04');
-INSERT INTO periodo VALUES (3, '2022-05-05', '2022-06-06');
+INSERT INTO periodo VALUES (1, 'Periodo 1', '2022-01-01', '2022-02-02', 'Inactivo');
+INSERT INTO periodo VALUES (2, 'Periodo 2', '2022-03-03', '2022-04-04', 'Inactivo');
+INSERT INTO periodo VALUES (3, 'Periodo 3', '2022-05-05', '2022-06-06', 'Inactivo');
 -- -----------------------------------------------------
 
 CREATE TABLE padres(
@@ -119,7 +118,7 @@ CREATE TABLE estudiante(
 	id_familia_e INT(4) NOT NULL,
 	id_admin_estudiante INT(4) NOT NULL,
 	nombre_e VARCHAR(20) NOT NULL,
-	pellidos_e VARCHAR(20) NOT NULL,
+	apellidos_e VARCHAR(20) NOT NULL,
 	fecha_nacimiento_e  DATE NOT NULL,
 	edad_e 	INT(2) NOT NULL,
 	sexo_e VARCHAR(10) NOT NULL,
@@ -213,7 +212,7 @@ CREATE TABLE credenciales(
 	usuario VARCHAR(15) NOT NULL,
 	password VARCHAR(20) NOT NULL, 
 	estado VARCHAR(8) NOT NULL,
-	CONSTRAINT pk_credenciales PRIMARY KEY(id),
+	CONSTRAINT pk_credenciales PRIMARY KEY(idC),
 	CONSTRAINT fk_usuario_credencial FOREIGN KEY(id_administrativo) REFERENCES administrativo(id_admin) ON DELETE CASCADE,
 	CONSTRAINT fk_estudiante_credencial FOREIGN KEY(id_estudiante) REFERENCES estudiante(id) ON DELETE CASCADE,
 	CONSTRAINT fk_docente_credencial FOREIGN KEY(id_docente) REFERENCES docente(id) ON DELETE CASCADE
@@ -224,22 +223,6 @@ CREATE TABLE estudianteMateria(
 	id_materia_e INT(4) NOT NULL,
 	CONSTRAINT fk_estudiante_materia FOREIGN KEY(id_estudiante_m) REFERENCES estudiante(id) ON DELETE CASCADE,
 	CONSTRAINT fk_materia_estudiante  FOREIGN KEY(id_materia_e) REFERENCES materia(id) ON DELETE CASCADE
-)ENGINE=InnoDb;
-
-CREATE TABLE notas(
-id INT(4) AUTO_INCREMENT NOT NULL,
-id_docente_nota INT(4) NOT NULL,
-id_materia_n INT(4) NOT NULL,
-id_estudiante_n INT(4) NOT NULL,
-id_periodo_n INT(4) NOT NULL,
-area VARCHAR(50) NOT NULL,
-nota FLOAT(5) NOT NULL,
-porcentejes INT(4) NOT NULL,
-CONSTRAINT pk_nota PRIMARY KEY(id),
-CONSTRAINT fk_materia_nota FOREIGN KEY(id_materia_n) REFERENCES materia(id) ON DELETE CASCADE,
-CONSTRAINT fk_estudiante_nota FOREIGN KEY (id_estudiante_n) REFERENCES estudiante(id) ON DELETE CASCADE,
-CONSTRAINT fk_periodo_nota FOREIGN KEY (id_periodo_n) REFERENCES periodo(id) ON DELETE CASCADE,
-CONSTRAINT fk_docente_notas FOREIGN KEY (id_docente_nota) REFERENCES docente (id)
 )ENGINE=InnoDb;
 
 CREATE TABLE falla(
@@ -401,7 +384,6 @@ CONSTRAINT fk_grado_aula FOREIGN KEY (id_grado_aula) REFERENCES grado(id) ON DEL
 -- ----------------COGNITIVO---------------------------------------------
 CREATE TABLE cognitivo(
 id_cognitivo INT(3) AUTO_INCREMENT NOT NULL,
-
 porcentaje_cognitivo INT(3) DEFAULT 0,
 porcentaje_evaluacion INT(3) DEFAULT 0,
 porcentaje_trimestral INT(3) DEFAULT 0,
@@ -439,7 +421,7 @@ CONSTRAINT fk_cognitivo_trimestral FOREIGN KEY (id_cognitivo_t) REFERENCES cogni
 -------------------------PROCEDIMENTAL-------------------------
 CREATE TABLE procedimental(
 id_procedimental INT(3) AUTO_INCREMENT NOT NULL,
-porcenteje_procedimental INT(3) DEFAULT 0,
+porcentaje_procedimental INT(3) DEFAULT 0,
 porcentaje_Tindividual INT(3) DEFAULT 0,
 porcentaje_Tcolaborativo INT(3) DEFAULT 0,
 CONSTRAINT pk_procedimental PRIMARY KEY (id_procedimental)
@@ -476,7 +458,7 @@ CONSTRAINT fk_cognitivo_Tcolaborativo FOREIGN KEY (id_procedimental_Tcolaborativ
 -- ----------------ACTITUDINAL---------------------------------------------
 CREATE TABLE actitudinal(
 id_actitudinal INT(3) AUTO_INCREMENT NOT NULL,
-porcenteje_actitudinal INT(3) DEFAULT 0,
+porcentaje_actitudinal INT(3) DEFAULT 0,
 porcentaje_apreciativa INT(3) DEFAULT 0,
 porcentaje_autoevaluacion INT(3) DEFAULT 0,
 CONSTRAINT pk_actitudinal PRIMARY KEY (id_actitudinal)
@@ -673,9 +655,10 @@ CREATE TABLE notacomportamiento(
 CREATE TABLE update_periodo(
 	id_up INT(4) AUTO_INCREMENT NOT NULL,
 	nombre_admin_up VARCHAR(50) NOT NULL,
-	nombre_periodo VARCHAR(12) NOT NULL,
-	fecha_inicio VARCHAR (15) NOT NULL,
-	fecha_fin VARCHAR(15) NOT NULL,
+	nombre_periodo INT(1) NOT NULL,
+	fecha_inicio_up VARCHAR (15) NOT NULL,
+	fecha_fin_up VARCHAR(15) NOT NULL,
+	estado_up VARCHAR(10) NOT NULL,
 	fecha_modificacion_up DATETIME NOT NULL,
 	CONSTRAINT pk_update_periodo PRIMARY KEY (id_up)
 )ENGINE=InnoDb;
@@ -736,7 +719,7 @@ CREATE TABLE insertar_docente(
 	identificacion_id INT(11) NOT NULL,
 	fecha_modificacion_id DATETIME NOT NULL,
 	CONSTRAINT pk_insetar_docente PRIMARY KEY (id_id),
-	CONSTRAINT fk_admin_insertar_docente FOREIGN KEY (id_admin_ue) REFERENCES administrativo (id_admin)
+	CONSTRAINT fk_admin_insertar_docente FOREIGN KEY (id_admin_id) REFERENCES administrativo (id_admin)
 )ENGINE=InnoDb;
 # trigger para aiditar cuando se actualizar los datos de un docente
 CREATE TRIGGER insertar_docente_ai AFTER INSERT ON docente
@@ -761,6 +744,7 @@ CREATE TABLE actualizar_credenciales(
 	id_acu INT(4) AUTO_INCREMENT NOT NULL,
 	nombre_admin_acu VARCHAR(50) NOT NULL,
 	nombre_usuario_acu VARCHAR(20) NOT NULL,
+	rol VARCHAR(20) NOT NULL,
 	fecha_actualizacion_acu DATETIME NOT NULL,
 	CONSTRAINT pk_admin_credenciales PRIMARY KEY (id_acu)
 )ENGINE=InnoDb;
@@ -784,7 +768,7 @@ CREATE TABLE insertar_materia(
 	nombre_materia_im VARCHAR(200) NOT NULL,
 	porcentaje_mat_im INT(3) NOT NULL,
 	fecha_insercion_im DATETIME NOT NULL,
-	CONSTRAINT pk_insertar_materia PRIMARY KEY (id_im,
+	CONSTRAINT pk_insertar_materia PRIMARY KEY (id_im),
 	CONSTRAINT fk_admin_inserto_mat FOREIGN KEY (id_admin_im) REFERENCES administrativo (id_admin),
 	CONSTRAINT fk_grado_insert_mat FOREIGN KEY (id_grado_im) REFERENCES grado (id)
 )ENGINE=InnoDb;

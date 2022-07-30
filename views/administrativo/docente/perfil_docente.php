@@ -533,6 +533,7 @@
                         <div class="modal-body">
                             <div class="form-floating mb-3">
                                 <input type="text" hidden name="id_docente" value="<?=$info_docente->id?>">
+                                <input type="text" hidden name="nombres" value="<?=$docente->nombre_d?> <?=$docente->apellidos_d?>?>">
                                 <input class="form-control" name="new_pass" id="new_pass" required="" type="text"/>
                                 <label for="new_pass">
                                     Contraseña nueva:

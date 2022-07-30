@@ -187,19 +187,19 @@
                         </h3>
                         <?php if (isset($datos) && $datos->rowCount() != 0):
     while ($materias = $datos->fetchObject()): ?>
-		                         <article class="col-xs-12 col-sm-6 col-md-4 col-xl-4 mb-2">
-		                             <div class="card text-center shadow option">
-		                                 <div class="card-body contenido-card materias">
-		                                     <i class="<?=$materias->icono?>" style="font-size: 3rem;">
-		                                     </i>
-		                                     <hr class="hr-perfil"/>
-		                                     <h5 class="mt-2">
-		                                         <?=$materias->nombre_mat?>
-		                                     </h5>
-		                                     <?php if (!isset($_SESSION['teacher'])): ?>
-		                                         <a class="stretched-link" href="<?=base_url?>Notas/homeNotas&student=<?=Utils::encryption($estudiante->estudiante_id)?>&materia=<?=Utils::encryption($materias->id)?>&nGrado=<?=$estudiante->nombre_g?>">
-		                                         </a>
-		                                     <?php endif?>
+				                         <article class="col-xs-12 col-sm-6 col-md-4 col-xl-4 mb-2">
+				                             <div class="card text-center shadow option">
+				                                 <div class="card-body contenido-card materias">
+				                                     <i class="<?=$materias->icono?>" style="font-size: 3rem;">
+				                                     </i>
+				                                     <hr class="hr-perfil"/>
+				                                     <h5 class="mt-2">
+				                                         <?=$materias->nombre_mat?>
+				                                     </h5>
+				                                     <?php if (!isset($_SESSION['teacher'])): ?>
+				                                         <a class="stretched-link" href="<?=base_url?>Notas/homeNotas&student=<?=Utils::encryption($estudiante->estudiante_id)?>&materia=<?=Utils::encryption($materias->id)?>&nGrado=<?=$estudiante->nombre_g?>">
+				                                         </a>
+				                                     <?php endif?>
                                  </div>
                              </div>
                          </article>
@@ -636,6 +636,7 @@
                 <form action="<?=base_url?>Estudiante/cambiarPassword" method="post">
                     <div class="modal-body">
                         <input type="text" hidden name="id" value="<?=$estudiante->estudiante_id?>">
+                        <input type="text" hidden name="nombres" value="<?=$estudiante->nombre_e?> <?=$estudiante->apellidos_e?>">
 
                         <div class="form-floating mb-3">
                             <input class="form-control" id="new_pass" required="" type="text" name="new_pass" />

@@ -139,13 +139,11 @@ class Periodos
     # registrar los periodos academicos
     public function guardarPeriodo()
     {
-        $id_admin = $_SESSION['user']->id;
         $id = $this->getNumero();
         $inicio = $this->getFechaInicio();
         $fin = $this->getFechaFin();
         $est = $this->getEstado();
-        $registro = $this->db->prepare("UPDATE periodo SET id_admin_periodo = :admin, fecha_inicio = :inicio, fecha_fin = :fin, estado = :estado WHERE id = :id");
-        $registro->bindParam(":admin", $id_admin, PDO::PARAM_INT);
+        $registro = $this->db->prepare("UPDATE periodo SET fecha_inicio = :inicio, fecha_fin = :fin, estado = :estado WHERE id = :id");
         $registro->bindParam(':id', $id, PDO::PARAM_INT);
         $registro->bindParam(':inicio', $inicio, PDO::PARAM_STR);
         $registro->bindParam(':fin', $fin, PDO::PARAM_STR);
@@ -191,6 +189,5 @@ class Periodos
         $tres->execute();
         return $tres->fetchObject();
     }
-
 
 } # fin de la clase

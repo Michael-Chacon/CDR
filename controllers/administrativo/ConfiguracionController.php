@@ -7,6 +7,7 @@ require_once 'models/notas.php';
 require_once 'models/docente.php';
 require_once 'models/boletin.php';
 require_once 'models/icono.php';
+require_once 'models/auditoria.php';
 class ConfiguracionController
 {
     public function vista_configuracion()
@@ -240,6 +241,9 @@ class ConfiguracionController
         $estado_boletin = new Boletin();
         $estado_boletin->setObservacion($estado);
         $resultado = $estado_boletin->actualizarEstadoBoletin();
+        # Auditar el cambio de estado del boletín
+        $auditar = new Auditoria();
+        $auditar->auditarEstadoBoletin($estado);
         Utils::alertas($resultado, 'El estado del boletín fue actualizado con éxito', 'Algo salió mal al intentar actualizar el estado del boletín, inténtelo de nuevo.');
         header("Location: " . base_url . 'Configuracion/vista_havilitar_boletin');
     }

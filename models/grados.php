@@ -88,7 +88,7 @@ class Grados
 
     public function guardar()
     {
-        $id_admin = $_SESSION['user']->id;
+        $id_admin = $_SESSION['user']->id_admin;
         $grado = $this->getGrado();
         $consulta = $this->db->prepare("INSERT INTO grado VALUES(null, :id_admin, :g)");
         $consulta->bindParam(":id_admin", $id_admin, PDO::PARAM_INT);

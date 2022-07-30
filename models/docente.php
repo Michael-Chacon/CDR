@@ -13,7 +13,7 @@ class Docente extends Usuarios
     public function guardarDocentes($accion)
     {
         try {
-            $id_admin = $_SESSION['user']->id;
+            $id_admin = $_SESSION['user']->id_admin;
             $id_d = $this->getId();
             $no = $this->getNombre();
             $ap = $this->getApellidos();

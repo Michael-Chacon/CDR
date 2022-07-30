@@ -1,5 +1,6 @@
 <?php
 require_once 'models/periodos.php';
+require 'models/auditoria.php';
 class PeriodoController
 {
     public function vista_config()
@@ -24,20 +25,16 @@ class PeriodoController
             $id_periodo = trim($_POST['id_periodo']);
             $inicio = trim($_POST['inicio']);
             $fin = trim($_POST['fin']);
-            echo $id_periodo;
 
             if (empty($_POST['estado'])) {
                 $estado = 'Inactivo';
             } else {
                 $estado = 'Activo';
             }
-
-            // $validar_fechas = new Periodos();
-            // $validar_fechas->setFechaFin($fin);
-            // $validar_fechas->setFechaInicio($inicio);
-            // $resultado = $validar_fechas->ValidarFechas();
-
-            // if ($resultado) {
+            # auditar actualización del los periodos academicos
+            $auditar = new auditoria();
+            $auditar->auditarPeriodo($id_periodo, $inicio, $fin, $estado);
+            # Registrar periodo
             $guardar = new Periodos();
             $guardar->setNumero($id_periodo);
             $guardar->setFechaInicio($inicio);
@@ -45,9 +42,6 @@ class PeriodoController
             $guardar->setEstado($estado);
             $retorno = $guardar->guardarPeriodo();
             Utils::alertas($retorno, 'Periodo académico registrado con éxito.', 'Algo salió mal al registrar el periodo académico, inténtelo de nuevo.');
-            // } else {
-            //     Utils::validarReturn($resultado, 'validacion_fechas');
-            // }
 
         } # fin del post
         header("Location: " . base_url . 'Periodo/vista_config');

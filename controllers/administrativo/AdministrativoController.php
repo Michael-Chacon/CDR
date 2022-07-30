@@ -2,6 +2,7 @@
 require_once 'models/administrativo.php';
 require_once 'models/credencial.php';
 require_once 'controllers/LoginController.php';
+require_once 'models/auditoria.php';
 
 class AdministrativoController
 {
@@ -124,7 +125,10 @@ class AdministrativoController
         $id = $_POST['id'];
         $contra = $_POST['new_pass'];
         $usuario = 'id_administrativo';
-
+        $nombre = $_POST['nombres'];
+        # auditar cambio de contraseñas
+        $auditar = new Auditoria();
+        $auditar->auditarCredenciales($nombre, 'Administrativo');
         $actualizacion = new Credencial();
         $actualizacion->setId($id);
         $actualizacion->setRol($usuario);
