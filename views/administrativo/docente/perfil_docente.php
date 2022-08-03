@@ -66,7 +66,7 @@
                                                                     <hr class="dropdown-divider"/>
                                                                 </li>
                                                                 <li>
-                                                                    <a onclick="return confirmar()" class="dropdown-item" href="<?=base_url?>Docente/eliminarDocente&id=<?=$docente->id?>">
+                                                                    <a onclick="return confirmar()" class="dropdown-item" href="<?=base_url?>Docente/eliminarDocente&id=<?=$docente->id?>&name=<?=$docente->nombre_d . ' '. $docente->apellidos_d?>&documento=<?=$docente->numero_d?>">
                                                                         <i class="bi bi-trash"></i>
                                                                         Eliminar Docente
                                                                     </a>

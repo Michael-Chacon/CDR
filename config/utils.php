@@ -1,5 +1,6 @@
 <?php
 require_once 'models/periodos.php';
+require_once 'models/boletin.php';
 class Utils
 {
 
@@ -163,5 +164,13 @@ class Utils
             $resultado += $nota;
         }
         return round($resultado, 0, PHP_ROUND_HALF_UP);
+    }
+
+    # revisar el estado del boletin para mostrar la alerta cuando este habilitado
+    public static function estadoBoletinAlerta()
+    {
+        $boletin = new Boletin();
+        $estadoBoletin = $boletin->estadoBoletin();
+        $_SESSION['estadoBoletin'] = $estadoBoletin->estado;
     }
 } #fin de la clase

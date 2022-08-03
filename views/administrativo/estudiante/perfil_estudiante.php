@@ -74,7 +74,7 @@
                                                 <hr class="dropdown-divider"/>
                                             </li>
                                              <li>
-                                                <a class="dropdown-item" href="<?=base_url?>Estudiante/eliminarEstudiante&student=<?=Utils::encryption($estudiante_id)?>&degree=<?=Utils::encryption($grado)?>&fathers=<?=Utils::encryption($padres)?>">
+                                                <a class="dropdown-item" href="<?=base_url?>Estudiante/eliminarEstudiante&student=<?=Utils::encryption($estudiante_id)?>&degree=<?=Utils::encryption($grado)?>&fathers=<?=Utils::encryption($padres)?>&name=<?=Utils::encryption($estudiante->nombre_e .' '.$estudiante->apellidos_e)?>&document=<?=Utils::encryption($estudiante->numero_e)?>">
                                                     <i class="bi bi-person-dash"></i>  Eliminar estudiante
                                                 </a>
                                             </li>

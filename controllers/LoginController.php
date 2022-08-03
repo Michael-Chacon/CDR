@@ -51,6 +51,7 @@ class LoginController
                     $datos->setIdUsuario($id_user);
                     $info = $datos->obtenerDatos($rol, 'id');
                     $_SESSION['teacher'] = $info;
+                    Utils::estadoBoletinAlerta();
                     header('Location: ' . base_url . 'Teacher/homeDocente');
                     break;
                 #usuario Estudiante

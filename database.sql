@@ -396,7 +396,7 @@ id_estudiante_e INT(3) NOT NULL,
 id_materia_e INT(3) NOT NULL,
 id_periodo_e INT(3) NOT NULL,
 id_cognitivo_e INT(3) NOT NULL,
-nota_evaliacion INT(2) NOT NULL,
+nota_evaluacion INT(2) NOT NULL,
 CONSTRAINT pk_evaluaciones PRIMARY KEY (id_evaluacion),
 CONSTRAINT fk_estudiante_evaluacion FOREIGN KEY (id_estudiante_e) REFERENCES estudiante(id) ON DELETE CASCADE,
 CONSTRAINT	 fk_mateia_evaluacion FOREIGN KEY (id_materia_e) REFERENCES materia (id) ON DELETE CASCADE,
@@ -484,7 +484,7 @@ id_estudiante_autoevaluacion INT(3) NOT NULL,
 id_materia_autoevaluacion INT(3) NOT NULL,
 id_periodo_autoevaluacion INT(3) NOT NULL,
 id_actitudinal_autoevaluacion INT(3) NOT NULL,
-nota_trimestral INT(2) NOT NULL,
+nota_autoevaluacion INT(2) NOT NULL,
 CONSTRAINT pk_autoevaluacion PRIMARY KEY (id_autoevaluacion),
 CONSTRAINT fk_estudianteautoevaluacion FOREIGN KEY (id_estudiante_autoevaluacion) REFERENCES estudiante(id) ON DELETE CASCADE,
 CONSTRAINT	 fk_mateia_autoevaluacion FOREIGN KEY (id_materia_autoevaluacion) REFERENCES materia (id) ON DELETE CASCADE,
@@ -679,6 +679,15 @@ FOR EACH ROW
 INSERT INTO insertar_grado (id_admin_ig, nombre_grado_ig, fecha_creacion_grado)
 VALUES (new.id_admin_grado, new.nombre_g, NOW());
 
+# Tabla para registrar quien eliminó un grado
+CREATE TABLE eliminar_grado(
+	id_di INT(4) AUTO_INCREMENT NOT NULL,
+	id_admin_di INT(4) NOT NULL,
+	nombre_grado_di VARCHAR(10) NOT NULL,
+	fecha_eliminacion_grado DATETIME NOT NULL,
+	CONSTRAINT pk_eliminar_grado PRIMARY KEY (id_di),
+	CONSTRAINT fk_admin_delete_grado FOREIGN KEY (id_admin_di) REFERENCES administrativo (id_admin)
+)ENGINE=InnoDb;
 
 # tabla para ver quien registro a un estudiante y sus padres
 CREATE TABLE insertar_estudiante(
@@ -709,6 +718,16 @@ CREATE TABLE actualizar_estudiante(
 	CONSTRAINT pk_actualizar_estudiante PRIMARY KEY (id_ue)
 )ENGINE=InnoDb;
 
+# tabla para registrar quien eliminó un estudiante
+CREATE TABLE eliminar_estudiante(
+	id_ee INT(4) AUTO_INCREMENT NOT NULL,
+	id_admin_ee INT(4) NOT NULL,
+	nombre_estudiante_ee VARCHAR(20) NOT NULL,
+	identificacion_ee INT(11) NOT NULL,
+	fecha_eliminacion_ee DATETIME NOT NULL,
+	CONSTRAINT pk_eliminar_estudiante PRIMARY KEY (id_ee),
+	CONSTRAINT fk_eliminar_estudiante FOREIGN KEY (id_admin_ee) REFERENCES administrativo (id_admin)
+)ENGINE=InnoDb;
 
 # tabla para registar las fecha en que se inserto un docente
 CREATE TABLE insertar_docente(
@@ -738,6 +757,18 @@ CREATE TABLE actualizar_docente(
 	fecha_modificacion_ud DATETIME NOT NULL,
 	CONSTRAINT pk_actualizar_docente PRIMARY KEY (id_ue)
 )ENGINE=InnoDb;
+
+# Tabla para registrar quien eliminó a un estudiante
+CREATE TABLE eliminar_docente(
+	id_dd INT(4) AUTO_INCREMENT NOT NULL,
+	id_admin_dd INT(4) NOT NULL,
+	nombre_docente_dd VARCHAR(20) NOT NULL,
+	identificacion_dd INT(11) NOT NULL,
+	fecha_eliminacion_dd DATETIME NOT NULL,
+	CONSTRAINT pk_eliminar_docente PRIMARY KEY (id_dd),
+	CONSTRAINT fk_admin_eliminar_docente FOREIGN KEY (id_admin_dd) REFERENCES administrativo (id_admin)
+)ENGINE=InnoDb;
+
 
 # tabla para registrar la fecha de las acutalizaciones de las credenciales de los usuaros
 CREATE TABLE actualizar_credenciales(
@@ -791,18 +822,33 @@ CREATE TABLE subir_boletin(
 	nota_periodo_1 INT(4) NOT NULL,
 	nota_periodo_2 INT(4) NOT NULL,
 	nota_periodo_3 INT(4) NOT NULL,
+	periodo_sb INT(4) NOT NULL,
 	fecha_insercion_sb DATETIME NOT NULL,
 	CONSTRAINT pk_subir_nota PRIMARY KEY (id_sb),
 	CONSTRAINT fk_docente_sb FOREIGN KEY (id_docente_sb) REFERENCES docente (id),
-	CONSTRAINT fk_estudiante_sb FOREIGN KEY (id_estudiante_sb) REFERENCES estudiante (id)
+	CONSTRAINT fk_estudiante_sb FOREIGN KEY (id_estudiante_sb) REFERENCES estudiante (id),
+	CONSTRAINT fk_perido_boletin_au FOREIGN KEY (periodo_sb) REFERENCES periodo (id)
 )ENGINE=InnoDb;
 # trigger para auditar la subida de boletines
 CREATE TRIGGER subir_boletin_ai AFTER INSERT ON boletin
 FOR EACH ROW
-INSERT INTO subir_boletin (id_docente_sb, id_estudiante_sb, nombre_estudiante_sb, nombre_docente_sb, nombre_materia_sb, nota_periodo_1, nota_periodo_2, nota_periodo_3, fecha_insercion_sb)
-VALUES(new.id_docente_boletin, new.id_estudiante_boletin, new.nombre_estudiante, new.nombre_docente, new.nombre_materia, new.nota_periodo1, new.nota_periodo2, new.nota_periodo3, NOW());
+INSERT INTO subir_boletin (id_docente_sb, id_estudiante_sb, nombre_estudiante_sb, nombre_docente_sb, nombre_materia_sb, nota_periodo_1, nota_periodo_2, nota_periodo_3, periodo_sb, fecha_insercion_sb)
+VALUES(new.id_docente_boletin, new.id_estudiante_boletin, new.nombre_estudiante, new.nombre_docente, new.nombre_materia, new.nota_periodo1, new.nota_periodo2, new.nota_periodo3, new.id_periodo_boletin, NOW());
 
-
+# Tablar para registrar la eliminacion de una nota
+CREATE TABLE eliminar_nota(
+	id_dn INT(4) AUTO_INCREMENT NOT NULL,
+	id_docente_nota_dn INT(4) NOT NULL,
+	periodo_dn INT(4) NOT NULL,
+	estudiane_dn VARCHAR(50) NOT NULL,
+	materia_dn VARCHAR(50) NOT NULL,
+	grado_dn VARCHAR(20) NOT NULL,
+	actividad VARCHAR(30) NOT NULL,
+	noto_dn VARCHAR(4) NOT NULL,
+	fecha_eliminacion_dn DATETIME NOT NULL,
+	CONSTRAINT pk_eliminar_nota PRIMARY KEY (id_dn),
+	CONSTRAINT fk_docente_delete_note FOREIGN KEY (id_docente_nota_dn) REFERENCES docente (id)
+)ENGINE=InnoDb;
 -- ----------------------------FIN TABLAS Y TRIGGERS PARA AUDITORIA INICIO CONSULTAS  A LA TABLAS DE AUDITORIA----------------------------------------------
 
 #consultar tabla isertar_grado

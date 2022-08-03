@@ -15,6 +15,15 @@ hr {
     font-weight: 600;
     color: teal !important;
 }
+
+.alert-alert{
+    background: #DC3546 !important;
+    color: white !important;
+    /*height: 20px !important;*/
+}
+.texto-alert-alert{
+    font-size: 17px !important;
+}
 /*
 =========================================
 ===============VIEW PERSONAL================

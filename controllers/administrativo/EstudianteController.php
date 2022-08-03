@@ -5,7 +5,7 @@ require_once 'models/padres.php';
 require_once 'models/credencial.php';
 require_once 'models/horario.php';
 require_once 'models/materias.php';
-require 'models/auditoria.php';
+require_once 'models/auditoria.php';
 
 class EstudianteController
 {
@@ -119,7 +119,7 @@ class EstudianteController
                 # ACTUALIZAR
                 # auditar  la actualizacion de datos del estudiante
                 $auditar = new Auditoria();
-                $auditar->auditarActualizacionEstudiante($nombre_e, $apellidos_e, $numero);
+                $auditar->auditarActualizacionUsuario('actualizar_estudiante', $nombre_e, $apellidos_e, $numero);
                 $edad_e = trim($_POST['edad']);
                 $estudiantes->setEdad($edad_e);
                 $papas = $_POST['padres'];
@@ -270,6 +270,11 @@ class EstudianteController
         $numeroHijos = $padres->numberSons();
 
         $estudiante = Utils::decryption($_GET['student']);
+        $nombre_e = Utils::decryption($_GET['name']);
+        $numeroDocu = Utils::decryption($_GET['document']);
+        $auditar = new Auditoria();
+        $auditar->auditarEliminacionUsuario('eliminar_estudiante', $nombre_e, $numeroDocu);
+        $id = Utils::decryption($_GET['id']);
         $eliminar = new Estudiante();
         $eliminar->setId($estudiante);
 

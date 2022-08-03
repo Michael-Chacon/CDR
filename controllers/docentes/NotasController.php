@@ -7,6 +7,7 @@ require_once 'models/observador.php';
 require_once 'models/actividades.php';
 require_once 'models/documentos.php';
 require_once 'models/boletin.php';
+require_once 'models/auditoria.php';
 class NotasController
 {
     public function homeNotas()
@@ -283,9 +284,11 @@ class NotasController
     # Metodo para eliminar la nota de una actividad
     public function eliminarNota()
     {
+        $periodo = Utils::validarPeriodoAcademico(date('Y-m-d'));
         $actividad = $_GET['activity'];
         $id_nota = $_GET['id'];
-
+        $auditar = new Auditoria();
+        $auditar->auditarEliminacionNota($actividad, $_GET['e'], $_GET['m'], $id_nota, $periodo);
         $caneca = new Notas();
         $caneca->setId($id_nota);
         $caneca->setItem($actividad);

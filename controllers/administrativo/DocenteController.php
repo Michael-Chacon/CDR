@@ -73,7 +73,7 @@ class DocenteController
                 # ACTUALIZAR
                 # auditar la actualizacion de los datos del docente
                 $auditar = new Auditoria();
-                $auditar->auditarActualizacionDocentes($nombre, $apellidos, $numeroId);
+                $auditar->auditarActualizacionUsuario('actualizar_docente', $nombre, $apellidos, $numeroId);
                 $edad = trim($_POST['edad']);
                 $docente->setEdad($edad);
                 $docente->setId($_POST['actualizarDocente']);
@@ -200,6 +200,10 @@ class DocenteController
     public function eliminarDocente()
     {
         $docente = $_GET['id'];
+        $numeroDocu = $_GET['documento'];
+        $nombre = $_GET['name'];
+        $auditar = new Auditoria();
+        $auditar->auditarEliminacionUsuario('eliminar_docente', $nombre, $numeroDocu);
         $borrador = new Docente();
         $borrador->setId($docente);
         $resultado = $borrador->deleteTeacher();

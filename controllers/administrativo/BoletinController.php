@@ -1,5 +1,6 @@
 <?php
 require_once 'models/boletin.php';
+require_once 'models/auditoria.php';
 class BoletinController
 {
     public function guardarBoletin()
@@ -88,7 +89,7 @@ class BoletinController
         $areaTecnica = $boletin->obtenerMateriasXArea("ÁREA TÉCNICA");
 
         # SIN ÁREA
-        $sinArea= $boletin->obtenerMateriasXArea("SIN ÁREA");
+        $sinArea = $boletin->obtenerMateriasXArea("SIN ÁREA");
 
         $infoBoletinPeriodo1 = $boletin->puestoPromedioPeriodo1();
         $infoBoletinPeriodo2 = $boletin->puestoPromedioPeriodo2();
@@ -105,8 +106,6 @@ class BoletinController
 
         # Nota de comportamiento
         $nota_comportamiento = $boletin->comportamiento();
-
-
 
         if (isset($_GET['pdf']) && $_GET['pdf'] == 'b') {
             require_once 'views/pdf/boletin.php';

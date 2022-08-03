@@ -63,4 +63,11 @@
                         </div>
                     </div>
                 </nav>
+                <?php if (isset($_SESSION['teacher']) && $_SESSION['estadoBoletin'] == 'Habilitado'): ?>
+                    <div class="alert alert-danger text-center alert-alert" role="alert">
+                        <span class="fst-italic texto-alert-alert">
+                        Está habilitada la opción para subir notas al boletín, los directores de grado recuerden registrar la nota de comportamiento de sus estudiantes
+                        </span>
+                    </div>
+                <?php endif;?>
             <!-- contenido de  la pagina -->
