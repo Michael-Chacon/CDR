@@ -92,6 +92,12 @@ class ConfiguracionController
         require_once 'views/administrativo/configuracion/HavBoletin.php';
     }
 
+    public function auditoriaEstadoBoletin(){
+        $auditar = new Auditoria();
+        $listado = $auditar->cambiosEstadoBoletin();
+        require_once 'views/administrativo/configuracion/auditoriaBoletin.php';
+    }
+
     public function guardar_area()
     {
         $nombre = mb_strtoupper($_POST['area'], 'UTF-8');

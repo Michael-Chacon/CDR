@@ -281,6 +281,17 @@ class NotasController
         header('Location: ' . base_url . 'Notas/homeNotas&student=' . Utils::encryption($estudiante) . '&materia=' . Utils::encryption($materia) . '&nGrado=' . $_POST['grado'] . '&event=ok');
     }
 
+    # Metodo para ver las notas que le fueron eliminadas a un estudiante
+    public function notasEliminadas()
+    {
+        $estudiante = $_GET['id_e'];
+        $materia = $_GET['id_m'];
+        $nombre = $_GET['nombre'];
+        $auditar = new Auditoria();
+        $listado = $auditar->notasEliminadasAEstudiante($materia, $estudiante);
+        require_once 'views/docente/notasEliminadas.php';
+    }
+
     # Metodo para eliminar la nota de una actividad
     public function eliminarNota()
     {

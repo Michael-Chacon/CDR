@@ -20,6 +20,15 @@ class EstudianteController
         require_once 'views/administrativo/estudiante/estudiantes.php';
     }
 
+    # listar los estudiantes eliminiados
+    public function auditarEliminacionEstudiante()
+    {
+        $auditar = new Auditoria();
+        $listado = $auditar->estudiantesEliminados();
+        require_once 'views/administrativo/estudiante/estudiantesEliminados.php';
+    }
+
+
     public function registrarEstudiante()
     {
         if (isset($_POST) && !empty($_POST)) {

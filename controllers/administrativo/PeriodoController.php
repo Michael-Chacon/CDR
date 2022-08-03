@@ -19,6 +19,13 @@ class PeriodoController
         require_once 'views/administrativo/periodo/actualizarPeriodo.php';
     }
 
+    public function auditarPeriodos()
+    {
+        $auditar = new Auditoria();
+        $modificaciones = $auditar->periodoAcademicos();
+        require_once 'views/administrativo/periodo/auditoriaPeriodo.php';
+    }
+
     public function actualizarPeriodo()
     {
         if (isset($_POST) && !empty($_POST)) {

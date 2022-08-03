@@ -13,7 +13,13 @@ class DocenteController
         $lista = $listar_docentes->allDocentes();
         require_once 'views/administrativo/docente/docente.php';
     }
-
+    # listar los docentes eliminiados
+    public function auditarEliminacionDocentes()
+    {
+        $auditar = new Auditoria();
+        $listado = $auditar->docentesEliminados();
+        require_once 'views/administrativo/docente/docentesEliminados.php';
+    }
     #metodo para registrar los docentes
     public function registrarDocente()
     {

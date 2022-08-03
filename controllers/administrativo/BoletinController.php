@@ -91,9 +91,9 @@ class BoletinController
         # SIN ÁREA
         $sinArea = $boletin->obtenerMateriasXArea("SIN ÁREA");
 
-        $infoBoletinPeriodo1 = $boletin->puestoPromedioPeriodo1();
-        $infoBoletinPeriodo2 = $boletin->puestoPromedioPeriodo2();
-        $infoBoletinPeriodo3 = $boletin->puestoPromedioPeriodo3();
+        $infoBoletinPeriodo1 = $boletin->puestoPromedioPeriodoX('1');
+        $infoBoletinPeriodo2 = $boletin->puestoPromedioPeriodoX('2');
+        $infoBoletinPeriodo3 = $boletin->puestoPromedioPeriodoX('3');
         $perdidasPeriodo1 = $boletin->materiasPerdidasPeriodo1();
         $perdidasPeriodo2 = $boletin->materiasPerdidasPeriodo2();
         $perdidasPeriodo3 = $boletin->materiasPerdidasPeriodo3();

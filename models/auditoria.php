@@ -142,8 +142,10 @@ class Auditoria
         $grado = $datosEstudiante->nombre_g;
 
         # Registrar datos de la accion borra nota
-        $eliminarNota = $this->db->prepare("INSERT INTO eliminar_nota VALUES (null, :docente, :periodo, :estudiante, :materia, :grado, :actividad, :nota, :fecha)");
+        $eliminarNota = $this->db->prepare("INSERT INTO eliminar_nota VALUES (null, :docente, :id_materia, :id_estudiante, :periodo, :estudiante, :materia, :grado, :actividad, :nota, :fecha)");
         $eliminarNota->bindParam(":docente", $this->id_docente, PDO::PARAM_INT);
+        $eliminarNota->bindParam(":id_materia", $id_materia, PDO::PARAM_INT);
+        $eliminarNota->bindParam(":id_estudiante", $id_estudiante, PDO::PARAM_INT);
         $eliminarNota->bindParam(":periodo", $periodo, PDO::PARAM_INT);
         $eliminarNota->bindParam(":estudiante", $estudiante, PDO::PARAM_STR);
         $eliminarNota->bindParam("materia", $materia, PDO::PARAM_STR);
@@ -152,6 +154,54 @@ class Auditoria
         $eliminarNota->bindParam(":nota", $calificacion, PDO::PARAM_INT);
         $eliminarNota->bindParam(":fecha", $this->fecha, PDO::PARAM_STR);
         $eliminarNota->execute();
+    }
+
+    # Metodo para obtener listado de modificaciones de los periodos academicos
+    public function periodoAcademicos()
+    {
+        $periodo = $this->db->prepare("SELECT * FROM update_periodo ORDER BY id_up DESC");
+        $periodo->execute();
+        return $periodo;
+    }
+
+    # Metodo para obtener el listado de estudiantes eliminados
+    public function estudiantesEliminados()
+    {
+        $estudiantes = $this->db->prepare("SELECT a.nombre_a, a.apellidos_a, ee.* FROM eliminar_estudiante ee
+                                                                INNER JOIN administrativo a ON a.id_admin = ee.id_admin_ee
+                                                                ORDER BY id_ee DESC");
+        $estudiantes->execute();
+        return $estudiantes;
+    }
+
+    # Metodo para obtener el listado de estudiantes eliminados
+    public function docentesEliminados()
+    {
+        $estudiantes = $this->db->prepare("SELECT a.nombre_a, a.apellidos_a, dd.* FROM eliminar_docente dd
+                                                                INNER JOIN administrativo a ON a.id_admin = dd.id_admin_dd
+                                                                ORDER BY id_dd DESC");
+        $estudiantes->execute();
+        return $estudiantes;
+    }
+
+    # Metodo para mostrar el cambio de estado del boletin
+    public function cambiosEstadoBoletin()
+    {
+        $boletin = $this->db->prepare("SELECT * FROM habilitacion_boletin ORDER BY id_hb DESC");
+        $boletin->execute();
+        return $boletin;
+    }
+
+    # Metodo para listar las notas borradas a los estudiantes en x materia
+    public function notasEliminadasAEstudiante($materia, $estudiante)
+    {
+        $notaEliminada = $this->db->prepare("SELECT d.nombre_d, d.apellidos_d, en.* FROM eliminar_nota en
+                                                                    INNER JOIN docente d ON d.id = en.id_docente_nota_dn
+                                                                    WHERE id_materia_dn = :materia AND id_estudiante_dn = :estudiante");
+        $notaEliminada->bindParam(":materia", $materia, PDO::PARAM_INT);
+        $notaEliminada->bindParam(":estudiante", $estudiante, PDO::PARAM_INT);
+        $notaEliminada->execute();
+        return $notaEliminada;
     }
 
 }

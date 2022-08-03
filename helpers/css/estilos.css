@@ -21,8 +21,25 @@ hr {
     color: white !important;
     /*height: 20px !important;*/
 }
+
 .texto-alert-alert{
     font-size: 17px !important;
+}
+.Deshabilitado{
+    background: #DC3546 !important;
+    color: white !important;
+}
+.Habilitado{
+    background: green !important;
+    color: white !important;
+}
+.Inactivo{
+    background: #DC3546 !important;
+    color: white !important;
+}
+.Activo{
+    background: green !important;
+    color: white !important;
 }
 /*
 =========================================

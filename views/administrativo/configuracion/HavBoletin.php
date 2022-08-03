@@ -1,9 +1,14 @@
 <section class="container-fluid">
     <section class="row shadow titulo">
-        <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <article class="col-xs-11 col-sm-11 col-md-11 col-lg-11">
             <h1 class="text-center config">
                 Habilitar boletín
             </h1>
+        </article>
+        <article class="col-xs-1 col-sm-1 col-md-1 col-lg-1 config icono-menu text-center">
+            <a href="<?=base_url?>Configuracion/auditoriaEstadoBoletin" data-bs-toggle="tooltip" data-bs-placement="left" title="Auditoria">
+                <i class="bi bi-clock-history efecto_hover" style="font-size: 2rem; color:white;"></i>
+            </a>
         </article>
     </section>
     <?php echo Utils::getAlert(); ?>

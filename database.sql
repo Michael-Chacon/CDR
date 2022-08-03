@@ -839,14 +839,18 @@ VALUES(new.id_docente_boletin, new.id_estudiante_boletin, new.nombre_estudiante,
 CREATE TABLE eliminar_nota(
 	id_dn INT(4) AUTO_INCREMENT NOT NULL,
 	id_docente_nota_dn INT(4) NOT NULL,
+	id_materia_dn INT(3) NOT NULL,
+	id_estudiante_dn INT(4) NOT NULL,
 	periodo_dn INT(4) NOT NULL,
 	estudiane_dn VARCHAR(50) NOT NULL,
 	materia_dn VARCHAR(50) NOT NULL,
 	grado_dn VARCHAR(20) NOT NULL,
 	actividad VARCHAR(30) NOT NULL,
-	noto_dn VARCHAR(4) NOT NULL,
+	nota_dn VARCHAR(4) NOT NULL,
 	fecha_eliminacion_dn DATETIME NOT NULL,
 	CONSTRAINT pk_eliminar_nota PRIMARY KEY (id_dn),
+	CONSTRAINT fk_materia_nota_dn FOREIGN KEY (id_materia_dn) REFERENCES materia (id),
+	CONSTRAINT fk_nota_estudiante_dn FOREIGN KEY (id_estudiante_dn) REFERENCES estudiante (id),
 	CONSTRAINT fk_docente_delete_note FOREIGN KEY (id_docente_nota_dn) REFERENCES docente (id)
 )ENGINE=InnoDb;
 -- ----------------------------FIN TABLAS Y TRIGGERS PARA AUDITORIA INICIO CONSULTAS  A LA TABLAS DE AUDITORIA----------------------------------------------

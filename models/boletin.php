@@ -414,44 +414,44 @@ class Boletin
 
     # ver el puesto y el promedio del estudiante en x periodo
 
-    public function puestoPromedioPeriodo1()
+    public function puestoPromedioPeriodoX($periodo)
     {
         $estudiante_id = $this->getIdEstudiante();
         // $periodo_id = 1;
         $datos = $this->db->prepare("SELECT pe.promedio, p.puesto FROM promedioestudiante pe
             INNER JOIN estudiante e ON e.id = pe.id_estudiante_avg
             INNER JOIN puestos p ON p.id_estudiante_puesto = e.id
-            WHERE e.id = :estudiante AND p.id_periodo_puesto = 1 AND id_periodo_avg = 1");
+            WHERE e.id = :estudiante AND p.id_periodo_puesto = $periodo AND id_periodo_avg = $periodo");
         $datos->bindParam(":estudiante", $estudiante_id, PDO::PARAM_INT);
         $datos->execute();
         return $datos->fetchObject();
     }
 
-    public function puestoPromedioPeriodo2()
-    {
-        $estudiante_id = $this->getIdEstudiante();
-        $periodo_id = 2;
-        $datos = $this->db->prepare("SELECT pe.promedio, p.puesto FROM promedioestudiante pe
-            INNER JOIN estudiante e ON e.id = pe.id_estudiante_avg
-            INNER JOIN puestos p ON p.id_estudiante_puesto = e.id
-            WHERE e.id = :estudiante AND p.id_periodo_puesto = $periodo_id AND id_periodo_avg = $periodo_id;");
-        $datos->bindParam(":estudiante", $estudiante_id, PDO::PARAM_INT);
-        $datos->execute();
-        return $datos->fetchObject();
-    }
+    // public function puestoPromedioPeriodo2()
+    // {
+    //     $estudiante_id = $this->getIdEstudiante();
+    //     $periodo_id = 2;
+    //     $datos = $this->db->prepare("SELECT pe.promedio, p.puesto FROM promedioestudiante pe
+    //         INNER JOIN estudiante e ON e.id = pe.id_estudiante_avg
+    //         INNER JOIN puestos p ON p.id_estudiante_puesto = e.id
+    //         WHERE e.id = :estudiante AND p.id_periodo_puesto = $periodo_id AND id_periodo_avg = $periodo_id;");
+    //     $datos->bindParam(":estudiante", $estudiante_id, PDO::PARAM_INT);
+    //     $datos->execute();
+    //     return $datos->fetchObject();
+    // }
 
-    public function puestoPromedioPeriodo3()
-    {
-        $estudiante_id = $this->getIdEstudiante();
-        $periodo_id = 3;
-        $datos = $this->db->prepare("SELECT pe.promedio, p.puesto FROM promedioestudiante pe
-            INNER JOIN estudiante e ON e.id = pe.id_estudiante_avg
-            INNER JOIN puestos p ON p.id_estudiante_puesto = e.id
-            WHERE e.id = :estudiante AND p.id_periodo_puesto = $periodo_id AND id_periodo_avg = $periodo_id;");
-        $datos->bindParam(":estudiante", $estudiante_id, PDO::PARAM_INT);
-        $datos->execute();
-        return $datos->fetchObject();
-    }
+    // public function puestoPromedioPeriodo3()
+    // {
+    //     $estudiante_id = $this->getIdEstudiante();
+    //     $periodo_id = 3;
+    //     $datos = $this->db->prepare("SELECT pe.promedio, p.puesto FROM promedioestudiante pe
+    //         INNER JOIN estudiante e ON e.id = pe.id_estudiante_avg
+    //         INNER JOIN puestos p ON p.id_estudiante_puesto = e.id
+    //         WHERE e.id = :estudiante AND p.id_periodo_puesto = $periodo_id AND id_periodo_avg = $periodo_id;");
+    //     $datos->bindParam(":estudiante", $estudiante_id, PDO::PARAM_INT);
+    //     $datos->execute();
+    //     return $datos->fetchObject();
+    // }
 
     # Metodo para ver cuantas materias perdio un estudiante
     public function materiasPerdidasPeriodo1()

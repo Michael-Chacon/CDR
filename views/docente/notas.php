@@ -33,6 +33,11 @@
                 </acticle>
             </article>
         <?php else: ?>
+            <article class="col-xs-1 col-sm-1 col-md-1 col-lg-1 config icono-menu text-center">
+            <a href="<?=base_url?>Notas/notasEliminadas&nombre=<?=$estudiante->nombre_e .' ' .$estudiante->apellidos_e?>&id_e=<?=$id_estudiante?>&id_m=<?=$id_materia?>" data-bs-toggle="tooltip" data-bs-placement="left" title="Auditoria">
+                <i class="bi bi-clock-history efecto_hover" style="font-size: 2rem; color:white;"></i>
+            </a>
+        </article>
         <?php endif;?>
     </section>
     <section class="row justify-content-center">
@@ -670,7 +675,7 @@
             </div>
             <div class="modal-body">
                 <?php $f = 0;
-                if ($fechas_fallas->rowCount() != 0): ?>
+if ($fechas_fallas->rowCount() != 0): ?>
                     <table class="table text-center caption-top table-responsive">
                         <caption>Formato de fecha: aaaa/mm/dd</caption>
                         <thead>
@@ -688,20 +693,20 @@
                         </thead>
                         <tbody>
                             <?php while ($fechas = $fechas_fallas->fetchObject()):
-                                $f++;
-                                ?>
-                                <tr>
-                                  <td>
-                                      <?=$f?>
-                                  </td>
-                                  <td>
-                                      <?=$fechas->fecha_falla?>
-                                  </td>
-                                  <td>
-                                      <?=$fechas->id_periodo_f?>
-                                  </td>
-                              </tr>
-                          <?php endwhile;?>
+    $f++;
+    ?>
+			                                <tr>
+			                                  <td>
+			                                      <?=$f?>
+			                                  </td>
+			                                  <td>
+			                                      <?=$fechas->fecha_falla?>
+			                                  </td>
+			                                  <td>
+			                                      <?=$fechas->id_periodo_f?>
+			                                  </td>
+			                              </tr>
+			                          <?php endwhile;?>
                       </tbody>
                   </table>
                   <?php if (!isset($_SESSION['student'])): ?>
