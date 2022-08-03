@@ -413,11 +413,9 @@ class Boletin
     }
 
     # ver el puesto y el promedio del estudiante en x periodo
-
     public function puestoPromedioPeriodoX($periodo)
     {
         $estudiante_id = $this->getIdEstudiante();
-        // $periodo_id = 1;
         $datos = $this->db->prepare("SELECT pe.promedio, p.puesto FROM promedioestudiante pe
             INNER JOIN estudiante e ON e.id = pe.id_estudiante_avg
             INNER JOIN puestos p ON p.id_estudiante_puesto = e.id
@@ -427,92 +425,24 @@ class Boletin
         return $datos->fetchObject();
     }
 
-    // public function puestoPromedioPeriodo2()
-    // {
-    //     $estudiante_id = $this->getIdEstudiante();
-    //     $periodo_id = 2;
-    //     $datos = $this->db->prepare("SELECT pe.promedio, p.puesto FROM promedioestudiante pe
-    //         INNER JOIN estudiante e ON e.id = pe.id_estudiante_avg
-    //         INNER JOIN puestos p ON p.id_estudiante_puesto = e.id
-    //         WHERE e.id = :estudiante AND p.id_periodo_puesto = $periodo_id AND id_periodo_avg = $periodo_id;");
-    //     $datos->bindParam(":estudiante", $estudiante_id, PDO::PARAM_INT);
-    //     $datos->execute();
-    //     return $datos->fetchObject();
-    // }
-
-    // public function puestoPromedioPeriodo3()
-    // {
-    //     $estudiante_id = $this->getIdEstudiante();
-    //     $periodo_id = 3;
-    //     $datos = $this->db->prepare("SELECT pe.promedio, p.puesto FROM promedioestudiante pe
-    //         INNER JOIN estudiante e ON e.id = pe.id_estudiante_avg
-    //         INNER JOIN puestos p ON p.id_estudiante_puesto = e.id
-    //         WHERE e.id = :estudiante AND p.id_periodo_puesto = $periodo_id AND id_periodo_avg = $periodo_id;");
-    //     $datos->bindParam(":estudiante", $estudiante_id, PDO::PARAM_INT);
-    //     $datos->execute();
-    //     return $datos->fetchObject();
-    // }
-
     # Metodo para ver cuantas materias perdio un estudiante
-    public function materiasPerdidasPeriodo1()
+    public function materiasPerdidasPeriodoX($periodo)
     {
         $estudiante_id = $this->getIdEstudiante();
         $perdidas = $this->db->prepare("SELECT COUNT(id_nota) AS 'perdidas1' FROM notasdefinitivas
-            WHERE id_estudiante_nd = :estudiante AND id_periodo_nd = 1 AND nota_definitiva < 30");
-        $perdidas->bindParam(":estudiante", $estudiante_id, PDO::PARAM_INT);
-        $perdidas->execute();
-        return $perdidas->fetchObject();
-    }
-
-    public function materiasPerdidasPeriodo2()
-    {
-        $estudiante_id = $this->getIdEstudiante();
-        $perdidas = $this->db->prepare("SELECT COUNT(id_nota) AS 'perdidas1' FROM notasdefinitivas
-            WHERE id_estudiante_nd = :estudiante AND id_periodo_nd = 2 AND nota_definitiva < 30");
-        $perdidas->bindParam(":estudiante", $estudiante_id, PDO::PARAM_INT);
-        $perdidas->execute();
-        return $perdidas->fetchObject();
-    }
-
-    public function materiasPerdidasPeriodo3()
-    {
-        $estudiante_id = $this->getIdEstudiante();
-        $perdidas = $this->db->prepare("SELECT COUNT(id_nota) AS 'perdidas1' FROM notasdefinitivas
-            WHERE id_estudiante_nd = :estudiante AND id_periodo_nd = 3 AND nota_definitiva < 30");
+            WHERE id_estudiante_nd = :estudiante AND id_periodo_nd = $periodo AND nota_definitiva < 30");
         $perdidas->bindParam(":estudiante", $estudiante_id, PDO::PARAM_INT);
         $perdidas->execute();
         return $perdidas->fetchObject();
     }
 
     # Calcular el total de fallas por periodo
-    public function totolFallasPeriodo1()
+    public function totolFallasPeriodoX($periodo)
     {
         $student = $this->getIdEstudiante();
         $fallas = $this->db->prepare("SELECT COUNT(f.id) AS 'total' FROM falla f
             INNER JOIN estudiante e ON e.id = f.id_estudiante_f
-            WHERE e.id = :student AND f.id_periodo_f = 1");
-        $fallas->bindParam(":student", $student, PDO::PARAM_INT);
-        $fallas->execute();
-        return $fallas->fetchObject();
-    }
-
-    public function totolFallasPeriodo2()
-    {
-        $student = $this->getIdEstudiante();
-        $fallas = $this->db->prepare("SELECT COUNT(f.id) AS 'total' FROM falla f
-            INNER JOIN estudiante e ON e.id = f.id_estudiante_f
-            WHERE e.id = :student AND f.id_periodo_f = 2");
-        $fallas->bindParam(":student", $student, PDO::PARAM_INT);
-        $fallas->execute();
-        return $fallas->fetchObject();
-    }
-
-    public function totolFallasPeriodo3()
-    {
-        $student = $this->getIdEstudiante();
-        $fallas = $this->db->prepare("SELECT COUNT(f.id) AS 'total' FROM falla f
-            INNER JOIN estudiante e ON e.id = f.id_estudiante_f
-            WHERE e.id = :student AND f.id_periodo_f = 3");
+            WHERE e.id = :student AND f.id_periodo_f = $periodo");
         $fallas->bindParam(":student", $student, PDO::PARAM_INT);
         $fallas->execute();
         return $fallas->fetchObject();

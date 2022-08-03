@@ -94,12 +94,12 @@ class BoletinController
         $infoBoletinPeriodo1 = $boletin->puestoPromedioPeriodoX('1');
         $infoBoletinPeriodo2 = $boletin->puestoPromedioPeriodoX('2');
         $infoBoletinPeriodo3 = $boletin->puestoPromedioPeriodoX('3');
-        $perdidasPeriodo1 = $boletin->materiasPerdidasPeriodo1();
-        $perdidasPeriodo2 = $boletin->materiasPerdidasPeriodo2();
-        $perdidasPeriodo3 = $boletin->materiasPerdidasPeriodo3();
-        $fallasPeriodo1 = $boletin->totolFallasPeriodo1();
-        $fallasPeriodo2 = $boletin->totolFallasPeriodo2();
-        $fallasPeriodo3 = $boletin->totolFallasPeriodo3();
+        $perdidasPeriodo1 = $boletin->materiasPerdidasPeriodoX('1');
+        $perdidasPeriodo2 = $boletin->materiasPerdidasPeriodoX('2');
+        $perdidasPeriodo3 = $boletin->materiasPerdidasPeriodoX('3');
+        $fallasPeriodo1 = $boletin->totolFallasPeriodoX('1');
+        $fallasPeriodo2 = $boletin->totolFallasPeriodoX('2');
+        $fallasPeriodo3 = $boletin->totolFallasPeriodoX('3');
         $docenteEstudiante = $boletin;
         $docenteEstudiante->setIdEstudiante($estudiante);
         $informacionUsuarios = $docenteEstudiante->datosDocenteEstudianteGrado($grado);
