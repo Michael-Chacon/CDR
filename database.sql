@@ -582,7 +582,7 @@ CREATE TABLE boletin(
 	nota_periodo1 INT(2) NOT NULL,
 	nota_periodo2 INT(2) NOT NULL,
 	nota_periodo3 INT(2) NOT NULL,
-	primerdio_materia FLOAT NOT NULL,
+	promedio_materia FLOAT NOT NULL,
 	total_fallas_periodo INT(2) NOT NULL,
 	CONSTRAINT pk_boletin PRIMARY KEY (id_boletin),
 	CONSTRAINT fk_estudiante_boletin FOREIGN KEY (id_estudiante_boletin) REFERENCES estudiante (id) ON DELETE CASCADE,

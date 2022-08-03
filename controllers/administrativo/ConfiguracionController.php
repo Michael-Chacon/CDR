@@ -179,13 +179,18 @@ class ConfiguracionController
         $cognitivo = $_POST['cognitivo'];
         $evaluacion = $_POST['evaluacion'];
         $trimestral = $_POST['trimestral'];
-
-        $actualizador = new Notas();
-        $actualizador->setCognitivo($cognitivo);
-        $actualizador->setEvaluacion($evaluacion);
-        $actualizador->setTrimestral($trimestral);
-        $respuesta = $actualizador->updateCognitivo();
-        Utils::alertas($respuesta, 'Porcentaje actualizado con éxito', 'Error al actualizar el porcentaje');
+        $total = $evaluacion + $trimestral;
+        echo $total;
+        if ($total > $cognitivo) {
+            Utils::alertas(false, '', 'Los porcentajes no coinciden');
+        } else {
+            $actualizador = new Notas();
+            $actualizador->setCognitivo($cognitivo);
+            $actualizador->setEvaluacion($evaluacion);
+            $actualizador->setTrimestral($trimestral);
+            $respuesta = $actualizador->updateCognitivo();
+            Utils::alertas($respuesta, 'Porcentaje actualizado con éxito', 'Error al actualizar el porcentaje');
+        }
         header('Location:' . base_url . 'Configuracion/vista_notas');
     }
 
@@ -194,12 +199,17 @@ class ConfiguracionController
         $procedimental = $_POST['procedimental'];
         $individual = $_POST['individual'];
         $colaborativo = $_POST['colaborativo'];
-        $actualizador = new Notas();
-        $actualizador->setProcedimental($procedimental);
-        $actualizador->setTindividual($individual);
-        $actualizador->setTcolaborativo($colaborativo);
-        $respuesta = $actualizador->updateProcedimental();
-        Utils::alertas($respuesta, 'Porcentaje actualizado con éxito', 'Error al actualizar el porcentaje');
+        $total = $individual + $colaborativo;
+        if ($total > $procedimental) {
+            Utils::alertas(false, '', 'Los porcentajes no coinciden');
+        } else {
+            $actualizador = new Notas();
+            $actualizador->setProcedimental($procedimental);
+            $actualizador->setTindividual($individual);
+            $actualizador->setTcolaborativo($colaborativo);
+            $respuesta = $actualizador->updateProcedimental();
+            Utils::alertas($respuesta, 'Porcentaje actualizado con éxito', 'Error al actualizar el porcentaje');
+        }
         header('Location:' . base_url . 'Configuracion/vista_notas');
     }
 
@@ -208,12 +218,17 @@ class ConfiguracionController
         $actitudinal = $_POST['actitudinal'];
         $apreciativa = $_POST['apreciativa'];
         $autoevaluacion = $_POST['autoevaluacion'];
-        $actualizador = new Notas();
-        $actualizador->setActitudinal($actitudinal);
-        $actualizador->setApreciativa($apreciativa);
-        $actualizador->setAutoevaluacion($autoevaluacion);
-        $respuesta = $actualizador->updateActitudinal();
-        Utils::alertas($respuesta, 'Porcentaje actualizado con éxito', 'Error al actualizar el porcentaje');
+        $total = $apreciativa + $autoevaluacion;
+        if ($total > $actitudinal) {
+            Utils::alertas(false, '', 'Los porcentajes no coinciden');
+        } else {
+            $actualizador = new Notas();
+            $actualizador->setActitudinal($actitudinal);
+            $actualizador->setApreciativa($apreciativa);
+            $actualizador->setAutoevaluacion($autoevaluacion);
+            $respuesta = $actualizador->updateActitudinal();
+            Utils::alertas($respuesta, 'Porcentaje actualizado con éxito', 'Error al actualizar el porcentaje');
+        }
         header('Location:' . base_url . 'Configuracion/vista_notas');
     }
 
