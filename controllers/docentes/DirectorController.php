@@ -27,21 +27,25 @@ class DirectorController
     # Registrar nota de comportamiento
     public function nota_comportamiento()
     {
-       if (isset($_POST) && !empty($_POST)) {
-           $id_estudiante = $_POST['x'];
-           $calificacion = $_POST['nota'];
-           $observacion = $_POST['observacion'];
-           $periodo = Utils::validarPeriodoAcademico(date("Y-m-d"));
-
-           $nota = new Notas();
-           $nota->setEstudiante($id_estudiante);
-           $nota->setPeriodo($periodo);
-           $nota->setItem($observacion);
-           $nota->setNota($calificacion);
-           $resultado = $nota->notaComportamiento();
-           Utils::alertas($resultado, 'Nota de comportamiento registrada con éxito', 'Algo salió mal al intentar registrar la nota de comportamiento, inténtelo de nuevo.');
-           header("Location: " .base_url. 'Estudiante/perfilEstudiante&x=' . $id_estudiante. '&y=' .$_POST['y']. '&z=' . $_POST['z']);
-       }
+        if (isset($_POST) && !empty($_POST)) {
+            $id_estudiante = $_POST['x'];
+            $calificacion = $_POST['nota'];
+            $observacion = $_POST['observacion'];
+            $periodo = Utils::validarPeriodoAcademico(date("Y-m-d"));
+            $nota = new Notas();
+            $nota->setEstudiante($id_estudiante);
+            $nota->setPeriodo($periodo);
+            $respuesta = $nota->verificarNotaComportamiento();
+            if ($respuesta) {
+                $nota->setItem($observacion);
+                $nota->setNota($calificacion);
+                $resultado = $nota->notaComportamiento();
+                Utils::alertas($resultado, 'Nota de comportamiento registrada con éxito', 'Algo salió mal al intentar registrar la nota de comportamiento, inténtelo de nuevo.');
+            } else {
+                Utils::alertas($respuesta, '', 'El estudiante ya tiene una nota de comportamiento asignada.');
+            }
+            header("Location: " . base_url . 'Estudiante/perfilEstudiante&x=' . $id_estudiante . '&y=' . $_POST['y'] . '&z=' . $_POST['z']);
+        }
     }
 
 }

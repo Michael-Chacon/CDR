@@ -1186,7 +1186,7 @@
                     <input type="text" hidden name="z" value="<?=$estudiantePadres->id_gradoE?>">
                     <div class="mb-3">
                         <label for="exampleFormControlInput1" class="form-label">Nota de comportamiento:</label>
-                      <input type="number" class="form-control" id="exampleFormControlInput1" placeholder="Ingrese acá la nota de comportamiento" name="nota" required>
+                      <input type="number" class="form-control" id="exampleFormControlInput1" placeholder="Ingrese acá la nota de comportamiento" name="nota" min="10" max="50" step="any" required>
                   </div>
                   <div class="mb-3">
                       <label for="exampleFormControlTextarea1" class="form-label">Observación:</label>

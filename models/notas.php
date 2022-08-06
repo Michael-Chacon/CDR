@@ -750,6 +750,23 @@ class Notas
         }
     }
 
+    # Validar sí el estudiante ya tiene nota de comportamiento registrada.
+    public function verificarNotaComportamiento()
+    {
+        $id_estudiante = $this->getEstudiante();
+        $id_periodo = $this->getPeriodo();
+        $validacion = $this->db->prepare("SELECT * FROM notacomportamiento WHERE id_estudiante_compor = :id_estudiante AND id_periodo_compor = :periodo");
+        $validacion->bindParam(":id_estudiante", $id_estudiante, PDO::PARAM_INT);
+        $validacion->bindParam(":periodo", $id_periodo, PDO::PARAM_INT);
+        $validacion->execute();
+
+        $resultado = $validacion->rowCount();
+        if ($resultado == 0) {
+            return true;
+        }
+        return false;
+    }
+
     public function notaComportamiento()
     {
         $id_estudiante = $this->getEstudiante();
@@ -764,6 +781,5 @@ class Notas
         $registro->bindParam(":calificacion", $calificacion, PDO::PARAM_INT);
         return $registro->execute();
     }
-
 
 } # fin de la clase
