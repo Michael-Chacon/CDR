@@ -9,7 +9,7 @@
 </section>
 <section class="container-fluid">
      <section class="row mt-5 mb-5 justify-content-center">
-        <?php if(!empty($informacionUsuarios->nombre_e)): ?>
+        <?php if (!empty($informacionUsuarios->nombre_e)): ?>
             <!--  Datos del estudiante -->
         <article class="col-md-4 mb-3">
             <div class="card shadow" >
@@ -33,7 +33,7 @@
                         <h6 class="card-subtitle mb-2 subtitulo">Grado</h6>
                     </div>
                     <div class="col-md-4 text-center">
-                        <h5 class="card-title titulo-boletin"><?=Utils::validarPeriodoAcademico(date("Y-m-d"))?></h5>
+                        <h5 class="card-title titulo-boletin"><?=$periodo?></h5>
                         <h6 class="card-subtitle mb-2 subtitulo">Periodo</h6>
                     </div>
                 </div>
@@ -61,7 +61,7 @@
         <div class="alert alert-light text-center" role="alert">
             El grado no tiene un director asignado
       </div>
-    <?php endif; ?>
+    <?php endif;?>
         <article class="col-md-4 mb-3">
             <div class="card shadow">
               <div class="card-body">
@@ -79,97 +79,97 @@
                             <tr>
                                 <th style="font-weight: 400;">PUESTO EN EL GRUPO</th>
                                 <td class="text-center">
-                                    <?php if(!empty($infoBoletinPeriodo1->puesto)):?>
+                                    <?php if (!empty($infoBoletinPeriodo1->puesto)): ?>
                                         <?=$infoBoletinPeriodo1->puesto?>
                                     <?php else: ?>
                                         0
-                                    <?php endif ?>
+                                    <?php endif?>
                                 </td>
                                 <td class="text-center">
-                                    <?php if(!empty($infoBoletinPeriodo2->puesto)):?>
+                                    <?php if (!empty($infoBoletinPeriodo2->puesto)): ?>
                                         <?=$infoBoletinPeriodo2->puesto?>
                                     <?php else: ?>
                                         0
-                                    <?php endif ?>
+                                    <?php endif?>
                                 </td>
                                 <td class="text-center">
-                                    <?php if(!empty($infoBoletinPeriodo3->puesto)):?>
+                                    <?php if (!empty($infoBoletinPeriodo3->puesto)): ?>
                                         <?=$infoBoletinPeriodo3->puesto?>
                                     <?php else: ?>
                                         0
-                                    <?php endif ?>
+                                    <?php endif?>
                                 </td>
                             </tr>
                             <tr>
                                 <th style="font-weight: 400;">PROMEDIO ESTUDIANTE</th>
                                 <td class="text-center">
-                                    <?php if(!empty($infoBoletinPeriodo1->promedio)):?>
+                                    <?php if (!empty($infoBoletinPeriodo1->promedio)): ?>
                                         <?=$infoBoletinPeriodo1->promedio?>
                                     <?php else: ?>
                                         0
-                                    <?php endif ?>
+                                    <?php endif?>
                                 </td>
                                 <td class="text-center">
-                                    <?php if(!empty($infoBoletinPeriodo2->promedio)):?>
+                                    <?php if (!empty($infoBoletinPeriodo2->promedio)): ?>
                                         <?=$infoBoletinPeriodo2->promedio?>
                                     <?php else: ?>
                                         0
-                                    <?php endif ?>
+                                    <?php endif?>
                                 </td>
                                 <td class="text-center">
-                                    <?php if(!empty($infoBoletinPeriodo3->promedio)):?>
+                                    <?php if (!empty($infoBoletinPeriodo3->promedio)): ?>
                                         <?=$infoBoletinPeriodo3->promedio?>
                                     <?php else: ?>
                                         0
-                                    <?php endif ?>
+                                    <?php endif?>
                                 </td>
                             </tr>
                             <tr>
                                 <th style="font-weight: 400;">ASIGNATURAS PERDIDAS</th>
                                  <td class="text-center">
-                                    <?php if(!empty($perdidasPeriodo1->perdidas1)):?>
+                                    <?php if (!empty($perdidasPeriodo1->perdidas1)): ?>
                                         <?=$perdidasPeriodo1->perdidas1?>
                                     <?php else: ?>
                                         0
-                                    <?php endif ?>
+                                    <?php endif?>
                                 </td>
                                 <td class="text-center">
-                                    <?php if(!empty($perdidasPeriodo2->perdidas1)):?>
+                                    <?php if (!empty($perdidasPeriodo2->perdidas1)): ?>
                                         <?=$perdidasPeriodo2->perdidas1?>
                                     <?php else: ?>
                                         0
-                                    <?php endif ?>
+                                    <?php endif?>
                                 </td>
                                 <td class="text-center">
-                                    <?php if(!empty($perdidasPeriodo3->perdidas1)):?>
+                                    <?php if (!empty($perdidasPeriodo3->perdidas1)): ?>
                                         <?=$perdidasPeriodo3->perdidas1?>
                                     <?php else: ?>
                                         0
-                                    <?php endif ?>
+                                    <?php endif?>
                                 </td>
                             </tr>
                             <tr>
                                 <th style="font-weight: 400;">TOTAL DE FALLAS</th>
                                 <td class="text-center">
-                                    <?php if(!empty($fallasPeriodo1->total)):?>
+                                    <?php if (!empty($fallasPeriodo1->total)): ?>
                                         <?=$fallasPeriodo1->total?>
                                     <?php else: ?>
                                         0
-                                    <?php endif ?>
+                                    <?php endif?>
                                 </td>
                                 <td class="text-center">
-                                    <?php if(!empty($fallasPeriodo2->total)):?>
+                                    <?php if (!empty($fallasPeriodo2->total)): ?>
                                         <?=$fallasPeriodo2->total?>
                                     <?php else: ?>
                                         0
-                                    <?php endif ?>
+                                    <?php endif?>
                                 </td>
                                 <td class="text-center">
-                                    <?php if(!empty($fallasPeriodo3->total)):?>
+                                    <?php if (!empty($fallasPeriodo3->total)): ?>
                                         <?=$fallasPeriodo3->total?>
                                     <?php else: ?>
                                         0
-                                    <?php endif ?>
+                                    <?php endif?>
                                 </td>
                             </tr>
                         </tbody>
@@ -183,10 +183,10 @@
             		<section class="row mb-5">
             			<article class="col-lg-12">
             				<?php if ($areaMatermaticas->rowCount() != 0): ?>
-                                <?php if(!isset($_SESSION['student'])): ?>
+                                <?php if (!isset($_SESSION['student'])): ?>
                                 <a type="button" href="<?=base_url?>Boletin/verBoletin&student=<?=Utils::encryption($estudiante)?>&degree=<?=Utils::encryption($grado)?>&period=<?=Utils::encryption($periodo)?>&pdf=b" class="btn btn-outline-success"><i class="bi bi-cloud-arrow-down"></i> Descargar boletín
                                 </a>
-                            <?php endif ?>
+                            <?php endif?>
             				<div class="table-responsive">
             				<table class="table table-bordered mt-3 mb-3 shadow">
             					<thead class="text-center">
@@ -384,7 +384,40 @@
                                             <td class="text-center"><?=$demas->total_fallas_periodo?></td>
                                         </tr>
                                     <?php endwhile;?>
-
+                                     <tr>
+                                        <th class="text-center"></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center">COMPORTAMIENTO</td>
+                                        <td><?=$nota_comportamiento->observacion?></td>
+                                        <td><?=$informacionUsuarios->nombre_d?> <?=$informacionUsuarios->apellidos_d?></td>
+                                        <td class="text-center"></td>
+                                        <td class="text-center"><?=$nota_comportamiento->notaP1?></td>
+                                        <td class="text-center"><?=$nota_comportamiento->notaP2?></td>
+                                        <td class="text-center"><?=$nota_comportamiento->notaP3?></td>
+                                        <td class="text-center"></td>
+                                        <td class="text-center">
+                                            <?php if ($nota_comportamiento->notaP1 >= 0 && $nota_comportamiento->notaP1 <= 31): ?>
+                                                BAJO
+                                            <?php elseif ($nota_comportamiento->notaP1 >= 32 && $nota_comportamiento->notaP1 <= 39): ?>
+                                                BÁSICO
+                                            <?php elseif ($nota_comportamiento->notaP1 >= 40 && $nota_comportamiento->notaP1 <= 45): ?>
+                                                ALTO
+                                            <?php elseif ($nota_comportamiento->notaP1 >= 46 && $nota_comportamiento->notaP1 <= 50): ?>
+                                                SUPERIOR
+                                            <?php endif;?>
+                                        </td>
+                                        <td class="text-center"></td>
+                                    </tr>
             					</tbody>
             				</table>
             				</div>

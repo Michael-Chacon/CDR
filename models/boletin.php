@@ -379,7 +379,7 @@ class Boletin
             /*
             Cada vez que se inserta una nota se recalcula el puesto del estudiante, hay que definir si el estudiantes ya tiene
             un registro en la tabla puesto, si no lo tiene hay que inserterlo, si ya lo tiene hay que actualizarlo
-            */
+             */
             while ($orden = $cunsultar_promedio->fetchObject()) {
                 $puesto = $c++;
                 # vamos a ver si el estudiante tiene un registro en la tabla
@@ -505,16 +505,39 @@ class Boletin
         return $boletin;
     }
 
-    # Obtener la nota de conportamiento
-        public function comportamiento()
-        {
-           $student = $this->getIdEstudiante();
-           $periodo_id = $this->getIdPeriodo();
-           $comportamiento = $this->db->prepare("SELECT * FROM notacomportamiento WHERE id_estudiante_compor = :estudiante AND id_periodo_compor = :periodo");
-           $comportamiento->bindParam(":estudiante", $student, PDO::PARAM_INT);
-           $comportamiento->bindParam(":periodo", $periodo_id, PDO::PARAM_INT);
-           $comportamiento->execute();
-           return $comportamiento->fetchObject();
+    # Obtener todos los dato de conportamiento del periodo actual
+    public function comportamiento()
+    {
+        $student = $this->getIdEstudiante();
+        $periodo_id = $this->getIdPeriodo();
+        $comportamiento = $this->db->prepare("SELECT * FROM notacomportamiento WHERE id_estudiante_compor = :estudiante AND id_periodo_compor = :periodo");
+        $comportamiento->bindParam(":estudiante", $student, PDO::PARAM_INT);
+        $comportamiento->bindParam(":periodo", $periodo_id, PDO::PARAM_INT);
+        $comportamiento->execute();
+        return $comportamiento->fetchObject();
+    }
+
+    # Obtener la nota de comportamiento de x periodo
+    public function notaXPeriodo($periodo)
+    {
+        switch ($periodo) {
+            case '1':
+                $columna = 'notaP1';
+                break;
+            case '2':
+                $columna = 'notaP2';
+                break;
+            case '3':
+                $columna = 'notaP3';
+                break;
         }
+        $student = $this->getIdEstudiante();
+        $notax = $this->db->prepare("SELECT $columna AS 'notaComportamiento' FROM notacomportamiento WHERE id_estudiante_compor = :estudiante AND id_periodo_compor = :periodo");
+        $notax->bindParam(":estudiante", $student, PDO::PARAM_INT);
+        $notax->bindParam(":periodo", $periodo, PDO::PARAM_INT);
+        $notax->execute();
+        return $notax->fetchObject();
+
+    }
 
 } # fin de la clase

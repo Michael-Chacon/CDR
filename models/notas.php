@@ -767,18 +767,19 @@ class Notas
         return false;
     }
 
-    public function notaComportamiento()
+    public function notaComportamiento($p1, $p2, $p3)
     {
         $id_estudiante = $this->getEstudiante();
         $id_periodo = $this->getPeriodo();
         $observacion = $this->getItem();
-        $calificacion = $this->getNota();
 
-        $registro = $this->db->prepare("INSERT INTO notacomportamiento VALUES (null, :estudiante, :periodo, :observacion, :calificacion)");
+        $registro = $this->db->prepare("INSERT INTO notacomportamiento VALUES (null, :estudiante, :periodo, :observacion, :uno, :dos, :tres)");
         $registro->bindParam(":estudiante", $id_estudiante, PDO::PARAM_INT);
         $registro->bindParam(":periodo", $id_periodo, PDO::PARAM_INT);
         $registro->bindParam(":observacion", $observacion, PDO::PARAM_STR);
-        $registro->bindParam(":calificacion", $calificacion, PDO::PARAM_INT);
+        $registro->bindParam(":uno", $p1, PDO::PARAM_INT);
+        $registro->bindParam(":dos", $p2, PDO::PARAM_INT);
+        $registro->bindParam(":tres", $p3, PDO::PARAM_INT);
         return $registro->execute();
     }
 

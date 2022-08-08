@@ -100,11 +100,13 @@ class BoletinController
         $fallasPeriodo1 = $boletin->totolFallasPeriodoX('1');
         $fallasPeriodo2 = $boletin->totolFallasPeriodoX('2');
         $fallasPeriodo3 = $boletin->totolFallasPeriodoX('3');
+
+        # Obtener datos del estudiane, docente director de grado y del grado
         $docenteEstudiante = $boletin;
         $docenteEstudiante->setIdEstudiante($estudiante);
         $informacionUsuarios = $docenteEstudiante->datosDocenteEstudianteGrado($grado);
 
-        # Nota de comportamiento
+        # Traer datos de la nota de comportamiento en el periodo
         $nota_comportamiento = $boletin->comportamiento();
 
         if (isset($_GET['pdf']) && $_GET['pdf'] == 'b') {

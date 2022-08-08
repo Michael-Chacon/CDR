@@ -298,7 +298,30 @@ $mpdf->AddPage('P');
                     <td class="td-items-boletin texto-center">'.$demas->total_fallas_periodo.'</td>
                 </tr>';
             endwhile;
-            $html .='</tbody>
+            $html .= '
+            <tr>
+                <td class="td-items-boletin text-center">COMPORTAMIENTO</td>
+                <td class="td-items-boletin texto-observacion">'.$nota_comportamiento->observacion.'</td>
+                <td class="td-items-boletin">'.$informacionUsuarios->nombre_d . $informacionUsuarios->apellidos_d.'</td>
+                <td class="td-items-boletin text-center"></td>
+                <td class="td-items-boletin text-center">'.$nota_comportamiento->notaP1.'</td>
+                <td class="td-items-boletin text-center">'.$nota_comportamiento->notaP2.'</td>
+                <td class="td-items-boletin text-center">'.$nota_comportamiento->notaP3.'</td>
+                <td class="td-items-boletin text-center"></td>
+                <td class="td-items-boletin text-center">';
+               if ($nota_comportamiento->notaP1 >= 0 && $nota_comportamiento->notaP1 <= 31):
+                $html .= 'BAJO';
+               elseif ($nota_comportamiento->notaP1 >= 32 && $nota_comportamiento->notaP1 <= 39):
+                $html .= 'BÁSICO';
+               elseif ($nota_comportamiento->notaP1 >= 40 && $nota_comportamiento->notaP1 <= 45):
+                $html .= 'ALTO';
+               elseif ($nota_comportamiento->notaP1 >= 46 && $nota_comportamiento->notaP1 <= 50):
+                 $html .= 'SUPERIOR';
+               endif;
+                $html .= '</td>
+                <td class=" td-items-boletin text-center"></td>
+            </tr>
+            </tbody>
         </table>
 
         <table class="tabla-firmas-datos">

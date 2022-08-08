@@ -642,7 +642,9 @@ CREATE TABLE notacomportamiento(
 	id_estudiante_compor INT(4) NOT NULL,
 	id_periodo_compor INT(4) NOT NULL,
 	observacion TEXT NOT NULL,
-	nota FLOAT NOT NULL,
+	notaP1 FLOAT NOT NULL,
+	notaP2 FLOAT NOT NULL,
+	notaP3 FLOAT NOT NULL,
 	CONSTRAINT pk_nota_comportamiento PRIMARY KEY (id),
 	CONSTRAINT fk_estudiante_comportamiento FOREIGN KEY (id_estudiante_compor) REFERENCES estudiante (id) ON DELETE CASCADE,
 	CONSTRAINT fk_nota_compor_periodo FOREIGN KEY (id_periodo_compor) REFERENCES periodo (id)

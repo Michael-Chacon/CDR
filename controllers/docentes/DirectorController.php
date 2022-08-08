@@ -1,6 +1,7 @@
 <?php
 require_once 'models/grados.php';
 require_once 'models/notas.php';
+require_once 'models/boletin.php';
 class DirectorController
 {
     # vista para los directores de grado
@@ -36,10 +37,34 @@ class DirectorController
             $nota->setEstudiante($id_estudiante);
             $nota->setPeriodo($periodo);
             $respuesta = $nota->verificarNotaComportamiento();
+            # Instancia para traer las notas de comportamiento de los estudiantes en los periodos academicos
+            $boletin = new Boletin();
+            $boletin->setIdEstudiante($id_estudiante);
             if ($respuesta) {
+                # Notas y datos del  comportamiento de x estudiante
+                switch ($periodo) {
+                    case '1':
+                        $comportamientoUno = $calificacion;
+                        $comportamientoDos = 0;
+                        $comportamientoTres = 0;
+                        break;
+                    case '2':
+                        $comportamientoUno = $boletin->notaXPeriodo(1)->notaComportamiento;
+                        $comportamientoDos = $calificacion;
+                        $comportamientoTres = 0;
+                        break;
+                    case '3':
+                        $comportamientoUno = $boletin->notaXPeriodo(1)->notaComportamiento;
+                        $comportamientoDos = $boletin->notaXPeriodo(2)->notaComportamiento;
+                        $comportamientoTres = $calificacion;
+                        break;
+                    default:
+                        // code...
+                        break;
+                }
                 $nota->setItem($observacion);
-                $nota->setNota($calificacion);
-                $resultado = $nota->notaComportamiento();
+                $resultado = $nota->notaComportamiento($comportamientoUno, $comportamientoDos, $comportamientoTres);
+
                 Utils::alertas($resultado, 'Nota de comportamiento registrada con éxito', 'Algo salió mal al intentar registrar la nota de comportamiento, inténtelo de nuevo.');
             } else {
                 Utils::alertas($respuesta, '', 'El estudiante ya tiene una nota de comportamiento asignada.');
