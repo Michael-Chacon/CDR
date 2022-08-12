@@ -16,7 +16,7 @@
     <article class="row justify-content-center">
         <?php if (isset($listado) && $listado->rowCount() != 0):
          while ($docentes = $listado->fetchObject()): ?>
-           <article class="col-md-4">
+           <article class="col-md-4 mb-4">
         <div class="card shadow">
           <div class="card-body">
             <h5 class="card-title">

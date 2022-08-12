@@ -114,7 +114,7 @@
                             </div>
                         </div>
                     </section>
-                    <section class="row">
+                    <section class="row mb-5">
                         <!-- inicio de las  opcciones -->
                         <article class="col-md-12 mt-3">
                             <article class="row">

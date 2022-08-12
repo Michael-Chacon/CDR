@@ -46,7 +46,7 @@ class Iconos
     }
     public function deleteIcono($id)
     {
-        $eliminar = $this->db->prepare("DELETE FROM iconos WHERE id = $id");
+        $eliminar = $this->db->prepare("DELETE FROM iconos WHERE id_icono = $id");
         return $eliminar->execute();
     }
 }

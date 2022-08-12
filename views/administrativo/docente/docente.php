@@ -29,7 +29,7 @@
                         </section>
                     </section>
                     <!-- tabla -->
-                    <section class="row justify-content-center mt-3">
+                    <section class="row justify-content-center mt-3 mb-5">
                         <section class="col-md-10">
                         <?php if (isset($lista) && $lista->rowCount() !=0):?>
                             <div class="table-responsive">

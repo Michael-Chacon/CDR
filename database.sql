@@ -803,7 +803,7 @@ CREATE TABLE insertar_materia(
 	fecha_insercion_im DATETIME NOT NULL,
 	CONSTRAINT pk_insertar_materia PRIMARY KEY (id_im),
 	CONSTRAINT fk_admin_inserto_mat FOREIGN KEY (id_admin_im) REFERENCES administrativo (id_admin),
-	CONSTRAINT fk_grado_insert_mat FOREIGN KEY (id_grado_im) REFERENCES grado (id)
+	CONSTRAINT fk_grado_insert_mat FOREIGN KEY (id_grado_im) REFERENCES grado (id) ON DELETE CASCADE
 )ENGINE=InnoDb;
 #trigger para auditar la insercion de materias
 CREATE TRIGGER insertar_materia_ai AFTER INSERT ON materia

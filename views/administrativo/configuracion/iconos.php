@@ -38,7 +38,7 @@
 									<i class="<?=$icono->icono?>" style	="font-size: 2.5rem;"></i>
 									<h6 class="card-subtitle mb-2 text-muted user-select-all"><?=$icono->icono?></h6>
 									<hr>
-									<a href="<?=base_url?>Iconos/eliminar&id=<?=$icono->id?>" class="card-link btn btn-outline-danger 	btn-sm">Eliminar</a>
+									<a href="<?=base_url?>Iconos/eliminar&id=<?=$icono->id_icono?>" class="card-link btn btn-outline-danger 	btn-sm">Eliminar</a>
 								</div>
 							</div>
 						</article>
