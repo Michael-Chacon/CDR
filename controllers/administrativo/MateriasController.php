@@ -39,6 +39,7 @@ class MateriasController
             $listado_docentes = new Docente();
             $listado_docentes->setGrupo($grado);
             $dir = $listado_docentes->seleccionarDirector();
+            $direc = $listado_docentes->seleccionarDirector();
             $docentes = $listado_docentes->docenteDirector('no');
             # seleccionar todas las aulas
             $aulas = new Grados();
@@ -67,7 +68,7 @@ class MateriasController
     }
 
     /*
-    Metodo para resolver el siguiente problema: en un caso especifico la materia aparece como si estuviese asignada a un docente, esto no es verdad, la razón es porque en el pasado la materia le sí fue asignada a un docente, pero el docente fue eliminado de la plataforma y la materia quedo con el estado "asignada", este metodo le da la opcion al usuario administrativo para acutaliza el  estado para que la materia esté disponible para ser asignada a otro docente
+    Metodo para resolver el siguiente problema: en un caso especifico la materia aparece como si estuviese asignada a un docente, esto no es verdad, la razón es porque en el pasado la materia  sí fue asignada a un docente, pero el docente fue eliminado de la plataforma y la materia quedo con el estado "asignada", este metodo le da la opcion al usuario administrativo para acutaliza el  estado para que la materia esté disponible para ser asignada a otro docente
      */
     public function actualizarAsignacionDeMateria()
     {

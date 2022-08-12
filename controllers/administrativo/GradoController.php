@@ -2,6 +2,7 @@
 require_once 'models/grados.php';
 require_once 'models/materias.php';
 require_once 'models/auditoria.php';
+require_once 'models/docente.php';
 class GradoController
 {
     public function grado()
@@ -31,20 +32,7 @@ class GradoController
         }
     }
 
-    public function eliminarGrado()
-    {
-        $id_grado = $_GET['id_grado'];
-        $grado = $_GET['name'];
-        $auditar = new Auditoria();
-        $auditar->auditarEliminacionGrado($grado);
-        $eliminar = new Grados();
-        $eliminar->setId($id_grado);
-        $resultado = $eliminar->deleteGrado();
-        Utils::alertas($resultado, 'El grado se eliminó con éxito.', 'El grado se eliminó con éxito.');
-        header('Location: ' . base_url . 'Grado/grado');
-    }
-
-    # Generar pdf con el listado de los estudiantes del grado
+       # Generar pdf con el listado de los estudiantes del grado
     public function listadoEstudiante()
     {
         $grado = $_GET['grado'];
@@ -55,4 +43,24 @@ class GradoController
         require_once 'views/pdf/estudiantesgrado.php';
     }
 
+    public function eliminarGrado()
+    {
+        $id_director =$_GET['dir'];
+        $id_grado = $_GET['id_grado'];
+        $grado = $_GET['name'];
+        # Desvincular el grado con el docente director
+        $director = new Docente();
+        $director->setId($id_director);
+        $director->uptadeDirector('no');
+        # Registrar datos de la eliminación dle grado
+        $auditar = new Auditoria();
+        $auditar->auditarEliminacionGrado($grado);
+        # Eliminar el grado
+        $eliminar = new Grados();
+        $eliminar->setId($id_grado);
+        $resultado = $eliminar->deleteGrado();
+
+        Utils::alertas($resultado, 'El grado se eliminó con éxito.', 'El grado se eliminó con éxito.');
+        header('Location: ' . base_url . 'Grado/grado');
+    }
 }
