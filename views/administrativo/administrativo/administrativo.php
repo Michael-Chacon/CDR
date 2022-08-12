@@ -31,7 +31,7 @@
  					<div class="card-body ">
  						<div class="row ">
  							<div class="col-3 text-center">
- 								<img alt="" class="avatar circulo " src="<?=base_url?>helpers/img/obito.png">
+ 								<img alt="" class="avatar circulo " src="<?=base_url?>helpers/img/admin.jpg">
  							</img>
  						</div>
  						<div class="col-8">

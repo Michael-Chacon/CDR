@@ -31,7 +31,7 @@
                                   <div class="card-body ">
                                       <div class="row ">
                                           <div class="col-3 text-center">
-                                              <img alt="" class="avatar circulo " src="<?=base_url?>helpers/img/obito.png">
+                                              <img alt="" class="avatar circulo " src="<?=base_url?>helpers/img/auxiliar.png">
                                           </img>
                                       </div>
                                       <div class="col-8">
@@ -75,7 +75,7 @@
                                               </a>
                                           </li>
                                           <li>
-                                              <a class="dropdown-item" href="#">
+                                              <a class="dropdown-item" href="<?=base_url?>Personal/eliminarAuxiliar&id=<?=$personal->id?>">
                                                   <i class="bi bi-trash">
                                                   </i>
                                                   Eliminar

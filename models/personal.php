@@ -97,4 +97,12 @@ class Personal extends Usuarios
         return $datos->fetchObject();
     }
 
+    # Eliminar una persona auxiliar
+    public function deleteAuxiliar(){
+        $id_auxiliar = $this->getId();
+        $eliminar = $this->db->prepare("DELETE FROM personal WHERE id = :id");
+        $eliminar->bindParam(":id", $id_auxiliar, PDO::PARAM_INT);
+        return $eliminar->execute();
+    }
+
 } # fin de la clase

@@ -10,6 +10,7 @@ class PersonalController
         require_once 'views/administrativo/personal/personal.php';
     }
 
+    # Metodo para actualizar o registrar un auxiliar
     public function registrarPersonal()
     {
 
@@ -98,6 +99,15 @@ class PersonalController
         $persona->setId($id);
         $info = $persona->datosPersonal();
         require_once 'views/administrativo/personal/actualizar.php';
+    }
+
+    public function eliminarAuxiliar(){
+        $id = $_GET['id'];
+        $auxiliar = new Personal();
+        $auxiliar->setId($id);
+        $resultado = $auxiliar->deleteAuxiliar();
+        Utils::alertas($resultado, 'Auxiliar eliminado con éxito', 'Algo salió mal al intentar eliminar al auxiliar, intentelo de nuevo');
+        header('Location: ' . base_url . 'Personal/vista_personal');
     }
 
     # Obtener los datos del personal  para generar el pdf
