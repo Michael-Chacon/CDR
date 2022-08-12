@@ -283,7 +283,6 @@ class EstudianteController
         $numeroDocu = Utils::decryption($_GET['document']);
         $auditar = new Auditoria();
         $auditar->auditarEliminacionUsuario('eliminar_estudiante', $nombre_e, $numeroDocu);
-        $id = Utils::decryption($_GET['id']);
         $eliminar = new Estudiante();
         $eliminar->setId($estudiante);
 

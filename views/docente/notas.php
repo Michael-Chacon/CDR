@@ -648,7 +648,7 @@
                             <label class="form-label" for="nota">
                                 Nota:
                             </label>
-                            <input class="form-control" id="nota" placeholder="Nota" type="number" name="nota" required>
+                            <input class="form-control" id="nota" placeholder="Nota" type="number" name="nota" required min="10" max="50" step="any">
                         </input>
                     </div>
                 </div>

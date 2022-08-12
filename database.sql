@@ -137,7 +137,7 @@ CREATE TABLE estudiante(
 	pae VARCHAR(2) NOT NULL,
 	img 	VARCHAR(255) NULL,
 	CONSTRAINT pk_estudiante PRIMARY KEY(id),
-	CONSTRAINT fk_grado_estudiante FOREIGN KEY (id_gradoE) REFERENCES grado (id),
+	CONSTRAINT fk_grado_estudiante FOREIGN KEY (id_gradoE) REFERENCES grado (id) ON DELETE CASCADE,
 	CONSTRAINT fk_padres_estudiante FOREIGN KEY (id_familia_e) REFERENCES padres(id) ON DELETE CASCADE,
 	CONSTRAINT fk_admin_estudiante FOREIGN KEY (id_admin_estudiante) REFERENCES administrativo (id_admin)
 )ENGINE=InnoDb;
@@ -543,7 +543,7 @@ CREATE TABLE notasdefinitivas(
 	id_nota INT(3) AUTO_INCREMENT NOT NULL,
 	id_estudiante_nd INT(3) NOT NULL,
 	id_materia_nd INT(3) NOT NULL,
-	id_periodo_nd INT(3) NOT NULL,
+	id_periodo_nd INT(3) NOT NUL,L
 	nota_definitiva INT(4) NOT NULL,
 	fecha DATE NOT NULL,
 	hora TIME NOT NULL,
@@ -614,7 +614,7 @@ CREATE TABLE puestos(
 	CONSTRAINT pk_pruesto PRIMARY KEY (id_puesto),
 	CONSTRAINT fk_estudiante_puesto FOREIGN KEY (id_estudiante_puesto) REFERENCES estudiante (id) ON DELETE CASCADE,
 	CONSTRAINT fk_periodo_puesto FOREIGN KEY (id_periodo_puesto) REFERENCES periodo (id),
-	CONSTRAINT fk_grado_puesto FOREIGN KEY (id_grado_puesto) REFERENCES grado (id)
+	CONSTRAINT fk_grado_puesto FOREIGN KEY (id_grado_puesto) REFERENCES grado (id) ON DELETE CASCADE
 )ENGINE=InnoDb;
 
 	# Tablero de actividades
@@ -815,9 +815,8 @@ VALUES (new.id_admin_materia, new.id_grado_mat, new.nombre_mat, new.porcentaje_m
 
 # tabla para registrar el ingreso de notas al boletin
 CREATE TABLE subir_boletin(
-	id_sb INT(4) AUTO_INCREMENT NOT NULL,
+	id_sb INT(5) AUTO_INCREMENT NOT NULL,
 	id_docente_sb INT(4) NOT NULL,
-	id_estudiante_sb INT(4) NOT NULL,
 	nombre_estudiante_sb VARCHAR(40) NOT NULL,
 	nombre_docente_sb VARCHAR(40) NOT NULL,
 	nombre_materia_sb VARCHAR(50) NOT NULL,
@@ -827,15 +826,13 @@ CREATE TABLE subir_boletin(
 	periodo_sb INT(4) NOT NULL,
 	fecha_insercion_sb DATETIME NOT NULL,
 	CONSTRAINT pk_subir_nota PRIMARY KEY (id_sb),
-	CONSTRAINT fk_docente_sb FOREIGN KEY (id_docente_sb) REFERENCES docente (id),
-	CONSTRAINT fk_estudiante_sb FOREIGN KEY (id_estudiante_sb) REFERENCES estudiante (id),
-	CONSTRAINT fk_perido_boletin_au FOREIGN KEY (periodo_sb) REFERENCES periodo (id)
+	CONSTRAINT fk_docente_sb FOREIGN KEY (id_docente_sb) REFERENCES docente (id)
 )ENGINE=InnoDb;
 # trigger para auditar la subida de boletines
 CREATE TRIGGER subir_boletin_ai AFTER INSERT ON boletin
 FOR EACH ROW
-INSERT INTO subir_boletin (id_docente_sb, id_estudiante_sb, nombre_estudiante_sb, nombre_docente_sb, nombre_materia_sb, nota_periodo_1, nota_periodo_2, nota_periodo_3, periodo_sb, fecha_insercion_sb)
-VALUES(new.id_docente_boletin, new.id_estudiante_boletin, new.nombre_estudiante, new.nombre_docente, new.nombre_materia, new.nota_periodo1, new.nota_periodo2, new.nota_periodo3, new.id_periodo_boletin, NOW());
+INSERT INTO subir_boletin (id_docente_sb,  nombre_estudiante_sb, nombre_docente_sb, nombre_materia_sb, nota_periodo_1, nota_periodo_2, nota_periodo_3, periodo_sb, fecha_insercion_sb)
+VALUES(new.id_docente_boletin, new.nombre_estudiante, new.nombre_docente, new.nombre_materia, new.nota_periodo1, new.nota_periodo2, new.nota_periodo3, new.id_periodo_boletin, NOW());
 
 # Tablar para registrar la eliminacion de una nota
 CREATE TABLE eliminar_nota(
