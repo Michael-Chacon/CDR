@@ -49,9 +49,11 @@ class DocumentoController
         switch ($usuario) {
             case 'estudiante':
                 $tabla = 'documentosestudiantes';
+                $verificacion = 'documentosdocentes';
                 break;
             case 'docente':
                 $tabla = 'documentosdocentes';
+                $verificacion = 'documentosestudiantes';
                 break;
             default:
                 Utils::Error404();
@@ -59,8 +61,13 @@ class DocumentoController
         }
         $id = $_GET['id'];
         $nombre = $_GET['nombre'];
-        unlink('documentos/' . $nombre);
         $documento = new Documentos();
+        # Verficar si es un documento compartido entre docentes y estudiantes
+        $total = $documento->EliminarDocumentoCompartido($verificacion, $nombre);
+        if ($total->rowCount() == 0) {
+            # si el documento no existe en la tabla contraria se eliminara del servidor
+            unlink('documentos/' . $nombre);
+        }
         $documento->setId($id);
         $respuesta = $documento->delete($tabla);
         Utils::alertas($respuesta, 'Documento eliminado con éxito.', 'Algo salió mal al eliminar el documento, inténtelo de nuevo.');

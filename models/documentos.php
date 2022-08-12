@@ -180,6 +180,14 @@ class Documentos
         $obtener->execute();
         return $obtener;
     }
+    # Metodo para ver si el documento esta compartido y solo borrar el registro de la DB y no el documento
+    public function EliminarDocumentoCompartido($tabla, $nombre)
+    {
+        $verificacion = $this->db->prepare("SELECT * FROM $tabla WHERE nombre = :name");
+        $verificacion->bindParam(":name", $nombre, PDO::PARAM_STR);
+        $verificacion->execute();
+        return $verificacion;
+    }
 
     public function delete($tabla)
     {
