@@ -45,7 +45,7 @@
 									<h6 class="titulo-menu text-center">
 										<small><?=Utils::fechaCarbon($actividad->fecha)?></small>
 									</h6>
-									<p class="subtexto text-center">Fecha actividad</p></p>
+									<p class="subtexto text-center">Fecha actividad</p>
 								</div>
 								</div>
 							</div>

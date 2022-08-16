@@ -8,6 +8,7 @@ class Documentos
     private $descripcion;
     private $fecha;
     private $formato;
+    private $fechaRegistro;
     public $db;
 
     public function __construct()
@@ -135,6 +136,27 @@ class Documentos
         return $this;
     }
 
+
+    /**
+     * @return mixed
+     */
+    public function getFechaRegistro()
+    {
+        return $this->fechaRegistro;
+    }
+
+    /**
+     * @param mixed $fechaRegistro
+     *
+     * @return self
+     */
+    public function setFechaRegistro($fechaRegistro)
+    {
+        $this->fechaRegistro = $fechaRegistro;
+
+        return $this;
+    }
+
     # documentos dirigidos a los profesores
     public function saveTeachers()
     {
@@ -206,13 +228,15 @@ class Documentos
         $format = $this->getFormato();
         $document = $this->getNombre();
         $description = $this->getDescripcion();
-        $register = $this->db->prepare("INSERT INTO documentosclase VALUES(null, :materia, :titulo, :fecha, :formato, :documento, :descripcion)");
+        $registro = $this->getFechaRegistro();
+        $register = $this->db->prepare("INSERT INTO documentosclase VALUES(null, :materia, :titulo, :fecha, :formato, :documento, :descripcion, :registro)");
         $register->bindParam(":materia", $subject, PDO::PARAM_INT);
         $register->bindParam(":titulo", $tittle, PDO::PARAM_STR);
         $register->bindParam(":fecha", $date, PDO::PARAM_STR);
         $register->bindParam(":formato", $format, PDO::PARAM_STR);
         $register->bindParam("documento", $document, PDO::PARAM_STR);
         $register->bindParam("descripcion", $description, PDO::PARAM_STR);
+        $register->bindParam("registro", $registro, PDO::PARAM_STR);
         return $register->execute();
     }
 
@@ -249,5 +273,4 @@ class Documentos
             return true;
         }
     }
-
 } # fin de la clase

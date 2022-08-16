@@ -7,6 +7,7 @@ class Actividades
     protected $titulo;
     protected $fecha;
     protected $descripcion;
+    protected $fechaRegistro;
 
     public $db;
     public function __construct()
@@ -112,18 +113,39 @@ class Actividades
 
         return $this;
     }
+        /**
+     * @return mixed
+     */
+    public function getFechaRegistro()
+    {
+        return $this->fechaRegistro;
+    }
+
+    /**
+     * @param mixed $fechaRegistro
+     *
+     * @return self
+     */
+    public function setFechaRegistro($fechaRegistro)
+    {
+        $this->fechaRegistro = $fechaRegistro;
+
+        return $this;
+    }
     # guardar actividad
     public function saveClassActivity()
     {
         $subject = $this->getMateria();
         $tittle = $this->getTitulo();
         $date = $this->getFecha();
+        $registro = $this->getFechaRegistro();
         $description = $this->getDescripcion();
-        $register = $this->db->prepare("INSERT INTO actividadesmateria VALUES(null, :materia, :titulo, :fecha, :descripcion)");
+        $register = $this->db->prepare("INSERT INTO actividadesmateria VALUES(null, :materia, :titulo, :fecha, :descripcion, :registro)");
         $register->bindParam(":materia", $subject, PDO::PARAM_INT);
         $register->bindParam(":titulo", $tittle, PDO::PARAM_STR);
         $register->bindParam(":fecha", $date, PDO::PARAM_STR);
         $register->bindParam(":descripcion", $description, PDO::PARAM_STR);
+        $register->bindParam(":registro", $registro, PDO::PARAM_STR);
         return $register->execute();
     }
 

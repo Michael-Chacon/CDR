@@ -53,6 +53,7 @@ class panelMateriaController
             $fecha = trim($_POST['fecha_entrega']);
             $formato = trim($_POST['formato']);
             $descripcion = trim($_POST['descripcion']);
+              $fecha_registro = date('Ymdhis');
 
             $file = $_FILES['documento'];
             $nombre = $file['name'];
@@ -75,6 +76,7 @@ class panelMateriaController
                         $registrar->setFormato($formato);
                         $registrar->setNombre($name);
                         $registrar->setDescripcion($descripcion);
+                        $registrar->setFechaRegistro($fecha_registro);
                         $respuestaS = $registrar->saveClassDocument();
                         Utils::alertas($respuestaS, 'Documento registrado con éxito.', 'Error al intentar registrar el documento, inténtelo de nuevo.');
                     } else {
@@ -115,6 +117,7 @@ class panelMateriaController
             $titulo = $_POST['tituloA'];
             $fecha = $_POST['fechaA'];
             $descripcion = $_POST['descripcionA'];
+            $fecha_registro = date('Ymdhis');
 
             $validar_titulo = Utils::validarExisenciaDocumentos('actividadesmateria', 'titulo_actividad', $titulo, 'id_materia_a', $materia);
             if ($validar_titulo) {
@@ -123,6 +126,7 @@ class panelMateriaController
                 $agenda->setTitulo($titulo);
                 $agenda->setFecha($fecha);
                 $agenda->setDescripcion($descripcion);
+                $agenda->setFechaRegistro($fecha_registro);
                 $respuestaA = $agenda->saveClassActivity();
                 Utils::alertas($respuestaA, 'Actividad registrada con éxito.', 'Error al intentar registrar la actividad, inténtelo de nuevo.');
             } else {

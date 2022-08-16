@@ -24,7 +24,9 @@ hr {
     text-align: justify !important;
     font-size: 16px;
     font-weight: 400;
-
+}
+.formatoDoc{
+    font-size: 13px;
 }
 .alert-alert{
     background: #DC3546 !important;

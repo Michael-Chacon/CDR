@@ -1,6 +1,6 @@
  <!-- inicio del contenido de la pagina -->
             <section class="container-fluid">
-                <section class="row shadow titulo mb-3">
+                <section class="row shadow titulo mb-1">
                     <article class="col-xs-11 col-sm-11 col-md-11 col-lg-11">
                         <h1 class="text-center config">
                             <?=$nombre_ma?> <?=$nombre_gra?>°
@@ -49,7 +49,7 @@
                     </article>
                 <?php endif;?>
                 </section>
-                <section class="row mt-5 mb-5">
+                <section class="row  mb-3">
                     <?php echo Utils::getAlert(); ?>
                     <?php Utils::borrar_error('alert');?>
                     <article class="col-md-2">
@@ -115,46 +115,43 @@
                         <?php endif;?>
                     </article>
                     <!-- inicio de las  actividades -->
-                    <article class="col-xs-12 col-sm-12 col-md-5">
+                    <article class="col-xs-12 col-sm-12 col-md-4">
                         <h3 class="text-center titulo-seccion">
                             Documentos de la clase
-                            <span class="punto-documentos">
-                                ●
-                            </span>
                         </h3>
                         <hr/>
                         <?php if ($listado_documentos->rowCount() != 0): ?>
                             <?php while ($datos_documetos = $listado_documentos->fetchObject()): ?>
                                 <section class="card mb-3 shadow">
-                                    <article class="card-header">
-                                        <section class="row">
-                                            <span class="col-xs-10 col-sm-10 col-md-10 text-center">
-                                                <?=$datos_documetos->titulo?>
-                                                <span class="badge bg-success">
-                                                    <?=$datos_documetos->fecha?>
-                                                </span>
-                                            </span>
-                                            <span class="col-xs-1 col-sm-1 col-md-1 col-lg-1 text-center">
-                                                <a class="icono-actividades" download="<?=$datos_documetos->documento?>" href="<?=base_url?>documentos/materias/<?=$datos_documetos->documento?>">
-                                                    <i class="bi bi-download" style="font-size: 1.2rem;">
-                                                    </i>
-                                                </a>
-                                            </span>
-                                            <span class="col-xs-1 col-sm-1 col-md-1 col-lg-1 text-center">
-                                                <a class="icono-actividades " onclick="return confirmar()" href="<?=base_url?>panelMateria/eliminarDocumentoDClase&nameDocu=<?=$datos_documetos->documento?>&id_docu=<?=$datos_documetos->id?>&degree=<?=$grado?>&ide=<?=$materia?>&name=<?=$nombre_ma?>&nombreg=<?=$nombre_gra?>">
-                                                    <i class="bi bi-trash" style="font-size: 1.2rem;">
-                                                    </i>
-                                                </a>
-                                            </span>
-                                        </section>
-                                    </article>
                                     <article class="card-body">
-                                        <span class="badge rounded-pill bg-info text-dark">
-                                            <?=$datos_documetos->formato?>
-                                        </span>
+                                         <section class="row">
+                                            <span class="col-xs-10 col-sm-10 col-md-10">
+                                                <?=$datos_documetos->titulo?>
+                                            </span>
+                                            <span class="col-xs-2 col-sm-2 col-md-2 text-success formatoDoc">
+                                                <?=$datos_documetos->formato?>
+                                            </span>
+                                            <p class="mt-0 haceTiempo"><?=Utils::difernciaParaHumanos($datos_documetos->fechaRegistro)?></p>
+                                        </section>
                                         <p class="card-text text-documento">
                                             <?=$datos_documetos->descripcion?>
                                         </p>
+                                        <?php if($datos_documetos->fecha !== '0000-00-00'): ?>
+                                            <h6 class="titulo-menu text-center">
+                                                <small><?=Utils::fechaCarbon($datos_documetos->fecha)?></small>
+                                            </h6>
+                                            <p class="subtexto text-center">Fecha actividad</p>
+                                        <?php endif; ?>
+                                    <div class="row justify-content-center">
+                                        <div class="col-md-6">
+                                            <a class="link-success" download="<?=$datos_documetos->documento?>" href="<?=base_url?>documentos/materias/<?=$datos_documetos->documento?>">
+                                                Descargar
+                                            </a>|
+                                            <a class="link-danger" onclick="return confirmar()" href="<?=base_url?>panelMateria/eliminarDocumentoDClase&nameDocu=<?=$datos_documetos->documento?>&id_docu=<?=$datos_documetos->id?>&degree=<?=$grado?>&ide=<?=$materia?>&name=<?=$nombre_ma?>&nombreg=<?=$nombre_gra?>">
+                                                Eliminar
+                                            </a>
+                                            </div>
+                                </div>
                                     </article>
                                 </section>
                             <?php endwhile;?>
@@ -165,25 +162,19 @@
                         <?php endif;?>
                     </article>
                     <!-- inicio de los recordatorioscol-xs-12 col-sm-12  -->
-                    <article class="col-xs-12 col-sm-12 col-md-3 ">
+                    <article class="col-xs-12 col-sm-12 col-md-4 ">
                         <h3 class="text-center titulo-seccion">
                             Actividades
-                            <span class="punto-actividades">
-                                ●
-                            </span>
                         </h3>
                         <hr/>
                         <?php if ($listado_actividades->rowCount() != 0): ?>
                             <?php while ($actividad = $listado_actividades->fetchObject()): ?>
                                 <section class="card text-black mb-3 shadow">
                                     <article class="card-body">
-                                        <div class="row">
-                                            <div class="col-md-10">
+                                        <div class="row mb-0">
+                                            <div class="col-md-10 mt-0 mb-0">
                                                 <h6 class="card-title tituloActividad">
                                                     <?=$actividad->titulo_actividad?>
-                                                    <span class="badge bg-success">
-                                                    <?=$actividad->fecha?>
-                                                    </span>
                                                 </h6>
                                             </div>
                                             <div class="col-md-2">
@@ -191,10 +182,17 @@
                                                     <i class="bi bi-trash" style="font-size: 1.2rem;"></i>
                                                 </a>
                                             </div>
+                                            <span class="mt-0 haceTiempo">
+                                                <?=Utils::difernciaParaHumanos($actividad->fechaRegistro)?>
+                                            </span>
                                         </div>
-                                        <p class="card-text text-actividad text-black ">
+                                        <p class="text-black">
                                             <?=$actividad->descripcion?>
                                         </p>
+                                        <h6 class="titulo-menu">
+                                            <small><?=Utils::fechaCarbon($actividad->fecha)?></small>
+                                        </h6>
+                                        <p class="subtexto">Fecha actividad</p>
                                     </article>
                                 </section>
                             <?php endwhile;?>
@@ -317,18 +315,19 @@
                                             <label class="form-label" for="exampleFormControlInput1">
                                                 Fecha de la actividad:
                                             </label>
-                                            <input class="form-control" id="exampleFormControlInput1" type="date" name="fechaA">
+                                            <input class="form-control" id="exampleFormControlInput1" type="date" name="fechaA" required>
                                             </input>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label" for="exampleFormControlTextarea1">
-                                        Descripción:
+                                        Descripción <small class="text-danger">(o)</small>:
                                     </label>
                                     <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="descripcionA">
                                     </textarea>
                                 </div>
+                                <small class="text-danger">(o) = Llenar el campo no es obligatorio, es opcional.</small>
                             </div>
                             <div class="modal-footer">
                                 <button class="btn btn-outline-danger" data-bs-dismiss="modal" type="button">
@@ -375,7 +374,7 @@
                                     <div class="col-md-5">
                                         <div class="mb-3">
                                             <label class="form-label" for="exampleFormControlInput1">
-                                                Fecha de la entrega:
+                                                Fecha de la entrega <small class="text-danger">(o)</small>:
                                             </label>
                                             <input class="form-control" id="exampleFormControlInput1" type="date" name="fecha_entrega">
                                             </input>
@@ -388,7 +387,7 @@
                                             <label class="form-label" for="formFile">
                                                 Seleccione el documento:
                                             </label>
-                                            <input class="form-control" id="formFile" type="file" name="documento">
+                                            <input class="form-control" id="formFile" type="file" name="documento" required>
                                             </input>
                                         </div>
                                     </div>
@@ -396,7 +395,7 @@
                                         <label class="form-label" for="exampleFormControlInput1">
                                             Formato:
                                         </label>
-                                        <select aria-label="Default select example" class="form-select" name="formato">
+                                        <select aria-label="Default select example" class="form-select" name="formato" required>
                                             <option>
                                             </option>
                                             <option value="PDF">
@@ -408,7 +407,7 @@
                                             <option value="Excel">
                                                 Excel
                                             </option>
-                                            <option value="img">
+                                            <option value="Img">
                                                 Imagen
                                             </option>
                                         </select>
@@ -417,12 +416,13 @@
                                 <div class="row">
                                     <div class="mb-3">
                                         <label class="form-label" for="exampleFormControlTextarea1">
-                                            Descripción:
+                                            Descripción <small class="text-danger">(o)</small>:
                                         </label>
                                         <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="descripcion">
                                         </textarea>
                                     </div>
                                 </div>
+                            <small class="text-danger">(o) = Llenar el campo no es obligatorio, es opcional.</small>
                             </div>
                             <div class="modal-footer">
                                 <button class="btn btn-outline-danger" data-bs-dismiss="modal" type="button">
