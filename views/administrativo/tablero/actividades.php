@@ -17,7 +17,7 @@
 									<h6 class="card-subtitle mb-1 "><?=ucfirst($actividad->titulo)?></h6>
 								</div>
 							</div>
-							<p class="card-text "><?=Utils::fechaCarbon($actividad->fecha)?></p>
+							<p class="mt-0 haceTiempo"><?=Utils::difernciaParaHumanos($actividad->fechaRegistro)?></p>
 							<!-- <a href="#" class="card-link">Ver</a> -->
 							<div class="d-grid gap-2">
 								<a class="btn btn-outline-dark btn-sm" data-bs-toggle="collapse" href="#info_estudiante<?=$actividad->id?>"  aria-expanded="false" aria-controls="info">Detalles de la actividad
@@ -25,7 +25,12 @@
 							</div>
 							<div class="collapse multi-collapse mt-3" id="info_estudiante<?=$actividad->id?>">
 								<hr style="border: 1px solid <?=$actividad->color?>!important;">
-								<span><?=$actividad->detalle?></span>
+								<span class="textoActividad"><?=$actividad->detalle?></span>
+								<br>
+									<h6 class="titulo-menu text-center">
+										<small><?=Utils::fechaCarbon($actividad->fecha)?></small>
+									</h6>
+									<p class="subtexto text-center">Fecha actividad</p></p>
 							</div>
 						</div>
 					</div>

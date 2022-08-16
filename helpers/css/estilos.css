@@ -15,7 +15,17 @@ hr {
     font-weight: 600;
     color: teal !important;
 }
+.haceTiempo{
+    color: grey;
+    font-size: 12px;
+    text-align: left;
+}
+.textoActividad{
+    text-align: justify !important;
+    font-size: 16px;
+    font-weight: 400;
 
+}
 .alert-alert{
     background: #DC3546 !important;
     color: white !important;

@@ -5,10 +5,15 @@ use Carbon\Carbon;
 
 class Utils
 {
-    # Mejorar las fechas
+    # Fecha en formato de texto con la librería Carbon
     public static function fechaCarbon($fecha){
         $date = Carbon::parse($fecha);
         return $date->locale('es')->isoFormat('MMMM DD YYYY');
+    }
+
+    # Diferencia para humanos - fechas - librería Carbon
+    public static function difernciaParaHumanos($fecha){
+        return Carbon::parse($fecha)->locale('es')->diffForHumans();
     }
 
     # Borrar los errores

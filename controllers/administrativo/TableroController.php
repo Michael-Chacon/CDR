@@ -19,21 +19,23 @@ class TableroController
         $fecha = $_POST['fecha'];
         $detalle = $_POST['detalle'];
         $color = $_POST['color'];
+        $hoy  = date('Ymdhis');
         $save = new Tablero();
         $save->setTitulo($titulo);
         $save->setFecha($fecha);
         $save->setDetalle($detalle);
         $save->setColor($color);
+        $save->setFechaRegistro($hoy);
         switch ($destinatario) {
             case 'estudiante':
-                $resultado = $save->saveActivityStudents();
+                $resultado = $save->saveActivity('tableroactividadesestudiantes');
                 break;
             case 'docente':
-                $resultado = $save->saveActivityTeachers();
+                $resultado = $save->saveActivity('tableroactividadesdocentes');
                 break;
             case 'estudianteDocente':
-                $resultado = $save->saveActivityStudents();
-                $resultado = $save->saveActivityTeachers();
+                $resultado = $save->saveActivity('tableroactividadesestudiantes');
+                $resultado = $save->saveActivity('tableroactividadesdocentes');
                 break;
             default:
                 $resultado = false;

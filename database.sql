@@ -624,6 +624,7 @@ CREATE TABLE puestos(
 		fecha DATE NOT NULL,
 		detalle TEXT NOT NULL,
 		color VARCHAR(20) NOT NULL,
+		fechaRegistro DATETIME NOT NULL,
 		CONSTRAINT pk_tablero_actividades_estudiantes PRIMARY KEY (id)
 	)ENGINE=InnoDb;
 
@@ -633,6 +634,7 @@ CREATE TABLE puestos(
 		fecha DATE NOT NULL,
 		detalle TEXT NOT NULL,
 		color VARCHAR(20) NOT NULL,
+		fechaRegistro DATETIME NOT NULL,
 		CONSTRAINT pk_tablero_actividades_docentes PRIMARY KEY (id)
 	)ENGINE=InnoDb;
 
