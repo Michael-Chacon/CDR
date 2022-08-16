@@ -1,8 +1,15 @@
 <?php
 require_once 'models/periodos.php';
 require_once 'models/boletin.php';
+use Carbon\Carbon;
+
 class Utils
 {
+    # Mejorar las fechas
+    public static function fechaCarbon($fecha){
+        $date = Carbon::parse($fecha);
+        return $date->locale('es')->isoFormat('MMMM DD YYYY');
+    }
 
     # Borrar los errores
     public static function borrar_error($entidad)
