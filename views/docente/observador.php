@@ -20,7 +20,7 @@
 	<?php echo Utils::getAlert();?>
 	<?php Utils::borrar_error('alert')?>
 	<section class="row justify-content-center mt-5">
-		<article class="col-md-8">
+		<article class="col-md-10">
 			<?php if ($listado_observaciones->rowCount() != 0): ?>
 				<?php while ($observador = $listado_observaciones->fetchObject()): ?>
 			<div class="card text-white bg-dark mb-5 shadow">
@@ -40,7 +40,7 @@
 						</article>
 						<article class="col-md-2 borde-items">
 							<p class="items">Fecha:</p>
-							<span class="datos-items"><?=$observador->fecha_ob?></span>
+							<span class="datos-items"><?=Utils::fechaCarbon($observador->fecha_ob)?></span>
 						</article>
 					</article>
 				</div>

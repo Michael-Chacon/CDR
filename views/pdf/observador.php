@@ -47,7 +47,7 @@ $html = '
     		</tr>
     		<tr>
     			<td><strong class="item">Fecha de la observación:</strong></td>
-    			<td><span class="datos"> ' . $observacion->fecha_ob . ' </span></td>
+    			<td><span class="datos"> ' . Utils::fechaCarbon($observacion->fecha_ob) . ' </span></td>
     		</tr>
     		<tr>
     			<td><strong class="item">Grado del estudiante:</strong></td>

@@ -19,7 +19,7 @@
 									<h6 class="card-subtitle mb-2 text-muted text-center">observacion realizada por</h6>
 								</div>
 								<div class="col-md-4">
-									<h5 class="card-title text-center valor_item"><?=$observacion->fecha_ob?></h5>
+									<h5 class="card-title text-center valor_item"><?=Utils::fechaCarbon($observacion->fecha_ob)?></h5>
 									<h6 class="card-subtitle mb-2 text-muted text-center">Fecha de la observación</h6>
 								</div>
 							</div>
