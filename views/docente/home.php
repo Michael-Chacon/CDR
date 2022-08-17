@@ -346,11 +346,11 @@
                                     </div>
                                 </div>
                             <?php endwhile;?>
-                            <div class="d-grid gap-2 shadow">
-                                <a  href="<?=base_url?>Tablero/verActividades&user=<?=Utils::encryption("docente")?>" type="button" class="btn btn-outline-primary position-relative">
-                                    Ver todas las actividades<span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"><?=$total_actividades->countActivityes?> <span class="visually-hidden">unread messages</span></span>
+                            <span class="d-grid gap-2 p-3">
+                                <a  href="<?=base_url?>Tablero/verActividades&user=<?=Utils::encryption("docente")?>" type="button" class="btn btn-outline-primary position-relative btn-sm">
+                                    Ver todas las actividades<span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">+<?=$total_actividades->countActivityes - 4?> <span class="visually-hidden">unread messages</span></span>
                                 </a>
-                            </div>
+                            </span>
                         <?php else: ?>
                             <div class="card shadow mt-3">
                                 <div class="card-body">
