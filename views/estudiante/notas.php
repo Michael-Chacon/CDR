@@ -590,14 +590,30 @@
 				 	<section class="row mt-3 p-2">
 				 	<?php if ($listado_actividades->rowCount() != 0): ?>
 				 		<?php while ($actividad = $listado_actividades->fetchObject()): ?>
-				 			<div class="col-md-4 mb-3">
-				 				<div class="card text-center shadow-sm">
-				 					<div class="card-body">
-				 						<h5 class="card-title "><?=$actividad->titulo_actividad?> <span class="punto-bien"> ●</span> </h5>
-				 						<h6 class="card-subtitle mb-2 text-muted"><?=$actividad->fecha?></h6>
-				 						<p class="card-text tituloActividad "><?=$actividad->descripcion?></p>
-				 					</div>
-				 				</div>
+				 			<div class="col-md-6 mb-3">
+				 				<!-- inicio -->
+				 				<section class="card text-black mb-3 shadow">
+				 					<article class="card-body">
+				 						<div class="row mb-0">
+				 							<div class="col-md-12 mt-0 mb-0">
+				 								<h6 class="card-title tituloActividad">
+				 									<?=$actividad->titulo_actividad?>
+				 								</h6>
+				 							</div>
+				 							<span class="mt-0 haceTiempo">
+				 								Publicado <?=Utils::difernciaParaHumanos($actividad->fechaRegistro)?>
+				 							</span>
+				 						</div>
+				 						<p class="text-black">
+				 							<?=$actividad->descripcion?>
+				 						</p>
+				 						<h6 class="titulo-menu">
+				 							<small><?=Utils::fechaCarbon($actividad->fecha)?></small>
+				 						</h6>
+				 						<p class="subtexto">Fecha actividad</p>
+				 					</article>
+				 				</section>
+				 				<!-- fin -->
 				 			</div>
 				 		<?php endwhile;?>
 				 	<?php else: ?>
@@ -608,31 +624,41 @@
 				 	</section>
 				 </section>
 				  <section aria-labelledby="documentos-tab" class="tab-pane fade" id="documentos" role="tabpanel">
-				  	<div class="row mt-3 ">
+				  	<section class="row mt-3 p-2">
 				  		<?php if ($listado_documentos->rowCount() != 0): ?>
-				  			<?php while ($documento = $listado_documentos->fetchObject()): ?>
-				  				<div class="col-md-4 mb-3">
-				  					<div class="card border-success mb-3 shadow">
-				  						<div class="card-header bg-transparent border-success titulo-documento text-center"><?=$documento->titulo?></div>
-				  						<div class="card-body">
-				  							<div class="row text-center">
-				  								<div class="col-md-6">
-				  									<span class="badge bg-primary fst-italic"><?=$documento->fecha?></span>
-				  								</div>
-				  								<div class="col-md-6">
-				  									<span class="badge bg-dark fst-italic"><?=$documento->formato?></span>
+				  			<?php while ($datos_documetos = $listado_documentos->fetchObject()): ?>
+				  				<div class="col-md-6 mb-3">
+				  					<section class="card mb-3 shadow">
+				  						<article class="card-body">
+				  							<section class="row">
+				  								<span class="col-xs-9 col-sm-9 col-md-9">
+				  									<?=$datos_documetos->titulo?>
+				  								</span>
+				  								<span class="col-xs-3 col-sm-3 col-md-3 text-success formatoDoc">
+				  									<?=$datos_documetos->formato?>
+				  								</span>
+				  								<p class="mt-0 haceTiempo">
+				  									Publicado <?=Utils::difernciaParaHumanos($datos_documetos->fechaRegistro)?>
+				  								</p>
+				  							</section>
+				  							<p class="card-text text-documento">
+				  								<?=$datos_documetos->descripcion?>
+				  							</p>
+				  							<?php if($datos_documetos->fecha !== '0000-00-00'): ?>
+				  								<h6 class="titulo-menu text-center">
+				  									<small><?=Utils::fechaCarbon($datos_documetos->fecha)?></small>
+				  								</h6>
+				  								<p class="subtexto text-center">Fecha actividad</p>
+				  							<?php endif; ?>
+				  							<div class="row justify-content-center">
+				  								<div class="col-md-4">
+				  									<a class="link-success" download="<?=$datos_documetos->documento?>" href="<?=base_url?>documentos/materias/<?=$datos_documetos->documento?>">
+				  										Descargar
+				  									</a>
 				  								</div>
 				  							</div>
-				  							<p class="card-text mt-2 tituloActividad"><?=$documento->descripcion?></p>
-				  						</div>
-				  						<div class="card-footer bg-transparent border-success">
-				  							<div class="d-grid gap-2">
-				  								<a class="btn btn-outline-success" type="button" download="<?=$documento->documento?>" href="<?=base_url?>documentos/materias/<?=$documento->documento?>">
-				  									Descargar
-				  								</a>
-				  							</div>
-				  						</div>
-				  					</div>
+				  						</article>
+				  					</section>
 				  				</div>
 				  			<?php endwhile;?>
 				  		<?php else: ?>
@@ -640,7 +666,7 @@
 				  				El docente no ha registrado documentos en esta materia.
 				  			</div>
 				  		<?php endif;?>
-				  	</div>
+				  	</section>
 				  </section>
 			</section>
 		</div>

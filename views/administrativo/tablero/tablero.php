@@ -41,8 +41,7 @@
 								<div class="collapse multi-collapse mt-3" id="info_estudiante<?=$actividad->id?>">
 									<hr style="border: 1px solid <?=$actividad->color?>!important;">
 									<span class="textoActividad"><?=$actividad->detalle?></span>
-									<br>
-									<h6 class="titulo-menu text-center">
+									<h6 class="titulo-menu text-center mt-2">
 										<small><?=Utils::fechaCarbon($actividad->fecha)?></small>
 									</h6>
 									<p class="subtexto text-center">Fecha actividad</p>
@@ -83,8 +82,7 @@
 									<div class="collapse multi-collapse mt-3" id="info_docente<?=$actividad_d->id?>">
 										<hr style="border: 1px solid <?=$actividad_d->color?> !important;">
 										<span class="textoActividad"><?=$actividad_d->detalle?></span>
-										<br>
-										<h6 class="titulo-menu text-center">
+										<h6 class="titulo-menu text-center mt-2">
 											<small><?=Utils::fechaCarbon($actividad_d->fecha)?></small>
 										</h6>
 										<p class="subtexto text-center">Fecha actividad</p></p>

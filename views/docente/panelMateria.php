@@ -23,17 +23,11 @@
                                 <li>
                                     <a class="dropdown-item" data-bs-target="#subirDocumentos" data-bs-toggle="modal" href="#">
                                         Surbir documentos
-                                        <span class="punto-documentos">
-                                            ●
-                                        </span>
                                     </a>
                                 </li>
                                 <li>
                                     <a class="dropdown-item" data-bs-target="#registrarActividad" data-bs-toggle="modal" href="#">
                                         Registrar actividad
-                                        <span class="punto-actividades">
-                                            ●
-                                        </span>
                                     </a>
                                 </li>
                             </ul>
@@ -124,24 +118,26 @@
                             <?php while ($datos_documetos = $listado_documentos->fetchObject()): ?>
                                 <section class="card mb-3 shadow">
                                     <article class="card-body">
-                                         <section class="row">
-                                            <span class="col-xs-10 col-sm-10 col-md-10">
-                                                <?=$datos_documetos->titulo?>
-                                            </span>
-                                            <span class="col-xs-2 col-sm-2 col-md-2 text-success formatoDoc">
-                                                <?=$datos_documetos->formato?>
-                                            </span>
-                                            <p class="mt-0 haceTiempo"><?=Utils::difernciaParaHumanos($datos_documetos->fechaRegistro)?></p>
-                                        </section>
-                                        <p class="card-text text-documento">
-                                            <?=$datos_documetos->descripcion?>
+                                     <section class="row">
+                                        <span class="col-xs-10 col-sm-10 col-md-10">
+                                            <?=$datos_documetos->titulo?>
+                                        </span>
+                                        <span class="col-xs-2 col-sm-2 col-md-2 text-success formatoDoc">
+                                            <?=$datos_documetos->formato?>
+                                        </span>
+                                        <p class="mt-0 haceTiempo">
+                                            Publicado <?=Utils::difernciaParaHumanos($datos_documetos->fechaRegistro)?>
                                         </p>
-                                        <?php if($datos_documetos->fecha !== '0000-00-00'): ?>
-                                            <h6 class="titulo-menu text-center">
-                                                <small><?=Utils::fechaCarbon($datos_documetos->fecha)?></small>
-                                            </h6>
-                                            <p class="subtexto text-center">Fecha actividad</p>
-                                        <?php endif; ?>
+                                    </section>
+                                    <p class="card-text text-documento">
+                                        <?=$datos_documetos->descripcion?>
+                                    </p>
+                                    <?php if($datos_documetos->fecha !== '0000-00-00'): ?>
+                                        <h6 class="titulo-menu text-center">
+                                            <small><?=Utils::fechaCarbon($datos_documetos->fecha)?></small>
+                                        </h6>
+                                        <p class="subtexto text-center">Fecha actividad</p>
+                                    <?php endif; ?>
                                     <div class="row justify-content-center">
                                         <div class="col-md-6">
                                             <a class="link-success" download="<?=$datos_documetos->documento?>" href="<?=base_url?>documentos/materias/<?=$datos_documetos->documento?>">
@@ -150,10 +146,10 @@
                                             <a class="link-danger" onclick="return confirmar()" href="<?=base_url?>panelMateria/eliminarDocumentoDClase&nameDocu=<?=$datos_documetos->documento?>&id_docu=<?=$datos_documetos->id?>&degree=<?=$grado?>&ide=<?=$materia?>&name=<?=$nombre_ma?>&nombreg=<?=$nombre_gra?>">
                                                 Eliminar
                                             </a>
-                                            </div>
-                                </div>
-                                    </article>
-                                </section>
+                                        </div>
+                                    </div>
+                                </article>
+                            </section>
                             <?php endwhile;?>
                         <?php else: ?>
                             <div class="alert alert-danger text-center" role="alert">
@@ -183,7 +179,7 @@
                                                 </a>
                                             </div>
                                             <span class="mt-0 haceTiempo">
-                                                <?=Utils::difernciaParaHumanos($actividad->fechaRegistro)?>
+                                                Publicado <?=Utils::difernciaParaHumanos($actividad->fechaRegistro)?>
                                             </span>
                                         </div>
                                         <p class="text-black">
