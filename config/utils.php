@@ -22,17 +22,17 @@ class Utils
     # Metodo para redimencionar y validar el tamaño de las imagenes
     public static function intevenirImagen($folder, $nombre, $tmp)
     {
-        $carpeta = base_url . $folder . $nombre;
+        $carpeta = $folder . $nombre;
         $img = ImageManagerStatic::make($tmp);
         $size = $img->filesize();
         if ($size > 2097152) {
-            echo "La imagen es muy pesada, tiene peque pesar menos de 2 MB";
-            // return false
+            return false;
         } else {
             $img->resize(400, 400, function ($constraint) {
                 $constraint->aspectRatio();
             });
             $img->save($carpeta, 90);
+            return true;
         }
     }
 

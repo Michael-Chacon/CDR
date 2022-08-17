@@ -668,6 +668,7 @@
                     <input type="text" hidden name="x" value="<?=$estudiantePadres->estudiante_id?>">
                     <input type="text" hidden name="y" value="<?=$estudiantePadres->padres?>">
                     <input type="text" hidden name="z" value="<?=$estudiantePadres->id_gradoE?>">
+                    <input type="text" hidden name="foto_actual" value="<?=$estudiante->img?>">
 
                     <label for="perfil" class="form-label">Elija la nueva foto de perfil</label>
                     <input class="form-control form-control-lg" id="perfil" name="foto_perfil" type="file" required>

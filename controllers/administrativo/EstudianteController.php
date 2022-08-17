@@ -248,23 +248,21 @@ class EstudianteController
         $file = $_FILES['foto_perfil'];
         $nombre = $file['name'];
         $tmp = $file['tmp_name'];
-        Utils::intevenirImagen('photos/estudiantes/', $nombre, $tmp);
-        exit;
-        // $filename = $file['name'];
-        // $mimetype = $file['type'];
-        // if ($mimetype == "image/jpg" || $mimetype == "image/jpeg" || $mimetype == "image/png" || $mimetype == "image/gif") {
-
-        //     if (!is_dir('photos/estudiantes/')) {
-        //         mkdir('photos/estudiantes/', 0777, true);
-        //     }
-        //     move_uploaded_file($file['tmp_name'], 'photos/estudiantes/' . $filename);
-        // }
-        $id = $_POST['x'];
-        $new_photo = new Estudiante();
-        $new_photo->setId($id);
-        $new_photo->setImg($filename);
-        $resultadoF = $new_photo->imgPerfil();
-        Utils::alertas($resultadoF, 'La foto ha sido actualizada con éxito.', 'Algo salió mal al intentar actualizar la foto.');
+        # Redimencionar y validara que la imagen no pese mas de 2 MB
+        $intenvencion = Utils::intevenirImagen('photos/estudiantes/', $nombre, $tmp);
+        if ($intenvencion == false) {
+            Utils::alertas($intenvencion, '', 'La imagen es muy pesada, tiene peque pesar menos de 2 MB');
+        } else {
+            $id = $_POST['x'];
+            $new_photo = new Estudiante();
+            $new_photo->setId($id);
+            $new_photo->setImg($nombre);
+            $resultadoF = $new_photo->imgPerfil();
+            if (resultadoF) {
+                unlink('photos/estudiantes/' . $_POST['foto_actual']);
+            }
+            Utils::alertas($resultadoF, 'La foto ha sido actualizada con éxito.', 'Algo salió mal al intentar actualizar la foto.');
+        }
         header("Location: " . base_url . 'Estudiante/perfilEstudiante&x=' . $_POST['x'] . '&y=' . $_POST['y'] . '&z=' . $_POST['z']);
     }
 
