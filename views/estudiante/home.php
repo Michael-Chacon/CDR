@@ -31,7 +31,7 @@
 				<h3 class="text-center  mb-3 titulo-perfil">
 					<span class="tituloss">Horario de clase</span>
 				</h3>
-				<article class="col-md-4 text-center">
+				<article class="col-md-6 text-center">
 					<span class="dia">
 						Lunes
 					</span>
@@ -76,7 +76,7 @@
 					<?php endif;?>
 					<hr/>
 				</article>
-				<article class="col-md-4 text-center">
+				<article class="col-md-6 text-center">
 					<span class="dia">
 						Martes
 					</span>
@@ -121,7 +121,7 @@
 					<?php endif;?>
 					<hr/>
 				</article>
-				<article class="col-md-4 text-center">
+				<article class="col-md-6 text-center">
 					<span class="dia">
 						Miércoles
 					</span>
@@ -166,7 +166,7 @@
 					<?php endif;?>
 					<hr/>
 				</article>
-				<article class="col-md-4 text-center">
+				<article class="col-md-6 text-center">
 					<span class="dia">
 						Jueves
 					</span>
@@ -211,7 +211,7 @@
 					<?php endif;?>
 					<hr/>
 				</article>
-				<article class="col-md-4 text-center">
+				<article class="col-md-6 text-center">
 					<span class="dia">
 						Viernes
 					</span>
@@ -266,7 +266,7 @@
 							<div class="card shadow mt-3 mb-3" style="border-left: 6px solid <?=$actividad->color?> !important;">
 								<div class="card-body">
 									<h6 class="card-subtitle mb-1 "><?=ucfirst($actividad->titulo)?></h6>
-									<p class="mt-0 haceTiempo"><?=Utils::difernciaParaHumanos($actividad->fechaRegistro)?></p>
+									<p class="mt-0 haceTiempo">Publicado <?=Utils::difernciaParaHumanos($actividad->fechaRegistro)?></p>
 									<!-- <a href="#" class="card-link">Ver</a> -->
 									<div class="d-grid gap-2">
 									<a class="btn btn-outline-dark btn-sm" data-bs-toggle="collapse" href="#info_estudiante<?=$actividad->id?>"  aria-expanded="false" aria-controls="info">Detalles de la actividad

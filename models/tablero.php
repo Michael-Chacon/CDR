@@ -175,25 +175,25 @@ class Tablero
     # metodo para obtener todas las actividades
     public function getAllActivitiesStudends()
     {
-        $listar = $this->db->prepare("SELECT * FROM tableroactividadesestudiantes ORDER BY fecha ASC");
+        $listar = $this->db->prepare("SELECT * FROM tableroactividadesestudiantes ORDER BY fecha DESC");
         $listar->execute();
         return $listar;
     }
     public function getAllActivitiesStudendsLimit()
     {
-        $listar = $this->db->prepare("SELECT * FROM tableroactividadesestudiantes ORDER BY fecha ASC LIMIT 4");
+        $listar = $this->db->prepare("SELECT * FROM tableroactividadesestudiantes ORDER BY fecha DESC LIMIT 4");
         $listar->execute();
         return $listar;
     }
     public function getAllActivitiesTeachers()
     {
-        $listar = $this->db->prepare("SELECT * FROM tableroactividadesdocentes ORDER BY fecha ASC");
+        $listar = $this->db->prepare("SELECT * FROM tableroactividadesdocentes ORDER BY fecha DESC");
         $listar->execute();
         return $listar;
     }
     public function getAllActivitiesTeachersLimit()
     {
-        $listar = $this->db->prepare("SELECT * FROM tableroactividadesdocentes ORDER BY fecha ASC");
+        $listar = $this->db->prepare("SELECT * FROM tableroactividadesdocentes ORDER BY fecha DESC LIMIT 4");
         $listar->execute();
         return $listar;
     }
