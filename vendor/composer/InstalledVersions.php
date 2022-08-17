@@ -30,7 +30,7 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-    'reference' => 'bcc3beeeb017c15cca2b62e9f46e55c3188c3a9b',
+    'reference' => '798518c2b0116bdd93c9a7abe6e38fea8091a83d',
     'name' => '__root__',
   ),
   'versions' => 
@@ -42,7 +42,25 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => 'bcc3beeeb017c15cca2b62e9f46e55c3188c3a9b',
+      'reference' => '798518c2b0116bdd93c9a7abe6e38fea8091a83d',
+    ),
+    'guzzlehttp/psr7' => 
+    array (
+      'pretty_version' => '1.9.0',
+      'version' => '1.9.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'e98e3e6d4f86621a9b75f623996e6bbdeb4b9318',
+    ),
+    'intervention/image' => 
+    array (
+      'pretty_version' => '2.5.1',
+      'version' => '2.5.1.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'abbf18d5ab8367f96b3205ca3c89fb2fa598c69e',
     ),
     'nesbot/carbon' => 
     array (
@@ -52,6 +70,31 @@ private static $installed = array (
       array (
       ),
       'reference' => 'bdf4f4fe3a3eac4de84dbec0738082a862c68ba6',
+    ),
+    'psr/http-message' => 
+    array (
+      'pretty_version' => '1.0.1',
+      'version' => '1.0.1.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'f6561bf28d520154e4b0ec72be95418abe6d9363',
+    ),
+    'psr/http-message-implementation' => 
+    array (
+      'provided' => 
+      array (
+        0 => '1.0',
+      ),
+    ),
+    'ralouphie/getallheaders' => 
+    array (
+      'pretty_version' => '3.0.3',
+      'version' => '3.0.3.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '120b605dfeb996808c31b6477290a714d356e822',
     ),
     'symfony/deprecation-contracts' => 
     array (

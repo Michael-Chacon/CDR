@@ -1,5 +1,6 @@
- {
+{
     "require": {
-        "nesbot/carbon": "2.61"
+        "nesbot/carbon": "2.61",
+        "intervention/image": "2.5.1"
     }
 }
