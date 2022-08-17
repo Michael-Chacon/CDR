@@ -27,7 +27,7 @@
 					</div>
 					<div class="row text-center">
 						<div class="col-md-4 mt-3 mb-3">
-							<span class="item_info">Fecha nacimiento:</span> <span class="valor_item"><?=$docente->fecha_nacimiento_d?></span>
+							<span class="item_info">Fecha nacimiento:</span> <span class="valor_item"><?=Utils::fechaShortCarbon($docente->fecha_nacimiento_d)?></span>
 						</div>
 						<div class="col-md-4 mt-3 mb-3">
 							<span class="item_info">Edad:</span> <span class="valor_item"><?=Utils::hallarEdad($docente->fecha_nacimiento_d)?></span> <small class="text-muted">(años)</small>
@@ -45,7 +45,7 @@
 							<span class="item_info">Lugar de expedición:</span> <span class="valor_item"><?=$docente->lugar_expedicion_d?></span>
 						</div>
 						<div class="col-md-4 mt-3 mb-3">
-							<span class="item_info">Fecha expedición:</span> <span class="valor_item"><?=$docente->fecha_expedicion_d?></span>
+							<span class="item_info">Fecha expedición:</span> <span class="valor_item"><?=Utils::fechaShortCarbon($docente->fecha_expedicion_d)?></span>
 						</div>
 						<div class="col-md-4 mt-3 mb-3">
 							<span class="item_info">Dirección:</span> <span class="valor_item"><?=$docente->direccion_d?></span>

@@ -127,7 +127,7 @@
  													</td>
  													<td>
  														<span class="detalle_info">
- 															<?=$administrativo->fecha_nacimiento_a?>
+ 															<?=Utils::fechaCarbon($administrativo->fecha_nacimiento_a)?>
  														</span>
  													</td>
  												</tr>
@@ -163,7 +163,7 @@
  													</td>
  													<td>
  														<span class="detalle_info">
- 															<?=$administrativo->fecha_expedicion_a?>
+ 															<?=Utils::fechaCarbon($administrativo->fecha_expedicion_a)?>
  														</span>
  													</td>
  												</tr>
@@ -211,7 +211,7 @@
  													</td>
  													<td>
  														<span class="detalle_info">
- 															<?=$administrativo->fecha_posesion_a?>
+ 															<?=Utils::fechaCarbon($administrativo->fecha_posesion_a)?>
  														</span>
  													</td>
  												</tr>

@@ -464,7 +464,7 @@
                     <hr>
                     <div class="row text-center">
                         <div class="col-md-6 mt-3 mb-3">
-                            <span class="item_info">Fecha de nacimiento:</span> <span class="valor_item"><?=$estudiante->fecha_nacimiento_e?></span>
+                            <span class="item_info">Fecha de nacimiento:</span> <span class="valor_item"><?=Utils::fechaShortCarbon($estudiante->fecha_nacimiento_e)?></span>
                         </div>
                         <div class="col-md-6 mt-3 mb-3">
                             <span class="item_info">Edad: </span> <span class="valor_item"><?=Utils::hallarEdad($estudiante->fecha_nacimiento_e)?></span>
@@ -479,7 +479,7 @@
                             <span class="item_info">Lugar de expedición:</span> <span class="valor_item"><?=$estudiante->lugar_expedicion_e?></span>
                         </div>
                         <div class="col-md-6 mt-3 mb-3">
-                            <span class="item_info">Fecha de expedición:</span> <span class="valor_item"><?=$estudiante->fecha_expedicion_e?></span>
+                            <span class="item_info">Fecha de expedición:</span> <span class="valor_item"><?=Utils::fechaShortCarbon($estudiante->fecha_expedicion_e)?></span>
                         </div>
                         <div class="col-md-6 mt-3 mb-3">
                             <span class="item_info">Dirección de residencia:</span> <span class="valor_item"><?=$estudiante->direccion_e?></span>
@@ -530,7 +530,7 @@
                                 <span class="item_info">Apellidos: </span>  <span class="valor_item"><?=$estudiante->apellidos_m?></span>
                             </div>
                             <div class="col-md-6 mt-3">
-                                <span class="item_info">Fecha de nacimiento: </span>    <span class="valor_item"><?=$estudiante->fecha_nacimiento_m?></span>
+                                <span class="item_info">Fecha de nacimiento: </span>    <span class="valor_item"><?=Utils::fechaShortCarbon($estudiante->fecha_nacimiento_m)?></span>
                             </div>
                             <div class="col-md-6 mt-3">
                                 <span class="item_info">Edad: </span>   <span class="valor_item"><?=Utils::hallarEdad($estudiante->fecha_nacimiento_m)?></span>
@@ -545,7 +545,7 @@
                                 <span class="item_info">Lugar de expedición: </span>    <span class="valor_item"><?=$estudiante->lugar_expedicion_m?></span>
                             </div>
                             <div class="col-md-6 mt-3">
-                                <span class="item_info">Fecha expedición: </span>   <span class="valor_item"><?=$estudiante->fecha_expedicion_m?></span>
+                                <span class="item_info">Fecha expedición: </span>   <span class="valor_item"><?=Utils::fechaShortCarbon($estudiante->fecha_expedicion_m)?></span>
                             </div>
                             <div class="col-md-6 mt-3">
                                 <span class="item_info">Telefono: </span>   <span class="valor_item"><?=$estudiante->telefono_m?></span>
@@ -568,7 +568,7 @@
                                 <span class="item_info">Apellidos: </span>  <span class="valor_item"><?=$estudiante->apellidos_p?></span>
                             </div>
                             <div class="col-md-6 mt-3">
-                                <span class="item_info">Fecha de nacimiento: </span>    <span class="valor_item"><?=$estudiante->fecha_nacimiento_p?></span>
+                                <span class="item_info">Fecha de nacimiento: </span>    <span class="valor_item"><?=Utils::fechaShortCarbon($estudiante->fecha_nacimiento_p)?></span>
                             </div>
                             <div class="col-md-6 mt-3">
                                 <span class="item_info">Edad: </span>   <span class="valor_item"><?=Utils::hallarEdad($estudiante->fecha_nacimiento_p)?></span>
@@ -583,7 +583,7 @@
                                 <span class="item_info">Lugar de expedición: </span>    <span class="valor_item"><?=$estudiante->lugar_expedicion_p?></span>
                             </div>
                             <div class="col-md-6 mt-3">
-                                <span class="item_info">Fecha expedición: </span>   <span class="valor_item"><?=$estudiante->fecha_expedicion_p?></span>
+                                <span class="item_info">Fecha expedición: </span>   <span class="valor_item"><?=Utils::fechaShortCarbon($estudiante->fecha_expedicion_p)?></span>
                             </div>
                             <div class="col-md-6 mt-3">
                                 <span class="item_info">Telefono: </span>   <span class="valor_item"><?=$estudiante->telefono_p?></span>

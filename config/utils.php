@@ -13,6 +13,13 @@ class Utils
         return $date->locale('es')->isoFormat('MMMM DD YYYY');
     }
 
+    # Fecha en formato de texto mes corto
+    public static function fechaShortCarbon($fecha)
+    {
+        $date = Carbon::parse($fecha);
+        return $date->locale('es')->isoFormat('MMM DD YYYY');
+    }
+
     # Diferencia para humanos - fechas - librería Carbon
     public static function difernciaParaHumanos($fecha)
     {

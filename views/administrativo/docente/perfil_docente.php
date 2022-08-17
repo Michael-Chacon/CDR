@@ -406,71 +406,71 @@
                                         <!-- inicio informacion del docente -->
                                         <!-- inicio info docente -->
                                         <section class="row justify-content-center">
-                                            <section class="col-md-6">
+                                            <section class="col-md-10">
                                                 <div class="card shadow">
                                                     <div class="card-body">
                                                         <div class="text-center mb-3">
                                                             <h5 class="card-title valor_item">Datos del docente</h5>
                                                         </div>
                                                         <div class="row text-center">
-                                                            <div class="col-md-6 mt-3 mb-3">
-                                                                <span class="item_info">Fecha nacimiento:</span> <span class="valor_item"><?=$docente->fecha_nacimiento_d?></span>
+                                                            <div class="col-md-3 mt-3 mb-3">
+                                                                <span class="item_info">Fecha nacimiento:</span> <span class="valor_item"><?=Utils::fechaCarbon($docente->fecha_nacimiento_d)?></span>
                                                             </div>
-                                                            <div class="col-md-6 mt-3 mb-3">
+                                                            <div class="col-md-3 mt-3 mb-3">
                                                                 <span class="item_info">Edad:</span> <span class="valor_item"><?=Utils::hallarEdad($docente->fecha_nacimiento_d)?></span> <small class="text-muted">(años)</small>
                                                             </div>
-                                                            <div class="col-md-6 mt-3 mb-3">
+                                                            <div class="col-md-3 mt-3 mb-3">
                                                                 <span class="item_info">Genero:</span> <span class="valor_item"><?=$docente->sexo_d?></span>
                                                             </div>
-                                                            <div class="col-md-6 mt-3 mb-3">
+                                                            <div class="col-md-3 mt-3 mb-3">
                                                                 <span class="item_info">Tipo identificación:</span> <span class="valor_item"><?=$docente->tipo_identificacion_d?></span>
                                                             </div>
-                                                            <div class="col-md-6 mt-3 mb-3">
+                                                            <div class="col-md-3 mt-3 mb-3">
                                                                 <span class="item_info">Numero identificación:</span> <span class="valor_item"><?=$docente->numero_d?></span>
                                                             </div>
-                                                            <div class="col-md-6 mt-3 mb-3">
+                                                            <div class="col-md-3 mt-3 mb-3">
                                                                 <span class="item_info">Lugar de expedición:</span> <span class="valor_item"><?=$docente->lugar_expedicion_d?></span>
                                                             </div>
-                                                            <div class="col-md-6 mt-3 mb-3">
-                                                                <span class="item_info">Fecha expedición:</span> <span class="valor_item"><?=$docente->fecha_expedicion_d?></span>
+                                                            <div class="col-md-3 mt-3 mb-3">
+                                                                <span class="item_info">Fecha expedición:</span> <span class="valor_item"><?=Utils::fechaCarbon($docente->fecha_expedicion_d)?></span>
                                                             </div>
-                                                            <div class="col-md-6 mt-3 mb-3">
+                                                            <div class="col-md-3 mt-3 mb-3">
                                                                 <span class="item_info">Dirección:</span> <span class="valor_item"><?=$docente->direccion_d?></span>
                                                             </div>
-                                                            <div class="col-md-6 mt-3 mb-3">
+                                                            <div class="col-md-3 mt-3 mb-3">
                                                                 <span class="item_info">Telefono:</span> <span class="valor_item"><?=$docente->telefono_d?></span>
                                                             </div>
-                                                            <div class="col-md-6 mt-3 mb-3">
+                                                            <div class="col-md-3 mt-3 mb-3">
                                                                 <span class="item_info">Correo:</span> <span class="valor_item"><?=$docente->correo_d?></span>
                                                             </div>
-                                                            <div class="col-md-6 mt-3 mb-3">
+                                                            <div class="col-md-3 mt-3 mb-3">
                                                                 <span class="item_info">Religión:</span> <span class="valor_item"><?=$docente->religion_d?></span>
                                                             </div>
-                                                            <div class="col-md-6 mt-3 mb-3">
+                                                            <div class="col-md-3 mt-3 mb-3">
                                                                 <span class="item_info">Incapacidad medica:</span> <span class="valor_item"><?=$docente->incapacidad_medica_d?></span>
                                                             </div>
-                                                            <div class="col-md-6 mt-3 mb-3">
+                                                            <div class="col-md-3 mt-3 mb-3">
                                                                 <span class="item_info">Grupo sanguíneo + Rh:</span> <span class="valor_item"><?=$docente->grupo_sanguineo_d?> <?=$docente->rh_d?></span>
                                                             </div>
-                                                            <div class="col-md-6 mt-3 mb-3">
-                                                                <span class="item_info">Fecha posesión:</span> <span class="valor_item"><?=$docente->fecha_expedicion_d?></span>
+                                                            <div class="col-md-3 mt-3 mb-3">
+                                                                <span class="item_info">Fecha posesión:</span> <span class="valor_item"><?=Utils::fechaCarbon($docente->fecha_posesion_d)?></span>
                                                             </div>
-                                                            <div class="col-md-6 mt-3 mb-3">
+                                                            <div class="col-md-3 mt-3 mb-3">
                                                                 <span class="item_info">Número acta de posesión:</span> <span class="valor_item"><?=$docente->numero_acta_posesion_d?></span>
                                                             </div>
-                                                            <div class="col-md-6 mt-3 mb-3">
+                                                            <div class="col-md-3 mt-3 mb-3">
                                                                 <span class="item_info">Número resolución posesión:</span> <span class="valor_item"><?=$docente->numero_resolucion_posesion_d?></span>
                                                             </div>
-                                                            <div class="col-md-6 mt-3 mb-3">
+                                                            <div class="col-md-3 mt-3 mb-3">
                                                                 <span class="item_info">Pregrado:</span> <span class="valor_item"><?=$docente->pregrado_d?></span>
                                                             </div>
-                                                            <div class="col-md-6 mt-3 mb-3">
+                                                            <div class="col-md-3 mt-3 mb-3">
                                                                 <span class="item_info">Nombre pregrado:</span> <span class="valor_item"><?=$docente->nombre_pregrado_d?></span>
                                                             </div>
-                                                            <div class="col-md-6 mt-3 mb-3">
+                                                            <div class="col-md-3 mt-3 mb-3">
                                                                 <span class="item_info">Posgrado:</span> <span class="valor_item"><?=$docente->posgrado_d?></span>
                                                             </div>
-                                                            <div class="col-md-6 mt-3 mb-3">
+                                                            <div class="col-md-3 mt-3 mb-3">
                                                                 <span class="item_info">Nombre posgrado:</span> <span class="valor_item"><?=$docente->nombre_posgrado_d?></span>
                                                             </div>
                                                         </div>
