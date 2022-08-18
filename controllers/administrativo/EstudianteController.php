@@ -6,6 +6,7 @@ require_once 'models/credencial.php';
 require_once 'models/horario.php';
 require_once 'models/materias.php';
 require_once 'models/auditoria.php';
+require_once 'models/mail.php';
 
 class EstudianteController
 {
@@ -224,6 +225,12 @@ class EstudianteController
     # cambiar la contraseña
     public function cambiarPassword()
     {
+        $correo = new Correos();
+        $correo->setCorreoDestinatario('');
+        $correo->setNombreDestinatario('');
+        $correo->setAsuntoCorreo('Su contraseña ha sido actualizada.');
+        $correo->correoIndividual();
+        exit;
         $contra = $_POST['new_pass'];
         # usuario es el campo en la tabla credenciales que contiene el id del usuario,  el vinculo con la tabla estudiante en este caso.
         $usuario = 'id_estudiante';

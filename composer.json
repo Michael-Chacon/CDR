@@ -1,6 +1,7 @@
 {
     "require": {
         "nesbot/carbon": "2.61",
-        "intervention/image": "2.5.1"
+        "intervention/image": "2.5.1",
+        "phpmailer/phpmailer": "6.5"
     }
 }
