@@ -5,6 +5,7 @@ require_once 'models/padres.php';
 require_once 'models/estudiante.php';
 require_once 'models/observador.php';
 require_once 'models/tablero.php';
+require_once 'models/credencial.php';
 class StudentController
 {
     public function homeEstudiante()
@@ -77,6 +78,20 @@ class StudentController
         $observador->setEstudiante($_SESSION['student']['id_estudiante']);
         $observaciones = $observador->getObservation();
         require_once 'views/estudiante/observador.php';
+    }
+
+    # Actulizar contraseña
+    public function actualizarContraseña(){
+        $id_estudiante = $_SESSION['student']['id_estudiante'];
+        $contraseña = $_POST['contraseña'];
+        $credenciales = new Credencial();
+        $credenciales->setRol('id_estudiante');
+        $credenciales->setId($id_estudiante);
+        $credenciales->setPassword($contraseña);
+        $resultado = $credenciales->updatePassword();
+        Utils::alertas($resultado, 'La contraseña fue actualizada con éxito', 'Algo salió mal, intentalo de nuevo');
+        header('Location: '. base_url . 'Student/datosEstudiante');
+
     }
 
 } # fin de la clase

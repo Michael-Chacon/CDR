@@ -8,7 +8,7 @@
 		</article>
 	</section>
 	<!-- inicio info docente -->
-	<section class="row justify-content-center mt-5">
+	<section class="row justify-content-center mt-3">
 		<?php Utils::getAlert();?>
 		<?php Utils::borrar_error('alert');?>
 		<section class="col-md-8">
@@ -141,13 +141,13 @@
 					<h5 class="modal-title" id="exampleModalLabel">Actualizar la contraseña</h5>
 					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 				</div>
-				<form action="<?=base_url?>Teacher/actualizarPass" method="post">
+				<form action="<?=base_url?>Teacher/actualizarContraseña" method="post">
 					<div class="modal-body">
 						<div class="row">
 							<div class="col-md-12">
 								<div class="mb-3">
 									<label for="ed" class="form-label">Contraseña nueva:</label>
-									<input type="text" class="form-control" id="ed" name="new_pass" placeholder="Ingresa acá tu nueva contraseña " required>
+									<input type="text" class="form-control" id="ed" name="contraseña" placeholder="Ingresa acá tu nueva contraseña" required>
 								</div>
 							</div>
 						</div>

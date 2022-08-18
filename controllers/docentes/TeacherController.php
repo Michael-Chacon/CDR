@@ -4,6 +4,7 @@ require_once 'models/horario.php';
 require_once 'models/documentos.php';
 require_once 'models/docente.php';
 require_once 'models/tablero.php';
+require_once 'models/credencial.php';
 
 class TeacherController
 {
@@ -79,5 +80,17 @@ class TeacherController
         Utils::alertas($resultado, 'Datos actualizados con éxito', 'Algo salió mal al intentar acualizar los datos.');
         header('Location: ' . base_url . 'Teacher/misDatos');
     }
+    # Actulizar contraseña
+    public function actualizarContraseña(){
+        $id_docente = $_SESSION['teacher']->id;
+        $contraseña = $_POST['contraseña'];
+        $credenciales = new Credencial();
+        $credenciales->setRol('id_docente');
+        $credenciales->setId($id_docente);
+        $credenciales->setPassword($contraseña);
+        $resultado = $credenciales->updatePassword();
+        Utils::alertas($resultado, 'La contraseña fue actualizada con éxito', 'Algo salió mal, intentalo de nuevo');
+        header('Location: '. base_url . 'Teacher/misDatos');
 
+    }
 }

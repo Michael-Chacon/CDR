@@ -261,14 +261,14 @@
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">Actualizar datos de mis padres</h5>
+					<h5 class="modal-title" id="exampleModalLabel">Actualizar contraseña</h5>
 					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 				</div>
-				<form action="<?=base_url?>Student/newpass" method="post">
+				<form action="<?=base_url?>Student/actualizarContraseña" method="post">
 					<div class="modal-body">
 						<div class="mb-3">
 							<label for="mt" class="form-label">Nueva contraseña:</label>
-							<input type="number" class="form-control" id="mt" name="contraseña" requred placeholder="Escriba acá su nueva contraseña">
+							<input type="text" class="form-control" id="mt" name="contraseña" placeholder="Escriba acá su nueva contraseña" required="">
 						</div>
 					</div>
 					<div class="modal-footer">
