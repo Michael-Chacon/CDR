@@ -676,7 +676,7 @@
             </div>
             <div class="modal-body">
                 <?php $f = 0;
-if ($fechas_fallas->rowCount() != 0): ?>
+                if ($fechas_fallas->rowCount() != 0): ?>
                     <table class="table text-center caption-top table-responsive">
                         <caption>Formato de fecha: aaaa/mm/dd</caption>
                         <thead>
@@ -694,20 +694,20 @@ if ($fechas_fallas->rowCount() != 0): ?>
                         </thead>
                         <tbody>
                             <?php while ($fechas = $fechas_fallas->fetchObject()):
-    $f++;
-    ?>
-				                                <tr>
-				                                  <td>
-				                                      <?=$f?>
-				                                  </td>
-				                                  <td>
-				                                      <?=$fechas->fecha_falla?>
-				                                  </td>
-				                                  <td>
-				                                      <?=$fechas->id_periodo_f?>
-				                                  </td>
-				                              </tr>
-				                          <?php endwhile;?>
+                                $f++;
+                                ?>
+                                <tr>
+                                  <td>
+                                      <?=$f?>
+                                  </td>
+                                  <td>
+                                    <?=Utils::fechaCarbon($fechas->fecha_falla)?>
+                                  </td>
+                                  <td>
+                                      <?=$fechas->id_periodo_f?>
+                                  </td>
+                              </tr>
+                          <?php endwhile;?>
                       </tbody>
                   </table>
                   <?php if (!isset($_SESSION['student'])): ?>

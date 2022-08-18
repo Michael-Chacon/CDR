@@ -57,7 +57,7 @@ $mpdf->AddPage('P');
                         <span class="texto-fallas">'.$c++.'</span>
                     </td>
                     <td class="datos-fallas">
-                        <span class="texto-fallas">'.$falla->fecha_falla.'</span>
+                        <span class="texto-fallas">'.Utils::fechaCarbon($falla->fecha_falla).'</span>
                     </td>
                     <td class="datos-fallas">
                         <span class="texto-fallas">'.$falla->id_periodo_f.'</span>
