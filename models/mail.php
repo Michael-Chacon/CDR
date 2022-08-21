@@ -95,7 +95,7 @@ class Correos
             $mail->Subject = $asunto;
             $mail->isHTML(true); //Set email format to HTML
             $mail->Subject = $asunto;
-            $mail->Body = $asunto . ' hoy a las ' . Utils::fechaCarbon(date('Y-m-d')) . ' Por favor no responder este correo.';
+            $mail->Body = $asunto . ' Acción realizada en agosto ' . Utils::fechaCarbon(date('Y-m-d')) . ' Por favor no responder este correo.';
             $mail->send();
             return true;
         } catch (Exception $e) {
