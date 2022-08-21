@@ -66,7 +66,7 @@
  								<i class="bi bi-three-dots-vertical" style="font-size: 1.5rem;">
  								</i>
  							</a>
- 							<ul class="dropdown-menu">
+ 							<ul class="dropdown-menu dropdown-menu-dark">
  								<li>
  									<a class="dropdown-item" href="<?=base_url?>Administrativo/actualizar&id=<?=$administrativo->id_admin?>">
  										<i class="bi bi-pen">

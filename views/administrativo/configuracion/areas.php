@@ -11,7 +11,7 @@
 				<a  class="" data-bs-toggle="dropdown" aria-expanded="false">
 					<i class="bi bi-plus-lg efecto_hover" style="font-size: 2rem; color:white;"></i>
 				</a>
-				<ul class="dropdown-menu">
+				<ul class="dropdown-menu dropdown-menu-dark">
 					<li>
 						<a href="" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#area">
 							<i class="bi bi-back efecto_hover"></i> Crear área

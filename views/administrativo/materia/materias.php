@@ -14,7 +14,7 @@
                     <i class="bi bi-list efecto_hover" style="font-size: 2rem; color: white;">
                     </i>
                 </a>
-                <ul class="dropdown-menu">
+                <ul class="dropdown-menu dropdown-menu-dark">
                     <li><a class="dropdown-item" data-bs-target="#CrearMateria" data-bs-toggle="modal" href="#"><i class="bi bi-book-half"></i>  Asignar materias</a></li>
                     <li><hr class="dropdown-divider"></li>
                     <li><a class="dropdown-item" data-bs-target="#CreatHorario" data-bs-toggle="modal"  href="#"><i class="bi bi-calendar-week"></i> Asignar horario</a></li>
@@ -145,17 +145,17 @@
             <h3 class="text-center mb-2 mt-3 mb-3 titulo-perfil">
                 Estudiantes matriculados
             </h3>
-            <article class="col-md-5 ">
+            <article class="col-md-8">
              <ul class="list-group mb-4 padre">
                 <li class="list-group-item ">
                     <div class="row">
-                        <div class="col-md-2">
+                        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
                             #
                         </div>
-                        <div class="col-md-2">
+                        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
                             Foto
                         </div>
-                        <div class="col-md-8">
+                        <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
                             Nombre
                         </div>
                     </div>
@@ -169,17 +169,17 @@
 	                       <a class="stretched-link" href="<?=base_url?>Estudiante/perfilEstudiante&x=<?=$estudiantes->id?>&y=<?=$estudiantes->id_familia_e?>&z=<?=$estudiantes->id_grado?>">
 	                       </a>
 	                   <div class="row">
-	                    <div class="col-md-2 nombre-apellidos-numero">
+	                    <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 nombre-apellidos-numero">
 	                        <?=$c++?>
 	                    </div>
-	                    <div class="col-md-2">
+	                    <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
                             <?php if ($estudiantes->img == null): ?>
                                 <img alt="" class="avatar-tabla circulo" src="<?=base_url?>helpers/img/avatar.jpg"></img>
                             <?php else: ?>
                                <img alt="" class="avatar-tabla circulo" src="<?=base_url?>photos/estudiantes/<?=$estudiantes->img?>"></img>
                            <?php endif;?>
                        </div>
-	                <div class="col-md-8 nombre-apellidos-numero">
+	                <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8 nombre-apellidos-numero">
 	                    <?=$estudiantes->apellidos_e?>
 	                    <?=$estudiantes->nombre_e?>
 	                </div>

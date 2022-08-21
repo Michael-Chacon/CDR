@@ -15,20 +15,20 @@
 	<?php Utils::borrar_error('alert');?>
 
 	<section class="row justify-content-center mt-5">
-		<article class="col-md-5">
+		<article class="col-md-8">
 			<ul class="list-group mb-1 text-center">
 				<li class="list-group-item fila-estudiante">
 					<div class="row">
-						<div class="col-md-2 nombre-apellidos-numero">
+						<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 nombre-apellidos-numero">
 							#
 						</div>
-						<div class="col-md-5 nombre-apellidos-numero">
+						<div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 nombre-apellidos-numero">
 							Aula
 						</div>
-						<div class="col-md-3 nombre-apellidos-numero">
+						<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 nombre-apellidos-numero">
 							Asignada?
 						</div>
-						<div class="col-md-2 nombre-apellidos-numero">
+						<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 nombre-apellidos-numero">
 							<i class="bi bi-trash"></i>
 						</div>
 					</div>
@@ -40,13 +40,13 @@
 					<ul class="list-group mb-1 text-center">
 						<li class="list-group-item fila-estudiante">
 							<div class="row">
-								<div class="col-md-2 nombre-apellidos-numero">
+								<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 nombre-apellidos-numero">
 									<?=$contador++?>
 								</div>
-								<div class="col-md-5 nombre-apellidos-numero">
+								<div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 nombre-apellidos-numero">
 									<?=$aulas->nombre?>
 								</div>
-								<div class="col-md-3 estado_aula">
+								<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 estado_aula">
 									<?php if($aulas->asignada == 'no'): ?>
 										<span class="badge bg-danger">
 									<?php else: ?>
@@ -55,7 +55,7 @@
 											<?=strtoupper($aulas->asignada)?>
 										</span>
 								</div>
-								<div class="col-md-2 nombre-apellidos-numero">
+								<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 nombre-apellidos-numero">
 									<a onclick="return (confirmar())" href="<?=base_url?>Configuracion/eliminar_aula&id=<?=$aulas->id_aula?>"  class="efecto_hover">
 										<i class="bi bi-trash"></i>
 									</a>

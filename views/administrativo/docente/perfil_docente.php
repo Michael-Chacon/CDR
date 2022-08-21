@@ -4,7 +4,7 @@
                     <?php Utils::borrar_error('alert');?>
                     <!-- inicon de la fila principal -->
                     <section class="row">
-                        <article class="col-md-5">
+                        <article class="col-md-6">
                             <div class="card mb-3">
                                 <img alt="..." class="card-img-top" src="<?=base_url?>helpers/img/docente.jpg">
                                     <div class="card-body">
@@ -37,7 +37,7 @@
                                                                 <i class="bi bi-chevron-down btn-sm btn-primary" style="font-size: 1rem; color: white ;">
                                                                 </i>
                                                             </a>
-                                                            <ul aria-labelledby="opcionesPerfil" class="dropdown-menu">
+                                                            <ul aria-labelledby="opcionesPerfil" class="dropdown-menu dropdown-menu-dark">
                                                                 <li>
                                                                     <a class="dropdown-item " data-bs-target="#updatePassword" data-bs-toggle="modal" href="#">
                                                                         <i class="bi bi-key"></i>
@@ -106,7 +106,7 @@
                                 </img>
                             </div>
                         </article>
-                        <div class="col-md-7">
+                        <div class="col-md-6">
                             <div>
                                 <h2 class="text-center">
                                     Gráfica o informes.

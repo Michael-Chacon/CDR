@@ -9,7 +9,7 @@
 	<?php echo Utils::getAlert(); ?>
 	<?php Utils::borrar_error('alert');?>
 	<section class="row  justify-content-center mt-5">
-		<article class="col-md-3">
+		<article class="col-md-4">
 			<div class="card text-white bg-success mb-3 text-center shadow">
 				<div class="card-header titulo-criterio">Cognitivo <span class="badge bg-danger rounded-pill">
 					<?php if (empty($cognitivas->porcentaje_cognitivo)): ?>
@@ -47,7 +47,7 @@
 					</div>
 				</div>
 			</article>
-			<article class="col-md-3">
+			<article class="col-md-4">
 				<div class="card  bg-warning mb-3 text-center shadow">
 					<div class="card-header titulo-criterio">Procedimental <span class="badge bg-danger rounded-pill">
 						<?php if (empty($procedimentales->porcentaje_procedimental)): ?>
@@ -85,7 +85,7 @@
 					</div>
 				</div>
 			</article>
-			<article class="col-md-3">
+			<article class="col-md-4">
 				<div class="card text-white bg-primary mb-3 text-center shadow" >
 					<div class="card-header titulo-criterio">Actitudinal <span class="badge bg-danger rounded-pill">
 						<?php if (empty($actitudinales->porcentaje_actitudinal)): ?>
@@ -139,15 +139,15 @@
 					<div class="modal-body">
 						<div class="mb-3">
 							<label for="cognitivo" class="form-label">Porcentaje cognitivo:</label>
-							<input type="text" class="form-control" id="cognitivo" placeholder="Porcentaje" name="cognitivo" value="<?=$cognitivo?>">
+							<input type="number" class="form-control" id="cognitivo" placeholder="Porcentaje" name="cognitivo" value="<?=$cognitivo?>" min="00" max="100" step="1">
 						</div>
 						<div class="mb-3">
 							<label for="evaluacion" class="form-label">Porcentaje evaluacion:</label>
-							<input type="text" class="form-control" id="evaluacion" placeholder="Porcentaje" name="evaluacion" value="<?=$evaluacion?>">
+							<input type="number" class="form-control" id="evaluacion" placeholder="Porcentaje" name="evaluacion" value="<?=$evaluacion?>" min="00" max="100" step="1">
 						</div>
 						<div class="mb-3">
 							<label for="trimestral" class="form-label">Porcentajet trimestral:</label>
-							<input type="text" class="form-control" id="trimestral" placeholder="Porcentaje" name="trimestral" value="<?=$trimestral?>">
+							<input type="number" class="form-control" id="trimestral" placeholder="Porcentaje" name="trimestral" value="<?=$trimestral?>" min="00" max="100" step="1">
 						</div>
 					</div>
 					<div class="modal-footer">
@@ -171,15 +171,15 @@
 					<div class="modal-body">
 						<div class="mb-3">
 							<label for="procedimental" class="form-label">Porcentaje procedimental:</label>
-							<input type="text" class="form-control" id="procedimental" placeholder="Porcentaje" name="procedimental" value="<?=$procedimental?>">
+							<input type="number" class="form-control" id="procedimental" placeholder="Porcentaje" name="procedimental" value="<?=$procedimental?>" min="00" max="100" step="1">
 						</div>
 						<div class="mb-3">
 							<label for="individual" class="form-label">Porcentaje trabajo individual:</label>
-							<input type="text" class="form-control" id="individual" placeholder="Porcentaje" name="individual" value="<?=$individual?>">
+							<input type="number" class="form-control" id="individual" placeholder="Porcentaje" name="individual" value="<?=$individual?>"min="00" max="100" step="1">
 						</div>
 						<div class="mb-3">
 							<label for="colaborativo" class="form-label">Porcentajet trabajo colaborativo:</label>
-							<input type="text" class="form-control" id="colaborativo" placeholder="Porcentaje" name="colaborativo" value="<?=$colaborativo?>">
+							<input type="number" class="form-control" id="colaborativo" placeholder="Porcentaje" name="colaborativo" value="<?=$colaborativo?>" min="00" max="100" step="1">
 						</div>
 					</div>
 					<div class="modal-footer">
@@ -203,15 +203,15 @@
 					<div class="modal-body">
 						<div class="mb-3">
 							<label for="actitudinal" class="form-label">Porcentaje actitudinal:</label>
-							<input type="text" class="form-control" id="actitudinal" placeholder="Porcentaje" name="actitudinal" value="<?=$actitudinal?>">
+							<input type="number" class="form-control" id="actitudinal" placeholder="Porcentaje" name="actitudinal" value="<?=$actitudinal?>" min="00" max="100" step="1">
 						</div>
 						<div class="mb-3">
 							<label for="apreciativa" class="form-label">Porcentaje apreciativa:</label>
-							<input type="text" class="form-control" id="apreciativa" placeholder="Porcentaje" name="apreciativa" value="<?=$apreciativa?>">
+							<input type="number" class="form-control" id="apreciativa" placeholder="Porcentaje" name="apreciativa" value="<?=$apreciativa?>" min="00" max="100" step="1">
 						</div>
 						<div class="mb-3">
 							<label for="autoevaluacion" class="form-label">Porcentajet Autoevaluación:</label>
-							<input type="text" class="form-control" id="autoevaluacion" placeholder="Porcentaje" name="autoevaluacion" value="<?=$autoevaluacion?>">
+							<input type="number" class="form-control" id="autoevaluacion" placeholder="Porcentaje" name="autoevaluacion" value="<?=$autoevaluacion?>" min="00" max="100" step="1">
 						</div>
 					</div>
 					<div class="modal-footer">

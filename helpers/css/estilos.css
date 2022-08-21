@@ -31,11 +31,11 @@ hr {
 .alert-alert{
     background: #DC3546 !important;
     color: white !important;
-    /*height: 20px !important;*/
 }
 
 .texto-alert-alert{
-    font-size: 17px !important;
+    font-size: 14px !important;
+    font-weight: 300;
 }
 .Deshabilitado{
     background: #DC3546 !important;
@@ -87,25 +87,22 @@ hr {
 */
 
 .titulo {
-    height: 80px;
-    /* la vieja sintaxis, obsoleta, pero todavía necesaria, prefijada, para Opera y Navegadores basados en Webkit */
-    /*background: -prefix-linear-gradient(left, #7C368F, #F9E701);*/
-    /* La nueva sintaxis necesaria para navegadores apegados al estandar (IE 10 y Firefox 10 en adelante), sin prefijo */
-    background: linear-gradient(to right, black, #33732C);
+    height: 55px;
+    background: linear-gradient(to right, black, black);
 }
 .fondo-elemento {
     background: linear-gradient(to right, black, teal) !important;
 }
 .config {
-    padding-top: 13px;
+    padding-top: 0px;
     color: white;
-    font-weight: 300;
+    font-weight: 200 !important;
 }
 .icono-menu {
-    border-left: 1px solid #7C368F;
+    border-left: 1px solid white;
 }
 .efecto_hover:hover {
-    color: #FD03BD !important;
+    color: #F9055E !important;
 }
 .espezor {
     font-weight: 400;
@@ -240,9 +237,9 @@ hr {
     margin-bottom: 30px;
 }
 .option:hover {
-    border-top: 4px solid teal !important;
-    border: 2px solid teal;
-    color: teal;
+    border-top: 4px solid #F9055E !important;
+    border: 2px solid #F9055E;
+    color: #F9055E;
 }
 .cdr {
     margin-left: 20px;
@@ -466,8 +463,8 @@ hr {
     font-weight: 300;
 }
 .fila-estudiante:hover {
-    color: #AC23FF;
-    border: 1px solid #AC23FF;
+    color: #F9055E;
+    border: 1px solid #F9055E;
 }
 .nombre-apellidos-numero {
     font-size: 20px;
@@ -494,8 +491,8 @@ hr {
     font-weight: 400;
 }
 .fila-estudiante:hover {
-    color: #AC23FF;
-    border: 1px solid #AC23FF;
+    color: #F9055E;
+    border: 1px solid #F9055E;
 }
 .text-actividad {
     font-size: 15px;

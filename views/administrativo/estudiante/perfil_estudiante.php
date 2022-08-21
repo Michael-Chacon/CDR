@@ -4,7 +4,7 @@
                 <?php Utils::borrar_error('alert');?>
                 <!-- inicon de la fila principal -->
                 <section class="row">
-                    <article class="col-md-5">
+                    <article class="col-md-6">
                         <div class="card mb-3">
                             <img alt="..." class="card-img-top" src="<?=base_url?>helpers/img/estudiante.jpg">
                             <div class="card-body">
@@ -151,7 +151,7 @@
             </img>
         </div>
     </article>
-    <div class="col-md-7">
+    <div class="col-md-6">
         <div>
            <h2 class="text-center">Gráfica</h2>
        </div>

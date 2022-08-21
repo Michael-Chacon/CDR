@@ -1,5 +1,5 @@
  <!-- Sidebar-->
-            <div class="border-end " id="sidebar-wrapper">
+            <div class="border-end" id="sidebar-wrapper">
                 <div class="sidebar-heading border-bottom ">
                     <div class="row justify-content-center bg-light ">
                         <div class="col-6 text-center bg-light">

@@ -37,8 +37,8 @@
                 <!-- Top navigation-->
                 <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
                     <div class="container-fluid">
-                        <button class="btn btn-success" id="sidebarToggle" accesskey="h">
-                            <i class="bi bi-list"></i>Menu
+                        <button class="btn btn-dark" id="sidebarToggle" accesskey="h">
+                            <i class="bi bi-list"></i>
                         </button>
                         <span class="cdr text-center">CONCENTRACIÓN DE DESARROLLO RURAL VALLE DE SAN JOSÉ</span>
                         <button aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-bs-target="#navbarSupportedContent" data-bs-toggle="collapse" type="button">
@@ -65,7 +65,7 @@
                 </nav>
                 <?php if (isset($_SESSION['teacher']) && $_SESSION['estadoBoletin'] == 'Habilitado'): ?>
                     <div class="alert alert-danger text-center alert-alert" role="alert">
-                        <span class="fst-italic texto-alert-alert">
+                        <span class="texto-alert-alert">
                         Está habilitada la opción para subir notas al boletín, los directores de grado recuerden registrar la nota de comportamiento de sus estudiantes
                         </span>
                     </div>

@@ -28,7 +28,7 @@
                             </form>
                             <article id="emailHelp" class="form-text">Puedes buscar por nombres o por número de documento.</article>
                         </article>
-                        <section class="col-md-10">
+                        <section class="col-md-11">
                             <?php if (isset($todos_estudiantes) && $todos_estudiantes->rowCount() != 0):?>
                             <div class="table-responsive">
                                 <table class="table table-hover">

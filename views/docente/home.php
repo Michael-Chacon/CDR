@@ -1,7 +1,7 @@
 <!-- contenido de  la pagina -->
             <section class="container-fluid">
                 <section class="row shadow titulo mb-3">
-                    <article class="col-xs-11 col-sm-11 col-md-12 col-lg-11">
+                    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                         <h1 class="text-center config">
                             Panel principal
                         </h1>

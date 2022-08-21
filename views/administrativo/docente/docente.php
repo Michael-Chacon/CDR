@@ -30,8 +30,8 @@
                     </section>
                     <!-- tabla -->
                     <section class="row justify-content-center mt-3 mb-5">
-                        <section class="col-md-10">
-                        <?php if (isset($lista) && $lista->rowCount() !=0):?>
+                        <section class="col-md-11">
+                        <?php if (isset($lista) && $lista->rowCount() != 0): ?>
                             <div class="table-responsive">
                                 <table class="table table-hover">
                                     <thead class="table-dark">
@@ -58,9 +58,9 @@
                                     </thead>
                                     <tbody>
                                         <?php $c = 1;
-                                        while ($docente_datos = $lista->fetchObject()): ?>
+while ($docente_datos = $lista->fetchObject()): ?>
                                             <tr>
-                                                <th class="" scope="row">
+                                                <th class="texto_tabla_docente" scope="row">
                                                     <?=$c++?>
                                                 </th>
                                                 <td>
