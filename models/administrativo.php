@@ -14,7 +14,6 @@ class Administrativo extends Usuarios
     public function guardarAdministrativo($accion)
     {
         try {
-
             $id = $this->getId();
             $no = $this->getNombre();
             $ap = $this->getApellidos();
@@ -44,11 +43,9 @@ class Administrativo extends Usuarios
                 $ed = Utils::hallarEdad($fe_na);
                 $registro = $this->db->prepare("INSERT INTO administrativo VALUES(null, :nombre, :apellidos, :fe_na, :edad, :genero, :cargo, :tipo_id, :numeroid, :lu_ex, :fe_ex, :dir, :tel, :co, :reli, :incapacidad, :grupo_s, :rh, :fe_po, :nu_acta, :nu_resolucion, :pre, :no_pre, :pos, :no_pos);");
             } elseif ($accion == 'actualizar') {
-                 $ed = $this->getEdad();
                 $registro = $this->db->prepare("UPDATE administrativo SET nombre_a = :nombre, apellidos_a = :apellidos, fecha_nacimiento_a = :fe_na, edad_a = :edad, sexo_a = :genero, cargo_a = :cargo, tipo_identificacion_a = :tipo_id, numero_a = :numeroid, lugar_expedicion_a = :lu_ex, fecha_expedicion_a = :fe_ex, direccion_a = :dir, telefono_a = :tel, correo_a = :co, religion_a = :reli, incapacidad_medica_a = :incapacidad, grupo_sanguineo_a = :grupo_s, rh_a = :rh, fecha_posesion_a = :fe_po, numero_acta_posesion_a = :nu_acta, numero_resolucion_posesion_a = :nu_resolucion, pregrado_a = :pre, nombre_pregrado_a = :no_pre, posgrado_a = :pos, nombre_posgrado_a = :no_pos WHERE id_admin = :id");
                 $registro->bindParam(":id", $id, PDO::PARAM_INT);
             }
-
             $registro->bindParam(':nombre', $no, PDO::PARAM_STR);
             $registro->bindParam(':apellidos', $ap, PDO::PARAM_STR);
             $registro->bindParam(':fe_na', $fe_na, PDO::PARAM_STR);
@@ -75,6 +72,7 @@ class Administrativo extends Usuarios
             $registro->bindParam(':no_pos', $no_pos, PDO::PARAM_STR);
 
             return $registro->execute();
+
         } catch (PDOException $e) {
             echo $e->getMessage();
         }

@@ -145,6 +145,8 @@
 					<div class="modal-body">
 						<div class="row">
 							<div class="col-md-12">
+								<input type="text" hidden name="nombres" value="<?=$_SESSION['teacher']->nombre_d?> <?=$_SESSION['teacher']->apellidos_d?>">
+								<input type="text" hidden name="correo" value="<?=$_SESSION['teacher']->correo_d?>">
 								<div class="mb-3">
 									<label for="ed" class="form-label">Contraseña nueva:</label>
 									<input type="text" class="form-control" id="ed" name="contraseña" placeholder="Ingresa acá tu nueva contraseña" required>

@@ -4,6 +4,7 @@ require_once 'models/credencial.php';
 require_once 'models/asignaciones.php';
 require_once 'models/horario.php';
 require_once 'models/auditoria.php';
+require_once 'models/mail.php';
 
 class DocenteController
 {
@@ -145,9 +146,19 @@ class DocenteController
 
     public function cambiarPass()
     {
+        $nombre = $_POST['nombres'];
+        $email = $_POST['correo'];
+        # Notificación por correo electronico
+        if (!empty($email)) {
+            $correo = new Correos();
+            $correo->setCorreoDestinatario($email);
+            $correo->setNombreDestinatario($nombre);
+            $correo->setAsuntoCorreo('Su contraseña ha sido actualizada.');
+            $correo->correoIndividual();
+        }
+
         $id = $_POST['id_docente'];
         $contra = $_POST['new_pass'];
-        $nombre = $_POST['nombres'];
         # auditar cambio de contraseñas
         $auditar = new Auditoria();
         $auditar->auditarCredenciales($nombre, 'Docente');

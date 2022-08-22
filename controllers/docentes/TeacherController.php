@@ -5,6 +5,7 @@ require_once 'models/documentos.php';
 require_once 'models/docente.php';
 require_once 'models/tablero.php';
 require_once 'models/credencial.php';
+require_once 'models/mail.php';
 
 class TeacherController
 {
@@ -82,6 +83,17 @@ class TeacherController
     }
     # Actulizar contraseña
     public function actualizarContraseña(){
+        $nombre = $_POST['nombres'];
+        $email = $_POST['correo'];
+        if (!empty($email)) {
+            # Notificar por correo
+            $correo = new Correos();
+            $correo->setCorreoDestinatario($email);
+            $correo->setNombreDestinatario($nombre);
+            $correo->setAsuntoCorreo('Su contraseña ha sido actualizada.');
+            $correo->correoIndividual();
+        }
+
         $id_docente = $_SESSION['teacher']->id;
         $contraseña = $_POST['contraseña'];
         $credenciales = new Credencial();
