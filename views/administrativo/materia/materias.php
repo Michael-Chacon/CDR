@@ -23,7 +23,11 @@
                     <li><hr class="dropdown-divider"></li>
                     <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#aula"><i class="bi bi-house"></i> Asignar Aula</a></li>
                     <li><hr class="dropdown-divider"></li>
+                    <?php if ($direc->rowCount() != 0):?>
                     <li><a class="dropdown-item" href="<?=base_url?>/Grado/eliminarGrado&id_grado=<?=$actual->id?>&name=<?=$actual->nombre_g?>&dir=<?=$direc->fetchObject()->id?>" onclick="return eliminarGrado()"><i class="bi bi-trash"></i>  Eliminar grado</a></li>
+                <?php else: ?>
+                    <li><a class="dropdown-item" href="<?=base_url?>/Grado/eliminarGrado&id_grado=<?=$actual->id?>&name=<?=$actual->nombre_g?>&dir=" onclick="return eliminarGrado()"><i class="bi bi-trash"></i>  Eliminar grado</a></li>
+                <?php endif; ?>
                 </ul>
             </acticle>
         </article>

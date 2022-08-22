@@ -48,10 +48,13 @@ class GradoController
         $id_director =$_GET['dir'];
         $id_grado = $_GET['id_grado'];
         $grado = $_GET['name'];
-        # Desvincular el grado con el docente director
-        $director = new Docente();
-        $director->setId($id_director);
-        $director->uptadeDirector('no');
+        print_r($id_director);
+        if (!empty($id_director)) {
+            # Desvincular el grado con el docente director
+            $director = new Docente();
+            $director->setId($id_director);
+            $director->uptadeDirector('no');
+        }
         # Registrar datos de la eliminación dle grado
         $auditar = new Auditoria();
         $auditar->auditarEliminacionGrado($grado);

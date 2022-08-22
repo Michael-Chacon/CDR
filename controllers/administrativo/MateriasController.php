@@ -27,6 +27,7 @@ class MateriasController
             $estudiantes->setGrado($grado);
             $estudi = $estudiantes->EstudiantesGrado();
             $actual = $estudiantes->gradoActual($grado);
+
             # listar lis horarios de todos los dias de la semana
             $dia = new Horario();
             $lista_lunes = $dia->listarLunes($grado);
