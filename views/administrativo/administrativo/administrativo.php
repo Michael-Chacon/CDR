@@ -75,7 +75,7 @@
  									</a>
  								</li>
  								<li>
- 									<a class="dropdown-item" href="<?=base_url?>Administrativo/newPassword&id=<?=$administrativo->id_admin?>&nombres=<?=$administrativo->nombre_a;?> <?=$administrativo->apellidos_a;?>">
+ 									<a class="dropdown-item" href="<?=base_url?>Administrativo/newPassword&id=<?=$administrativo->id_admin?>&nombres=<?=$administrativo->nombre_a;?> <?=$administrativo->apellidos_a;?>&correo=<?=$administrativo->correo_a?>">
  										<i class="bi bi-key">
  										</i>
  										Cambiar contaseña

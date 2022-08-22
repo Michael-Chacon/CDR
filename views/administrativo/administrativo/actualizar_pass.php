@@ -12,6 +12,7 @@
 				<div class="mb-3">
 					<input type="text" hidden name="id" value="<?=$_GET['id']?>">
 					<input type="text" hidden name="nombres" value="<?=$_GET['nombres']?>">
+					<input type="text" hidden name="correo" value="<?=$_GET['correo']?>">
 					<label for="pass" class="form-label">Nueva contraseña</label>
 					<input type="password" class="form-control" id="pass" name="new_pass">
 				</div>

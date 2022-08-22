@@ -6,6 +6,7 @@ require_once 'models/estudiante.php';
 require_once 'models/observador.php';
 require_once 'models/tablero.php';
 require_once 'models/credencial.php';
+require_once 'models/mail.php';
 class StudentController
 {
     public function homeEstudiante()
@@ -82,6 +83,16 @@ class StudentController
 
     # Actulizar contraseña
     public function actualizarContraseña(){
+
+        $nombre = $_POST['nombres'];
+        $email = $_POST['correo'];
+        if (!empty($email)) {
+            $correo = new Correos();
+            $correo->setCorreoDestinatario($email);
+            $correo->setNombreDestinatario($nombre);
+            $correo->setAsuntoCorreo('Su contraseña ha sido actualizada.');
+            $correo->correoIndividual();
+        }
         $id_estudiante = $_SESSION['student']['id_estudiante'];
         $contraseña = $_POST['contraseña'];
         $credenciales = new Credencial();

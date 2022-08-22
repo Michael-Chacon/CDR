@@ -266,6 +266,8 @@
 				</div>
 				<form action="<?=base_url?>Student/actualizarContraseña" method="post">
 					<div class="modal-body">
+						<input type="text" hidden name="nombre" value="<?=$_SESSION['student']['nombre_e']?> <?=$_SESSION['student']['apellidos_e']?>">
+						<input type="text" hidden name="correo" value="<?=$_SESSION['student']['correo_e']?>">
 						<div class="mb-3">
 							<label for="mt" class="form-label">Nueva contraseña:</label>
 							<input type="text" class="form-control" id="mt" name="contraseña" placeholder="Escriba acá su nueva contraseña" required="">

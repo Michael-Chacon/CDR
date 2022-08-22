@@ -8,38 +8,38 @@
                     </section>
                     <form action="<?=base_url?>Administrativo/registrarAdministrativo" method="post">
                         <section class="row justify-content-center mt-5">
-                            <input type="text" hidden name="actualizarAdministrativo" value="<?=$info->id?>">
+                            <input type="text" hidden name="actualizarAdministrativo" value="<?=$info->id_admin?>">
                             <section class="col-md-8 shadow">
                                 <section class="row">
                                     <div class="col-md-6 ">
                                         <div class="mb-3">
-                                            <label class="form-label" for="formGroupExampleInput">
+                                            <label class="form-label" for="name">
                                                 Nombres:
                                             </label>
-                                            <input class="form-control" id="formGroupExampleInput" type="text" name="nombres" value="<?=$info->nombre_a?>">
+                                            <input class="form-control" id="name" type="text" name="nombres" value="<?=$info->nombre_a?>">
                                             </input>
                                         </div>
                                         <div class="mb-3">
-                                            <label class="form-label" for="formGroupExampleInput2">
+                                            <label class="form-label" for="fn">
                                                 Fecha de nacimiento:
                                             </label>
-                                            <input class="form-control" id="formGroupExampleInput2" type="date" name="nacimiento" value="<?=$info->fecha_nacimiento_a?>">
+                                            <input class="form-control" id="fn" type="date" name="nacimiento" value="<?=$info->fecha_nacimiento_a?>">
                                             </input>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="mb-3">
-                                            <label class="form-label" for="formGroupExampleInput">
+                                            <label class="form-label" for="lastname">
                                                 Apellidos:
                                             </label>
-                                            <input class="form-control" id="formGroupExampleInput" type="text" name="apellidos" value="<?=$info->apellidos_a?>">
+                                            <input class="form-control" id="lastname" type="text" name="apellidos" value="<?=$info->apellidos_a?>">
                                             </input>
                                         </div>
                                         <div class="mb-3">
-                                            <label class="form-label" for="formGroupExampleInput2">
+                                            <label class="form-label" for="edad">
                                                 Edad:
                                             </label>
-                                            <input class="form-control" id="formGroupExampleInput2" name="edad" type="text" value="<?=Utils::hallarEdad($info->fecha_nacimiento_a)?>">
+                                            <input class="form-control" id="edad" name="edad" type="text" value="<?=Utils::hallarEdad($info->fecha_nacimiento_a)?>">
                                             </input>
                                         </div>
                                     </div>

@@ -3,6 +3,7 @@ require_once 'models/administrativo.php';
 require_once 'models/credencial.php';
 require_once 'controllers/LoginController.php';
 require_once 'models/auditoria.php';
+require_once 'models/mail.php';
 
 class AdministrativoController
 {
@@ -69,7 +70,7 @@ class AdministrativoController
             $administrativo->setPosgrado($posgrado);
             $administrativo->setNombrePosgrado($nombre_posgrado);
 
-            # Metodo para actualizar los datos del estudiantes
+            # Metodo para actualizar los datos del adminstrativo
             if (isset($_POST['actualizarAdministrativo']) && !empty($_POST['actualizarAdministrativo'])) {
                 $edad = trim($_POST['edad']);
                 $administrativo->setEdad($edad);
@@ -77,10 +78,10 @@ class AdministrativoController
                 $actualizarInfo = $administrativo->guardarAdministrativo('actualizar');
                 Utils::alertas($actualizarInfo, 'Información del usuario actualizada con éxito.', 'Algo salió mal al actualizar la información, inténtelo de nuevo.');
             } else {
-                # Metodo para registrar un estudinte nuevo
+                # Metodo para registrar un administrativo nuevo
                 $validacion = Utils::validarExistenciaUsuario($_POST['numero'], 'administrativo', 'numero_a');
                 if ($validacion == 0) {
-                    #metodo de guardar
+                    # Metodo de guardar
                     $resultado_admin = $administrativo->guardarAdministrativo('guardar');
                     # validar el return para generar notificacion
                     Utils::alertas($resultado_admin, 'El usuario administrativo se ha registrado con éxito.', 'Algo salió mal al registrar el usuario administrativo, inténtelo de nuevo.');
@@ -122,10 +123,18 @@ class AdministrativoController
 
     public function cambiarPass()
     {
+        $nombre = $_POST['nombres'];
+        $email = $_POST['correo'];
+        if (!empty($email)) {
+            $correo = new Correos();
+            $correo->setCorreoDestinatario($email);
+            $correo->setNombreDestinatario($nombre);
+            $correo->setAsuntoCorreo('Su contraseña ha sido actualizada.');
+            $correo->correoIndividual();
+        }
         $id = $_POST['id'];
         $contra = $_POST['new_pass'];
         $usuario = 'id_administrativo';
-        $nombre = $_POST['nombres'];
         # auditar cambio de contraseñas
         $auditar = new Auditoria();
         $auditar->auditarCredenciales($nombre, 'Administrativo');

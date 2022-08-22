@@ -636,6 +636,7 @@
                 <form action="<?=base_url?>Estudiante/cambiarPassword" method="post">
                     <div class="modal-body">
                         <input type="text" hidden name="id" value="<?=$estudiante->estudiante_id?>">
+                        <input type="text" hidden name="correo" value="<?=$estudiante->correo_e?>">
                         <input type="text" hidden name="nombres" value="<?=$estudiante->nombre_e?> <?=$estudiante->apellidos_e?>">
 
                         <div class="form-floating mb-3">
