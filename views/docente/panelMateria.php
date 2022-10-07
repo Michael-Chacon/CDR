@@ -14,17 +14,19 @@
                                 <i class="bi bi-list efecto_hover" style="font-size: 2rem; color: white;" data-bs-toggle="tooltip" data-bs-placement="left" title="Menú">
                                 </i>
                             </a>
-                            <ul class="dropdown-menu">
+                            <ul class="dropdown-menu dropdown-menu-dark">
                                 <li>
                                     <a class="dropdown-item" data-bs-target="#registroDeInasistencia" data-bs-toggle="modal" href="#">
                                         Tomar asisencia
                                     </a>
                                 </li>
+                                <li><hr class="dropdown-divider"></li>
                                 <li>
                                     <a class="dropdown-item" data-bs-target="#subirDocumentos" data-bs-toggle="modal" href="#">
                                         Surbir documentos
                                     </a>
                                 </li>
+                                <li><hr class="dropdown-divider"></li>
                                 <li>
                                     <a class="dropdown-item" data-bs-target="#registrarActividad" data-bs-toggle="modal" href="#">
                                         Registrar actividad

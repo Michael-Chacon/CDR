@@ -33,8 +33,8 @@
     					<th scope="row"><?=$c++?></th>
     					<td><?=$auditoria->nombre_admin_up?></td>
     					<td class=""><?=$auditoria->nombre_periodo?></td>
-    					<td><?=$auditoria->fecha_inicio_up?></td>
-    					<td><?=$auditoria->fecha_fin_up?></td>
+    					<td><?=Utils::fechaShortCarbon($auditoria->fecha_inicio_up)?></td>
+    					<td><?=Utils::fechaShortCarbon($auditoria->fecha_fin_up)?></td>
     					<td><span class="badge <?=$auditoria->estado_up?>"><?=$auditoria->estado_up?></span></td>
     					<td><span class="badge bg-light text-dark"><?=$auditoria->fecha_modificacion_up?></span></td>
     				</tr>

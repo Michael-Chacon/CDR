@@ -6,11 +6,13 @@
 				Periodos académicos
 			</h1>
 		</article>
+		<?php if(isset($_SESSION['user'])): ?>
 		<article class="col-xs-1 col-sm-1 col-md-1 col-lg-1 config icono-menu text-center">
 			<a href="<?=base_url?>Periodo/auditarPeriodos" data-bs-toggle="tooltip" data-bs-placement="left" title="Auditoria">
 				<i class="bi bi-clock-history efecto_hover" style="font-size: 2rem; color:white;"></i>
 			</a>
 		</article>
+	<?php endif; ?>
 	</section>
 	<?php echo Utils::getAlert(); ?>
 	<?php Utils::borrar_error('alert');?>
@@ -47,7 +49,7 @@
 											Inicio:
 										</td>
 										<td>
-											<?=$periodo->fecha_inicio;?>
+											<?=Utils::fechaCarbon($periodo->fecha_inicio)?>
 										</td>
 									</tr>
 									<tr>
@@ -57,7 +59,7 @@
 											Fin:
 										</td>
 										<td>
-											<?=$periodo->fecha_fin;?>
+											<?=Utils::fechaCarbon($periodo->fecha_fin)?>
 										</td>
 									</tr>
 									<tr>
