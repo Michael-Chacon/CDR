@@ -125,13 +125,13 @@ class AdministrativoController
     {
         $nombre = $_POST['nombres'];
         $email = $_POST['correo'];
-        if (!empty($email)) {
-            $correo = new Correos();
-            $correo->setCorreoDestinatario($email);
-            $correo->setNombreDestinatario($nombre);
-            $correo->setAsuntoCorreo('Su contraseña ha sido actualizada.');
-            $correo->correoIndividual();
-        }
+        // if (!empty($email)) {
+        //     $correo = new Correos();
+        //     $correo->setCorreoDestinatario($email);
+        //     $correo->setNombreDestinatario($nombre);
+        //     $correo->setAsuntoCorreo('Su contraseña ha sido actualizada.');
+        //     $correo->correoIndividual();
+        // }
         $id = $_POST['id'];
         $contra = $_POST['new_pass'];
         $usuario = 'id_administrativo';
