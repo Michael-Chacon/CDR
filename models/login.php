@@ -125,7 +125,8 @@ class Login
         $validar->execute(array($user));
         if ($validar && $validar->rowCount() == 1) {
             $datos = $validar->fetchObject();
-            if ($datos->password == $pass) {
+            $pass_hash = password_verify($pass, $datos->password);
+            if ($pass_hash) {
                 if ($datos->estado == 'activo') {
                     return $datos;
                 } else {

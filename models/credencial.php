@@ -222,7 +222,7 @@ class Credencial
         $pass_hash = password_hash($pass, PASSWORD_DEFAULT);
 
         $actualizar = $this->db->prepare("UPDATE credenciales SET password = :pass WHERE $rol_user = :id");
-        $actualizar->bindParam(":pass", $pass, PDO::PARAM_STR);
+        $actualizar->bindParam(":pass", $pass_hash, PDO::PARAM_STR);
         $actualizar->bindParam(":id", $id_user, PDO::PARAM_INT);
         return $actualizar->execute();
     }
