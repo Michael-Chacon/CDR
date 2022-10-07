@@ -80,27 +80,28 @@ class Correos
         $asunto = $this->getAsuntoCorreo();
         $mail = new PHPMailer(true);
         try {
-
             $mail->SMTPDebug = 0; //Enable verbose debug output
             $mail->isSMTP(); //Send using SMTP
             $mail->Host = '	smtp.gmail.com'; //Set the SMTP server to send through
             $mail->SMTPAuth = true; //Enable SMTP authentication
-            $mail->Username = ''; //SMTP username
-            $mail->Password = ''; //SMTP password
+            $mail->Username = CORREO; //SMTP username
+            $mail->Password = PASSWORD_MAIL; //SMTP password
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS; //Enable implicit TLS encryption
             $mail->Port = 465;
 
-            $mail->setFrom('', 'CDR');
+            $mail->setFrom(CORREO, 'CDR');
             $mail->addAddress($correo, $nombre);
             $mail->Subject = $asunto;
             $mail->isHTML(true); //Set email format to HTML
+            $mail->CharSet = 'UTF-8';
             $mail->Subject = $asunto;
-            $mail->Body = $asunto . ' Acción realizada en agosto ' . Utils::fechaCarbon(date('Y-m-d')) . ' Por favor no responder este correo.';
+            $mail->Body = $asunto . ' Acción realizada en ' . Utils::fechaCarbon(date('Y-m-d')) . ' Por favor no responder este correo.';
             $mail->send();
             return true;
         } catch (Exception $e) {
             $mail->send();
             echo $mail->ErrorInfo;
+            exit;
         }
     }
 
