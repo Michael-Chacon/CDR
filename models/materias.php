@@ -263,7 +263,6 @@ class Materias
     }
 
     # Obtener el docente que va a dicar la mateia
-
     public function saveBaseSubject()
     {
         $subject = $this->getMateria();

@@ -9,7 +9,7 @@
 			<!-- Default dropstart button -->
 			<articles class="btn-group dropstart">
 				<a  class="" data-bs-toggle="dropdown" aria-expanded="false">
-					<i class="bi bi-plus-lg efecto_hover" style="font-size: 2rem; color:white;"></i>
+					<i class="bi bi-list efecto_hover" style="font-size: 2rem; color:white;"></i>
 				</a>
 				<ul class="dropdown-menu dropdown-menu-dark">
 					<li>
@@ -34,29 +34,29 @@
 		<article class="col-xs-12 col-sm-12 col-md-7 col-lg-7 ">
 			<span class="valor_item">Áreas</span>
 			<?php if ($areas->rowCount() != 0):
-    			$c = 1;?>
-					<?php while ($area = $areas->fetchObject()): ?>
-						<ul class="list-group mb-1 shadow">
-							<li class="list-group-item fila-estudiante">
-								<div class="row">
-									<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 nombre-apellidos-numero">
-										<?=$c++?>
+    $c = 1;?>
+						<?php while ($area = $areas->fetchObject()): ?>
+							<ul class="list-group mb-1 shadow">
+								<li class="list-group-item fila-estudiante">
+									<div class="row">
+										<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 nombre-apellidos-numero">
+											<?=$c++?>
+										</div>
+										<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8 nombre-apellidos-numero">
+											<?=$area->nombre_area?>
+										</div>
+										<div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 nombre-apellidos-numero">
+											<span style="color:<?=$area->color?>">●</span>
+										</div>
+										<div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 nombre-apellidos-numero">
+											<a onclick="return (confirmar())" href="<?=base_url?>Configuracion/eliminar_area&id=<?=$area->id_area?>"  class="efecto_hover">
+												<i class="bi bi-trash"></i>
+											</a>
+										</div>
 									</div>
-									<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8 nombre-apellidos-numero">
-										<?=$area->nombre_area?>
-									</div>
-									<div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 nombre-apellidos-numero">
-										<span style="color:<?=$area->color?>">●</span>
-									</div>
-									<div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 nombre-apellidos-numero">
-										<a onclick="return (confirmar())" href="<?=base_url?>Configuracion/eliminar_area&id=<?=$area->id_area?>"  class="efecto_hover">
-											<i class="bi bi-trash"></i>
-										</a>
-									</div>
-								</div>
-							</li>
-						</ul>
-					<?php endwhile;?>
+								</li>
+							</ul>
+						<?php endwhile;?>
 			<?php else: ?>
 				<div class="alert alert-danger text-center" role="alert">
 					No hay áreas registradas
@@ -66,32 +66,32 @@
 		<article class="col-xs-12 col-sm-12 col-md-5 col-lg-5 ">
 			<span class="valor_item">Materias</span>
 			<?php if ($listado_materias->rowCount() != 0):
-    		$c = 1;?>
-					<?php while ($materia = $listado_materias->fetchObject()): ?>
-						<ul class="list-group mb-1 shadow">
-							<li class="list-group-item fila-estudiante">
-								<div class="row">
-									<div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 nombre-apellidos-numero">
-										<?=$c++?>
+    $c = 1;?>
+						<?php while ($materia = $listado_materias->fetchObject()): ?>
+							<ul class="list-group mb-1 shadow">
+								<li class="list-group-item fila-estudiante">
+									<div class="row">
+										<div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 nombre-apellidos-numero">
+											<?=$c++?>
+										</div>
+										<div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 nombre-apellidos-numero">
+											<i class="<?=$materia->icono?>"></i> <?=$materia->nombre_materia?>
+										</div>
+										<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 nombre-apellidos-numero">
+											<?=$materia->porcentaje_materia_b?>%
+										</div>
+										<div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 nombre-apellidos-numero">
+											<span style="color:<?=$materia->color?>">●</span>
+										</div>
+										<div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 nombre-apellidos-numero">
+											<a onclick="return (confirmar())" href="<?=base_url?>Configuracion/eliminar_materia_base&id=<?=$materia->id_base?>"  class="efecto_hover">
+												<i class="bi bi-trash"></i>
+											</a>
+										</div>
 									</div>
-									<div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 nombre-apellidos-numero">
-										<i class="<?=$materia->icono?>"></i> <?=$materia->nombre_materia?>
-									</div>
-									<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 nombre-apellidos-numero">
-										<?=$materia->porcentaje_materia_b?>%
-									</div>
-									<div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 nombre-apellidos-numero">
-										<span style="color:<?=$materia->color?>">●</span>
-									</div>
-									<div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 nombre-apellidos-numero">
-										<a onclick="return (confirmar())" href="<?=base_url?>Configuracion/eliminar_materia_base&id=<?=$materia->id_base?>"  class="efecto_hover">
-											<i class="bi bi-trash"></i>
-										</a>
-									</div>
-								</div>
-							</li>
-						</ul>
-					<?php endwhile;?>
+								</li>
+							</ul>
+						<?php endwhile;?>
 			<?php else: ?>
 				<div class="alert alert-danger text-center" role="alert">
 					No hay materias registradas
@@ -157,7 +157,7 @@
 					<div class="collapse" id="listadoIconos">
 							<div class="row">
 								<span class="item_info text-center">Selecciona un icono</span>
-								<?php while($icono = $listado_iconos->fetchObject()): ?>
+								<?php while ($icono = $listado_iconos->fetchObject()): ?>
 									<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 col-xl-2 mb-2">
 										<div class="card">
 											<div class="card-body">
@@ -169,7 +169,7 @@
 										</div>
 									</div>
 								</div>
-							<?php endwhile; ?>
+							<?php endwhile;?>
 						</div>
 					</div>
 					<!-- end iconos -->

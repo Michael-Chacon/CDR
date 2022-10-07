@@ -97,7 +97,7 @@ class NotasController
                 $definitiva_periodo1 = 0;
             }
 
-            # Hallando las notas del PERIODO 2
+            # ----------------------------- Hallando las notas del PERIODO 2 ------------------------------------------------------------------
             # Calculando notas del criterio cognitivo periodo 2
             $evaluacionPeriodo2 = $notas->notaEvaluacionPeriodox(2);
             $trimestralPeriodo2 = $notas->notaTrimestralPeriodox(2);
@@ -132,7 +132,7 @@ class NotasController
                 $definitiva_periodo2 = 0;
             }
 
-            #  Hallando las notas del PERIODO 3
+            #  ----------------------------------------------Hallando las notas del PERIODO 3-------------------------------------------------
             # Calculando las notas del criterio cognitivo periodo 3
             $evaluacionPeriodo3 = $notas->notaEvaluacionPeriodox(3);
             $trimestralPeriodo3 = $notas->notaTrimestralPeriodox(3);
@@ -168,6 +168,8 @@ class NotasController
             } else {
                 $definitiva_periodo3 = 0;
             }
+
+            // -----------------------------------------------------------------------------------------------------------------------------
 
             $hoy = date("Y-m-d");
             $periodo = Utils::validarPeriodoAcademico($hoy);

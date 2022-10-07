@@ -43,7 +43,7 @@ class LoginController
                     $info = $datos->obtenerDatos($rol, 'id_admin');
                     $_SESSION['user'] = $info;
                     header('Location: ' . base_url . 'Login/homeAdministrativo');
-                    Utils::tal();
+                    Utils::deleteFiles();
                     break;
                 #usuario Docente
                 case 'docente':

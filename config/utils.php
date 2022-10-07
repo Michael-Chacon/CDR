@@ -184,7 +184,7 @@ class Utils
         require_once 'views/layout/404.php';
     }
 
-    public static function tal()
+    public static function deleteFiles()
     {
         $files = glob('file/*.pdf'); //obtenemos todos los nombres de los ficheros
         foreach ($files as $file) {
