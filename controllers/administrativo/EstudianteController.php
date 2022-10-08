@@ -33,49 +33,49 @@ class EstudianteController
     {
         if (isset($_POST) && !empty($_POST)) {
             # datos del estudiante
-            $nombre_e = trim($_POST['nombres']);
-            $apellidos_e = trim($_POST['apellidos']);
+            $nombre_e = trim(Utils::clearStrings($_POST['nombres']));
+            $apellidos_e = trim(Utils::clearStrings($_POST['apellidos']));
             $fecha_nacimiento_e = trim($_POST['nacimienito']);
             $genero = trim($_POST['genero']);
             $tipo = trim($_POST['tipo_e']);
             $numero = trim($_POST['numero']);
-            $lugar_expedi = trim($_POST['expedicion']);
+            $lugar_expedi = trim(Utils::clearStrings($_POST['expedicion']));
             $fecha_expedi = trim($_POST['fecha']);
-            $direccion_e = trim($_POST['direccion']);
+            $direccion_e = trim(Utils::clearStrings($_POST['direccion']));
             $telefono_e = trim($_POST['telefono']);
             $correo_e = trim($_POST['correo']);
-            $religion_e = trim($_POST['religion']);
-            $incapacidad_e = trim($_POST['incapacidad']);
-            $grupo = trim($_POST['grupo']);
-            $rh = trim($_POST['rh']);
+            $religion_e = trim(Utils::clearStrings($_POST['religion']));
+            $incapacidad_e = trim(Utils::clearStrings($_POST['incapacidad']));
+            $grupo = trim(Utils::clearStrings($_POST['grupo']));
+            $rh = trim(Utils::clearStrings($_POST['rh']));
             $trasporte = trim($_POST['trasporte']);
             $pae = trim($_POST['pae']);
             $usuario = trim($_POST['numero']);
             $pass = trim($_POST['numero']);
 
             # datos de la madre
-            $nombre_m = trim($_POST['nombres_m']);
-            $apellidos_m = trim($_POST['apellidos_m']);
+            $nombre_m = trim(Utils::clearStrings($_POST['nombres_m']));
+            $apellidos_m = trim(Utils::clearStrings($_POST['apellidos_m']));
             $nacimiento_m = trim($_POST['nacimiento_m']);
             $tipo_m = trim($_POST['tipo_m']);
             $numero_m = trim($_POST['numero_m']);
-            $lugar_expedi_m = trim($_POST['lugar_expedicion_m']);
+            $lugar_expedi_m = trim(Utils::clearStrings($_POST['lugar_expedicion_m']));
             $fecha_expedi_m = trim($_POST['fecha_expedicion_m']);
             $telefono_m = trim($_POST['telefono_m']);
-            $ocupacion_m = trim($_POST['ocupacion_m']);
+            $ocupacion_m = trim(Utils::clearStrings($_POST['ocupacion_m']));
 
             # datos del padre
-            $nombre_pa = trim($_POST['nombres_pa']);
-            $apellidos_pa = trim($_POST['apellidos_pa']);
+            $nombre_pa = trim(Utils::clearStrings($_POST['nombres_pa']));
+            $apellidos_pa = trim(Utils::clearStrings($_POST['apellidos_pa']));
             $nacimiento_pa = trim($_POST['nacimiento_pa']);
             $tipo_pa = trim($_POST['tipo_pa']);
             $numero_pa = trim($_POST['numero_pa']);
-            $lugar_expedi_pa = trim($_POST['lugar_expedicion_pa']);
+            $lugar_expedi_pa = trim(Utils::clearStrings($_POST['lugar_expedicion_pa']));
             $fecha_expedi_pa = trim($_POST['fecha_expedicion_pa']);
             $telefono_pa = trim($_POST['telefono_pa']);
-            $ocupacion_pa = trim($_POST['ocupacion_pa']);
+            $ocupacion_pa = trim(Utils::clearStrings($_POST['ocupacion_pa']));
 
-            $direccion_mp = trim($_POST['direccion_mp']);
+            $direccion_mp = trim(Utils::clearStrings($_POST['direccion_mp']));
             $correo_mp = trim($_POST['correo_mp']);
             # set padres
             $padres = new Padres();

@@ -59,6 +59,13 @@ class Utils
         }
     }
 
+    # Limpiar las cadenas de texto
+    public static function clearStrings($string)
+    {
+        $data = str_ireplace( array( '\'', '"', ';', '<', '>', '/', '{', '}', '[', ']' ), '', $string);
+        return $data;
+    }
+
     # Nuevo sistema de alertas
     public static function alertas($respuesta, $exito, $error)
     {

@@ -26,28 +26,28 @@ class DocenteController
     {
         if (isset($_POST) && !empty($_POST)) {
 
-            $nombre = trim($_POST['nombres']);
-            $apellidos = trim($_POST['apellidos']);
+            $nombre = trim(Utils::clearStrings($_POST['nombres']));
+            $apellidos = trim(Utils::clearStrings($_POST['apellidos']));
             $nacimiento = trim($_POST['nacimiento']);
             $genero = trim($_POST['sexo']);
             $tipo = trim($_POST['tipo']);
             $numeroId = trim($_POST['numero']);
-            $lugar = trim($_POST['expedicion']);
+            $lugar = trim(Utils::clearStrings($_POST['expedicion']));
             $fecha_expedicion = trim($_POST['fecha']);
-            $direccion = trim($_POST['direccion']);
+            $direccion = trim(Utils::clearStrings($_POST['direccion']));
             $telefono = trim($_POST['telefono']);
             $correo = trim($_POST['correo']);
-            $religion = trim($_POST['religion']);
-            $incapacidad = trim($_POST['incapacidad']);
-            $grupo = trim($_POST['grupo']);
-            $rh = trim($_POST['rh']);
+            $religion = trim(Utils::clearStrings($_POST['religion']));
+            $incapacidad = trim(Utils::clearStrings($_POST['incapacidad']));
+            $grupo = trim(Utils::clearStrings($_POST['grupo']));
+            $rh = trim(Utils::clearStrings($_POST['rh']));
             $fecha_posesion = trim($_POST['fecha_posesion']);
             $numero_acta_posesion = trim($_POST['acta_posesion']);
             $numero_resolucion_posesion = trim($_POST['resolucion_posesion']);
             $pregrado = trim($_POST['pregrado']);
-            $nombre_pregrado = trim($_POST['nombre_pregrado']);
+            $nombre_pregrado = trim(Utils::clearStrings($_POST['nombre_pregrado']));
             $posgrado = trim($_POST['posgrado']);
-            $nombre_posgrado = trim($_POST['nombre_posgrado']);
+            $nombre_posgrado = trim(Utils::clearStrings($_POST['nombre_posgrado']));
             $usuario = trim($_POST['numero']);
             $pass = trim($_POST['numero']);
 

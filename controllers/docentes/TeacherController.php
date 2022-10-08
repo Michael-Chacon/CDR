@@ -69,9 +69,9 @@ class TeacherController
     # Metodo para enviar al model docente los datos los datos que le estan permitido actualizar.
     public function actualizarDatosDeDocente()
     {
-        $telefono = $_POST['telefono_d'];
-        $direccion = $_POST['direccion_d'];
-        $correo = $_POST['correo_d'];
+        $telefono = trim(Utils::clearStrings($_POST['telefono_d']));
+        $direccion = trim(Utils::clearStrings($_POST['direccion_d']));
+        $correo = trim(Utils::clearStrings($_POST['correo_d']));
         $actualizar = new Docente();
         $actualizar->setTelefono($telefono);
         $actualizar->setDireccion($direccion);

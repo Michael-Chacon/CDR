@@ -42,9 +42,9 @@ class StudentController
     # Actualizar los datos de los estudiantes
     public function actualizarDatosEstudiante()
     {
-        $telefono = $_POST['telefono_e'];
-        $direccion = $_POST['direccion_e'];
-        $correo = $_POST['correo_e'];
+        $telefono = trim(Utils::clearStrings($_POST['telefono_e']));
+        $direccion = trim(Utils::clearStrings($_POST['direccion_e']));
+        $correo = trim(Utils::clearStrings($_POST['correo_e']));
         $actualizar = new Estudiante();
         $actualizar->setTelefono($telefono);
         $actualizar->setDireccion($direccion);
@@ -58,10 +58,10 @@ class StudentController
     # Actualizar los datos de los padres
     public function actualizarDatosPadres()
     {
-        $telefono_m = $_POST['telefono_m'];
-        $telefono_p = $_POST['telefono_p'];
-        $direccion = $_POST['direccion_pm'];
-        $correo = $_POST['correo_pm'];
+        $telefono_m = trim(Utils::clearStrings($_POST['telefono_m']));
+        $telefono_p = trim(Utils::clearStrings($_POST['telefono_p']));
+        $direccion = trim(Utils::clearStrings($_POST['direccion_pm']));
+        $correo = trim(Utils::clearStrings($_POST['correo_pm']));
         $actualizar = new Padres();
         $actualizar->setTelefonoM($telefono_m);
         $actualizar->setTelefonoP($telefono_p);

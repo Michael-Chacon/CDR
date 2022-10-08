@@ -20,7 +20,7 @@ class BoletinController
         $estudiante = $_POST['nombre_estudiante'];
         $docente = $_POST['docente'];
         $fallas = $_POST['fallas'];
-        $observacion = $_POST['observacion'];
+        $observacion = Utils::clearStrings($_POST['observacion']);
         $periodo1 = $_POST['periodo1'];
         $periodo2 = $_POST['periodo2'];
         $periodo3 = $_POST['periodo3'];

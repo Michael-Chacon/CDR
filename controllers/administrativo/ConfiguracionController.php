@@ -128,7 +128,7 @@ class ConfiguracionController
 
     public function guardar_aula()
     {
-        $nombre = strtoupper($_POST['aula']);
+        $nombre = strtoupper(Utils::clearStrings($_POST['aula']));
         $duplicado = Utils::validarExistenciaDUnCampo($nombre, 'aulas', 'nombre');
         if ($duplicado == 0) {
             $aula = new Grados();

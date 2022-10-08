@@ -805,7 +805,7 @@
       </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Cancelar</button>
         <button type="submit" class="btn btn-outline-success">Guardar cambios</button>
       </div>
     </div>

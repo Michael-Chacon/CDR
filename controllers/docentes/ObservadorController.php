@@ -25,9 +25,9 @@ class ObservadorController
         $nombre_e = $_POST['estudiante'];
         $grado = $_POST['grado'];
         $fecha = $_POST['fecha'];
-        $docente = $_POST['docente'];
-        $observacion = $_POST['observacion'];
-        $acciones = $_POST['acciones_compromisos'];
+        $docente = trim(Utils::clearStrings($_POST['docente']));
+        $observacion = trim(Utils::clearStrings($_POST['observacion']));
+        $acciones = trim(Utils::clearStrings($_POST['acciones_compromisos']));
 
         $observador = new Observador();
         $observador->setEstudiante($estudiante);

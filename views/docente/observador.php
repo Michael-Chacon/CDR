@@ -26,7 +26,7 @@
 			<div class="card text-white bg-dark mb-5 shadow">
 				<div class="card-header text-center">
 					<article class="row">
-						<article class="col-md-2 borde-items">
+						<article class="col-md-1 borde-items">
 							<p class="items">Grado:</p>
 							<span class="datos-items"><?=$observador->grado?></span>
 						</article>
@@ -38,7 +38,7 @@
 							<p class="items">Alumno:</p>
 							<span class="datos-items"><?=$observador->estudiante?></span>
 						</article>
-						<article class="col-md-2 borde-items">
+						<article class="col-md-3 borde-items">
 							<p class="items">Fecha:</p>
 							<span class="datos-items"><?=Utils::fechaCarbon($observador->fecha_ob)?></span>
 						</article>

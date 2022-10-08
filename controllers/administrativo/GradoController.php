@@ -15,7 +15,8 @@ class GradoController
     public function guardarGrado()
     {
         if (isset($_POST)) {
-            $numero = trim(strtoupper($_POST['grado']));
+            $numero = trim(strtoupper(Utils::clearStrings($_POST['grado'])));
+
             $validacion = new Grados();
             $validacion->setGrado($numero);
             $retorno = $validacion->validar();

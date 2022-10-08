@@ -15,9 +15,9 @@ class TableroController
     public function guardarActividad()
     {
         $destinatario = $_POST['destinatario'];
-        $titulo = $_POST['titulo'];
+        $titulo = trim(Utils::clearStrings($_POST['titulo']));
         $fecha = $_POST['fecha'];
-        $detalle = $_POST['detalle'];
+        $detalle = trim(Utils::clearStrings($_POST['detalle']));
         $color = $_POST['color'];
         $hoy  = date('Ymdhis');
         $save = new Tablero();

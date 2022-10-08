@@ -49,10 +49,10 @@ class panelMateriaController
     {
         if (isset($_POST) && !empty($_POST)) {
             $materia = $_POST['id_materia'];
-            $titulo = strip_tags(trim($_POST['titulo']));
+            $titulo = strip_tags(trim(Utils::clearStrings($_POST['titulo'])));
             $fecha = trim($_POST['fecha_entrega']);
-            $formato = trim($_POST['formato']);
-            $descripcion = trim($_POST['descripcion']);
+            $formato = trim(Utils::clearStrings($_POST['formato']));
+            $descripcion = trim(Utils::clearStrings($_POST['descripcion']));
               $fecha_registro = date('Ymdhis');
 
             $file = $_FILES['documento'];
@@ -113,10 +113,10 @@ class panelMateriaController
     public function GuardarActividadesDClase()
     {
         if (isset($_POST) && !empty($_POST)) {
-            $materia = $_POST['id_materia'];
-            $titulo = $_POST['tituloA'];
+            $materia = trim(Utils::clearStrings($_POST['id_materia']));
+            $titulo = trim(Utils::clearStrings($_POST['tituloA']));
             $fecha = $_POST['fechaA'];
-            $descripcion = $_POST['descripcionA'];
+            $descripcion = trim(Utils::clearStrings($_POST['descripcionA']));
             $fecha_registro = date('Ymdhis');
 
             $validar_titulo = Utils::validarExisenciaDocumentos('actividadesmateria', 'titulo_actividad', $titulo, 'id_materia_a', $materia);

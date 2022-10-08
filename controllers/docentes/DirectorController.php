@@ -31,7 +31,7 @@ class DirectorController
         if (isset($_POST) && !empty($_POST)) {
             $id_estudiante = $_POST['x'];
             $calificacion = $_POST['nota'];
-            $observacion = $_POST['observacion'];
+            $observacion = Utils::clearStrings($_POST['observacion']);
             $periodo = Utils::validarPeriodoAcademico(date("Y-m-d"));
             $nota = new Notas();
             $nota->setEstudiante($id_estudiante);

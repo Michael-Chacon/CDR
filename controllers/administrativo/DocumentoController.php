@@ -14,7 +14,7 @@ class DocumentoController
     public function guardar()
     {
         $destinatario = $_POST['destinatario'];
-        $descripcion = trim($_POST['descripcion']);
+        $descripcion = trim(Utils::clearStrings($_POST['descripcion']));
         $file = $_FILES['documento'];
         $name = $file['name'];
         if (!is_dir('documentos/')) {

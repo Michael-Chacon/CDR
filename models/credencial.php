@@ -183,6 +183,7 @@ class Credencial
         // $id_estudiante = $this->db->lastInsertId();
         $user = $this->getUsuario();
         $pass = $this->getPassword();
+        $pass_hash = password_hash($pass, PASSWORD_DEFAULT);
         $rol_u = $this->getRol();
         $estado = $this->getEstado();
 
@@ -200,13 +201,13 @@ class Credencial
             $estudiante = null;
         }
 
-        $credenciales = $this->db->prepare("INSERT INTO credenciales VALUES(null, :administrativo, :estudiante, :docente, :rol, :usuario, :pass, :estado)");
+        $credenciales = $this->db->prepare("INSERT INTO credenciales VALUES(null, :administrativo, :estudiante, :docente, :rol, :usuario, :pass_hash, :estado)");
         $credenciales->bindParam(':administrativo', $administrativo, PDO::PARAM_INT);
         $credenciales->bindParam(':estudiante', $estudiante, PDO::PARAM_INT);
         $credenciales->bindParam(':docente', $docente, PDO::PARAM_INT);
         $credenciales->bindParam(':rol', $rol_u, PDO::PARAM_STR);
         $credenciales->bindParam(":usuario", $user, PDO::PARAM_STR);
-        $credenciales->bindParam(":pass", $pass, PDO::PARAM_STR);
+        $credenciales->bindParam(":pass_hash", $pass_hash, PDO::PARAM_STR);
         $credenciales->bindParam(':estado', $estado, PDO::PARAM_STR);
 
         return $credenciales->execute();
